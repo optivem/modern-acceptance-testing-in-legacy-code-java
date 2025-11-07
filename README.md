@@ -1,4 +1,4 @@
-# E2E Testing in Legacy Code
+# E2E Testing in Legacy Code (Java)
 
 ## License
 
