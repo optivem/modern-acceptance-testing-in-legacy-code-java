@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 public class GlobalExceptionHandler {
 
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-    private static final Pattern CLASS_NAME_PATTERN = Pattern.compile("\\[\"(com\\.optivem\\.atddaccelerator\\.eshop\\.monolith\\.core\\.dtos\\.[^\"]+)\"\\]");
+    private static final Pattern CLASS_NAME_PATTERN = Pattern.compile("(com\\.optivem\\.atddaccelerator\\.eshop\\.monolith\\.core\\.dtos\\.[^\\[\\]\"\\s\\)]+)");
     private static final String DTOS_PACKAGE = "com.optivem.atddaccelerator.eshop.monolith.core.dtos";
 
     @ExceptionHandler(ValidationException.class)
