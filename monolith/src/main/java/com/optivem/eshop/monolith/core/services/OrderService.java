@@ -51,7 +51,6 @@ public class OrderService {
 
         var response = new PlaceOrderResponse();
         response.setOrderNumber(orderNumber);
-        response.setTotalPrice(totalPrice);
         return response;
     }
 

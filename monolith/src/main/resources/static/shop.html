@@ -88,8 +88,17 @@
 
                 if (response.ok) {
                     const order = await response.json();
-                    resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber + ' and Total Price $' + order.totalPrice.toFixed(2);
-                    resultDiv.classList.add('show');
+                    
+                    // Fetch order details to get the total price
+                    const orderDetailsResponse = await fetch('/api/orders/' + order.orderNumber);
+                    if (orderDetailsResponse.ok) {
+                        const orderDetails = await orderDetailsResponse.json();
+                        resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber + ' and Total Price $' + orderDetails.totalPrice.toFixed(2);
+                        resultDiv.classList.add('show');
+                    } else {
+                        resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber;
+                        resultDiv.classList.add('show');
+                    }
                 } else if (response.status === 400 || response.status === 422) {
                     // Handle parsing errors (400) and validation errors (422)
                     const contentType = response.headers.get("content-type");
