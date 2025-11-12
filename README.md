@@ -10,7 +10,7 @@ E-Shop system with acceptance testing for legacy code scenarios.
 ├── docker-compose.yml     # Default compose (uses local)
 ├── docker-compose.local.yml    # Local development (builds from source)
 ├── docker-compose.pipeline.yml # CI/CD (uses pre-built images)
-├── erp-api-db.json       # Mock ERP API data
+├── json-server-db.erp-api.json # Mock ERP API data
 └── run.ps1               # Orchestration script with health checks
 ```
 
