@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.optivem.eshop.systemtest.TestConfiguration;
 import lombok.Data;
@@ -10,9 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigDecimal;
 import java.net.URI;
@@ -20,6 +18,8 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class ApiE2eTest {
 
@@ -58,7 +58,7 @@ class ApiE2eTest {
         var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         // Assert
-        assertEquals(201, response.statusCode(), "Response status should be 201 CREATED");
+        assertEquals(201, response.statusCode(), "Response status should be 201 CREATED. Response body: " + response.body());
 
         var responseBody = response.body();
         var responseDto = objectMapper.readValue(responseBody, PlaceOrderResponse.class);
@@ -87,6 +87,8 @@ class ApiE2eTest {
                 .build();
 
         var postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+        assertEquals(201, postResponse.statusCode(), "Order creation should return 201 CREATED. Response body: " + postResponse.body());
+
         var placeOrderResponse = objectMapper.readValue(postResponse.body(), PlaceOrderResponse.class);
         var orderNumber = placeOrderResponse.getOrderNumber();
         
@@ -128,9 +130,15 @@ class ApiE2eTest {
                 .build();
 
         var postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+
+        // Verify order was created successfully
+        assertEquals(201, postResponse.statusCode(), "Order creation should return 201 CREATED. Response: " + postResponse.body());
+
         var placeOrderResponse = objectMapper.readValue(postResponse.body(), PlaceOrderResponse.class);
         var orderNumber = placeOrderResponse.getOrderNumber();
         
+        assertNotNull(orderNumber, "Order number should not be null");
+
         // Act - Cancel the order
         var cancelRequest = HttpRequest.newBuilder()
                 .uri(new URI(BASE_URL + "/api/orders/" + orderNumber + "/cancel"))
@@ -259,12 +267,14 @@ class ApiE2eTest {
     }
     
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     static class PlaceOrderResponse {
         private String orderNumber;
         private BigDecimal totalPrice;
     }
     
     @Data
+    @JsonIgnoreProperties(ignoreUnknown = true)
     static class GetOrderResponse {
         private String orderNumber;
         private long productId;

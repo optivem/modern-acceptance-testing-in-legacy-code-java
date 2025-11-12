@@ -26,9 +26,23 @@ function Start-System {
         Set-Location ..\system-test
     }
 
+    Write-Host "Cleaning up any existing containers..." -ForegroundColor Cyan
+    docker compose -f docker-compose.yml down 2>$null
+    docker compose -f docker-compose.local.yml down 2>$null
+    docker compose -f docker-compose.pipeline.yml down 2>$null
+
+    # Wait to ensure containers are fully stopped and ports are released
+    Start-Sleep -Seconds 2
+
     Write-Host "Starting Docker containers (mode: $Mode)..." -ForegroundColor Cyan
 
     docker compose -f $ComposeFile up -d
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ""
+        Write-Host "Failed to start Docker containers!" -ForegroundColor Red
+        exit $LASTEXITCODE
+    }
 
     Write-Host ""
     Write-Host "Done! Services are starting..." -ForegroundColor Green
@@ -87,17 +101,28 @@ function Run-All {
     Start-System
 
     if ($LASTEXITCODE -ne 0) {
-        return
+        Write-Host ""
+        Write-Host "Start failed! Aborting..." -ForegroundColor Red
+        exit $LASTEXITCODE
     }
 
     Write-Host ""
-    Write-Host "Waiting for services to be ready..." -ForegroundColor Cyan
-    Start-Sleep -Seconds 5
+    & .\wait-for-services.ps1
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ""
+        Write-Host "Services failed to become ready! Aborting..." -ForegroundColor Red
+        Stop-System
+        exit $LASTEXITCODE
+    }
 
     Test-System
 
     if ($LASTEXITCODE -ne 0) {
-        return
+        Write-Host ""
+        Write-Host "Tests failed! Stopping services..." -ForegroundColor Red
+        Stop-System
+        exit $LASTEXITCODE
     }
 
     Write-Host ""

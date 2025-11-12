@@ -22,22 +22,32 @@ public class ErpGateway {
     private String erpUrl;
 
     public BigDecimal getUnitPrice(long productId) {
-        try (var httpClient = HttpClient.newHttpClient()) {
+        try {
+            var httpClient = HttpClient.newBuilder()
+                    .connectTimeout(java.time.Duration.ofSeconds(10))
+                    .build();
+                    
             var url = erpUrl + "/products/" + productId;
             var request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
+                    .timeout(java.time.Duration.ofSeconds(10))
+                    .GET()
                     .build();
+                    
             var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() != 200) {
-                throw new RuntimeException("ERP API returned status " + response.statusCode() + " for product: " + productId);
+                throw new RuntimeException("ERP API returned status " + response.statusCode() + 
+                        " for product: " + productId + ". URL: " + url + ". Response: " + response.body());
             }
 
             var productPriceResponse = OBJECT_MAPPER.readValue(response.body(), ProductPriceResponse.class);
 
             return productPriceResponse.getPrice();
         } catch (Exception e) {
-            throw new RuntimeException("Failed to fetch price for product: " + productId, e);
+            throw new RuntimeException("Failed to fetch price for product: " + productId + 
+                    " from URL: " + erpUrl + "/products/" + productId + 
+                    ". Error: " + e.getClass().getSimpleName() + ": " + e.getMessage(), e);
         }
     }
 }

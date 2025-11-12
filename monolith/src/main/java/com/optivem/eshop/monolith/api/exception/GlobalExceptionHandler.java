@@ -106,5 +106,37 @@ public class GlobalExceptionHandler {
         }
         return null;
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
+        log.error("Unexpected error occurred", ex);
+
+        // Log the full cause chain
+        Throwable cause = ex.getCause();
+        int depth = 1;
+        while (cause != null && depth < 10) {
+            log.error("  Caused by [{}]: {}", depth, cause.getMessage(), cause);
+            cause = cause.getCause();
+            depth++;
+        }
+
+        // Build detailed error message with root cause
+        String rootCauseMessage = getRootCauseMessage(ex);
+        String fullMessage = "Internal server error: " + ex.getMessage();
+        if (rootCauseMessage != null && !rootCauseMessage.equals(ex.getMessage())) {
+            fullMessage += " | Root cause: " + rootCauseMessage;
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorResponse(fullMessage));
+    }
+
+    private String getRootCauseMessage(Throwable ex) {
+        Throwable cause = ex;
+        while (cause.getCause() != null) {
+            cause = cause.getCause();
+        }
+        return cause.getMessage();
+    }
 }
 

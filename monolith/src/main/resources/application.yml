@@ -4,6 +4,7 @@ spring:
   jackson:
     deserialization:
       ACCEPT_FLOAT_AS_INT: false
+
 ---
 spring:
   config:

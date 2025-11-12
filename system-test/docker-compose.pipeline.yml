@@ -7,8 +7,6 @@ services:
     volumes:
       - ./erp-api-db.json:/data/db.json
     command: --watch /data/db.json --host 0.0.0.0
-    networks:
-      - eshop-network
 
   monolith:
     image: ghcr.io/optivem/acceptance-testing-in-legacy-code-java/monolith:latest
@@ -18,10 +16,4 @@ services:
       - SPRING_PROFILES_ACTIVE=e2e
     depends_on:
       - erp-api
-    networks:
-      - eshop-network
-
-networks:
-  eshop-network:
-    driver: bridge
 
