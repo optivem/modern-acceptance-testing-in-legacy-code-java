@@ -1,4 +1,4 @@
-# Acceptance Testing in Legacy Code (Java)
+# Modern Acceptance Testing in Legacy Code (Java)
 
 [![commit-stage-monolith](https://github.com/optivem/e2e-testing-in-legacy-code-java/actions/workflows/commit-stage-monolith.yml/badge.svg)](https://github.com/optivem/e2e-testing-in-legacy-code-java/actions/workflows/commit-stage-monolith.yml)
 [![acceptance-stage](https://github.com/optivem/e2e-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml/badge.svg)](https://github.com/optivem/e2e-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml)
