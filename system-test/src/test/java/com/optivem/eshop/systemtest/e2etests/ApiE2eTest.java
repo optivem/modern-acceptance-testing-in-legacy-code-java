@@ -118,17 +118,19 @@ class ApiE2eTest {
         
         var getOrderResponse = objectMapper.readValue(getResponse.body(), GetOrderResponse.class);
         
+        // Assert all fields from GetOrderResponse
         assertNotNull(getOrderResponse.getOrderNumber(), "Order number should not be null");
         assertEquals(sku, getOrderResponse.getSku(), "SKU should be " + sku);
         assertEquals(quantity, getOrderResponse.getQuantity(), "Quantity should be " + quantity);
         assertEquals(country, getOrderResponse.getCountry(), "Country should be " + country);
-
         assertEquals(unitPrice, getOrderResponse.getUnitPrice(), "Unit price should be " + unitPrice);
 
-        // Verify originalPrice = unitPrice * quantity
-        BigDecimal expectedOriginalPrice = unitPrice.multiply(BigDecimal.valueOf(quantity));
+        BigDecimal expectedOriginalPrice = new BigDecimal("898.50");
         assertEquals(expectedOriginalPrice, getOrderResponse.getOriginalPrice(),
-                "Original price should be " + expectedOriginalPrice + " (unitPrice " + unitPrice + " * quantity " + quantity + ")");
+                "Original price should be " + expectedOriginalPrice);
+
+        assertNotNull(getOrderResponse.getStatus(), "Status should not be null");
+        assertEquals("PLACED", getOrderResponse.getStatus(), "Status should be PLACED");
     }
 
     @Test

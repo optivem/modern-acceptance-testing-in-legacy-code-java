@@ -57,7 +57,7 @@ class UiE2eTest {
     }
 
     @Test
-    void shouldCalculateTotalOrderPrice() {
+    void shouldCalculateOriginalOrderPrice() {
         // Act
         page.navigate(baseUrl + "/shop.html");
 
@@ -83,7 +83,7 @@ class UiE2eTest {
 
         var originalPriceString = matcher.group(2);
         var originalPrice = Double.parseDouble(originalPriceString);
-        assertTrue(originalPrice > 0, "Original price should be positive. Actual: " + originalPrice);
+        assertEquals(549.75, originalPrice, 0.01, "Original price should be $549.75 (5 × $109.95)");
     }
 
     @Test
@@ -149,8 +149,8 @@ class UiE2eTest {
         assertTrue(displayProductId.inputValue().equals("SAM-2020"), "Should display SKU SAM-2020");
         assertTrue(displayCountry.inputValue().equals("US"), "Should display country US");
         assertTrue(displayQuantity.inputValue().equals("3"), "Should display quantity 3");
-        assertTrue(displayUnitPrice.inputValue().startsWith("$"), "Should display unit price with $ symbol");
-        assertTrue(displayOriginalPrice.inputValue().startsWith("$"), "Should display original price with $ symbol");
+        assertTrue(displayUnitPrice.inputValue().equals("$499.99"), "Should display unit price $499.99");
+        assertTrue(displayOriginalPrice.inputValue().equals("$1499.97"), "Should display original price $1499.97");
         assertTrue(displayDiscountRate.inputValue().endsWith("%"), "Should display discount rate with % symbol");
         assertTrue(displayDiscountAmount.inputValue().startsWith("$"), "Should display discount amount with $ symbol");
         assertTrue(displaySubtotalPrice.inputValue().startsWith("$"), "Should display subtotal price with $ symbol");
