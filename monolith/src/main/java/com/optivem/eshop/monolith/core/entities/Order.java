@@ -1,27 +1,59 @@
 package com.optivem.eshop.monolith.core.entities;
 
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.Instant;
 
+@Entity
+@Table(name = "orders")
 @Data
+@NoArgsConstructor
 public class Order {
+    @Id
+    @Column(name = "order_number", nullable = false, unique = true)
     private String orderNumber;
+
+    @Column(name = "order_timestamp", nullable = false)
     private Instant orderTimestamp;
+
+    @Column(name = "country", nullable = false)
     private String country;
 
+    @Column(name = "sku", nullable = false)
     private String sku;
+
+    @Column(name = "quantity", nullable = false)
     private int quantity;
+
+    @Column(name = "unit_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal unitPrice;
+
+    @Column(name = "original_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal originalPrice;
 
+    @Column(name = "discount_rate", nullable = false, precision = 5, scale = 4)
     private BigDecimal discountRate;
+
+    @Column(name = "discount_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal discountAmount;
+
+    @Column(name = "subtotal_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal subtotalPrice;
 
+    @Column(name = "tax_rate", nullable = false, precision = 5, scale = 4)
     private BigDecimal taxRate;
+
+    @Column(name = "tax_amount", nullable = false, precision = 10, scale = 2)
     private BigDecimal taxAmount;
+
+    @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private OrderStatus status;
 
     public Order(String orderNumber, Instant orderTimestamp, String country,

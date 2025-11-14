@@ -42,7 +42,7 @@ public class OrderService {
         var quantity = request.getQuantity();
         var country = request.getCountry();
 
-        var orderNumber = orderRepository.nextOrderNumber();
+        var orderNumber = generateOrderNumber();
         var orderTimestamp = Instant.now();
         var unitPrice = getUnitPrice(sku);
         var discountRate = getDiscountRate();
@@ -59,7 +59,7 @@ public class OrderService {
                 discountRate, discountAmount, subtotalPrice,
                 taxRate, taxAmount, totalPrice, OrderStatus.PLACED);
 
-        orderRepository.addOrder(order);
+        orderRepository.save(order);
 
         var response = new PlaceOrderResponse();
         response.setOrderNumber(orderNumber);
@@ -96,7 +96,7 @@ public class OrderService {
     }
 
     public GetOrderResponse getOrder(String orderNumber) {
-        var optionalOrder = orderRepository.getOrder(orderNumber);
+        var optionalOrder = orderRepository.findById(orderNumber);
 
         if(optionalOrder.isEmpty()) {
             throw new NotExistValidationException("Order " + orderNumber + " does not exist.");
@@ -123,7 +123,7 @@ public class OrderService {
     }
 
     public void cancelOrder(String orderNumber) {
-        var optionalOrder = orderRepository.getOrder(orderNumber);
+        var optionalOrder = orderRepository.findById(orderNumber);
 
         if(optionalOrder.isEmpty()) {
             throw new NotExistValidationException("Order " + orderNumber + " does not exist.");
@@ -142,6 +142,10 @@ public class OrderService {
         }
 
         order.setStatus(OrderStatus.CANCELLED);
-        orderRepository.updateOrder(order);
+        orderRepository.save(order);
+    }
+
+    private String generateOrderNumber() {
+        return "ORD-" + java.util.UUID.randomUUID();
     }
 }
