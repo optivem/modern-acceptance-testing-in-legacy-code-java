@@ -113,7 +113,6 @@ class ApiE2eTest {
         assertEquals(quantity, getOrderResponse.getQuantity(), "Quantity should be " + quantity);
         assertEquals(country, getOrderResponse.getCountry(), "Country should be " + country);
 
-        // Price will come from DummyJSON API for product
         assertNotNull(getOrderResponse.getUnitPrice(), "Unit price should not be null");
         assertNotNull(getOrderResponse.getOriginalPrice(), "Total price should not be null");
     }
@@ -343,9 +342,14 @@ class ApiE2eTest {
     @ParameterizedTest
     @MethodSource("provideEmptyCountryValues")
     void shouldRejectOrderWithEmptyCountry(String countryValue) throws Exception {
-        // Arrange
+        // Arrange - Set up product in ERP first and get unique SKU
+        String baseSku = "AUTO-EC-700";
+        BigDecimal unitPrice = new BigDecimal("225.00");
+
+        String sku = setupProductInErpAndGetSku(baseSku, "Test Product", unitPrice);
+
         var requestDto = new PlaceOrderRequest();
-        requestDto.setSku("HP-15");
+        requestDto.setSku(sku);
         requestDto.setQuantity("5");
         requestDto.setCountry(countryValue);
 
@@ -368,6 +372,74 @@ class ApiE2eTest {
                 "Error message should be 'Country must not be empty'. Actual: " + responseBody);
     }
 
+
+    // Helper method to set up product in ERP JSON Server
+    private void setupProductInErp(String sku, String title, BigDecimal price) throws Exception {
+        // Add UUID suffix to avoid duplicate IDs across test runs
+        String uniqueSku = sku + "-" + java.util.UUID.randomUUID().toString().substring(0, 8);
+
+        var product = new ErpProduct();
+        product.setId(uniqueSku);
+        product.setTitle(title);
+        product.setDescription("Test product for " + uniqueSku);
+        product.setPrice(price);
+        product.setCategory("test-category");
+        product.setBrand("Test Brand");
+
+        var productJson = objectMapper.writeValueAsString(product);
+
+        var request = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:3000/products"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(productJson))
+                .build();
+
+        var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // JSON Server returns 201 for successful creation
+        assertTrue(response.statusCode() == 201 || response.statusCode() == 200,
+                "ERP product setup should succeed. Status: " + response.statusCode() + ", Body: " + response.body());
+    }
+
+    // Helper method that returns the unique SKU for use in tests
+    private String setupProductInErpAndGetSku(String baseSku, String title, BigDecimal price) throws Exception {
+        // Add UUID suffix to avoid duplicate IDs across test runs
+        String uniqueSku = baseSku + "-" + java.util.UUID.randomUUID().toString().substring(0, 8);
+
+        var product = new ErpProduct();
+        product.setId(uniqueSku);
+        product.setTitle(title);
+        product.setDescription("Test product for " + uniqueSku);
+        product.setPrice(price);
+        product.setCategory("test-category");
+        product.setBrand("Test Brand");
+
+        var productJson = objectMapper.writeValueAsString(product);
+
+        var request = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:3000/products"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(productJson))
+                .build();
+
+        var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // JSON Server returns 201 for successful creation
+        assertTrue(response.statusCode() == 201 || response.statusCode() == 200,
+                "ERP product setup should succeed. Status: " + response.statusCode() + ", Body: " + response.body());
+
+        return uniqueSku;
+    }
+
+    @Data
+    static class ErpProduct {
+        private String id;
+        private String title;
+        private String description;
+        private BigDecimal price;
+        private String category;
+        private String brand;
+    }
 
     @Data
     static class PlaceOrderRequest {

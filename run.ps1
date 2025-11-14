@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory=$true, Position=0)]
-    [ValidateSet("start", "test", "stop", "logs", "all")]
+    [ValidateSet("build", "start", "test", "stop", "logs", "all")]
     [string]$Command,
 
     [Parameter(Position=1)]
@@ -68,7 +68,7 @@ function Wait-ForServices {
     return $true
 }
 
-function Start-System {
+function Build-System {
     if ($Mode -eq "local") {
         Write-Host "Building monolith application..." -ForegroundColor Cyan
         Set-Location monolith
@@ -77,6 +77,7 @@ function Start-System {
 
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Build failed!" -ForegroundColor Red
+            Set-Location ..
             exit $LASTEXITCODE
         }
 
@@ -86,8 +87,12 @@ function Start-System {
         Write-Host "build\libs\" -ForegroundColor Yellow
         Write-Host ""
         Set-Location ..
+    } else {
+        Write-Host "Pipeline mode: Skipping build (using pre-built Docker image)" -ForegroundColor Cyan
     }
+}
 
+function Start-System {
     Write-Host "Cleaning up any existing containers..." -ForegroundColor Cyan
 
     # Stop all compose configurations
@@ -99,11 +104,25 @@ function Start-System {
     Write-Host "Checking for port conflicts..." -ForegroundColor Cyan
     $containersOnPort3000 = docker ps -q --filter "publish=3000" 2>$null
     $containersOnPort8080 = docker ps -q --filter "publish=8080" 2>$null
+    $containersOnPort5432 = docker ps -q --filter "publish=5432" 2>$null
+    $containersOnPort3001 = docker ps -q --filter "publish=3001" 2>$null
 
     if ($containersOnPort3000) {
         Write-Host "  Stopping containers using port 3000..." -ForegroundColor Yellow
         docker stop $containersOnPort3000 2>$null
         docker rm $containersOnPort3000 2>$null
+    }
+
+    if ($containersOnPort3001) {
+        Write-Host "  Stopping containers using port 3001..." -ForegroundColor Yellow
+        docker stop $containersOnPort3001 2>$null
+        docker rm $containersOnPort3001 2>$null
+    }
+
+    if ($containersOnPort5432) {
+        Write-Host "  Stopping containers using port 5432..." -ForegroundColor Yellow
+        docker stop $containersOnPort5432 2>$null
+        docker rm $containersOnPort5432 2>$null
     }
 
     if ($containersOnPort8080) {
@@ -129,6 +148,10 @@ function Start-System {
     Write-Host "Done! Services are starting..." -ForegroundColor Green
     Write-Host "- ERP API: " -NoNewline
     Write-Host "http://localhost:3000" -ForegroundColor Yellow
+    Write-Host "- Tax API: " -NoNewline
+    Write-Host "http://localhost:3001" -ForegroundColor Yellow
+    Write-Host "- PostgreSQL: " -NoNewline
+    Write-Host "localhost:5432" -ForegroundColor Yellow
     Write-Host "- Monolith API: " -NoNewline
     Write-Host "http://localhost:8080" -ForegroundColor Yellow
     Write-Host ""
@@ -182,6 +205,14 @@ function Show-Logs {
 }
 
 function Run-All {
+    Build-System
+
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host ""
+        Write-Host "Build failed! Aborting..." -ForegroundColor Red
+        exit $LASTEXITCODE
+    }
+
     Start-System
 
     if ($LASTEXITCODE -ne 0) {
@@ -218,6 +249,7 @@ function Run-All {
 
 # Main execution
 switch ($Command) {
+    "build" { Build-System }
     "start" { Start-System }
     "test"  { Test-System }
     "stop"  { Stop-System }

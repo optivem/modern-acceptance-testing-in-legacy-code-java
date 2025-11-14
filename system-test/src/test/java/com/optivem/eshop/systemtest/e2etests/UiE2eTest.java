@@ -1,7 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.TestConfiguration;
+import lombok.Data;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,11 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
 
+import java.math.BigDecimal;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -16,10 +23,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UiE2eTest {
     
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     private Playwright playwright;
     private Browser browser;
     private Page page;
     private String baseUrl;
+    private HttpClient httpClient;
 
     @BeforeEach
     void setUp() {
@@ -27,6 +36,7 @@ class UiE2eTest {
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         page = browser.newPage();
         baseUrl = TestConfiguration.getBaseUrl();
+        httpClient = HttpClient.newHttpClient();
     }
 
     @AfterEach
@@ -39,6 +49,9 @@ class UiE2eTest {
         }
         if (playwright != null) {
             playwright.close();
+        }
+        if (httpClient != null) {
+            httpClient.close();
         }
     }
 
@@ -215,7 +228,7 @@ class UiE2eTest {
         page.navigate(baseUrl + "/shop.html");
 
         var productIdInput = page.locator("[aria-label='Product ID']");
-        productIdInput.fill("NON-EXISTENT-SKU-12345");
+        productIdInput.fill("AUTO-NOTFOUND-999");
 
         var quantityInput = page.locator("[aria-label='Quantity']");
         quantityInput.fill("5");
@@ -306,12 +319,18 @@ class UiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyQuantityValues")
-    void shouldRejectOrderWithEmptyQuantity(String quantityValue) {
+    void shouldRejectOrderWithEmptyQuantity(String quantityValue) throws Exception {
+        // Arrange - Set up product in ERP first
+        String sku = "TEST-SKU-UI-005";
+        BigDecimal unitPrice = new BigDecimal("175.00");
+
+        setupProductInErp(sku, "Test Product", unitPrice);
+
         // Act
         page.navigate(baseUrl + "/shop.html");
 
         var productIdInput = page.locator("[aria-label='Product ID']");
-        productIdInput.fill("HP-15");
+        productIdInput.fill(sku);
 
         var quantityInput = page.locator("[aria-label='Quantity']");
         quantityInput.fill(quantityValue);
@@ -374,12 +393,18 @@ class UiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyCountryValues")
-    void shouldRejectOrderWithEmptyCountry(String countryValue) {
+    void shouldRejectOrderWithEmptyCountry(String countryValue) throws Exception {
+        // Arrange - Set up product in ERP first
+        String baseSku = "AUTO-EC-700";
+        BigDecimal unitPrice = new BigDecimal("245.50");
+
+        String sku = setupProductInErp(baseSku, "Test Product", unitPrice);
+
         // Act
         page.navigate(baseUrl + "/shop.html");
 
         var productIdInput = page.locator("[aria-label='Product ID']");
-        productIdInput.fill("HP-15");
+        productIdInput.fill(sku);
 
         var quantityInput = page.locator("[aria-label='Quantity']");
         quantityInput.fill("5");
@@ -402,4 +427,45 @@ class UiE2eTest {
         assertTrue(errorMessageText.contains("Country must not be empty"),
                 "Error message should be 'Country must not be empty' for country: '" + countryValue + "'. Actual: " + errorMessageText);
     }
+
+    // Helper method to set up product in ERP JSON Server
+    private String setupProductInErp(String baseSku, String title, BigDecimal price) throws Exception {
+        // Add UUID suffix to avoid duplicate IDs across test runs
+        String uniqueSku = baseSku + "-" + java.util.UUID.randomUUID().toString().substring(0, 8);
+
+        var product = new ErpProduct();
+        product.setId(uniqueSku);
+        product.setTitle(title);
+        product.setDescription("Test product for " + uniqueSku);
+        product.setPrice(price);
+        product.setCategory("test-category");
+        product.setBrand("Test Brand");
+
+        var productJson = objectMapper.writeValueAsString(product);
+
+        var request = HttpRequest.newBuilder()
+                .uri(new URI("http://localhost:3000/products"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(productJson))
+                .build();
+
+        var response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        // JSON Server returns 201 for successful creation
+        assertTrue(response.statusCode() == 201 || response.statusCode() == 200,
+                "ERP product setup should succeed. Status: " + response.statusCode() + ", Body: " + response.body());
+
+        return uniqueSku;
+    }
+
+    @Data
+    static class ErpProduct {
+        private String id;
+        private String title;
+        private String description;
+        private BigDecimal price;
+        private String category;
+        private String brand;
+    }
 }
+
