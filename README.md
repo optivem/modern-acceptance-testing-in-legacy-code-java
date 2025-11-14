@@ -43,7 +43,7 @@ This will:
 4. Run all System Tests
 
 You can open these URLs in your browser:
-- Monolith Application: [http://localhost:8080](http://localhost:8080
+- Monolith Application: [http://localhost:8080](http://localhost:8080)
 - ERP API (JSON Server): [http://localhost:3000](http://localhost:3000)
 - Tax API (JSON Server): [http://localhost:3001](http://localhost:3001)
 
