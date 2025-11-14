@@ -114,13 +114,14 @@
                     if (orderDetailsResponse.ok) {
                         const orderDetails = await orderDetailsResponse.json();
                         console.log('Order details:', orderDetails);
+                        console.log('Original price value:', orderDetails.originalPrice);
                         console.log('Total price value:', orderDetails.totalPrice);
 
-                        if (orderDetails.totalPrice !== undefined && orderDetails.totalPrice !== null) {
-                            resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber + ' and Original Price $' + orderDetails.totalPrice.toFixed(2);
+                        if (orderDetails.originalPrice !== undefined && orderDetails.originalPrice !== null) {
+                            resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber + ' and Original Price $' + orderDetails.originalPrice.toFixed(2);
                         } else {
                             resultDiv.textContent = 'Success! Order has been created with Order Number ' + order.orderNumber;
-                            console.warn('Total price is missing from order details');
+                            console.warn('Original price is missing from order details');
                         }
                         resultDiv.classList.add('show');
                     } else {
