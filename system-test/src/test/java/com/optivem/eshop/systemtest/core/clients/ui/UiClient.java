@@ -12,6 +12,7 @@ public class UiClient implements AutoCloseable {
     private Playwright playwright;
     private Browser browser;
     private Page page;
+    private Response response;
 
     private HomePage homePage;
 
@@ -25,7 +26,11 @@ public class UiClient implements AutoCloseable {
     }
 
     public HomePage openHomePage() {
-        var response = page.navigate(baseUrl);
+        response = page.navigate(baseUrl);
+        return homePage;
+    }
+
+    public void assertHomePageLoaded() {
         assertEquals(200, response.status());
 
         var contentType = response.headers().get("content-type");
@@ -36,11 +41,6 @@ public class UiClient implements AutoCloseable {
         var pageContent = page.content();
         assertTrue(pageContent.contains("<html"), "Response should contain HTML opening tag");
         assertTrue(pageContent.contains("</html>"), "Response should contain HTML closing tag");
-        return homePage;
-    }
-
-    public Page getPage() {
-        return page;
     }
 
     @Override
