@@ -276,7 +276,7 @@ class UiE2eTest {
 
         newOrderPage.inputProductId(productId);
         newOrderPage.inputQuantity(quantity);
-        if (country != null && !country.isEmpty()) {
+        if (country != null) {
             newOrderPage.inputCountry(country);
         }
         newOrderPage.clickPlaceOrder();

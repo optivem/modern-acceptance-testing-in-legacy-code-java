@@ -1,13 +1,12 @@
 package com.optivem.eshop.systemtest.core.clients.system.ui.pages;
 
-import com.microsoft.playwright.Page;
-import com.optivem.eshop.systemtest.core.clients.commons.BasePage;
+import com.optivem.eshop.systemtest.core.clients.commons.TestPageClient;
 
 import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class NewOrderPage extends BasePage {
+public class NewOrderPage {
 
     private static final String PRODUCT_ID_INPUT_SELECTOR = "[aria-label=\"Product ID\"]";
     private static final String QUANTITY_INPUT_SELECTOR = "[aria-label=\"Quantity\"]";
@@ -19,28 +18,30 @@ public class NewOrderPage extends BasePage {
     private static final String ORIGINAL_PRICE_REGEX = "Original Price \\$(\\d+(?:\\.\\d{2})?)";
     private static final int ORIGINAL_PRICE_MATCHER_GROUP = 1;
 
-    public NewOrderPage(Page page, String baseUrl) {
-        super(page, baseUrl);
+    private final TestPageClient pageClient;
+
+    public NewOrderPage(TestPageClient pageClient) {
+        this.pageClient = pageClient;
     }
 
     public void inputProductId(String productId) {
-        fill(PRODUCT_ID_INPUT_SELECTOR, productId);
+        pageClient.fill(PRODUCT_ID_INPUT_SELECTOR, productId);
     }
 
     public void inputQuantity(String quantity) {
-        fill(QUANTITY_INPUT_SELECTOR, quantity);
+        pageClient.fill(QUANTITY_INPUT_SELECTOR, quantity);
     }
 
     public void inputCountry(String country) {
-        fill(COUNTRY_INPUT_SELECTOR, country);
+        pageClient.fill(COUNTRY_INPUT_SELECTOR, country);
     }
 
     public void clickPlaceOrder() {
-        click(PLACE_ORDER_BUTTONG_SELECTOR);
+        pageClient.click(PLACE_ORDER_BUTTONG_SELECTOR);
     }
 
     public String readConfirmationMessageText() {
-        return readTextContent(CONFIRMATION_MESSAGE_SELECTOR);
+        return pageClient.readTextContent(CONFIRMATION_MESSAGE_SELECTOR);
     }
 
     public String extractOrderNumber() {

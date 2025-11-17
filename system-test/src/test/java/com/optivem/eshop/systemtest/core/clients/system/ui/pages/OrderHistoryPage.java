@@ -1,11 +1,10 @@
 package com.optivem.eshop.systemtest.core.clients.system.ui.pages;
 
-import com.microsoft.playwright.Page;
-import com.optivem.eshop.systemtest.core.clients.commons.BasePage;
+import com.optivem.eshop.systemtest.core.clients.commons.TestPageClient;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class OrderHistoryPage extends BasePage {
+public class OrderHistoryPage {
 
     private static final String ORDER_NUMBER_INPUT_SELECTOR = "[aria-label='Order Number']";
     private static final String SEARCH_BUTTON_SELECTOR = "[aria-label='Search']";
@@ -27,82 +26,89 @@ public class OrderHistoryPage extends BasePage {
 
     private static final String ORDER_DETAILS_HEADING_TEXT = "Order Details";
 
-    public OrderHistoryPage(Page page, String baseUrl) {
-        super(page, baseUrl);
+    private final TestPageClient pageClient;
+
+    public OrderHistoryPage(TestPageClient pageClient) {
+        this.pageClient = pageClient;
     }
 
     public void inputOrderNumber(String orderNumber) {
-        fill(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
+        pageClient.fill(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
     }
 
     public void clickSearch() {
-        click(SEARCH_BUTTON_SELECTOR);
+        pageClient.click(SEARCH_BUTTON_SELECTOR);
     }
 
     public void waitForOrderDetails() {
-        var orderDetailsText = readTextContent(CONFIRMATION_MESSAGE_SELECTOR);
+        var orderDetailsText = pageClient.readTextContent(CONFIRMATION_MESSAGE_SELECTOR);
         assertTrue(orderDetailsText.contains(ORDER_DETAILS_HEADING_TEXT), "Should display order details heading");
     }
 
     public String getOrderNumber() {
-        return readInputValue(ORDER_NUMBER_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(ORDER_NUMBER_OUTPUT_SELECTOR);
     }
 
     public String getProductId() {
-        return readInputValue(PRODUCT_ID_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(PRODUCT_ID_OUTPUT_SELECTOR);
     }
 
     public String getCountry() {
-        return readInputValue(COUNTRY_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(COUNTRY_OUTPUT_SELECTOR);
     }
 
     public String getQuantity() {
-        return readInputValue(QUANTITY_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(QUANTITY_OUTPUT_SELECTOR);
     }
 
     public String getUnitPrice() {
-        return readInputValue(UNIT_PRICE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(UNIT_PRICE_OUTPUT_SELECTOR);
     }
 
     public String getOriginalPrice() {
-        return readInputValue(ORIGINAL_PRICE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(ORIGINAL_PRICE_OUTPUT_SELECTOR);
     }
 
     public String getDiscountRate() {
-        return readInputValue(DISCOUNT_RATE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(DISCOUNT_RATE_OUTPUT_SELECTOR);
     }
 
     public String getDiscountAmount() {
-        return readInputValue(DISCOUNT_AMOUNT_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(DISCOUNT_AMOUNT_OUTPUT_SELECTOR);
     }
 
     public String getSubtotalPrice() {
-        return readInputValue(SUBTOTAL_PRICE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(SUBTOTAL_PRICE_OUTPUT_SELECTOR);
     }
 
     public String getTaxRate() {
-        return readInputValue(TAX_RATE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(TAX_RATE_OUTPUT_SELECTOR);
     }
 
     public String getTaxAmount() {
-        return readInputValue(TAX_AMOUNT_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(TAX_AMOUNT_OUTPUT_SELECTOR);
     }
 
     public String getTotalPrice() {
-        return readInputValue(TOTAL_PRICE_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(TOTAL_PRICE_OUTPUT_SELECTOR);
     }
 
     public String getStatus() {
-        return readInputValue(STATUS_OUTPUT_SELECTOR);
+        return pageClient.readInputValue(STATUS_OUTPUT_SELECTOR);
     }
 
     public void clickCancelOrder() {
-        click(CANCEL_ORDER_OUTPUT_SELECTOR);
-        waitForHidden(CANCEL_ORDER_OUTPUT_SELECTOR);
+        pageClient.getPage().onDialog(dialog -> {
+            System.out.println("Dialog appeared: " + dialog.message());
+            dialog.accept();
+        });
+
+        pageClient.click(CANCEL_ORDER_OUTPUT_SELECTOR);
+        pageClient.waitForHidden(CANCEL_ORDER_OUTPUT_SELECTOR);
     }
 
     public void assertCancelButtonNotVisible() {
-        assertTrue(isHidden(CANCEL_ORDER_OUTPUT_SELECTOR), "Cancel Order button should not be visible");
+        assertTrue(pageClient.isHidden(CANCEL_ORDER_OUTPUT_SELECTOR), "Cancel Order button should not be visible");
     }
 }
 

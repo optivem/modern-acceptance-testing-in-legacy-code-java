@@ -1,25 +1,26 @@
 package com.optivem.eshop.systemtest.core.clients.system.ui.pages;
 
-import com.microsoft.playwright.Page;
-import com.optivem.eshop.systemtest.core.clients.commons.BasePage;
+import com.optivem.eshop.systemtest.core.clients.commons.TestPageClient;
 
-public class HomePage extends BasePage {
+public class HomePage {
 
     private static final String SHOP_BUTTON_SELECTOR = "a[href='/shop.html']";
     private static final String ORDER_HISTORY_BUTTON_SELECTOR = "a[href='/order-history.html']";
 
-    public HomePage(Page page, String baseUrl) {
-        super(page, baseUrl);
+    private final TestPageClient pageClient;
+
+    public HomePage(TestPageClient pageClient) {
+        this.pageClient = pageClient;
     }
 
     public NewOrderPage clickNewOrder() {
-        click(SHOP_BUTTON_SELECTOR);
-        return new NewOrderPage(page, getBaseUrl());
+        pageClient.click(SHOP_BUTTON_SELECTOR);
+        return new NewOrderPage(pageClient);
     }
 
     public OrderHistoryPage clickOrderHistory() {
-        click(ORDER_HISTORY_BUTTON_SELECTOR);
-        return new OrderHistoryPage(page, getBaseUrl());
+        pageClient.click(ORDER_HISTORY_BUTTON_SELECTOR);
+        return new OrderHistoryPage(pageClient);
     }
 }
 
