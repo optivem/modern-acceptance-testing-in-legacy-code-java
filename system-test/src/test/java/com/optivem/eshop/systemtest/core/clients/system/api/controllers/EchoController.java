@@ -1,22 +1,25 @@
 package com.optivem.eshop.systemtest.core.clients.system.api.controllers;
 
-import com.optivem.eshop.systemtest.core.clients.commons.BaseController;
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
 
-import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 
-public class EchoController extends BaseController {
+public class EchoController {
 
-    public EchoController(HttpClient client, String baseUrl) {
-        super(client, baseUrl, "echo");
+    private static final String ENDPOINT = "/echo";
+
+    private final TestHttpClient httpClient;
+
+    public EchoController(TestHttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     public HttpResponse<String> echo() {
-        return get();
+        return httpClient.get(ENDPOINT);
     }
 
     public void assertEchoSuccessful(HttpResponse<String> httpResponse) {
-        assertOk(httpResponse);
+        httpClient.assertOk(httpResponse);
     }
 }
 

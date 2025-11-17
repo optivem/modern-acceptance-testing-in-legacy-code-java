@@ -10,24 +10,22 @@ import java.net.http.HttpResponse;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public abstract class BaseController {
+public class TestHttpClient {
 
-    protected static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
 
-    protected final HttpClient httpClient;
+    private final HttpClient httpClient;
     private final String baseUrl;
-    private final String controllerEndpoint;
 
-    public BaseController(HttpClient httpClient, String baseUrl, String controllerEndpoint) {
+    public TestHttpClient(HttpClient httpClient, String baseUrl) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl;
-        this.controllerEndpoint = controllerEndpoint;
     }
 
-    protected HttpResponse<String> get(String endpoint) {
-        var uri = getUri(endpoint);
+    public HttpResponse<String> get(String path) {
+        var uri = getUri(path);
         var request = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -36,12 +34,8 @@ public abstract class BaseController {
         return sendRequest(request);
     }
 
-    protected HttpResponse<String> get() {
-        return get(null);
-    }
-
-    protected HttpResponse<String> post(String endpoint, Object requestBody) {
-        var uri = getUri(endpoint);
+    public HttpResponse<String> post(String path, Object requestBody) {
+        var uri = getUri(path);
         var jsonBody = serializeRequest(requestBody);
 
         var request = HttpRequest.newBuilder()
@@ -53,12 +47,8 @@ public abstract class BaseController {
         return sendRequest(request);
     }
 
-    protected  HttpResponse<String> post(Object requestBody) {
-        return post(null, requestBody);
-    }
-
-    protected HttpResponse<String> post(String endpoint) {
-        var uri = getUri(endpoint);
+    public HttpResponse<String> post(String path) {
+        var uri = getUri(path);
 
         var request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -69,19 +59,19 @@ public abstract class BaseController {
         return sendRequest(request);
     }
 
-    protected void assertOk(HttpResponse<String> httpResponse) {
+    public void assertOk(HttpResponse<String> httpResponse) {
         assertStatus(httpResponse, HttpStatus.OK);
     }
 
-    protected void assertCreated(HttpResponse<String> httpResponse) {
+    public void assertCreated(HttpResponse<String> httpResponse) {
         assertStatus(httpResponse, HttpStatus.CREATED);
     }
 
-    protected void assertNoContent(HttpResponse<String> httpResponse) {
+    public void assertNoContent(HttpResponse<String> httpResponse) {
         assertStatus(httpResponse, HttpStatus.NO_CONTENT);
     }
 
-    protected void assertUnprocessableEntity(HttpResponse<String> httpResponse) {
+    public void assertUnprocessableEntity(HttpResponse<String> httpResponse) {
         assertStatus(httpResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
@@ -93,22 +83,13 @@ public abstract class BaseController {
 
     private URI getUri(String path) {
         try {
-            var uriString = getUriString(path);
-            return new URI(uriString);
+            return new URI(baseUrl + path);
         } catch (Exception ex) {
-            throw new RuntimeException("Failed to get uri for " + path, ex);
+            throw new RuntimeException("Failed to create URI for path: " + path, ex);
         }
     }
 
-    private String getUriString(String path) {
-        if(path == null) {
-            return baseUrl + "/" + controllerEndpoint;
-        }
-
-        return baseUrl + "/" + controllerEndpoint + "/" + path;
-    }
-
-    protected <T> T readBody(HttpResponse<String> httpResponse, Class<T> responseType) {
+    public <T> T readBody(HttpResponse<String> httpResponse, Class<T> responseType) {
         try {
             var responseBody = httpResponse.body();
             return objectMapper.readValue(responseBody, responseType);

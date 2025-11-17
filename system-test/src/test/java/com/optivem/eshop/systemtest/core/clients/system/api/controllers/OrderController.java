@@ -1,17 +1,20 @@
 package com.optivem.eshop.systemtest.core.clients.system.api.controllers;
 
-import com.optivem.eshop.systemtest.core.clients.commons.BaseController;
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
 import com.optivem.eshop.systemtest.core.clients.system.api.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.clients.system.api.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.clients.system.api.dtos.PlaceOrderResponse;
 
-import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 
-public class OrderController extends BaseController {
+public class OrderController {
 
-    public OrderController(HttpClient client, String baseUrl) {
-        super(client, baseUrl, "orders");
+    private static final String ENDPOINT = "/orders";
+
+    private final TestHttpClient httpClient;
+
+    public OrderController(TestHttpClient httpClient) {
+        this.httpClient = httpClient;
     }
 
     public HttpResponse<String> placeOrder(String sku, String quantity, String country) {
@@ -20,16 +23,16 @@ public class OrderController extends BaseController {
         request.setQuantity(quantity);
         request.setCountry(country);
 
-        return post(request);
+        return httpClient.post(ENDPOINT, request);
     }
 
     public PlaceOrderResponse assertOrderPlacedSuccessfully(HttpResponse<String> httpResponse) {
-        assertCreated(httpResponse);
-        return readBody(httpResponse, PlaceOrderResponse.class);
+        httpClient.assertCreated(httpResponse);
+        return httpClient.readBody(httpResponse, PlaceOrderResponse.class);
     }
 
     public void assertOrderPlacementFailed(HttpResponse<String> httpResponse) {
-        assertUnprocessableEntity(httpResponse);
+        httpClient.assertUnprocessableEntity(httpResponse);
     }
 
     public String getErrorMessage(HttpResponse<String> httpResponse) {
@@ -37,20 +40,20 @@ public class OrderController extends BaseController {
     }
 
     public HttpResponse<String> viewOrder(String orderNumber) {
-        return get(orderNumber);
+        return httpClient.get(ENDPOINT + "/" + orderNumber);
     }
 
     public GetOrderResponse assertOrderViewedSuccessfully(HttpResponse<String> httpResponse) {
-        assertOk(httpResponse);
-        return readBody(httpResponse, GetOrderResponse.class);
+        httpClient.assertOk(httpResponse);
+        return httpClient.readBody(httpResponse, GetOrderResponse.class);
     }
 
     public HttpResponse<String> cancelOrder(String orderNumber) {
-        return post(orderNumber + "/cancel");
+        return httpClient.post(ENDPOINT + "/" + orderNumber + "/cancel");
     }
 
     public void assertOrderCancelledSuccessfully(HttpResponse<String> httpResponse) {
-        assertNoContent(httpResponse);
+        httpClient.assertNoContent(httpResponse);
     }
 }
 
