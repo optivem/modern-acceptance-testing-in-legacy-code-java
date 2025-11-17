@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.clients.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -12,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public abstract class BaseControllerClient {
 
     protected static final ObjectMapper objectMapper = new ObjectMapper();
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String APPLICATION_JSON = "application/json";
 
     protected final HttpClient httpClient;
     private final String baseUrl;
@@ -37,7 +40,7 @@ public abstract class BaseControllerClient {
 
         var request = HttpRequest.newBuilder()
                 .uri(uri)
-                .header("Content-Type", "application/json")
+                .header(CONTENT_TYPE, APPLICATION_JSON)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
 
@@ -49,7 +52,7 @@ public abstract class BaseControllerClient {
 
         var request = HttpRequest.newBuilder()
                 .uri(uri)
-                .header("Content-Type", "application/json")
+                .header(CONTENT_TYPE, APPLICATION_JSON)
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
@@ -57,32 +60,33 @@ public abstract class BaseControllerClient {
     }
 
     protected void assertOk(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, 200);
+        assertStatus(httpResponse, HttpStatus.OK);
     }
 
     protected void assertCreated(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, 201);
+        assertStatus(httpResponse, HttpStatus.CREATED);
     }
 
     protected void assertNoContent(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, 204);
+        assertStatus(httpResponse, HttpStatus.NO_CONTENT);
     }
 
     protected void assertUnprocessableEntity(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, 422);
+        assertStatus(httpResponse, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
-    private void assertStatus(HttpResponse<String> httpResponse, int expectedStatus) {
-        assertEquals(expectedStatus, httpResponse.statusCode(),
-            "Expected status " + expectedStatus + " but got " + httpResponse.statusCode() +
+    private void assertStatus(HttpResponse<String> httpResponse, HttpStatus expectedStatus) {
+        assertEquals(expectedStatus.value(), httpResponse.statusCode(),
+            "Expected status " + expectedStatus.value() + " but got " + httpResponse.statusCode() +
             ". Response body: " + httpResponse.body());
     }
 
     private URI getUri(String path) {
         try {
-            return new URI(baseUrl + "/" + path);
+            var fullUri = baseUrl + "/" + path;
+            return new URI(fullUri);
         } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            throw new RuntimeException("Failed to get uri for " + path, ex);
         }
     }
 
@@ -111,4 +115,3 @@ public abstract class BaseControllerClient {
         }
     }
 }
-
