@@ -1,7 +1,7 @@
-package com.optivem.eshop.systemtest.e2etests.helpers;
+package com.optivem.eshop.systemtest.core.clients.external.erp.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Data;
+import com.optivem.eshop.systemtest.core.clients.commons.BaseController;
+import com.optivem.eshop.systemtest.core.clients.external.erp.dtos.ErpProduct;
 
 import java.math.BigDecimal;
 import java.net.URI;
@@ -11,10 +11,12 @@ import java.net.http.HttpResponse;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ErpApiHelper {
-    protected static final ObjectMapper objectMapper = new ObjectMapper();
+public class ProductController extends BaseController {
+    public ProductController(HttpClient httpClient, String baseUrl) {
+        super(httpClient, baseUrl);
+    }
 
-    public static String setupProductInErp(HttpClient httpClient, String baseSku, String title, BigDecimal price) {
+    public String create(String baseSku, String title, BigDecimal price) {
         try {
             // Add UUID suffix to avoid duplicate IDs across test runs
             String uniqueSku = baseSku + "-" + java.util.UUID.randomUUID().toString().substring(0, 8);
@@ -45,15 +47,5 @@ public class ErpApiHelper {
         } catch (Exception e) {
             throw new RuntimeException("Failed to set up ERP product", e);
         }
-    }
-
-    @Data
-    protected static class ErpProduct {
-        private String id;
-        private String title;
-        private String description;
-        private BigDecimal price;
-        private String category;
-        private String brand;
     }
 }

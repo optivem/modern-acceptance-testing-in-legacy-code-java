@@ -28,8 +28,8 @@ public class TestConfiguration {
     public static String getBaseUrl() {
         return getNestedValue("test", "eshop", "baseUrl");
     }
-    
-    public static int getWaitSeconds() {
-        return getNestedValue("test", "wait", "seconds");
+
+    public static String getErpBaseUrl() {
+        return getNestedValue("test", "erp", "baseUrl");
     }
 }

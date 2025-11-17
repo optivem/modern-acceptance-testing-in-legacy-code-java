@@ -8,11 +8,11 @@ import com.optivem.eshop.systemtest.core.clients.system.api.dtos.PlaceOrderRespo
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 
-public class OrderControllerClient extends BaseController {
+public class OrderController extends BaseController {
 
     public static final String CONTROLLER_ENDPOINT = "api/orders";
 
-    public OrderControllerClient(HttpClient client, String baseUrl) {
+    public OrderController(HttpClient client, String baseUrl) {
         super(client, baseUrl);
     }
 

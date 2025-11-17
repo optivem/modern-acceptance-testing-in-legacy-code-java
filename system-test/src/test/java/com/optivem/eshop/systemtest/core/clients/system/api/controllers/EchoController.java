@@ -5,9 +5,9 @@ import com.optivem.eshop.systemtest.core.clients.commons.BaseController;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
 
-public class EchoControllerClient extends BaseController {
+public class EchoController extends BaseController {
 
-    public EchoControllerClient(HttpClient client, String baseUrl) {
+    public EchoController(HttpClient client, String baseUrl) {
         super(client, baseUrl);
     }
 

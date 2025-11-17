@@ -1,9 +1,10 @@
 package com.optivem.eshop.systemtest.e2etests;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.eshop.systemtest.core.clients.system.ui.UiClient;
+import com.optivem.eshop.systemtest.core.clients.ClientFactory;
+import com.optivem.eshop.systemtest.core.clients.external.erp.ErpApiClient;
+import com.optivem.eshop.systemtest.core.clients.system.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.clients.system.ui.pages.OrderHistoryPage;
-import com.optivem.eshop.systemtest.e2etests.helpers.ErpApiHelper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,31 +20,30 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UiE2eTest {
     
-    private UiClient uiClient;
-    private String baseUrl;
-    private HttpClient httpClient; // For ERP API helper
+    private ShopUiClient shopUiClient;
+    private ErpApiClient erpApiClient;
 
     @BeforeEach
     void setUp() {
-        baseUrl = TestConfiguration.getBaseUrl();
-        uiClient = new UiClient(baseUrl);
-        httpClient = HttpClient.newHttpClient(); // For ERP API helper
+        shopUiClient = ClientFactory.createShopUiClient();
+        erpApiClient = ClientFactory.createErpApiClient();
     }
 
     @AfterEach
     void tearDown() {
-        if (uiClient != null) {
-            uiClient.close();
+        if (shopUiClient != null) {
+            shopUiClient.close();
         }
-        if (httpClient != null) {
-            httpClient.close();
+
+        if (erpApiClient != null) {
+            erpApiClient.close();
         }
     }
 
     @Test
     void shouldCalculateOriginalOrderPrice() {
         // Arrange
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -63,7 +63,7 @@ class UiE2eTest {
         var orderNumber = createNewOrder("SAM-2020", "3", "US");
 
         // Act - Navigate to Order History and search for the order
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var orderHistoryPage = homePage.clickOrderHistory();
 
         orderHistoryPage.inputOrderNumber(orderNumber);
@@ -127,7 +127,7 @@ class UiE2eTest {
     @Test
     void shouldRejectOrderWithNonExistentSku() {
         // Arrange
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -146,7 +146,7 @@ class UiE2eTest {
     @Test
     void shouldRejectOrderWithNegativeQuantity() {
         // Arrange
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -172,7 +172,7 @@ class UiE2eTest {
     @MethodSource("provideEmptySkuValues")
     void shouldRejectOrderWithEmptySku(String skuValue) {
         // Arrange
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -196,14 +196,14 @@ class UiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyQuantityValues")
-    void shouldRejectOrderWithEmptyQuantity(String quantityValue) throws Exception {
+    void shouldRejectOrderWithEmptyQuantity(String quantityValue) {
         // Arrange - Set up product in ERP first
         var baseSku = "AUTO-EQ-500";
         var unitPrice = new BigDecimal("175.00");
 
         var sku = setupProductInErp(baseSku, "Test Product", unitPrice);
 
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -229,7 +229,7 @@ class UiE2eTest {
     @MethodSource("provideInvalidQuantityValues")
     void shouldRejectOrderWithNonIntegerQuantity(String quantityValue) {
         // Arrange
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -253,14 +253,14 @@ class UiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyCountryValues")
-    void shouldRejectOrderWithEmptyCountry(String countryValue) throws Exception {
+    void shouldRejectOrderWithEmptyCountry(String countryValue) {
         // Arrange - Set up product in ERP first
         var baseSku = "AUTO-EC-700";
         var unitPrice = new BigDecimal("245.50");
 
         var sku = setupProductInErp(baseSku, "Test Product", unitPrice);
 
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         // Act
@@ -277,12 +277,12 @@ class UiE2eTest {
     }
 
     // Helper method to set up product in ERP JSON Server
-    private String setupProductInErp(String baseSku, String title, BigDecimal price) throws Exception {
-        return ErpApiHelper.setupProductInErp(httpClient, baseSku, title, price);
+    private String setupProductInErp(String baseSku, String title, BigDecimal price) {
+        return erpApiClient.products().create(baseSku, title, price);
     }
 
     private String createNewOrder(String productId, String quantity, String country) {
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
 
         newOrderPage.inputProductId(productId);
@@ -296,7 +296,7 @@ class UiE2eTest {
     }
 
     private OrderHistoryPage viewOrderDetails(String orderNumber) {
-        var homePage = uiClient.openHomePage();
+        var homePage = shopUiClient.openHomePage();
         var orderHistoryPage = homePage.clickOrderHistory();
 
         orderHistoryPage.inputOrderNumber(orderNumber);

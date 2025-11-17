@@ -8,14 +8,15 @@ import com.optivem.eshop.systemtest.TestConfiguration;
 public abstract class BasePage {
     protected final Page page;
     private final String baseUrl;
-    protected final double timeoutMilliseconds;
+    protected final int timeoutMilliseconds;
 
-    private static final double DEFAULT_TIMEOUT_MILLISECONDS = TestConfiguration.getWaitSeconds() * 1000;
+    private static final int DEFAULT_TIMEOUT_SECONDS = 10;
+    private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
 
-    public BasePage(Page page, String baseUrl, double timeOutMilliseconds) {
+    public BasePage(Page page, String baseUrl, int timeoutMilliseconds) {
         this.page = page;
         this.baseUrl = baseUrl;
-        this.timeoutMilliseconds = timeOutMilliseconds;
+        this.timeoutMilliseconds = timeoutMilliseconds;
     }
 
     public BasePage(Page page, String baseUrl) {
@@ -63,8 +64,6 @@ public abstract class BasePage {
         var locator = page.locator(selector);
         locator.waitFor(waitForOptions);
     }
-
-
 
     private void wait(Locator locator) {
         var waitForOptions = new Locator.WaitForOptions().setTimeout(timeoutMilliseconds);

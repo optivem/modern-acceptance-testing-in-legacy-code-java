@@ -1,29 +1,29 @@
 package com.optivem.eshop.systemtest.smoketests;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.eshop.systemtest.core.clients.system.ui.UiClient;
+import com.optivem.eshop.systemtest.core.clients.ClientFactory;
+import com.optivem.eshop.systemtest.core.clients.system.ui.ShopUiClient;
 import org.junit.jupiter.api.*;
 
 public class UiSmokeTest {
 
-    private UiClient uiClient;
+    private ShopUiClient shopUiClient;
 
     @BeforeEach
     void setUp() {
-        var baseUrl = TestConfiguration.getBaseUrl();
-        this.uiClient = new UiClient(baseUrl);
+        this.shopUiClient = ClientFactory.createShopUiClient();
     }
 
     @AfterEach
     void tearDown() {
-        if (uiClient != null) {
-            uiClient.close();
+        if (shopUiClient != null) {
+            shopUiClient.close();
         }
     }
 
     @Test
     void home_shouldReturnHtmlContent() {
-        uiClient.openHomePage();
-        uiClient.assertHomePageLoaded();
+        shopUiClient.openHomePage();
+        shopUiClient.assertHomePageLoaded();
     }
 }

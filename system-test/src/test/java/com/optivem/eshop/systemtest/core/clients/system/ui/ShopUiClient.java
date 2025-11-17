@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.clients.system.ui.pages.HomePage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class UiClient implements AutoCloseable {
+public class ShopUiClient implements AutoCloseable {
 
     private static final String CONTENT_TYPE = "content-type";
     private static final String TEXT_HTML = "text/html";
@@ -21,7 +21,7 @@ public class UiClient implements AutoCloseable {
 
     private HomePage homePage;
 
-    public UiClient(String baseUrl) {
+    public ShopUiClient(String baseUrl) {
         this.baseUrl = baseUrl;
         this.playwright = Playwright.create();
         this.browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));

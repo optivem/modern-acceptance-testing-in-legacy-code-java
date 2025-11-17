@@ -1,10 +1,11 @@
 package com.optivem.eshop.systemtest.e2etests;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.eshop.systemtest.core.clients.system.api.ApiClient;
+import com.optivem.eshop.systemtest.core.clients.ClientFactory;
+import com.optivem.eshop.systemtest.core.clients.external.erp.ErpApiClient;
+import com.optivem.eshop.systemtest.core.clients.system.api.ShopApiClient;
 import com.optivem.eshop.systemtest.core.clients.system.api.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.clients.system.api.dtos.OrderStatus;
-import com.optivem.eshop.systemtest.e2etests.helpers.ErpApiHelper;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,30 +15,29 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.math.BigDecimal;
-import java.net.http.HttpClient;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ApiE2eTest {
 
-    private static final String BASE_URL = TestConfiguration.getBaseUrl();
-    private ApiClient apiClient;
-    private HttpClient httpClient; // Still needed for ERP API helper
+    private ShopApiClient shopApiClient;
+    private ErpApiClient erpApiClient;
 
     @BeforeEach
     void setUp() {
-        apiClient = new ApiClient(BASE_URL);
-        httpClient = HttpClient.newHttpClient(); // For ERP API helper
+        shopApiClient = ClientFactory.createShopApiClient();
+        erpApiClient = ClientFactory.createErpApiClient();
     }
 
     @AfterEach
     void tearDown() {
-        if (apiClient != null) {
-            apiClient.close();
+        if (shopApiClient != null) {
+            shopApiClient.close();
         }
-        if (httpClient != null) {
-            httpClient.close();
+
+        if (erpApiClient != null) {
+            erpApiClient.close();
         }
     }
 
@@ -51,10 +51,10 @@ class ApiE2eTest {
         var sku = setupProductInErpAndGetSku(baseSku, "Test Product", unitPrice);
 
         // Act
-        var httpResponse = apiClient.orders().placeOrder(sku, String.valueOf(quantity), "US");
+        var httpResponse = shopApiClient.orders().placeOrder(sku, String.valueOf(quantity), "US");
 
         // Assert
-        var response = apiClient.orders().assertOrderPlacedSuccessfully(httpResponse);
+        var response = shopApiClient.orders().assertOrderPlacedSuccessfully(httpResponse);
 
         // Verify response contains orderNumber
         assertNotNull(response.getOrderNumber(), "Order number should not be null");
@@ -62,7 +62,7 @@ class ApiE2eTest {
     }
 
     @Test
-    void getOrder_shouldReturnOrderDetails() throws Exception {
+    void getOrder_shouldReturnOrderDetails() {
         // Arrange - Set up product in ERP first
         var baseSku = "AUTO-GO-200";
         var unitPrice = new BigDecimal("299.50");
@@ -75,10 +75,10 @@ class ApiE2eTest {
         var orderNumber = placeOrderAndGetOrderNumber(sku, quantity, country);
 
         // Act - Get the order details
-        var httpResponse = apiClient.orders().viewOrder(orderNumber);
+        var httpResponse = shopApiClient.orders().viewOrder(orderNumber);
 
         // Assert
-        var getOrderResponse = apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
+        var getOrderResponse = shopApiClient.orders().assertOrderViewedSuccessfully(httpResponse);
 
         // Assert all fields from GetOrderResponse
         assertNotNull(getOrderResponse.getOrderNumber(), "Order number should not be null");
@@ -99,7 +99,7 @@ class ApiE2eTest {
     }
 
     @Test
-    void cancelOrder_shouldSetStatusToCancelled() throws Exception {
+    void cancelOrder_shouldSetStatusToCancelled() {
         // Arrange - Place an order
         var sku = "HUA-P30";
         var quantity = 2;
@@ -110,10 +110,10 @@ class ApiE2eTest {
         assertNotNull(orderNumber, "Order number should not be null");
 
         // Act - Cancel the order
-        var httpResponse = apiClient.orders().cancelOrder(orderNumber);
+        var httpResponse = shopApiClient.orders().cancelOrder(orderNumber);
 
         // Assert - Verify cancel response
-        apiClient.orders().assertOrderCancelledSuccessfully(httpResponse);
+        shopApiClient.orders().assertOrderCancelledSuccessfully(httpResponse);
 
         // Verify order status is CANCELLED
         var orderDetails = getOrderDetails(orderNumber);
@@ -122,25 +122,25 @@ class ApiE2eTest {
 
 
     @Test
-    void shouldRejectOrderWithNonExistentSku() throws Exception {
+    void shouldRejectOrderWithNonExistentSku() {
         // Arrange
         var sku = "NON-EXISTENT-SKU-12345";
         var quantity = "5";
         var country = "US";
 
         // Act
-        var httpResponse = apiClient.orders().placeOrder(sku, quantity, country);
+        var httpResponse = shopApiClient.orders().placeOrder(sku, quantity, country);
 
         // Assert
-        apiClient.orders().assertOrderPlacementFailed(httpResponse);
+        shopApiClient.orders().assertOrderPlacementFailed(httpResponse);
 
-        var errorMessage = apiClient.orders().getErrorMessage(httpResponse);
+        var errorMessage = shopApiClient.orders().getErrorMessage(httpResponse);
         assertTrue(errorMessage.contains("Product does not exist for SKU"),
                 "Error message should contain 'Product does not exist for SKU'. Actual: " + errorMessage);
     }
 
     @Test
-    void shouldRejectOrderWithNegativeQuantity() throws Exception {
+    void shouldRejectOrderWithNegativeQuantity() {
         // Arrange - Set up product in ERP first
         var baseSku = "AUTO-NQ-400";
         var unitPrice = new BigDecimal("99.99");
@@ -148,12 +148,12 @@ class ApiE2eTest {
         var sku = setupProductInErpAndGetSku(baseSku, "Test Product", unitPrice);
 
         // Act
-        var httpResponse = apiClient.orders().placeOrder(sku, "-5", "US");
+        var httpResponse = shopApiClient.orders().placeOrder(sku, "-5", "US");
 
         // Assert
-        apiClient.orders().assertOrderPlacementFailed(httpResponse);
+        shopApiClient.orders().assertOrderPlacementFailed(httpResponse);
 
-        var errorMessage = apiClient.orders().getErrorMessage(httpResponse);
+        var errorMessage = shopApiClient.orders().getErrorMessage(httpResponse);
         assertTrue(errorMessage.contains("Quantity must be positive"),
                 "Error message should contain 'Quantity must be positive'. Actual: " + errorMessage);
     }
@@ -177,7 +177,7 @@ class ApiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyQuantityValues")
-    void shouldRejectOrderWithEmptyQuantity(String quantityValue) throws Exception {
+    void shouldRejectOrderWithEmptyQuantity(String quantityValue) {
         // Arrange - Set up product in ERP first
         var baseSku = "AUTO-EQ-500";
         var unitPrice = new BigDecimal("150.00");
@@ -185,12 +185,12 @@ class ApiE2eTest {
         var sku = setupProductInErpAndGetSku(baseSku, "Test Product", unitPrice);
 
         // Act
-        var httpResponse = apiClient.orders().placeOrder(sku, quantityValue, "US");
+        var httpResponse = shopApiClient.orders().placeOrder(sku, quantityValue, "US");
 
         // Assert
-        apiClient.orders().assertOrderPlacementFailed(httpResponse);
+        shopApiClient.orders().assertOrderPlacementFailed(httpResponse);
 
-        var errorMessage = apiClient.orders().getErrorMessage(httpResponse);
+        var errorMessage = shopApiClient.orders().getErrorMessage(httpResponse);
         assertTrue(errorMessage.contains("Quantity must not be empty"),
                 "Error message should be 'Quantity must not be empty'. Actual: " + errorMessage);
     }
@@ -214,7 +214,7 @@ class ApiE2eTest {
 
     @ParameterizedTest
     @MethodSource("provideEmptyCountryValues")
-    void shouldRejectOrderWithEmptyCountry(String countryValue) throws Exception {
+    void shouldRejectOrderWithEmptyCountry(String countryValue) {
         // Arrange - Set up product in ERP first and get unique SKU
         var baseSku = "AUTO-EC-700";
         var unitPrice = new BigDecimal("225.00");
@@ -222,12 +222,12 @@ class ApiE2eTest {
         var sku = setupProductInErpAndGetSku(baseSku, "Test Product", unitPrice);
 
         // Act
-        var httpResponse = apiClient.orders().placeOrder(sku, "5", countryValue);
+        var httpResponse = shopApiClient.orders().placeOrder(sku, "5", countryValue);
 
         // Assert
-        apiClient.orders().assertOrderPlacementFailed(httpResponse);
+        shopApiClient.orders().assertOrderPlacementFailed(httpResponse);
 
-        var errorMessage = apiClient.orders().getErrorMessage(httpResponse);
+        var errorMessage = shopApiClient.orders().getErrorMessage(httpResponse);
         assertTrue(errorMessage.contains("Country must not be empty"),
                 "Error message should be 'Country must not be empty'. Actual: " + errorMessage);
     }
@@ -235,17 +235,17 @@ class ApiE2eTest {
 
     // Helper method that returns the unique SKU for use in tests
     private String setupProductInErpAndGetSku(String baseSku, String title, BigDecimal price) {
-        return ErpApiHelper.setupProductInErp(httpClient, baseSku, title, price);
+        return erpApiClient.products().create(baseSku, title, price);
     }
 
     private String placeOrderAndGetOrderNumber(String sku, int quantity, String country) {
-        var httpResponse = apiClient.orders().placeOrder(sku, String.valueOf(quantity), country);
-        var placeOrderResponse = apiClient.orders().assertOrderPlacedSuccessfully(httpResponse);
+        var httpResponse = shopApiClient.orders().placeOrder(sku, String.valueOf(quantity), country);
+        var placeOrderResponse = shopApiClient.orders().assertOrderPlacedSuccessfully(httpResponse);
         return placeOrderResponse.getOrderNumber();
     }
 
     private GetOrderResponse getOrderDetails(String orderNumber) {
-        var httpResponse = apiClient.orders().viewOrder(orderNumber);
-        return apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
+        var httpResponse = shopApiClient.orders().viewOrder(orderNumber);
+        return shopApiClient.orders().assertOrderViewedSuccessfully(httpResponse);
     }
 }
