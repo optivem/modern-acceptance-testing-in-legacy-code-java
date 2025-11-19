@@ -36,4 +36,8 @@ public class TestConfiguration {
     public static String getErpApiBaseUrl() {
         return getNestedValue("test", "erp", "api", "baseUrl");
     }
+
+    public static String getTaxApiBaseUrl() {
+        return getNestedValue("test", "tax", "api", "baseUrl");
+    }
 }

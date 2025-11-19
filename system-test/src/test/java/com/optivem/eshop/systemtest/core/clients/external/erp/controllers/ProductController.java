@@ -4,6 +4,7 @@ import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
 import com.optivem.eshop.systemtest.core.clients.external.erp.dtos.CreateProductRequest;
 
 import java.math.BigDecimal;
+import java.net.http.HttpResponse;
 
 public class ProductController {
 
@@ -30,5 +31,13 @@ public class ProductController {
         var httpResponse = httpClient.post(ENDPOINT, product);
         httpClient.assertCreated(httpResponse);
         return uniqueSku;
+    }
+
+    public HttpResponse<String> getProducts() {
+        return httpClient.get(ENDPOINT);
+    }
+
+    public void assertGetProductsSuccessful(HttpResponse<String> httpResponse) {
+        httpClient.assertOk(httpResponse);
     }
 }
