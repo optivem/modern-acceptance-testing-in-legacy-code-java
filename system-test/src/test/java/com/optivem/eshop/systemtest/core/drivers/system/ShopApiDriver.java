@@ -39,12 +39,14 @@ public class ShopApiDriver implements ShopDriver {
         var httpResponse = apiClient.orders().placeOrder(sku, quantity, country);
 //        registerOrderResponse(ordersPlaced, orderNumberAlias, httpResponse);
 
-        var orderNumberValue = apiClient.orders().getOrderNumberIfOrderPlacedSuccessfully(httpResponse);
-        return Result.success(orderNumberValue.get());
+        var orderNumber = apiClient.orders().getOrderNumberIfOrderPlacedSuccessfully(httpResponse);
 
-        // TODO: VJ: handle failure case too
+        if(orderNumber.isPresent()) {
+            return Result.success(orderNumber.get());
+        }
 
-//        orderNumberValue.ifPresent(v -> context.results().alias(orderNumberAlias, v));
+        var errorMessage = apiClient.getErrorMessage(httpResponse);
+        return Result.failure(errorMessage);
     }
 
     @Override

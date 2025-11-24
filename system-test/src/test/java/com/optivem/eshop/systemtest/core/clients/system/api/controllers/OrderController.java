@@ -37,9 +37,7 @@ public class OrderController {
         httpClient.assertUnprocessableEntity(httpResponse);
     }
 
-    public String getErrorMessage(HttpResponse<String> httpResponse) {
-        return httpResponse.body();
-    }
+
 
     public HttpResponse<String> viewOrder(String orderNumber) {
         return httpClient.get(ENDPOINT + "/" + orderNumber);

@@ -1,10 +1,13 @@
 package com.optivem.eshop.systemtest.core.drivers.system;
 
+import lombok.Getter;
+
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Result<T> {
+    @Getter
     private final boolean success;
     private final T value;
     private final String error;
@@ -27,10 +30,6 @@ public class Result<T> {
         return new Result<>(true, null, null);
     }
 
-    public boolean isSuccess() {
-        return success;
-    }
-
     public boolean isFailure() {
         return !success;
     }
@@ -42,59 +41,11 @@ public class Result<T> {
         return value;
     }
 
-    public Optional<T> getValueOptional() {
-        return success ? Optional.ofNullable(value) : Optional.empty();
-    }
-
     public String getError() {
         if (success) {
             throw new IllegalStateException("Cannot get error from a successful result");
         }
         return error;
-    }
-
-    public Optional<String> getErrorOptional() {
-        return !success ? Optional.ofNullable(error) : Optional.empty();
-    }
-
-    public T getValueOrDefault(T defaultValue) {
-        return success ? value : defaultValue;
-    }
-
-    public <U> Result<U> map(Function<T, U> mapper) {
-        if (!success) {
-            return Result.failure(error);
-        }
-        try {
-            return Result.success(mapper.apply(value));
-        } catch (Exception e) {
-            return Result.failure(e.getMessage());
-        }
-    }
-
-    public <U> Result<U> flatMap(Function<T, Result<U>> mapper) {
-        if (!success) {
-            return Result.failure(error);
-        }
-        try {
-            return mapper.apply(value);
-        } catch (Exception e) {
-            return Result.failure(e.getMessage());
-        }
-    }
-
-    public Result<T> onSuccess(Consumer<T> action) {
-        if (success) {
-            action.accept(value);
-        }
-        return this;
-    }
-
-    public Result<T> onFailure(Consumer<String> action) {
-        if (!success) {
-            action.accept(error);
-        }
-        return this;
     }
 
     @Override

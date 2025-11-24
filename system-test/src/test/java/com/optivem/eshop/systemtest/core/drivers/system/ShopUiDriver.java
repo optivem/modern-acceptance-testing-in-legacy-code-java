@@ -67,9 +67,13 @@ public class ShopUiDriver implements ShopDriver {
         newOrderPage.clickPlaceOrder();
 
         var orderNumberValue = newOrderPage.getOrderNumber();
-        return orderNumberValue
-                .map(Result::success)
-                .orElseGet(() -> Result.failure("Order placement failed, order number not generated"));
+        if (orderNumberValue.isPresent()) {
+            return Result.success(orderNumberValue.get());
+        }
+
+        // If no order number, read the error message from the page
+        var errorMessage = newOrderPage.readConfirmationMessageText();
+        return Result.failure(errorMessage);
 
 //        orderNumberValue.ifPresent(v -> context.results().alias(orderNumberAlias, v));
     }

@@ -76,6 +76,13 @@ public abstract class BaseE2eTest {
                 Optional.of("50.00"), Optional.of("100.00"), Optional.of("CANCELLED"));
     }
 
+    @Test
+    void shouldRejectOrderWithNonExistentSku() {
+        var result = shopDriver.placeOrder("NON-EXISTENT-SKU-12345", "5", "US");
+        assertTrue(result.isFailure());
+        assertEquals("Product does not exist for SKU: NON-EXISTENT-SKU-12345", result.getError());
+    }
+
 
 
 //
