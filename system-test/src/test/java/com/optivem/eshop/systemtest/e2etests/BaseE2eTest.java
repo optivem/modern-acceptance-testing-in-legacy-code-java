@@ -43,31 +43,25 @@ public abstract class BaseE2eTest {
     }
 
     @Test
-    void shouldCalculateOriginalOrderPrice() {
+    void shouldCalculateOriginalOrderPriceAndViewOtherOrderDetails() {
         var sku = "ABC-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "109.95");
+        erpApiDriver.createProduct(sku, "20.00");
         var result = shopDriver.placeOrder(sku, "5", "US");
         assertTrue(result.isSuccess());
-        shopDriver.confirmOrderDetails(result.getValue(), Optional.of(sku), Optional.of("5"), Optional.empty());
+
+        var orderNumber = result.getValue();
+        shopDriver.confirmOrderNumberGeneratedWithPrefix(orderNumber, "ORD-");
+        shopDriver.confirmOrderDetails(orderNumber, Optional.of(sku), Optional.of("5"), Optional.of("US"),
+                Optional.of("20.00"), Optional.of("100.00"), Optional.of("PLACED"));
+
+        shopDriver.confirmSubtotalPricePositive(orderNumber);
+        shopDriver.confirmTotalPricePositive(orderNumber);
+
     }
 
-    @Test
-    void shouldGenerateOrderNumber() {
-        var sku = "ABC-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "199.99");
-        var result = shopDriver.placeOrder(sku, "5", "US");
-        assertTrue(result.isSuccess());
-        shopDriver.confirmOrderNumberGeneratedWithPrefix(result.getValue(), "ORD-");
-    }
 
-    @Test
-    void shouldHaveStatusPlacedAfterOrderCreation() {
-        var sku = "ABC-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "29.99");
-        var result = shopDriver.placeOrder(sku, "2", "UK");
-        assertTrue(result.isSuccess());
-        shopDriver.confirmOrderDetails(result.getValue(), Optional.of(sku), Optional.empty(), Optional.of("PLACED"));
-    }
+
+
 
 
 //    @Test
@@ -89,8 +83,7 @@ public abstract class BaseE2eTest {
 //        var displayTaxAmount = orderHistoryPage.getTaxAmount();
 //        var displayTotalPrice = orderHistoryPage.getTotalPrice();
 //
-//        assertEquals(orderNumber, displayOrderNumber, "Should display the order number: " + orderNumber);
-//        assertEquals("SAM-2020", displayProductId, "Should display SKU SAM-2020");
+
 //        assertEquals("US", displayCountry, "Should display country US");
 //        assertEquals("3", displayQuantity, "Should display quantity 3");
 //        assertEquals("$499.99", displayUnitPrice, "Should display unit price $499.99");

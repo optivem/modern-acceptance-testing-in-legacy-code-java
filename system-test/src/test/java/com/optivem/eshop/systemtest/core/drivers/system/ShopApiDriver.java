@@ -65,9 +65,9 @@ public class ShopApiDriver implements ShopDriver {
 //    }
 
     @Override
-    public void confirmOrderDetails(String orderNumber, Optional<String> sku, Optional<String> quantity, Optional<String> status) {
+    public void confirmOrderDetails(String orderNumber, Optional<String> sku, Optional<String> quantity, Optional<String> country,
+                                    Optional<String> unitPrice, Optional<String> originalPrice,  Optional<String> status) {
         var httpResponse = apiClient.orders().viewOrder(orderNumber);
-
         var response = apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
 
         // TODO: VJ: Confirm the order number value too
@@ -77,17 +77,24 @@ public class ShopApiDriver implements ShopDriver {
         }
 
         if(quantity.isPresent()) {
-            assertEquals(Integer.parseInt(quantity.get()), response.getQuantity());
+            assertEquals(quantity.get(), String.valueOf(response.getQuantity()));
+        }
+
+        if(country.isPresent()) {
+            assertEquals(country.get(), response.getCountry());
+        }
+
+        if(unitPrice.isPresent()) {
+            assertEquals(unitPrice.get(), String.valueOf(response.getUnitPrice()));
+        }
+
+        if(originalPrice.isPresent()) {
+            assertEquals(originalPrice.get(), String.valueOf(response.getOriginalPrice()));
         }
 
         if(status.isPresent()) {
             assertEquals(OrderStatus.valueOf(status.get()), response.getStatus(), "Order status should match");
         }
-
-
-        var unitPrice = response.getUnitPrice();
-        assertNotNull(unitPrice, "Unit price should not be null");
-        assertTrue(unitPrice.compareTo(BigDecimal.ZERO) > 0, "Unit price should be positive");
 
         var totalPrice = response.getTotalPrice();
         assertNotNull(totalPrice, "Total price should not be null");
@@ -99,6 +106,50 @@ public class ShopApiDriver implements ShopDriver {
         var httpResponse = ordersViewed.get(orderNumberAlias);
         var response = apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
         assertEquals(OrderStatus.CANCELLED, response.getStatus(), "Order status should be CANCELLED");
+    }
+
+    @Override
+    public void confirmSubtotalPricePositive(String orderNumber) {
+        var httpResponse = apiClient.orders().viewOrder(orderNumber);
+        var response = apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
+
+        var discountRate = response.getDiscountRate();
+        var discountAmount = response.getDiscountAmount();
+        var subtotalPrice = response.getSubtotalPrice();
+
+        assertThat(discountRate)
+                .withFailMessage("Discount rate should be non-negative")
+                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
+
+        assertThat(discountAmount)
+                .withFailMessage("Discount amount should be non-negative")
+                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
+
+        assertThat(subtotalPrice)
+                .withFailMessage("Subtotal price should be positive")
+                .isGreaterThan(BigDecimal.ZERO);
+    }
+
+    @Override
+    public void confirmTotalPricePositive(String orderNumber) {
+        var httpResponse = apiClient.orders().viewOrder(orderNumber);
+        var response = apiClient.orders().assertOrderViewedSuccessfully(httpResponse);
+
+        var taxRate = response.getTaxRate();
+        var taxAmount = response.getTaxAmount();
+        var totalPrice = response.getTotalPrice();
+
+        assertThat(taxRate)
+                .withFailMessage("Tax rate should be non-negative")
+                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
+
+        assertThat(taxAmount)
+                .withFailMessage("Tax amount should be non-negative")
+                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
+
+        assertThat(totalPrice)
+                .withFailMessage("Total price should be positive")
+                .isGreaterThan(BigDecimal.ZERO);
     }
 
     @Override

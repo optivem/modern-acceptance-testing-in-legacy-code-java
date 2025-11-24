@@ -96,7 +96,8 @@ public class ShopUiDriver implements ShopDriver {
     }
 
     @Override
-    public void confirmOrderDetails(String orderNumber, Optional<String> sku, Optional<String> quantity, Optional<String> status) {
+    public void confirmOrderDetails(String orderNumber, Optional<String> sku, Optional<String> quantity, Optional<String> country,
+                                    Optional<String> unitPrice, Optional<String> originalPrice,  Optional<String> status) {
         // TODO: VC: If on new order page, we then need to confirm the first original price before going to view the details
 //        var originalPrice = newOrderPage.extractOriginalPrice();
 //
@@ -118,20 +119,25 @@ public class ShopUiDriver implements ShopDriver {
             assertEquals(quantity.get(), displayQuantity, "Should display quantity: " + quantity);
         }
 
+        if(country.isPresent()) {
+            var displayCountry = orderHistoryPage.getCountry();
+            assertEquals(country.get(), displayCountry, "Should display country: " + country);
+        }
+
+        if(unitPrice.isPresent()) {
+            var displayUnitPriceStr = orderHistoryPage.getUnitPrice().toString();
+            assertEquals(unitPrice.get(), displayUnitPriceStr, "Should display unit price: " + unitPrice);
+        }
+
+        if(originalPrice.isPresent()) {
+            var displayOriginalPriceStr = orderHistoryPage.getOriginalPrice().toString();
+            assertEquals(originalPrice.get(), displayOriginalPriceStr, "Should display original price: " + originalPrice);
+        }
+
         if(status.isPresent()) {
             var displayStatus = orderHistoryPage.getStatus();
             assertEquals(status.get(), displayStatus, "Should display status: " + status);
         }
-
-
-
-        var displayUnitPrice = orderHistoryPage.getUnitPrice();
-        assertTrue(displayUnitPrice.compareTo(BigDecimal.ZERO) > 0, "Unit price should be positive");
-
-        var displayOriginalPrice = orderHistoryPage.getOriginalPrice();
-        assertTrue(displayOriginalPrice.compareTo(BigDecimal.ZERO) > 0, "Original price should be positive");
-
-        // TODO: VJ: Should confirm the various other calculated prices too
     }
 
     @Override
@@ -154,6 +160,35 @@ public class ShopUiDriver implements ShopDriver {
         assertEquals("CANCELLED", displayStatusAfterCancel, "Status should be CANCELLED after cancellation");
         orderHistoryPage.assertCancelButtonNotVisible();
     }
+
+    @Override
+    public void confirmSubtotalPricePositive(String orderNumber) {
+        var displayDiscountRate = orderHistoryPage.getDiscountRate();
+        var displayDiscountAmount = orderHistoryPage.getDiscountAmount();
+        var displaySubtotalPrice = orderHistoryPage.getSubtotalPrice();
+
+        assertTrue(displayDiscountRate.endsWith("%"), "Should display discount rate with % symbol");
+        assertTrue(displayDiscountAmount.startsWith("$"), "Should display discount amount with $ symbol");
+        assertTrue(displaySubtotalPrice.startsWith("$"), "Should display subtotal price with $ symbol");
+
+        // TODO: VJ: Assert actual values
+    }
+
+    @Override
+    public void confirmTotalPricePositive(String orderNumber) {
+        var displayTaxRate = orderHistoryPage.getTaxRate();
+        var displayTaxAmount = orderHistoryPage.getTaxAmount();
+        var displayTotalPrice = orderHistoryPage.getTotalPrice();
+
+        assertTrue(displayTaxRate.endsWith("%"), "Should display tax rate with % symbol");
+        assertTrue(displayTaxAmount.startsWith("$"), "Should display tax amount with $ symbol");
+        assertTrue(displayTotalPrice.startsWith("$"), "Should display total price with $ symbol");
+
+        // TODO: VJ: Assert actual values
+    }
+
+
+
 
     @Override
     public void confirmOrderNumberGeneratedWithPrefix(String orderNumber, String expectedPrefix) {
