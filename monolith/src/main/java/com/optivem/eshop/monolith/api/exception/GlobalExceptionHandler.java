@@ -6,6 +6,7 @@ import com.optivem.eshop.monolith.core.validation.TypeValidationMessageExtractor
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.net.URI;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,51 +31,85 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity<ErrorResponse> handleValidationException(ValidationException ex) {
-        var errorResponse = new ErrorResponse(ex.getMessage());
-        return ResponseEntity.unprocessableEntity().body(errorResponse);
+    public ResponseEntity<ProblemDetail> handleValidationException(ValidationException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                ex.getMessage()
+        );
+        problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+        problemDetail.setTitle("Validation Error");
+        problemDetail.setProperty("timestamp", Instant.now());
+
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(problemDetail);
     }
 
     @ExceptionHandler(NotExistValidationException.class)
-    public ResponseEntity<ErrorResponse> handleNotExistValidationException(NotExistValidationException ex) {
-        return ResponseEntity.notFound().build();
+    public ResponseEntity<ProblemDetail> handleNotExistValidationException(NotExistValidationException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.NOT_FOUND,
+                ex.getMessage()
+        );
+        problemDetail.setType(URI.create("https://api.optivem.com/errors/resource-not-found"));
+        problemDetail.setTitle("Resource Not Found");
+        problemDetail.setProperty("timestamp", Instant.now());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problemDetail);
     }
 
-    public record ErrorResponse(String message) {}
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
+    public ResponseEntity<ProblemDetail> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.UNPROCESSABLE_ENTITY,
+                "The request contains one or more validation errors"
+        );
+        problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+        problemDetail.setTitle("Validation Error");
+        problemDetail.setProperty("timestamp", Instant.now());
+
+        // Add field-level errors
+        List<Map<String, Object>> errors = new ArrayList<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            Map<String, Object> errorDetail = new HashMap<>();
+            errorDetail.put("field", ((FieldError) error).getField());
+            errorDetail.put("message", error.getDefaultMessage());
+            errorDetail.put("code", error.getCode());
+            errorDetail.put("rejectedValue", ((FieldError) error).getRejectedValue());
+            errors.add(errorDetail);
         });
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(errors);
+        problemDetail.setProperty("errors", errors);
+
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(problemDetail);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+    public ResponseEntity<ProblemDetail> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
         log.debug("HttpMessageNotReadableException: {}", ex.getMessage());
 
-        ResponseEntity<ErrorResponse> response = tryParseFieldError(ex.getMessage());
-        if (response != null) {
-            return response;
+        ProblemDetail problemDetail = tryParseFieldError(ex.getMessage());
+        if (problemDetail != null) {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(problemDetail);
         }
 
         if (ex.getCause() != null) {
             log.debug("Root cause: {}", ex.getCause().getMessage());
-            response = tryParseFieldError(ex.getCause().getMessage());
-            if (response != null) {
-                return response;
+            problemDetail = tryParseFieldError(ex.getCause().getMessage());
+            if (problemDetail != null) {
+                return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(problemDetail);
             }
         }
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse("Invalid request format"));
+        problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.BAD_REQUEST,
+                "Invalid request format"
+        );
+        problemDetail.setType(URI.create("https://api.optivem.com/errors/bad-request"));
+        problemDetail.setTitle("Bad Request");
+        problemDetail.setProperty("timestamp", Instant.now());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problemDetail);
     }
 
-    private ResponseEntity<ErrorResponse> tryParseFieldError(String message) {
+    private ProblemDetail tryParseFieldError(String message) {
         if (message == null) {
             return null;
         }
@@ -89,8 +128,16 @@ public class GlobalExceptionHandler {
         return fieldErrorPatterns.entrySet().stream()
                 .filter(entry -> lowerMessage.contains(entry.getKey()))
                 .findFirst()
-                .map(entry -> ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY)
-                        .body(new ErrorResponse(entry.getValue())))
+                .map(entry -> {
+                    ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                            HttpStatus.UNPROCESSABLE_ENTITY,
+                            entry.getValue()
+                    );
+                    problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+                    problemDetail.setTitle("Validation Error");
+                    problemDetail.setProperty("timestamp", Instant.now());
+                    return problemDetail;
+                })
                 .orElse(null);
     }
 
@@ -109,7 +156,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleGeneralException(Exception ex) {
+    public ResponseEntity<ProblemDetail> handleGeneralException(Exception ex) {
         log.error("Unexpected error occurred", ex);
 
         // Log the full cause chain
@@ -128,8 +175,15 @@ public class GlobalExceptionHandler {
             fullMessage += " | Root cause: " + rootCauseMessage;
         }
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponse(fullMessage));
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                fullMessage
+        );
+        problemDetail.setType(URI.create("https://api.optivem.com/errors/internal-server-error"));
+        problemDetail.setTitle("Internal Server Error");
+        problemDetail.setProperty("timestamp", Instant.now());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(problemDetail);
     }
 
     private String getRootCauseMessage(Throwable ex) {

@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.core.clients.system.api;
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
 import com.optivem.eshop.systemtest.core.clients.system.api.controllers.EchoController;
 import com.optivem.eshop.systemtest.core.clients.system.api.controllers.OrderController;
-import com.optivem.eshop.systemtest.core.clients.system.api.dtos.ErrorResponse;
-import com.optivem.eshop.systemtest.core.clients.system.api.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.core.clients.system.api.dtos.ProblemDetailResponse;
 
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class ShopApiClient implements AutoCloseable {
 
@@ -32,8 +32,36 @@ public class ShopApiClient implements AutoCloseable {
     }
 
     public String getErrorMessage(HttpResponse<String> httpResponse) {
-        var response = testHttpClient.readBody(httpResponse, ErrorResponse.class);
-        return response.getMessage();
+        var responseBody = httpResponse.body();
+
+        // Try to parse as ProblemDetail (RFC 7807 format)
+        try {
+            var problemDetail = testHttpClient.readBody(httpResponse, ProblemDetailResponse.class);
+
+            // If there are field-level validation errors, extract the first one
+            if (problemDetail.getErrors() != null && !problemDetail.getErrors().isEmpty()) {
+                Map<String, Object> firstError = problemDetail.getErrors().get(0);
+                Object message = firstError.get("message");
+                if (message != null) {
+                    return message.toString();
+                }
+            }
+
+            // Otherwise return the detail field
+            if (problemDetail.getDetail() != null) {
+                return problemDetail.getDetail();
+            }
+
+            // Fallback to title if detail is null
+            if (problemDetail.getTitle() != null) {
+                return problemDetail.getTitle();
+            }
+        } catch (Exception e) {
+            // Not a ProblemDetail format
+        }
+
+        // Fallback: return the raw response body
+        return responseBody;
     }
 
     @Override

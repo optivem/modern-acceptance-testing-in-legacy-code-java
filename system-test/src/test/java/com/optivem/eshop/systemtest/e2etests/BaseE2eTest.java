@@ -83,23 +83,30 @@ public abstract class BaseE2eTest {
         assertEquals("Product does not exist for SKU: NON-EXISTENT-SKU-12345", result.getError());
     }
 
+    @Test
+    void shouldRejectOrderWithNegativeQuantity() {
+        var sku = "DEF-" + UUID.randomUUID();
+        erpApiDriver.createProduct(sku, "30.00");
+        var result = shopDriver.placeOrder(sku, "-3", "US");
+        assertTrue(result.isFailure());
+        assertEquals("Quantity must be positive", result.getError());
+    }
 
 
 //
 //    @Test
-//    void shouldRejectOrderWithNonExistentSku() {
+//    void shouldRejectOrderWithNegativeQuantity() {
 //        var homePage = shopUiDriver.openHomePage();
 //        var newOrderPage = homePage.clickNewOrder();
 //
-//        newOrderPage.inputProductId("AUTO-NOTFOUND-999");
-//        newOrderPage.inputQuantity("5");
-//        newOrderPage.inputCountry("US");
+//        newOrderPage.inputProductId("HP-15");
+//        newOrderPage.inputQuantity("-5");
 //        newOrderPage.clickPlaceOrder();
 //
 //        var errorMessageText = newOrderPage.readConfirmationMessageText();
 //
-//        assertTrue(errorMessageText.contains("Product does not exist for SKU"),
-//                "Error message should indicate product does not exist. Actual: " + errorMessageText);
+//        assertTrue(errorMessageText.contains("Quantity must be positive"),
+//                "Error message should indicate quantity must be positive. Actual: " + errorMessageText);
 //    }
 }
 

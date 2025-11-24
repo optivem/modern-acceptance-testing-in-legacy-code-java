@@ -129,20 +129,54 @@
                         resultDiv.textContent = 'Order created but failed to fetch details. Order Number: ' + order.orderNumber;
                         resultDiv.classList.add('show');
                     }
-                } else if (response.status === 400 || response.status === 422) {
-                    // Handle parsing errors (400) and validation errors (422)
-                    const contentType = response.headers.get("content-type");
-                    if (contentType && contentType.includes("application/json")) {
+                } else if (response.status === 404) {
+                    // Handle not found errors (e.g., product doesn't exist)
+                    try {
                         const errorData = await response.json();
-                        // Check if it's a simple error response or a map of field errors
-                        if (errorData.message) {
+                        console.log('404 error data:', errorData);
+
+                        // Check if it's RFC 7807 ProblemDetail format
+                        if (errorData.detail) {
+                            resultDiv.textContent = errorData.detail;
+                        } else if (errorData.message) {
+                            // Legacy format
                             resultDiv.textContent = errorData.message;
                         } else {
+                            resultDiv.textContent = 'Resource not found.';
+                        }
+                        resultDiv.classList.add('show');
+                    } catch (e) {
+                        console.error('Error parsing 404 response:', e);
+                        resultDiv.textContent = 'Resource not found.';
+                        resultDiv.classList.add('show');
+                    }
+                } else if (response.status === 400 || response.status === 422) {
+                    // Handle parsing errors (400) and validation errors (422)
+                    try {
+                        const errorData = await response.json();
+                        console.log('Validation error data:', errorData);
+
+                        // Check if it's RFC 7807 ProblemDetail format
+                        if (errorData.detail) {
+                            // If there are field-level errors, show them
+                            if (errorData.errors && errorData.errors.length > 0) {
+                                const errorMessages = errorData.errors.map(e => e.message).join(', ');
+                                resultDiv.textContent = errorMessages;
+                            } else {
+                                // Otherwise show the detail message
+                                resultDiv.textContent = errorData.detail;
+                            }
+                        } else if (errorData.message) {
+                            // Legacy simple error format
+                            resultDiv.textContent = errorData.message;
+                        } else {
+                            // Legacy map of field errors
                             const errorMessages = Object.values(errorData).join(', ');
                             resultDiv.textContent = errorMessages;
                         }
                         resultDiv.classList.add('show');
-                    } else {
+                    } catch (e) {
+                        console.error('Error parsing validation error response:', e);
                         resultDiv.textContent = 'Validation error. Please check your input.';
                         resultDiv.classList.add('show');
                     }

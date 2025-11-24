@@ -22,21 +22,7 @@ class UiE2eTest extends BaseE2eTest {
 
 
 
-//
-//    @Test
-//    void shouldRejectOrderWithNegativeQuantity() {
-//        var homePage = shopUiDriver.openHomePage();
-//        var newOrderPage = homePage.clickNewOrder();
-//
-//        newOrderPage.inputProductId("HP-15");
-//        newOrderPage.inputQuantity("-5");
-//        newOrderPage.clickPlaceOrder();
-//
-//        var errorMessageText = newOrderPage.readConfirmationMessageText();
-//
-//        assertTrue(errorMessageText.contains("Quantity must be positive"),
-//                "Error message should indicate quantity must be positive. Actual: " + errorMessageText);
-//    }
+
 //
 //    private static Stream<Arguments> provideEmptySkuValues() {
 //        return Stream.of(
