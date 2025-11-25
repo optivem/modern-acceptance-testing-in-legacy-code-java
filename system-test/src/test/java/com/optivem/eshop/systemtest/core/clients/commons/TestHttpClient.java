@@ -7,7 +7,6 @@ import java.net.http.HttpResponse;
 
 public class TestHttpClient {
 
-
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
 

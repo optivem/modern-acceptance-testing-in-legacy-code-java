@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.clients.external.erp.controllers;
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.clients.external.erp.dtos.CreateProductRequest;
-import com.optivem.eshop.systemtest.core.drivers.system.Result;
+import com.optivem.eshop.systemtest.core.commons.results.Result;
 
 public class ProductController {
 

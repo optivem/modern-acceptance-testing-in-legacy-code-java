@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.drivers.system;
+package com.optivem.eshop.systemtest.core.commons.results;
 
 import lombok.Getter;
 

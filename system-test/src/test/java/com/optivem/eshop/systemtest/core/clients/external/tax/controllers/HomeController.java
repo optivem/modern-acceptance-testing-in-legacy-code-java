@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.clients.external.tax.controllers;
 
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
-
-import java.net.http.HttpResponse;
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
+import com.optivem.eshop.systemtest.core.commons.results.Result;
 
 public class HomeController {
 
@@ -14,8 +14,9 @@ public class HomeController {
         this.httpClient = httpClient;
     }
 
-    public HttpResponse<String> home() {
-        return httpClient.get(ENDPOINT);
+    public Result<Void> home() {
+        var httpResponse = httpClient.get(ENDPOINT);
+        return TestHttpUtils.getOkResultOrFailure(httpResponse);
     }
 }
 

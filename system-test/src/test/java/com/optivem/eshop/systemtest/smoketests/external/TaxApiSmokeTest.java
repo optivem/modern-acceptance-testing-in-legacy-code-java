@@ -7,14 +7,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class TaxApiSmokeTest {
 
     private TaxApiDriver taxApiDriver;
 
     @BeforeEach
     void setUp() {
-        var driverFactory = new DriverFactory();
-        this.taxApiDriver = driverFactory.createTaxApiDriver();
+        this.taxApiDriver = DriverFactory.createTaxApiDriver();
     }
 
     @AfterEach
@@ -24,7 +25,8 @@ public class TaxApiSmokeTest {
 
     @Test
     void home_shouldReturn200OK() {
-        taxApiDriver.goToTaxation();
+        var result = taxApiDriver.goToTaxation();
+        assertThat(result.isSuccess()).isTrue();
     }
 }
 

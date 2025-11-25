@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.core.clients.system.ui.pages.OrderHistoryPag
 import com.optivem.eshop.systemtest.core.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.commons.dtos.enums.OrderStatus;
+import com.optivem.eshop.systemtest.core.commons.results.Result;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -110,7 +111,7 @@ public class ShopUiDriver implements ShopDriver {
         viewOrder(orderNumberAlias);
         orderHistoryPage.clickCancelOrder();
 
-        var cancellationMessage = orderHistoryPage.getNotificationMessage();
+        var cancellationMessage = orderHistoryPage.readSuccessNotification();
         assertEquals("Order cancelled successfully!", cancellationMessage, "Should display cancellation success message");
 
         var displayStatusAfterCancel = orderHistoryPage.getStatus();

@@ -7,14 +7,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class ErpApiSmokeTest {
 
     private ErpApiDriver erpApiDriver;
 
     @BeforeEach
     void setUp() {
-        var driverFactory = new DriverFactory();
-        this.erpApiDriver = driverFactory.createErpApiDriver();
+        this.erpApiDriver = DriverFactory.createErpApiDriver();
     }
 
     @AfterEach
@@ -24,7 +25,8 @@ public class ErpApiSmokeTest {
 
     @Test
     void home_shouldReturn200OK() {
-        erpApiDriver.goToErp();
+        var result = erpApiDriver.goToErp();
+        assertThat(result.isSuccess()).isTrue();
     }
 }
 

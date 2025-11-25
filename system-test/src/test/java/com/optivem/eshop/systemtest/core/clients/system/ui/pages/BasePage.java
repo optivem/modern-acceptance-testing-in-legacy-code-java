@@ -6,15 +6,14 @@ import java.util.List;
 
 public abstract class BasePage {
 
+    private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].success";
+    private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].error";
+
     protected final TestPageClient pageClient;
 
     public BasePage(TestPageClient pageClient) {
         this.pageClient = pageClient;
     }
-
-    //    private static final String NOTIFICATION_ALERT_SELECTOR = "[role='alert']";
-    private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].success";
-    private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].error";
 
     public Boolean hasSuccessNotification() {
         if(pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR)) {

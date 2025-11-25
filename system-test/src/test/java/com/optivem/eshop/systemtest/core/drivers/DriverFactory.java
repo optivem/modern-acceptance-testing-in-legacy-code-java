@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.drivers;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.eshop.systemtest.core.clients.ClientFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.external.TaxApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopApiDriver;
@@ -22,9 +21,7 @@ public class DriverFactory {
     }
 
     public static TaxApiDriver createTaxApiDriver() {
-        var client = ClientFactory.createTaxApiClient();
-        return new TaxApiDriver(client);
-        // TODO: VJ: Make consistent with the above
+        return new TaxApiDriver(TestConfiguration.getTaxApiBaseUrl());
     }
 }
 

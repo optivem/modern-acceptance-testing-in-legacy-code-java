@@ -1,11 +1,12 @@
 package com.optivem.eshop.systemtest.smoketests;
 
 import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
-import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public abstract class BaseShopSmokeTest {
 
@@ -13,11 +14,10 @@ public abstract class BaseShopSmokeTest {
 
     @BeforeEach
     void setUp() {
-        var driverFactory = new DriverFactory();
-        shopDriver = createDriver(driverFactory);
+        shopDriver = createDriver();
     }
 
-    protected abstract ShopDriver createDriver(DriverFactory driverFactory);
+    protected abstract ShopDriver createDriver();
 
     @AfterEach
     void tearDown() {
@@ -26,6 +26,7 @@ public abstract class BaseShopSmokeTest {
 
     @Test
     void shouldBeAbleToGoToShop() {
-        shopDriver.goToShop();
+        var result = shopDriver.goToShop();
+        assertThat(result.isSuccess()).isTrue();
     }
 }

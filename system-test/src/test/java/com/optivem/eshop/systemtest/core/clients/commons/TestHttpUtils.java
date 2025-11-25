@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.clients.commons;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.optivem.eshop.systemtest.core.commons.dtos.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.core.drivers.system.Result;
+import com.optivem.eshop.systemtest.core.commons.results.Result;
 import org.springframework.http.HttpStatus;
 
 import java.net.URI;

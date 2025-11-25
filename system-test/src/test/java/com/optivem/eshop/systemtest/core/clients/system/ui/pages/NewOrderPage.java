@@ -6,8 +6,6 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 public class NewOrderPage extends BasePage {
 
     private static final String PRODUCT_ID_INPUT_SELECTOR = "[aria-label=\"Product ID\"]";
@@ -38,14 +36,6 @@ public class NewOrderPage extends BasePage {
     public void clickPlaceOrder() {
         pageClient.click(PLACE_ORDER_BUTTONG_SELECTOR);
     }
-
-    // TODO: VJ: This should be global since it's not specific to pages
-//    public List<String> readNotificationMessages() {
-//        var text = pageClient.readTextContent(NOTIFICATION_ALERT_SELECTOR);
-//        return text.lines().toList();
-//    }
-
-
 
     public Optional<String> getOrderNumber() {
         if(!hasSuccessNotification()) {
@@ -82,11 +72,6 @@ public class NewOrderPage extends BasePage {
         var result = BigDecimal.valueOf(Double.parseDouble(matcher.group(ORIGINAL_PRICE_MATCHER_GROUP)));
 
         return Optional.of(result);
-    }
-
-    public void assertSuccessConfirmationMessageShown() {
-        var confirmationMessageText = readSuccessNotification();
-        assertThat(confirmationMessageText).isNotEmpty();
     }
 }
 

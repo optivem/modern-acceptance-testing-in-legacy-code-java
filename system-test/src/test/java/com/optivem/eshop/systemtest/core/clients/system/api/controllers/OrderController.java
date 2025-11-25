@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.core.drivers.system.Result;
+import com.optivem.eshop.systemtest.core.commons.results.Result;
 
 public class OrderController {
 
