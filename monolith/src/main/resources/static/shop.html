@@ -142,27 +142,7 @@
                 if (response.ok) {
                     const order = await response.json();
                     console.log('Order created successfully:', order);
-
-                    // Fetch order details to get the original price
-                    const orderDetailsResponse = await fetch('/api/orders/' + order.orderNumber);
-                    console.log('Order details response status:', orderDetailsResponse.status);
-
-                    if (orderDetailsResponse.ok) {
-                        const orderDetails = await orderDetailsResponse.json();
-                        console.log('Order details:', orderDetails);
-                        console.log('Original price value:', orderDetails.originalPrice);
-                        console.log('Total price value:', orderDetails.totalPrice);
-
-                        if (orderDetails.originalPrice !== undefined && orderDetails.originalPrice !== null) {
-                            showSuccess('Success! Order has been created with Order Number ' + order.orderNumber + ' and Original Price $' + orderDetails.originalPrice.toFixed(2));
-                        } else {
-                            showSuccess('Success! Order has been created with Order Number ' + order.orderNumber);
-                            console.warn('Original price is missing from order details');
-                        }
-                    } else {
-                        console.error('Failed to fetch order details, status:', orderDetailsResponse.status);
-                        showError('Order created but failed to fetch details. Order Number: ' + order.orderNumber);
-                    }
+                    showSuccess('Success! Order has been created with Order Number ' + order.orderNumber);
                 } else if (response.status === 404) {
                     // Handle not found errors (e.g., product doesn't exist)
                     try {
