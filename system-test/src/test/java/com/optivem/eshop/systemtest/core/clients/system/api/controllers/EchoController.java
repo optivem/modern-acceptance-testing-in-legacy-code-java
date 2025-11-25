@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.clients.system.api.controllers;
 
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
-
-import java.net.http.HttpResponse;
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
+import com.optivem.eshop.systemtest.core.drivers.system.Result;
 
 public class EchoController {
 
@@ -14,8 +14,9 @@ public class EchoController {
         this.httpClient = httpClient;
     }
 
-    public HttpResponse<String> echo() {
-        return httpClient.get(ENDPOINT);
+    public Result<Void> echo() {
+        var httpResponse = httpClient.get(ENDPOINT);
+        return TestHttpUtils.getOkResultOrFailure(httpResponse);
     }
 }
 

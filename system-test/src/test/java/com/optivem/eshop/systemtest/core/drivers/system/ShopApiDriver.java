@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.drivers.system;
 
-import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.clients.system.api.ShopApiClient;
 import com.optivem.eshop.systemtest.core.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderResponse;
@@ -14,27 +13,22 @@ public class ShopApiDriver implements ShopDriver {
 
     @Override
     public Result<Void> goToShop() {
-        var httpResponse = apiClient.echo().echo();
-        return TestHttpUtils.getOkResultOrFailure(httpResponse);
+        return apiClient.echo().echo();
     }
 
     @Override
     public Result<PlaceOrderResponse> placeOrder(String sku, String quantity, String country) {
-        var httpResponse = apiClient.orders().placeOrder(sku, quantity, country);
-        return TestHttpUtils.getCreatedResultOrFailure(httpResponse, PlaceOrderResponse.class);
+        return apiClient.orders().placeOrder(sku, quantity, country);
     }
-
 
     @Override
     public Result<Void> cancelOrder(String orderNumber) {
-        var httpResponse = apiClient.orders().cancelOrder(orderNumber);
-        return TestHttpUtils.getNoContentResultOrFailure(httpResponse);
+        return apiClient.orders().cancelOrder(orderNumber);
     }
 
     @Override
     public Result<GetOrderResponse> viewOrder(String orderNumber) {
-        var httpResponse = apiClient.orders().viewOrder(orderNumber);
-        return TestHttpUtils.getOkResultOrFailure(httpResponse, GetOrderResponse.class);
+        return apiClient.orders().viewOrder(orderNumber);
     }
 
     @Override

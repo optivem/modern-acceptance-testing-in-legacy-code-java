@@ -38,13 +38,10 @@ public class ShopUiDriver implements ShopDriver {
             return Result.failure();
         }
 
-        client.assertHomePageLoaded();
+        client.assertPageLoaded();
         currentPage = Pages.HOME;
-        newOrderPage = homePage.clickNewOrder(); // TODO: VCJ: DELETE
         return Result.success();
     }
-
-
 
     @Override
     public Result<PlaceOrderResponse> placeOrder(String sku, String quantity, String country) {

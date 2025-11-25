@@ -41,7 +41,7 @@ public class ShopUiClient implements AutoCloseable {
         return response.status() == 200;
     }
 
-    public void assertHomePageLoaded() {
+    public void assertPageLoaded() {
         assertEquals(200, response.status());
 
         var contentType = response.headers().get(CONTENT_TYPE);
