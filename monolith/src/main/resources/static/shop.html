@@ -83,7 +83,13 @@
 
                 // Validate that quantity is an integer
                 const quantityNum = parseFloat(quantityValue);
-                if (isNaN(quantityNum) || !Number.isInteger(quantityNum)) {
+
+                if (isNaN(quantityNum)) {
+                    showError('Quantity must not be empty');
+                    return;
+                }
+
+                if (!Number.isInteger(quantityNum)) {
                     showError('Quantity must be an integer');
                     return;
                 }

@@ -113,18 +113,21 @@ public abstract class BaseE2eTest {
         assertThat(result.getErrors()).contains("SKU must not be empty");
     }
 
+    private static Stream<Arguments> provideEmptyQuantityValues() {
+        return Stream.of(
+                Arguments.of(""),      // Empty string
+                Arguments.of("   ")    // Whitespace string
+        );
+    }
 
-    // TODO: VJ: CONTINUE HERE
-//    private static Stream<Arguments> provideEmptyQuantityValues() {
-//        return Stream.of(
-//                Arguments.of(""),      // Empty string
-//                Arguments.of("   ")    // Whitespace string
-//        );
-//    }
+    @ParameterizedTest
+    @MethodSource("provideEmptyQuantityValues")
+    void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
+        var result = shopDriver.placeOrder("some-sku", emptyQuantity, "US");
+        assertTrue(result.isFailure());
+        assertThat(result.getErrors()).contains("Quantity must not be empty");
+
 //
-//    @ParameterizedTest
-//    @MethodSource("provideEmptyQuantityValues")
-//    void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
 //        var result = shopDriver.placeOrder("some-sku", emptyQuantity, "US");
 //        assertTrue(result.isFailure());
 //        assertEquals("SKU must not be empty", result.getError());
@@ -140,7 +143,7 @@ public abstract class BaseE2eTest {
 //
 //        assertTrue(errorMessageText.contains("Quantity must be an integer") || errorMessageText.contains("Quantity must be greater than 0"),
 //                "Error message should indicate quantity validation error for quantity: '" + quantityValue + "'. Actual: " + errorMessageText);
-//    }
+    }
 
 }
 
