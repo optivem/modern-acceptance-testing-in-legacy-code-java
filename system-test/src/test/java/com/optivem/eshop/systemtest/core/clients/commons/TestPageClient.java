@@ -93,7 +93,7 @@ public class TestPageClient {
     }
 
     private void wait(Locator locator) {
-        var waitForOptions = new Locator.WaitForOptions().setTimeout(timeoutMilliseconds);
+        var waitForOptions = getWaitForOptions();
         locator.waitFor(waitForOptions);
     }
 

@@ -1,13 +1,9 @@
 package com.optivem.eshop.systemtest.core.clients.system.api.controllers;
 
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
-import com.optivem.eshop.systemtest.core.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.core.commons.dtos.PlaceOrderResponse;
-import org.springframework.http.HttpStatus;
 
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 public class OrderController {
 
@@ -29,41 +25,12 @@ public class OrderController {
         return httpClient.post(ENDPOINT, request);
     }
 
-    public PlaceOrderResponse assertOrderPlacedSuccessfully(HttpResponse<String> httpResponse) {
-        httpClient.assertCreated(httpResponse);
-        return httpClient.readBody(httpResponse, PlaceOrderResponse.class);
-    }
-
-    public void assertOrderPlacementFailed(HttpResponse<String> httpResponse) {
-        httpClient.assertUnprocessableEntity(httpResponse);
-    }
-
-
-
     public HttpResponse<String> viewOrder(String orderNumber) {
         return httpClient.get(ENDPOINT + "/" + orderNumber);
     }
 
-    public GetOrderResponse assertOrderViewedSuccessfully(HttpResponse<String> httpResponse) {
-        httpClient.assertOk(httpResponse);
-        return httpClient.readBody(httpResponse, GetOrderResponse.class);
-    }
-
     public HttpResponse<String> cancelOrder(String orderNumber) {
         return httpClient.post(ENDPOINT + "/" + orderNumber + "/cancel");
-    }
-
-    public void assertOrderCancelledSuccessfully(HttpResponse<String> httpResponse) {
-        httpClient.assertNoContent(httpResponse);
-    }
-    public Optional<String> getOrderNumberIfOrderPlacedSuccessfully(HttpResponse<String> httpResponse) {
-        if(httpResponse.statusCode() != HttpStatus.CREATED.value()) {
-            return Optional.empty();
-        }
-
-        var response = httpClient.readBody(httpResponse, PlaceOrderResponse.class);
-        var orderNumber = response.getOrderNumber();
-        return Optional.of(orderNumber);
     }
 }
 

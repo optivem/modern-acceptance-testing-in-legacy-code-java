@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ValidationError {
+public class ProblemDetailsFieldErrorResponse {
     private String field;
     private String message;
     private String code;

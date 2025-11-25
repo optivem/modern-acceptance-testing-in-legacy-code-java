@@ -17,9 +17,5 @@ public class EchoController {
     public HttpResponse<String> echo() {
         return httpClient.get(ENDPOINT);
     }
-
-    public void assertEchoSuccessful(HttpResponse<String> httpResponse) {
-        httpClient.assertOk(httpResponse);
-    }
 }
 

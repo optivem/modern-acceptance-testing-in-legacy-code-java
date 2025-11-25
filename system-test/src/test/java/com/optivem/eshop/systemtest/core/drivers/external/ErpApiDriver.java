@@ -1,6 +1,8 @@
 package com.optivem.eshop.systemtest.core.drivers.external;
 
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.clients.external.erp.ErpApiClient;
+import com.optivem.eshop.systemtest.core.drivers.system.Result;
 
 public class ErpApiDriver implements AutoCloseable {
 
@@ -10,9 +12,9 @@ public class ErpApiDriver implements AutoCloseable {
         this.erpApiClient = new ErpApiClient(baseUrl);
     }
 
-    public void toToErp() {
+    public Result<Void> goToErp() {
         var httpResponse = erpApiClient.home().home();
-        erpApiClient.home().assertHomeSuccessful(httpResponse);
+        return TestHttpUtils.getOkResultOrFailure(httpResponse);
     }
 
     public void createProduct(String sku, String unitPrice) {

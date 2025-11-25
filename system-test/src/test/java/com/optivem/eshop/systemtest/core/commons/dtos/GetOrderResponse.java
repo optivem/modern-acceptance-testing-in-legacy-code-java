@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.core.commons.dtos;
 
+import com.optivem.eshop.systemtest.core.commons.dtos.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

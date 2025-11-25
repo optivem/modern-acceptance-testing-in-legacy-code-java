@@ -17,9 +17,5 @@ public class HomeController {
     public HttpResponse<String> home() {
         return httpClient.get(ENDPOINT);
     }
-
-    public void assertHomeSuccessful(HttpResponse<String> httpResponse) {
-        httpClient.assertOk(httpResponse);
-    }
 }
 

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests;
 
-import com.optivem.eshop.systemtest.core.commons.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.core.commons.dtos.enums.OrderStatus;
 import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.ErpApiDriver;
@@ -69,15 +69,12 @@ public abstract class BaseE2eTest {
         var subtotalPrice = viewOrderResponse.getSubtotalPrice();
 
         assertThat(discountRate)
-                .withFailMessage("Discount rate should be non-negative")
                 .isGreaterThanOrEqualTo(BigDecimal.ZERO);
 
         assertThat(discountAmount)
-                .withFailMessage("Discount amount should be non-negative")
                 .isGreaterThanOrEqualTo(BigDecimal.ZERO);
 
         assertThat(subtotalPrice)
-                .withFailMessage("Subtotal price should be positive")
                 .isGreaterThan(BigDecimal.ZERO);
 
 

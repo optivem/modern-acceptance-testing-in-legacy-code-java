@@ -18,6 +18,6 @@ public class ProblemDetailResponse {
     private String detail;
     private String instance;
     private String timestamp;
-    private List<ValidationError> errors;
+    private List<ProblemDetailsFieldErrorResponse> errors;
 }
 

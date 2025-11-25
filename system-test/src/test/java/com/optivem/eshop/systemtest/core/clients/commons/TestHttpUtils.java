@@ -5,6 +5,7 @@ import com.optivem.eshop.systemtest.core.commons.dtos.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.Result;
 import org.springframework.http.HttpStatus;
 
+import java.net.URI;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,27 +13,7 @@ import java.util.List;
 public class TestHttpUtils {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    public static boolean hasStatusCode(HttpResponse<String> httpResponse, HttpStatus statusCode) {
-        return httpResponse.statusCode() == statusCode.value();
-    }
-
-    public static boolean hasStatusOk(HttpResponse<String> httpResponse) {
-        return hasStatusCode(httpResponse, HttpStatus.OK);
-    }
-
-    public static boolean hasStatusCreated(HttpResponse<String> httpResponse) {
-        return hasStatusCode(httpResponse, HttpStatus.CREATED);
-    }
-
-    public static boolean hasStatusNoContent(HttpResponse<String> httpResponse) {
-        return hasStatusCode(httpResponse, HttpStatus.NO_CONTENT);
-    }
-
-    public static boolean hasStatusUnprocessableEntity(HttpResponse<String> httpResponse) {
-        return hasStatusCode(httpResponse, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-
-    public static <T> T readBody(HttpResponse<String> httpResponse, Class<T> responseType) {
+    public static <T> T readResponse(HttpResponse<String> httpResponse, Class<T> responseType) {
         try {
             var responseBody = httpResponse.body();
             return objectMapper.readValue(responseBody, responseType);
@@ -50,7 +31,7 @@ public class TestHttpUtils {
     }
 
     public static List<String> getErrorMessages(HttpResponse<String> httpResponse) {
-        var problemDetail = readBody(httpResponse, ProblemDetailResponse.class);
+        var problemDetail = readResponse(httpResponse, ProblemDetailResponse.class);
 
         var errors = new ArrayList<String>();
 
@@ -67,28 +48,26 @@ public class TestHttpUtils {
         return errors;
     }
 
-    public static <T> Result<T> getResultOrFailure(HttpResponse<String> httpResponse, Class<T> responseType, HttpStatus successStatus) {
-        var isSuccess = TestHttpUtils.hasStatusCode(httpResponse, successStatus);
 
-        if(!isSuccess) {
-            var errorMessages = getErrorMessages(httpResponse);
-            return Result.failure(errorMessages);
-        }
-
-        var response = TestHttpUtils.readBody(httpResponse, responseType);
-        return Result.success(response);
-    }
 
     public static <T> Result<T> getOkResultOrFailure(HttpResponse<String> httpResponse, Class<T> responseType) {
         return getResultOrFailure(httpResponse, responseType, HttpStatus.OK);
+    }
+
+    public static Result<Void> getOkResultOrFailure(HttpResponse<String> httpResponse) {
+        return getResultOrFailure(httpResponse, HttpStatus.OK);
     }
 
     public static <T> Result<T> getCreatedResultOrFailure(HttpResponse<String> httpResponse, Class<T> responseType) {
         return getResultOrFailure(httpResponse, responseType, HttpStatus.CREATED);
     }
 
+    public static Result<Void> getCreatedResultOrFailure(HttpResponse<String> httpResponse) {
+        return getResultOrFailure(httpResponse, HttpStatus.CREATED);
+    }
+
     public static Result<Void> getNoContentResultOrFailure(HttpResponse<String> httpResponse) {
-        var isSuccess = TestHttpUtils.hasStatusNoContent(httpResponse);
+        var isSuccess = hasStatusCode(httpResponse, HttpStatus.NO_CONTENT);
 
         if (!isSuccess) {
             var errorMessages = getErrorMessages(httpResponse);
@@ -98,6 +77,39 @@ public class TestHttpUtils {
         return Result.success();
     }
 
+    public static URI getUri(String baseUrl, String path) {
+        try {
+            return new URI(baseUrl + path);
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to create URI for path: " + path, ex);
+        }
+    }
 
+    private static boolean hasStatusCode(HttpResponse<String> httpResponse, HttpStatus statusCode) {
+        return httpResponse.statusCode() == statusCode.value();
+    }
+
+    private static <T> Result<T> getResultOrFailure(HttpResponse<String> httpResponse, Class<T> responseType, HttpStatus successStatus) {
+        var isSuccess = TestHttpUtils.hasStatusCode(httpResponse, successStatus);
+
+        if(!isSuccess) {
+            var errorMessages = getErrorMessages(httpResponse);
+            return Result.failure(errorMessages);
+        }
+
+        var response = TestHttpUtils.readResponse(httpResponse, responseType);
+        return Result.success(response);
+    }
+
+    private static Result<Void> getResultOrFailure(HttpResponse<String> httpResponse, HttpStatus successStatus) {
+        var isSuccess = TestHttpUtils.hasStatusCode(httpResponse, successStatus);
+
+        if(!isSuccess) {
+            var errorMessages = getErrorMessages(httpResponse);
+            return Result.failure(errorMessages);
+        }
+
+        return Result.success();
+    }
 
 }

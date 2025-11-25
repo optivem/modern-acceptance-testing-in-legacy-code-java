@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.clients.system.ui.pages;
 
 import com.optivem.eshop.systemtest.core.clients.commons.TestPageClient;
-import com.optivem.eshop.systemtest.core.commons.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.core.commons.dtos.enums.OrderStatus;
 
 import java.math.BigDecimal;
 

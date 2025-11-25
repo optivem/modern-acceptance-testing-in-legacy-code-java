@@ -2,10 +2,8 @@ package com.optivem.eshop.systemtest.core.drivers.system;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class Result<T> {
     @Getter
@@ -29,6 +27,10 @@ public class Result<T> {
 
     public static Result<Void> success() {
         return new Result<>(true, null, null);
+    }
+
+    public static Result<Void> failure() {
+        return failure(new ArrayList());
     }
 
     public boolean isFailure() {

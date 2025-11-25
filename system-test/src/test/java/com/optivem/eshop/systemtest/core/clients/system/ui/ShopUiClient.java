@@ -37,6 +37,10 @@ public class ShopUiClient implements AutoCloseable {
         return homePage;
     }
 
+    public boolean isStatusOk() {
+        return response.status() == 200;
+    }
+
     public void assertHomePageLoaded() {
         assertEquals(200, response.status());
 

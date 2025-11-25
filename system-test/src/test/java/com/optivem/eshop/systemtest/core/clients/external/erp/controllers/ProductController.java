@@ -1,10 +1,9 @@
 package com.optivem.eshop.systemtest.core.clients.external.erp.controllers;
 
 import com.optivem.eshop.systemtest.core.clients.commons.TestHttpClient;
+import com.optivem.eshop.systemtest.core.clients.commons.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.clients.external.erp.dtos.CreateProductRequest;
-
-import java.math.BigDecimal;
-import java.net.http.HttpResponse;
+import com.optivem.eshop.systemtest.core.drivers.system.Result;
 
 public class ProductController {
 
@@ -16,7 +15,7 @@ public class ProductController {
         this.httpClient = httpClient;
     }
 
-    public void createProduct(String sku, String price) {
+    public Result<Void> createProduct(String sku, String price) {
         var product = new CreateProductRequest();
         product.setId(sku);
         product.setTitle("Test product title for " + sku);
@@ -26,6 +25,7 @@ public class ProductController {
         product.setBrand("Test Brand");
 
         var httpResponse = httpClient.post(ENDPOINT, product);
-        httpClient.assertCreated(httpResponse);
+
+        return TestHttpUtils.getCreatedResultOrFailure(httpResponse);
     }
 }

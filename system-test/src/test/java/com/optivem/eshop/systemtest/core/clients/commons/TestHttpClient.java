@@ -1,13 +1,9 @@
 package com.optivem.eshop.systemtest.core.clients.commons;
 
-import org.springframework.http.HttpStatus;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestHttpClient {
 
@@ -35,7 +31,7 @@ public class TestHttpClient {
 
     public HttpResponse<String> post(String path, Object requestBody) {
         var uri = getUri(path);
-        var jsonBody = serializeRequest(requestBody);
+        var jsonBody = TestHttpUtils.serializeRequest(requestBody);
 
         var request = HttpRequest.newBuilder()
                 .uri(uri)
@@ -58,42 +54,8 @@ public class TestHttpClient {
         return sendRequest(request);
     }
 
-    public void assertOk(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, HttpStatus.OK);
-    }
-
-    public void assertCreated(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, HttpStatus.CREATED);
-    }
-
-    public void assertNoContent(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, HttpStatus.NO_CONTENT);
-    }
-
-    public void assertUnprocessableEntity(HttpResponse<String> httpResponse) {
-        assertStatus(httpResponse, HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-
-    private void assertStatus(HttpResponse<String> httpResponse, HttpStatus expectedStatus) {
-        assertEquals(expectedStatus.value(), httpResponse.statusCode(),
-            "Expected status " + expectedStatus.value() + " but got " + httpResponse.statusCode() +
-            ". Response body: " + httpResponse.body());
-    }
-
     private URI getUri(String path) {
-        try {
-            return new URI(baseUrl + path);
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to create URI for path: " + path, ex);
-        }
-    }
-
-    public <T> T readBody(HttpResponse<String> httpResponse, Class<T> responseType) {
-        return TestHttpUtils.readBody(httpResponse, responseType);
-    }
-
-    private String serializeRequest(Object request) {
-        return TestHttpUtils.serializeRequest(request);
+        return TestHttpUtils.getUri(baseUrl, path);
     }
 
     private HttpResponse<String> sendRequest(HttpRequest httpRequest) {
