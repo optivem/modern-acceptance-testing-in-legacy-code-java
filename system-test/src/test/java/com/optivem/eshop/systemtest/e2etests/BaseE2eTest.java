@@ -128,7 +128,6 @@ public abstract class BaseE2eTest {
         assertThat(result.getErrors()).contains("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
     }
 
-    @Disabled
     @Test
     void shouldNotBeAbleToViewNonExistentOrder() {
         var result = shopDriver.viewOrder("NON-EXISTENT-ORDER-12345");

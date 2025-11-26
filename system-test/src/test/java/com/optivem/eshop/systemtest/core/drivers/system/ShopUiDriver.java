@@ -55,14 +55,14 @@ public class ShopUiDriver implements ShopDriver {
 
         var isSuccess = newOrderPage.hasSuccessNotification();
 
-        if(isSuccess) {
-            var orderNumberValue = newOrderPage.getOrderNumber();
-            var response = PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
-            return Result.success(response);
+        if(!isSuccess) {
+            var errorMessage = newOrderPage.readErrorNotification();
+            return Result.failure(errorMessage);
         }
 
-        var errorMessage = newOrderPage.readErrorNotification();
-        return Result.failure(errorMessage);
+        var orderNumberValue = newOrderPage.getOrderNumber();
+        var response = PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
+        return Result.success(response);
     }
 
     @Override
@@ -70,9 +70,13 @@ public class ShopUiDriver implements ShopDriver {
         ensureOnOrderHistoryPage();
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
-        orderHistoryPage.waitForOrderDetails();
 
-        // TODO: VJ: Handle not found case
+        var isSuccess = orderHistoryPage.hasOrderDetails();
+
+        if(!isSuccess) {
+            var errorMessage = orderHistoryPage.readErrorNotification();
+            return Result.failure(errorMessage);
+        }
 
         var displayOrderNumber = orderHistoryPage.getOrderNumber();
         var sku = orderHistoryPage.getSku();

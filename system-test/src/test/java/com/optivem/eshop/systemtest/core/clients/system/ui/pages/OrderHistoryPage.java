@@ -46,6 +46,15 @@ public class OrderHistoryPage extends BasePage {
         assertTrue(orderDetailsText.contains(ORDER_DETAILS_HEADING_TEXT), "Should display order details heading");
     }
 
+    public boolean hasOrderDetails() {
+        try {
+            waitForOrderDetails();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public String getOrderNumber() {
         return pageClient.readInputValue(ORDER_NUMBER_OUTPUT_SELECTOR);
     }
