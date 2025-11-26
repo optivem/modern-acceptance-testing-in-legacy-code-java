@@ -16,7 +16,7 @@ document.getElementById('orderForm')?.addEventListener('submit', async function(
   await handleApiCall(async () => {
     const order = await orderService.placeOrder(orderData.sku, orderData.quantity, orderData.country);
     showNotification('Success! Order has been created with Order Number ' + order.orderNumber, false);
-  }, 'Error placing order. Please try again.');
+  });
 });
 
 function collectFormData(): OrderFormData {

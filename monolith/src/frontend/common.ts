@@ -79,18 +79,18 @@ async function safeParseJson(response: Response): Promise<any> {
 }
 
 export async function handleApiCall<T>(
-  apiCallFn: () => Promise<T>,
-  errorMessage: string = 'An error occurred. Please try again.'
+  apiCallFn: () => Promise<T>
 ): Promise<T> {
   try {
     return await apiCallFn();
   } catch (error: any) {
     // If the error already has a notification shown (from handleApiResponse), just re-throw it
-    if (error.message && (error.message.includes('Status:') || error.alreadyHandled)) {
+    if (error.alreadyHandled) {
       throw error;
     }
-    console.error('Exception during API call:', error);
-    showNotification(`${errorMessage} (Exception: ${error.message})`, true);
+    // Unexpected exception (network error, parse error, etc.)
+    console.error('Unexpected exception during API call:', error);
+    showNotification(`An unexpected error occurred. Please try again. (Exception: ${error.message})`, true);
     throw error;
   }
 }

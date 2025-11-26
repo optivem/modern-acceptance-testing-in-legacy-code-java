@@ -16,7 +16,7 @@ async function displayOrderDetails(orderNumber: string): Promise<void> {
   await handleApiCall(async () => {
     const order = await orderService.getOrder(orderNumber);
     renderOrderDetails(order);
-  }, 'Error retrieving order. Please try again.');
+  });
 }
 
 function renderOrderDetails(order: GetOrderResponse): void {
@@ -71,6 +71,6 @@ async function handleCancelOrder(orderNumber: string): Promise<void> {
     await orderService.cancelOrder(orderNumber);
     showNotification('Order cancelled successfully!', false);
     await displayOrderDetails(orderNumber);
-  }, 'Error cancelling order. Please try again.');
+  });
 }
 
