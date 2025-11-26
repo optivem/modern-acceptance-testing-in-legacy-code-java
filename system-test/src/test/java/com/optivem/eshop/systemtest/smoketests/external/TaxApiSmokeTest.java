@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.external;
 
-import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
+import com.optivem.eshop.systemtest.core.clients.commons.Closer;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.TaxApiDriver;
 import org.junit.jupiter.api.AfterEach;
@@ -20,7 +20,7 @@ public class TaxApiSmokeTest {
 
     @AfterEach
     void tearDown() {
-        DriverCloser.close(taxApiDriver);
+        Closer.close(taxApiDriver);
     }
 
     @Test

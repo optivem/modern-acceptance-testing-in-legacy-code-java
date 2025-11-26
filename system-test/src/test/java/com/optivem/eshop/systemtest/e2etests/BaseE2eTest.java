@@ -1,14 +1,13 @@
 package com.optivem.eshop.systemtest.e2etests;
 
+import com.optivem.eshop.systemtest.core.clients.commons.Closer;
 import com.optivem.eshop.systemtest.core.commons.dtos.enums.OrderStatus;
-import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.external.TaxApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -37,9 +36,9 @@ public abstract class BaseE2eTest {
 
     @AfterEach
     void tearDown() {
-        DriverCloser.close(shopDriver);
-        DriverCloser.close(erpApiDriver);
-        DriverCloser.close(taxApiDriver);
+        Closer.close(shopDriver);
+        Closer.close(erpApiDriver);
+        Closer.close(taxApiDriver);
     }
 
     @Test

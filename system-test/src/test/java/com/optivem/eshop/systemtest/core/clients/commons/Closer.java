@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.core.clients;
+package com.optivem.eshop.systemtest.core.clients.commons;
 
-public class ClientCloser {
+public class Closer {
     public static void close(AutoCloseable client) {
         if(client != null) {
             try {

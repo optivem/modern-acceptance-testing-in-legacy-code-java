@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests;
 
-import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
+import com.optivem.eshop.systemtest.core.clients.commons.Closer;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +21,7 @@ public abstract class BaseShopSmokeTest {
 
     @AfterEach
     void tearDown() {
-        DriverCloser.close(shopDriver);
+        Closer.close(shopDriver);
     }
 
     @Test

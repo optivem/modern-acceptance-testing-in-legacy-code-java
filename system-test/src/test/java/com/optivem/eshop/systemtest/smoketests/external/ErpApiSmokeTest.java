@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.external;
 
-import com.optivem.eshop.systemtest.core.drivers.DriverCloser;
+import com.optivem.eshop.systemtest.core.clients.commons.Closer;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.ErpApiDriver;
 import org.junit.jupiter.api.AfterEach;
@@ -20,11 +20,11 @@ public class ErpApiSmokeTest {
 
     @AfterEach
     void tearDown() {
-        DriverCloser.close(erpApiDriver);
+        Closer.close(erpApiDriver);
     }
 
     @Test
-    void home_shouldReturn200OK() {
+    void shouldBeAbleToGoToErp() {
         var result = erpApiDriver.goToErp();
         assertThat(result.isSuccess()).isTrue();
     }
