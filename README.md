@@ -11,6 +11,7 @@
 - Java 21
 - Docker Desktop
 - PowerShell 7+
+- Node 22+
 
 Ensure you have JDK 21 installed
 
@@ -28,6 +29,17 @@ Check that you have Powershell 7
 
 ```shell
 $PSVersionTable.PSVersion
+```
+
+Check that you have Node 22+
+
+```shell
+node -v
+```
+
+For frontend, you need to install npm
+```shell
+npm install
 ```
 
 ## Run Everything

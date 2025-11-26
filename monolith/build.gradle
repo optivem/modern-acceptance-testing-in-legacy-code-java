@@ -39,3 +39,24 @@ tasks.named('test') {
 springBoot {
 	mainClass = 'com.optivem.eshop.monolith.EshopApplication'
 }
+
+// Frontend build tasks
+task npmInstall(type: Exec) {
+	commandLine 'cmd', '/c', 'npm', 'install'
+	inputs.file('package.json')
+	inputs.file('package-lock.json')
+	outputs.dir('node_modules')
+}
+
+task npmBuild(type: Exec) {
+	dependsOn npmInstall
+	commandLine 'cmd', '/c', 'npm', 'run', 'build'
+	inputs.dir('src/frontend')
+	inputs.file('tsconfig.json')
+	inputs.file('vite.config.ts')
+	outputs.dir('src/main/resources/static/dist')
+}
+
+// Ensure frontend is built before processing resources
+processResources.dependsOn npmBuild
+
