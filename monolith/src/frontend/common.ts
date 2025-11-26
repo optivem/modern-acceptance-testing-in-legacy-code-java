@@ -1,5 +1,7 @@
 // Common notification functions shared across all pages
 
+import type { ApiError, ProblemDetail } from './types/order.types';
+
 export function showNotification(
   message: string,
   isError: boolean = false,
@@ -29,46 +31,6 @@ export function showNotification(
   }
 }
 
-interface HandleApiResponseOptions {
-  onSuccess?: (data: unknown) => unknown;
-}
-
-export async function handleApiResponse(
-  response: Response,
-  options: HandleApiResponseOptions = {}
-): Promise<unknown> {
-  const { onSuccess } = options;
-
-  if (response.ok) {
-    const data = await response.json();
-    if (onSuccess) {
-      return onSuccess(data);
-    }
-    return data;
-  }
-
-  const errorData = await safeParseJson(response);
-  let displayMessage = '';
-
-  if (errorData?.detail) {
-    displayMessage = errorData.detail;
-
-    if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
-      const fieldErrors = errorData.errors
-        .map((e: { field: string; message: string }) => `${e.field}: ${e.message}`)
-        .join('\n');
-      displayMessage += '\n' + fieldErrors;
-    }
-  } else {
-    displayMessage = `An unexpected error occurred. (Status: ${response.status})`;
-  }
-
-  showNotification(displayMessage, true);
-  const error = new Error(displayMessage);
-  (error as any).alreadyHandled = true;
-  throw error;
-}
-
 async function safeParseJson(response: Response): Promise<any> {
   try {
     return await response.json();
@@ -78,20 +40,34 @@ async function safeParseJson(response: Response): Promise<any> {
   }
 }
 
-export async function handleApiCall<T>(
-  apiCallFn: () => Promise<T>
-): Promise<T> {
-  try {
-    return await apiCallFn();
-  } catch (error: any) {
-    // If the error already has a notification shown (from handleApiResponse), just re-throw it
-    if (error.alreadyHandled) {
-      throw error;
+/**
+ * Extracts error information from API response without showing notifications.
+ * This is a pure function with no UI side effects.
+ *
+ * @param response The fetch Response object
+ * @returns ApiError object with message and optional field errors
+ */
+export async function extractApiError(response: Response): Promise<ApiError> {
+  const errorData: ProblemDetail | null = await safeParseJson(response);
+
+  let message = '';
+  let fieldErrors: string[] | undefined = undefined;
+
+  if (errorData?.detail) {
+    message = errorData.detail;
+
+    if (errorData.errors && Array.isArray(errorData.errors) && errorData.errors.length > 0) {
+      fieldErrors = errorData.errors.map(e => `${e.field}: ${e.message}`);
     }
-    // Unexpected exception (network error, parse error, etc.)
-    console.error('Unexpected exception during API call:', error);
-    showNotification(`An unexpected error occurred. Please try again. (Exception: ${error.message})`, true);
-    throw error;
+  } else {
+    message = `An unexpected error occurred. (Status: ${response.status})`;
   }
+
+  return {
+    message,
+    fieldErrors,
+    status: response.status
+  };
 }
+
 

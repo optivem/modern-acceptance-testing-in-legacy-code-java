@@ -1,7 +1,7 @@
 // Service layer for Order API operations
 
-import { handleApiResponse } from '../common';
-import type { PlaceOrderRequest, PlaceOrderResponse, GetOrderResponse } from '../types/order.types';
+import { extractApiError } from '../common';
+import type { PlaceOrderRequest, PlaceOrderResponse, GetOrderResponse, Result } from '../types/order.types';
 
 class OrderService {
   private baseUrl: string;
@@ -10,39 +10,81 @@ class OrderService {
     this.baseUrl = baseUrl;
   }
 
-  async placeOrder(sku: string, quantity: number, country: string): Promise<PlaceOrderResponse> {
-    const requestBody: PlaceOrderRequest = { sku, quantity, country };
+  async placeOrder(sku: string, quantity: number, country: string): Promise<Result<PlaceOrderResponse>> {
+    try {
+      const requestBody: PlaceOrderRequest = { sku, quantity, country };
 
-    const response = await fetch(this.baseUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(requestBody)
-    });
+      const response = await fetch(this.baseUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+      });
 
-    return await handleApiResponse(response) as PlaceOrderResponse;
-  }
+      if (response.ok) {
+        const data = await response.json();
+        return { success: true, data };
+      }
 
-  async getOrder(orderNumber: string): Promise<GetOrderResponse> {
-    const response = await fetch(`${this.baseUrl}/${orderNumber}`, {
-      method: 'GET'
-    });
-
-    return await handleApiResponse(response) as GetOrderResponse;
-  }
-
-  async cancelOrder(orderNumber: string): Promise<{ success: boolean }> {
-    const response = await fetch(`${this.baseUrl}/${orderNumber}/cancel`, {
-      method: 'POST'
-    });
-
-    if (response.status === 204) {
-      return { success: true };
+      const error = await extractApiError(response);
+      return { success: false, error };
+    } catch (e: any) {
+      return {
+        success: false,
+        error: {
+          message: `Network error: ${e.message}`,
+          status: 0
+        }
+      };
     }
+  }
 
-    await handleApiResponse(response);
-    return { success: false };
+  async getOrder(orderNumber: string): Promise<Result<GetOrderResponse>> {
+    try {
+      const response = await fetch(`${this.baseUrl}/${orderNumber}`, {
+        method: 'GET'
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return { success: true, data };
+      }
+
+      const error = await extractApiError(response);
+      return { success: false, error };
+    } catch (e: any) {
+      return {
+        success: false,
+        error: {
+          message: `Network error: ${e.message}`,
+          status: 0
+        }
+      };
+    }
+  }
+
+  async cancelOrder(orderNumber: string): Promise<Result<void>> {
+    try {
+      const response = await fetch(`${this.baseUrl}/${orderNumber}/cancel`, {
+        method: 'POST'
+      });
+
+      if (response.status === 204 || response.ok) {
+        return { success: true, data: undefined };
+      }
+
+      const error = await extractApiError(response);
+      return { success: false, error };
+    } catch (e: any) {
+      return {
+        success: false,
+        error: {
+          message: `Network error: ${e.message}`,
+          status: 0
+        }
+      };
+    }
   }
 }
 

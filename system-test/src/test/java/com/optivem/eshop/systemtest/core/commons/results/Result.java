@@ -30,7 +30,7 @@ public class Result<T> {
     }
 
     public static Result<Void> failure() {
-        return failure(new ArrayList());
+        return failure(new ArrayList<>());
     }
 
     public boolean isFailure() {

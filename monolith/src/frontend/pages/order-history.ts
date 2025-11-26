@@ -1,6 +1,6 @@
 // UI Controller for Order History page
 
-import { showNotification, handleApiCall } from '../common';
+import { showNotification } from '../common';
 import { orderService } from '../services/order-service';
 import type { GetOrderResponse } from '../types/order.types';
 
@@ -13,10 +13,16 @@ document.getElementById('searchForm')?.addEventListener('submit', async function
 });
 
 async function displayOrderDetails(orderNumber: string): Promise<void> {
-  await handleApiCall(async () => {
-    const order = await orderService.getOrder(orderNumber);
-    renderOrderDetails(order);
-  });
+  const result = await orderService.getOrder(orderNumber);
+
+  if (result.success) {
+    renderOrderDetails(result.data);
+  } else {
+    const errorMessage = result.error.fieldErrors
+      ? `${result.error.message}\n${result.error.fieldErrors.join('\n')}`
+      : result.error.message;
+    showNotification(errorMessage, true);
+  }
 }
 
 function renderOrderDetails(order: GetOrderResponse): void {
@@ -67,10 +73,16 @@ function renderOrderDetails(order: GetOrderResponse): void {
 }
 
 async function handleCancelOrder(orderNumber: string): Promise<void> {
-  await handleApiCall(async () => {
-    await orderService.cancelOrder(orderNumber);
+  const result = await orderService.cancelOrder(orderNumber);
+
+  if (result.success) {
     showNotification('Order cancelled successfully!', false);
     await displayOrderDetails(orderNumber);
-  });
+  } else {
+    const errorMessage = result.error.fieldErrors
+      ? `${result.error.message}\n${result.error.fieldErrors.join('\n')}`
+      : result.error.message;
+    showNotification(errorMessage, true);
+  }
 }
 

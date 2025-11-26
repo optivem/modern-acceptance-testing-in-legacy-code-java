@@ -49,6 +49,17 @@ export interface ProblemDetail {
   timestamp?: string;
 }
 
+// Result types for service layer
+export interface ApiError {
+  message: string;
+  fieldErrors?: string[];
+  status?: number;
+}
+
+export type Result<T> =
+  | { success: true; data: T }
+  | { success: false; error: ApiError };
+
 // Form data types
 export interface OrderFormData {
   sku: string;
