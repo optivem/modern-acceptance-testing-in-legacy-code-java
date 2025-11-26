@@ -123,6 +123,10 @@ public class OrderService {
     }
 
     public void cancelOrder(String orderNumber) {
+        if (orderNumber == null || orderNumber.trim().isEmpty()) {
+            throw new ValidationException("Order number must not be empty");
+        }
+
         var optionalOrder = orderRepository.findById(orderNumber);
 
         if(optionalOrder.isEmpty()) {
@@ -130,6 +134,10 @@ public class OrderService {
         }
 
         var order = optionalOrder.get();
+
+        if (order.getStatus() == OrderStatus.CANCELLED) {
+            throw new ValidationException("Order has already been cancelled");
+        }
 
         var now = LocalDateTime.now();
         var currentDate = MonthDay.from(now);
