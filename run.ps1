@@ -30,21 +30,16 @@ function Execute-Command {
     )
 
     if ($SubFolder) {
-        Write-Host "Changing directory to: $SubFolder" -ForegroundColor Cyan
         Set-Location $SubFolder
-    } else {
-        Write-Host "Staying in current directory: $(Get-Location)" -ForegroundColor Cyan
     }
 
-    Write-Host "Executing: $Command" -ForegroundColor Cyan
+    Write-Host "$Command" -ForegroundColor Cyan
     $Result = Invoke-Expression $Command
 
     if ($SubFolder) {
-        Write-Host "Changing directory to parent" -ForegroundColor Cyan
         Set-Location ..
     }
 
-    Write-Host "$LASTEXITCODE returned from command." -ForegroundColor Cyan
     if ($LASTEXITCODE -ne 0) {
         $ErrorMessage = "Failed to execute command: $Command"
         throw $ErrorMessage
@@ -155,8 +150,6 @@ function Test-System {
     Write-Host "Test report: " -NoNewline
     Write-Host $TestReportPath -ForegroundColor Yellow
 }
-
-
 
 function Show-Logs {
     Execute-Command -Command "docker compose -f $ComposeFile logs --tail=100 -f"
