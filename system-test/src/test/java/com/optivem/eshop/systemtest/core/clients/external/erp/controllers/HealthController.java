@@ -14,7 +14,7 @@ public class HealthController {
         this.httpClient = httpClient;
     }
 
-    public Result<Void> health() {
+    public Result<Void> checkHealth() {
         var httpResponse = httpClient.get(ENDPOINT);
         return TestHttpUtils.getOkResultOrFailure(httpResponse);
     }

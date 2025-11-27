@@ -11,8 +11,8 @@ public class TaxApiDriver implements AutoCloseable {
         this.taxApiClient = new TaxApiClient(baseUrl);
     }
 
-    public Result<Void> goToTaxation() {
-        return taxApiClient.health().health();
+    public Result<Void> goToTax() {
+        return taxApiClient.health().checkHealth();
     }
 
     @Override

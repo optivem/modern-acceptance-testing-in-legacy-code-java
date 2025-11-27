@@ -15,7 +15,7 @@ public class HealthController {
     }
 
     @GetMapping("/health")
-    public HealthComponent health() {
+    public HealthComponent checkHealth() {
         return healthEndpoint.health();
     }
 }
