@@ -5,6 +5,7 @@ import com.optivem.eshop.backend.core.exceptions.ValidationException;
 import com.optivem.eshop.backend.core.validation.TypeValidationMessageExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +30,18 @@ public class GlobalExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
     private static final Pattern CLASS_NAME_PATTERN = Pattern.compile("(com\\.optivem\\.eshop\\.backend\\.core\\.dtos\\.[^\\[\\]\"\\s\\)]+)");
 
+    @Value("${error.types.validation-error}")
+    private String validationErrorTypeUri;
+
+    @Value("${error.types.resource-not-found}")
+    private String resourceNotFoundTypeUri;
+
+    @Value("${error.types.bad-request}")
+    private String badRequestTypeUri;
+
+    @Value("${error.types.internal-server-error}")
+    private String internalServerErrorTypeUri;
+
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ProblemDetail> handleValidationException(ValidationException ex) {
@@ -36,7 +49,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNPROCESSABLE_ENTITY,
                 ex.getMessage()
         );
-        problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+        problemDetail.setType(URI.create(validationErrorTypeUri));
         problemDetail.setTitle("Validation Error");
         problemDetail.setProperty("timestamp", Instant.now());
 
@@ -49,7 +62,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND,
                 ex.getMessage()
         );
-        problemDetail.setType(URI.create("https://api.optivem.com/errors/resource-not-found"));
+        problemDetail.setType(URI.create(resourceNotFoundTypeUri));
         problemDetail.setTitle("Resource Not Found");
         problemDetail.setProperty("timestamp", Instant.now());
 
@@ -62,7 +75,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.UNPROCESSABLE_ENTITY,
                 "The request contains one or more validation errors"
         );
-        problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+        problemDetail.setType(URI.create(validationErrorTypeUri));
         problemDetail.setTitle("Validation Error");
         problemDetail.setProperty("timestamp", Instant.now());
 
@@ -102,7 +115,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST,
                 "Invalid request format"
         );
-        problemDetail.setType(URI.create("https://api.optivem.com/errors/bad-request"));
+        problemDetail.setType(URI.create(badRequestTypeUri));
         problemDetail.setTitle("Bad Request");
         problemDetail.setProperty("timestamp", Instant.now());
 
@@ -133,7 +146,7 @@ public class GlobalExceptionHandler {
                             HttpStatus.UNPROCESSABLE_ENTITY,
                             entry.getValue()
                     );
-                    problemDetail.setType(URI.create("https://api.optivem.com/errors/validation-error"));
+                    problemDetail.setType(URI.create(validationErrorTypeUri));
                     problemDetail.setTitle("Validation Error");
                     problemDetail.setProperty("timestamp", Instant.now());
                     return problemDetail;
@@ -179,7 +192,7 @@ public class GlobalExceptionHandler {
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 fullMessage
         );
-        problemDetail.setType(URI.create("https://api.optivem.com/errors/internal-server-error"));
+        problemDetail.setType(URI.create(internalServerErrorTypeUri));
         problemDetail.setTitle("Internal Server Error");
         problemDetail.setProperty("timestamp", Instant.now());
 
