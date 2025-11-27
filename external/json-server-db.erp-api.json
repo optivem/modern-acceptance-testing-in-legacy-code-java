@@ -1,0 +1,100 @@
+{
+  "products": [
+    {
+      "id": "HP-15",
+      "title": "HP Pavilion 15-DK1056WM",
+      "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+      "price": 109.95,
+      "category": "laptops",
+      "brand": "HP Pavilion"
+    },
+    {
+      "id": "SAM-2020",
+      "title": "Samsung Galaxy Book",
+      "description": "Samsung Galaxy Book S (2020) Laptop With Intel Lakefield Chip, 8GB of RAM Launched",
+      "price": 499.99,
+      "category": "laptops",
+      "brand": "Samsung"
+    },
+    {
+      "id": "HUA-P30",
+      "title": "Huawei P30",
+      "description": "Huawei's re-badged P30 Pro New Edition was officially unveiled yesterday in Germany and now the device has made its way to the UK.",
+      "price": 679.99,
+      "category": "smartphones",
+      "brand": "Huawei"
+    },
+    {
+      "id": "ABC-63d50d01-6d89-42a0-849e-4ed2d4be11f6",
+      "title": "Test product title for ABC-63d50d01-6d89-42a0-849e-4ed2d4be11f6",
+      "description": "Test product description for ABC-63d50d01-6d89-42a0-849e-4ed2d4be11f6",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "MNO-96711d88-d2f4-45c7-80d4-fb7e9b8791ad",
+      "title": "Test product title for MNO-96711d88-d2f4-45c7-80d4-fb7e9b8791ad",
+      "description": "Test product description for MNO-96711d88-d2f4-45c7-80d4-fb7e9b8791ad",
+      "price": "35.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-4cba49ae-9143-44c5-872b-069b7e5b3b1d",
+      "title": "Test product title for ABC-4cba49ae-9143-44c5-872b-069b7e5b3b1d",
+      "description": "Test product description for ABC-4cba49ae-9143-44c5-872b-069b7e5b3b1d",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-744c80ed-adfa-47da-a9f9-9d63f90f9e9d",
+      "title": "Test product title for ABC-744c80ed-adfa-47da-a9f9-9d63f90f9e9d",
+      "description": "Test product description for ABC-744c80ed-adfa-47da-a9f9-9d63f90f9e9d",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "MNO-6b98aada-ac5d-4280-8252-1d5eea5c7b89",
+      "title": "Test product title for MNO-6b98aada-ac5d-4280-8252-1d5eea5c7b89",
+      "description": "Test product description for MNO-6b98aada-ac5d-4280-8252-1d5eea5c7b89",
+      "price": "35.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-67c2a25f-2921-43a8-ae48-fe877f0adde5",
+      "title": "Test product title for ABC-67c2a25f-2921-43a8-ae48-fe877f0adde5",
+      "description": "Test product description for ABC-67c2a25f-2921-43a8-ae48-fe877f0adde5",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-32f75896-68ac-4e03-b7ca-9f08cbb9a4d7",
+      "title": "Test product title for ABC-32f75896-68ac-4e03-b7ca-9f08cbb9a4d7",
+      "description": "Test product description for ABC-32f75896-68ac-4e03-b7ca-9f08cbb9a4d7",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "MNO-565c0803-3906-445d-9be2-3208658eb920",
+      "title": "Test product title for MNO-565c0803-3906-445d-9be2-3208658eb920",
+      "description": "Test product description for MNO-565c0803-3906-445d-9be2-3208658eb920",
+      "price": "35.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-64bf71ef-6e45-422d-a644-4bbce157f0f2",
+      "title": "Test product title for ABC-64bf71ef-6e45-422d-a644-4bbce157f0f2",
+      "description": "Test product description for ABC-64bf71ef-6e45-422d-a644-4bbce157f0f2",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    }
+  ]
+}
