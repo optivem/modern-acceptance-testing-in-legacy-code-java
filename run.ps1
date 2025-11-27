@@ -23,16 +23,35 @@ $TestReportPath = "system-test\build\reports\tests\test\index.html"
 $ErrorActionPreference = "Continue"
 $ComposeFile = if ($Mode -eq "pipeline") { "docker-compose.pipeline.yml" } else { "docker-compose.local.yml" }
 
-function Assert-Success {
+function Execute-Command {
     param(
-        [string]$ErrorMessage
+        [string]$Command,
+        [string]$ErrorMessage,
+        [string]$SubFolder = $null
     )
 
+    if ($SubFolder) {
+        Write-Host "Changing directory to: $SubFolder" -ForegroundColor Cyan
+        Set-Location $SubFolder
+    } else {
+        Write-Host "Staying in current directory: $(Get-Location)" -ForegroundColor Cyan
+    }
+
+    Write-Host "Executing: $Command" -ForegroundColor Cyan
+    $Result = Invoke-Expression $Command
+
+    if ($SubFolder) {
+        Write-Host "Changing directory to parent" -ForegroundColor Cyan
+        Set-Location ..
+    }
+
+    Write-Host "$LASTEXITCODE returned from command." -ForegroundColor Cyan
     if ($LASTEXITCODE -ne 0) {
         throw $ErrorMessage
     }
-}
 
+    return $Result
+}
 
 function Wait-ForService {
     param(
@@ -59,7 +78,7 @@ function Wait-ForService {
     }
 
     if (-not $isReady) {
-        docker compose -f $ComposeFile logs $ContainerName --tail=$LogLines
+        Execute-Command -Command "docker compose -f $ComposeFile logs $ContainerName --tail=$LogLines" -ErrorMessage "Failed to get Docker compose logs"
         throw "$ServiceName failed to become ready after $MaxAttempts attempts"
     }
 }
@@ -72,26 +91,17 @@ function Wait-ForServices {
 }
 
 function Build-Backend {
-    Set-Location backend
-
-    & .\gradlew.bat clean build
-    Assert-Success "Backend build failed!"
-
-    Set-Location ..
+    Execute-Command -Command "& .\gradlew.bat clean build" -SubFolder "backend" -ErrorMessage "Backend build failed!"
 }
 
 function Build-Frontend {
     Set-Location frontend
-
     if (-not (Test-Path "node_modules")) {
-        npm install
-        Set-Location ..
-        Assert-Success "Frontend dependency installation failed!"
+        Execute-Command -Command "npm install" -ErrorMessage "Frontend dependency installation failed!"
     }
-
-    npm run build
     Set-Location ..
-    Assert-Success "Frontend build failed!"
+
+    Execute-Command -Command "npm run build" -SubFolder "frontend" -ErrorMessage "Frontend build failed!"
 }
 
 function Build-System {
@@ -104,15 +114,15 @@ function Build-System {
 }
 
 function Stop-System {
-    docker compose -f docker-compose.local.yml down 2>$null
-    Assert-Success "Error for docker compose down for local"
-    docker compose -f docker-compose.pipeline.yml down 2>$null
-    Assert-Success "Error for docker compose down for pipeline"
+    Execute-Command "docker compose -f docker-compose.local.yml down 2>`$null" "Error for docker compose down for local"
+    Execute-Command "docker compose -f docker-compose.pipeline.yml down 2>`$null" "Error for docker compose down for pipeline"
 
-    $projectContainers = docker ps -aq --filter "name=$ContainerName" 2>$null
-    if ($projectContainers) {
-        docker stop $projectContainers 2>$null
-        docker rm -f $projectContainers 2>$null
+    $DockerCommand = "docker ps -aq --filter 'name=$ContainerName' 2>`$null"
+
+    $ProjectContainers = Execute-Command -Command $DockerCommand -ErrorMessage "Error retrieving Docker containers!"
+    if ($ProjectContainers) {
+        Execute-Command "docker stop $ProjectContainers 2>`$null" "Failed to stop project containers"
+        Execute-Command "docker rm -f $ProjectContainers 2>`$null" "Failed to remove project containers"
     }
 
     # Wait to ensure containers are fully stopped and ports are released
@@ -120,8 +130,7 @@ function Stop-System {
 }
 
 function Start-System {
-    docker compose -f $ComposeFile up -d --build
-    Assert-Success "Failed to start Docker containers!"
+    Execute-Command -Command "docker compose -f $ComposeFile up -d --build" -ErrorMessage "Failed to start Docker containers!"
 
     Write-Host "- Frontend UI: " -NoNewline
     Write-Host $FrontendUrl -ForegroundColor Yellow
@@ -141,11 +150,7 @@ function Start-System {
 }
 
 function Test-System {
-    Set-Location system-test
-
-    & .\gradlew.bat clean test
-    Set-Location ..
-    Assert-Success "System tests execution failed!"
+    Execute-Command -Command "& .\gradlew.bat clean test" -SubFolder "system-test" -ErrorMessage "System tests execution failed!"
 
     Write-Host ""
     Write-Host "All tests passed!" -ForegroundColor Green
@@ -156,30 +161,38 @@ function Test-System {
 
 
 function Show-Logs {
-    docker compose -f $ComposeFile logs --tail=100 -f
+    Execute-Command -Command "docker compose -f $ComposeFile logs --tail=100 -f" -ErrorMessage "Failed to retrieve Docker logs!"
+}
+
+function Write-Heading {
+    param(
+        [string]$Text,
+        [string]$Color = "Cyan"
+    )
+    Write-Host ""
+    Write-Host "================================================" -ForegroundColor $Color
+    Write-Host $Text -ForegroundColor $Color
+    Write-Host "================================================" -ForegroundColor $Color
+    Write-Host ""
 }
 
 function Run-All {
-    Write-Host "Build System"
+    Write-Heading -Text "Build System"
     Build-System
 
-    Write-Host "Stop System"
+    Write-Heading -Text "Stop System"
     Stop-System
 
-    Write-Host "Start System"
+    Write-Heading -Text "Start System"
     Start-System
 
-    Write-Host "Wait for System"
+    Write-Heading -Text "Wait for System"
     Wait-ForServices
 
-    Write-Host "Test System"
+    Write-Heading -Text "Test System"
     Test-System
 
-    Write-Host ""
-    Write-Host "================================================" -ForegroundColor Green
-    Write-Host "All tasks completed successfully!" -ForegroundColor Green
-    Write-Host "================================================" -ForegroundColor Green
-    Write-Host ""
+    Write-Heading -Text "DONE" -Color Green
 }
 
 # Main execution
@@ -194,7 +207,7 @@ try {
     }
 } catch {
     Write-Host ""
-    Write-Host "Error: $_" -ForegroundColor Red
+    Write-Host "ERROR: $_" -ForegroundColor Red
     exit 1
 }
 
