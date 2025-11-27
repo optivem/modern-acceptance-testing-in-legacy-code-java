@@ -583,6 +583,94 @@
       "price": "40.00",
       "category": "Test Category",
       "brand": "Test Brand"
+    },
+    {
+      "id": "XYZ-00111f05-9411-4734-bdfc-4b62a6c7859a",
+      "title": "Test product title for XYZ-00111f05-9411-4734-bdfc-4b62a6c7859a",
+      "description": "Test product description for XYZ-00111f05-9411-4734-bdfc-4b62a6c7859a",
+      "price": "50.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "MNO-51adb9dd-adea-406a-8548-555ec2f63c84",
+      "title": "Test product title for MNO-51adb9dd-adea-406a-8548-555ec2f63c84",
+      "description": "Test product description for MNO-51adb9dd-adea-406a-8548-555ec2f63c84",
+      "price": "35.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "JKL-4fa9d359-6e48-4f4e-9bea-63a4a646fb60",
+      "title": "Test product title for JKL-4fa9d359-6e48-4f4e-9bea-63a4a646fb60",
+      "description": "Test product description for JKL-4fa9d359-6e48-4f4e-9bea-63a4a646fb60",
+      "price": "25.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "DEF-d516f055-7b0d-4915-94ad-da88981bdb24",
+      "title": "Test product title for DEF-d516f055-7b0d-4915-94ad-da88981bdb24",
+      "description": "Test product description for DEF-d516f055-7b0d-4915-94ad-da88981bdb24",
+      "price": "30.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-8300ee03-b364-46ea-877e-518af2426a38",
+      "title": "Test product title for ABC-8300ee03-b364-46ea-877e-518af2426a38",
+      "description": "Test product description for ABC-8300ee03-b364-46ea-877e-518af2426a38",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "GHI-3fe7d966-5821-4400-aa81-705a8a458436",
+      "title": "Test product title for GHI-3fe7d966-5821-4400-aa81-705a8a458436",
+      "description": "Test product description for GHI-3fe7d966-5821-4400-aa81-705a8a458436",
+      "price": "40.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "XYZ-49644545-51c5-4488-b853-f930d47ed9a5",
+      "title": "Test product title for XYZ-49644545-51c5-4488-b853-f930d47ed9a5",
+      "description": "Test product description for XYZ-49644545-51c5-4488-b853-f930d47ed9a5",
+      "price": "50.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "JKL-70abfd7a-3106-4a48-a1e0-ad4b4451ca90",
+      "title": "Test product title for JKL-70abfd7a-3106-4a48-a1e0-ad4b4451ca90",
+      "description": "Test product description for JKL-70abfd7a-3106-4a48-a1e0-ad4b4451ca90",
+      "price": "25.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "DEF-55c6a782-2cef-41da-8f1a-4eca55f8ca77",
+      "title": "Test product title for DEF-55c6a782-2cef-41da-8f1a-4eca55f8ca77",
+      "description": "Test product description for DEF-55c6a782-2cef-41da-8f1a-4eca55f8ca77",
+      "price": "30.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "ABC-d3fc5073-4a09-4836-bd14-5c24d56eb28d",
+      "title": "Test product title for ABC-d3fc5073-4a09-4836-bd14-5c24d56eb28d",
+      "description": "Test product description for ABC-d3fc5073-4a09-4836-bd14-5c24d56eb28d",
+      "price": "20.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
+    },
+    {
+      "id": "GHI-9ad65558-8dea-40e9-9be7-fe21e0cc4837",
+      "title": "Test product title for GHI-9ad65558-8dea-40e9-9be7-fe21e0cc4837",
+      "description": "Test product description for GHI-9ad65558-8dea-40e9-9be7-fe21e0cc4837",
+      "price": "40.00",
+      "category": "Test Category",
+      "brand": "Test Brand"
     }
   ]
 }
