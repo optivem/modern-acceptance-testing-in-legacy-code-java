@@ -1,7 +1,7 @@
 # Modern Acceptance Testing in Legacy Code (Java)
 
 [![frontend-commit-stage](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/frontend-commit-stage.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/frontend-commit-stage.yml)
-[![commit-stage-backend](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/commit-stage-backend.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/commit-stage-backend.yml)
+[![backend-commit-stage](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/backend-commit-stage.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/backend-commit-stage.yml)
 [![acceptance-stage](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml)
 [![qa-stage](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/qa-stage.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/qa-stage.yml)
 [![qa-signoff](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/qa-signoff.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/qa-signoff.yml)
