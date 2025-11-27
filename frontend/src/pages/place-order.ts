@@ -4,18 +4,30 @@ import { showNotification, handleResult, showSuccessNotification } from '../comm
 import { orderService } from '../services/order-service';
 import type { OrderFormData } from '../types/form.types';
 
-document.getElementById('orderForm')?.addEventListener('submit', async function(e: Event) {
+console.log('[Place Order] Script loaded and executing');
+
+const formElement = document.getElementById('orderForm');
+console.log('[Place Order] Form element found:', formElement);
+
+formElement?.addEventListener('submit', async function(e: Event) {
+  console.log('[Place Order] Form submit event triggered');
   e.preventDefault();
+  console.log('[Place Order] Default form submission prevented');
 
   const orderData = collectFormData();
+  console.log('[Place Order] Form data collected:', orderData);
 
   if (!validateFormData(orderData)) {
+    console.log('[Place Order] Validation failed');
     return;
   }
 
+  console.log('[Place Order] Validation passed, calling API...');
   const result = await orderService.placeOrder(orderData.sku, orderData.quantity, orderData.country);
+  console.log('[Place Order] API response received:', result);
 
   handleResult(result, (order) => {
+    console.log('[Place Order] Order placed successfully:', order);
     showSuccessNotification('Success! Order has been created with Order Number ' + order.orderNumber);
   });
 });

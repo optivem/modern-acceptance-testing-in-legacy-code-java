@@ -100,7 +100,7 @@ function Build-Frontend {
     Write-Host "Building frontend application..." -ForegroundColor Cyan
     Set-Location frontend
 
-    & .\gradlew.bat build
+    & .\gradlew.bat clean build
     Assert-Success "Frontend build failed!"
 
     Write-Host ""

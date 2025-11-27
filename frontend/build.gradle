@@ -10,20 +10,28 @@ task npmInstall(type: Exec) {
 	outputs.dir('node_modules')
 }
 
+task cleanDist(type: Delete) {
+	delete 'dist'
+	delete 'node_modules/.vite'
+}
+
 task npmBuild(type: Exec) {
-	dependsOn npmInstall
+	dependsOn npmInstall, cleanDist
 	def isWindows = System.getProperty('os.name').toLowerCase().contains('windows')
 	commandLine isWindows ? ['cmd', '/c', 'npm', 'run', 'build'] : ['npm', 'run', 'build']
 	inputs.dir('src')
+	inputs.dir('public')
 	inputs.file('tsconfig.json')
 	inputs.file('vite.config.ts')
 	outputs.dir('dist')
+	outputs.upToDateWhen { false }
 }
 
 // Override clean task from base plugin
 clean {
 	delete 'node_modules'
 	delete 'dist'
+	delete 'node_modules/.vite'
 }
 
 build.dependsOn npmBuild

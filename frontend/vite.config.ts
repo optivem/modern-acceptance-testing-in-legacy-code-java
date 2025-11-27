@@ -4,9 +4,11 @@ import { resolve } from 'path';
 export default defineConfig({
   root: 'src',
   publicDir: '../public',
+  cacheDir: '../node_modules/.vite',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
+    minify: false,
     rollupOptions: {
       input: {
         'place-order': resolve(__dirname, 'src/pages/place-order.ts'),
@@ -16,7 +18,8 @@ export default defineConfig({
         entryFileNames: 'js/[name].js',
         chunkFileNames: 'js/[name].js',
         assetFileNames: 'assets/[name].[ext]'
-      }
+      },
+      cache: false
     }
   },
   server: {
