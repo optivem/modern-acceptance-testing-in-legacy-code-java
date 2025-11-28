@@ -13,7 +13,6 @@
 - Docker Desktop
 - PowerShell 7+
 - Node 22+
-- NPM 10+
 
 Ensure you have JDK 21 installed
 
@@ -39,16 +38,10 @@ Check that you have Node 22+
 node -v
 ```
 
-Check that you have NPM 10+ (in frontend)
-```shell
-cd frontend
-node -v
-```
-
 ## Run Everything
 
 ```powershell
-.\run.ps1 all
+.\Run-SystemTests.ps1 all
 ```
 
 This will:
@@ -69,17 +62,17 @@ You can open these URLs in your browser:
 ### Build
 Compiles the code and creates the Docker image (local mode only):
 ```powershell
-.\run.ps1 build
+.\Run-SystemTests.ps1 build
 ```
 
 ### Start Services
 Starts the Docker containers:
 ```powershell
 # Local mode (uses locally built code)
-.\run.ps1 start
+.\Run-SystemTests.ps1 start
 
 # Pipeline mode (uses pre-built image from registry)
-.\run.ps1 start pipeline
+.\Run-SystemTests.ps1 start pipeline
 ```
 
 You can open these URLs in your browser:
@@ -91,17 +84,17 @@ You can open these URLs in your browser:
 
 ### Run Tests
 ```powershell
-.\run.ps1 test
+.\Run-SystemTests.ps1 test
 ```
 
 ### View Logs
 ```powershell
-.\run.ps1 logs
+.\Run-SystemTests.ps1 logs
 ```
 
 ### Stop Services
 ```powershell
-.\run.ps1 stop
+.\Run-SystemTests.ps1 stop
 ```
 
 ## License

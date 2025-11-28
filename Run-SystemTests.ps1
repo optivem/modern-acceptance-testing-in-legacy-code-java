@@ -8,6 +8,10 @@ param(
     [string]$Mode = "local"
 )
 
+# Import build scripts
+. .\backend\Build-Backend.ps1
+. .\frontend\Build-Frontend.ps1
+
 # Script Configuration
 $ErrorActionPreference = "Continue"
 $ComposeFile = if ($Mode -eq "pipeline") { "docker-compose.pipeline.yml" } else { "docker-compose.local.yml" }
@@ -23,9 +27,7 @@ $TaxApiUrl = "http://localhost:9001/tax/health"
 $TestCommand = "& .\gradlew.bat clean test"
 $TestReportPath = "system-test\build\reports\tests\test\index.html"
 
-# Import build scripts
-. .\backend\Build-Backend.ps1
-. .\frontend\Build-Frontend.ps1
+
 
 function Execute-Command {
     param(
@@ -192,5 +194,3 @@ try {
 
 # Explicit exit with code 0 on success
 exit 0
-
-

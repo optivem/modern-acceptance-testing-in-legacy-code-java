@@ -1,4 +1,9 @@
 function Build-Frontend {
-    Write-Host "Building frontend..." -ForegroundColor Cyan
-    Execute-Command -Command "& .\Build-Frontend.ps1" -SubFolder "frontend"
+    Set-Location frontend
+    if (-not (Test-Path "node_modules")) {
+        Execute-Command -Command "npm install"
+    }
+    Set-Location ..
+
+    Execute-Command -Command "npm run build" -SubFolder "frontend"
 }
