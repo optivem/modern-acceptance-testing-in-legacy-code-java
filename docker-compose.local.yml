@@ -13,7 +13,7 @@ services:
 
   backend:
     build:
-      context: ./backend
+      context: ../modern-acceptance-testing-in-legacy-code-backend/backend
       dockerfile: Dockerfile
     ports:
       - "8081:8080"

@@ -16,7 +16,7 @@ $Config = @{
         @{ Name = "Backend API";
             Url = "http://localhost:8081/health";
             ContainerName = "backend";
-            BuildPath = "backend";
+            BuildPath = "..\modern-acceptance-testing-in-legacy-code-backend\backend";
             BuildCommand = "& .\gradlew.bat clean build" }
     )
 
