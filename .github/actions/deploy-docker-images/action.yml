@@ -14,6 +14,13 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Clone External Dependencies
+      run: |
+        echo "📥 Cloning external dependencies repository..."
+        git clone https://github.com/optivem/modern-acceptance-testing-in-legacy-code-external.git modern-acceptance-testing-in-legacy-code-external
+        echo "✅ External dependencies cloned successfully"
+      shell: bash
+
     - name: Deploy System
       run: |
         echo "🚀 Deploying system version ${{ inputs.version }} to ${{ inputs.environment }} environment..."
