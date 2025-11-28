@@ -1,11 +1,9 @@
 param(
-    [Parameter(Mandatory=$true, Position=0)]
-    [ValidateSet("build", "start", "test", "stop", "logs", "all")]
-    [string]$Command,
-
-    [Parameter(Position=1)]
+    [Parameter(Position=0)]
     [ValidateSet("local", "pipeline")]
-    [string]$Mode = "local"
+    [string]$Mode = "local",
+
+    [switch]$NoBuild
 )
 
 # Import build scripts
@@ -141,10 +139,6 @@ function Test-System {
     Write-Host $TestReportPath -ForegroundColor Yellow
 }
 
-function Show-Logs {
-    Execute-Command -Command "docker compose -f $ComposeFile logs --tail=100 -f"
-}
-
 function Write-Heading {
     param(
         [string]$Text,
@@ -157,35 +151,27 @@ function Write-Heading {
     Write-Host ""
 }
 
-function Run-All {
-    Write-Heading -Text "Build System"
-    Build-System
+# Main execution
+try {
 
-    Write-Heading -Text "Stop System"
-    Stop-System
+    if (-not $NoBuild) {
+        Write-Heading -Text "Build System"
+        Build-System
 
-    Write-Heading -Text "Start System"
-    Start-System
+        Write-Heading -Text "Stop System"
+        Stop-System
 
-    Write-Heading -Text "Wait for System"
-    Wait-ForServices
+        Write-Heading -Text "Start System"
+        Start-System
+
+        Write-Heading -Text "Wait for System"
+        Wait-ForServices
+    }
 
     Write-Heading -Text "Test System"
     Test-System
 
     Write-Heading -Text "DONE" -Color Green
-}
-
-# Main execution
-try {
-    switch ($Command) {
-        "build" { Build-System }
-        "start" { Start-System }
-        "test"  { Test-System }
-        "stop"  { Stop-System }
-        "logs"  { Show-Logs }
-        "all"   { Run-All }
-    }
 } catch {
     Write-Host ""
     Write-Host "ERROR: $_" -ForegroundColor Red
