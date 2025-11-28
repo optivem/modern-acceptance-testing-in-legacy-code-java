@@ -10,7 +10,7 @@ services:
       - backend
 
   backend:
-    image: ghcr.io/optivem/modern-acceptance-testing-in-legacy-code-java/backend:latest
+    image: ghcr.io/optivem/modern-acceptance-testing-in-legacy-code-backend/backend:latest
     ports:
       - "8081:8080"
     environment:
