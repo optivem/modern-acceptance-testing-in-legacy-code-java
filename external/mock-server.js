@@ -1,7 +1,6 @@
 // Mock API server using json-server
 // Serves ERP and Tax APIs under namespaced paths
 const jsonServer = require('json-server');
-const path = require('path');
 
 const server = jsonServer.create();
 const middlewares = jsonServer.defaults({
@@ -30,8 +29,36 @@ server.get('/tax/health', (req, res) => {
   });
 });
 
-// Mount ERP API at /erp/api with custom rewriter
-const erpRouter = jsonServer.router(path.join(__dirname, 'db', 'erp.db.json'));
+// In-memory data for ERP API
+const erpRouter = jsonServer.router({
+  products: [
+    {
+      id: "HP-15",
+      title: "HP Laptop 15",
+      description: "15.6-inch laptop with Intel Core i5 processor",
+      price: 699.99,
+      category: "Laptops",
+      brand: "HP"
+    },
+    {
+      id: "DELL-XPS",
+      title: "Dell XPS 13",
+      description: "13.3-inch ultrabook with Intel Core i7 processor",
+      price: 1299.99,
+      category: "Laptops",
+      brand: "Dell"
+    },
+    {
+      id: "LENOVO-T14",
+      title: "Lenovo ThinkPad T14",
+      description: "14-inch business laptop",
+      price: 999.99,
+      category: "Laptops",
+      brand: "Lenovo"
+    }
+  ]
+});
+
 server.get('/erp/api', (req, res) => {
   res.status(200).json({
     message: 'ERP API',
@@ -40,8 +67,37 @@ server.get('/erp/api', (req, res) => {
 });
 server.use('/erp/api', erpRouter);
 
-// Mount Tax API at /tax/api with custom rewriter
-const taxRouter = jsonServer.router(path.join(__dirname, 'db', 'tax.db.json'));
+// In-memory data for Tax API
+const taxRouter = jsonServer.router({
+  countries: [
+    {
+      id: "US",
+      countryName: "United States",
+      taxRate: 0.07
+    },
+    {
+      id: "UK",
+      countryName: "United Kingdom",
+      taxRate: 0.20
+    },
+    {
+      id: "DE",
+      countryName: "Germany",
+      taxRate: 0.19
+    },
+    {
+      id: "FR",
+      countryName: "France",
+      taxRate: 0.20
+    },
+    {
+      id: "JP",
+      countryName: "Japan",
+      taxRate: 0.10
+    }
+  ]
+});
+
 server.get('/tax/api', (req, res) => {
   res.status(200).json({
     message: 'Tax API',
@@ -50,7 +106,7 @@ server.get('/tax/api', (req, res) => {
 });
 server.use('/tax/api', taxRouter);
 
-const port = process.env.PORT || 9000;
+const port = 9000;
 server.listen(port, () => {
   console.log(`Mock API Server running on http://localhost:${port}`);
   console.log(`ERP Health: http://localhost:${port}/erp/health`);
