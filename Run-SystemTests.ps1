@@ -11,7 +11,7 @@ param(
 . .\frontend\Build-Frontend.ps1
 
 # Load configuration
-$Config = . .\system-test.config.ps1
+$Config = . .\Run-SystemTests.Config.ps1
 
 # Script Configuration
 $ErrorActionPreference = "Continue"
@@ -19,12 +19,12 @@ $ComposeFile = if ($Mode -eq "pipeline") { "docker-compose.pipeline.yml" } else 
 
 # Extract configuration values
 $ContainerName = $Config.ContainerName
-$FrontendUrl = $Config.FrontendUrl
-$BackendUrl = $Config.BackendUrl
-$ErpApiUrl = $Config.ErpApiUrl
-$TaxApiUrl = $Config.TaxApiUrl
 $TestCommand = $Config.TestCommand
 $TestReportPath = $Config.TestReportPath
+
+# Extract component arrays
+$SystemComponents = $Config.SystemComponents
+$ExternalSystems = $Config.ExternalSystems
 
 function Execute-Command {
     param(
@@ -82,10 +82,18 @@ function Wait-ForService {
 }
 
 function Wait-ForServices {
-    Wait-ForService -Url $ErpApiUrl -ServiceName "ERP API" -ContainerName "external" -LogLines 20
-    Wait-ForService -Url $TaxApiUrl -ServiceName "Tax API" -ContainerName "external" -LogLines 20
-    Wait-ForService -Url $BackendUrl -ServiceName "Backend API" -ContainerName "backend" -LogLines 50
-    Wait-ForService -Url $FrontendUrl -ServiceName "Frontend" -ContainerName "frontend" -LogLines 50
+    Write-Host "Waiting for external systems..." -ForegroundColor Yellow
+    foreach ($system in $ExternalSystems) {
+        Wait-ForService -Url $system.Url -ServiceName $system.Name -ContainerName $system.ContainerName -LogLines $system.LogLines
+    }
+
+    Write-Host "Waiting for system components..." -ForegroundColor Yellow
+    foreach ($component in $SystemComponents) {
+        Wait-ForService -Url $component.Url -ServiceName $component.Name -ContainerName $component.ContainerName -LogLines $component.LogLines
+    }
+
+    Write-Host ""
+    Write-Host "All services are ready!" -ForegroundColor Green
 }
 
 function Build-System {
@@ -114,14 +122,19 @@ function Stop-System {
 function Start-System {
     Execute-Command -Command "docker compose -f $ComposeFile up -d --build"
 
-    Write-Host "- Frontend UI: " -NoNewline
-    Write-Host $FrontendUrl -ForegroundColor Yellow
-    Write-Host "- Backend API Health: " -NoNewline
-    Write-Host $BackendUrl -ForegroundColor Yellow
-    Write-Host "- ERP API Health: " -NoNewline
-    Write-Host $ErpApiUrl -ForegroundColor Yellow
-    Write-Host "- Tax API Health: " -NoNewline
-    Write-Host $TaxApiUrl -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "System Components:" -ForegroundColor Cyan
+    foreach ($component in $SystemComponents) {
+        Write-Host "- $($component.Name): " -NoNewline
+        Write-Host $component.Url -ForegroundColor Yellow
+    }
+
+    Write-Host ""
+    Write-Host "External Systems:" -ForegroundColor Cyan
+    foreach ($system in $ExternalSystems) {
+        Write-Host "- $($system.Name): " -NoNewline
+        Write-Host $system.Url -ForegroundColor Yellow
+    }
 }
 
 function Test-System {
