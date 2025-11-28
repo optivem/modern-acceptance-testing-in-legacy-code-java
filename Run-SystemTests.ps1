@@ -10,22 +10,21 @@ param(
 . .\backend\Build-Backend.ps1
 . .\frontend\Build-Frontend.ps1
 
+# Load configuration
+$Config = . .\system-test.config.ps1
+
 # Script Configuration
 $ErrorActionPreference = "Continue"
 $ComposeFile = if ($Mode -eq "pipeline") { "docker-compose.pipeline.yml" } else { "docker-compose.local.yml" }
 
-# System Configuration
-$ContainerName = "modern-acceptance-testing-in-legacy-code-java"
-$FrontendUrl = "http://localhost:3001"
-$BackendUrl = "http://localhost:8081/health"
-$ErpApiUrl = "http://localhost:9001/erp/health"
-$TaxApiUrl = "http://localhost:9001/tax/health"
-
-# Test Configuration
-$TestCommand = "& .\gradlew.bat clean test"
-$TestReportPath = "system-test\build\reports\tests\test\index.html"
-
-
+# Extract configuration values
+$ContainerName = $Config.ContainerName
+$FrontendUrl = $Config.FrontendUrl
+$BackendUrl = $Config.BackendUrl
+$ErpApiUrl = $Config.ErpApiUrl
+$TaxApiUrl = $Config.TaxApiUrl
+$TestCommand = $Config.TestCommand
+$TestReportPath = $Config.TestReportPath
 
 function Execute-Command {
     param(
@@ -123,11 +122,6 @@ function Start-System {
     Write-Host $ErpApiUrl -ForegroundColor Yellow
     Write-Host "- Tax API Health: " -NoNewline
     Write-Host $TaxApiUrl -ForegroundColor Yellow
-    Write-Host ""
-    Write-Host "To view logs: " -NoNewline
-    Write-Host ".\run.ps1 logs $Mode" -ForegroundColor Cyan
-    Write-Host "To stop: " -NoNewline
-    Write-Host ".\run.ps1 stop $Mode" -ForegroundColor Cyan
 }
 
 function Test-System {
