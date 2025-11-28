@@ -17,7 +17,6 @@ public class ErpApiDriver implements AutoCloseable {
 
     public Result<Void> createProduct(String sku, String unitPrice) {
         return erpApiClient.products().createProduct(sku, unitPrice);
-        // TODO: VJ: Assert successful creation
     }
 
     @Override

@@ -42,7 +42,9 @@ class ApiE2eTest extends BaseE2eTest {
     @Test
     void shouldNotCancelAlreadyCancelledOrder() {
         var sku = "MNO-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "35.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "35.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var placeOrderResult = shopDriver.placeOrder(sku, "3", "US");
         assertThatResult(placeOrderResult).isSuccess();
 

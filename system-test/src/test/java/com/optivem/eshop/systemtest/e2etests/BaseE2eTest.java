@@ -45,7 +45,9 @@ public abstract class BaseE2eTest {
     @Test
     void shouldPlaceOrderAndCalculateOriginalPrice() {
         var sku = "ABC-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "20.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "20.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var placeOrderResult = shopDriver.placeOrder(sku, "5", "US");
         assertThatResult(placeOrderResult).isSuccess();
 
@@ -100,7 +102,9 @@ public abstract class BaseE2eTest {
     @Test
     void shouldCancelOrder() {
         var sku = "XYZ-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "50.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "50.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var placeOrderResult = shopDriver.placeOrder(sku, "2", "US");
         assertThatResult(placeOrderResult).isSuccess();
 
@@ -136,7 +140,9 @@ public abstract class BaseE2eTest {
     @Test
     void shouldRejectOrderWithNegativeQuantity() {
         var sku = "DEF-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "30.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "30.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var result = shopDriver.placeOrder(sku, "-3", "US");
         assertThatResult(result).isFailure("Quantity must be positive");
     }
@@ -144,7 +150,9 @@ public abstract class BaseE2eTest {
     @Test
     void shouldRejectOrderWithZeroQuantity() {
         var sku = "GHI-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "40.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "40.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var result = shopDriver.placeOrder(sku, "0", "US");
         assertThatResult(result).isFailure("Quantity must be positive");
     }
@@ -209,7 +217,9 @@ public abstract class BaseE2eTest {
     @Test
     void shouldRejectOrderWithUnsupportedCountry() {
         var sku = "JKL-" + UUID.randomUUID();
-        erpApiDriver.createProduct(sku, "25.00");
+        var createProductResult = erpApiDriver.createProduct(sku, "25.00");
+        assertThatResult(createProductResult).isSuccess();
+
         var result = shopDriver.placeOrder(sku, "3", "XX");
         assertThatResult(result).isFailure("Country does not exist: XX");
     }
