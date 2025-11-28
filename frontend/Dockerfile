@@ -24,8 +24,8 @@ COPY --from=build /app/dist /usr/share/nginx/html
 # Copy nginx configuration template
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 
-# Expose port 3001
-EXPOSE 3001
+# Expose port 3000
+EXPOSE 3000
 
 # Start nginx with envsubst to replace environment variables
 CMD ["/bin/sh", "-c", "envsubst '$$BACKEND_API_URL' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

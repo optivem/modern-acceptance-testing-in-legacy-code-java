@@ -19,7 +19,7 @@ services:
   external:
     image: node:18-alpine
     ports:
-      - "9001:9001"
+      - "9001:9000"
     volumes:
       - ./external/mock-server.js:/app/mock-server.js
       - ./external/erp.db.json:/app/erp.db.json
@@ -27,21 +27,18 @@ services:
       - ./external/package.json:/app/package.json
     working_dir: /app
     command: sh -c "npm install && npm start"
-    environment:
-      - PORT=9001
 
   backend:
     image: ghcr.io/optivem/modern-acceptance-testing-in-legacy-code-java/backend:latest
     ports:
-      - "8081:8081"
+      - "8081:8080"
     environment:
-      - SERVER_PORT=8081
       - POSTGRES_URL=jdbc:postgresql://postgres:5432/eshop
       - POSTGRES_USERNAME=eshop_user
       - POSTGRES_PASSWORD=eshop_password
-      - ALLOWED_ORIGINS=http://localhost:3001,http://frontend:3001
-      - ERP_API_URL=http://external:9001/erp/api
-      - TAX_API_URL=http://external:9001/tax/api
+      - ALLOWED_ORIGINS=http://localhost:3001,http://frontend:3000
+      - ERP_API_URL=http://external:9000/erp/api
+      - TAX_API_URL=http://external:9000/tax/api
     depends_on:
       postgres:
         condition: service_healthy
@@ -51,9 +48,9 @@ services:
   frontend:
     image: ghcr.io/optivem/modern-acceptance-testing-in-legacy-code-java/frontend:latest
     ports:
-      - "3001:3001"
+      - "3001:3000"
     environment:
-      - BACKEND_API_URL=http://backend:8081
+      - BACKEND_API_URL=http://backend:8080
     depends_on:
       - backend
 
