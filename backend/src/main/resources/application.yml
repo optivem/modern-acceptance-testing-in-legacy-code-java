@@ -3,9 +3,9 @@ spring:
     deserialization:
       ACCEPT_FLOAT_AS_INT: false
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5401/eshop}
-    username: ${POSTGRES_USERNAME:eshop_user}
-    password: ${POSTGRES_PASSWORD:eshop_password}
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -17,7 +17,7 @@ spring:
         format_sql: true
 
 server:
-  port: ${SERVER_PORT:8081}
+  port: ${SERVER_PORT}
 
 management:
   endpoints:
@@ -30,7 +30,7 @@ management:
       show-details: always
 
 allowed:
-  origins: ${ALLOWED_ORIGINS:http://localhost:3001}
+  origins: ${ALLOWED_ORIGINS}
 
 error:
   types:
@@ -41,6 +41,6 @@ error:
     internal-server-error: ${error.types.base-url}/internal-server-error
 
 erp:
-  url: ${ERP_API_URL:http://localhost:9001/erp/api}
+  url: ${ERP_API_URL}
 tax:
-  url: ${TAX_API_URL:http://localhost:9001/tax/api}
+  url: ${TAX_API_URL}
