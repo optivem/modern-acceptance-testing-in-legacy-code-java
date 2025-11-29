@@ -47,4 +47,9 @@ Write-Host "Executing script from repository..." -ForegroundColor Cyan
 Set-Location "$RepoPath"
 & $ScriptPath -Mode $Mode -TestOnly:$TestOnly -LogLines $LogLines -WorkingDirectory $WorkingDirectory
 
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Script execution failed with exit code: $LASTEXITCODE" -ForegroundColor Red
+    exit $LASTEXITCODE
+}
+
 Write-Host "Done!" -ForegroundColor Green
