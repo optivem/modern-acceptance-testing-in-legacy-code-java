@@ -13,20 +13,12 @@ public class DriverFactory {
     public static ShopDriver createShopDriver() {
         String channel = ChannelContext.get();
         if ("UI".equals(channel)) {
-            return createShopUiDriver();
+            return new ShopUiDriver(TestConfiguration.getShopUiBaseUrl());
         } else if ("API".equals(channel)) {
-            return createShopApiDriver();
+            return new ShopApiDriver(TestConfiguration.getShopApiBaseUrl());
         } else {
             throw new IllegalStateException("Unknown channel: " + channel);
         }
-    }
-
-    public static ShopUiDriver createShopUiDriver() {
-        return new ShopUiDriver(TestConfiguration.getShopUiBaseUrl());
-    }
-
-    public static ShopApiDriver createShopApiDriver() {
-        return new ShopApiDriver(TestConfiguration.getShopApiBaseUrl());
     }
 
     public static ErpApiDriver createErpApiDriver() {

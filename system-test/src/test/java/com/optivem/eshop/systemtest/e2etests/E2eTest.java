@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.e2etests;
 
 import com.optivem.atdd.commons.channels.Channel;
 import com.optivem.atdd.commons.channels.ChannelExtension;
+import com.optivem.eshop.systemtest.core.drivers.ChannelType;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.Closer;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
@@ -44,7 +45,7 @@ public class E2eTest {
         Closer.close(taxApiDriver);
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldPlaceOrderAndCalculateOriginalPrice() {
         var sku = "ABC-" + UUID.randomUUID();
@@ -102,7 +103,7 @@ public class E2eTest {
     }
 
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldCancelOrder() {
         var sku = "XYZ-" + UUID.randomUUID();
@@ -129,21 +130,21 @@ public class E2eTest {
         assertThat(viewOrderResponse.getStatus()).isEqualTo(OrderStatus.CANCELLED);
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithNonExistentSku() {
         var result = shopDriver.placeOrder("NON-EXISTENT-SKU-12345", "5", "US");
         assertThatResult(result).isFailure("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldNotBeAbleToViewNonExistentOrder() {
         var result = shopDriver.viewOrder("NON-EXISTENT-ORDER-12345");
         assertThatResult(result).isFailure("Order NON-EXISTENT-ORDER-12345 does not exist.");
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithNegativeQuantity() {
         var sku = "DEF-" + UUID.randomUUID();
@@ -154,7 +155,7 @@ public class E2eTest {
         assertThatResult(result).isFailure("Quantity must be positive");
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithZeroQuantity() {
         var sku = "GHI-" + UUID.randomUUID();
@@ -173,7 +174,7 @@ public class E2eTest {
         );
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     @MethodSource("provideEmptySkuValues")
     void shouldRejectOrderWithEmptySku(String sku) {
@@ -188,7 +189,7 @@ public class E2eTest {
         );
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     @MethodSource("provideEmptyQuantityValues")
     void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
@@ -203,7 +204,7 @@ public class E2eTest {
         );
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     @MethodSource("provideNonIntegerQuantityValues")
     void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
@@ -218,7 +219,7 @@ public class E2eTest {
         );
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     @MethodSource("provideEmptyCountryValues")
     void shouldRejectOrderWithEmptyCountry(String emptyCountry) {
@@ -226,7 +227,7 @@ public class E2eTest {
         assertThatResult(result).isFailure("Country must not be empty");
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithUnsupportedCountry() {
         var sku = "JKL-" + UUID.randomUUID();
@@ -237,35 +238,35 @@ public class E2eTest {
         assertThatResult(result).isFailure("Country does not exist: XX");
     }
 
-    @Channel({"API"})
+    @Channel({ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithNullQuantity() {
         var result = shopDriver.placeOrder("some-sku", null, "US");
         assertThatResult(result).isFailure("Quantity must not be empty");
     }
 
-    @Channel({"API"})
+    @Channel({ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithNullSku() {
         var result = shopDriver.placeOrder(null, "5", "US");
         assertThatResult(result).isFailure("SKU must not be empty");
     }
 
-    @Channel({"API"})
+    @Channel({ChannelType.API})
     @TestTemplate
     void shouldRejectOrderWithNullCountry() {
         var result = shopDriver.placeOrder("some-sku", "5", null);
         assertThatResult(result).isFailure("Country must not be empty");
     }
 
-    @Channel({"API"})
+    @Channel({ChannelType.API})
     @TestTemplate
     void shouldNotCancelNonExistentOrder() {
         var result = shopDriver.cancelOrder("NON-EXISTENT-ORDER-99999");
         assertThatResult(result).isFailure("Order NON-EXISTENT-ORDER-99999 does not exist.");
     }
 
-    @Channel({"API"})
+    @Channel({ChannelType.API})
     @TestTemplate
     void shouldNotCancelAlreadyCancelledOrder() {
         var sku = "MNO-" + UUID.randomUUID();

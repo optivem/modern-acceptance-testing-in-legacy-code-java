@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.smoketests;
 import com.optivem.eshop.systemtest.TestConfiguration;
 import com.optivem.atdd.commons.channels.Channel;
 import com.optivem.atdd.commons.channels.ChannelExtension;
+import com.optivem.eshop.systemtest.core.drivers.ChannelType;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.Closer;
@@ -28,7 +29,7 @@ public class ShopSmokeTest {
         Closer.close(shopDriver);
     }
 
-    @Channel({"UI", "API"})
+    @Channel({ChannelType.UI, ChannelType.API})
     @TestTemplate
     void shouldBeAbleToGoToShop() {
         var result = shopDriver.goToShop();
