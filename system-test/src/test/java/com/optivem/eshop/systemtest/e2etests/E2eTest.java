@@ -10,6 +10,7 @@ import com.optivem.eshop.systemtest.core.drivers.external.tax.api.TaxApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.provider.Arguments;
@@ -234,5 +235,54 @@ public class E2eTest {
 
         var result = shopDriver.placeOrder(sku, "3", "XX");
         assertThatResult(result).isFailure("Country does not exist: XX");
+    }
+
+    @Channel({"API"})
+    @TestTemplate
+    void shouldRejectOrderWithNullQuantity() {
+        var result = shopDriver.placeOrder("some-sku", null, "US");
+        assertThatResult(result).isFailure("Quantity must not be empty");
+    }
+
+    @Channel({"API"})
+    @TestTemplate
+    void shouldRejectOrderWithNullSku() {
+        var result = shopDriver.placeOrder(null, "5", "US");
+        assertThatResult(result).isFailure("SKU must not be empty");
+    }
+
+    @Channel({"API"})
+    @TestTemplate
+    void shouldRejectOrderWithNullCountry() {
+        var result = shopDriver.placeOrder("some-sku", "5", null);
+        assertThatResult(result).isFailure("Country must not be empty");
+    }
+
+    @Channel({"API"})
+    @TestTemplate
+    void shouldNotCancelNonExistentOrder() {
+        var result = shopDriver.cancelOrder("NON-EXISTENT-ORDER-99999");
+        assertThatResult(result).isFailure("Order NON-EXISTENT-ORDER-99999 does not exist.");
+    }
+
+    @Channel({"API"})
+    @TestTemplate
+    void shouldNotCancelAlreadyCancelledOrder() {
+        var sku = "MNO-" + UUID.randomUUID();
+        var createProductResult = erpApiDriver.createProduct(sku, "35.00");
+        assertThatResult(createProductResult).isSuccess();
+
+        var placeOrderResult = shopDriver.placeOrder(sku, "3", "US");
+        assertThatResult(placeOrderResult).isSuccess();
+
+        var orderNumber = placeOrderResult.getValue().getOrderNumber();
+
+        // Cancel the order first time - should succeed
+        var firstCancelResult = shopDriver.cancelOrder(orderNumber);
+        assertThatResult(firstCancelResult).isSuccess();
+
+        // Try to cancel the same order again - should fail
+        var secondCancelResult = shopDriver.cancelOrder(orderNumber);
+        assertThatResult(secondCancelResult).isFailure("Order has already been cancelled");
     }
 }
