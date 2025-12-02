@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.drivers;
+package com.optivem.eshop.systemtest.core.channels;
 
 public class ChannelType {
     public static final String UI = "UI";
