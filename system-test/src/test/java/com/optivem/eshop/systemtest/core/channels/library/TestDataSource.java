@@ -8,31 +8,28 @@ import java.lang.annotation.Target;
 
 /**
  * Repeatable annotation to provide inline test arguments that will be combined with channel types.
- * Each @ChannelArgumentsSource annotation represents one row of test arguments that will be
+ * Each @TestDataSource annotation represents one row of test arguments that will be
  * executed against all specified channels.
- *
- * Supports two modes:
- * 1. Inline values: @ChannelArgumentsSource({"value1", "value2"})
- * 2. Provider class: @ChannelArgumentsSource(provider = MyProvider.class)
  *
  * Example with inline values:
  * <pre>
  * @TestTemplate
  * @Channel({ChannelType.UI, ChannelType.API})
- * @ChannelArgumentsSource("3.5")
- * @ChannelArgumentsSource("lala")
+ * @TestDataSource("3.5")
+ * @TestDataSource("lala")
  * void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
  *     // This test will run 4 times: UI with "3.5", UI with "lala", API with "3.5", API with "lala"
  * }
  * </pre>
  *
- * Example with provider:
+ * Example with multiple parameters:
  * <pre>
  * @TestTemplate
  * @Channel({ChannelType.UI, ChannelType.API})
- * @ChannelArgumentsSource(provider = OrderDataProvider.class)
- * void shouldPlaceOrder(String sku, int quantity, String country) {
- *     // Provider can return complex objects
+ * @TestDataSource({"SKU123", "5", "US"})
+ * @TestDataSource({"SKU456", "10", "UK"})
+ * void testOrder(String sku, String quantity, String country) {
+ *     // Each annotation provides all 3 parameters
  * }
  * </pre>
  */
@@ -41,19 +38,12 @@ import java.lang.annotation.Target;
 @Repeatable(TestDataSource.Container.class)
 public @interface TestDataSource {
     /**
-     * The test argument values for this row (inline mode).
-     * Mutually exclusive with provider().
+     * The test argument values for this row.
      */
-    String[] value() default {};
+    String[] value();
 
     /**
-     * The provider class that supplies test arguments (provider mode).
-     * Mutually exclusive with value().
-     */
-    Class<? extends ChannelArgumentsProvider> provider() default NullArgumentsProvider.class;
-
-    /**
-     * Container annotation for repeated @ChannelArgumentsSource annotations.
+     * Container annotation for repeated @TestDataSource annotations.
      */
     @Target({ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)

@@ -276,18 +276,4 @@ public class E2eTest {
         var secondCancelResult = shopDriver.cancelOrder(orderNumber);
         assertThatResult(secondCancelResult).isFailure("Order has already been cancelled");
     }
-
-    // Example test demonstrating ChannelArgumentsProvider usage with validation tests
-    @TestTemplate
-    @Channel({ChannelType.API})
-    @TestDataSource(provider = OrderArgumentsProvider.class)
-    void shouldRejectInvalidOrderFromProvider(String sku, int quantity, String country) {
-        // This test demonstrates using a provider to supply complex test data
-        // The provider returns multiple rows with String, int, and String parameters
-        // This test will run 2 times: API+row1, API+row2
-
-        // Test with negative quantity to trigger validation error
-        var result = shopDriver.placeOrder(sku, String.valueOf(-quantity), country);
-        assertThatResult(result).isFailure("Quantity must be positive");
-    }
 }

@@ -19,7 +19,7 @@ import java.util.stream.Stream;
  * When a test method is annotated with @Channel and @TestTemplate, this extension
  * creates separate test invocations for each specified channel (e.g., UI, API).
  *
- * Also supports @ChannelArgumentsSource to combine channel types with inline test data.
+ * Also supports @TestDataSource to combine channel types with inline test data.
  */
 public class ChannelExtension implements TestTemplateInvocationContextProvider {
 
@@ -67,19 +67,19 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
                 }
             }
         } else {
-            // Check if the method has ChannelArgumentsSource annotations
+            // Check if the method has TestDataSource annotations
             TestDataSource.Container containerAnnotation =
                     testMethod.getAnnotation(TestDataSource.Container.class);
             TestDataSource singleAnnotation =
                     testMethod.getAnnotation(TestDataSource.class);
 
             if (containerAnnotation != null) {
-                // Multiple @ChannelArgumentsSource annotations
+                // Multiple @TestDataSource annotations
                 for (TestDataSource annotation : containerAnnotation.value()) {
                     dataRows.addAll(extractArgumentsFromAnnotation(annotation, context));
                 }
             } else if (singleAnnotation != null) {
-                // Single @ChannelArgumentsSource annotation
+                // Single @TestDataSource annotation
                 dataRows.addAll(extractArgumentsFromAnnotation(singleAnnotation, context));
             }
         }
@@ -101,32 +101,18 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
     }
 
     /**
-     * Extracts arguments from a single @ChannelArgumentsSource annotation.
-     * Handles both inline values and provider classes.
+     * Extracts arguments from a single @TestDataSource annotation.
      */
     private List<Object[]> extractArgumentsFromAnnotation(TestDataSource annotation, ExtensionContext context) {
         List<Object[]> results = new ArrayList<>();
 
-        // Check if provider is specified
-        Class<? extends ChannelArgumentsProvider> providerClass = annotation.provider();
-
-        if (providerClass != null && providerClass != NullArgumentsProvider.class) {
-            // Use provider class
-            try {
-                ChannelArgumentsProvider provider = providerClass.getDeclaredConstructor().newInstance();
-                provider.provideArguments(context).forEach(results::add);
-            } catch (Exception e) {
-                throw new RuntimeException("Failed to instantiate provider: " + providerClass.getName(), e);
-            }
-        } else if (annotation.value().length > 0) {
-            // Use inline values
-            String[] values = annotation.value();
-            Object[] row = new Object[values.length];
-            for (int i = 0; i < values.length; i++) {
-                row[i] = values[i];
-            }
-            results.add(row);
+        // Use inline values
+        String[] values = annotation.value();
+        Object[] row = new Object[values.length];
+        for (int i = 0; i < values.length; i++) {
+            row[i] = values[i];
         }
+        results.add(row);
 
         return results;
     }
