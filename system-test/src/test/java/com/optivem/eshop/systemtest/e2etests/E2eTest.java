@@ -249,9 +249,11 @@ public class E2eTest {
 
     @TestTemplate
     @Channel({ChannelType.API})
-    void shouldNotCancelNonExistentOrder() {
-        var result = shopDriver.cancelOrder("NON-EXISTENT-ORDER-99999");
-        assertThatResult(result).isFailure("Order NON-EXISTENT-ORDER-99999 does not exist.");
+    @ChannelArgumentsSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})
+    @ChannelArgumentsSource({"INVALID-ORDER-12345", "Order INVALID-ORDER-12345 does not exist."})
+    void shouldNotCancelNonExistentOrder(String orderNumber, String expectedErrorMessage) {
+        var result = shopDriver.cancelOrder(orderNumber);
+        assertThatResult(result).isFailure(expectedErrorMessage);
     }
 
     @TestTemplate
