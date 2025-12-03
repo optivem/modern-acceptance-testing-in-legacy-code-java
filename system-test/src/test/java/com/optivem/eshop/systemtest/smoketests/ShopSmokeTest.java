@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.smoketests;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.atdd.commons.channels.Channel;
-import com.optivem.atdd.commons.channels.ChannelExtension;
+import com.optivem.eshop.systemtest.core.channels.Channel;
+import com.optivem.eshop.systemtest.core.channels.ChannelExtension;
 import com.optivem.eshop.systemtest.core.channels.ChannelType;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;

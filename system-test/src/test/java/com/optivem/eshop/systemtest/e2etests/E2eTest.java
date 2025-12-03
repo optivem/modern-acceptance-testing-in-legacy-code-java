@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests;
 
-import com.optivem.atdd.commons.channels.Channel;
-import com.optivem.atdd.commons.channels.ChannelExtension;
+import com.optivem.eshop.systemtest.core.channels.Channel;
+import com.optivem.eshop.systemtest.core.channels.ChannelExtension;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.Closer;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
 import com.optivem.eshop.systemtest.core.channels.ChannelType;
