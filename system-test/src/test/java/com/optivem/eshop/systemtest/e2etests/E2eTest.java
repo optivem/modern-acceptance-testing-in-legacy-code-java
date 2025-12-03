@@ -15,6 +15,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -199,10 +200,16 @@ public class E2eTest {
         assertThatResult(result).isFailure("Quantity must be an integer");
     }
 
+    private static Stream<Arguments> provideEmptyCountryValues() {
+        return Stream.of(
+                Arguments.of(""),      // Empty string
+                Arguments.of("   ")    // Whitespace string
+        );
+    }
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @ChannelArgumentsSource("")
-    @ChannelArgumentsSource("   ")
+    @MethodSource("provideEmptyCountryValues")
     void shouldRejectOrderWithEmptyCountry(String emptyCountry) {
         var result = shopDriver.placeOrder("some-sku", "5", emptyCountry);
         assertThatResult(result).isFailure("Country must not be empty");

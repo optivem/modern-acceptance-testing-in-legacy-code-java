@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -35,34 +36,64 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
         Channel channelAnnotation = testMethod.getAnnotation(Channel.class);
         String[] channels = channelAnnotation.value();
 
-        // Check if the method has ChannelArgumentsSource annotations
-        ChannelArgumentsSource.Container containerAnnotation =
-                testMethod.getAnnotation(ChannelArgumentsSource.Container.class);
-        ChannelArgumentsSource singleAnnotation =
-                testMethod.getAnnotation(ChannelArgumentsSource.class);
-
         List<Object[]> dataRows = new ArrayList<>();
 
-        if (containerAnnotation != null) {
-            // Multiple @ChannelArgumentsSource annotations
-            for (ChannelArgumentsSource annotation : containerAnnotation.value()) {
-                dataRows.addAll(extractArgumentsFromAnnotation(annotation, context));
+        // Check if the method has @MethodSource annotation
+        MethodSource methodSourceAnnotation = testMethod.getAnnotation(MethodSource.class);
+        if (methodSourceAnnotation != null) {
+            // Handle @MethodSource - invoke the provider method
+            String[] methodNames = methodSourceAnnotation.value();
+            if (methodNames.length == 0) {
+                // Default: use test method name
+                methodNames = new String[]{testMethod.getName()};
             }
-        } else if (singleAnnotation != null) {
-            // Single @ChannelArgumentsSource annotation
-            dataRows.addAll(extractArgumentsFromAnnotation(singleAnnotation, context));
+
+            for (String methodName : methodNames) {
+                try {
+                    Method providerMethod = context.getRequiredTestClass().getDeclaredMethod(methodName);
+                    providerMethod.setAccessible(true);
+                    Object result = providerMethod.invoke(null);
+
+                    if (result instanceof Stream) {
+                        ((Stream<?>) result).forEach(arg -> {
+                            if (arg instanceof org.junit.jupiter.params.provider.Arguments) {
+                                Object[] arguments = ((org.junit.jupiter.params.provider.Arguments) arg).get();
+                                dataRows.add(arguments);
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("Failed to invoke @MethodSource provider: " + methodName, e);
+                }
+            }
+        } else {
+            // Check if the method has ChannelArgumentsSource annotations
+            ChannelArgumentsSource.Container containerAnnotation =
+                    testMethod.getAnnotation(ChannelArgumentsSource.Container.class);
+            ChannelArgumentsSource singleAnnotation =
+                    testMethod.getAnnotation(ChannelArgumentsSource.class);
+
+            if (containerAnnotation != null) {
+                // Multiple @ChannelArgumentsSource annotations
+                for (ChannelArgumentsSource annotation : containerAnnotation.value()) {
+                    dataRows.addAll(extractArgumentsFromAnnotation(annotation, context));
+                }
+            } else if (singleAnnotation != null) {
+                // Single @ChannelArgumentsSource annotation
+                dataRows.addAll(extractArgumentsFromAnnotation(singleAnnotation, context));
+            }
         }
 
         if (dataRows.isEmpty()) {
             // No data annotations, just run for each channel
             return Arrays.stream(channels)
-                    .map(channel -> new ChannelInvocationContext(channel, null));
+                    .map(channel -> new ChannelInvocationContext(channel, null, testMethod));
         } else {
             // Combine channels with data rows
             List<TestTemplateInvocationContext> contexts = new ArrayList<>();
             for (String channel : channels) {
                 for (Object[] dataRow : dataRows) {
-                    contexts.add(new ChannelInvocationContext(channel, dataRow));
+                    contexts.add(new ChannelInvocationContext(channel, dataRow, testMethod));
                 }
             }
             return contexts.stream();
@@ -107,10 +138,12 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
 
         private final String channel;
         private final Object[] testData;
+        private final Method testMethod;
 
-        public ChannelInvocationContext(String channel, Object[] testData) {
+        public ChannelInvocationContext(String channel, Object[] testData, Method testMethod) {
             this.channel = channel;
             this.testData = testData;
+            this.testMethod = testMethod;
         }
 
         @Override
@@ -132,6 +165,8 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
             List<Extension> extensions = new ArrayList<>();
             extensions.add(new ChannelSetupExtension(channel));
 
+            // Add TestDataParameterResolver if we have test data
+            // (either from @ChannelArgumentsSource or extracted from @MethodSource)
             if (testData != null && testData.length > 0) {
                 extensions.add(new TestDataParameterResolver(testData));
             }
