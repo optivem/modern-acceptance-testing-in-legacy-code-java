@@ -68,14 +68,14 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
             }
         } else {
             // Check if the method has ChannelArgumentsSource annotations
-            ChannelArgumentsSource.Container containerAnnotation =
-                    testMethod.getAnnotation(ChannelArgumentsSource.Container.class);
-            ChannelArgumentsSource singleAnnotation =
-                    testMethod.getAnnotation(ChannelArgumentsSource.class);
+            TestDataSource.Container containerAnnotation =
+                    testMethod.getAnnotation(TestDataSource.Container.class);
+            TestDataSource singleAnnotation =
+                    testMethod.getAnnotation(TestDataSource.class);
 
             if (containerAnnotation != null) {
                 // Multiple @ChannelArgumentsSource annotations
-                for (ChannelArgumentsSource annotation : containerAnnotation.value()) {
+                for (TestDataSource annotation : containerAnnotation.value()) {
                     dataRows.addAll(extractArgumentsFromAnnotation(annotation, context));
                 }
             } else if (singleAnnotation != null) {
@@ -104,7 +104,7 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
      * Extracts arguments from a single @ChannelArgumentsSource annotation.
      * Handles both inline values and provider classes.
      */
-    private List<Object[]> extractArgumentsFromAnnotation(ChannelArgumentsSource annotation, ExtensionContext context) {
+    private List<Object[]> extractArgumentsFromAnnotation(TestDataSource annotation, ExtensionContext context) {
         List<Object[]> results = new ArrayList<>();
 
         // Check if provider is specified

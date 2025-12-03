@@ -38,8 +38,8 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Repeatable(ChannelArgumentsSource.Container.class)
-public @interface ChannelArgumentsSource {
+@Repeatable(TestDataSource.Container.class)
+public @interface TestDataSource {
     /**
      * The test argument values for this row (inline mode).
      * Mutually exclusive with provider().
@@ -58,7 +58,7 @@ public @interface ChannelArgumentsSource {
     @Target({ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)
     @interface Container {
-        ChannelArgumentsSource[] value();
+        TestDataSource[] value();
     }
 }
 

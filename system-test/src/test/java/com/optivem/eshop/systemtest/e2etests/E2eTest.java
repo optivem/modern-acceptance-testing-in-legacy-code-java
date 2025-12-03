@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.e2etests;
 import com.optivem.eshop.systemtest.core.channels.library.Channel;
 import com.optivem.eshop.systemtest.core.channels.library.ChannelExtension;
 import com.optivem.eshop.systemtest.core.channels.ChannelType;
-import com.optivem.eshop.systemtest.core.channels.library.ChannelArgumentsSource;
+import com.optivem.eshop.systemtest.core.channels.library.TestDataSource;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.Closer;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
@@ -175,8 +175,8 @@ public class E2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @ChannelArgumentsSource("")
-    @ChannelArgumentsSource("   ")
+    @TestDataSource("")
+    @TestDataSource("   ")
     void shouldRejectOrderWithEmptySku(String sku) {
         var result = shopDriver.placeOrder(sku, "5", "US");
         assertThatResult(result).isFailure("SKU must not be empty");
@@ -184,8 +184,8 @@ public class E2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @ChannelArgumentsSource("")
-    @ChannelArgumentsSource("   ")
+    @TestDataSource("")
+    @TestDataSource("   ")
     void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
         var result = shopDriver.placeOrder("some-sku", emptyQuantity, "US");
         assertThatResult(result).isFailure("Quantity must not be empty");
@@ -193,8 +193,8 @@ public class E2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @ChannelArgumentsSource("3.5")
-    @ChannelArgumentsSource("lala")
+    @TestDataSource("3.5")
+    @TestDataSource("lala")
     void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
         var result = shopDriver.placeOrder("some-sku", nonIntegerQuantity, "US");
         assertThatResult(result).isFailure("Quantity must be an integer");
@@ -249,8 +249,8 @@ public class E2eTest {
 
     @TestTemplate
     @Channel({ChannelType.API})
-    @ChannelArgumentsSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})
-    @ChannelArgumentsSource({"INVALID-ORDER-12345", "Order INVALID-ORDER-12345 does not exist."})
+    @TestDataSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})
+    @TestDataSource({"INVALID-ORDER-12345", "Order INVALID-ORDER-12345 does not exist."})
     void shouldNotCancelNonExistentOrder(String orderNumber, String expectedErrorMessage) {
         var result = shopDriver.cancelOrder(orderNumber);
         assertThatResult(result).isFailure(expectedErrorMessage);
@@ -280,7 +280,7 @@ public class E2eTest {
     // Example test demonstrating ChannelArgumentsProvider usage with validation tests
     @TestTemplate
     @Channel({ChannelType.API})
-    @ChannelArgumentsSource(provider = OrderArgumentsProvider.class)
+    @TestDataSource(provider = OrderArgumentsProvider.class)
     void shouldRejectInvalidOrderFromProvider(String sku, int quantity, String country) {
         // This test demonstrates using a provider to supply complex test data
         // The provider returns multiple rows with String, int, and String parameters
