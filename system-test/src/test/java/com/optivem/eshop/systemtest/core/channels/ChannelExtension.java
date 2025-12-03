@@ -37,21 +37,21 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
         Channel channelAnnotation = testMethod.getAnnotation(Channel.class);
         String[] channels = channelAnnotation.value();
 
-        // Check if the method has CombinatorialInlineData annotations
-        CombinatorialInlineData.Container containerAnnotation =
-                testMethod.getAnnotation(CombinatorialInlineData.Container.class);
-        CombinatorialInlineData singleAnnotation =
-                testMethod.getAnnotation(CombinatorialInlineData.class);
+        // Check if the method has CombinatorialInlineSource annotations
+        CombinatorialInlineSource.Container containerAnnotation =
+                testMethod.getAnnotation(CombinatorialInlineSource.Container.class);
+        CombinatorialInlineSource singleAnnotation =
+                testMethod.getAnnotation(CombinatorialInlineSource.class);
 
         List<String[]> dataRows = new ArrayList<>();
 
         if (containerAnnotation != null) {
-            // Multiple @CombinatorialInlineData annotations
-            for (CombinatorialInlineData data : containerAnnotation.value()) {
+            // Multiple @CombinatorialInlineSource annotations
+            for (CombinatorialInlineSource data : containerAnnotation.value()) {
                 dataRows.add(data.value());
             }
         } else if (singleAnnotation != null) {
-            // Single @CombinatorialInlineData annotation
+            // Single @CombinatorialInlineSource annotation
             dataRows.add(singleAnnotation.value());
         }
 

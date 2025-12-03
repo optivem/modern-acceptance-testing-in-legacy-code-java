@@ -8,15 +8,15 @@ import java.lang.annotation.Target;
 
 /**
  * Repeatable annotation to provide inline test data that will be combined with channel types.
- * Each @CombinatorialInlineData annotation represents one row of test data that will be
+ * Each @CombinatorialInlineSource annotation represents one row of test data that will be
  * executed against all specified channels.
  *
  * Example:
  * <pre>
- * @Channel({ChannelType.UI, ChannelType.API})
  * @TestTemplate
- * @CombinatorialInlineData("3.5")
- * @CombinatorialInlineData("lala")
+ * @Channel({ChannelType.UI, ChannelType.API})
+ * @CombinatorialInlineSource("3.5")
+ * @CombinatorialInlineSource("lala")
  * void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
  *     // This test will run 4 times: UI with "3.5", UI with "lala", API with "3.5", API with "lala"
  * }
@@ -24,20 +24,21 @@ import java.lang.annotation.Target;
  */
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-@Repeatable(CombinatorialInlineData.Container.class)
-public @interface CombinatorialInlineData {
+@Repeatable(CombinatorialInlineSource.Container.class)
+public @interface CombinatorialInlineSource {
     /**
      * The test data values for this row.
      */
     String[] value();
 
     /**
-     * Container annotation for repeated @CombinatorialInlineData annotations.
+     * Container annotation for repeated @CombinatorialInlineSource annotations.
      */
     @Target({ElementType.METHOD})
     @Retention(RetentionPolicy.RUNTIME)
     @interface Container {
-        CombinatorialInlineData[] value();
+        CombinatorialInlineSource[] value();
     }
 }
+
 
