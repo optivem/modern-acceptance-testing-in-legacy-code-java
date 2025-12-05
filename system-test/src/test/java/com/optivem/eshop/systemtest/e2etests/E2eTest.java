@@ -1,6 +1,10 @@
 package com.optivem.eshop.systemtest.e2etests;
 
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.erp.ErpDsl;
+import com.optivem.eshop.systemtest.core.dsl.shop.ShopDsl;
+import com.optivem.eshop.systemtest.core.dsl.tax.TaxDsl;
 import com.optivem.eshop.systemtest.e2etests.providers.EmptyQuantityArgumentsProvider;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.ChannelExtension;
@@ -34,11 +38,20 @@ public class E2eTest {
     protected ErpApiDriver erpApiDriver;
     protected TaxApiDriver taxApiDriver;
 
+    protected ShopDsl shop;
+    protected ErpDsl erp;
+    protected TaxDsl tax;
+
     @BeforeEach
     void setUp() {
         shopDriver = DriverFactory.createShopDriver();
         erpApiDriver = DriverFactory.createErpApiDriver();
         taxApiDriver = DriverFactory.createTaxApiDriver();
+
+        var context = new DslContext();
+        shop = new ShopDsl(shopDriver, context);
+        erp = new ErpDsl(erpApiDriver, context);
+        tax = new TaxDsl(taxApiDriver, context);
     }
 
     @AfterEach
