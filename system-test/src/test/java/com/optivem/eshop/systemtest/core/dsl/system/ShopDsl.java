@@ -2,10 +2,10 @@ package com.optivem.eshop.systemtest.core.dsl.system;
 
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
-import com.optivem.eshop.systemtest.core.dsl.system.commands.CancelOrderCommand;
-import com.optivem.eshop.systemtest.core.dsl.system.commands.GoToShopCommand;
-import com.optivem.eshop.systemtest.core.dsl.system.commands.PlaceOrderCommand;
-import com.optivem.eshop.systemtest.core.dsl.system.commands.ViewOrderCommand;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.execute.CancelOrderCommand;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.execute.GoToShopCommand;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.execute.PlaceOrderCommand;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.execute.ViewOrderCommand;
 
 public class ShopDsl {
     private final ShopDriver driver;
@@ -25,11 +25,11 @@ public class ShopDsl {
     }
 
     public CancelOrderCommand cancelOrder() {
-        return new CancelOrderCommand(driver);
+        return new CancelOrderCommand(driver, context);
     }
 
     public ViewOrderCommand viewOrder() {
-        return new ViewOrderCommand(driver);
+        return new ViewOrderCommand(driver, context);
     }
 
 }

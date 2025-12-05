@@ -1,28 +1,24 @@
-package com.optivem.eshop.systemtest.core.dsl.system.commands;
+package com.optivem.eshop.systemtest.core.dsl.system.commands.execute;
 
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.BaseCommand;
 
-public class PlaceOrderCommand {
-    private final ShopDriver driver;
-    private final DslContext context;
-
+public class PlaceOrderCommand extends BaseCommand {
     private String orderNumberResultAlias;
     private String skuParamAlias;
     private String quantity;
     private String country;
 
     public PlaceOrderCommand(ShopDriver driver, DslContext context) {
-        this.driver = driver;
-        this.context = context;
+        super(driver, context);
     }
 
     public PlaceOrderCommand orderNumber(String orderNumberResultAlias) {
         this.orderNumberResultAlias = orderNumberResultAlias;
         return this;
     }
-
 
     public PlaceOrderCommand sku(String skuParamAlias) {
         this.skuParamAlias = skuParamAlias;
@@ -39,6 +35,7 @@ public class PlaceOrderCommand {
         return this;
     }
 
+    @Override
     public void execute() {
         var sku = context.params().alias(skuParamAlias);
 
