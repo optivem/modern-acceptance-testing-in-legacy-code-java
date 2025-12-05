@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.core.dsl.shop.commands.execute.PlaceOrder;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class ConfirmOrderPlaced extends BaseShopCommand {
+public class ConfirmOrderPlaced extends BaseShopCommand<Void> {
     private String orderNumberResultAlias;
 
     public ConfirmOrderPlaced(ShopDriver driver, DslContext context) {
@@ -21,8 +21,9 @@ public class ConfirmOrderPlaced extends BaseShopCommand {
     }
 
     @Override
-    public void execute() {
+    public Void execute() {
         var result = context.results().getResult(PlaceOrder.COMMAND_NAME, orderNumberResultAlias, PlaceOrderResponse.class);
         assertThatResult(result).isSuccess();
+        return null;
     }
 }

@@ -130,71 +130,25 @@ public class E2eTest {
         erp.createProduct().sku("ABC").unitPrice("20.00").execute();
         erp.confirmProductCreated().sku("ABC").execute();
 
-//        shop.placeOrder()
-//                .orderNumber("ORD-1001")
-//                .sku("ABC")
-//                .quantity("5")
-//                .country("US")
-//                .execute();
-//        shop.confirmOrderPlaced()
-//                .orderNumber("ORD-1001")
-//                .execute();
+        shop.placeOrder()
+                .orderNumber("ORD-1001")
+                .sku("ABC")
+                .quantity("5")
+                .country("US")
+                .execute();
+
+        shop.confirmOrderPlaced()
+                .orderNumber("ORD-1001")
+                .execute();
 
 
-//        var placeOrderRequest = PlaceOrderRequest.builder()
-//                .sku(sku)
-//                .quantity("5")
-//                .country("US")
-//                .build();
-//
-//        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
-//        assertThatResult(placeOrderResult).isSuccess();
-//
-//        var orderNumber = placeOrderResult.getValue().getOrderNumber();
-//
-//        assertThat(orderNumber).startsWith("ORD-");
-//
-//        var viewOrderResult = shopDriver.viewOrder(orderNumber);
-//        assertThatResult(viewOrderResult).isSuccess();
-//
-//        var viewOrderResponse = viewOrderResult.getValue();
-//        assertThat(viewOrderResponse.getOrderNumber()).isEqualTo(orderNumber);
-//        assertThat(viewOrderResponse.getSku()).isEqualTo(sku);
-//        assertThat(viewOrderResponse.getQuantity()).isEqualTo(5);
-//        assertThat(viewOrderResponse.getCountry()).isEqualTo("US");
-//        assertThat(viewOrderResponse.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));
-//        assertThat(viewOrderResponse.getOriginalPrice()).isEqualTo(new BigDecimal("100.00"));
-//        assertThat(viewOrderResponse.getStatus()).isEqualTo(OrderStatus.PLACED);
-//
-//        var discountRate = viewOrderResponse.getDiscountRate();
-//        var discountAmount = viewOrderResponse.getDiscountAmount();
-//        var subtotalPrice = viewOrderResponse.getSubtotalPrice();
-//
-//        assertThat(discountRate)
-//                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
-//
-//        assertThat(discountAmount)
-//                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
-//
-//        assertThat(subtotalPrice)
-//                .isGreaterThan(BigDecimal.ZERO);
-//
-//
-//        var taxRate = viewOrderResponse.getTaxRate();
-//        var taxAmount = viewOrderResponse.getTaxAmount();
-//        var totalPrice = viewOrderResponse.getTotalPrice();
-//
-//        assertThat(taxRate)
-//                .withFailMessage("Tax rate should be non-negative")
-//                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
-//
-//        assertThat(taxAmount)
-//                .withFailMessage("Tax amount should be non-negative")
-//                .isGreaterThanOrEqualTo(BigDecimal.ZERO);
-//
-//        assertThat(totalPrice)
-//                .withFailMessage("Total price should be positive")
-//                .isGreaterThan(BigDecimal.ZERO);
+        shop.viewOrder()
+                .orderNumber("ORD-1001")
+                .execute();
+
+        shop.confirmOrderViewed()
+                .orderNumber("ORD-1001")
+                .execute();
     }
 
 

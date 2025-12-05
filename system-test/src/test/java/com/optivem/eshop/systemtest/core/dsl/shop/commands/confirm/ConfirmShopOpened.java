@@ -7,14 +7,15 @@ import com.optivem.eshop.systemtest.core.dsl.shop.commands.execute.GoToShop;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class ConfirmShopOpened extends BaseShopCommand {
+public class ConfirmShopOpened extends BaseShopCommand<Void> {
     public ConfirmShopOpened(ShopDriver driver, DslContext context) {
         super(driver, context);
     }
 
     @Override
-    public void execute() {
+    public Void execute() {
         var result = context.results().getResult(GoToShop.COMMAND_NAME, Void.class);
         assertThatResult(result).isSuccess();
+        return null;
     }
 }

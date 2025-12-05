@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.BaseErpCommand;
 
-public class CreateProduct extends BaseErpCommand {
+public class CreateProduct extends BaseErpCommand<Void> {
     public static final String COMMAND_NAME = "CreateProduct";
 
     private String skuParamAlias;
@@ -25,11 +25,12 @@ public class CreateProduct extends BaseErpCommand {
     }
 
     @Override
-    public void execute() {
+    public Void execute() {
         var sku = context.params().getOrGenerateAliasValue(skuParamAlias);
 
         var result = driver.createProduct(sku, unitPrice);
         context.results().registerResult(COMMAND_NAME, skuParamAlias, result);
+        return null;
     }
 }
 

@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslCommand;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
 
-public abstract class BaseShopCommand implements DslCommand {
+public abstract class BaseShopCommand<T> implements DslCommand<T> {
     protected final ShopDriver driver;
     protected final DslContext context;
 
@@ -13,5 +13,5 @@ public abstract class BaseShopCommand implements DslCommand {
         this.context = context;
     }
 
-    public abstract void execute();
+    public abstract T execute();
 }

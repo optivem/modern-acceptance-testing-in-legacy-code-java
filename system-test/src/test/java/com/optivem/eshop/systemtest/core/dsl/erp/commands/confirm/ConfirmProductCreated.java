@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.dsl.erp.commands.execute.CreateProduct;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class ConfirmProductCreated extends BaseErpCommand {
+public class ConfirmProductCreated extends BaseErpCommand<Void> {
     private String skuParamAlias;
 
     public ConfirmProductCreated(ErpApiDriver driver, DslContext context) {
@@ -20,8 +20,9 @@ public class ConfirmProductCreated extends BaseErpCommand {
     }
 
     @Override
-    public void execute() {
+    public Void execute() {
         var result = context.results().getResult(CreateProduct.COMMAND_NAME, skuParamAlias, Void.class);
         assertThatResult(result).isSuccess();
+        return null;
     }
 }

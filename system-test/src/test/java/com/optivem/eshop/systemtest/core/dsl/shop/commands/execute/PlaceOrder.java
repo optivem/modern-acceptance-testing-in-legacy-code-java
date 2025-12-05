@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderR
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.shop.commands.BaseShopCommand;
 
-public class PlaceOrder extends BaseShopCommand {
+public class PlaceOrder extends BaseShopCommand<Void> {
     public static final String COMMAND_NAME = "PlaceOrder";
 
     private String orderNumberResultAlias;
@@ -38,7 +38,7 @@ public class PlaceOrder extends BaseShopCommand {
     }
 
     @Override
-    public void execute() {
+    public Void execute() {
         var sku = context.params().getOrGenerateAliasValue(skuParamAlias);
 
         var request = PlaceOrderRequest.builder()
@@ -48,6 +48,15 @@ public class PlaceOrder extends BaseShopCommand {
                 .build();
         var result = driver.placeOrder(request);
 
+        // Store the result for confirmation
         context.results().registerResult(COMMAND_NAME, orderNumberResultAlias, result);
+
+        // If successful, extract and store the order number as an alias
+        if (result.isSuccess()) {
+            var orderNumber = result.getValue().getOrderNumber();
+            context.results().setAliasValue(orderNumberResultAlias, orderNumber);
+        }
+
+        return null;
     }
 }
