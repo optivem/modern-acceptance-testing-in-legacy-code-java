@@ -3,9 +3,9 @@ package com.optivem.eshop.systemtest.core.dsl.system.commands.execute;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
-import com.optivem.eshop.systemtest.core.dsl.system.commands.BaseCommand;
+import com.optivem.eshop.systemtest.core.dsl.system.commands.BaseShopCommand;
 
-public class PlaceOrderCommand extends BaseCommand {
+public class PlaceOrderCommand extends BaseShopCommand {
     private String orderNumberResultAlias;
     private String skuParamAlias;
     private String quantity;
