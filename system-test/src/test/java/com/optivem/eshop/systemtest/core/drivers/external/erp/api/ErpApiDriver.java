@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.drivers.external.erp.api;
 import com.optivem.io.Closer;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.client.ErpApiClient;
-import com.optivem.functional.Result;
+import com.optivem.results.Result;
 
 import java.net.http.HttpClient;
 

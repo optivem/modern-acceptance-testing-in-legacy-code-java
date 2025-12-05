@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.drivers.system.shop.ui.client.pages.Ord
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
-import com.optivem.functional.Result;
+import com.optivem.results.Result;
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 
 import java.util.Objects;
