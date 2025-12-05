@@ -124,30 +124,38 @@ public class E2eTest {
                 .isGreaterThan(BigDecimal.ZERO);
     }
 
+    private static final String ORDER_NUMBER = "order-number";
+    private static final String SKU = "sku";
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderAndCalculateOriginalPriceWithDsl() {
-        erp.createProduct().sku("ABC").unitPrice("20.00").execute();
-        erp.confirmProductCreated().sku("ABC").execute();
+        erp.createProduct().sku(SKU).unitPrice("20.00").execute();
+        erp.confirmProductCreated().sku(SKU).execute();
 
         shop.placeOrder()
-                .orderNumber("ORD-1001")
-                .sku("ABC")
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
                 .quantity("5")
                 .country("US")
                 .execute();
 
         shop.confirmOrderPlaced()
-                .orderNumber("ORD-1001")
+                .orderNumber(ORDER_NUMBER)
                 .execute();
 
-
         shop.viewOrder()
-                .orderNumber("ORD-1001")
+                .orderNumber(ORDER_NUMBER)
                 .execute();
 
         shop.confirmOrderViewed()
-                .orderNumber("ORD-1001")
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
+                .quantity(5)
+                .country("US")
+                .unitPrice("20.00")
+                .originalPrice("100.00")
+                .status(OrderStatus.PLACED)
                 .execute();
     }
 
