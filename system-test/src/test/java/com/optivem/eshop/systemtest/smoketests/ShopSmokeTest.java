@@ -21,30 +21,20 @@ import org.junit.jupiter.api.extension.ExtendWith;
 public class ShopSmokeTest {
 
     private ShopDriver shopDriver;
-    private ErpApiDriver erpApiDriver;
-    private TaxApiDriver taxApiDriver;
 
     private ShopDsl shop;
-    private ErpDsl erp;
-    private TaxDsl tax;
 
     @BeforeEach
     void setUp() {
         this.shopDriver = DriverFactory.createShopDriver();
-        this.erpApiDriver = DriverFactory.createErpApiDriver();
-        this.taxApiDriver = DriverFactory.createTaxApiDriver();
 
         var context = new DslContext();
         shop = new ShopDsl(shopDriver, context);
-        erp = new ErpDsl(erpApiDriver, context);
-        tax = new TaxDsl(taxApiDriver, context);
     }
 
     @AfterEach
     void tearDown() {
         Closer.close(shopDriver);
-        Closer.close(erpApiDriver);
-        Closer.close(taxApiDriver);
     }
 
     @TestTemplate

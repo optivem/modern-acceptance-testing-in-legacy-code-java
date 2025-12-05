@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.smoketests.external;
 
+import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.tax.TaxDsl;
 import com.optivem.lang.Closer;
 import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.tax.api.TaxApiDriver;
@@ -7,15 +9,17 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
-
 public class TaxApiSmokeTest {
 
     private TaxApiDriver taxApiDriver;
+    private TaxDsl tax;
 
     @BeforeEach
     void setUp() {
         this.taxApiDriver = DriverFactory.createTaxApiDriver();
+
+        var context = new DslContext();
+        tax = new TaxDsl(taxApiDriver, context);
     }
 
     @AfterEach
@@ -25,8 +29,8 @@ public class TaxApiSmokeTest {
 
     @Test
     void shouldBeAbleToGoToTax() {
-        var result = taxApiDriver.goToTax();
-        assertThatResult(result).isSuccess();
+        tax.goToTax();
+        tax.confirmTaxOpened();
     }
 }
 
