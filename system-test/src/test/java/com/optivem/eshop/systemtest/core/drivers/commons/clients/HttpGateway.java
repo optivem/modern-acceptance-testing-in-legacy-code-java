@@ -5,7 +5,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class TestHttpClient {
+public class HttpGateway {
 
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
@@ -13,7 +13,7 @@ public class TestHttpClient {
     private final HttpClient httpClient;
     private final String baseUrl;
 
-    public TestHttpClient(HttpClient httpClient, String baseUrl) {
+    public HttpGateway(HttpClient httpClient, String baseUrl) {
         this.httpClient = httpClient;
         this.baseUrl = baseUrl;
     }

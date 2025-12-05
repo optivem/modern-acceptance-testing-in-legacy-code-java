@@ -1,14 +1,14 @@
 package com.optivem.eshop.systemtest.core.drivers.external.tax.api.client;
 
-import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpClient;
+import com.optivem.eshop.systemtest.core.drivers.commons.clients.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.external.tax.api.client.controllers.HealthController;
 
 public class TaxApiClient {
 
     private final HealthController healthController;
 
-    public TaxApiClient(TestHttpClient testHttpClient) {
-        this.healthController = new HealthController(testHttpClient);
+    public TaxApiClient(HttpGateway httpGateway) {
+        this.healthController = new HealthController(httpGateway);
     }
 
     public HealthController health() {

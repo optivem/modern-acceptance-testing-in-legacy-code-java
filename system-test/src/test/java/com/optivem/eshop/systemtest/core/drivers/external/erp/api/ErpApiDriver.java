@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.drivers.external.erp.api;
 
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.Closer;
-import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpClient;
+import com.optivem.eshop.systemtest.core.drivers.commons.clients.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.client.ErpApiClient;
 import com.optivem.eshop.systemtest.core.drivers.commons.Result;
 
@@ -14,7 +14,7 @@ public class ErpApiDriver implements AutoCloseable {
 
     public ErpApiDriver(String baseUrl) {
         this.httpClient = HttpClient.newHttpClient();
-        var testHttpClient = new TestHttpClient(httpClient, baseUrl);
+        var testHttpClient = new HttpGateway(httpClient, baseUrl);
         this.erpApiClient = new ErpApiClient(testHttpClient);
     }
 

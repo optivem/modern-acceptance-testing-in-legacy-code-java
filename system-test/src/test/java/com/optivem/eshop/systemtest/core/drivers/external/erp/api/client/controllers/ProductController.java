@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.drivers.external.erp.api.client.controllers;
 
-import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpClient;
+import com.optivem.eshop.systemtest.core.drivers.commons.clients.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.client.dtos.CreateProductRequest;
 import com.optivem.eshop.systemtest.core.drivers.commons.Result;
@@ -9,9 +9,9 @@ public class ProductController {
 
     private static final String ENDPOINT = "/api/products";
 
-    private final TestHttpClient httpClient;
+    private final HttpGateway httpClient;
 
-    public ProductController(TestHttpClient httpClient) {
+    public ProductController(HttpGateway httpClient) {
         this.httpClient = httpClient;
     }
 

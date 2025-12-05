@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.drivers.system.shop.api.client.controllers;
 
-import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpClient;
+import com.optivem.eshop.systemtest.core.drivers.commons.clients.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.commons.clients.TestHttpUtils;
 import com.optivem.eshop.systemtest.core.drivers.commons.Result;
 
@@ -8,9 +8,9 @@ public class HealthController {
 
     private static final String ENDPOINT = "/health";
 
-    private final TestHttpClient httpClient;
+    private final HttpGateway httpClient;
 
-    public HealthController(TestHttpClient httpClient) {
+    public HealthController(HttpGateway httpClient) {
         this.httpClient = httpClient;
     }
 
