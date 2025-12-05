@@ -18,12 +18,12 @@ public class ShopDsl {
         this.context = context;
     }
 
-    public GoToShop goToShop() {
-        return new GoToShop(driver, context);
+    public void goToShop() {
+        new GoToShop(driver, context).execute();
     }
 
-    public ConfirmShopOpened confirmShopOpened() {
-        return new ConfirmShopOpened(driver, context);
+    public void confirmShopOpened() {
+        new ConfirmShopOpened(driver, context).execute();
     }
 
     public PlaceOrder placeOrder() {

@@ -36,7 +36,7 @@ public class ShopSmokeTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToGoToShop() {
-        shop.goToShop().execute();
-        shop.confirmShopOpened().execute();
+        shop.goToShop();
+        shop.confirmShopOpened();
     }
 }
