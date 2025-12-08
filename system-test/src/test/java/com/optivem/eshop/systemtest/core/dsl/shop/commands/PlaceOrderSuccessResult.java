@@ -6,6 +6,7 @@ import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("UnusedReturnValue")
 public class PlaceOrderSuccessResult extends BaseSuccessResult<PlaceOrderResponse> {
 
     public PlaceOrderSuccessResult(PlaceOrderResponse response, DslContext context) {

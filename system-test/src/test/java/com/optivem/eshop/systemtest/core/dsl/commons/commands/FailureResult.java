@@ -5,6 +5,7 @@ import com.optivem.results.Result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@SuppressWarnings("UnusedReturnValue")
 public class FailureResult {
     private final Result<?> result;
     private final DslContext context;
