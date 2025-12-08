@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.dsl.commons.context;
 
-import com.optivem.results.Result;
 
 import java.util.HashMap;
 import java.util.Map;

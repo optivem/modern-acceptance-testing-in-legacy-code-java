@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.e2etests;
 
-import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.erp.ErpDsl;
 import com.optivem.eshop.systemtest.core.dsl.shop.ShopDsl;
@@ -24,12 +23,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.math.BigDecimal;
-import java.util.UUID;
 import java.util.stream.Stream;
 
-import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(ChannelExtension.class)
 public class E2eTest {

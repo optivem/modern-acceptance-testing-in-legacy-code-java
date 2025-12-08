@@ -13,8 +13,6 @@ import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
 
 import java.util.Objects;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopUiDriver implements ShopDriver {
     private final ShopUiClient client;

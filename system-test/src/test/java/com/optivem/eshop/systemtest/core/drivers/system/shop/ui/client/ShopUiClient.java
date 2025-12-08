@@ -6,9 +6,6 @@ import com.optivem.playwright.PageGateway;
 import com.optivem.eshop.systemtest.core.drivers.system.shop.ui.client.pages.HomePage;
 import org.springframework.http.HttpStatus;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ShopUiClient implements AutoCloseable {
 
