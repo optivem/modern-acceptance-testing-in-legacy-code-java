@@ -9,61 +9,69 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlaceOrderResult {
     private final Result<PlaceOrderResponse> result;
-    private final String orderNumber;
     private final DslContext context;
 
     public PlaceOrderResult(Result<PlaceOrderResponse> result, DslContext context) {
         this.result = result;
-        this.orderNumber = result.isSuccess() ? result.getValue().getOrderNumber() : null;
         this.context = context;
     }
 
-    public PlaceOrderResult expectSuccess() {
+    public PlaceOrderSuccessResult expectSuccess() {
         assertThatResult(result).isSuccess();
-        return this;
+        return new PlaceOrderSuccessResult(result.getValue(), context);
     }
 
-    public PlaceOrderResult expectFailure() {
+    public PlaceOrderFailureResult expectFailure() {
         assertThatResult(result).isFailure();
-        return this;
+        return new PlaceOrderFailureResult(result, context);
     }
 
-    public PlaceOrderResult expectErrorMessage(String expectedMessage) {
-        assertThatResult(result).isFailure();
+    public static class PlaceOrderSuccessResult {
+        private final PlaceOrderResponse response;
+        private final DslContext context;
 
-        // Replace all aliases in the expected message with their actual generated values
-        var expandedExpectedMessage = expectedMessage;
-        var aliases = context.params().getAllAliases();
-        for (var entry : aliases.entrySet()) {
-            var alias = entry.getKey();
-            var actualValue = entry.getValue();
-            expandedExpectedMessage = expandedExpectedMessage.replace(alias, actualValue);
+        private PlaceOrderSuccessResult(PlaceOrderResponse response, DslContext context) {
+            this.response = response;
+            this.context = context;
         }
 
-        var errors = result.getErrors();
-        var finalExpectedMessage = expandedExpectedMessage;
-        assertThat(errors)
-                .withFailMessage("Expected error message: '%s', but got: %s", finalExpectedMessage, errors)
-                .contains(finalExpectedMessage);
-        return this;
+        public PlaceOrderSuccessResult expectOrderNumberStartsWith(String prefix) {
+            assertThat(response.getOrderNumber()).startsWith(prefix);
+            return this;
+        }
+
+        public PlaceOrderSuccessResult expectOrderNumber(String expected) {
+            assertThat(response.getOrderNumber()).isEqualTo(expected);
+            return this;
+        }
     }
 
-    public PlaceOrderResult expectOrderNumberStartsWith(String prefix) {
-        assertThat(orderNumber).startsWith(prefix);
-        return this;
-    }
+    public static class PlaceOrderFailureResult {
+        private final Result<PlaceOrderResponse> result;
+        private final DslContext context;
 
-    public PlaceOrderResult expectOrderNumber(String expected) {
-        assertThat(orderNumber).isEqualTo(expected);
-        return this;
-    }
+        private PlaceOrderFailureResult(Result<PlaceOrderResponse> result, DslContext context) {
+            this.result = result;
+            this.context = context;
+        }
 
-    public String getOrderNumber() {
-        return orderNumber;
-    }
+        public PlaceOrderFailureResult expectErrorMessage(String expectedMessage) {
+            // Replace all aliases in the expected message with their actual generated values
+            var expandedExpectedMessage = expectedMessage;
+            var aliases = context.params().getAllAliases();
+            for (var entry : aliases.entrySet()) {
+                var alias = entry.getKey();
+                var actualValue = entry.getValue();
+                expandedExpectedMessage = expandedExpectedMessage.replace(alias, actualValue);
+            }
 
-    public Result<PlaceOrderResponse> getResult() {
-        return result;
+            var errors = result.getErrors();
+            var finalExpectedMessage = expandedExpectedMessage;
+            assertThat(errors)
+                    .withFailMessage("Expected error message: '%s', but got: %s", finalExpectedMessage, errors)
+                    .contains(finalExpectedMessage);
+            return this;
+        }
     }
 }
 
