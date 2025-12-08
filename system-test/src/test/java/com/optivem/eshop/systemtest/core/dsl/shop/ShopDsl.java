@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.dsl.shop;
 
 import com.optivem.eshop.systemtest.core.drivers.system.ShopDriver;
-import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.shop.commands.confirm.ConfirmShopOpened;
 import com.optivem.eshop.systemtest.core.dsl.shop.commands.execute.CancelOrder;
 import com.optivem.eshop.systemtest.core.dsl.shop.commands.execute.GoToShop;

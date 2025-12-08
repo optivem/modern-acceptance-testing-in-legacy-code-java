@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.dsl.tax.commands.confirm;
 
 import com.optivem.eshop.systemtest.core.drivers.external.tax.api.TaxApiDriver;
-import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.tax.commands.BaseTaxCommand;
 import com.optivem.eshop.systemtest.core.dsl.tax.commands.execute.GoToTax;
 

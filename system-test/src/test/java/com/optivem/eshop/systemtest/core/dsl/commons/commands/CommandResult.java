@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.core.dsl.shop.commands.shared;
+package com.optivem.eshop.systemtest.core.dsl.commons.commands;
 
-import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.results.Result;
 
 import java.util.function.BiFunction;

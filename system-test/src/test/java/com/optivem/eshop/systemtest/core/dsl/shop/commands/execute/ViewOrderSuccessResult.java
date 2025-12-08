@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.core.dsl.shop.commands.execute;
 
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
-import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
-import com.optivem.eshop.systemtest.core.dsl.shop.commands.shared.BaseSuccessResult;
+import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.commons.commands.BaseSuccessResult;
 
 import java.math.BigDecimal;
 

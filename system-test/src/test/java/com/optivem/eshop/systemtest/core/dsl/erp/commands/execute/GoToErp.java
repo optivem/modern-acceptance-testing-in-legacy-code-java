@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.dsl.erp.commands.execute;
 
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
-import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.BaseErpCommand;
 
 public class GoToErp extends BaseErpCommand<Void> {
