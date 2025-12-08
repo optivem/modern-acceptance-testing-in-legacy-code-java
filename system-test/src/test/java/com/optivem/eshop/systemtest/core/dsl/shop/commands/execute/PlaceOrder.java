@@ -54,6 +54,6 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResult> {
             context.results().setAliasValue(orderNumberResultAlias, orderNumber);
         }
 
-        return new PlaceOrderResult(result);
+        return new PlaceOrderResult(result, context);
     }
 }

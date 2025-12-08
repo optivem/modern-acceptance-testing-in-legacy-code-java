@@ -27,5 +27,7 @@ public class ParamContext {
         return alias + "-" + suffix;
     }
 
-
+    public Map<String, String> getAllAliases() {
+        return new HashMap<>(map);
+    }
 }

@@ -156,7 +156,7 @@ public class E2eTest {
                 .country("US")
                 .execute()
                 .expectFailure()
-                .expectErrorMessage("Product does not exist for SKU: NON-EXISTENT-SKU-12345-[a-f0-9]{8}");
+                .expectErrorMessage("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
     }
 
     @TestTemplate
