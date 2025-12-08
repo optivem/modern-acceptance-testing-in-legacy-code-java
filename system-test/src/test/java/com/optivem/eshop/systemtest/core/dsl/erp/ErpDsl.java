@@ -2,7 +2,6 @@ package com.optivem.eshop.systemtest.core.dsl.erp;
 
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
-import com.optivem.eshop.systemtest.core.dsl.erp.commands.confirm.ConfirmProductCreated;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.execute.CreateProduct;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.execute.GoToErp;
 
@@ -21,10 +20,6 @@ public class ErpDsl {
 
     public CreateProduct createProduct() {
         return new CreateProduct(driver, context);
-    }
-
-    public ConfirmProductCreated confirmProductCreated() {
-        return new ConfirmProductCreated(driver, context);
     }
 }
 
