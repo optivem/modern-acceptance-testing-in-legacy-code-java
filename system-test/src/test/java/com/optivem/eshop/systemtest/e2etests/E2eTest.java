@@ -67,7 +67,8 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderAndCalculateOriginalPrice() {
-        erp.givenProduct().sku(SKU).unitPrice("20.00").execute();
+        erp.createProduct().sku(SKU).unitPrice("20.00").execute();
+        erp.confirmProductCreated().sku(SKU).execute();
 
         shop.placeOrder()
                 .orderNumber(ORDER_NUMBER)
