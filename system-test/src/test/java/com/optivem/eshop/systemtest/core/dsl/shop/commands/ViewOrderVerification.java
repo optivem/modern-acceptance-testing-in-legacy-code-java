@@ -17,7 +17,7 @@ public class ViewOrderVerification extends BaseSuccessVerification<GetOrderRespo
     }
 
     public ViewOrderVerification orderNumber(String orderNumberResultAlias) {
-        var expectedOrderNumber = context.results().getAliasValue(orderNumberResultAlias);
+        var expectedOrderNumber = context.getResultValue(orderNumberResultAlias);
         var actualOrderNumber = response.getOrderNumber();
         assertThat(actualOrderNumber)
                 .withFailMessage("Expected order number to be '%s', but was '%s'", expectedOrderNumber, actualOrderNumber)
@@ -26,7 +26,7 @@ public class ViewOrderVerification extends BaseSuccessVerification<GetOrderRespo
     }
 
     public ViewOrderVerification sku(String skuParamAlias) {
-        var expectedSku = context.params().getAliasValue(skuParamAlias);
+        var expectedSku = context.getParamValue(skuParamAlias);
         var actualSku = response.getSku();
         assertThat(actualSku)
                 .withFailMessage("Expected SKU to be '%s', but was '%s'", expectedSku, actualSku)

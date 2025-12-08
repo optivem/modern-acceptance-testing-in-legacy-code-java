@@ -20,7 +20,7 @@ public class ViewOrder extends BaseShopCommand<GetOrderResponse, ViewOrderVerifi
 
     @Override
     public CommandResult<GetOrderResponse, ViewOrderVerification> execute() {
-        var orderNumber = context.results().getAliasValue(orderNumberResultAlias);
+        var orderNumber = context.getResultValue(orderNumberResultAlias);
 
         var result = driver.viewOrder(orderNumber);
 

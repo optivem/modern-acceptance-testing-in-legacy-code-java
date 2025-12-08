@@ -11,7 +11,7 @@ public class ResultContext {
         this.aliasMap = new HashMap<>();
     }
 
-    public void setAliasValue(String alias, String value) {
+    public void setEntry(String alias, String value) {
         if(aliasMap.containsKey(alias)) {
             throw new IllegalStateException("Alias already exists: " + alias);
         }
@@ -19,7 +19,7 @@ public class ResultContext {
         aliasMap.put(alias, value);
     }
 
-    public String getAliasValue(String alias) {
+    public String getValue(String alias) {
         var value = aliasMap.get(alias);
         if(value == null) {
             return alias; // Return literal value if not found as alias

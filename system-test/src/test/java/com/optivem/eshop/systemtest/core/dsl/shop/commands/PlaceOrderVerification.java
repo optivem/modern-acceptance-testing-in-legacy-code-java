@@ -14,7 +14,7 @@ public class PlaceOrderVerification extends BaseSuccessVerification<PlaceOrderRe
     }
 
     public PlaceOrderVerification orderNumber(String orderNumberResultAlias) {
-        var expectedOrderNumber = context.results().getAliasValue(orderNumberResultAlias);
+        var expectedOrderNumber = context.getResultValue(orderNumberResultAlias);
         var actualOrderNumber = response.getOrderNumber();
         assertThat(actualOrderNumber)
                 .withFailMessage("Expected order number to be '%s', but was '%s'", expectedOrderNumber, actualOrderNumber)

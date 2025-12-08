@@ -11,7 +11,7 @@ public class ParamContext {
         this.map = new HashMap<>();
     }
 
-    public String getAliasValue(String alias) {
+    public String getValue(String alias) {
         if(alias == null || alias.isBlank()) {
             return alias;
         }
@@ -26,7 +26,7 @@ public class ParamContext {
         return value;
     }
 
-    public Map<String, String> getAllAliases() {
+    public Map<String, String> getEntries() {
         return new HashMap<>(map);
     }
 

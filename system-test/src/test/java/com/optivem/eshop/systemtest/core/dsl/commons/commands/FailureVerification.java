@@ -18,7 +18,7 @@ public class FailureVerification {
     public FailureVerification errorMessage(String expectedMessage) {
         // Replace all aliases in the expected message with their actual generated values
         var expandedExpectedMessage = expectedMessage;
-        var aliases = context.params().getAllAliases();
+        var aliases = context.getParamEntries();
         for (var entry : aliases.entrySet()) {
             var alias = entry.getKey();
             var actualValue = entry.getValue();

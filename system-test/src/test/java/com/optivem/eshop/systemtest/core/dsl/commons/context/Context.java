@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.core.dsl.commons.context;
 
+import java.util.Map;
+
 public class Context {
 
     private final ParamContext paramContext;
@@ -10,12 +12,20 @@ public class Context {
         this.resultContext = new ResultContext();
     }
 
-    public ParamContext params() {
-        return paramContext;
+    public String getParamValue(String alias) {
+        return paramContext.getValue(alias);
     }
 
-    public ResultContext results() {
-        return resultContext;
+    public Map<String, String> getParamEntries() {
+        return paramContext.getEntries();
+    }
+
+    public void setResultEntry(String alias, String value) {
+        resultContext.setEntry(alias, value);
+    }
+
+    public String getResultValue(String alias) {
+        return resultContext.getValue(alias);
     }
 }
 
