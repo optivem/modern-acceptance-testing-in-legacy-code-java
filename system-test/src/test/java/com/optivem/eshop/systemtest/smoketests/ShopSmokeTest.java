@@ -38,6 +38,6 @@ public class ShopSmokeTest {
     void shouldBeAbleToGoToShop() {
         shop.goToShop()
                 .execute()
-                .expectSuccess();
+                .shouldSucceed();
     }
 }

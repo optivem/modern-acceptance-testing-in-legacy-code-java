@@ -71,7 +71,7 @@ public class E2eTest {
                 .sku(SKU)
                 .unitPrice("20.00")
                 .execute()
-                .expectSuccess();
+                .shouldSucceed();
 
         shop.placeOrder()
                 .orderNumber(ORDER_NUMBER)
@@ -79,27 +79,27 @@ public class E2eTest {
                 .quantity("5")
                 .country("US")
                 .execute()
-                .expectSuccess()
-                .expectOrderNumber(ORDER_NUMBER)
-                .expectOrderNumberStartsWith("ORD-");
+                .shouldSucceed()
+                .shouldHaveOrderNumber(ORDER_NUMBER)
+                .shouldHaveOrderNumberStartingWith("ORD-");
 
         shop.viewOrder()
                 .orderNumber(ORDER_NUMBER)
                 .execute()
-                .expectSuccess()
-                .expectOrderNumber(ORDER_NUMBER)
-                .expectSku(SKU)
-                .expectQuantity(5)
-                .expectCountry("US")
-                .expectUnitPrice("20.00")
-                .expectOriginalPrice("100.00")
-                .expectStatus(OrderStatus.PLACED)
-                .expectDiscountRateGreaterThanOrEqualToZero()
-                .expectDiscountAmountGreaterThanOrEqualToZero()
-                .expectSubtotalPriceGreaterThanZero()
-                .expectTaxRateGreaterThanOrEqualToZero()
-                .expectTaxAmountGreaterThanOrEqualToZero()
-                .expectTotalPriceGreaterThanZero();
+                .shouldSucceed()
+                .shouldHaveOrderNumber(ORDER_NUMBER)
+                .shouldHaveSku(SKU)
+                .shouldHaveQuantity(5)
+                .shouldHaveCountry("US")
+                .shouldHaveUnitPrice("20.00")
+                .shouldHaveOriginalPrice("100.00")
+                .shouldHaveStatus(OrderStatus.PLACED)
+                .shouldHaveDiscountRateGreaterThanOrEqualToZero()
+                .shouldHaveDiscountAmountGreaterThanOrEqualToZero()
+                .shouldHaveSubtotalPriceGreaterThanZero()
+                .shouldHaveTaxRateGreaterThanOrEqualToZero()
+                .shouldHaveTaxAmountGreaterThanOrEqualToZero()
+                .shouldHaveTotalPriceGreaterThanZero();
     }
 
     @TestTemplate
@@ -157,8 +157,8 @@ public class E2eTest {
                 .quantity("5")
                 .country("US")
                 .execute()
-                .expectFailure()
-                .expectErrorMessage("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
+                .shouldFail()
+                .shouldHaveErrorMessage("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
     }
 
     @TestTemplate

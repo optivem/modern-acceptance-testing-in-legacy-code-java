@@ -7,28 +7,28 @@ import java.util.function.BiFunction;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class CommandResult<TResponse, TSuccessResult> {
+public class CommandResult<TResponse, TVerifications> {
     private final Result<TResponse> result;
     private final DslContext context;
-    private final BiFunction<TResponse, DslContext, TSuccessResult> successResultFactory;
+    private final BiFunction<TResponse, DslContext, TVerifications> verificationsFactory;
 
     public CommandResult(
             Result<TResponse> result,
             DslContext context,
-            BiFunction<TResponse, DslContext, TSuccessResult> successResultFactory) {
+            BiFunction<TResponse, DslContext, TVerifications> verificationsFactory) {
         this.result = result;
         this.context = context;
-        this.successResultFactory = successResultFactory;
+        this.verificationsFactory = verificationsFactory;
     }
 
-    public TSuccessResult expectSuccess() {
+    public TVerifications shouldSucceed() {
         assertThatResult(result).isSuccess();
-        return successResultFactory.apply(result.getValue(), context);
+        return verificationsFactory.apply(result.getValue(), context);
     }
 
-    public FailureResult expectFailure() {
+    public FailureVerifications shouldFail() {
         assertThatResult(result).isFailure();
-        return new FailureResult(result, context);
+        return new FailureVerifications(result, context);
     }
 }
 

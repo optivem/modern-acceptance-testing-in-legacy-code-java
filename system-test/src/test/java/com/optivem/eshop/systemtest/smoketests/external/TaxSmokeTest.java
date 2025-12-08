@@ -31,7 +31,7 @@ public class TaxSmokeTest {
     void shouldBeAbleToGoToTax() {
         tax.goToTax()
                 .execute()
-                .expectSuccess();
+                .shouldSucceed();
     }
 }
 

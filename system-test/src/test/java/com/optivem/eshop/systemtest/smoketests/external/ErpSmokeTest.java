@@ -31,7 +31,7 @@ public class ErpSmokeTest {
     void shouldBeAbleToGoToErp() {
         erp.goToErp()
                 .execute()
-                .expectSuccess();
+                .shouldSucceed();
     }
 }
 

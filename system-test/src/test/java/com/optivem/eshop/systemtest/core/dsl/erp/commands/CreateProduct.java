@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.core.dsl.erp.commands;
 
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.commands.CommandResult;
-import com.optivem.eshop.systemtest.core.dsl.commons.commands.VoidSuccessResult;
+import com.optivem.eshop.systemtest.core.dsl.commons.commands.VoidVerifications;
 import com.optivem.eshop.systemtest.core.dsl.commons.context.DslContext;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.base.BaseErpCommand;
 
-public class CreateProduct extends BaseErpCommand<CommandResult<Void, VoidSuccessResult>> {
+public class CreateProduct extends BaseErpCommand<CommandResult<Void, VoidVerifications>> {
     private String skuParamAlias;
     private String unitPrice;
 
@@ -25,12 +25,12 @@ public class CreateProduct extends BaseErpCommand<CommandResult<Void, VoidSucces
     }
 
     @Override
-    public CommandResult<Void, VoidSuccessResult> execute() {
+    public CommandResult<Void, VoidVerifications> execute() {
         var sku = context.params().getOrGenerateAliasValue(skuParamAlias);
 
         var result = driver.createProduct(sku, unitPrice);
 
-        return new CommandResult<>(result, context, VoidSuccessResult::new);
+        return new CommandResult<>(result, context, VoidVerifications::new);
     }
 }
 

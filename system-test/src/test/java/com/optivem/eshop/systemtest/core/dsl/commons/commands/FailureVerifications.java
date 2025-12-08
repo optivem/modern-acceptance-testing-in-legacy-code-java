@@ -6,16 +6,16 @@ import com.optivem.results.Result;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("UnusedReturnValue")
-public class FailureResult {
+public class FailureVerifications {
     private final Result<?> result;
     private final DslContext context;
 
-    public FailureResult(Result<?> result, DslContext context) {
+    public FailureVerifications(Result<?> result, DslContext context) {
         this.result = result;
         this.context = context;
     }
 
-    public FailureResult expectErrorMessage(String expectedMessage) {
+    public FailureVerifications shouldHaveErrorMessage(String expectedMessage) {
         // Replace all aliases in the expected message with their actual generated values
         var expandedExpectedMessage = expectedMessage;
         var aliases = context.params().getAllAliases();
