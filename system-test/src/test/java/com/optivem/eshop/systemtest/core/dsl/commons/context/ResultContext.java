@@ -23,7 +23,7 @@ public class ResultContext {
     public String getAliasValue(String alias) {
         var value = aliasMap.get(alias);
         if(value == null) {
-            throw new IllegalStateException("Alias not found: " + alias);
+            return alias; // Return literal value if not found as alias
         }
 
         return value;

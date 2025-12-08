@@ -12,6 +12,10 @@ public class ParamContext {
     }
 
     public String getOrGenerateAliasValue(String alias) {
+        if(alias == null || alias.isEmpty() || alias.isBlank()) {
+            return alias;
+        }
+
         if(map.containsKey(alias)) {
             return map.get(alias);
         }
@@ -22,12 +26,12 @@ public class ParamContext {
         return value;
     }
 
-    private static String generateRandomValue(String alias) {
-        var suffix = UUID.randomUUID().toString().substring(0, 8);
-        return alias + "-" + suffix;
-    }
-
     public Map<String, String> getAllAliases() {
         return new HashMap<>(map);
+    }
+
+        private static String generateRandomValue(String alias) {
+        var suffix = UUID.randomUUID().toString().substring(0, 8);
+        return alias + "-" + suffix;
     }
 }

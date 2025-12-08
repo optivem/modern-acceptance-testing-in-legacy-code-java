@@ -105,40 +105,41 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldCancelOrder() {
-        var sku = "XYZ-" + UUID.randomUUID();
-        var createProductResult = erpApiDriver.createProduct(sku, "50.00");
-        assertThatResult(createProductResult).isSuccess();
+        erp.createProduct()
+                .sku(SKU)
+                .unitPrice("50.00")
+                .execute()
+                .shouldSucceed();
 
-        var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(sku)
+        shop.placeOrder()
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
                 .quantity("2")
                 .country("US")
-                .build();
+                .execute()
+                .shouldSucceed();
 
-        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
-        assertThatResult(placeOrderResult).isSuccess();
+        shop.cancelOrder()
+                .orderNumber(ORDER_NUMBER)
+                .execute()
+                .shouldSucceed();
 
-        var orderNumber = placeOrderResult.getValue().getOrderNumber();
-        var cancelOrderResult = shopDriver.cancelOrder(orderNumber);
-        assertThatResult(cancelOrderResult).isSuccess();
-
-        var viewOrderResult = shopDriver.viewOrder(orderNumber);
-        assertThatResult(viewOrderResult).isSuccess();
-
-        var viewOrderResponse = viewOrderResult.getValue();
-        assertThat(viewOrderResponse.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(viewOrderResponse.getSku()).isEqualTo(sku);
-        assertThat(viewOrderResponse.getQuantity()).isEqualTo(2);
-        assertThat(viewOrderResponse.getCountry()).isEqualTo("US");
-        assertThat(viewOrderResponse.getUnitPrice()).isEqualTo(new BigDecimal("50.00"));
-        assertThat(viewOrderResponse.getOriginalPrice()).isEqualTo(new BigDecimal("100.00"));
-        assertThat(viewOrderResponse.getStatus()).isEqualTo(OrderStatus.CANCELLED);
+        shop.viewOrder()
+                .orderNumber(ORDER_NUMBER)
+                .execute()
+                .shouldSucceed()
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
+                .quantity(2)
+                .country("US")
+                .unitPrice("50.00")
+                .originalPrice("100.00")
+                .status(OrderStatus.CANCELLED);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithNonExistentSku() {
-
         shop.placeOrder()
                 .sku("NON-EXISTENT-SKU-12345")
                 .quantity("5")
@@ -151,50 +152,35 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldNotBeAbleToViewNonExistentOrder() {
-        var result = shopDriver.viewOrder("NON-EXISTENT-ORDER-12345");
-        assertThatResult(result).isFailure("Order NON-EXISTENT-ORDER-12345 does not exist.");
+        shop.viewOrder()
+                .orderNumber("NON-EXISTENT-ORDER-12345")
+                .execute()
+                .shouldFail()
+                .errorMessage("Order NON-EXISTENT-ORDER-12345 does not exist.");
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithNegativeQuantity() {
-        var sku = "DEF-" + UUID.randomUUID();
-        var createProductResult = erpApiDriver.createProduct(sku, "30.00");
-        assertThatResult(createProductResult).isSuccess();
-
-        var request = PlaceOrderRequest.builder()
-                .sku(sku)
-                .quantity("-3")
+        shop.placeOrder()
+                .sku("SOME-SKU-12345")
+                .quantity("-10")
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Quantity must be positive");
+                .execute()
+                .shouldFail()
+                .errorMessage("Quantity must be positive");
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithZeroQuantity() {
-        var sku = "GHI-" + UUID.randomUUID();
-        var createProductResult = erpApiDriver.createProduct(sku, "40.00");
-        assertThatResult(createProductResult).isSuccess();
-
-        var request = PlaceOrderRequest.builder()
-                .sku(sku)
+        shop.placeOrder()
+                .sku("ANOTHER-SKU-67890")
                 .quantity("0")
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Quantity must be positive");
-    }
-
-
-    private static Stream<Arguments> provideEmptySkuValues() {
-        return Stream.of(
-                Arguments.of(""),      // Empty string
-                Arguments.of("   ")    // Whitespace string
-        );
+                .execute()
+                .shouldFail()
+                .errorMessage("Quantity must be positive");
     }
 
     @TestTemplate
@@ -202,28 +188,26 @@ public class E2eTest {
     @TestDataSource("")
     @TestDataSource("   ")
     void shouldRejectOrderWithEmptySku(String sku) {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku(sku)
                 .quantity("5")
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("SKU must not be empty");
+                .execute()
+                .shouldFail()
+                .errorMessage("SKU must not be empty");
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     @ArgumentsSource(EmptyQuantityArgumentsProvider.class)
     void shouldRejectOrderWithEmptyQuantity(String emptyQuantity, String expectedErrorMessage) {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku("some-sku")
                 .quantity(emptyQuantity)
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure(expectedErrorMessage);
+                .execute()
+                .shouldFail()
+                .errorMessage(expectedErrorMessage);
     }
 
     @TestTemplate
@@ -231,14 +215,13 @@ public class E2eTest {
     @TestDataSource("3.5")
     @TestDataSource("lala")
     void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku("some-sku")
                 .quantity(nonIntegerQuantity)
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Quantity must be an integer");
+                .execute()
+                .shouldFail()
+                .errorMessage("Quantity must be an integer");
     }
 
     private static Stream<Arguments> provideEmptyCountryValues() {
@@ -252,70 +235,67 @@ public class E2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     @MethodSource("provideEmptyCountryValues")
     void shouldRejectOrderWithEmptyCountry(String emptyCountry, String expectedErrorMessage) {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku("some-sku")
                 .quantity("5")
                 .country(emptyCountry)
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure(expectedErrorMessage);
+                .execute()
+                .shouldFail()
+                .errorMessage(expectedErrorMessage);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithUnsupportedCountry() {
-        var sku = "JKL-" + UUID.randomUUID();
-        var createProductResult = erpApiDriver.createProduct(sku, "25.00");
-        assertThatResult(createProductResult).isSuccess();
+        erp.createProduct()
+                .sku(SKU)
+                .unitPrice("15.00")
+                .execute()
+                .shouldSucceed();
 
-        var request = PlaceOrderRequest.builder()
-                .sku(sku)
-                .quantity("3")
+        shop.placeOrder()
+                .sku(SKU)
+                .quantity("5")
                 .country("XX")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Country does not exist: XX");
+                .execute()
+                .shouldFail()
+                .errorMessage("Country does not exist: XX");
     }
 
     @TestTemplate
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullQuantity() {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku("some-sku")
                 .quantity(null)
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Quantity must not be empty");
+                .execute()
+                .shouldFail()
+                .errorMessage("Quantity must not be empty");
     }
 
     @TestTemplate
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullSku() {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku(null)
                 .quantity("5")
                 .country("US")
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("SKU must not be empty");
+                .execute()
+                .shouldFail()
+                .errorMessage("SKU must not be empty");
     }
 
     @TestTemplate
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullCountry() {
-        var request = PlaceOrderRequest.builder()
+        shop.placeOrder()
                 .sku("some-sku")
                 .quantity("5")
                 .country(null)
-                .build();
-
-        var result = shopDriver.placeOrder(request);
-        assertThatResult(result).isFailure("Country must not be empty");
+                .execute()
+                .shouldFail()
+                .errorMessage("Country must not be empty");
     }
 
     @TestTemplate
@@ -323,34 +303,39 @@ public class E2eTest {
     @TestDataSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})
     @TestDataSource({"INVALID-ORDER-12345", "Order INVALID-ORDER-12345 does not exist."})
     void shouldNotCancelNonExistentOrder(String orderNumber, String expectedErrorMessage) {
-        var result = shopDriver.cancelOrder(orderNumber);
-        assertThatResult(result).isFailure(expectedErrorMessage);
+        shop.cancelOrder()
+                .orderNumber(orderNumber)
+                .execute()
+                .shouldFail()
+                .errorMessage(expectedErrorMessage);
     }
 
     @TestTemplate
     @Channel({ChannelType.API})
     void shouldNotCancelAlreadyCancelledOrder() {
-        var sku = "MNO-" + UUID.randomUUID();
-        var createProductResult = erpApiDriver.createProduct(sku, "35.00");
-        assertThatResult(createProductResult).isSuccess();
+        erp.createProduct()
+                .sku(SKU)
+                .unitPrice("35.00")
+                .execute()
+                .shouldSucceed();
 
-        var request = PlaceOrderRequest.builder()
-                .sku(sku)
+        shop.placeOrder()
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
                 .quantity("3")
                 .country("US")
-                .build();
+                .execute()
+                .shouldSucceed();
 
-        var placeOrderResult = shopDriver.placeOrder(request);
-        assertThatResult(placeOrderResult).isSuccess();
+        shop.cancelOrder()
+                .orderNumber(ORDER_NUMBER)
+                .execute()
+                .shouldSucceed();
 
-        var orderNumber = placeOrderResult.getValue().getOrderNumber();
-
-        // Cancel the order first time - should succeed
-        var firstCancelResult = shopDriver.cancelOrder(orderNumber);
-        assertThatResult(firstCancelResult).isSuccess();
-
-        // Try to cancel the same order again - should fail
-        var secondCancelResult = shopDriver.cancelOrder(orderNumber);
-        assertThatResult(secondCancelResult).isFailure("Order has already been cancelled");
+        shop.cancelOrder()
+                .orderNumber(ORDER_NUMBER)
+                .execute()
+                .shouldFail()
+                .errorMessage("Order has already been cancelled");
     }
 }
