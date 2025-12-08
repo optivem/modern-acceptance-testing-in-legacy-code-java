@@ -24,9 +24,9 @@ public class ViewOrderResult {
         return new ViewOrderSuccessResult(result.getValue(), context);
     }
 
-    public ViewOrderFailureResult expectFailure() {
+    public FailureResult expectFailure() {
         assertThatResult(result).isFailure();
-        return new ViewOrderFailureResult(result, context);
+        return new FailureResult(result, context);
     }
 
     public static class ViewOrderSuccessResult {
@@ -115,20 +115,6 @@ public class ViewOrderResult {
                     .withFailMessage("Total price should be positive, but was: %s", totalPrice)
                     .isGreaterThan(BigDecimal.ZERO);
             return this;
-        }
-    }
-
-    public static class ViewOrderFailureResult extends BaseFailureResult<ViewOrderFailureResult> {
-        private final Result<GetOrderResponse> result;
-
-        private ViewOrderFailureResult(Result<GetOrderResponse> result, DslContext context) {
-            super(context);
-            this.result = result;
-        }
-
-        @Override
-        protected java.util.Collection<String> getErrors() {
-            return result.getErrors();
         }
     }
 }

@@ -1,22 +1,22 @@
 package com.optivem.eshop.systemtest.core.dsl.shop.commands.execute;
 
 import com.optivem.eshop.systemtest.core.dsl.commons.DslContext;
+import com.optivem.results.Result;
 
 import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public abstract class BaseFailureResult<T extends BaseFailureResult<T>> {
-    protected final DslContext context;
+public class FailureResult {
+    private final Result<?> result;
+    private final DslContext context;
 
-    protected BaseFailureResult(DslContext context) {
+    public FailureResult(Result<?> result, DslContext context) {
+        this.result = result;
         this.context = context;
     }
 
-    protected abstract Collection<String> getErrors();
-
-    @SuppressWarnings("unchecked")
-    public T expectErrorMessage(String expectedMessage) {
+    public FailureResult expectErrorMessage(String expectedMessage) {
         // Replace all aliases in the expected message with their actual generated values
         var expandedExpectedMessage = expectedMessage;
         var aliases = context.params().getAllAliases();
@@ -26,12 +26,12 @@ public abstract class BaseFailureResult<T extends BaseFailureResult<T>> {
             expandedExpectedMessage = expandedExpectedMessage.replace(alias, actualValue);
         }
 
-        var errors = getErrors();
+        var errors = result.getErrors();
         var finalExpectedMessage = expandedExpectedMessage;
         assertThat(errors)
                 .withFailMessage("Expected error message: '%s', but got: %s", finalExpectedMessage, errors)
                 .contains(finalExpectedMessage);
-        return (T) this;
+        return this;
     }
 }
 

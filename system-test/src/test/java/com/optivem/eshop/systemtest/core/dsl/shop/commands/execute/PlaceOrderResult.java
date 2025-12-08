@@ -21,9 +21,9 @@ public class PlaceOrderResult {
         return new PlaceOrderSuccessResult(result.getValue(), context);
     }
 
-    public PlaceOrderFailureResult expectFailure() {
+    public FailureResult expectFailure() {
         assertThatResult(result).isFailure();
-        return new PlaceOrderFailureResult(result, context);
+        return new FailureResult(result, context);
     }
 
     public static class PlaceOrderSuccessResult {
@@ -43,20 +43,6 @@ public class PlaceOrderResult {
         public PlaceOrderSuccessResult expectOrderNumber(String expected) {
             assertThat(response.getOrderNumber()).isEqualTo(expected);
             return this;
-        }
-    }
-
-    public static class PlaceOrderFailureResult extends BaseFailureResult<PlaceOrderFailureResult> {
-        private final Result<PlaceOrderResponse> result;
-
-        private PlaceOrderFailureResult(Result<PlaceOrderResponse> result, DslContext context) {
-            super(context);
-            this.result = result;
-        }
-
-        @Override
-        protected java.util.Collection<String> getErrors() {
-            return result.getErrors();
         }
     }
 }
