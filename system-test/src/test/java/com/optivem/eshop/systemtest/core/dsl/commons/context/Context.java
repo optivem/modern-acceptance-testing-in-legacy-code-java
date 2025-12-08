@@ -16,16 +16,23 @@ public class Context {
         return paramContext.getValue(alias);
     }
 
-    public Map<String, String> getParamEntries() {
-        return paramContext.getEntries();
-    }
-
     public void setResultEntry(String alias, String value) {
         resultContext.setEntry(alias, value);
     }
 
     public String getResultValue(String alias) {
         return resultContext.getValue(alias);
+    }
+
+    public String expandAliases(String message) {
+        var expandedMessage = message;
+        var aliases = paramContext.getEntries();
+        for (var entry : aliases.entrySet()) {
+            var alias = entry.getKey();
+            var actualValue = entry.getValue();
+            expandedMessage = expandedMessage.replace(alias, actualValue);
+        }
+        return expandedMessage;
     }
 }
 
