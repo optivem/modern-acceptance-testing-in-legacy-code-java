@@ -15,12 +15,18 @@ public class PlaceOrderVerification extends BaseSuccessResult<PlaceOrderResponse
 
     public PlaceOrderVerification orderNumber(String orderNumberResultAlias) {
         var expectedOrderNumber = context.results().getAliasValue(orderNumberResultAlias);
-        assertThat(response.getOrderNumber()).isEqualTo(expectedOrderNumber);
+        var actualOrderNumber = response.getOrderNumber();
+        assertThat(actualOrderNumber)
+                .withFailMessage("Expected order number to be '%s', but was '%s'", expectedOrderNumber, actualOrderNumber)
+                .isEqualTo(expectedOrderNumber);
         return this;
     }
 
     public PlaceOrderVerification orderNumberStartingWith(String prefix) {
-        assertThat(response.getOrderNumber()).startsWith(prefix);
+        var actualOrderNumber = response.getOrderNumber();
+        assertThat(actualOrderNumber)
+                .withFailMessage("Expected order number to start with '%s', but was '%s'", prefix, actualOrderNumber)
+                .startsWith(prefix);
         return this;
     }
 }

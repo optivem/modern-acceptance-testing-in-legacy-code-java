@@ -18,38 +18,61 @@ public class ViewOrderVerification extends BaseSuccessResult<GetOrderResponse> {
 
     public ViewOrderVerification orderNumber(String orderNumberResultAlias) {
         var expectedOrderNumber = context.results().getAliasValue(orderNumberResultAlias);
-        assertThat(response.getOrderNumber()).isEqualTo(expectedOrderNumber);
+        var actualOrderNumber = response.getOrderNumber();
+        assertThat(actualOrderNumber)
+                .withFailMessage("Expected order number to be '%s', but was '%s'", expectedOrderNumber, actualOrderNumber)
+                .isEqualTo(expectedOrderNumber);
         return this;
     }
 
     public ViewOrderVerification sku(String skuParamAlias) {
         var expectedSku = context.params().getOrGenerateAliasValue(skuParamAlias);
-        assertThat(response.getSku()).isEqualTo(expectedSku);
+        var actualSku = response.getSku();
+        assertThat(actualSku)
+                .withFailMessage("Expected SKU to be '%s', but was '%s'", expectedSku, actualSku)
+                .isEqualTo(expectedSku);
         return this;
     }
 
     public ViewOrderVerification quantity(int expectedQuantity) {
-        assertThat(response.getQuantity()).isEqualTo(expectedQuantity);
+        var actualQuantity = response.getQuantity();
+        assertThat(actualQuantity)
+                .withFailMessage("Expected quantity to be %d, but was %d", expectedQuantity, actualQuantity)
+                .isEqualTo(expectedQuantity);
         return this;
     }
 
     public ViewOrderVerification country(String expectedCountry) {
-        assertThat(response.getCountry()).isEqualTo(expectedCountry);
+        var actualCountry = response.getCountry();
+        assertThat(actualCountry)
+                .withFailMessage("Expected country to be '%s', but was '%s'", expectedCountry, actualCountry)
+                .isEqualTo(expectedCountry);
         return this;
     }
 
     public ViewOrderVerification unitPrice(String expectedUnitPrice) {
-        assertThat(response.getUnitPrice()).isEqualTo(new BigDecimal(expectedUnitPrice));
+        var expectedPrice = new BigDecimal(expectedUnitPrice);
+        var actualPrice = response.getUnitPrice();
+        assertThat(actualPrice)
+                .withFailMessage("Expected unit price to be %s, but was %s", expectedPrice, actualPrice)
+                .isEqualTo(expectedPrice);
         return this;
     }
 
     public ViewOrderVerification originalPrice(String expectedOriginalPrice) {
-        assertThat(response.getOriginalPrice()).isEqualTo(new BigDecimal(expectedOriginalPrice));
+        var expectedPrice = new BigDecimal(expectedOriginalPrice);
+        var actualPrice = response.getOriginalPrice();
+        assertThat(actualPrice)
+                .withFailMessage("Expected original price to be %s, but was %s", expectedPrice, actualPrice)
+                .isEqualTo(expectedPrice);
         return this;
     }
 
     public ViewOrderVerification status(OrderStatus expectedStatus) {
-        assertThat(response.getStatus()).isEqualTo(expectedStatus);
+        var actualStatus = response.getStatus();
+        assertThat(actualStatus)
+                .withFailMessage("Expected status to be %s, but was %s", expectedStatus, actualStatus)
+                .isEqualTo(expectedStatus);
         return this;
     }
 
