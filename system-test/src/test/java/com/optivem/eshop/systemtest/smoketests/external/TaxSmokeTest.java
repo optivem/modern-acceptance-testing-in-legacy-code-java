@@ -29,8 +29,9 @@ public class TaxSmokeTest {
 
     @Test
     void shouldBeAbleToGoToTax() {
-        tax.goToTax();
-        tax.confirmTaxOpened();
+        tax.goToTax()
+                .execute()
+                .expectSuccess();
     }
 }
 
