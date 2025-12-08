@@ -27,4 +27,8 @@ public class ResultContext {
 
         return value;
     }
+
+    public Map<String, String> getEntries() {
+        return new HashMap<>(aliasMap);
+    }
 }

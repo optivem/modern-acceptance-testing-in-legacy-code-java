@@ -25,14 +25,21 @@ public class Context {
     }
 
     public String expandAliases(String message) {
+        var expandedMessage = expandAlias(message, paramContext.getEntries());
+        expandedMessage = expandAlias(expandedMessage, resultContext.getEntries());
+        return expandedMessage;
+    }
+
+    private static String expandAlias(String message, Map<String, String> map) {
         var expandedMessage = message;
-        var aliases = paramContext.getEntries();
-        for (var entry : aliases.entrySet()) {
+        for (var entry : map.entrySet()) {
             var alias = entry.getKey();
             var actualValue = entry.getValue();
             expandedMessage = expandedMessage.replace(alias, actualValue);
         }
         return expandedMessage;
     }
+
+
 }
 
