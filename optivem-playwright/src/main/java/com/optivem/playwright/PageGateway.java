@@ -14,14 +14,38 @@ public class PageGateway {
     private static final int DEFAULT_TIMEOUT_SECONDS = 10;
     private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
 
-    private PageGateway(Page page, String baseUrl, int timeoutMilliseconds) {
-        this.page = page;
-        this.baseUrl = baseUrl;
-        this.timeoutMilliseconds = timeoutMilliseconds;
+    private PageGateway(Builder builder) {
+        this.page = builder.page;
+        this.baseUrl = builder.baseUrl;
+        this.timeoutMilliseconds = builder.timeoutMilliseconds;
     }
 
-    public PageGateway(Page page, String baseUrl) {
-        this(page, baseUrl, DEFAULT_TIMEOUT_MILLISECONDS);
+    public static Builder builder(Page page) {
+        return new Builder(page);
+    }
+
+    public static class Builder {
+        private final Page page;
+        private String baseUrl = null;
+        private int timeoutMilliseconds = DEFAULT_TIMEOUT_MILLISECONDS;
+
+        private Builder(Page page) {
+            this.page = page;
+        }
+
+        public Builder baseUrl(String baseUrl) {
+            this.baseUrl = baseUrl;
+            return this;
+        }
+
+        public Builder timeoutMilliseconds(int timeoutMilliseconds) {
+            this.timeoutMilliseconds = timeoutMilliseconds;
+            return this;
+        }
+
+        public PageGateway build() {
+            return new PageGateway(this);
+        }
     }
 
     public void fill(String selector, String text) {
