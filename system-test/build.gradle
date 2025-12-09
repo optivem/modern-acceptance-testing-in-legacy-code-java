@@ -22,13 +22,16 @@ repositories {
 
 dependencies {
 	// Internal modules
+	testImplementation project(':optivem-lang')
 	testImplementation project(':optivem-result')
 	testImplementation project(':optivem-http')
+	testImplementation project(':optivem-playwright')
+	testImplementation project(':optivem-testing-assertion')
+	testImplementation project(':optivem-testing-channel')
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework:spring-web'
-    testImplementation 'com.microsoft.playwright:playwright:1.44.0'
 	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
 	testImplementation 'org.yaml:snakeyaml:2.0'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
