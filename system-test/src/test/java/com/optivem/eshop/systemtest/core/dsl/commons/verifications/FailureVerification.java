@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.dsl.commons.verifications;
 
 import com.optivem.eshop.systemtest.core.dsl.commons.context.Context;
-import com.optivem.result.Result;
+import com.optivem.results.Result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

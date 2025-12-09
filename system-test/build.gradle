@@ -23,11 +23,11 @@ repositories {
 dependencies {
 	// Internal modules (resolved via composite build in settings.gradle)
 	testImplementation 'com.optivem:optivem-lang'
-	testImplementation 'com.optivem:optivem-result'
+	testImplementation 'com.optivem:optivem-results'
 	testImplementation 'com.optivem:optivem-http'
 	testImplementation 'com.optivem:optivem-playwright'
-	testImplementation 'com.optivem:optivem-testing-assertion'
-	testImplementation 'com.optivem:optivem-testing-channel'
+	testImplementation 'com.optivem:optivem-testing-assertions'
+	testImplementation 'com.optivem:optivem-testing-channels'
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

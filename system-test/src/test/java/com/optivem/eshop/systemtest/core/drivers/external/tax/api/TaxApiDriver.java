@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.drivers.external.tax.api;
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.external.tax.api.client.TaxApiClient;
-import com.optivem.result.Result;
+import com.optivem.results.Result;
 
 import java.net.http.HttpClient;
 

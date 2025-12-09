@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.drivers;
 
 import com.optivem.eshop.systemtest.TestConfiguration;
-import com.optivem.testing.channel.ChannelContext;
+import com.optivem.testing.channels.ChannelContext;
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.external.tax.api.TaxApiDriver;
 import com.optivem.eshop.systemtest.core.drivers.system.shop.ShopDriver;

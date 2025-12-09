@@ -4,11 +4,11 @@ rootProject.name = 'system-test'
 includeBuild('..') {
     dependencySubstitution {
         substitute module('com.optivem:optivem-lang') using project(':optivem-lang')
-        substitute module('com.optivem:optivem-result') using project(':optivem-result')
+        substitute module('com.optivem:optivem-results') using project(':optivem-results')
         substitute module('com.optivem:optivem-http') using project(':optivem-http')
         substitute module('com.optivem:optivem-playwright') using project(':optivem-playwright')
-        substitute module('com.optivem:optivem-testing-assertion') using project(':optivem-testing-assertion')
-        substitute module('com.optivem:optivem-testing-channel') using project(':optivem-testing-channel')
+        substitute module('com.optivem:optivem-testing-assertions') using project(':optivem-testing-assertions')
+        substitute module('com.optivem:optivem-testing-channels') using project(':optivem-testing-channels')
     }
 }
 

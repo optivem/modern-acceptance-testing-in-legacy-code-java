@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.drivers.external.erp.api.client.contro
 
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;
-import com.optivem.result.Result;
+import com.optivem.results.Result;
 
 public class HealthController {
 

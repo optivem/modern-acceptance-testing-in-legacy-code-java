@@ -1,4 +1,4 @@
-package com.optivem.testing.channel;
+package com.optivem.testing.channels;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

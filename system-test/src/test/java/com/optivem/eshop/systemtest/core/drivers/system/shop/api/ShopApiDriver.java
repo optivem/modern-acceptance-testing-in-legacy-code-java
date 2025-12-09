@@ -6,7 +6,7 @@ import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.drivers.system.shop.api.client.ShopApiClient;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.PlaceOrderResponse;
-import com.optivem.result.Result;
+import com.optivem.results.Result;
 import com.optivem.eshop.systemtest.core.drivers.system.shop.ShopDriver;
 
 import java.net.http.HttpClient;

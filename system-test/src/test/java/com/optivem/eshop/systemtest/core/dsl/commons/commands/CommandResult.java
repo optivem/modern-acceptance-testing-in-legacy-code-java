@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.core.dsl.commons.commands;
 
 import com.optivem.eshop.systemtest.core.dsl.commons.context.Context;
 import com.optivem.eshop.systemtest.core.dsl.commons.verifications.FailureVerification;
-import com.optivem.result.Result;
+import com.optivem.results.Result;
 
 import java.util.function.BiFunction;
 
-import static com.optivem.testing.assertion.ResultAssert.assertThatResult;
+import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
 public class CommandResult<TResponse, TVerification> {
     private final Result<TResponse> result;
