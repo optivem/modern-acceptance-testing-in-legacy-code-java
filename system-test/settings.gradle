@@ -1,0 +1,14 @@
+rootProject.name = 'system-test'
+
+// Include parent modules as dependencies
+includeBuild('..') {
+    dependencySubstitution {
+        substitute module('com.optivem:optivem-lang') using project(':optivem-lang')
+        substitute module('com.optivem:optivem-result') using project(':optivem-result')
+        substitute module('com.optivem:optivem-http') using project(':optivem-http')
+        substitute module('com.optivem:optivem-playwright') using project(':optivem-playwright')
+        substitute module('com.optivem:optivem-testing-assertion') using project(':optivem-testing-assertion')
+        substitute module('com.optivem:optivem-testing-channel') using project(':optivem-testing-channel')
+    }
+}
+
