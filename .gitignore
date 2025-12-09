@@ -12,6 +12,13 @@
 # VS Code
 .vscode/
 
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Gradle wrapper JAR is intentionally tracked - do not ignore:
+# gradle/wrapper/gradle-wrapper.jar
 
 # OS
 .DS_Store

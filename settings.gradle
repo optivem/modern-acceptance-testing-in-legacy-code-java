@@ -1,0 +1,6 @@
+rootProject.name = 'modern-acceptance-testing-in-legacy-code-java'
+include 'system-test'
+include 'optivem-http'
+include 'optivem-result'
+
+

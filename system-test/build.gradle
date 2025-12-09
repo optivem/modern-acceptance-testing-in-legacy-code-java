@@ -21,6 +21,10 @@ repositories {
 }
 
 dependencies {
+	// Internal modules
+	testImplementation project(':optivem-result')
+	testImplementation project(':optivem-http')
+
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework:spring-web'
