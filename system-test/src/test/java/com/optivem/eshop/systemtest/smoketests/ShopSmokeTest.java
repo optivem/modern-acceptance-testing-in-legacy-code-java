@@ -1,12 +1,10 @@
 package com.optivem.eshop.systemtest.smoketests;
 
-import com.optivem.eshop.systemtest.core.drivers.system.shop.ShopDriver;
-import com.optivem.eshop.systemtest.core.dsl.commons.context.Context;
+import com.optivem.eshop.systemtest.core.dsl.DslFactory;
 import com.optivem.eshop.systemtest.core.dsl.shop.ShopDsl;
 import com.optivem.testing.channel.Channel;
 import com.optivem.testing.channel.ChannelExtension;
 import com.optivem.eshop.systemtest.core.channels.ChannelType;
-import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.lang.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,21 +14,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @ExtendWith(ChannelExtension.class)
 public class ShopSmokeTest {
 
-    private ShopDriver shopDriver;
-
     private ShopDsl shop;
 
     @BeforeEach
     void setUp() {
-        this.shopDriver = DriverFactory.createShopDriver();
-
-        var context = new Context();
-        shop = new ShopDsl(shopDriver, context);
+        DslFactory dslFactory = new DslFactory();
+        shop = dslFactory.createShopDsl();
     }
 
     @AfterEach
     void tearDown() {
-        Closer.close(shopDriver);
+        Closer.close(shop);
     }
 
     @TestTemplate

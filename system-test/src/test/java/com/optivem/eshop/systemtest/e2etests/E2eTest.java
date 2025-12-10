@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests;
 
-import com.optivem.eshop.systemtest.core.dsl.commons.context.Context;
+import com.optivem.eshop.systemtest.core.dsl.DslFactory;
 import com.optivem.eshop.systemtest.core.dsl.erp.ErpDsl;
 import com.optivem.eshop.systemtest.core.dsl.shop.ShopDsl;
 import com.optivem.eshop.systemtest.e2etests.providers.EmptyQuantityArgumentsProvider;
@@ -10,9 +10,6 @@ import com.optivem.eshop.systemtest.core.channels.ChannelType;
 import com.optivem.testing.channel.TestDataSource;
 import com.optivem.lang.Closer;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
-import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
-import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
-import com.optivem.eshop.systemtest.core.drivers.system.shop.ShopDriver;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
@@ -27,26 +24,20 @@ import java.util.stream.Stream;
 @ExtendWith(ChannelExtension.class)
 public class E2eTest {
 
-    private ShopDriver shopDriver;
-    private ErpApiDriver erpApiDriver;
-
     private ShopDsl shop;
     private ErpDsl erp;
 
     @BeforeEach
     void setUp() {
-        shopDriver = DriverFactory.createShopDriver();
-        erpApiDriver = DriverFactory.createErpApiDriver();
-
-        var context = new Context();
-        shop = new ShopDsl(shopDriver, context);
-        erp = new ErpDsl(erpApiDriver, context);
+        DslFactory dslFactory = new DslFactory();
+        shop = dslFactory.createShopDsl();
+        erp = dslFactory.createErpDsl();
     }
 
     @AfterEach
     void tearDown() {
-        Closer.close(shopDriver);
-        Closer.close(erpApiDriver);
+        Closer.close(shop);
+        Closer.close(erp);
     }
 
     private static final String ORDER_NUMBER = "order-number";

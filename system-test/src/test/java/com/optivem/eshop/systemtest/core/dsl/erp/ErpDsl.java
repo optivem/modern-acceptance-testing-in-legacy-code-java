@@ -1,17 +1,26 @@
 package com.optivem.eshop.systemtest.core.dsl.erp;
 
+import com.optivem.eshop.systemtest.core.drivers.DriverFactory;
 import com.optivem.eshop.systemtest.core.drivers.external.erp.api.ErpApiDriver;
 import com.optivem.eshop.systemtest.core.dsl.commons.context.Context;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.CreateProduct;
 import com.optivem.eshop.systemtest.core.dsl.erp.commands.GoToErp;
+import com.optivem.lang.Closer;
 
-public class ErpDsl {
+import java.io.Closeable;
+
+public class ErpDsl implements Closeable {
     private final ErpApiDriver driver;
     private final Context context;
 
-    public ErpDsl(ErpApiDriver driver, Context context) {
-        this.driver = driver;
+    public ErpDsl(Context context) {
+        this.driver = DriverFactory.createErpApiDriver();
         this.context = context;
+    }
+
+    @Override
+    public void close() {
+        Closer.close(driver);
     }
 
     public GoToErp goToErp() {
