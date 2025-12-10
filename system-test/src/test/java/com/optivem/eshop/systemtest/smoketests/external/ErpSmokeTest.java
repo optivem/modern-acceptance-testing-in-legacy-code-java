@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.external;
 
-import com.optivem.eshop.systemtest.core.dsl.DslFactory;
-import com.optivem.eshop.systemtest.core.dsl.erp.ErpDsl;
+import com.optivem.eshop.systemtest.core.dsl.Dsl;
 import com.optivem.lang.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,22 +8,21 @@ import org.junit.jupiter.api.Test;
 
 public class ErpSmokeTest {
 
-    private ErpDsl erp;
+    private Dsl dsl;
 
     @BeforeEach
     void setUp() {
-        DslFactory dslFactory = new DslFactory();
-        erp = dslFactory.createErpDsl();
+        dsl = new Dsl();
     }
 
     @AfterEach
     void tearDown() {
-        Closer.close(erp);
+        Closer.close(dsl);
     }
 
     @Test
     void shouldBeAbleToGoToErp() {
-        erp.goToErp()
+        dsl.erp().goToErp()
                 .execute()
                 .shouldSucceed();
     }
