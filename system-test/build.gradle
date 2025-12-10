@@ -28,6 +28,7 @@ dependencies {
 	testImplementation 'com.optivem:optivem-playwright'
 	testImplementation 'com.optivem:optivem-testing-assertions'
 	testImplementation 'com.optivem:optivem-testing-channels'
+	testImplementation 'com.optivem:optivem-testing-dsl'
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

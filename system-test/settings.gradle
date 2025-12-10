@@ -9,6 +9,7 @@ includeBuild('..') {
         substitute module('com.optivem:optivem-playwright') using project(':optivem-playwright')
         substitute module('com.optivem:optivem-testing-assertions') using project(':optivem-testing-assertions')
         substitute module('com.optivem:optivem-testing-channels') using project(':optivem-testing-channels')
+        substitute module('com.optivem:optivem-testing-dsl') using project(':optivem-testing-dsl')
     }
 }
 
