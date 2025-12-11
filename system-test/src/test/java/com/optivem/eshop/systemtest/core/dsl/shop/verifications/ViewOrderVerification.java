@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.dsl.shop.verifications;
 
 import com.optivem.eshop.systemtest.core.drivers.system.commons.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.drivers.system.commons.enums.OrderStatus;
+import com.optivem.eshop.systemtest.core.dsl.shop.commands.ViewOrder;
 import com.optivem.testing.dsl.BaseSuccessVerification;
 import com.optivem.testing.dsl.Context;
 
@@ -42,6 +43,10 @@ public class ViewOrderVerification extends BaseSuccessVerification<GetOrderRespo
         return this;
     }
 
+    public ViewOrderVerification quantity(String expectedQuantity) {
+        return quantity(Integer.parseInt(expectedQuantity));
+    }
+
     public ViewOrderVerification country(String expectedCountry) {
         var actualCountry = response.getCountry();
         assertThat(actualCountry)
@@ -59,6 +64,10 @@ public class ViewOrderVerification extends BaseSuccessVerification<GetOrderRespo
         return this;
     }
 
+    public ViewOrderVerification unitPrice(String expectedUnitPrice) {
+        return unitPrice(Double.parseDouble(expectedUnitPrice));
+    }
+
     public ViewOrderVerification originalPrice(double expectedOriginalPrice) {
         var expectedPrice = BigDecimal.valueOf(expectedOriginalPrice);
         var actualPrice = response.getOriginalPrice();
@@ -68,12 +77,20 @@ public class ViewOrderVerification extends BaseSuccessVerification<GetOrderRespo
         return this;
     }
 
+    public ViewOrderVerification originalPrice(String expectedOriginalPrice) {
+        return originalPrice(Double.parseDouble(expectedOriginalPrice));
+    }
+
     public ViewOrderVerification status(OrderStatus expectedStatus) {
         var actualStatus = response.getStatus();
         assertThat(actualStatus)
                 .withFailMessage("Expected status to be %s, but was %s", expectedStatus, actualStatus)
                 .isEqualTo(expectedStatus);
         return this;
+    }
+
+    public ViewOrderVerification status(String expectedStatus) {
+        return status(OrderStatus.valueOf(expectedStatus));
     }
 
     public ViewOrderVerification discountRateGreaterThanOrEqualToZero() {

@@ -65,7 +65,7 @@ public class E2eTest {
                 .shouldSucceed();
 
         dsl.shop().viewOrder().orderNumber("ORDER-1001").execute()
-                .shouldSucceed().originalPrice(Double.parseDouble(originalPrice));
+                .shouldSucceed().originalPrice(originalPrice);
     }
 
     @TestTemplate
