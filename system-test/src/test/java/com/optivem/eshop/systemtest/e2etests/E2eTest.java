@@ -37,6 +37,8 @@ public class E2eTest {
     private static final String ORDER_NUMBER = "order-number";
     private static final String SKU = "sku";
 
+    // NOTE: This was used in live session
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectOriginalPrice() {
@@ -49,6 +51,8 @@ public class E2eTest {
         dsl.shop().viewOrder().orderNumber("ORDER-1001").execute()
                 .shouldSucceed().originalPrice(100.00);
     }
+
+    // NOTE: This was used in live session
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
@@ -133,14 +137,23 @@ public class E2eTest {
                 .errorMessage("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
     }
 
+    private static Stream<Arguments> provideNonExistentOrderValues() {
+        return Stream.of(
+                Arguments.of("NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."),
+                Arguments.of("NON-EXISTENT-ORDER-88888", "Order NON-EXISTENT-ORDER-88888 does not exist."),
+                Arguments.of("NON-EXISTENT-ORDER-77777", "Order NON-EXISTENT-ORDER-77777 does not exist.")
+        );
+    }
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldNotBeAbleToViewNonExistentOrder() {
+    @MethodSource("provideNonExistentOrderValues")
+    void shouldNotBeAbleToViewNonExistentOrder(String orderNumber, String expectedErrorMessage) {
         dsl.shop().viewOrder()
-                .orderNumber("NON-EXISTENT-ORDER-12345")
+                .orderNumber(orderNumber)
                 .execute()
                 .shouldFail()
-                .errorMessage("Order NON-EXISTENT-ORDER-12345 does not exist.");
+                .errorMessage(expectedErrorMessage);
     }
 
     @TestTemplate
@@ -266,7 +279,8 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.API})
     @TestDataSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})
-    @TestDataSource({"INVALID-ORDER-12345", "Order INVALID-ORDER-12345 does not exist."})
+    @TestDataSource({"NON-EXISTENT-ORDER-88888", "Order NON-EXISTENT-ORDER-88888 does not exist."})
+    @TestDataSource({"NON-EXISTENT-ORDER-77777", "Order NON-EXISTENT-ORDER-77777 does not exist."})
     void shouldNotCancelNonExistentOrder(String orderNumber, String expectedErrorMessage) {
         dsl.shop().cancelOrder()
                 .orderNumber(orderNumber)
