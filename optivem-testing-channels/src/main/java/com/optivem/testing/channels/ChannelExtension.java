@@ -8,12 +8,19 @@ import org.junit.jupiter.api.extension.TestTemplateInvocationContext;
 import org.junit.jupiter.api.extension.TestTemplateInvocationContextProvider;
 import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -89,6 +96,33 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
         else if (testMethod.isAnnotationPresent(ValueSource.class)) {
             ValueSource valueSourceAnnotation = testMethod.getAnnotation(ValueSource.class);
             extractValuesFromValueSource(valueSourceAnnotation, dataRows);
+        }
+        // Check if the method has @CsvSource annotation
+        else if (testMethod.isAnnotationPresent(CsvSource.class)) {
+            CsvSource csvSourceAnnotation = testMethod.getAnnotation(CsvSource.class);
+            extractValuesFromCsvSource(csvSourceAnnotation, dataRows);
+        }
+        // Check if the method has @EnumSource annotation
+        else if (testMethod.isAnnotationPresent(EnumSource.class)) {
+            EnumSource enumSourceAnnotation = testMethod.getAnnotation(EnumSource.class);
+            extractValuesFromEnumSource(enumSourceAnnotation, dataRows);
+        }
+        // Check if the method has @NullAndEmptySource annotation
+        else if (testMethod.isAnnotationPresent(NullAndEmptySource.class)) {
+            extractValuesFromNullAndEmptySource(testMethod, dataRows);
+            // Also check for @ValueSource to combine
+            if (testMethod.isAnnotationPresent(ValueSource.class)) {
+                ValueSource valueSourceAnnotation = testMethod.getAnnotation(ValueSource.class);
+                extractValuesFromValueSource(valueSourceAnnotation, dataRows);
+            }
+        }
+        // Check if the method has @NullSource annotation
+        else if (testMethod.isAnnotationPresent(NullSource.class)) {
+            dataRows.add(new Object[]{null});
+        }
+        // Check if the method has @EmptySource annotation
+        else if (testMethod.isAnnotationPresent(EmptySource.class)) {
+            extractValuesFromEmptySource(testMethod, dataRows);
         } else {
             // Check if the method has DataSource annotations
             DataSource.Container containerAnnotation =
@@ -187,6 +221,137 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
                 dataRows.add(new Object[]{value});
             }
         }
+    }
+
+    /**
+     * Extracts arguments from a @CsvSource annotation.
+     */
+    private void extractValuesFromCsvSource(CsvSource annotation, List<Object[]> dataRows) {
+        // Default delimiter is comma; annotation.delimiter() returns '\0' when using default
+        String delimiter;
+        if (annotation.delimiterString() != null && !annotation.delimiterString().isEmpty()) {
+            delimiter = annotation.delimiterString();
+        } else if (annotation.delimiter() != '\0') {
+            delimiter = String.valueOf(annotation.delimiter());
+        } else {
+            delimiter = ","; // Default delimiter
+        }
+
+        String nullValue = annotation.nullValues().length > 0 ? annotation.nullValues()[0] : null;
+        String emptyValue = annotation.emptyValue();
+
+        for (String line : annotation.value()) {
+            String[] parts = line.split(delimiter, -1);
+            Object[] row = new Object[parts.length];
+            for (int i = 0; i < parts.length; i++) {
+                String part = parts[i].trim();
+                if (nullValue != null && part.equals(nullValue)) {
+                    row[i] = null;
+                } else if (emptyValue != null && part.equals(emptyValue)) {
+                    row[i] = "";
+                } else {
+                    row[i] = part;
+                }
+            }
+            dataRows.add(row);
+        }
+    }
+
+    /**
+     * Extracts arguments from a @EnumSource annotation.
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private void extractValuesFromEnumSource(EnumSource annotation, List<Object[]> dataRows) {
+        Class<? extends Enum<?>> enumClass = annotation.value();
+        Enum<?>[] enumConstants = enumClass.getEnumConstants();
+
+        String[] names = annotation.names();
+        EnumSource.Mode mode = annotation.mode();
+
+        for (Enum<?> enumConstant : enumConstants) {
+            boolean include = shouldIncludeEnum(enumConstant, names, mode);
+            if (include) {
+                dataRows.add(new Object[]{enumConstant});
+            }
+        }
+    }
+
+    /**
+     * Determines if an enum constant should be included based on the filter names and mode.
+     */
+    private boolean shouldIncludeEnum(Enum<?> enumConstant, String[] names, EnumSource.Mode mode) {
+        if (names.length == 0) {
+            return true; // No filter, include all
+        }
+
+        boolean matchesName = false;
+        for (String name : names) {
+            if (mode == EnumSource.Mode.MATCH_ALL || mode == EnumSource.Mode.MATCH_ANY) {
+                // Pattern matching modes
+                if (enumConstant.name().matches(name)) {
+                    matchesName = true;
+                    break;
+                }
+            } else {
+                // Exact name matching
+                if (enumConstant.name().equals(name)) {
+                    matchesName = true;
+                    break;
+                }
+            }
+        }
+
+        return switch (mode) {
+            case INCLUDE, MATCH_ANY, MATCH_ALL, MATCH_NONE -> matchesName;
+            case EXCLUDE -> !matchesName;
+        };
+    }
+
+    /**
+     * Extracts empty values based on the parameter type for @EmptySource.
+     */
+    private void extractValuesFromEmptySource(Method testMethod, List<Object[]> dataRows) {
+        Parameter[] parameters = testMethod.getParameters();
+        if (parameters.length > 0) {
+            Class<?> paramType = parameters[0].getType();
+            Object emptyValue = getEmptyValueForType(paramType);
+            dataRows.add(new Object[]{emptyValue});
+        }
+    }
+
+    /**
+     * Extracts null and empty values for @NullAndEmptySource.
+     */
+    private void extractValuesFromNullAndEmptySource(Method testMethod, List<Object[]> dataRows) {
+        // Add null first
+        dataRows.add(new Object[]{null});
+
+        // Then add empty value based on parameter type
+        Parameter[] parameters = testMethod.getParameters();
+        if (parameters.length > 0) {
+            Class<?> paramType = parameters[0].getType();
+            Object emptyValue = getEmptyValueForType(paramType);
+            dataRows.add(new Object[]{emptyValue});
+        }
+    }
+
+    /**
+     * Gets an empty value for a given type.
+     */
+    private Object getEmptyValueForType(Class<?> type) {
+        if (type == String.class) {
+            return "";
+        } else if (type == List.class || type.isAssignableFrom(ArrayList.class)) {
+            return new ArrayList<>();
+        } else if (type.isArray()) {
+            return java.lang.reflect.Array.newInstance(type.getComponentType(), 0);
+        } else if (type == java.util.Set.class) {
+            return new java.util.HashSet<>();
+        } else if (type == java.util.Map.class) {
+            return new java.util.HashMap<>();
+        }
+        // Default to empty string for unknown types
+        return "";
     }
 
     /**
