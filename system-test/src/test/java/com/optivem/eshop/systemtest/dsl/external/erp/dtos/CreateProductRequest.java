@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.external.erp.driver.client.dtos;
+package com.optivem.eshop.systemtest.dsl.external.erp.dtos;
 
 import lombok.Data;
 

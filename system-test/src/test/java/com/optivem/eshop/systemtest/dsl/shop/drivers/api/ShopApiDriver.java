@@ -1,13 +1,13 @@
-package com.optivem.eshop.systemtest.dsl.shop.driver.api;
+package com.optivem.eshop.systemtest.dsl.shop.drivers.api;
 
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.PlaceOrderRequest;
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
-import com.optivem.eshop.systemtest.dsl.shop.driver.api.client.ShopApiClient;
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.GetOrderResponse;
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.api.client.ShopApiClient;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.GetOrderResponse;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.PlaceOrderResponse;
 import com.optivem.results.Result;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ShopDriver;
 
 import java.net.http.HttpClient;
 

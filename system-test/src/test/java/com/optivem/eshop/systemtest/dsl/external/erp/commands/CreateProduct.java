@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.external.erp.commands;
 
-import com.optivem.eshop.systemtest.dsl.external.erp.driver.ErpApiDriver;
+import com.optivem.eshop.systemtest.dsl.external.erp.driver.ErpDriver;
 import com.optivem.testing.dsl.CommandResult;
 import com.optivem.testing.dsl.VoidVerification;
 import com.optivem.testing.dsl.Context;
@@ -12,7 +12,7 @@ public class CreateProduct extends BaseErpCommand<Void, VoidVerification> {
     private String skuParamAlias;
     private String unitPrice;
 
-    public CreateProduct(ErpApiDriver driver, Context context) {
+    public CreateProduct(ErpDriver driver, Context context) {
         super(driver, context);
 
         unitPrice(DEFAULT_UNIT_PRICE);

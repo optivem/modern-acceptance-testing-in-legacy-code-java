@@ -7,12 +7,12 @@ import com.optivem.results.Result;
 
 import java.net.http.HttpClient;
 
-public class TaxApiDriver implements AutoCloseable {
+public class TaxDriver implements AutoCloseable {
 
     private final HttpClient httpClient;
     private final TaxApiClient taxApiClient;
 
-    public TaxApiDriver(String baseUrl) {
+    public TaxDriver(String baseUrl) {
         this.httpClient = HttpClient.newHttpClient();
         var testHttpClient = new HttpGateway(httpClient, baseUrl);
         this.taxApiClient = new TaxApiClient(testHttpClient);

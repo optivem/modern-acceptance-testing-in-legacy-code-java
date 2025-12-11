@@ -1,15 +1,15 @@
-package com.optivem.eshop.systemtest.dsl.shop.driver.ui;
+package com.optivem.eshop.systemtest.dsl.shop.drivers.ui;
 
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ui.client.ShopUiClient;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ui.client.pages.HomePage;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ui.client.pages.NewOrderPage;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ui.client.pages.OrderHistoryPage;
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.GetOrderResponse;
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.enums.OrderStatus;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ui.client.ShopUiClient;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ui.client.pages.HomePage;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ui.client.pages.NewOrderPage;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ui.client.pages.OrderHistoryPage;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.GetOrderResponse;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.enums.OrderStatus;
 import com.optivem.results.Result;
-import com.optivem.eshop.systemtest.dsl.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ShopDriver;
 
 import java.util.Objects;
 

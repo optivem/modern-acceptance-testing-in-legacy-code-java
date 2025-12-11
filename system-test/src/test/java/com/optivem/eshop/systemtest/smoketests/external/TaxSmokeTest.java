@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.external;
 
+import com.optivem.eshop.systemtest.DslFactory;
 import com.optivem.eshop.systemtest.dsl.Dsl;
 import com.optivem.lang.Closer;
 import org.junit.jupiter.api.AfterEach;
@@ -12,7 +13,7 @@ public class TaxSmokeTest {
 
     @BeforeEach
     void setUp() {
-        dsl = new Dsl();
+        dsl = DslFactory.create();
     }
 
     @AfterEach

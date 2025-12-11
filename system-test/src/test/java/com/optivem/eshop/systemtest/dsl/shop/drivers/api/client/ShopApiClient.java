@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.dsl.shop.driver.api.client;
+package com.optivem.eshop.systemtest.dsl.shop.drivers.api.client;
 
 import com.optivem.http.HttpGateway;
-import com.optivem.eshop.systemtest.dsl.shop.driver.api.client.controllers.HealthController;
-import com.optivem.eshop.systemtest.dsl.shop.driver.api.client.controllers.OrderController;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.api.client.controllers.HealthController;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.api.client.controllers.OrderController;
 
 public class ShopApiClient {
 

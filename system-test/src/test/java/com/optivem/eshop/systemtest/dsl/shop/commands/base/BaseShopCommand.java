@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.shop.commands.base;
 
-import com.optivem.eshop.systemtest.dsl.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.dsl.shop.drivers.ShopDriver;
 import com.optivem.testing.dsl.BaseCommand;
 import com.optivem.testing.dsl.Context;
 

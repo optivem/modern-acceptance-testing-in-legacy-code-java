@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests;
 
+import com.optivem.eshop.systemtest.DslFactory;
 import com.optivem.eshop.systemtest.dsl.Dsl;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.ChannelExtension;
@@ -17,7 +18,7 @@ public class ShopSmokeTest {
 
     @BeforeEach
     void setUp() {
-        dsl = new Dsl();
+        dsl = DslFactory.create();
     }
 
     @AfterEach

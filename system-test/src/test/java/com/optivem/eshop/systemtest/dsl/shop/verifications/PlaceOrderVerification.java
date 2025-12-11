@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.shop.verifications;
 
-import com.optivem.eshop.systemtest.dsl.shop.driver.commons.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.dsl.shop.dtos.PlaceOrderResponse;
 import com.optivem.testing.dsl.BaseSuccessVerification;
 import com.optivem.testing.dsl.Context;
 
