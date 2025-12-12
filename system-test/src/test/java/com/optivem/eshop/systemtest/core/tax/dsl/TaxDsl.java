@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.dsl;
 
-import com.optivem.eshop.systemtest.core.AppConfiguration;
+import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
 import com.optivem.testing.dsl.Context;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.GoToTax;
@@ -12,12 +12,12 @@ public class TaxDsl implements Closeable {
     private final TaxDriver driver;
     private final Context context;
 
-    public TaxDsl(Context context, AppConfiguration configuration) {
+    public TaxDsl(Context context, SystemConfiguration configuration) {
         this.driver = createDriver(configuration);
         this.context = context;
     }
 
-    private static TaxDriver createDriver(AppConfiguration configuration) {
+    private static TaxDriver createDriver(SystemConfiguration configuration) {
         return new TaxDriver(configuration.getTaxBaseUrl());
     }
 

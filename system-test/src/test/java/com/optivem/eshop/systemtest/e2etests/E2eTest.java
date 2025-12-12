@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests;
 
-import com.optivem.eshop.systemtest.AppDslFactory;
-import com.optivem.eshop.systemtest.core.AppDsl;
+import com.optivem.eshop.systemtest.SystemDslFactory;
+import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.e2etests.providers.EmptyArgumentsProvider;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.ChannelExtension;
@@ -24,11 +24,11 @@ import java.util.stream.Stream;
 @ExtendWith(ChannelExtension.class)
 public class E2eTest {
 
-    private AppDsl app;
+    private SystemDsl app;
 
     @BeforeEach
     void setUp() {
-        app = AppDslFactory.create();
+        app = SystemDslFactory.create();
     }
 
     @AfterEach

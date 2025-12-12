@@ -9,15 +9,15 @@ import com.optivem.lang.Closer;
 import java.io.Closeable;
 import java.util.function.Supplier;
 
-public class AppDsl implements Closeable {
+public class SystemDsl implements Closeable {
     private final Context context;
-    private final AppConfiguration configuration;
+    private final SystemConfiguration configuration;
 
     private ShopDsl shop;
     private ErpDsl erp;
     private TaxDsl tax;
 
-    public AppDsl(AppConfiguration configuration) {
+    public SystemDsl(SystemConfiguration configuration) {
         this.context = new Context();
         this.configuration = configuration;
     }
