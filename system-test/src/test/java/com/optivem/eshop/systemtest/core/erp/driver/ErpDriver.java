@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.core.erp.driver;
 
+import com.optivem.eshop.systemtest.core.erp.dtos.CreateProductRequest;
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.erp.driver.client.ErpApiClient;
@@ -22,8 +23,8 @@ public class ErpDriver implements AutoCloseable {
         return erpApiClient.health().checkHealth();
     }
 
-    public Result<Void> createProduct(String sku, String unitPrice) {
-        return erpApiClient.products().createProduct(sku, unitPrice);
+    public Result<Void> createProduct(CreateProductRequest request) {
+        return erpApiClient.products().createProduct(request);
     }
 
     @Override
