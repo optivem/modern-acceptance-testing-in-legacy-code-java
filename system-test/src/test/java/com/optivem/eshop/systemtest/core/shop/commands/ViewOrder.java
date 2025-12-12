@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.commands;
 
-import com.optivem.eshop.systemtest.core.shop.drivers.ShopDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dtos.GetOrderResponse;
 import com.optivem.testing.dsl.CommandResult;
 import com.optivem.testing.dsl.Context;

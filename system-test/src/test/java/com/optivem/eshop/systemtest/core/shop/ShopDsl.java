@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.core.shop;
 
 import com.optivem.eshop.systemtest.core.DslConfiguration;
-import com.optivem.eshop.systemtest.core.shop.drivers.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.drivers.api.ShopApiDriver;
-import com.optivem.eshop.systemtest.core.shop.drivers.ui.ShopUiDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.api.ShopApiDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.testing.channels.ChannelContext;
 import com.optivem.testing.dsl.Context;
 import com.optivem.eshop.systemtest.core.shop.commands.CancelOrder;

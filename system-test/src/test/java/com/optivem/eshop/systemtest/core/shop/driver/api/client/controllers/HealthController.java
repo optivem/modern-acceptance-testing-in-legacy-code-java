@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.drivers.api.client.controllers;
+package com.optivem.eshop.systemtest.core.shop.driver.api.client.controllers;
 
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;

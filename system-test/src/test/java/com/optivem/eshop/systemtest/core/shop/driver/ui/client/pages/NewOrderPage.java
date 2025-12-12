@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.drivers.ui.client.pages;
+package com.optivem.eshop.systemtest.core.shop.driver.ui.client.pages;
 
 import com.optivem.playwright.PageGateway;
 

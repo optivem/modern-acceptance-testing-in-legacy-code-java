@@ -1,9 +1,9 @@
-package com.optivem.eshop.systemtest.core.shop.drivers.ui.client;
+package com.optivem.eshop.systemtest.core.shop.driver.ui.client;
 
 import com.microsoft.playwright.*;
 import com.optivem.lang.Closer;
 import com.optivem.playwright.PageGateway;
-import com.optivem.eshop.systemtest.core.shop.drivers.ui.client.pages.HomePage;
+import com.optivem.eshop.systemtest.core.shop.driver.ui.client.pages.HomePage;
 import org.springframework.http.HttpStatus;
 
 

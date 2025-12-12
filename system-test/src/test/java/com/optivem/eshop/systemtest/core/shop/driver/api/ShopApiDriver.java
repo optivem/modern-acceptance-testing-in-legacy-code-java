@@ -1,13 +1,13 @@
-package com.optivem.eshop.systemtest.core.shop.drivers.api;
+package com.optivem.eshop.systemtest.core.shop.driver.api;
 
 import com.optivem.eshop.systemtest.core.shop.dtos.PlaceOrderRequest;
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
-import com.optivem.eshop.systemtest.core.shop.drivers.api.client.ShopApiClient;
+import com.optivem.eshop.systemtest.core.shop.driver.api.client.ShopApiClient;
 import com.optivem.eshop.systemtest.core.shop.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dtos.PlaceOrderResponse;
 import com.optivem.results.Result;
-import com.optivem.eshop.systemtest.core.shop.drivers.ShopDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 
 import java.net.http.HttpClient;
 
