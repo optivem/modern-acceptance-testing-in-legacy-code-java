@@ -1,5 +1,6 @@
 package com.optivem.testing.dsl;
 
+import com.optivem.lang.Error;
 import com.optivem.lang.Result;
 
 import java.util.function.BiFunction;
@@ -7,12 +8,12 @@ import java.util.function.BiFunction;
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
 public class CommandResult<TResponse, TVerification> {
-    private final Result<TResponse> result;
+    private final Result<TResponse, Error> result;
     private final Context context;
     private final BiFunction<TResponse, Context, TVerification> verificationFactory;
 
     public CommandResult(
-            Result<TResponse> result,
+            Result<TResponse, Error> result,
             Context context,
             BiFunction<TResponse, Context, TVerification> verificationFactory) {
         this.result = result;

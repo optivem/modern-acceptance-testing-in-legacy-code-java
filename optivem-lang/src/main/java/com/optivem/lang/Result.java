@@ -2,35 +2,28 @@ package com.optivem.lang;
 
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-public class Result<T> {
+public class Result<T, E> {
     @Getter
     private final boolean success;
     private final T value;
-    private final Collection<String> errors;
+    private final E error;
 
-    private Result(boolean success, T value, Collection<String> errors) {
+    private Result(boolean success, T value, E error) {
         this.success = success;
         this.value = value;
-        this.errors = errors;
+        this.error = error;
     }
 
-    public static <T> Result<T> success(T value) {
+    public static <T, E> Result<T, E> success(T value) {
         return new Result<>(true, value, null);
     }
 
-    public static <T> Result<T> failure(Collection<String> errors) {
-        return new Result<>(false, null, errors);
+    public static <T, E> Result<T, E> failure(E error) {
+        return new Result<>(false, null, error);
     }
 
-    public static Result<Void> success() {
+    public static <E> Result<Void, E> success() {
         return new Result<>(true, null, null);
-    }
-
-    public static Result<Void> failure() {
-        return failure(new ArrayList<>());
     }
 
     public boolean isFailure() {
@@ -44,11 +37,11 @@ public class Result<T> {
         return value;
     }
 
-    public Collection<String> getErrors() {
+    public E getError() {
         if (success) {
             throw new IllegalStateException("Cannot get error from a successful result");
         }
-        return errors;
+        return error;
     }
 }
 

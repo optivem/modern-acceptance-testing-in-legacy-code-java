@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.shop.driver.api;
 
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.requests.PlaceOrderRequest;
 import com.optivem.lang.Closer;
+import com.optivem.lang.Error;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.shop.driver.api.client.ShopApiClient;
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.responses.GetOrderResponse;
@@ -22,22 +23,22 @@ public class ShopApiDriver implements ShopDriver {
     }
 
     @Override
-    public Result<Void> goToShop() {
+    public Result<Void, Error> goToShop() {
         return apiClient.health().checkHealth();
     }
 
     @Override
-    public Result<PlaceOrderResponse> placeOrder(PlaceOrderRequest request) {
+    public Result<PlaceOrderResponse, Error> placeOrder(PlaceOrderRequest request) {
         return apiClient.orders().placeOrder(request);
     }
 
     @Override
-    public Result<Void> cancelOrder(String orderNumber) {
+    public Result<Void, Error> cancelOrder(String orderNumber) {
         return apiClient.orders().cancelOrder(orderNumber);
     }
 
     @Override
-    public Result<GetOrderResponse> viewOrder(String orderNumber) {
+    public Result<GetOrderResponse, Error> viewOrder(String orderNumber) {
         return apiClient.orders().viewOrder(orderNumber);
     }
 

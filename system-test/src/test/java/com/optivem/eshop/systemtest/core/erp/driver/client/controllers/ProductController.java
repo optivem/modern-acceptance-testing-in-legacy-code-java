@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.core.erp.driver.client.controllers;
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
+import com.optivem.lang.Error;
 import com.optivem.lang.Result;
 
 public class ProductController {
@@ -15,7 +16,7 @@ public class ProductController {
         this.httpClient = httpClient;
     }
 
-    public Result<Void> createProduct(CreateProductRequest request) {
+    public Result<Void, Error> createProduct(CreateProductRequest request) {
         var httpResponse = httpClient.post(ENDPOINT, request);
 
         return HttpUtils.getCreatedResultOrFailure(httpResponse);

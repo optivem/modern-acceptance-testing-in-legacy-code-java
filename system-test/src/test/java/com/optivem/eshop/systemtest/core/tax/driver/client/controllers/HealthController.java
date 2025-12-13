@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.tax.driver.client.controllers;
 
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;
+import com.optivem.lang.Error;
 import com.optivem.lang.Result;
 
 public class HealthController {
@@ -14,7 +15,7 @@ public class HealthController {
         this.httpClient = httpClient;
     }
 
-    public Result<Void> checkHealth() {
+    public Result<Void, Error> checkHealth() {
         var httpResponse = httpClient.get(ENDPOINT);
         return HttpUtils.getOkResultOrFailure(httpResponse);
     }

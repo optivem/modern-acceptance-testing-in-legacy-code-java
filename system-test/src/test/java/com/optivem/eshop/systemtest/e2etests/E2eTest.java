@@ -93,7 +93,8 @@ public class E2eTest {
                 .quantity("invalid-quantity")
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must be an integer");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must be an integer");
     }
 
     @TestTemplate
@@ -198,7 +199,8 @@ public class E2eTest {
                 .quantity(-10)
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must be positive");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must be positive");
     }
 
     @TestTemplate
@@ -209,7 +211,8 @@ public class E2eTest {
                 .quantity(0)
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must be positive");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must be positive");
     }
 
     @TestTemplate
@@ -220,7 +223,8 @@ public class E2eTest {
                 .sku(sku)
                 .execute()
                 .shouldFail()
-                .errorMessage("SKU must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("sku", "SKU must not be empty");
     }
 
     @TestTemplate
@@ -231,7 +235,8 @@ public class E2eTest {
                 .quantity(emptyQuantity)
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must not be empty");
     }
 
     @TestTemplate
@@ -242,7 +247,8 @@ public class E2eTest {
                 .quantity(nonIntegerQuantity)
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must be an integer");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must be an integer");
     }
 
     @TestTemplate
@@ -253,7 +259,8 @@ public class E2eTest {
                 .country(emptyCountry)
                 .execute()
                 .shouldFail()
-                .errorMessage("Country must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("country", "Country must not be empty");
     }
 
     @TestTemplate
@@ -279,7 +286,8 @@ public class E2eTest {
                 .quantity(null)
                 .execute()
                 .shouldFail()
-                .errorMessage("Quantity must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("quantity", "Quantity must not be empty");
     }
 
     @TestTemplate
@@ -289,7 +297,8 @@ public class E2eTest {
                 .sku(null)
                 .execute()
                 .shouldFail()
-                .errorMessage("SKU must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("sku", "SKU must not be empty");
     }
 
     @TestTemplate
@@ -299,7 +308,8 @@ public class E2eTest {
                 .country(null)
                 .execute()
                 .shouldFail()
-                .errorMessage("Country must not be empty");
+                .errorMessage("The request contains one or more validation errors")
+                .fieldErrorMessage("country", "Country must not be empty");
     }
 
     @TestTemplate

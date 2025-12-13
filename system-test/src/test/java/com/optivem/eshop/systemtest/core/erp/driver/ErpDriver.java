@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.erp.driver;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
 import com.optivem.lang.Closer;
+import com.optivem.lang.Error;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.erp.driver.client.ErpClient;
 import com.optivem.lang.Result;
@@ -19,11 +20,11 @@ public class ErpDriver implements AutoCloseable {
         this.erpClient = new ErpClient(httpGateway);
     }
 
-    public Result<Void> goToErp() {
+    public Result<Void, Error> goToErp() {
         return erpClient.health().checkHealth();
     }
 
-    public Result<Void> createProduct(CreateProductRequest request) {
+    public Result<Void, Error> createProduct(CreateProductRequest request) {
         return erpClient.products().createProduct(request);
     }
 

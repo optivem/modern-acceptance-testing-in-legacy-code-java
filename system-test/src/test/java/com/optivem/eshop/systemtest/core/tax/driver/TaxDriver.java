@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.tax.driver;
 
 import com.optivem.lang.Closer;
+import com.optivem.lang.Error;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.tax.driver.client.TaxClient;
 import com.optivem.lang.Result;
@@ -23,7 +24,7 @@ public class TaxDriver implements AutoCloseable {
         Closer.close(httpClient);
     }
 
-    public Result<Void> goToTax() {
+    public Result<Void, Error> goToTax() {
         return taxClient.health().checkHealth();
     }
 }
