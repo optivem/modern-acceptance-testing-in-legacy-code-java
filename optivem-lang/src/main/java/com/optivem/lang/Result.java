@@ -1,4 +1,4 @@
-package com.optivem.results;
+package com.optivem.lang;
 
 import lombok.Getter;
 

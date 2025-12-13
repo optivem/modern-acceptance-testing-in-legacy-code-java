@@ -1,6 +1,6 @@
 package com.optivem.testing.dsl;
 
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

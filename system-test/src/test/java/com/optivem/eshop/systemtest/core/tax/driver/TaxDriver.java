@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.tax.driver;
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.tax.driver.client.TaxClient;
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 import java.net.http.HttpClient;
 

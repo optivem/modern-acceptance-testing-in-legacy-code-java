@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(':optivem-results')
+    implementation project(':optivem-lang')
     implementation project(':optivem-testing-assertions')
     implementation 'org.assertj:assertj-core:3.27.3'
 }

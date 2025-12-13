@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.erp.driver.client.controllers;
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 public class ProductController {
 

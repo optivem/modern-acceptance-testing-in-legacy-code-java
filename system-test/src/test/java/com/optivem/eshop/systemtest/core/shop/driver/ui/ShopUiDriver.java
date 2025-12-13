@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.ui.client.pages.OrderHistor
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.responses.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.responses.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.enums.OrderStatus;
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 
 import java.util.Objects;

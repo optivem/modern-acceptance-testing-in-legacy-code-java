@@ -1,6 +1,6 @@
 package com.optivem.testing.dsl;
 
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 import java.util.function.BiFunction;
 

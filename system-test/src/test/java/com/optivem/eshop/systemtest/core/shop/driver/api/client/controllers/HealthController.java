@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.shop.driver.api.client.controllers;
 
 import com.optivem.http.HttpGateway;
 import com.optivem.http.HttpUtils;
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 public class HealthController {
 

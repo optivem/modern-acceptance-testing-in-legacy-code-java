@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductR
 import com.optivem.lang.Closer;
 import com.optivem.http.HttpGateway;
 import com.optivem.eshop.systemtest.core.erp.driver.client.ErpClient;
-import com.optivem.results.Result;
+import com.optivem.lang.Result;
 
 import java.net.http.HttpClient;
 
