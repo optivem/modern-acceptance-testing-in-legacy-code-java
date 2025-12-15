@@ -1,5 +1,5 @@
 package com.optivem.testing.dsl;
 
-public interface Command<T> {
+public interface UseCase<T> {
     T execute();
 }

@@ -7,15 +7,15 @@ import java.util.function.BiFunction;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class CommandResult<TResponse, TVerification> {
+public class UseCaseResult<TResponse, TVerification> {
     private final Result<TResponse, Error> result;
-    private final Context context;
-    private final BiFunction<TResponse, Context, TVerification> verificationFactory;
+    private final UseCaseContext context;
+    private final BiFunction<TResponse, UseCaseContext, TVerification> verificationFactory;
 
-    public CommandResult(
+    public UseCaseResult(
             Result<TResponse, Error> result,
-            Context context,
-            BiFunction<TResponse, Context, TVerification> verificationFactory) {
+            UseCaseContext context,
+            BiFunction<TResponse, UseCaseContext, TVerification> verificationFactory) {
         this.result = result;
         this.context = context;
         this.verificationFactory = verificationFactory;
@@ -26,9 +26,9 @@ public class CommandResult<TResponse, TVerification> {
         return verificationFactory.apply(result.getValue(), context);
     }
 
-    public FailureVerification shouldFail() {
+    public UseCaseFailureVerification shouldFail() {
         assertThatResult(result).isFailure();
-        return new FailureVerification(result, context);
+        return new UseCaseFailureVerification(result, context);
     }
 }
 

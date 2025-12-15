@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.testing.channels.ChannelContext;
-import com.optivem.testing.dsl.Context;
+import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.CancelOrder;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.GoToShop;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.PlaceOrder;
@@ -17,9 +17,9 @@ import java.io.Closeable;
 
 public class ShopDsl implements Closeable {
     private final ShopDriver driver;
-    private final Context context;
+    private final UseCaseContext context;
 
-    public ShopDsl(Context context, SystemConfiguration configuration) {
+    public ShopDsl(UseCaseContext context, SystemConfiguration configuration) {
         this.driver = createDriver(configuration);
         this.context = context;
     }

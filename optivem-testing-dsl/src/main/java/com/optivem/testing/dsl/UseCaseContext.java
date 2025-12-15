@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class Context {
+public class UseCaseContext {
 
     private final Map<String, String> paramMap;
     private final Map<String, String> resultMap;
 
-    public Context() {
+    public UseCaseContext() {
         this.paramMap = new HashMap<>();
         this.resultMap = new HashMap<>();
     }

@@ -1,20 +1,20 @@
 package com.optivem.eshop.systemtest.core.erp.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
-import com.optivem.testing.dsl.CommandResult;
-import com.optivem.testing.dsl.VoidVerification;
-import com.optivem.testing.dsl.Context;
+import com.optivem.testing.dsl.UseCaseResult;
+import com.optivem.testing.dsl.UseCaseVoidSuccessVerification;
+import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
 
-public class GoToErp extends BaseErpCommand<Void, VoidVerification> {
-    public GoToErp(ErpDriver driver, Context context) {
+public class GoToErp extends BaseErpCommand<Void, UseCaseVoidSuccessVerification> {
+    public GoToErp(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
     }
 
     @Override
-    public CommandResult<Void, VoidVerification> execute() {
+    public UseCaseResult<Void, UseCaseVoidSuccessVerification> execute() {
         var result = driver.goToErp();
-        return new CommandResult<>(result, context, VoidVerification::new);
+        return new UseCaseResult<>(result, context, UseCaseVoidSuccessVerification::new);
     }
 }
 

@@ -6,16 +6,16 @@ import com.optivem.lang.Result;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("UnusedReturnValue")
-public class FailureVerification {
+public class UseCaseFailureVerification {
     private final Result<?, Error> result;
-    private final Context context;
+    private final UseCaseContext context;
 
-    public FailureVerification(Result<?, Error> result, Context context) {
+    public UseCaseFailureVerification(Result<?, Error> result, UseCaseContext context) {
         this.result = result;
         this.context = context;
     }
 
-    public FailureVerification errorMessage(String expectedMessage) {
+    public UseCaseFailureVerification errorMessage(String expectedMessage) {
         var expandedExpectedMessage = context.expandAliases(expectedMessage);
         Error error = result.getError();
         var errorMessage = error.getMessage();
@@ -25,7 +25,7 @@ public class FailureVerification {
         return this;
     }
 
-    public FailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
+    public UseCaseFailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
         var expandedExpectedField = context.expandAliases(expectedField);
         var expandedExpectedMessage = context.expandAliases(expectedMessage);
         Error error = result.getError();

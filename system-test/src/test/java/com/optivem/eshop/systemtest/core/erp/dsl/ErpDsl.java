@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.erp.dsl;
 
 import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
-import com.optivem.testing.dsl.Context;
+import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.CreateProduct;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.GoToErp;
 import com.optivem.lang.Closer;
@@ -11,9 +11,9 @@ import java.io.Closeable;
 
 public class ErpDsl implements Closeable {
     private final ErpDriver driver;
-    private final Context context;
+    private final UseCaseContext context;
 
-    public ErpDsl(Context context, SystemConfiguration configuration) {
+    public ErpDsl(UseCaseContext context, SystemConfiguration configuration) {
         this.driver = createDriver(configuration);
         this.context = context;
     }
