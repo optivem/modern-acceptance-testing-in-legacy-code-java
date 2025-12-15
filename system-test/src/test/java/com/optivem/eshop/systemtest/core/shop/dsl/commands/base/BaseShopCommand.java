@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.common.error.Error;
 import com.optivem.testing.dsl.BaseUseCase;
 import com.optivem.testing.dsl.UseCaseContext;
 
-public abstract class BaseShopCommand<TResponse, TVerification> extends BaseUseCase<ShopDriver, UseCaseContext, TResponse, TVerification, Error, ErrorFailureVerification> {
+public abstract class BaseShopCommand<TResponse, TVerification> extends BaseUseCase<ShopDriver, UseCaseContext, TResponse, Error, TVerification, ErrorFailureVerification> {
     protected BaseShopCommand(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
     }

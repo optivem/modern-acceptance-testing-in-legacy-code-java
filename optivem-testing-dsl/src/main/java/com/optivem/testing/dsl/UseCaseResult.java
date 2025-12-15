@@ -6,7 +6,7 @@ import java.util.function.BiFunction;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class UseCaseResult<TSuccessResponse, TSuccessVerification, TFailureResponse, TFailureVerification extends ResponseVerification<TFailureResponse, TContext>, TContext> {
+public class UseCaseResult<TSuccessResponse, TFailureResponse, TContext, TSuccessVerification, TFailureVerification> {
     private final Result<TSuccessResponse, TFailureResponse> result;
     private final TContext context;
     private final BiFunction<TSuccessResponse, TContext, TSuccessVerification> verificationFactory;
