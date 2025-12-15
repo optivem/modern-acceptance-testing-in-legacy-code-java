@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.erp.driver.client.controllers;
 
 import com.optivem.http.JsonHttpClient;
-import com.optivem.http.HttpUtils;
 import com.optivem.lang.Error;
 import com.optivem.lang.Result;
 
@@ -16,9 +15,8 @@ public class HealthController {
     }
 
     public Result<Void, Error> checkHealth() {
-        var httpResponse = httpClient.get(ENDPOINT);
-        return HttpUtils.getOkResultOrFailure(httpResponse)
-                .mapFailure(HttpUtils::convertProblemDetailToError);
+        return httpClient.get(ENDPOINT, Void.class)
+                .mapFailure(JsonHttpClient::convertProblemDetailToError);
     }
 }
 

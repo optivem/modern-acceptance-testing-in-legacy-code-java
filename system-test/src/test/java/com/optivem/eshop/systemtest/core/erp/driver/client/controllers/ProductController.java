@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.erp.driver.client.controllers;
 
 import com.optivem.http.JsonHttpClient;
-import com.optivem.http.HttpUtils;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
 import com.optivem.lang.Error;
 import com.optivem.lang.Result;
@@ -17,9 +16,7 @@ public class ProductController {
     }
 
     public Result<Void, Error> createProduct(CreateProductRequest request) {
-        var httpResponse = httpClient.post(ENDPOINT, request);
-
-        return HttpUtils.getCreatedResultOrFailure(httpResponse)
-                .mapFailure(HttpUtils::convertProblemDetailToError);
+        return httpClient.post(ENDPOINT, request, Void.class)
+                .mapFailure(JsonHttpClient::convertProblemDetailToError);
     }
 }
