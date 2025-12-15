@@ -21,14 +21,5 @@ public class UseCaseFailureVerification<TFailureResponse, TContext> {
     public TContext getContext() {
         return context;
     }
-
-    @SuppressWarnings("unchecked")
-    public <T extends UseCaseFailureVerification<TFailureResponse, TContext>> T assertError(TFailureResponse expectedError) {
-        TFailureResponse actualError = result.getError();
-        assertThat(actualError)
-                .withFailMessage("Expected error: '%s', but got: '%s'", expectedError, actualError)
-                .isEqualTo(expectedError);
-        return (T) this;
-    }
 }
 

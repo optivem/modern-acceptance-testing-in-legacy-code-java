@@ -1,20 +1,20 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.testing.dsl.UseCaseVoidSuccessVerification;
+import com.optivem.testing.dsl.VoidVerification;
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.BaseShopCommand;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
 
-public class GoToShop extends BaseShopCommand<Void, UseCaseVoidSuccessVerification<UseCaseContext>> {
+public class GoToShop extends BaseShopCommand<Void, VoidVerification<UseCaseContext>> {
     public GoToShop(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
     }
 
     @Override
-    public ShopUseCaseResult<Void, UseCaseVoidSuccessVerification<UseCaseContext>> execute() {
+    public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
         var result = driver.goToShop();
-        return new ShopUseCaseResult<>(result, context, UseCaseVoidSuccessVerification::new);
+        return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
 

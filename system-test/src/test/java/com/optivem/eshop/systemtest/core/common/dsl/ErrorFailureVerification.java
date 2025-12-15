@@ -1,21 +1,20 @@
 package com.optivem.eshop.systemtest.core.common.dsl;
 
 import com.optivem.eshop.systemtest.core.common.error.Error;
-import com.optivem.lang.Result;
+import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;
-import com.optivem.testing.dsl.UseCaseFailureVerification;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ErrorFailureVerification extends UseCaseFailureVerification<Error, UseCaseContext> {
+public class ErrorFailureVerification extends ResponseVerification<Error, UseCaseContext> {
 
-    public ErrorFailureVerification(Result<?, Error> result, UseCaseContext context) {
-        super(result, context);
+    public ErrorFailureVerification(Error error, UseCaseContext context) {
+        super(error, context);
     }
 
     public ErrorFailureVerification errorMessage(String expectedMessage) {
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
-        Error error = getError();
+        Error error = getResponse();
         var errorMessage = error.getMessage();
         assertThat(errorMessage)
                 .withFailMessage("Expected error message: '%s', but got: '%s'", expandedExpectedMessage, errorMessage)
@@ -26,7 +25,7 @@ public class ErrorFailureVerification extends UseCaseFailureVerification<Error, 
     public ErrorFailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
         var expandedExpectedField = getContext().expandAliases(expectedField);
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
-        Error error = getError();
+        Error error = getResponse();
         var fields = error.getFields();
         
         assertThat(fields)

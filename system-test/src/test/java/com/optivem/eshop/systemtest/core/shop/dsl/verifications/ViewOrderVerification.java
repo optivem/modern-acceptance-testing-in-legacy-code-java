@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.responses.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.dtos.enums.OrderStatus;
-import com.optivem.testing.dsl.BaseUseCaseSuccessVerification;
+import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;
 
 import java.math.BigDecimal;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("UnusedReturnValue")
-public class ViewOrderVerification extends BaseUseCaseSuccessVerification<GetOrderResponse, UseCaseContext> {
+public class ViewOrderVerification extends ResponseVerification<GetOrderResponse, UseCaseContext> {
 
     public ViewOrderVerification(GetOrderResponse response, UseCaseContext context) {
         super(response, context);

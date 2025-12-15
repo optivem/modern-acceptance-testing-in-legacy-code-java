@@ -5,11 +5,11 @@ import com.optivem.eshop.systemtest.core.common.error.Error;
 import com.optivem.lang.Result;
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.UseCaseResult;
-import com.optivem.testing.dsl.BaseUseCaseSuccessVerification;
+import com.optivem.testing.dsl.ResponseVerification;
 
 import java.util.function.BiFunction;
 
-public class ErpUseCaseResult<TSuccessResponse, TSuccessVerification extends BaseUseCaseSuccessVerification<TSuccessResponse, UseCaseContext>>
+public class ErpUseCaseResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse, UseCaseContext>>
         extends UseCaseResult<TSuccessResponse, TSuccessVerification, Error, ErrorFailureVerification, UseCaseContext> {
 
     public ErpUseCaseResult(

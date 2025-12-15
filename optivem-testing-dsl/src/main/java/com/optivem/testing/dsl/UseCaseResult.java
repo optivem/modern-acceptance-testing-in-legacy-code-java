@@ -6,17 +6,17 @@ import java.util.function.BiFunction;
 
 import static com.optivem.testing.assertions.ResultAssert.assertThatResult;
 
-public class UseCaseResult<TSuccessResponse, TSuccessVerification, TFailureResponse, TFailureVerification extends UseCaseFailureVerification<TFailureResponse, TContext>, TContext> {
+public class UseCaseResult<TSuccessResponse, TSuccessVerification, TFailureResponse, TFailureVerification extends ResponseVerification<TFailureResponse, TContext>, TContext> {
     private final Result<TSuccessResponse, TFailureResponse> result;
     private final TContext context;
     private final BiFunction<TSuccessResponse, TContext, TSuccessVerification> verificationFactory;
-    private final BiFunction<Result<?, TFailureResponse>, TContext, TFailureVerification> failureVerificationFactory;
+    private final BiFunction<TFailureResponse, TContext, TFailureVerification> failureVerificationFactory;
 
     public UseCaseResult(
             Result<TSuccessResponse, TFailureResponse> result,
             TContext context,
             BiFunction<TSuccessResponse, TContext, TSuccessVerification> verificationFactory,
-            BiFunction<Result<?, TFailureResponse>, TContext, TFailureVerification> failureVerificationFactory) {
+            BiFunction<TFailureResponse, TContext, TFailureVerification> failureVerificationFactory) {
         this.result = result;
         this.context = context;
         this.verificationFactory = verificationFactory;
@@ -30,7 +30,7 @@ public class UseCaseResult<TSuccessResponse, TSuccessVerification, TFailureRespo
 
     public TFailureVerification shouldFail() {
         assertThatResult(result).isFailure();
-        return failureVerificationFactory.apply(result, context);
+        return failureVerificationFactory.apply(result.getError(), context);
     }
 }
 

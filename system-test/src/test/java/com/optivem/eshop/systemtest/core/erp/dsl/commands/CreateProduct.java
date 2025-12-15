@@ -2,12 +2,12 @@ package com.optivem.eshop.systemtest.core.erp.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
-import com.optivem.testing.dsl.UseCaseVoidSuccessVerification;
+import com.optivem.testing.dsl.VoidVerification;
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
 
-public class CreateProduct extends BaseErpCommand<Void, UseCaseVoidSuccessVerification<UseCaseContext>> {
+public class CreateProduct extends BaseErpCommand<Void, VoidVerification<UseCaseContext>> {
     private static final String DEFAULT_SKU = "DEFAULT_SKU";
     private static final double DEFAULT_UNIT_PRICE = 20.00;
     private static final String DEFAULT_TITLE = "Test Product Title";
@@ -68,7 +68,7 @@ public class CreateProduct extends BaseErpCommand<Void, UseCaseVoidSuccessVerifi
     }
 
     @Override
-    public ErpUseCaseResult<Void, UseCaseVoidSuccessVerification<UseCaseContext>> execute() {
+    public ErpUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
         var sku = context.getParamValue(skuParamAlias);
 
         var request = CreateProductRequest.builder()
@@ -82,7 +82,7 @@ public class CreateProduct extends BaseErpCommand<Void, UseCaseVoidSuccessVerifi
 
         var result = driver.createProduct(request);
 
-        return new ErpUseCaseResult<>(result, context, UseCaseVoidSuccessVerification::new);
+        return new ErpUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
 
