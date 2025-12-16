@@ -30,7 +30,7 @@ public class OrderController {
     }
 
     public Result<Void, Error> cancelOrder(String orderNumber) {
-        return httpClient.post(ENDPOINT + "/" + orderNumber + "/cancel", Void.class)
+        return httpClient.post(ENDPOINT + "/" + orderNumber + "/cancel")
                 .mapFailure(ProblemDetailConverter::toError);
     }
 }

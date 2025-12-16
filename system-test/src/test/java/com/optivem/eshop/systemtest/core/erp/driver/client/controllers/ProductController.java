@@ -18,7 +18,7 @@ public class ProductController {
     }
 
     public Result<Void, Error> createProduct(CreateProductRequest request) {
-        return httpClient.post(ENDPOINT, request, Void.class)
+        return httpClient.post(ENDPOINT, request)
                 .mapFailure(ProblemDetailConverter::toError);
     }
 }

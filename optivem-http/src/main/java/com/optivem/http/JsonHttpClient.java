@@ -3,6 +3,8 @@ package com.optivem.http;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.optivem.lang.Result;
 
+import org.springframework.http.HttpStatus;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -39,9 +41,14 @@ public class JsonHttpClient<E> {
         return getResultOrFailure(httpResponse, responseType);
     }
 
-    public Result<Void, E> post(String path, Class<Void> responseType) {
+    public <T> Result<Void, E> post(String path, Object requestBody) {
+        var httpResponse = doPost(path, requestBody);
+        return getResultOrFailure(httpResponse, Void.class);
+    }
+
+    public Result<Void, E> post(String path) {
         var httpResponse = doPost(path);
-        return getResultOrFailure(httpResponse, responseType);
+        return getResultOrFailure(httpResponse, Void.class);
     }
 
     // Private helper methods
@@ -115,8 +122,8 @@ public class JsonHttpClient<E> {
     }
 
     private boolean isSuccessStatusCode(HttpResponse<String> httpResponse) {
-        int statusCode = httpResponse.statusCode();
-        return statusCode >= 200 && statusCode < 300;
+        var statusCode = HttpStatus.valueOf(httpResponse.statusCode());
+        return statusCode.is2xxSuccessful();
     }
 
     private <T> Result<T, E> getResultOrFailure(HttpResponse<String> httpResponse, Class<T> responseType) {
@@ -125,7 +132,7 @@ public class JsonHttpClient<E> {
             return Result.failure(error);
         }
 
-        if (responseType == Void.class || httpResponse.statusCode() == 204) {
+        if (responseType == Void.class || httpResponse.statusCode() == HttpStatus.NO_CONTENT.value()) {
             return Result.success(null);
         }
 
