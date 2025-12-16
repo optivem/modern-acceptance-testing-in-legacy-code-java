@@ -29,6 +29,8 @@ dependencies {
 	testImplementation 'com.optivem:optivem-testing-assertions'
 	testImplementation 'com.optivem:optivem-testing-channels'
 	testImplementation 'com.optivem:optivem-testing-dsl'
+    testImplementation 'com.optivem:core-commons'
+
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
