@@ -32,7 +32,8 @@ dependencies {
 
     testImplementation 'com.optivem:core-commons'
     testImplementation 'com.optivem:core-erp'
-
+    testImplementation 'com.optivem:core-shop'
+    testImplementation 'com.optivem:core-tax'
 
 	implementation 'org.springframework.boot:spring-boot-starter'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

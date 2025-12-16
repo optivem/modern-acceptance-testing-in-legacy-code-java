@@ -21,6 +21,8 @@ dependencies {
     api project(':optivem-playwright')
     api project(':optivem-testing-channels')
 
+    implementation 'org.springframework:spring-web:6.1.5'
+
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
