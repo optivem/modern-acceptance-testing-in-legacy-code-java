@@ -1,9 +1,8 @@
 package com.optivem.eshop.systemtest.core.tax.driver;
 
+import com.optivem.eshop.systemtest.core.tax.commons.TaxError;
+import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxHttpClient;
 import com.optivem.lang.Closer;
-import com.optivem.eshop.systemtest.core.commons.error.Error;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.client.TaxClient;
 import com.optivem.lang.Result;
 
@@ -16,8 +15,8 @@ public class TaxDriver implements AutoCloseable {
 
     public TaxDriver(String baseUrl) {
         this.httpClient = HttpClient.newHttpClient();
-        var testHttpClient = new JsonHttpClient<>(httpClient, baseUrl, ProblemDetailResponse.class);
-        this.taxClient = new TaxClient(testHttpClient);
+        var taxHttpClient = new TaxHttpClient(httpClient, baseUrl);
+        this.taxClient = new TaxClient(taxHttpClient);
     }
 
     @Override
@@ -25,7 +24,7 @@ public class TaxDriver implements AutoCloseable {
         Closer.close(httpClient);
     }
 
-    public Result<Void, Error> goToTax() {
+    public Result<Void, TaxError> goToTax() {
         return taxClient.health().checkHealth();
     }
 }

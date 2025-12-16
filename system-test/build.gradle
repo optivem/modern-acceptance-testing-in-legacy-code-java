@@ -30,10 +30,6 @@ dependencies {
 	testImplementation 'com.optivem:optivem-testing-channels'
 	testImplementation 'com.optivem:optivem-testing-dsl'
 
-//    testImplementation 'com.optivem:core-commons'
-//    testImplementation 'com.optivem:core-erp'
-//    testImplementation 'com.optivem:core-shop'
-//    testImplementation 'com.optivem:core-tax'
     testImplementation 'com.optivem:core'
 
 	implementation 'org.springframework.boot:spring-boot-starter'

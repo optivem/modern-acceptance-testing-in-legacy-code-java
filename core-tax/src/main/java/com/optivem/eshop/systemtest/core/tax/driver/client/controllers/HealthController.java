@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.tax.driver.client.controllers;
 
-import com.optivem.eshop.systemtest.core.commons.error.Error;
-import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailConverter;
-import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.core.tax.commons.TaxError;
+import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxErrorConverter;
+import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxHttpClient;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Result;
 
@@ -10,15 +10,15 @@ public class HealthController {
 
     private static final String ENDPOINT = "/health";
 
-    private final JsonHttpClient<ProblemDetailResponse> httpClient;
+    private final TaxHttpClient httpClient;
 
-    public HealthController(JsonHttpClient<ProblemDetailResponse> httpClient) {
+    public HealthController(TaxHttpClient httpClient) {
         this.httpClient = httpClient;
     }
 
-    public Result<Void, Error> checkHealth() {
+    public Result<Void, TaxError> checkHealth() {
         return httpClient.get(ENDPOINT)
-                .mapFailure(ProblemDetailConverter::toError);
+                .mapFailure(TaxErrorConverter::from);
     }
 }
 

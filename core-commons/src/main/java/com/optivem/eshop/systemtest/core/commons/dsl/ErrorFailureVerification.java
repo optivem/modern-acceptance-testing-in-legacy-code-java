@@ -14,7 +14,7 @@ public class ErrorFailureVerification extends ResponseVerification<Error, UseCas
 
     public ErrorFailureVerification errorMessage(String expectedMessage) {
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
-        Error error = getResponse();
+        var error = getResponse();
         var errorMessage = error.getMessage();
         assertThat(errorMessage)
                 .withFailMessage("Expected error message: '%s', but got: '%s'", expandedExpectedMessage, errorMessage)
@@ -25,7 +25,7 @@ public class ErrorFailureVerification extends ResponseVerification<Error, UseCas
     public ErrorFailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
         var expandedExpectedField = getContext().expandAliases(expectedField);
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
-        Error error = getResponse();
+        var error = getResponse();
         var fields = error.getFields();
         
         assertThat(fields)

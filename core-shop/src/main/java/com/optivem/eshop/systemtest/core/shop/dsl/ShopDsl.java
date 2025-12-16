@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.dsl;
 
-import com.optivem.eshop.systemtest.core.commons.SystemConfiguration;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.api.ShopApiDriver;
@@ -19,17 +18,17 @@ public class ShopDsl implements Closeable {
     private final ShopDriver driver;
     private final UseCaseContext context;
 
-    public ShopDsl(UseCaseContext context, SystemConfiguration configuration) {
-        this.driver = createDriver(configuration);
+    public ShopDsl(String uiBaseUrl, String apiBaseUrl, UseCaseContext context) {
+        this.driver = createDriver(uiBaseUrl, apiBaseUrl);
         this.context = context;
     }
 
-    private static ShopDriver createDriver(SystemConfiguration configuration) {
+    private static ShopDriver createDriver(String uiBaseUrl, String apiBaseUrl) {
         var channel = ChannelContext.get();
         if (ChannelType.UI.equals(channel)) {
-            return new ShopUiDriver(configuration.getShopUiBaseUrl());
+            return new ShopUiDriver(uiBaseUrl);
         } else if (ChannelType.API.equals(channel)) {
-            return new ShopApiDriver(configuration.getShopApiBaseUrl());
+            return new ShopApiDriver(apiBaseUrl);
         } else {
             throw new IllegalStateException("Unknown channel: " + channel);
         }

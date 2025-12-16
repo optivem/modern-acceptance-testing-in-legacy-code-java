@@ -16,9 +16,11 @@ repositories {
 }
 
 dependencies {
-    api project(':core-commons')
+//    api project(':core-commons')
     api project(':optivem-http')
+    api project(':optivem-testing-dsl')
 
+    api 'org.assertj:assertj-core:3.24.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }

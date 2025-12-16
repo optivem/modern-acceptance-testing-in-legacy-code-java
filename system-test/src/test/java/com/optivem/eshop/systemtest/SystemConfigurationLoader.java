@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest;
 
-import com.optivem.eshop.systemtest.core.commons.SystemConfiguration;
+import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.Map;
