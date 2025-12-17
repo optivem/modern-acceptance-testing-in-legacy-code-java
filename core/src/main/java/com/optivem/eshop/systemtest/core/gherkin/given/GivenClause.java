@@ -27,6 +27,11 @@ public class GivenClause {
         return orderBuilder;
     }
 
+    public EmptyGivenClause noProducts() {
+        // No products to create, return clause that allows .when()
+        return new EmptyGivenClause(app);
+    }
+
     public WhenClause when() {
         // Execute all product creations
         for (var product : products) {

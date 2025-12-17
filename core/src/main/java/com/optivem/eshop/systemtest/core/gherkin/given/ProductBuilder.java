@@ -21,6 +21,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder withUnitPrice(String unitPrice) {
+        this.unitPrice = Double.parseDouble(unitPrice);
+        return this;
+    }
+
     public GivenClause and() {
         return givenClause;
     }
