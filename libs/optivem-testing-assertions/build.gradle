@@ -16,6 +16,6 @@ repositories {
 }
 
 dependencies {
-    api project(':optivem-lang')
+    api project(':libs:optivem-lang')
     api 'org.assertj:assertj-core:3.25.3'
 }

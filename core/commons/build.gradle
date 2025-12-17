@@ -12,9 +12,9 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    api project(':optivem-lang')
-    api project(':optivem-results')
-    api project(':optivem-testing-dsl')
+    api project(':libs:optivem-lang')
+    api project(':libs:optivem-results')
+    api project(':libs:optivem-testing-dsl')
     api 'org.assertj:assertj-core:3.24.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
