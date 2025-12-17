@@ -1,0 +1,46 @@
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot' version '3.5.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.optivem.eshop.systemtest'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api 'com.optivem:optivem-lang'
+    api 'com.optivem:optivem-results'
+    api 'com.optivem:optivem-http'
+    api 'com.optivem:optivem-playwright'
+    api 'com.optivem:optivem-testing-assertions'
+    api 'com.optivem:optivem-testing-channels'
+    api 'com.optivem:optivem-testing-dsl'
+    api 'com.optivem:core'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework:spring-web'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'org.yaml:snakeyaml:2.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+}
+
+// Disable bootJar since this is a library
+tasks.named('bootJar') {
+    enabled = false
+}
+
+tasks.named('jar') {
+    enabled = true
+}

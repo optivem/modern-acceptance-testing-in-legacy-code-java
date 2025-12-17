@@ -19,4 +19,3 @@ public class EmptyArgumentsProvider implements ArgumentsProvider {
         );
     }
 }
-

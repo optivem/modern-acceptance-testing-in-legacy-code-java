@@ -1,7 +1,5 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.5.6'
-	id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
     id 'com.diffplug.spotless' version '6.25.0'
 }
 
@@ -10,61 +8,23 @@ version = '0.0.1-SNAPSHOT'
 description = 'Optivem eShop - System Test'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
 repositories {
-	mavenCentral()
-	maven { url 'https://jitpack.io' }
+    mavenCentral()
 }
 
-dependencies {
-	// Internal modules (resolved via composite build in settings.gradle)
-	testImplementation 'com.optivem:optivem-lang'
-	testImplementation 'com.optivem:optivem-results'
-	testImplementation 'com.optivem:optivem-http'
-	testImplementation 'com.optivem:optivem-playwright'
-	testImplementation 'com.optivem:optivem-testing-assertions'
-	testImplementation 'com.optivem:optivem-testing-channels'
-	testImplementation 'com.optivem:optivem-testing-dsl'
-
-    testImplementation 'com.optivem:core'
-
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework:spring-web'
-	testImplementation 'com.fasterxml.jackson.core:jackson-databind'
-	testImplementation 'org.yaml:snakeyaml:2.0'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-//	testImplementation 'com.github.optivem:atdd-commons-java:1.0.4'
-
-	testImplementation 'org.projectlombok:lombok:1.18.38'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
-
-	testLogging {
-		events "passed", "skipped", "failed"
-		showStandardStreams = true
-		exceptionFormat = 'full'
-		showExceptions = true
-		showCauses = true
-		showStackTraces = true
-	}
-}
-
-// Disable bootJar task since this is a test-only module
-tasks.named('bootJar') {
-	enabled = false
-}
-
-tasks.named('jar') {
-	enabled = true
+// Parent project - no source code, just aggregates subprojects
+sourceSets {
+    main {
+        java.srcDirs = []
+    }
+    test {
+        java.srcDirs = []
+    }
 }
 
 spotless {
