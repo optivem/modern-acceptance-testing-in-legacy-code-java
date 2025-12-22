@@ -26,9 +26,25 @@ public class ShopUiClient implements AutoCloseable {
     public ShopUiClient(String baseUrl) {
         this.baseUrl = baseUrl;
         this.playwright = Playwright.create();
-        this.browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(100));
-        this.context = browser.newContext();
-        this.page = browser.newPage();
+
+        // Launch browser with options for parallel test isolation
+        var launchOptions = new BrowserType.LaunchOptions()
+                .setHeadless(true)
+                .setSlowMo(100);
+
+        this.browser = playwright.chromium().launch(launchOptions);
+
+        // Create isolated browser context for this test instance
+        var contextOptions = new Browser.NewContextOptions()
+                .setViewportSize(1920, 1080)
+                // Ensure complete isolation between parallel tests
+                .setStorageStatePath(null);
+
+        this.context = browser.newContext(contextOptions);
+
+        // Each test gets its own page
+        this.page = context.newPage();
+
         var pageClient = PageClient.builder(page)
                 .baseUrl(baseUrl)
                 .build();

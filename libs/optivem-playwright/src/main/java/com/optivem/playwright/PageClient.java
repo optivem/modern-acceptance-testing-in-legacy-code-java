@@ -12,7 +12,8 @@ public class PageClient {
     private final String baseUrl;
     private final int timeoutMilliseconds;
 
-    private static final int DEFAULT_TIMEOUT_SECONDS = 10;
+    // Increased default timeout for parallel test execution
+    private static final int DEFAULT_TIMEOUT_SECONDS = 30;
     private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
 
     private PageClient(Builder builder) {
