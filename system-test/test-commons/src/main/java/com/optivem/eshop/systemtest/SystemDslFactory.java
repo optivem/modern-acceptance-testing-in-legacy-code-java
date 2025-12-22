@@ -8,8 +8,4 @@ public class SystemDslFactory {
         var configuration = SystemConfigurationLoader.load(externalSystemMode);
         return new SystemDsl(configuration);
     }
-
-    public static SystemDsl create() {
-        return create(ExternalSystemMode.STUB);
-    }
 }
