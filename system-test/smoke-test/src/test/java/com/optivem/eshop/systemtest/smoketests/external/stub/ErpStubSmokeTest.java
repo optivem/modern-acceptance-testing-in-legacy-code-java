@@ -14,7 +14,7 @@ public class ErpStubSmokeTest {
 
     @BeforeEach
     void setUp() {
-        app = SystemDslFactory.create(ExternalSystemMode.REAL);
+        app = SystemDslFactory.create(ExternalSystemMode.STUB);
     }
 
     @AfterEach
