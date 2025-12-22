@@ -35,10 +35,18 @@ runs:
   using: 'composite'
   steps:
     - name: Checkout Base Repository
-      uses: actions/checkout@v4
-      with:
-        repository: optivem/modern-acceptance-testing-in-legacy-code
-        path: modern-acceptance-testing-in-legacy-code
+      run: |
+        if [ -d "modern-acceptance-testing-in-legacy-code/.git" ]; then
+          echo "📂 Base repository already exists, pulling latest changes..."
+          cd modern-acceptance-testing-in-legacy-code
+          git pull origin main
+          cd ..
+        else
+          echo "📥 Cloning base repository..."
+          git clone https://github.com/optivem/modern-acceptance-testing-in-legacy-code.git modern-acceptance-testing-in-legacy-code
+        fi
+        echo "✅ Base repository ready"
+      shell: bash
 
     - name: Deploy System
       run: |
