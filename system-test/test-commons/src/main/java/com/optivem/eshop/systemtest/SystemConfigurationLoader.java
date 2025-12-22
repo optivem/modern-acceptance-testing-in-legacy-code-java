@@ -9,8 +9,8 @@ import java.util.Map;
 
 public class SystemConfigurationLoader {
     
-    public static SystemConfiguration load(ExternalSystemMode mode) {
-        String configFile = getConfigFileName(mode);
+    public static SystemConfiguration load(EnvironmentMode environmentMode, ExternalSystemMode externalSystemMode) {
+        String configFile = getConfigFileName(environmentMode, externalSystemMode);
         Map<String, Object> config = loadYamlFile(configFile);
 
         var shopUiBaseUrl = getNestedStringValue(config, "test", "eshop", "ui", "baseUrl");
@@ -18,14 +18,21 @@ public class SystemConfigurationLoader {
         var erpBaseUrl = getNestedStringValue(config, "test", "erp", "api", "baseUrl");
         var taxBaseUrl = getNestedStringValue(config, "test", "tax", "api", "baseUrl");
 
-        return new SystemConfiguration(shopUiBaseUrl, shopApiBaseUrl, erpBaseUrl, taxBaseUrl, mode);
+        return new SystemConfiguration(shopUiBaseUrl, shopApiBaseUrl, erpBaseUrl, taxBaseUrl, externalSystemMode);
     }
 
-    private static String getConfigFileName(ExternalSystemMode mode) {
-        return switch (mode) {
-            case REAL -> "application-real.yml";
-            case STUB -> "application-stub.yml";
-        };
+    private static String getConfigFileName(EnvironmentMode environmentMode, ExternalSystemMode externalSystemMode) {
+        // Only ACCEPTANCE environment can use STUB mode
+        if (externalSystemMode == ExternalSystemMode.STUB && environmentMode != EnvironmentMode.ACCEPTANCE) {
+            throw new IllegalArgumentException(
+                String.format("STUB mode is only allowed for ACCEPTANCE environment. Cannot use STUB for %s environment.",
+                    environmentMode)
+            );
+        }
+
+        String env = environmentMode.name().toLowerCase();
+        String mode = externalSystemMode.name().toLowerCase();
+        return String.format("test-config-%s-%s.yml", env, mode);
     }
 
     private static Map<String, Object> loadYamlFile(String fileName) {

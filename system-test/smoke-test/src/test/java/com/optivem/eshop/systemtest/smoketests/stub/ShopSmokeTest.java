@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.stub;
 
+import com.optivem.eshop.systemtest.EnvironmentMode;
 import com.optivem.eshop.systemtest.SystemDslFactory;
 import com.optivem.eshop.systemtest.core.ExternalSystemMode;
 import com.optivem.eshop.systemtest.core.SystemDsl;
@@ -20,7 +21,7 @@ public class ShopSmokeTest {
 
     @BeforeEach
     void setUp() {
-        app = SystemDslFactory.create(ExternalSystemMode.STUB);
+        app = SystemDslFactory.create(EnvironmentMode.ACCEPTANCE, ExternalSystemMode.STUB);
     }
 
     @AfterEach

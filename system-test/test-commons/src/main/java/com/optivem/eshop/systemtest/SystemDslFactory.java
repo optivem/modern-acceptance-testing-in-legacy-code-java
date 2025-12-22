@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.ExternalSystemMode;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 
 public class SystemDslFactory {
-    public static SystemDsl create(ExternalSystemMode externalSystemMode) {
-        var configuration = SystemConfigurationLoader.load(externalSystemMode);
+    public static SystemDsl create(EnvironmentMode environmentMode, ExternalSystemMode externalSystemMode) {
+        var configuration = SystemConfigurationLoader.load(environmentMode, externalSystemMode);
         return new SystemDsl(configuration);
     }
 }

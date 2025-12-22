@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests;
 
+import com.optivem.eshop.systemtest.EnvironmentMode;
 import com.optivem.eshop.systemtest.SystemDslFactory;
 import com.optivem.eshop.systemtest.core.ExternalSystemMode;
 import com.optivem.eshop.systemtest.core.SystemDsl;
@@ -33,7 +34,7 @@ public class GherkinMigratedE2eTest {
 
     @BeforeEach
     void setUp() {
-        app = SystemDslFactory.create(ExternalSystemMode.REAL);
+        app = SystemDslFactory.create(EnvironmentMode.ACCEPTANCE, ExternalSystemMode.REAL);
         scenario = new ScenarioDsl(app);
     }
 
