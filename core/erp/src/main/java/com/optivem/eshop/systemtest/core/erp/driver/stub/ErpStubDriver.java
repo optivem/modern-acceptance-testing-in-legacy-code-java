@@ -37,8 +37,7 @@ public class ErpStubDriver implements ErpDriver {
 
     @Override
     public Result<Void, Error> goToErp() {
-        // Use the real health check endpoint (which is preconfigured in WireMock)
-        return erpClient.checkHealth();
+        return erpClient.health().checkHealth();
     }
 
     @Override

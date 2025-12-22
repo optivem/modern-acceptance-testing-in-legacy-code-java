@@ -30,7 +30,7 @@ public class ErpRealDriver implements ErpDriver {
 
     @Override
     public Result<Void, Error> goToErp() {
-        return erpClient.checkHealth();
+        return erpClient.health().checkHealth();
     }
 
     @Override

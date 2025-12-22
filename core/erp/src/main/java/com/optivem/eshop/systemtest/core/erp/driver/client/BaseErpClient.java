@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.erp.driver.client;
 
 import com.optivem.eshop.systemtest.core.commons.error.Error;
-import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailConverter;
 import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.core.erp.driver.client.controllers.HealthController;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Result;
 
@@ -11,21 +11,16 @@ import com.optivem.lang.Result;
  */
 public abstract class BaseErpClient {
 
-    private static final String HEALTH_ENDPOINT = "/health";
-
     protected final JsonHttpClient<ProblemDetailResponse> httpClient;
+    private final HealthController healthController;
 
     protected BaseErpClient(JsonHttpClient<ProblemDetailResponse> httpClient) {
         this.httpClient = httpClient;
+        this.healthController = new HealthController(httpClient);
     }
 
-    /**
-     * Check the health of the ERP system.
-     * @return Success if healthy, Error otherwise
-     */
-    public Result<Void, Error> checkHealth() {
-        return httpClient.get(HEALTH_ENDPOINT)
-                .mapFailure(ProblemDetailConverter::toError);
+    public HealthController health() {
+        return healthController;
     }
 }
 
