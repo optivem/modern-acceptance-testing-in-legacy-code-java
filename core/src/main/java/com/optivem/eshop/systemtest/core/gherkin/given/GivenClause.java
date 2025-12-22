@@ -35,7 +35,7 @@ public class GivenClause {
     public WhenClause when() {
         // Execute all product creations
         for (var product : products) {
-            app.erp().createProduct()
+            app.erp().returnsProduct()
                     .sku(product.getSku())
                     .unitPrice(product.getUnitPrice())
                     .execute()

@@ -25,7 +25,7 @@ dependencies {
     api 'com.optivem:optivem-testing-assertions'
     api 'com.optivem:optivem-testing-channels'
     api 'com.optivem:optivem-testing-dsl'
-    api 'com.optivem:core'
+    api 'com.optivem.eshop.systemtest:core'
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework:spring-web'

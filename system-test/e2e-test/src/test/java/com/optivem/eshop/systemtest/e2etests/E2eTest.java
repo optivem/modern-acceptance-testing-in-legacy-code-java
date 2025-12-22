@@ -42,7 +42,7 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectOriginalPrice() {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku("ABC")
                 .unitPrice(20.00)
                 .execute()
@@ -66,7 +66,7 @@ public class E2eTest {
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectOriginalPriceParameterized(String unitPrice, String quantity, String originalPrice) {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku("ABC")
                 .unitPrice(unitPrice)
                 .execute()
@@ -100,7 +100,7 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrder() {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku(SKU)
                 .unitPrice(20.00)
                 .execute()
@@ -138,7 +138,7 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldCancelOrder() {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku(SKU)
                 .execute()
                 .shouldSucceed();
@@ -267,7 +267,7 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithUnsupportedCountry() {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku(SKU)
                 .execute()
                 .shouldSucceed();
@@ -330,7 +330,7 @@ public class E2eTest {
     @TestTemplate
     @Channel({ChannelType.API})
     void shouldNotCancelAlreadyCancelledOrder() {
-        app.erp().createProduct()
+        app.erp().returnsProduct()
                 .sku(SKU)
                 .execute()
                 .shouldSucceed();

@@ -14,11 +14,11 @@ includeBuild('..') {
         substitute module('com.optivem:optivem-testing-assertions') using project(':libs:optivem-testing-assertions')
         substitute module('com.optivem:optivem-testing-channels') using project(':libs:optivem-testing-channels')
         substitute module('com.optivem:optivem-testing-dsl') using project(':libs:optivem-testing-dsl')
-        substitute module('com.optivem:core') using project(':core')
-        substitute module('com.optivem:core-commons') using project(':core:commons')
-        substitute module('com.optivem:core-erp') using project(':core:erp')
-        substitute module('com.optivem:core-shop') using project(':core:shop')
-        substitute module('com.optivem:core-tax') using project(':core:tax')
+        substitute module('com.optivem.eshop.systemtest:core') using project(':core')
+        substitute module('com.optivem.eshop.systemtest:core-commons') using project(':core:commons')
+        substitute module('com.optivem.eshop.systemtest:core-erp') using project(':core:erp')
+        substitute module('com.optivem.eshop.systemtest:core-shop') using project(':core:shop')
+        substitute module('com.optivem.eshop.systemtest:core-tax') using project(':core:tax')
     }
 }
 

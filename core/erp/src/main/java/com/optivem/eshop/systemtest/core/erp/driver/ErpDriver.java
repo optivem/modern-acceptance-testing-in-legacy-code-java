@@ -1,37 +1,10 @@
 package com.optivem.eshop.systemtest.core.erp.driver;
 
-import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.CreateProductRequest;
-import com.optivem.lang.Closer;
 import com.optivem.eshop.systemtest.core.commons.error.Error;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.core.erp.driver.client.ErpClient;
+import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.core.erp.driver.real.dtos.requests.CreateProductRequest;
 import com.optivem.lang.Result;
 
-import java.net.http.HttpClient;
-
-public class ErpDriver implements AutoCloseable {
-
-    private final HttpClient httpClient;
-    private final ErpClient erpClient;
-
-    public ErpDriver(String baseUrl) {
-        this.httpClient = HttpClient.newHttpClient();
-        var httpGateway = new JsonHttpClient<>(httpClient, baseUrl, ProblemDetailResponse.class);
-        this.erpClient = new ErpClient(httpGateway);
-    }
-
-    public Result<Void, Error> goToErp() {
-        return erpClient.health().checkHealth();
-    }
-
-    public Result<Void, Error> createProduct(CreateProductRequest request) {
-        return erpClient.products().createProduct(request);
-    }
-
-    @Override
-    public void close() {
-        Closer.close(httpClient);
-    }
+public interface ErpDriver extends AutoCloseable {
+    Result<Void, Error> returnsProduct(ReturnsProductRequest request);
 }
-
