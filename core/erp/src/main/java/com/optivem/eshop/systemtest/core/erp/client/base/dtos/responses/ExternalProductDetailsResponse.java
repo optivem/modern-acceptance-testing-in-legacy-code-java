@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.erp.driver.client.dtos.responses;
+package com.optivem.eshop.systemtest.core.erp.client.base.dtos.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDetailsResponse {
+public class ExternalProductDetailsResponse {
     private String id;
     private String title;
     private String description;

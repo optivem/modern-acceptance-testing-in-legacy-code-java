@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.GetProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.responses.GetProductResponse;
-import com.optivem.eshop.systemtest.core.erp.driver.real.client.ErpRealClient;
-import com.optivem.eshop.systemtest.core.erp.driver.real.client.dtos.requests.CreateProductRequest;
+import com.optivem.eshop.systemtest.core.erp.client.real.ErpRealClient;
+import com.optivem.eshop.systemtest.core.erp.client.real.dtos.requests.CreateProductRequest;
 import com.optivem.lang.Closer;
 import com.optivem.eshop.systemtest.core.commons.error.Error;
 import com.optivem.http.JsonHttpClient;
@@ -21,13 +21,10 @@ public class ErpRealDriver implements ErpDriver {
     private static final String DEFAULT_CATEGORY = "Test Category";
     private static final String DEFAULT_BRAND = "Test Brand";
 
-    private final HttpClient httpClient;
     private final ErpRealClient erpClient;
 
     public ErpRealDriver(String baseUrl) {
-        this.httpClient = HttpClient.newHttpClient();
-        var httpGateway = new JsonHttpClient<>(httpClient, baseUrl, ProblemDetailResponse.class);
-        this.erpClient = new ErpRealClient(httpGateway);
+        this.erpClient = new ErpRealClient(baseUrl);
     }
 
     @Override
@@ -60,9 +57,7 @@ public class ErpRealDriver implements ErpDriver {
 
     @Override
     public void close() {
-        Closer.close(httpClient);
+        Closer.close(erpClient);
     }
-
-
 }
 

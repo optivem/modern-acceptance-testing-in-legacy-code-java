@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.erp.driver.stub;
 import com.optivem.eshop.systemtest.core.commons.error.Error;
 import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
-import com.optivem.eshop.systemtest.core.erp.driver.stub.client.ErpStubClient;
+import com.optivem.eshop.systemtest.core.erp.client.stub.ErpStubClient;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.GetProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.requests.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.responses.GetProductResponse;
@@ -26,14 +26,13 @@ public class ErpStubDriver implements ErpDriver {
     private final WireMock wireMock;
     private final ErpStubClient erpClient;
 
-    public ErpStubDriver(String erpBaseUrl) {
+    public ErpStubDriver(String baseUrl) {
         // Create HTTP client for making actual health check requests
         this.httpClient = HttpClient.newHttpClient();
-        var jsonHttpClient = new JsonHttpClient<>(httpClient, erpBaseUrl, ProblemDetailResponse.class);
-        this.erpClient = new ErpStubClient(jsonHttpClient);
+        this.erpClient = new ErpStubClient(baseUrl);
 
         // Parse the base URL to extract host and port for WireMock admin API
-        var url = java.net.URI.create(erpBaseUrl);
+        var url = java.net.URI.create(baseUrl);
         this.wireMock = new WireMock(url.getHost(), url.getPort());
     }
 

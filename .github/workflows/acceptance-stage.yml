@@ -112,7 +112,7 @@ jobs:
       run: echo "Run Acceptance Tests"
 
     - name: Run External System Contract Tests
-      run: /gradlew :external-system-contract-test:test -Denvironment=acceptance
+      run: ./gradlew :external-system-contract-test:test -Denvironment=acceptance
       working-directory: system-test
 
     - name: Run E2E Tests
