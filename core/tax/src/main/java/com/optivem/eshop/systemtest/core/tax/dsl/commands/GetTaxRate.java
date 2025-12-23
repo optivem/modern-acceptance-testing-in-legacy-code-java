@@ -32,7 +32,7 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
                 .country(country)
                 .build();
 
-        var result = driver.getTax(request);
+        var result = driver.getTaxRate(request);
 
         return new TaxUseCaseResult<>(result, context, GetTaxVerification::new);
     }

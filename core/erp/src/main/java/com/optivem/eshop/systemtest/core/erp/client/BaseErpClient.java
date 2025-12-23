@@ -24,6 +24,11 @@ public abstract class BaseErpClient implements AutoCloseable {
         this.httpClient = new JsonHttpClient<>(rawHttpClient, baseUrl, ProblemDetailResponse.class);
     }
 
+    @Override
+    public void close() {
+        Closer.close(rawHttpClient);
+    }
+
     public Result<Void, Error> checkHealth() {
         return httpClient.get("/health")
                 .mapError(ProblemDetailConverter::toError);
@@ -32,10 +37,5 @@ public abstract class BaseErpClient implements AutoCloseable {
     public Result<ExtProductDetailsResponse, Error> getProduct(String sku) {
         return httpClient.get("/api/products/" + sku, ExtProductDetailsResponse.class)
                 .mapError(ProblemDetailConverter::toError);
-    }
-
-    @Override
-    public void close() {
-        Closer.close(rawHttpClient);
     }
 }

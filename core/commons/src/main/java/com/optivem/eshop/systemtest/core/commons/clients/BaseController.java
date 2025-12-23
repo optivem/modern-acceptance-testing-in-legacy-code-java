@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.commons.clients.api.controllers;
+package com.optivem.eshop.systemtest.core.commons.clients;
 
 import com.optivem.eshop.systemtest.core.commons.error.ProblemDetailResponse;
 import com.optivem.http.JsonHttpClient;

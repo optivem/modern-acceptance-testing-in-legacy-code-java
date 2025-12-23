@@ -10,6 +10,6 @@ import com.optivem.lang.Result;
 public interface TaxDriver extends Driver {
     Result<Void, TaxErrorResponse> goToTax();
     Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request);
-    Result<GetTaxResponse, TaxErrorResponse> getTax(GetTaxRequest request);
+    Result<GetTaxResponse, TaxErrorResponse> getTaxRate(GetTaxRequest request);
 }
 

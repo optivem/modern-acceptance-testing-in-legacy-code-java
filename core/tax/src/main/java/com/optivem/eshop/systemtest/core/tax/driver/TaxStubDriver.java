@@ -10,31 +10,22 @@ import com.optivem.lang.Closer;
 import com.optivem.lang.Result;
 import com.github.tomakehurst.wiremock.client.WireMock;
 
+import java.net.URI;
 import java.net.http.HttpClient;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
-public class TaxStubDriver implements TaxDriver {
-
-    private final HttpClient httpClient;
+public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
     private final WireMock wireMock;
-    private final TaxStubClient taxClient;
 
-    public TaxStubDriver(String taxBaseUrl) {
-        this.httpClient = HttpClient.newHttpClient();
-        var taxHttpClient = new TaxHttpClient(httpClient, taxBaseUrl);
-        this.taxClient = new TaxStubClient(taxHttpClient);
+    public TaxStubDriver(String baseUrl) {
+        super(new TaxStubClient(baseUrl));
 
-        var url = java.net.URI.create(taxBaseUrl);
+        var url = URI.create(baseUrl);
         var host = url.getHost();
         var port = url.getPort();
 
         this.wireMock = new WireMock(host, port);
-    }
-
-    @Override
-    public Result<Void, TaxErrorResponse> goToTax() {
-        return taxClient.checkHealth();
     }
 
     @Override
@@ -54,19 +45,5 @@ public class TaxStubDriver implements TaxDriver {
         // TODO: VJ: Should make Dto for request body
 
         return Result.success();
-    }
-
-    @Override
-    public Result<GetTaxResponse, TaxErrorResponse> getTax(GetTaxRequest request) {
-        return taxClient.getCountry(request.getCountry())
-                .map(taxDetails -> GetTaxResponse.builder()
-                        .country(taxDetails.getId())
-                        .taxRate(taxDetails.getTaxRate())
-                        .build());
-    }
-
-    @Override
-    public void close() {
-        Closer.close(httpClient);
     }
 }

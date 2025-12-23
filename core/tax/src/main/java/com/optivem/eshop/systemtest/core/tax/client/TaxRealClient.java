@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.tax.client.commons.TaxHttpClient;
 
 public class TaxRealClient extends BaseTaxClient {
 
-    public TaxRealClient(TaxHttpClient taxHttpClient) {
-        super(taxHttpClient);
+    public TaxRealClient(String baseUrl) {
+        super(baseUrl);
     }
 }
 

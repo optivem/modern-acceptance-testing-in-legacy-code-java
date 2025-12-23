@@ -11,39 +11,15 @@ import com.optivem.lang.Result;
 
 import java.net.http.HttpClient;
 
-public class TaxRealDriver implements TaxDriver {
-
-    private final HttpClient httpClient;
-    private final TaxRealClient taxClient;
+public class TaxRealDriver extends BaseTaxDriver<TaxRealClient> {
 
     public TaxRealDriver(String baseUrl) {
-        this.httpClient = HttpClient.newHttpClient();
-        var taxHttpClient = new TaxHttpClient(httpClient, baseUrl);
-        this.taxClient = new TaxRealClient(taxHttpClient);
-    }
-
-    @Override
-    public void close() {
-        Closer.close(httpClient);
-    }
-
-    @Override
-    public Result<Void, TaxErrorResponse> goToTax() {
-        return taxClient.checkHealth();
+        super(new TaxRealClient(baseUrl));
     }
 
     @Override
     public Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request) {
         // No-op for real driver - data already exists in real service
         return Result.success();
-    }
-
-    @Override
-    public Result<GetTaxResponse, TaxErrorResponse> getTax(GetTaxRequest request) {
-        return taxClient.getCountry(request.getCountry())
-                .map(taxDetails -> GetTaxResponse.builder()
-                        .country(taxDetails.getId())
-                        .taxRate(taxDetails.getTaxRate())
-                        .build());
     }
 }
