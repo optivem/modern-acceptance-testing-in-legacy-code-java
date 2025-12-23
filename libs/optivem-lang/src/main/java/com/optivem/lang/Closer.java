@@ -2,7 +2,7 @@ package com.optivem.lang;
 
 public class Closer {
     public static void close(AutoCloseable closeable) {
-        if(closeable != null) {
+        if (closeable != null) {
             try {
                 closeable.close();
             } catch (Exception e) {

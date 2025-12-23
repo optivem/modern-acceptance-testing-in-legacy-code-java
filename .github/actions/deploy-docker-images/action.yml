@@ -57,7 +57,7 @@ runs:
         # List Docker images being deployed
         if [[ -n "${{ inputs.image-urls }}" ]]; then
           echo "📦 Deploying the following Docker images:"
-          
+        
           # Parse JSON array and iterate through each URL
           echo '${{ inputs.image-urls }}' | jq -r '.[]' | while IFS= read -r image_url; do
             if [[ -n "$image_url" ]]; then
@@ -119,12 +119,12 @@ runs:
 
     - name: Prepare for Smoke Tests - Setup Gradle
       uses: gradle/actions/setup-gradle@v4
-    
+
     - name: Prepare for Smoke Tests - Make Gradle Wrapper executable
       run: chmod +x ./gradlew
       shell: bash
       working-directory: system-test
-        
+
     - name: Run Smoke Tests
       run: ./gradlew :smoke-test:test -Denvironment=${{ inputs.environment }} -DexternalSystemMode=${{ inputs.external-system-mode }}
       shell: bash

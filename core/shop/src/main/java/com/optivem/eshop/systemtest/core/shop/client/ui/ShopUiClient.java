@@ -61,12 +61,12 @@ public class ShopUiClient implements AutoCloseable {
     }
 
     public boolean isPageLoaded() {
-        if(response == null || response.status() != HttpStatus.OK.value()) {
+        if (response == null || response.status() != HttpStatus.OK.value()) {
             return false;
         }
 
         var contentType = response.headers().get(CONTENT_TYPE);
-        if(contentType == null || !contentType.equals(TEXT_HTML)) {
+        if (contentType == null || !contentType.equals(TEXT_HTML)) {
             return false;
         }
 

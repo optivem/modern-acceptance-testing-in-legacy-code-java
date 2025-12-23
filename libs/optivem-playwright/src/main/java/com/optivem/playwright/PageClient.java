@@ -8,13 +8,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class PageClient {
-    private final Page page;
-    private final String baseUrl;
-    private final int timeoutMilliseconds;
-
     // Increased default timeout for parallel test execution
     private static final int DEFAULT_TIMEOUT_SECONDS = 30;
     private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
+    private final Page page;
+    private final String baseUrl;
+    private final int timeoutMilliseconds;
 
     private PageClient(Builder builder) {
         this.page = builder.page;
@@ -24,30 +23,6 @@ public class PageClient {
 
     public static Builder builder(Page page) {
         return new Builder(page);
-    }
-
-    public static class Builder {
-        private final Page page;
-        private String baseUrl = null;
-        private int timeoutMilliseconds = DEFAULT_TIMEOUT_MILLISECONDS;
-
-        private Builder(Page page) {
-            this.page = page;
-        }
-
-        public Builder baseUrl(String baseUrl) {
-            this.baseUrl = baseUrl;
-            return this;
-        }
-
-        public Builder timeoutMilliseconds(int timeoutMilliseconds) {
-            this.timeoutMilliseconds = timeoutMilliseconds;
-            return this;
-        }
-
-        public PageClient build() {
-            return new PageClient(this);
-        }
     }
 
     public void fill(String selector, String text) {
@@ -137,5 +112,29 @@ public class PageClient {
 
     private Locator.WaitForOptions getWaitForOptions() {
         return new Locator.WaitForOptions().setTimeout(timeoutMilliseconds);
+    }
+
+    public static class Builder {
+        private final Page page;
+        private String baseUrl = null;
+        private int timeoutMilliseconds = DEFAULT_TIMEOUT_MILLISECONDS;
+
+        private Builder(Page page) {
+            this.page = page;
+        }
+
+        public Builder baseUrl(String baseUrl) {
+            this.baseUrl = baseUrl;
+            return this;
+        }
+
+        public Builder timeoutMilliseconds(int timeoutMilliseconds) {
+            this.timeoutMilliseconds = timeoutMilliseconds;
+            return this;
+        }
+
+        public PageClient build() {
+            return new PageClient(this);
+        }
     }
 }

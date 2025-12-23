@@ -21,11 +21,11 @@ public abstract class BasePage {
     public boolean hasSuccessNotification() {
         pageClient.waitForVisible(NOTIFICATION_SELECTOR);
 
-        if(pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR)) {
+        if (pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR)) {
             return true;
         }
 
-        if(pageClient.exists(ERROR_NOTIFICATION_SELECTOR)) {
+        if (pageClient.exists(ERROR_NOTIFICATION_SELECTOR)) {
             return false;
         }
 
@@ -41,11 +41,11 @@ public abstract class BasePage {
         var text = pageClient.readTextContent(ERROR_NOTIFICATION_SELECTOR);
         return text.lines().toList();
     }
-    
+
     public String readGeneralErrorMessage() {
         return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
     }
-    
+
     public List<String> readFieldErrors() {
         if (!pageClient.exists(FIELD_ERROR_SELECTOR)) {
             return List.of();

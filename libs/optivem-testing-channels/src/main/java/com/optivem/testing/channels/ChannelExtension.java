@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * JUnit Jupiter extension that enables running tests across multiple channels.
  * When a test method is annotated with @Channel and @TestTemplate, this extension
  * creates separate test invocations for each specified channel (e.g., UI, API).
- *
+ * <p>
  * Also supports @DataSource, @ValueSource, @MethodSource, and @ArgumentsSource to combine channel types with test data.
  */
 public class ChannelExtension implements TestTemplateInvocationContextProvider {

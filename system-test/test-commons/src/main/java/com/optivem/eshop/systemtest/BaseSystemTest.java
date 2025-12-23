@@ -27,7 +27,7 @@ public class BaseSystemTest {
     private SystemDsl createSystemDsl() {
         var externalSystemMode = getFixedExternalSystemMode();
 
-        if(externalSystemMode == null) {
+        if (externalSystemMode == null) {
             return SystemDslFactory.create();
         }
 

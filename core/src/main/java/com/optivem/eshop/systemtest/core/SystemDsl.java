@@ -30,6 +30,10 @@ public class SystemDsl implements Closeable {
         this(configuration, new UseCaseContext(configuration.getExternalSystemMode()));
     }
 
+    private static <T> T getOrCreate(T instance, Supplier<T> supplier) {
+        return instance != null ? instance : supplier.get();
+    }
+
     @Override
     public void close() {
         Closer.close(shop);
@@ -59,10 +63,6 @@ public class SystemDsl implements Closeable {
             };
         }
         return tax;
-    }
-
-    private static <T> T getOrCreate(T instance, Supplier<T> supplier) {
-        return instance != null ? instance : supplier.get();
     }
 }
 

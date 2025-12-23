@@ -61,14 +61,14 @@ public class PlaceOrderBuilder {
         // Execute the place order
         var placeOrder = app.shop().placeOrder()
                 .orderNumber(orderNumber);
-        
+
         // Apply SKU - use explicit value if set, otherwise use default
         if (skuExplicitlySet) {
             placeOrder.sku(sku);
         } else {
             placeOrder.sku(DEFAULT_SKU);
         }
-        
+
         // Apply quantity
         if (quantityExplicitlySet) {
             if (quantityString != null) {
@@ -82,14 +82,14 @@ public class PlaceOrderBuilder {
         } else {
             placeOrder.quantity(DEFAULT_QUANTITY);
         }
-        
+
         // Apply country
         if (countryExplicitlySet) {
             placeOrder.country(country);
         } else {
             placeOrder.country(DEFAULT_COUNTRY);
         }
-        
+
         var result = placeOrder.execute();
 
         return new ThenClause(app, orderNumber, result);

@@ -50,9 +50,9 @@ public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidResponseVerificatio
     }
 
     private String getCountry() {
-        if(context.getExternalSystemMode() == ExternalSystemMode.STUB) {
+        if (context.getExternalSystemMode() == ExternalSystemMode.STUB) {
             return context.getParamValue(countryAlias);
-        } else if(context.getExternalSystemMode() == ExternalSystemMode.REAL) {
+        } else if (context.getExternalSystemMode() == ExternalSystemMode.REAL) {
             return countryAlias;
         } else {
             throw new IllegalStateException("Unsupported external system mode: " + context.getExternalSystemMode());

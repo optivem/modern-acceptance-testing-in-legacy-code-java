@@ -21,7 +21,7 @@ public class SystemDslFactory {
     }
 
     private static Environment getEnvironment(Environment fixedEnvironment) {
-        if(fixedEnvironment != null) {
+        if (fixedEnvironment != null) {
             return fixedEnvironment;
         }
 
@@ -30,7 +30,7 @@ public class SystemDslFactory {
     }
 
     private static ExternalSystemMode getExternalSystemMode(ExternalSystemMode fixedExternalSystemMode) {
-        if(fixedExternalSystemMode != null) {
+        if (fixedExternalSystemMode != null) {
             return fixedExternalSystemMode;
         }
 
@@ -42,8 +42,8 @@ public class SystemDslFactory {
         var value = System.getProperty(propertyName);
         if (value == null) {
             throw new IllegalStateException(
-                String.format("System property '%s' is not defined. Please specify -D%s=<%s>",
-                    propertyName, propertyName, allowedValues)
+                    String.format("System property '%s' is not defined. Please specify -D%s=<%s>",
+                            propertyName, propertyName, allowedValues)
             );
         }
         return value;

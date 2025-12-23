@@ -20,7 +20,7 @@ public class ResultAssert<T, E> extends AbstractAssert<ResultAssert<T, E>, Resul
         }
         return this;
     }
-    
+
     public ResultAssert<T, E> isFailure() {
         isNotNull();
         if (!actual.isFailure()) {

@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.core.shop.client.dtos.GetOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.client.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.client.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.client.dtos.error.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.core.shop.driver.dtos.error.SystemError;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Result;
 

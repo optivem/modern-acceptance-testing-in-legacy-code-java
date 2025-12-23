@@ -8,7 +8,9 @@ import com.optivem.lang.Result;
 
 public interface TaxDriver extends AutoCloseable {
     Result<Void, TaxErrorResponse> goToTax();
+
     Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request);
+
     Result<GetTaxResponse, TaxErrorResponse> getTaxRate(GetTaxRequest request);
 }
 

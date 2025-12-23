@@ -15,48 +15,6 @@ public class UseCaseContext {
         this.resultMap = new HashMap<>();
     }
 
-    public ExternalSystemMode getExternalSystemMode() {
-        return externalSystemMode;
-    }
-
-    public String getParamValue(String alias) {
-        if(alias == null || alias.isBlank()) {
-            return alias;
-        }
-
-        if(paramMap.containsKey(alias)) {
-            return paramMap.get(alias);
-        }
-
-        var value = generateParamValue(alias);
-        paramMap.put(alias, value);
-
-        return value;
-    }
-
-    public void setResultEntry(String alias, String value) {
-        if(resultMap.containsKey(alias)) {
-            throw new IllegalStateException("Alias already exists: " + alias);
-        }
-
-        resultMap.put(alias, value);
-    }
-
-    public String getResultValue(String alias) {
-        var value = resultMap.get(alias);
-        if(value == null) {
-            return alias; // Return literal value if not found as alias
-        }
-
-        return value;
-    }
-
-    public String expandAliases(String message) {
-        var expandedMessage = expandAlias(message, paramMap);
-        expandedMessage = expandAlias(expandedMessage, resultMap);
-        return expandedMessage;
-    }
-
     private static String expandAlias(String message, Map<String, String> map) {
         var expandedMessage = message;
         for (var entry : map.entrySet()) {
@@ -70,6 +28,48 @@ public class UseCaseContext {
     private static String generateParamValue(String alias) {
         var suffix = UUID.randomUUID().toString().substring(0, 8);
         return alias + "-" + suffix;
+    }
+
+    public ExternalSystemMode getExternalSystemMode() {
+        return externalSystemMode;
+    }
+
+    public String getParamValue(String alias) {
+        if (alias == null || alias.isBlank()) {
+            return alias;
+        }
+
+        if (paramMap.containsKey(alias)) {
+            return paramMap.get(alias);
+        }
+
+        var value = generateParamValue(alias);
+        paramMap.put(alias, value);
+
+        return value;
+    }
+
+    public void setResultEntry(String alias, String value) {
+        if (resultMap.containsKey(alias)) {
+            throw new IllegalStateException("Alias already exists: " + alias);
+        }
+
+        resultMap.put(alias, value);
+    }
+
+    public String getResultValue(String alias) {
+        var value = resultMap.get(alias);
+        if (value == null) {
+            return alias; // Return literal value if not found as alias
+        }
+
+        return value;
+    }
+
+    public String expandAliases(String message) {
+        var expandedMessage = expandAlias(message, paramMap);
+        expandedMessage = expandAlias(expandedMessage, resultMap);
+        return expandedMessage;
     }
 
 

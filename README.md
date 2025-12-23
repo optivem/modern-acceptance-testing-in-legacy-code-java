@@ -34,6 +34,7 @@ $PSVersionTable.PSVersion
 ```
 
 This will:
+
 1. Build the Frontend (TypeScript compilation and bundling with Vite)
 2. Build the Backend (Java compilation and JAR creation)
 3. Start Docker containers (Frontend, Backend, PostgreSQL, & Mock External APIs)
@@ -41,6 +42,7 @@ This will:
 5. Run all System Tests (API E2E, UI E2E, and Smoke Tests)
 
 You can open these URLs in your browser:
+
 - **Frontend UI**: [http://localhost:3001](http://localhost:3001)
 - **Backend API**: [http://localhost:8081/api](http://localhost:8081/api)
 - **ERP API**: [http://localhost:9001/erp/health](http://localhost:9001/erp/health)
@@ -49,7 +51,9 @@ You can open these URLs in your browser:
 ## Separate Commands
 
 ### Run with Local Build (Default)
+
 Builds locally and runs all system tests:
+
 ```powershell
 .\Run-SystemTests.ps1
 # or explicitly:
@@ -57,38 +61,48 @@ Builds locally and runs all system tests:
 ```
 
 ### Run with Pipeline Images
+
 Uses pre-built Docker images from registry:
+
 ```powershell
 .\Run-SystemTests.ps1 pipeline
 ```
 
 ### Quick Test Re-run
+
 Skip build/start phases and just run tests (assumes services are already running):
+
 ```powershell
 .\Run-SystemTests.ps1 -TestOnly
 ```
 
-**Note:** The `-TestOnly` flag skips the build, stop, start, and wait phases. Use it when services are already running and you just want to re-run the tests quickly.
+**Note:** The `-TestOnly` flag skips the build, stop, start, and wait phases. Use it when services are already running
+and you just want to re-run the tests quickly.
 
 ### Individual Component Builds
+
 You can also build components separately:
 
 **Backend:**
+
 ```powershell
 cd backend
 .\Build-Backend.ps1
 ```
 
 **Frontend:**
+
 ```powershell
 cd frontend
 .\Build-Frontend.ps1
 ```
 
 ### Docker Commands
+
 For manual Docker management:
 
 **View Logs:**
+
 ```powershell
 docker compose -f docker-compose.local.yml logs
 # or for pipeline:
@@ -96,6 +110,7 @@ docker compose -f docker-compose.pipeline.yml logs
 ```
 
 **Stop Services:**
+
 ```powershell
 docker compose -f docker-compose.local.yml down
 # or for pipeline:
@@ -105,13 +120,12 @@ docker compose -f docker-compose.pipeline.yml down
 **Service URLs:**
 
 You can open these URLs in your browser:
+
 - **Frontend UI**: [http://localhost:3001](http://localhost:3001)
 - **Backend API**: [http://localhost:8081/api](http://localhost:8081/api)
 - **ERP API**: [http://localhost:9001/erp/health](http://localhost:9001/erp/health)
 - **Tax API**: [http://localhost:9001/tax/health](http://localhost:9001/tax/health)
 - **PostgreSQL Database**: localhost:5401 (database: `eshop`, user: `eshop_user`, password: `eshop_password`)
-
-
 
 ## License
 

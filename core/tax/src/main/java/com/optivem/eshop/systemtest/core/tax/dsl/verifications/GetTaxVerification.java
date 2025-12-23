@@ -25,9 +25,9 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse, Use
     }
 
     private String getExpectedCountry(String expectedCountry) {
-        if(context.getExternalSystemMode() == ExternalSystemMode.STUB) {
+        if (context.getExternalSystemMode() == ExternalSystemMode.STUB) {
             return context.getParamValue(expectedCountry);
-        } else if(context.getExternalSystemMode() == ExternalSystemMode.REAL) {
+        } else if (context.getExternalSystemMode() == ExternalSystemMode.REAL) {
             return expectedCountry;
         } else {
             throw new IllegalStateException("Unsupported external system mode: " + context.getExternalSystemMode());

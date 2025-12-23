@@ -10,8 +10,8 @@ import java.net.http.HttpClient;
 
 public abstract class BaseTaxClient implements AutoCloseable {
 
-    private final HttpClient rawHttpClient;
     protected final JsonHttpClient<ExtTaxErrorResponse> httpClient;
+    private final HttpClient rawHttpClient;
 
     protected BaseTaxClient(String baseUrl) {
         this.rawHttpClient = HttpClient.newHttpClient();

@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * Repeatable annotation to provide inline test arguments that will be combined with channel types.
  * Each @DataSource annotation represents one row of test arguments that will be
  * executed against all specified channels.
- *
+ * <p>
  * Example with inline values:
  * <pre>
  * @TestTemplate
@@ -17,7 +17,7 @@ import java.lang.annotation.*;
  *     // This test will run 4 times: UI with "3.5", UI with "lala", API with "3.5", API with "lala"
  * }
  * </pre>
- *
+ * <p>
  * Example with multiple parameters:
  * <pre>
  * @TestTemplate

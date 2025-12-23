@@ -10,8 +10,8 @@ import java.net.http.HttpClient;
 
 public abstract class BaseErpClient implements AutoCloseable {
 
-    private final HttpClient rawHttpClient;
     protected final JsonHttpClient<ExtErpErrorResponse> httpClient;
+    private final HttpClient rawHttpClient;
 
     protected BaseErpClient(String baseUrl) {
         this.rawHttpClient = HttpClient.newHttpClient();

@@ -27,7 +27,7 @@ public class ErrorFailureVerification extends ResponseVerification<SystemError, 
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
         var error = getResponse();
         var fields = error.getFields();
-        
+
         assertThat(fields)
                 .withFailMessage("Expected field errors but none were found")
                 .isNotNull()
@@ -38,13 +38,13 @@ public class ErrorFailureVerification extends ResponseVerification<SystemError, 
                 .findFirst();
 
         assertThat(matchingFieldError)
-                .withFailMessage("Expected field error for field '%s', but field was not found in errors: %s", 
+                .withFailMessage("Expected field error for field '%s', but field was not found in errors: %s",
                         expandedExpectedField, fields)
                 .isPresent();
 
         var actualMessage = matchingFieldError.get().getMessage();
         assertThat(actualMessage)
-                .withFailMessage("Expected field error message for field '%s': '%s', but got: '%s'", 
+                .withFailMessage("Expected field error message for field '%s': '%s', but got: '%s'",
                         expandedExpectedField, expandedExpectedMessage, actualMessage)
                 .isEqualTo(expandedExpectedMessage);
 

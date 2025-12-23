@@ -18,6 +18,14 @@ public class E2eTest extends BaseE2eTest {
     private static final String ORDER_NUMBER = "order-number";
     private static final String SKU = "sku";
 
+    private static Stream<Arguments> provideNonExistentOrderValues() {
+        return Stream.of(
+                Arguments.of("NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."),
+                Arguments.of("NON-EXISTENT-ORDER-88888", "Order NON-EXISTENT-ORDER-88888 does not exist."),
+                Arguments.of("NON-EXISTENT-ORDER-77777", "Order NON-EXISTENT-ORDER-77777 does not exist.")
+        );
+    }
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectOriginalPrice() {
@@ -151,14 +159,6 @@ public class E2eTest extends BaseE2eTest {
                 .shouldFail()
                 .errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("sku", "Product does not exist for SKU: NON-EXISTENT-SKU-12345");
-    }
-
-    private static Stream<Arguments> provideNonExistentOrderValues() {
-        return Stream.of(
-                Arguments.of("NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."),
-                Arguments.of("NON-EXISTENT-ORDER-88888", "Order NON-EXISTENT-ORDER-88888 does not exist."),
-                Arguments.of("NON-EXISTENT-ORDER-77777", "Order NON-EXISTENT-ORDER-77777 does not exist.")
-        );
     }
 
     @TestTemplate

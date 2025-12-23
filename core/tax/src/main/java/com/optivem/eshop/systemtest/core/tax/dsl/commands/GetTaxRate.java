@@ -38,9 +38,9 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
     }
 
     private String getCountry() {
-        if(context.getExternalSystemMode() == ExternalSystemMode.STUB) {
+        if (context.getExternalSystemMode() == ExternalSystemMode.STUB) {
             return context.getParamValue(countryValueOrAlias);
-        } else if(context.getExternalSystemMode() == ExternalSystemMode.REAL) {
+        } else if (context.getExternalSystemMode() == ExternalSystemMode.REAL) {
             return countryValueOrAlias;
         } else {
             throw new IllegalStateException("Unsupported external system mode: " + context.getExternalSystemMode());

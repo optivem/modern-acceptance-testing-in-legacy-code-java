@@ -39,7 +39,7 @@ public class NewOrderPage extends BasePage {
         var pattern = Pattern.compile(ORDER_NUMBER_REGEX);
         var matcher = pattern.matcher(confirmationMessageText);
 
-        if(!matcher.find()) {
+        if (!matcher.find()) {
             throw new RuntimeException("Could not find order number");
         }
 

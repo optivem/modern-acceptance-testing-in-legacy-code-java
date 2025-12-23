@@ -24,13 +24,6 @@ public class ShopUiDriver implements ShopDriver {
 
     private Pages currentPage;
 
-    private enum Pages {
-        NONE,
-        HOME,
-        NEW_ORDER,
-        ORDER_HISTORY
-    }
-
     public ShopUiDriver(String baseUrl) {
         this.client = new ShopUiClient(baseUrl);
     }
@@ -39,7 +32,7 @@ public class ShopUiDriver implements ShopDriver {
     public Result<Void, SystemError> goToShop() {
         homePage = client.openHomePage();
 
-        if(!client.isStatusOk() || !client.isPageLoaded()) {
+        if (!client.isStatusOk() || !client.isPageLoaded()) {
             return Results.failure("Failed to load home page");
         }
 
@@ -61,10 +54,10 @@ public class ShopUiDriver implements ShopDriver {
 
         var isSuccess = newOrderPage.hasSuccessNotification();
 
-        if(!isSuccess) {
+        if (!isSuccess) {
             var generalMessage = newOrderPage.readGeneralErrorMessage();
             var fieldErrorTexts = newOrderPage.readFieldErrors();
-            
+
             if (fieldErrorTexts.isEmpty()) {
                 // Business logic error - no field errors
                 return Results.failure(generalMessage);
@@ -80,12 +73,12 @@ public class ShopUiDriver implements ShopDriver {
                             return new SystemError.FieldError("unknown", text);
                         })
                         .toList();
-                
+
                 var error = SystemError.builder()
                         .message(generalMessage)
                         .fields(fieldErrors)
                         .build();
-                
+
                 return Results.failure(error);
             }
         }
@@ -103,7 +96,7 @@ public class ShopUiDriver implements ShopDriver {
 
         var isSuccess = orderHistoryPage.hasOrderDetails();
 
-        if(!isSuccess) {
+        if (!isSuccess) {
             var errorMessages = orderHistoryPage.readErrorNotification();
             var errorMessage = !errorMessages.isEmpty() ? errorMessages.get(0) : "Order not found";
             return Results.failure(errorMessage);
@@ -148,16 +141,16 @@ public class ShopUiDriver implements ShopDriver {
         orderHistoryPage.clickCancelOrder();
 
         var cancellationMessage = orderHistoryPage.readSuccessNotification();
-        if(!Objects.equals(cancellationMessage, "Order cancelled successfully!")) {
+        if (!Objects.equals(cancellationMessage, "Order cancelled successfully!")) {
             return Results.failure("Order cancellation failed");
         }
 
         var displayStatusAfterCancel = orderHistoryPage.getStatus();
-        if(!Objects.equals(displayStatusAfterCancel, OrderStatus.CANCELLED)) {
+        if (!Objects.equals(displayStatusAfterCancel, OrderStatus.CANCELLED)) {
             return Results.failure("Order status not updated to CANCELLED");
         }
 
-        if(!orderHistoryPage.isCancelButtonHidden()) {
+        if (!orderHistoryPage.isCancelButtonHidden()) {
             return Results.failure("Cancel button still visible");
         }
 
@@ -170,7 +163,7 @@ public class ShopUiDriver implements ShopDriver {
     }
 
     private void ensureOnNewOrderPage() {
-        if(currentPage != Pages.NEW_ORDER) {
+        if (currentPage != Pages.NEW_ORDER) {
             homePage = client.openHomePage();
             newOrderPage = homePage.clickNewOrder();
             currentPage = Pages.NEW_ORDER;
@@ -178,11 +171,18 @@ public class ShopUiDriver implements ShopDriver {
     }
 
     private void ensureOnOrderHistoryPage() {
-        if(currentPage != Pages.ORDER_HISTORY) {
+        if (currentPage != Pages.ORDER_HISTORY) {
             homePage = client.openHomePage();
             orderHistoryPage = homePage.clickOrderHistory();
             currentPage = Pages.ORDER_HISTORY;
         }
+    }
+
+    private enum Pages {
+        NONE,
+        HOME,
+        NEW_ORDER,
+        ORDER_HISTORY
     }
 }
 

@@ -24,6 +24,22 @@ public class ChannelExtensionTest {
     // @ValueSource Tests
     // ==========================================================================
 
+    static Stream<Arguments> provideStringsForMethodSource() {
+        return Stream.of(
+                Arguments.of("apple"),
+                Arguments.of("banana"),
+                Arguments.of("cherry")
+        );
+    }
+
+    static Stream<Arguments> provideMultipleArgumentsForMethodSource() {
+        return Stream.of(
+                Arguments.of("item1", 10, true),
+                Arguments.of("item2", 20, false),
+                Arguments.of("item3", 30, true)
+        );
+    }
+
     @TestTemplate
     @Channel({TestChannel.CHANNEL_A, TestChannel.CHANNEL_B})
     @ValueSource(strings = {"hello", "world", "test"})
@@ -81,6 +97,10 @@ public class ChannelExtensionTest {
         assertTrue(Character.isLetter(value), "Value should be a letter");
     }
 
+    // ==========================================================================
+    // @MethodSource Tests
+    // ==========================================================================
+
     @TestTemplate
     @Channel({TestChannel.CHANNEL_A, TestChannel.CHANNEL_B})
     @ValueSource(booleans = {true, false})
@@ -96,32 +116,12 @@ public class ChannelExtensionTest {
         assertNotNull(value, "Class should not be null");
     }
 
-    // ==========================================================================
-    // @MethodSource Tests
-    // ==========================================================================
-
-    static Stream<Arguments> provideStringsForMethodSource() {
-        return Stream.of(
-                Arguments.of("apple"),
-                Arguments.of("banana"),
-                Arguments.of("cherry")
-        );
-    }
-
     @TestTemplate
     @Channel({TestChannel.CHANNEL_A, TestChannel.CHANNEL_B})
     @MethodSource("provideStringsForMethodSource")
     void shouldSupportMethodSourceWithSingleArgument(String fruit) {
         assertNotNull(fruit, "Fruit should not be null");
         assertTrue(fruit.length() > 0, "Fruit should not be empty");
-    }
-
-    static Stream<Arguments> provideMultipleArgumentsForMethodSource() {
-        return Stream.of(
-                Arguments.of("item1", 10, true),
-                Arguments.of("item2", 20, false),
-                Arguments.of("item3", 30, true)
-        );
     }
 
     @TestTemplate

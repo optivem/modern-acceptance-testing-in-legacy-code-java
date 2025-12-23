@@ -14,8 +14,8 @@ public class EmptyArgumentsProvider implements ArgumentsProvider {
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(
-            Arguments.of(""),      // Empty string
-            Arguments.of("   ")    // Whitespace string
+                Arguments.of(""),      // Empty string
+                Arguments.of("   ")    // Whitespace string
         );
     }
 }

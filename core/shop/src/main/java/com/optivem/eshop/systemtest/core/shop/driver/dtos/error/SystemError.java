@@ -14,23 +14,6 @@ public class SystemError {
     private final String message;
     private final List<FieldError> fields;
 
-    @Getter
-    public static class FieldError {
-        private final String field;
-        private final String message;
-        private final String code;
-
-        public FieldError(String field, String message, String code) {
-            this.field = field;
-            this.message = message;
-            this.code = code;
-        }
-
-        public FieldError(String field, String message) {
-            this(field, message, null);
-        }
-    }
-
     public static SystemError of(String message) {
         return SystemError.builder()
                 .message(message)
@@ -62,5 +45,22 @@ public class SystemError {
         }
 
         return SystemError.of(message);
+    }
+
+    @Getter
+    public static class FieldError {
+        private final String field;
+        private final String message;
+        private final String code;
+
+        public FieldError(String field, String message, String code) {
+            this.field = field;
+            this.message = message;
+            this.code = code;
+        }
+
+        public FieldError(String field, String message) {
+            this(field, message, null);
+        }
     }
 }
