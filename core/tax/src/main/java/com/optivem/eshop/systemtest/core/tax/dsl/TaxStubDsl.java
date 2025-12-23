@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.dsl;
 
-import com.optivem.eshop.systemtest.core.tax.driver.stub.TaxStubDriver;
+import com.optivem.eshop.systemtest.core.tax.driver.TaxStubDriver;
 import com.optivem.testing.dsl.UseCaseContext;
 
 public class TaxStubDsl extends TaxDsl {

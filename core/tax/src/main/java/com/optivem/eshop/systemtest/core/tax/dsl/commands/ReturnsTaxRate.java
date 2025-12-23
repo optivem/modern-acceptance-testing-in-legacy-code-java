@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.tax.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.requests.ReturnsTaxRateRequest;
+import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.testing.dsl.ExternalSystemMode;
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidResponseVerification;

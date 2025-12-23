@@ -1,9 +1,8 @@
-package com.optivem.eshop.systemtest.core.tax.driver.client.controllers;
+package com.optivem.eshop.systemtest.core.tax.client.controllers;
 
 import com.optivem.eshop.systemtest.core.tax.commons.TaxError;
-import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxErrorConverter;
-import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxHttpClient;
-import com.optivem.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.core.tax.client.commons.TaxErrorConverter;
+import com.optivem.eshop.systemtest.core.tax.client.commons.TaxHttpClient;
 import com.optivem.lang.Result;
 
 public class HealthController {

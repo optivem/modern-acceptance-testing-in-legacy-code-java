@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.core.tax.driver.client;
+package com.optivem.eshop.systemtest.core.tax.client;
 
-import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxHttpClient;
-import com.optivem.eshop.systemtest.core.tax.driver.client.controllers.HealthController;
-import com.optivem.eshop.systemtest.core.tax.driver.client.controllers.CountryController;
+import com.optivem.eshop.systemtest.core.tax.client.commons.TaxHttpClient;
+import com.optivem.eshop.systemtest.core.tax.client.controllers.HealthController;
+import com.optivem.eshop.systemtest.core.tax.client.controllers.CountryController;
 
 public abstract class BaseTaxClient {
 

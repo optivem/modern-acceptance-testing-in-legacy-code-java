@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.driver.client.dtos.responses;
+package com.optivem.eshop.systemtest.core.tax.client.dtos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.driver.dtos.requests;
+package com.optivem.eshop.systemtest.core.tax.driver.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ReturnsTaxRateRequest {
+public class GetTaxRequest {
     private String country;
-    private String taxRate;
 }
 

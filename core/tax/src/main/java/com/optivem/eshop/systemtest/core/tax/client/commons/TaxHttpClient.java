@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.driver.client.commons;
+package com.optivem.eshop.systemtest.core.tax.client.commons;
 
 import com.optivem.http.JsonHttpClient;
 

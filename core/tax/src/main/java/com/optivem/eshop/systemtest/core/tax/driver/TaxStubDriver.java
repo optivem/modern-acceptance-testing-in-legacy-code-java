@@ -1,12 +1,11 @@
-package com.optivem.eshop.systemtest.core.tax.driver.stub;
+package com.optivem.eshop.systemtest.core.tax.driver;
 
 import com.optivem.eshop.systemtest.core.tax.commons.TaxError;
-import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
-import com.optivem.eshop.systemtest.core.tax.driver.stub.client.TaxStubClient;
-import com.optivem.eshop.systemtest.core.tax.driver.client.commons.TaxHttpClient;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.requests.GetTaxRequest;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.requests.ReturnsTaxRateRequest;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.responses.GetTaxResponse;
+import com.optivem.eshop.systemtest.core.tax.client.TaxStubClient;
+import com.optivem.eshop.systemtest.core.tax.client.commons.TaxHttpClient;
+import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxRequest;
+import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
+import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.lang.Closer;
 import com.optivem.lang.Result;
 import com.github.tomakehurst.wiremock.client.WireMock;
