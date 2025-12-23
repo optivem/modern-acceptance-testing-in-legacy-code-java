@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaxApiErrorResponse {
+public class ExtTaxErrorResponse {
     private String message;
 }

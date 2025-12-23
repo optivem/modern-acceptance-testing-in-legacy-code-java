@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CountryDetailsDto {
+public class ExtCountryDetailsResponse {
     private String id;
     private String countryName;
     private BigDecimal taxRate;
