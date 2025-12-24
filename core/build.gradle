@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    api project(':core:clock')
     api project(':core:erp')
     api project(':core:shop')
     api project(':core:tax')

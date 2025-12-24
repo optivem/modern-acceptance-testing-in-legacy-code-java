@@ -1,5 +1,8 @@
 package com.optivem.eshop.systemtest.core;
 
+import com.optivem.eshop.systemtest.core.clock.dsl.BaseClockDsl;
+import com.optivem.eshop.systemtest.core.clock.dsl.ClockRealDsl;
+import com.optivem.eshop.systemtest.core.clock.dsl.ClockStubDsl;
 import com.optivem.eshop.systemtest.core.erp.dsl.BaseErpDsl;
 import com.optivem.eshop.systemtest.core.erp.dsl.ErpRealDsl;
 import com.optivem.eshop.systemtest.core.erp.dsl.ErpStubDsl;
@@ -20,6 +23,7 @@ public class SystemDsl implements Closeable {
     private ShopDsl shop;
     private BaseErpDsl erp;
     private TaxDsl tax;
+    private BaseClockDsl clock;
 
     private SystemDsl(SystemConfiguration configuration, UseCaseContext context) {
         this.configuration = configuration;
@@ -39,6 +43,7 @@ public class SystemDsl implements Closeable {
         Closer.close(shop);
         Closer.close(erp);
         Closer.close(tax);
+        Closer.close(clock);
     }
 
     public ShopDsl shop() {
@@ -63,6 +68,16 @@ public class SystemDsl implements Closeable {
             };
         }
         return tax;
+    }
+
+    public BaseClockDsl clock() {
+        if (clock == null) {
+            clock = switch (configuration.getExternalSystemMode()) {
+                case REAL -> new ClockRealDsl(context);
+                case STUB -> new ClockStubDsl(configuration.getClockBaseUrl(), context);
+            };
+        }
+        return clock;
     }
 }
 
