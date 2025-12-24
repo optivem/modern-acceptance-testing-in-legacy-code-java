@@ -10,7 +10,6 @@ include 'libs:optivem-testing-dsl'
 include 'libs:optivem-wiremock'
 
 include 'core'
-include 'core:commons'
 include 'core:erp'
 include 'core:shop'
 include 'core:tax'

@@ -17,7 +17,6 @@ includeBuild('..') {
         substitute module('com.optivem:optivem-testing-channels') using project(':libs:optivem-testing-channels')
         substitute module('com.optivem:optivem-testing-dsl') using project(':libs:optivem-testing-dsl')
         substitute module('com.optivem.eshop.systemtest:core') using project(':core')
-        substitute module('com.optivem.eshop.systemtest:core-commons') using project(':core:commons')
         substitute module('com.optivem.eshop.systemtest:core-erp') using project(':core:erp')
         substitute module('com.optivem.eshop.systemtest:core-shop') using project(':core:shop')
         substitute module('com.optivem.eshop.systemtest:core-tax') using project(':core:tax')

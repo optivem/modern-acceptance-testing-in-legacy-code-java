@@ -16,7 +16,6 @@ repositories {
 }
 
 dependencies {
-    api project(':core:commons')
     api project(':core:erp')
     api project(':core:shop')
     api project(':core:tax')

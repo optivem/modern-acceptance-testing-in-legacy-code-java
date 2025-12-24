@@ -16,13 +16,14 @@ repositories {
 }
 
 dependencies {
-    api project(':core:commons')
     api project(':libs:optivem-http')
     api project(':libs:optivem-playwright')
     api project(':libs:optivem-testing-channels')
+    api project(':libs:optivem-testing-dsl')
 
     implementation 'org.springframework:spring-web:6.1.5'
 
+    api 'org.assertj:assertj-core:3.24.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
