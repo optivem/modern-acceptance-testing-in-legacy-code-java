@@ -12,4 +12,4 @@ test:
       baseUrl: http://localhost:9004/tax
   clock:
     api:
-      baseUrl: http://localhost:9003/clock
+      baseUrl: none

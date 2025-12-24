@@ -13,4 +13,3 @@ test:
   clock:
     api:
       baseUrl: http://localhost:9002/clock
-
