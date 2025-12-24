@@ -1,19 +1,32 @@
 package com.optivem.eshop.systemtest.core.clock.dsl;
 
 import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
+import com.optivem.eshop.systemtest.core.clock.driver.ClockRealDriver;
+import com.optivem.eshop.systemtest.core.clock.driver.ClockStubDriver;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.GetTime;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.GoToClock;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.ReturnsTime;
 import com.optivem.lang.Closer;
 import com.optivem.testing.dsl.UseCaseContext;
 
-public class BaseClockDsl implements AutoCloseable {
+public class ClockDsl implements AutoCloseable {
     protected final ClockDriver driver;
     protected final UseCaseContext context;
 
-    protected BaseClockDsl(ClockDriver driver, UseCaseContext context) {
+    private ClockDsl(ClockDriver driver, UseCaseContext context) {
         this.driver = driver;
         this.context = context;
+    }
+
+    public ClockDsl(String baseUrl, UseCaseContext context) {
+        this(createDriver(baseUrl, context), context);
+    }
+
+    private static ClockDriver createDriver(String baseUrl, UseCaseContext context) {
+        return switch (context.getExternalSystemMode()) {
+            case REAL -> new ClockRealDriver();
+            case STUB -> new ClockStubDriver(baseUrl);
+        };
     }
 
     @Override
