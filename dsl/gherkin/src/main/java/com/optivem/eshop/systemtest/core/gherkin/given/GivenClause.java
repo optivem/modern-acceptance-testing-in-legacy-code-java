@@ -57,7 +57,20 @@ public class GivenClause {
     }
 
     public WhenClause when() {
+        // Collect all unique countries from orders (including cancelled orders)
+        var allOrders = new ArrayList<OrderBuilder>();
+        allOrders.addAll(orders);
+        allOrders.addAll(cancelledOrders);
+
         // Execute all clock setups
+        // If there are orders but no clock configured, set up a default clock
+        if (!allOrders.isEmpty() && clocks.isEmpty()) {
+            app.clock().returnsTime()
+                    .time(java.time.Instant.parse("2024-01-01T12:00:00Z"))
+                    .execute()
+                    .shouldSucceed();
+        }
+        
         for (var clock : clocks) {
             app.clock().returnsTime()
                     .time(clock.getTime())
@@ -73,11 +86,6 @@ public class GivenClause {
                     .execute()
                     .shouldSucceed();
         }
-
-        // Collect all unique countries from orders (including cancelled orders)
-        var allOrders = new ArrayList<OrderBuilder>();
-        allOrders.addAll(orders);
-        allOrders.addAll(cancelledOrders);
 
         var countriesInOrders = allOrders.stream()
                 .map(OrderBuilder::getCountry)
