@@ -5,7 +5,6 @@ import com.optivem.testing.channels.ChannelExtension;
 import com.optivem.testing.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(ChannelExtension.class)
 public abstract class BaseConfigurableTest {
     protected Environment getFixedEnvironment() {
         return null;

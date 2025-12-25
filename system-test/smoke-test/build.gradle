@@ -44,6 +44,21 @@ tasks.named('test') {
         showExceptions = true
         showCauses = true
         showStackTraces = true
+
+        // Show full class names including package
+        displayGranularity = 2
+
+        // Custom event handler to show full test names
+        afterSuite { desc, result ->
+            if (!desc.parent) {
+                println "\nTest Summary: ${result.resultType}"
+                println "Total: ${result.testCount}, Passed: ${result.successfulTestCount}, Failed: ${result.failedTestCount}, Skipped: ${result.skippedTestCount}"
+            }
+        }
+
+        beforeTest { descriptor ->
+            logger.lifecycle("Running: ${descriptor.className}.${descriptor.name}")
+        }
     }
 }
 
