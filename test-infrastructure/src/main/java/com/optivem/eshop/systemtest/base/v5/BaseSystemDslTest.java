@@ -1,0 +1,26 @@
+package com.optivem.eshop.systemtest.base.v5;
+
+import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
+import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
+import com.optivem.lang.Closer;
+import com.optivem.testing.channels.ChannelExtension;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+@ExtendWith(ChannelExtension.class)
+public class BaseSystemDslTest extends BaseConfigurableTest {
+    protected SystemDsl app;
+
+    @BeforeEach
+    void setUp() {
+        var configuration = loadConfiguration();
+        app = new SystemDsl(configuration);
+    }
+
+    @AfterEach
+    void tearDown() {
+        Closer.close(app);
+    }
+}

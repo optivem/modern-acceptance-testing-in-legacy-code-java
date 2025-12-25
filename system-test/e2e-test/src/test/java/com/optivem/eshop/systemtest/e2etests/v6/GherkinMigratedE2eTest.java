@@ -1,11 +1,12 @@
-package com.optivem.eshop.systemtest.e2etests;
+package com.optivem.eshop.systemtest.e2etests.v6;
 
+import com.optivem.eshop.systemtest.base.v6.BaseScenarioDslTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.client.dtos.enums.OrderStatus;
-import com.optivem.eshop.systemtest.e2etests.base.BaseE2eTest;
-import com.optivem.eshop.systemtest.e2etests.providers.EmptyArgumentsProvider;
+import com.optivem.eshop.systemtest.e2etests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;
+import com.optivem.testing.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.ArgumentsSource;
@@ -14,10 +15,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-public class GherkinMigratedE2eTest extends BaseE2eTest {
+public class GherkinMigratedE2eTest extends BaseScenarioDslTest {
 
     private static final String ORDER_NUMBER = "order-number";
     private static final String SKU = "sku";
+
+    @Override
+    protected ExternalSystemMode getFixedExternalSystemMode() {
+        return ExternalSystemMode.REAL;
+    }
 
     private static Stream<Arguments> provideNonExistentOrderValues() {
         return Stream.of(

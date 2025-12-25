@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.e2etests.providers;
+package com.optivem.eshop.systemtest.e2etests.commons.providers;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;

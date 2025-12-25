@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.acceptancetests;
 
-import com.optivem.eshop.systemtest.base.v5.BaseSystemTest;
+import com.optivem.eshop.systemtest.base.v5.BaseSystemDslTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.dsl.ExternalSystemMode;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestTemplate;
 
 import java.time.Instant;
 
-public class AcceptanceTest extends BaseSystemTest {
+public class AcceptanceTest extends BaseSystemDslTest {
 
     @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
