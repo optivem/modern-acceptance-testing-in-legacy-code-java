@@ -9,8 +9,9 @@ include 'libs:optivem-testing-channels'
 include 'libs:optivem-testing-dsl'
 include 'libs:optivem-wiremock'
 
+include 'dsl'
+
 include 'core'
-include 'core:root'
 include 'core:clock'
 include 'core:erp'
 include 'core:shop'
