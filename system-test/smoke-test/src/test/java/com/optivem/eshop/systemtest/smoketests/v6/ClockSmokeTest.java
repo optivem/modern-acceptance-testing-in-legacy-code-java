@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.smoketests.v5;
+package com.optivem.eshop.systemtest.smoketests.v6;
 
-import com.optivem.eshop.systemtest.base.BaseSystemTest;
+import com.optivem.eshop.systemtest.base.v5.BaseSystemTest;
 import org.junit.jupiter.api.Test;
 
 public class ClockSmokeTest extends BaseSystemTest {

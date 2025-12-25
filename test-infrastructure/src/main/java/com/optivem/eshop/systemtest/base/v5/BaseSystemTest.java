@@ -1,8 +1,10 @@
-package com.optivem.eshop.systemtest.base;
+package com.optivem.eshop.systemtest.base.v5;
 
+import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.configuration.Environment;
 import com.optivem.eshop.systemtest.configuration.PropertyLoader;
 import com.optivem.eshop.systemtest.configuration.SystemConfigurationLoader;
+import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.lang.Closer;
@@ -12,37 +14,19 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith(ChannelExtension.class)
-public class BaseSystemTest {
+public class BaseSystemTest extends BaseConfigurableTest {
     protected SystemDsl app;
     protected ScenarioDsl scenario;
 
     @BeforeEach
     void setUp() {
-        app = createSystemDsl();
+        var configuration = loadConfiguration();
+        app = new SystemDsl(configuration);
         scenario = new ScenarioDsl(app);
     }
 
     @AfterEach
     void tearDown() {
         Closer.close(app);
-    }
-
-    protected Environment getFixedEnvironment() {
-        return null;
-    }
-
-    protected ExternalSystemMode getFixedExternalSystemMode() {
-        return null;
-    }
-
-    private SystemDsl createSystemDsl() {
-        var fixedEnvironment = getFixedEnvironment();
-        var fixedExternalSystemMode = getFixedExternalSystemMode();
-
-        var environment = PropertyLoader.getEnvironment(fixedEnvironment);
-        var externalSystemMode = PropertyLoader.getExternalSystemMode(fixedExternalSystemMode);
-        var configuration = SystemConfigurationLoader.load(environment, externalSystemMode);
-        return new SystemDsl(configuration);
     }
 }

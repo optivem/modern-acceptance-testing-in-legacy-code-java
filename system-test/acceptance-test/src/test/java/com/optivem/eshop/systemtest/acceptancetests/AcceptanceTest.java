@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.acceptancetests;
 
-import com.optivem.eshop.systemtest.base.BaseSystemTest;
-import com.optivem.eshop.systemtest.configuration.Environment;
+import com.optivem.eshop.systemtest.base.v5.BaseSystemTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.dsl.ExternalSystemMode;
