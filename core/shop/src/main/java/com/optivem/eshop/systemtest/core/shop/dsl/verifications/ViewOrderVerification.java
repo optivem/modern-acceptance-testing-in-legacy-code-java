@@ -45,7 +45,8 @@ public class ViewOrderVerification extends ResponseVerification<GetOrderResponse
         return quantity(Integer.parseInt(expectedQuantity));
     }
 
-    public ViewOrderVerification country(String expectedCountry) {
+    public ViewOrderVerification country(String expectedCountryAliasOrValue) {
+        var expectedCountry = context.getParamValueOrLiteral(expectedCountryAliasOrValue);
         var actualCountry = response.getCountry();
         assertThat(actualCountry)
                 .withFailMessage("Expected country to be '%s', but was '%s'", expectedCountry, actualCountry)

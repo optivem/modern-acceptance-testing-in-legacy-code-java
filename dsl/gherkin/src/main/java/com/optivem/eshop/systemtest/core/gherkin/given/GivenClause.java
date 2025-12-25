@@ -64,6 +64,12 @@ public class GivenClause {
                     .shouldSucceed();
         }
 
+        // Collect all unique countries from orders
+        var countriesInOrders = orders.stream()
+                .map(OrderBuilder::getCountry)
+                .distinct()
+                .toList();
+
         // Execute all tax rate setups
         for (var taxRate : taxRates) {
             app.tax().returnsTaxRate()
@@ -73,12 +79,29 @@ public class GivenClause {
                     .shouldSucceed();
         }
 
+        // Ensure tax rates are set up for all countries used in orders
+        var configuredTaxCountries = taxRates.stream()
+                .map(TaxRateBuilder::getCountry)
+                .toList();
+
+        for (var country : countriesInOrders) {
+            if (!configuredTaxCountries.contains(country)) {
+                // Set up default tax rate (0.0) for countries without explicit tax configuration
+                app.tax().returnsTaxRate()
+                        .country(country)
+                        .taxRate(0.0)
+                        .execute()
+                        .shouldSucceed();
+            }
+        }
+
         // Execute all order placements
         for (var order : orders) {
             app.shop().placeOrder()
                     .orderNumber(order.getOrderNumber())
                     .sku(order.getSku())
                     .quantity(order.getQuantity())
+                    .country(order.getCountry())
                     .execute()
                     .shouldSucceed();
         }

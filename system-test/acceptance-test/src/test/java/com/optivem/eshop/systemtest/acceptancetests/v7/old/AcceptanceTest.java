@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7;
+package com.optivem.eshop.systemtest.acceptancetests.v7.old;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;

@@ -8,6 +8,7 @@ public class OrderBuilder {
     private String orderNumber;
     private String sku;
     private int quantity = 1; // Default to 1 if not specified
+    private String country = "US"; // Default country
 
     public OrderBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
@@ -25,6 +26,11 @@ public class OrderBuilder {
 
     public OrderBuilder withQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
+    }
+
+    public OrderBuilder withCountry(String country) {
+        this.country = country;
         return this;
     }
 
@@ -46,5 +52,9 @@ public class OrderBuilder {
 
     int getQuantity() {
         return quantity;
+    }
+
+    String getCountry() {
+        return country;
     }
 }
