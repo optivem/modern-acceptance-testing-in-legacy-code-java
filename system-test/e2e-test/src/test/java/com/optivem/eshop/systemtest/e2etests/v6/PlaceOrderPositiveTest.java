@@ -11,6 +11,15 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.O
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 
 public class PlaceOrderPositiveTest extends BaseScenarioDslTest {
+    @TestTemplate
+    @Channel({ChannelType.UI, ChannelType.API})
+    void shouldCalculateOriginalPrice() {
+        scenario
+                .given().product().withSku("ABC").withUnitPrice(20.00)
+                .when().placeOrder().withOrderNumber("ORDER-1001").withSku("ABC").withQuantity(5)
+                .then().shouldSucceed()
+                .and().order("ORDER-1001").shouldHaveOriginalPrice(100.00);
+    }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
