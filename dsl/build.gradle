@@ -1,0 +1,30 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.optivem.eshop.systemtest'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':core:shop')
+    api project(':core:erp')
+    api project(':core:tax')
+    api project(':core:clock')
+
+    api project(':libs:optivem-lang')
+    api project(':libs:optivem-testing-dsl')
+
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+}
+
