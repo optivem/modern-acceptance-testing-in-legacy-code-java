@@ -1,0 +1,30 @@
+package com.optivem.eshop.systemtest.smoketests.v1.system;
+
+import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ShopUiSmokeTest extends BaseRawTest {
+    @BeforeEach
+    void setUp() {
+        setUpShopBrowser();
+    }
+
+    @Test
+    void shouldBeAbleToGoToShop() {
+        var response = page.navigate(getShopUiBaseUrl());
+
+        assertEquals(200, response.status());
+
+        var contentType = response.headers().get("content-type");
+        assertTrue(contentType != null && contentType.contains("text/html"));
+
+        var pageContent = page.content();
+        assertTrue(pageContent.contains("<html"));
+        assertTrue(pageContent.contains("</html>"));
+    }
+}
+
