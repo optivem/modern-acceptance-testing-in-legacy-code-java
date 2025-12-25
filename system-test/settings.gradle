@@ -1,6 +1,6 @@
 rootProject.name = 'system-test'
 
-include 'test-commons'
+include 'test-infrastructure'
 include 'acceptance-test'
 include 'smoke-test'
 include 'e2e-test'
