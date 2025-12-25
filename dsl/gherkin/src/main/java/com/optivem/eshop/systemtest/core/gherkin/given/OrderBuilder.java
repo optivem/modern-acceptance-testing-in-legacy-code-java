@@ -7,7 +7,7 @@ public class OrderBuilder {
     private final GivenClause givenClause;
     private String orderNumber;
     private String sku;
-    private int quantity;
+    private int quantity = 1; // Default to 1 if not specified
 
     public OrderBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
