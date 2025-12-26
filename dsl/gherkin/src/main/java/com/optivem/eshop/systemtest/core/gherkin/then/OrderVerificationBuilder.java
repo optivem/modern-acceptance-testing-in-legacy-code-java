@@ -141,4 +141,11 @@ public class OrderVerificationBuilder {
                 .totalPriceGreaterThanZero();
         return this;
     }
+
+    public OrderVerificationBuilder expectOrderNumberPrefix(String expectedPrefix) {
+        if (!orderNumber.startsWith(expectedPrefix)) {
+            throw new AssertionError("Expected order number to start with '" + expectedPrefix + "' but was: " + orderNumber);
+        }
+        return this;
+    }
 }
