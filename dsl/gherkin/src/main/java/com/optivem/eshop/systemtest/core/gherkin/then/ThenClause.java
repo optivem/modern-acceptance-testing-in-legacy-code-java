@@ -28,8 +28,8 @@ public class ThenClause {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
         scenario.markAsExecuted();
-        result.shouldSucceed();
-        return new SuccessVerificationBuilder(this);
+        var successVerification = result.shouldSucceed();
+        return new SuccessVerificationBuilder(this, successVerification);
     }
 
     public FailureVerificationBuilder shouldFail() {
