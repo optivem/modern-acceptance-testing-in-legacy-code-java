@@ -1,20 +1,27 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+
+import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 public class OrderBuilder {
     private final GivenClause givenClause;
+
     private String orderNumber;
     private String sku;
-    private int quantity = 1;
-    private String country = "US";
+    private int quantity;
+    private String country;
     private boolean isCancelled;
 
     public OrderBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
         this.isCancelled = false;
+
+        withOrderNumber(DEFAULT_ORDER_NUMBER);
+        withSku(DEFAULT_SKU);
+        withQuantity(DEFAULT_QUANTITY);
+        withCountry(DEFAULT_COUNTRY);
     }
 
     public OrderBuilder withOrderNumber(String orderNumber) {

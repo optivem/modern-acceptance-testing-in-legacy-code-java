@@ -3,6 +3,8 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 
+import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
+
 public class ProductBuilder {
     private final GivenClause givenClause;
     private String sku;
@@ -10,6 +12,8 @@ public class ProductBuilder {
 
     public ProductBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
+        withSku(DEFAULT_SKU);
+        withUnitPrice(DEFAULT_UNIT_PRICE);
     }
 
     public ProductBuilder withSku(String sku) {
@@ -37,8 +41,8 @@ public class ProductBuilder {
 
     void execute(SystemDsl app) {
         app.erp().returnsProduct()
-                .sku(this.sku)
-                .unitPrice(this.unitPrice)
+                .sku(sku)
+                .unitPrice(unitPrice)
                 .execute()
                 .shouldSucceed();
     }

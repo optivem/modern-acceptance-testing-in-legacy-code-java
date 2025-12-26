@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 
 import java.time.Instant;
@@ -11,6 +12,7 @@ public class ClockBuilder {
 
     public ClockBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
+        withTime(GherkinDefaults.DEFAULT_TIME);
     }
 
     public ClockBuilder withTime(Instant time) {
@@ -27,11 +29,10 @@ public class ClockBuilder {
     }
 
     void execute(SystemDsl app) {
-        var clockSetup = app.clock().returnsTime();
-        if (this.time != null) {
-            clockSetup.time(this.time);
-        }
-        clockSetup.execute().shouldSucceed();
+        app.clock().returnsTime()
+            .time(time)
+            .execute()
+            .shouldSucceed();
     }
 }
 
