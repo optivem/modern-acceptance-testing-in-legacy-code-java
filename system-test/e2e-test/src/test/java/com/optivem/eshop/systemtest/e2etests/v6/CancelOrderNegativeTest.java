@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v6;
 
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
+import com.optivem.eshop.systemtest.core.shop.client.dtos.enums.OrderStatus;
 import com.optivem.eshop.systemtest.e2etests.v6.base.BaseE2eTest;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;
@@ -38,7 +39,7 @@ public class CancelOrderNegativeTest extends BaseE2eTest {
                 .order()
                 .withOrderNumber(ORDER_NUMBER)
                 .withSku(SKU)
-                .cancelled()
+                .withStatus(OrderStatus.CANCELLED)
                 .when()
                 .cancelOrder()
                 .withOrderNumber(ORDER_NUMBER)
