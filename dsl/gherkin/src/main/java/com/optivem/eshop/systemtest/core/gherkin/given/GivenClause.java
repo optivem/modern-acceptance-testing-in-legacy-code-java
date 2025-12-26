@@ -77,7 +77,7 @@ public class GivenClause {
             order.execute(app);
         }
 
-        return new WhenClause(app, scenario);
+        return new WhenClause(app, scenario, !products.isEmpty(), !taxRates.isEmpty());
     }
 
     public boolean hasProducts() {

@@ -8,16 +8,13 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.optivem.eshop.systemtest.acceptancetests.commons.constants.Defaults.SKU;
-
 public class PlaceOrderNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithInvalidQuantity() {
         scenario
-                .given().product().withSku("SKU-001")
-                .when().placeOrder().withOrderNumber("ORDER-4001").withSku("SKU-001").withQuantity("invalid-quantity")
+                .when().placeOrder().withQuantity("invalid-quantity")
                 .then().shouldFail().errorMessage("The request contains one or more validation errors").fieldErrorMessage("quantity", "Quantity must be an integer");
     }
 
@@ -41,7 +38,7 @@ public class PlaceOrderNegativeTest extends BaseAcceptanceTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithZeroQuantity() {
         scenario
-                .when().placeOrder().withSku("ANOTHER-SKU-67890").withQuantity(0)
+                .when().placeOrder().withQuantity(0)
                 .then().shouldFail().errorMessage("The request contains one or more validation errors").fieldErrorMessage("quantity", "Quantity must be positive");
     }
 
@@ -85,8 +82,8 @@ public class PlaceOrderNegativeTest extends BaseAcceptanceTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithUnsupportedCountry() {
         scenario
-                .given().product().withSku(SKU)
-                .when().placeOrder().withSku(SKU).withCountry("XX")
+                .given().product()
+                .when().placeOrder().withCountry("XX")
                 .then().shouldFail().errorMessage("The request contains one or more validation errors").fieldErrorMessage("country", "Country does not exist: XX");
     }
 
@@ -94,7 +91,7 @@ public class PlaceOrderNegativeTest extends BaseAcceptanceTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullQuantity() {
         scenario
-                .when().placeOrder().withQuantity((String) null)
+                .when().placeOrder().withQuantity(null)
                 .then().shouldFail().errorMessage("The request contains one or more validation errors").fieldErrorMessage("quantity", "Quantity must not be empty");
     }
 
