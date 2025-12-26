@@ -4,6 +4,19 @@ Common annotations for marking test characteristics and requirements.
 
 ## Annotations
 
+### @Time
+
+Marks tests that depend on specific time values. Automatically includes `@Isolated` since time-dependent tests require isolation.
+
+```java
+@TestTemplate
+@Channel({ChannelType.API})
+@Time("2024-01-15T17:30:00Z")
+void discountRateShouldBe15percentWhenTimeAfter5pm() {
+    // Test implementation
+}
+```
+
 ### @Isolated
 
 The `@Isolated` annotation marks tests that require isolation from other tests due to side effects, shared state modifications, or environmental dependencies.

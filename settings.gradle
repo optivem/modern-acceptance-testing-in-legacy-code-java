@@ -7,7 +7,6 @@ include 'libs:optivem-playwright'
 include 'libs:optivem-testing-assertions'
 include 'libs:optivem-testing-channels'
 include 'libs:optivem-testing-dsl'
-include 'libs:optivem-testing-time'
 include 'libs:optivem-testing-annotations'
 include 'libs:optivem-wiremock'
 
