@@ -107,6 +107,9 @@ jobs:
       - name: Make Gradle Wrapper executable
         run: chmod +x ./gradlew
 
+      - name: Build Project
+        run: ./gradlew clean build -x test
+
       - name: Run Acceptance Tests
         run: ./gradlew :system-test:acceptance-test:test -Denvironment=acceptance
 

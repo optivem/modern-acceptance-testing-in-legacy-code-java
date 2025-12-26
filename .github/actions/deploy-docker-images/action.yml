@@ -124,6 +124,10 @@ runs:
       run: chmod +x ./gradlew
       shell: bash
 
+    - name: Build Project
+      run: ./gradlew clean build -x test
+      shell: bash
+
     - name: Run Smoke Tests
       run: ./gradlew :system-test:smoke-test:test -Denvironment=${{ inputs.environment }} -DexternalSystemMode=${{ inputs.external-system-mode }}
       shell: bash
