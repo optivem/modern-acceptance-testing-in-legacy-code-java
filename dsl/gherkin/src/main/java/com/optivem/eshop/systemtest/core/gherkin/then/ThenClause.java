@@ -24,27 +24,29 @@ public class ThenClause {
     }
 
     public SuccessVerificationBuilder shouldSucceed() {
-        scenario.markAsExecuted();
-        if (result != null) {
-            result.shouldSucceed();
+        if (result == null) {
+            throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
-        return new SuccessVerificationBuilder(app, scenario, orderNumber);
+        scenario.markAsExecuted();
+        result.shouldSucceed();
+        return new SuccessVerificationBuilder(this);
     }
 
     public FailureVerificationBuilder shouldFail() {
         scenario.markAsExecuted();
-        return new FailureVerificationBuilder(app, scenario, orderNumber, result);
+        return new FailureVerificationBuilder(this, result);
     }
 
     public OrderVerificationBuilder order(String orderNumber) {
         scenario.markAsExecuted();
-        if (result != null) {
-            result.shouldSucceed();
-        }
         return new OrderVerificationBuilder(app, orderNumber);
     }
 
     public OrderVerificationBuilder order() {
         return order(this.orderNumber != null ? this.orderNumber : DEFAULT_ORDER_NUMBER);
+    }
+
+    ThenClause withoutResult() {
+        return new ThenClause(app, scenario, orderNumber);
     }
 }

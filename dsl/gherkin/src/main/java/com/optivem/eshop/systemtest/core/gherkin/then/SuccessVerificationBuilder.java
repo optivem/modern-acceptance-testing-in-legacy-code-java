@@ -1,17 +1,10 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-
 public class SuccessVerificationBuilder {
-    private final SystemDsl app;
-    private final ScenarioDsl scenario;
-    private final String orderNumber;
+    private final ThenClause thenClause;
 
-    public SuccessVerificationBuilder(SystemDsl app, ScenarioDsl scenario, String orderNumber) {
-        this.app = app;
-        this.scenario = scenario;
-        this.orderNumber = orderNumber;
+    public SuccessVerificationBuilder(ThenClause thenClause) {
+        this.thenClause = thenClause;
     }
 
     public SuccessVerificationBuilder expectOrderNumberPrefix(String prefix) {
@@ -21,6 +14,6 @@ public class SuccessVerificationBuilder {
     }
 
     public ThenClause and() {
-        return new ThenClause(app, scenario, orderNumber);
+        return thenClause;
     }
 }
