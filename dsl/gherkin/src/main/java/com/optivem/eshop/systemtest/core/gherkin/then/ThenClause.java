@@ -28,7 +28,7 @@ public class ThenClause {
         if (result != null) {
             result.shouldSucceed();
         }
-        return new SuccessVerificationBuilder(app, orderNumber);
+        return new SuccessVerificationBuilder(app, scenario, orderNumber);
     }
 
     public FailureVerificationBuilder shouldFail() {

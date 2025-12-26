@@ -92,4 +92,8 @@ public class OrderVerificationBuilder {
         orderVerification.orderNumberHasPrefix(expectedPrefix);
         return this;
     }
+
+    public OrderVerificationBuilder and() {
+        return this;
+    }
 }
