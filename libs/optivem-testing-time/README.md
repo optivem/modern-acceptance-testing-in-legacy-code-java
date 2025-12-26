@@ -44,3 +44,33 @@ Use the `@Time` annotation when your test:
 - **Documentation**: Annotation serves as self-documentation
 - **Filtering**: Can filter tests by time requirements in CI/CD pipelines
 
+## Filtering Tests
+
+The `@Time` annotation is integrated with JUnit 5's tagging system, allowing you to easily filter tests:
+
+### Run ONLY time-dependent tests
+```bash
+# Gradle
+./gradlew test -DincludeTags=time
+
+# Windows
+.\gradlew.bat test -DincludeTags=time
+```
+
+### Run everything EXCEPT time-dependent tests
+```bash
+# Gradle
+./gradlew test -DexcludeTags=time
+
+# Windows
+.\gradlew.bat test -DexcludeTags=time
+```
+
+### Run all tests (default)
+```bash
+./gradlew test
+```
+
+### IDE Support
+In IntelliJ IDEA and VS Code, you can filter tests by the "time" tag directly in the test runner UI.
+

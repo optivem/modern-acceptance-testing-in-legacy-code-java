@@ -28,7 +28,15 @@ dependencies {
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        // Support JUnit tag filtering
+        if (System.getProperty('includeTags')) {
+            includeTags System.getProperty('includeTags').split(',')
+        }
+        if (System.getProperty('excludeTags')) {
+            excludeTags System.getProperty('excludeTags').split(',')
+        }
+    }
 
     // Pass system properties from command line to test JVM
     systemProperty 'environment', System.getProperty('environment')
