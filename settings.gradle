@@ -21,4 +21,7 @@ include 'core:erp'
 include 'core:shop'
 include 'core:tax'
 
-includeBuild('system-test')
+include 'system-test:acceptance-test'
+include 'system-test:smoke-test'
+include 'system-test:e2e-test'
+include 'system-test:external-system-contract-test'

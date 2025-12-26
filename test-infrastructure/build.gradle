@@ -18,14 +18,14 @@ repositories {
 }
 
 dependencies {
-    api 'com.optivem:optivem-lang'
-    api 'com.optivem:optivem-results'
-    api 'com.optivem:optivem-http'
-    api 'com.optivem:optivem-playwright'
-    api 'com.optivem:optivem-testing-assertions'
-    api 'com.optivem:optivem-testing-channels'
-    api 'com.optivem:optivem-testing-dsl'
-    api 'com.optivem.eshop.systemtest:core'
+    api project(':libs:optivem-lang')
+    api project(':libs:optivem-results')
+    api project(':libs:optivem-http')
+    api project(':libs:optivem-playwright')
+    api project(':libs:optivem-testing-assertions')
+    api project(':libs:optivem-testing-channels')
+    api project(':libs:optivem-testing-dsl')
+    api project(':core')
 
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework:spring-web'
