@@ -107,10 +107,10 @@ public class ShopUiDriver implements ShopDriver {
         var quantity = orderHistoryPage.getQuantity();
         var country = orderHistoryPage.getCountry();
         var unitPrice = orderHistoryPage.getUnitPrice();
-        var originalPrice = orderHistoryPage.getOriginalPrice();
+        var subtotalPrice = orderHistoryPage.getSubtotalPrice();
         var discountRate = orderHistoryPage.getDiscountRate();
         var discountAmount = orderHistoryPage.getDiscountAmount();
-        var subtotalPrice = orderHistoryPage.getSubtotalPrice();
+        var preTaxTotal = orderHistoryPage.getPreTaxTotal();
         var taxRate = orderHistoryPage.getTaxRate();
         var taxAmount = orderHistoryPage.getTaxAmount();
         var totalPrice = orderHistoryPage.getTotalPrice();
@@ -121,10 +121,10 @@ public class ShopUiDriver implements ShopDriver {
                 .sku(sku)
                 .quantity(quantity)
                 .unitPrice(unitPrice)
-                .originalPrice(originalPrice)
+                .subtotalPrice(subtotalPrice)
                 .discountRate(discountRate)
                 .discountAmount(discountAmount)
-                .subtotalPrice(subtotalPrice)
+                .preTaxTotal(preTaxTotal)
                 .taxRate(taxRate)
                 .taxAmount(taxAmount)
                 .totalPrice(totalPrice)

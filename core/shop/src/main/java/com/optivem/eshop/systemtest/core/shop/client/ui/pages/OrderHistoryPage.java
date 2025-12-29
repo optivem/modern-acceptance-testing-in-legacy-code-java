@@ -17,10 +17,10 @@ public class OrderHistoryPage extends BasePage {
     private static final String COUNTRY_OUTPUT_SELECTOR = "[aria-label='Display Country']";
     private static final String QUANTITY_OUTPUT_SELECTOR = "[aria-label='Display Quantity']";
     private static final String UNIT_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Unit Price']";
-    private static final String ORIGINAL_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Original Price']";
+    private static final String SUBTOTAL_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Subtotal Price']";
     private static final String DISCOUNT_RATE_OUTPUT_SELECTOR = "[aria-label='Display Discount Rate']";
     private static final String DISCOUNT_AMOUNT_OUTPUT_SELECTOR = "[aria-label='Display Discount Amount']";
-    private static final String SUBTOTAL_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Subtotal Price']";
+    private static final String PRE_TAX_TOTAL_OUTPUT_SELECTOR = "[aria-label='Display Pre-Tax Total']";
     private static final String TAX_RATE_OUTPUT_SELECTOR = "[aria-label='Display Tax Rate']";
     private static final String TAX_AMOUNT_OUTPUT_SELECTOR = "[aria-label='Display Tax Amount']";
     private static final String TOTAL_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Total Price']";
@@ -75,8 +75,8 @@ public class OrderHistoryPage extends BasePage {
         return readInputMoney(UNIT_PRICE_OUTPUT_SELECTOR);
     }
 
-    public BigDecimal getOriginalPrice() {
-        return readInputMoney(ORIGINAL_PRICE_OUTPUT_SELECTOR);
+    public BigDecimal getSubtotalPrice() {
+        return readInputMoney(SUBTOTAL_PRICE_OUTPUT_SELECTOR);
     }
 
     public BigDecimal getDiscountRate() {
@@ -87,8 +87,8 @@ public class OrderHistoryPage extends BasePage {
         return readInputMoney(DISCOUNT_AMOUNT_OUTPUT_SELECTOR);
     }
 
-    public BigDecimal getSubtotalPrice() {
-        return readInputMoney(SUBTOTAL_PRICE_OUTPUT_SELECTOR);
+    public BigDecimal getPreTaxTotal() {
+        return readInputMoney(PRE_TAX_TOTAL_OUTPUT_SELECTOR);
     }
 
     public BigDecimal getTaxRate() {

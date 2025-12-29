@@ -11,7 +11,7 @@ public class AcceptanceTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldPlaceOrderWithCorrectOriginalPrice() {
+    void shouldPlaceOrderWithCorrectSubtotalPrice() {
         scenario
                 .given()
                 .clock()
@@ -34,7 +34,7 @@ public class AcceptanceTest extends BaseAcceptanceTest {
                 .shouldSucceed()
                 .and()
                 .order("ORDER-1001")
-                .shouldHaveOriginalPrice(100.00);
+                .shouldHaveSubtotalPrice(100.00);
                 // TODO: VJ: Need independence for controlling time
                 // .hasDiscountRate(0.15);
     }

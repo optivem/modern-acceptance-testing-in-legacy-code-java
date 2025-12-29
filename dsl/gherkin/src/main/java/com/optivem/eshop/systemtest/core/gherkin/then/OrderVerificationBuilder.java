@@ -34,13 +34,13 @@ public class OrderVerificationBuilder {
         return this;
     }
 
-    public OrderVerificationBuilder shouldHaveOriginalPrice(double expectedOriginalPrice) {
-        orderVerification.originalPrice(expectedOriginalPrice);
+    public OrderVerificationBuilder shouldHaveSubtotalPrice(double expectedSubtotalPrice) {
+        orderVerification.subtotalPrice(expectedSubtotalPrice);
         return this;
     }
 
-    public OrderVerificationBuilder shouldHaveOriginalPrice(String expectedOriginalPrice) {
-        return shouldHaveOriginalPrice(Double.parseDouble(expectedOriginalPrice));
+    public OrderVerificationBuilder shouldHaveSubtotalPrice(String expectedSubtotalPrice) {
+        return shouldHaveSubtotalPrice(Double.parseDouble(expectedSubtotalPrice));
     }
 
     public OrderVerificationBuilder hasTotalPrice(double expectedTotalPrice) {
@@ -68,8 +68,8 @@ public class OrderVerificationBuilder {
         return this;
     }
 
-    public OrderVerificationBuilder hasSubtotalPriceGreaterThanZero() {
-        orderVerification.subtotalPriceGreaterThanZero();
+    public OrderVerificationBuilder hasPreTaxTotalGreaterThanZero() {
+        orderVerification.preTaxTotalGreaterThanZero();
         return this;
     }
 

@@ -13,12 +13,12 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.S
 public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateOriginalPrice() {
+    void shouldCalculateSubtotalPrice() {
         scenario
                 .given().product().withSku("ABC").withUnitPrice(20.00)
                 .when().placeOrder().withOrderNumber("ORDER-1001").withSku("ABC").withQuantity(5)
                 .then().shouldSucceed()
-                .and().order("ORDER-1001").shouldHaveOriginalPrice(100.00);
+                .and().order("ORDER-1001").shouldHaveSubtotalPrice(100.00);
     }
 }
 

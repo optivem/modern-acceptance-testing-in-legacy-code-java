@@ -108,7 +108,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build Project
-        run: ./gradlew clean build -x test
+        run: ./gradlew clean compileJava compileTestJava
 
       - name: Run Acceptance Tests
         run: ./gradlew :system-test:acceptance-test:test -Denvironment=acceptance -DexcludeTags=isolated

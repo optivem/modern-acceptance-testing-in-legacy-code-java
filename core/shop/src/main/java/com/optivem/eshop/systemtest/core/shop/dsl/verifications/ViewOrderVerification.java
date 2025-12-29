@@ -67,17 +67,17 @@ public class ViewOrderVerification extends ResponseVerification<GetOrderResponse
         return unitPrice(Double.parseDouble(expectedUnitPrice));
     }
 
-    public ViewOrderVerification originalPrice(double expectedOriginalPrice) {
-        var expectedPrice = BigDecimal.valueOf(expectedOriginalPrice);
-        var actualPrice = response.getOriginalPrice();
+    public ViewOrderVerification subtotalPrice(double expectedSubtotalPrice) {
+        var expectedPrice = BigDecimal.valueOf(expectedSubtotalPrice);
+        var actualPrice = response.getSubtotalPrice();
         assertThat(actualPrice)
-                .withFailMessage("Expected original price to be %s, but was %s", expectedPrice, actualPrice)
+                .withFailMessage("Expected subtotal price to be %s, but was %s", expectedPrice, actualPrice)
                 .isEqualByComparingTo(expectedPrice);
         return this;
     }
 
-    public ViewOrderVerification originalPrice(String expectedOriginalPrice) {
-        return originalPrice(Double.parseDouble(expectedOriginalPrice));
+    public ViewOrderVerification subtotalPrice(String expectedSubtotalPrice) {
+        return subtotalPrice(Double.parseDouble(expectedSubtotalPrice));
     }
 
     public ViewOrderVerification status(OrderStatus expectedStatus) {
@@ -136,10 +136,10 @@ public class ViewOrderVerification extends ResponseVerification<GetOrderResponse
     }
 
 
-    public ViewOrderVerification subtotalPriceGreaterThanZero() {
-        var subtotalPrice = response.getSubtotalPrice();
-        assertThat(subtotalPrice)
-                .withFailMessage("Subtotal price should be positive, but was: %s", subtotalPrice)
+    public ViewOrderVerification preTaxTotalGreaterThanZero() {
+        var preTaxTotal = response.getPreTaxTotal();
+        assertThat(preTaxTotal)
+                .withFailMessage("Pre-tax total should be positive, but was: %s", preTaxTotal)
                 .isGreaterThan(BigDecimal.ZERO);
         return this;
     }

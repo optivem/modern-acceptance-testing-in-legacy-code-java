@@ -21,11 +21,11 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateOriginalPriceAsProductOfUnitPriceAndQuantity() {
+    void shouldCalculateSubtotalPriceAsProductOfUnitPriceAndQuantity() {
         scenario
                 .given().product().withUnitPrice(20.00)
                 .when().placeOrder().withQuantity(5)
-                .then().order().shouldHaveOriginalPrice(100.00);
+                .then().order().shouldHaveSubtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -34,11 +34,11 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"10.00", "3", "30.00"})
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
-    void shouldPlaceOrderWithCorrectOriginalPriceParameterized(String unitPrice, String quantity, String originalPrice) {
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
         scenario
                 .given().product().withUnitPrice(unitPrice)
                 .when().placeOrder().withQuantity(quantity)
-                .then().order().shouldHaveOriginalPrice(originalPrice);
+                .then().order().shouldHaveSubtotalPrice(subtotalPrice);
     }
 
     @TestTemplate
@@ -103,10 +103,10 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void subtotalPriceShouldBeGreaterThanZero() {
+    void preTaxTotalShouldBeGreaterThanZero() {
         scenario
                 .when().placeOrder()
-                .then().order().hasSubtotalPriceGreaterThanZero();
+                .then().order().hasPreTaxTotalGreaterThanZero();
     }
 
     @TestTemplate

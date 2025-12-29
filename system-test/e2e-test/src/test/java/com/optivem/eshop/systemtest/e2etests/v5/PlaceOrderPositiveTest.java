@@ -14,7 +14,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldPlaceOrderWithCorrectOriginalPrice() {
+    void shouldPlaceOrderWithCorrectSubtotalPrice() {
         app.erp().returnsProduct()
                 .sku("ABC")
                 .unitPrice(20.00)
@@ -29,7 +29,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
 
         app.shop().viewOrder().orderNumber("ORDER-1001").execute()
                 .shouldSucceed()
-                .originalPrice(100.00);
+                .subtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -38,7 +38,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"10.00", "3", "30.00"})
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
-    void shouldPlaceOrderWithCorrectOriginalPriceParameterized(String unitPrice, String quantity, String originalPrice) {
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
         app.erp().returnsProduct()
                 .sku("ABC")
                 .unitPrice(unitPrice)
@@ -56,7 +56,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .orderNumber("ORDER-1001")
                 .execute()
                 .shouldSucceed()
-                .originalPrice(originalPrice);
+                .subtotalPrice(subtotalPrice);
     }
 
     @TestTemplate
@@ -87,11 +87,11 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .quantity(5)
                 .country("US")
                 .unitPrice(20.00)
-                .originalPrice(100.00)
+                .subtotalPrice(100.00)
                 .status(OrderStatus.PLACED)
                 .discountRateGreaterThanOrEqualToZero()
                 .discountAmountGreaterThanOrEqualToZero()
-                .subtotalPriceGreaterThanZero()
+                .preTaxTotalGreaterThanZero()
                 .taxRateGreaterThanOrEqualToZero()
                 .taxAmountGreaterThanOrEqualToZero()
                 .totalPriceGreaterThanZero();

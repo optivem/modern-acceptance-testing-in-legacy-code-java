@@ -125,7 +125,7 @@ runs:
       shell: bash
 
     - name: Build Project
-      run: ./gradlew clean build -x test
+      run: ./gradlew clean compileJava compileTestJava
       shell: bash
 
     - name: Run Smoke Tests

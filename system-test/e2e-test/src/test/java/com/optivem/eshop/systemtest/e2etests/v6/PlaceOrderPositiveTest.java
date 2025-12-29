@@ -13,17 +13,17 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.S
 public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateOriginalPrice() {
+    void shouldCalculateSubtotalPrice() {
         scenario
                 .given().product().withSku("ABC").withUnitPrice(20.00)
                 .when().placeOrder().withOrderNumber("ORDER-1001").withSku("ABC").withQuantity(5)
                 .then().shouldSucceed()
-                .and().order("ORDER-1001").shouldHaveOriginalPrice(100.00);
+                .and().order("ORDER-1001").shouldHaveSubtotalPrice(100.00);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldPlaceOrderWithCorrectOriginalPrice() {
+    void shouldPlaceOrderWithCorrectSubtotalPrice() {
         scenario
                 .given()
                 .product()
@@ -38,7 +38,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .shouldSucceed()
                 .and()
                 .order("ORDER-1001")
-                .shouldHaveOriginalPrice(100.00);
+                .shouldHaveSubtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -47,7 +47,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"10.00", "3", "30.00"})
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
-    void shouldPlaceOrderWithCorrectOriginalPriceParameterized(String unitPrice, String quantity, String originalPrice) {
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
         scenario
                 .given()
                 .product()
@@ -62,7 +62,7 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .shouldSucceed()
                 .and()
                 .order("ORDER-1001")
-                .shouldHaveOriginalPrice(originalPrice);
+                .shouldHaveSubtotalPrice(subtotalPrice);
     }
 
     @TestTemplate
@@ -88,11 +88,11 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .hasQuantity(5)
                 .hasCountry("US")
                 .hasUnitPrice(20.00)
-                .shouldHaveOriginalPrice(100.00)
+                .shouldHaveSubtotalPrice(100.00)
                 .hasStatus(OrderStatus.PLACED)
                 .hasDiscountRateGreaterThanOrEqualToZero()
                 .hasDiscountAmountGreaterThanOrEqualToZero()
-                .hasSubtotalPriceGreaterThanZero()
+                .hasPreTaxTotalGreaterThanZero()
                 .hasTaxRateGreaterThanOrEqualToZero()
                 .hasTaxAmountGreaterThanOrEqualToZero()
                 .hasTotalPriceGreaterThanZero();

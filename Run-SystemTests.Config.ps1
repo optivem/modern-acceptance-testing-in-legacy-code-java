@@ -5,7 +5,7 @@ $Config = @{
 
     BuildCommands = @(
         @{  Name = "Clean Build";
-            Command = ".\gradlew.bat clean build -x test"
+            Command = ".\gradlew.bat clean compileJava compileTestJava"
         }
     )
 

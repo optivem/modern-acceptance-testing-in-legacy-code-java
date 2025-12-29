@@ -37,11 +37,11 @@ public class ViewOrderPositiveTest extends BaseE2eTest {
                 .quantity(4)
                 .country("US")
                 .unitPrice(25.00)
-                .originalPrice(100.00)
+                .subtotalPrice(100.00)
                 .status(OrderStatus.PLACED)
                 .discountRateGreaterThanOrEqualToZero()
                 .discountAmountGreaterThanOrEqualToZero()
-                .subtotalPriceGreaterThanZero()
+                .preTaxTotalGreaterThanZero()
                 .taxRateGreaterThanOrEqualToZero()
                 .taxAmountGreaterThanOrEqualToZero()
                 .totalPriceGreaterThanZero();
