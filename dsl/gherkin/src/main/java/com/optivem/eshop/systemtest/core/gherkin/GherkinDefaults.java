@@ -1,8 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
-import java.time.Instant;
-
-import com.optivem.eshop.systemtest.core.shop.client.dtos.enums.OrderStatus;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.enums.OrderStatus;
 
 /**
  * Default values for Gherkin test builders.

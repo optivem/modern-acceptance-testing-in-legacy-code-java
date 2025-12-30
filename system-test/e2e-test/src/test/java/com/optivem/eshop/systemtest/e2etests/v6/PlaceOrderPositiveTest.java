@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v6;
 
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
-import com.optivem.eshop.systemtest.core.shop.client.dtos.enums.OrderStatus;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.enums.OrderStatus;
 import com.optivem.eshop.systemtest.e2etests.v6.base.BaseE2eTest;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.api.controllers;
 
-import com.optivem.eshop.systemtest.core.shop.client.dtos.error.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.core.shop.client.api.dtos.error.ProblemDetailResponse;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Result;
 

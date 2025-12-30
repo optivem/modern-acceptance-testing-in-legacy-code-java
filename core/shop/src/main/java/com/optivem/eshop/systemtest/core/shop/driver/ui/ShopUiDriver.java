@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.core.shop.driver.ui;
 
-import com.optivem.eshop.systemtest.core.shop.client.commons.Results;
+import com.optivem.eshop.systemtest.core.shop.commons.Results;
 import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.driver.dtos.error.SystemError;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.error.SystemError;
 import com.optivem.lang.Result;
 
 public class ShopUiDriver implements ShopDriver {

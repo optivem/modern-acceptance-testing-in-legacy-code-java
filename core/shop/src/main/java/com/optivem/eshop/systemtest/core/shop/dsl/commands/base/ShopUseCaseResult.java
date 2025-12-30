@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.commands.base;
 
-import com.optivem.eshop.systemtest.core.shop.driver.dtos.error.SystemError;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.error.SystemError;
 import com.optivem.lang.Result;
 import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;

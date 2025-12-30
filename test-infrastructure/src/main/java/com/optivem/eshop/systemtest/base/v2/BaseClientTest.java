@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.eshop.systemtest.core.erp.client.ErpRealClient;
 import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
-import com.optivem.eshop.systemtest.core.shop.client.dtos.error.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.core.shop.client.api.dtos.error.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.tax.client.TaxRealClient;
 import com.optivem.http.JsonHttpClient;

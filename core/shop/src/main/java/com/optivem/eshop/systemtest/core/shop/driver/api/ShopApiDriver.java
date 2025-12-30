@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.core.shop.driver.api;
 
 import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
-import com.optivem.eshop.systemtest.core.shop.client.dtos.error.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.core.shop.client.api.dtos.error.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.driver.dtos.error.SystemError;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.error.SystemError;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Closer;
 import com.optivem.lang.Result;

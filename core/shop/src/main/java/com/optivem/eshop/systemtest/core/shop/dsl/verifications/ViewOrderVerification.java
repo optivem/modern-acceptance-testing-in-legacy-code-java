@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
-import com.optivem.eshop.systemtest.core.shop.client.dtos.ViewOrderDetailsResponse;
-import com.optivem.eshop.systemtest.core.shop.client.dtos.enums.OrderStatus;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.ViewOrderDetailsResponse;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.enums.OrderStatus;
 import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;
 

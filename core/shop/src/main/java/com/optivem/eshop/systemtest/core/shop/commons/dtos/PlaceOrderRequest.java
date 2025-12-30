@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.client.dtos;
+package com.optivem.eshop.systemtest.core.shop.commons.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
