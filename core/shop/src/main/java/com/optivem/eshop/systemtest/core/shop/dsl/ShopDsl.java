@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.CancelOrder;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.GoToShop;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.PlaceOrder;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.PublishCoupon;
 import com.optivem.eshop.systemtest.core.shop.dsl.commands.ViewOrder;
 import com.optivem.lang.Closer;
 import com.optivem.testing.channels.ChannelContext;
@@ -53,5 +54,9 @@ public class ShopDsl implements Closeable {
 
     public ViewOrder viewOrder() {
         return new ViewOrder(driver, context);
+    }
+
+    public PublishCoupon publishCoupon() {
+        return new PublishCoupon(driver, context);
     }
 }

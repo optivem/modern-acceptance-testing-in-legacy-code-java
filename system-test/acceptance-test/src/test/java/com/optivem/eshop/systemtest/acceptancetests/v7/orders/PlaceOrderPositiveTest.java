@@ -1,11 +1,10 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7;
+package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;
 import com.optivem.testing.annotations.Time;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 public class PlaceOrderPositiveTest extends BaseAcceptanceTest {

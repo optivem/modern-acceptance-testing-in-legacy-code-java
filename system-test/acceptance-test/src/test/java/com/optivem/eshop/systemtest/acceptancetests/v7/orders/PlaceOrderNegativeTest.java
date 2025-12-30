@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7;
+package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
 
 import com.optivem.eshop.systemtest.acceptancetests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;

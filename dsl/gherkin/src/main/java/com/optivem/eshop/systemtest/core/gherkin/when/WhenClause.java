@@ -56,4 +56,8 @@ public class WhenClause {
         ensureDefaults();
         return new ViewOrderBuilder(app, scenario);
     }
+
+    public PublishCouponBuilder publishCoupon() {
+        return new PublishCouponBuilder(app, scenario);
+    }
 }
