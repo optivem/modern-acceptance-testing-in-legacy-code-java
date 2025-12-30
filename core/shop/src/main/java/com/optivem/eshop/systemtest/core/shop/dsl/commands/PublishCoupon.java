@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResul
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidVerification;
 
+
 public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCaseContext>> {
     private String couponCodeParamAlias;
     private String discountRate;
@@ -47,6 +48,8 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
     public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
         var couponCode = context.getParamValue(couponCodeParamAlias);
         
+        // Dates are already in ISO 8601 format (YYYY-MM-DDTHH:mm:ssZ) from test
+        // Pass them directly to the request
         var request = PublishCouponRequest.builder()
                 .code(couponCode)
                 .discountRate(discountRate)

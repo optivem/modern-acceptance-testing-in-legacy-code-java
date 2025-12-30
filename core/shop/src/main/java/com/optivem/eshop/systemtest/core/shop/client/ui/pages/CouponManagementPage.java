@@ -39,23 +39,27 @@ public class CouponManagementPage extends BasePage {
     }
 
     public void inputValidFrom(String validFrom) {
-        if (validFrom != null && pageClient.exists(VALID_FROM_INPUT_SELECTOR)) {
-            // Convert ISO 8601 format to datetime-local format (remove Z and milliseconds)
-            String formattedValue = validFrom.replace("Z", "").replaceAll("\\.\\d+$", "");
-            pageClient.setInputValue(VALID_FROM_INPUT_SELECTOR, formattedValue);
+        if (validFrom != null) {
+            // Extract date from ISO 8601 format (2024-06-01T00:00:00Z -> 2024-06-01)
+            // Then convert to datetime-local format (2024-06-01T00:00) for HTML input
+            String dateOnly = validFrom.substring(0, 10); // YYYY-MM-DD
+            String datetimeValue = dateOnly + "T00:00";
+            pageClient.fill(VALID_FROM_INPUT_SELECTOR, datetimeValue);
         }
     }
 
     public void inputValidTo(String validTo) {
-        if (validTo != null && pageClient.exists(VALID_TO_INPUT_SELECTOR)) {
-            // Convert ISO 8601 format to datetime-local format (remove Z and milliseconds)
-            String formattedValue = validTo.replace("Z", "").replaceAll("\\.\\d+$", "");
-            pageClient.setInputValue(VALID_TO_INPUT_SELECTOR, formattedValue);
+        if (validTo != null) {
+            // Extract date from ISO 8601 format (2024-08-31T23:59:59Z -> 2024-08-31)
+            // Then convert to datetime-local format (2024-08-31T23:59) for HTML input
+            String dateOnly = validTo.substring(0, 10); // YYYY-MM-DD
+            String datetimeValue = dateOnly + "T23:59";
+            pageClient.fill(VALID_TO_INPUT_SELECTOR, datetimeValue);
         }
     }
 
     public void inputUsageLimit(String usageLimit) {
-        if (usageLimit != null && pageClient.exists(USAGE_LIMIT_INPUT_SELECTOR)) {
+        if (usageLimit != null) {
             pageClient.fill(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
         }
     }
