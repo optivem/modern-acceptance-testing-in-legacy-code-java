@@ -14,8 +14,7 @@ public class ShopUiClient implements AutoCloseable {
     private static final String HTML_OPENING_TAG = "<html";
     private static final String HTML_CLOSING_TAG = "</html>";
 
-    // private static final boolean IS_HEADLESS = true;
-    private static final boolean IS_HEADLESS = false;
+    private static final boolean IS_HEADLESS = true;
     private static final int SLOW_MO_MS = 100;
 
     private final String baseUrl;
