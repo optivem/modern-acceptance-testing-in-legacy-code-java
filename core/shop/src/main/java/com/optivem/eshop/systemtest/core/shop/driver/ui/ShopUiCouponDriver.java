@@ -10,12 +10,12 @@ import com.optivem.lang.Result;
 public class ShopUiCouponDriver implements CouponDriver {
     @Override
     public Result<Void, SystemError> publishCoupon(PublishCouponRequest request) {
-        throw new UnsupportedOperationException("publishCoupon not implemented yet");
+        throw new UnsupportedOperationException("UI testing for publishCoupon not implemented yet. Please use API channel for coupon testing.");
     }
 
     @Override
     public Result<BrowseCouponsResponse, SystemError> browseCoupons(BrowseCouponsRequest request) {
-        throw new UnsupportedOperationException("browseCoupons not implemented yet");
+        throw new UnsupportedOperationException("UI testing for browseCoupons not implemented yet. Please use API channel for coupon testing.");
     }
 }
 

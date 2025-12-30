@@ -23,7 +23,7 @@ public class ShopApiDriver implements ShopDriver {
         var testHttpClient = new JsonHttpClient<>(httpClient, baseUrl, ProblemDetailResponse.class);
         this.apiClient = new ShopApiClient(testHttpClient);
         this.orderDriver = new ShopApiOrderDriver(apiClient);
-        this.couponDriver = new ShopApiCouponDriver();
+        this.couponDriver = new ShopApiCouponDriver(apiClient);
     }
 
     @Override

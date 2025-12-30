@@ -4,6 +4,8 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.then.ThenClause;
 
+import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
+
 public class PublishCouponBuilder {
     private final SystemDsl app;
     private final ScenarioDsl scenario;
@@ -14,6 +16,9 @@ public class PublishCouponBuilder {
     public PublishCouponBuilder(SystemDsl app, ScenarioDsl scenario) {
         this.app = app;
         this.scenario = scenario;
+
+        withCouponCode(DEFAULT_COUPON_CODE);
+        withDiscountRate(DEFAULT_DISCOUNT_RATE);
     }
 
     public PublishCouponBuilder withCouponCode(String couponCode) {

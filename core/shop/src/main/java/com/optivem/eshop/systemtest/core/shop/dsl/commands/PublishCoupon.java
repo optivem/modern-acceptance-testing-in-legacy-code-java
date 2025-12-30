@@ -8,15 +8,15 @@ import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidVerification;
 
 public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCaseContext>> {
-    private String couponCode;
+    private String couponCodeParamAlias;
     private String discountRate;
 
     public PublishCoupon(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
     }
 
-    public PublishCoupon couponCode(String couponCode) {
-        this.couponCode = couponCode;
+    public PublishCoupon couponCode(String couponCodeParamAlias) {
+        this.couponCodeParamAlias = couponCodeParamAlias;
         return this;
     }
 
@@ -27,8 +27,12 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
 
     @Override
     public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
-        var request = new PublishCouponRequest();
-        // TODO: Set request properties when PublishCouponRequest is implemented
+        var couponCode = context.getParamValue(couponCodeParamAlias);
+        
+        var request = PublishCouponRequest.builder()
+                .code(couponCode)
+                .discountRate(discountRate)
+                .build();
 
         var result = driver.coupons().publishCoupon(request);
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);

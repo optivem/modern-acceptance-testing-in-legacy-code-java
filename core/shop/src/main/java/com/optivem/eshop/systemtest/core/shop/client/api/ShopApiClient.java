@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.api;
 
+import com.optivem.eshop.systemtest.core.shop.client.api.controllers.CouponController;
 import com.optivem.eshop.systemtest.core.shop.client.api.controllers.HealthController;
 import com.optivem.eshop.systemtest.core.shop.client.api.controllers.OrderController;
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
@@ -9,10 +10,12 @@ public class ShopApiClient {
 
     private final HealthController healthController;
     private final OrderController orderController;
+    private final CouponController couponController;
 
     public ShopApiClient(JsonHttpClient<ProblemDetailResponse> httpGateway) {
         this.healthController = new HealthController(httpGateway);
         this.orderController = new OrderController(httpGateway);
+        this.couponController = new CouponController(httpGateway);
     }
 
     public HealthController health() {
@@ -21,6 +24,10 @@ public class ShopApiClient {
 
     public OrderController orders() {
         return orderController;
+    }
+
+    public CouponController coupons() {
+        return couponController;
     }
 }
 

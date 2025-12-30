@@ -24,6 +24,10 @@ public final class GherkinDefaults {
     // Tax defaults
     public static final String DEFAULT_TAX_RATE = "0.07";
     
+    // Coupon defaults
+    public static final String DEFAULT_COUPON_CODE = "WELCOME10";
+    public static final String DEFAULT_DISCOUNT_RATE = "0.10";
+
     private GherkinDefaults() {
         // Prevent instantiation
     }
