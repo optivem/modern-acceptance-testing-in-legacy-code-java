@@ -10,6 +10,9 @@ import com.optivem.testing.dsl.VoidVerification;
 public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCaseContext>> {
     private String couponCodeParamAlias;
     private String discountRate;
+    private String validFrom;
+    private String validTo;
+    private String usageLimit;
 
     public PublishCoupon(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
@@ -25,6 +28,21 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
         return this;
     }
 
+    public PublishCoupon validFrom(String validFrom) {
+        this.validFrom = validFrom;
+        return this;
+    }
+
+    public PublishCoupon validTo(String validTo) {
+        this.validTo = validTo;
+        return this;
+    }
+
+    public PublishCoupon usageLimit(String usageLimit) {
+        this.usageLimit = usageLimit;
+        return this;
+    }
+
     @Override
     public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
         var couponCode = context.getParamValue(couponCodeParamAlias);
@@ -32,6 +50,9 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
         var request = PublishCouponRequest.builder()
                 .code(couponCode)
                 .discountRate(discountRate)
+                .validFrom(validFrom)
+                .validTo(validTo)
+                .usageLimit(usageLimit)
                 .build();
 
         var result = driver.coupons().publishCoupon(request);

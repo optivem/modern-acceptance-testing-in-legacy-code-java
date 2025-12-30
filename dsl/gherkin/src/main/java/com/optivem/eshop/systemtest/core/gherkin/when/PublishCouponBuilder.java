@@ -12,6 +12,9 @@ public class PublishCouponBuilder {
 
     private String couponCode;
     private String discountRate;
+    private String validFrom;
+    private String validTo;
+    private String usageLimit;
 
     public PublishCouponBuilder(SystemDsl app, ScenarioDsl scenario) {
         this.app = app;
@@ -35,18 +38,33 @@ public class PublishCouponBuilder {
         return withDiscountRate(String.valueOf(discountRate));
     }
 
+    public PublishCouponBuilder withValidFrom(String validFrom) {
+        this.validFrom = validFrom;
+        return this;
+    }
+
+    public PublishCouponBuilder withValidTo(String validTo) {
+        this.validTo = validTo;
+        return this;
+    }
+
+    public PublishCouponBuilder withUsageLimit(String usageLimit) {
+        this.usageLimit = usageLimit;
+        return this;
+    }
+
+    public PublishCouponBuilder withUsageLimit(int usageLimit) {
+        return withUsageLimit(String.valueOf(usageLimit));
+    }
+
     public ThenClause then() {
-        var command = app.shop().publishCoupon();
-
-        if (couponCode != null) {
-            command.couponCode(couponCode);
-        }
-
-        if (discountRate != null) {
-            command.discountRate(discountRate);
-        }
-
-        var result = command.execute();
+        var result = app.shop().publishCoupon()
+                .couponCode(couponCode)
+                .discountRate(discountRate)
+                .validFrom(validFrom)
+                .validTo(validTo)
+                .usageLimit(usageLimit)
+                .execute();
         return new ThenClause(app, scenario, null, result);
     }
 }

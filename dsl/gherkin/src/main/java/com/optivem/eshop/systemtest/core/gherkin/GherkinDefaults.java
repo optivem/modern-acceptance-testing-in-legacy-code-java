@@ -27,6 +27,9 @@ public final class GherkinDefaults {
     // Coupon defaults
     public static final String DEFAULT_COUPON_CODE = "WELCOME10";
     public static final String DEFAULT_DISCOUNT_RATE = "0.10";
+    public static final String DEFAULT_VALID_FROM = "2024-01-01T00:00:00Z";
+    public static final String DEFAULT_VALID_TO = "2024-12-31T23:59:59Z";
+    public static final String DEFAULT_USAGE_LIMIT = "1000";
 
     private GherkinDefaults() {
         // Prevent instantiation

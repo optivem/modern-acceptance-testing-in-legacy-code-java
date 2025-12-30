@@ -29,6 +29,9 @@ public class ShopUiCouponDriver implements CouponDriver {
 
         couponManagementPage.inputCouponCode(request.getCode());
         couponManagementPage.inputDiscountRate(request.getDiscountRate());
+        couponManagementPage.inputValidFrom(request.getValidFrom());
+        couponManagementPage.inputValidTo(request.getValidTo());
+        couponManagementPage.inputUsageLimit(request.getUsageLimit());
         couponManagementPage.clickPublishCoupon();
 
         var isSuccess = couponManagementPage.hasSuccessCouponNotification();

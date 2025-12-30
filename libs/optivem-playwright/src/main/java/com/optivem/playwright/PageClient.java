@@ -33,6 +33,12 @@ public class PageClient {
         input.fill(text);
     }
 
+    public void setInputValue(String selector, String value) {
+        var locator = page.locator(selector);
+        wait(locator);
+        locator.evaluate("(element, val) => { element.value = val; element.dispatchEvent(new Event('input', { bubbles: true })); element.dispatchEvent(new Event('change', { bubbles: true })); }", value);
+    }
+
     public void click(String selector) {
         var button = page.locator(selector);
         wait(button);

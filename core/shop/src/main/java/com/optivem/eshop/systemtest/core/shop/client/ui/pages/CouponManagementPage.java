@@ -11,6 +11,9 @@ public class CouponManagementPage extends BasePage {
 
     private static final String COUPON_CODE_INPUT_SELECTOR = "[aria-label=\"Coupon Code\"]";
     private static final String DISCOUNT_RATE_INPUT_SELECTOR = "[aria-label=\"Discount Rate\"]";
+    private static final String VALID_FROM_INPUT_SELECTOR = "[aria-label=\"Valid From\"]";
+    private static final String VALID_TO_INPUT_SELECTOR = "[aria-label=\"Valid To\"]";
+    private static final String USAGE_LIMIT_INPUT_SELECTOR = "[aria-label=\"Usage Limit\"]";
     private static final String PUBLISH_COUPON_BUTTON_SELECTOR = "[aria-label=\"Create Coupon\"]";
     
     // Selectors for browsing coupons
@@ -33,6 +36,28 @@ public class CouponManagementPage extends BasePage {
 
     public void inputDiscountRate(String discountRate) {
         pageClient.fill(DISCOUNT_RATE_INPUT_SELECTOR, discountRate);
+    }
+
+    public void inputValidFrom(String validFrom) {
+        if (validFrom != null && pageClient.exists(VALID_FROM_INPUT_SELECTOR)) {
+            // Convert ISO 8601 format to datetime-local format (remove Z and milliseconds)
+            String formattedValue = validFrom.replace("Z", "").replaceAll("\\.\\d+$", "");
+            pageClient.setInputValue(VALID_FROM_INPUT_SELECTOR, formattedValue);
+        }
+    }
+
+    public void inputValidTo(String validTo) {
+        if (validTo != null && pageClient.exists(VALID_TO_INPUT_SELECTOR)) {
+            // Convert ISO 8601 format to datetime-local format (remove Z and milliseconds)
+            String formattedValue = validTo.replace("Z", "").replaceAll("\\.\\d+$", "");
+            pageClient.setInputValue(VALID_TO_INPUT_SELECTOR, formattedValue);
+        }
+    }
+
+    public void inputUsageLimit(String usageLimit) {
+        if (usageLimit != null && pageClient.exists(USAGE_LIMIT_INPUT_SELECTOR)) {
+            pageClient.fill(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
+        }
     }
 
     public void clickPublishCoupon() {
