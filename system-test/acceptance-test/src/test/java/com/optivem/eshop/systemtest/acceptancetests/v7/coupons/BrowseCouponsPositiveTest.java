@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestTemplate;
 public class BrowseCouponsPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
-    @Channel({ ChannelType.API })
+    @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToBrowseCoupons() {
         scenario
                 .when().browseCoupons()

@@ -64,7 +64,15 @@ public class ShopUiCouponDriver implements CouponDriver {
 
     @Override
     public Result<BrowseCouponsResponse, SystemError> browseCoupons(BrowseCouponsRequest request) {
-        throw new UnsupportedOperationException("UI testing for browseCoupons not implemented yet. Please use API channel for browsing coupons.");
+        ensureOnCouponManagementPage();
+        
+        var coupons = couponManagementPage.readCoupons();
+        
+        var response = BrowseCouponsResponse.builder()
+                .coupons(coupons)
+                .build();
+        
+        return Results.success(response);
     }
 
     private void ensureOnCouponManagementPage() {
