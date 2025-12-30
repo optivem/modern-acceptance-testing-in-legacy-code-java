@@ -14,21 +14,15 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     }
 
     public BrowseCouponsVerification hasCouponWithCode(String couponCodeAlias) {
-        var coupon = findCouponByCode(couponCodeAlias);
-        if (coupon == null) {
-            throw new AssertionError("Expected to find coupon with code '" + couponCodeAlias + "' but it was not found");
-        }
+        findCouponByCode(couponCodeAlias); // Throws if not found
         return this;
     }
 
     public BrowseCouponsVerification couponHasDiscountRate(String couponCodeAlias, double expectedDiscountRate) {
         var coupon = findCouponByCode(couponCodeAlias);
-        if (coupon == null) {
-            throw new AssertionError("Coupon with code '" + couponCodeAlias + "' not found");
-        }
 
         double actualDiscountRate = coupon.getDiscountRate();
-        if (Math.abs(actualDiscountRate - expectedDiscountRate) > 0.0001) {
+        if (actualDiscountRate != expectedDiscountRate) {
             throw new AssertionError(String.format(
                     "Expected coupon '%s' to have discount rate %.2f, but was %.2f",
                     couponCodeAlias, expectedDiscountRate, actualDiscountRate));
@@ -38,9 +32,6 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
 
     public BrowseCouponsVerification couponHasValidFrom(String couponCodeAlias, String expectedValidFrom) {
         var coupon = findCouponByCode(couponCodeAlias);
-        if (coupon == null) {
-            throw new AssertionError("Coupon with code '" + couponCodeAlias + "' not found");
-        }
 
         Instant actualValidFrom = coupon.getValidFrom();
         String actualValidFromString = actualValidFrom != null ? actualValidFrom.toString() : null;
@@ -54,9 +45,6 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
 
     public BrowseCouponsVerification couponHasUsageLimit(String couponCodeAlias, int expectedUsageLimit) {
         var coupon = findCouponByCode(couponCodeAlias);
-        if (coupon == null) {
-            throw new AssertionError("Coupon with code '" + couponCodeAlias + "' not found");
-        }
 
         Integer actualUsageLimit = coupon.getUsageLimit();
         if (actualUsageLimit == null || actualUsageLimit != expectedUsageLimit) {
@@ -69,7 +57,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
 
     private CouponDto findCouponByCode(String couponCodeAlias) {
         if (response == null || response.getCoupons() == null) {
-            return null;
+            throw new AssertionError("No coupons found in response");
         }
 
         var couponCode = context.getParamValue(couponCodeAlias);
@@ -77,6 +65,11 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
         return response.getCoupons().stream()
                 .filter(c -> couponCode.equals(c.getCode()))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new AssertionError(
+                        String.format("Coupon with code '%s' not found. Available coupons: %s",
+                                couponCode,
+                                response.getCoupons().stream()
+                                        .map(CouponDto::getCode)
+                                        .toList())));
     }
 }
