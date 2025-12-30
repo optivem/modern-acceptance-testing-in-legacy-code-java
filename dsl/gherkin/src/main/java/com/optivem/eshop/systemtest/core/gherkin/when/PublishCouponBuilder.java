@@ -10,7 +10,7 @@ public class PublishCouponBuilder {
     private final SystemDsl app;
     private final ScenarioDsl scenario;
 
-    private String couponCode;
+    private String couponCodeAlias;
     private String discountRate;
     private String validFrom;
     private String validTo;
@@ -24,8 +24,8 @@ public class PublishCouponBuilder {
         withDiscountRate(DEFAULT_DISCOUNT_RATE);
     }
 
-    public PublishCouponBuilder withCouponCode(String couponCode) {
-        this.couponCode = couponCode;
+    public PublishCouponBuilder withCouponCode(String couponCodeAlias) {
+        this.couponCodeAlias = couponCodeAlias;
         return this;
     }
 
@@ -59,7 +59,7 @@ public class PublishCouponBuilder {
 
     public ThenClause then() {
         var result = app.shop().publishCoupon()
-                .couponCode(couponCode)
+                .couponCode(couponCodeAlias)
                 .discountRate(discountRate)
                 .validFrom(validFrom)
                 .validTo(validTo)

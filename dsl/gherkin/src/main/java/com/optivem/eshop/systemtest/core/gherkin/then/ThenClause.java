@@ -45,4 +45,9 @@ public class ThenClause {
     public OrderVerificationBuilder order() {
         return order(this.orderNumber != null ? this.orderNumber : DEFAULT_ORDER_NUMBER);
     }
+
+    public CouponVerificationBuilder coupon() {
+        scenario.markAsExecuted();
+        return new CouponVerificationBuilder(app);
+    }
 }
