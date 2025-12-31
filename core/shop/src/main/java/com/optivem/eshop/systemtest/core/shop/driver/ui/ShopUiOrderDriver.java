@@ -131,6 +131,12 @@ public class ShopUiOrderDriver implements OrderDriver {
         viewOrder(orderNumberAlias);
         orderDetailsPage.clickCancelOrder();
 
+        // Check for error notification first
+        if (!orderDetailsPage.hasSuccessNotification()) {
+            var errorMessage = orderDetailsPage.readGeneralErrorMessage();
+            return Results.failure(errorMessage);
+        }
+
         var cancellationMessage = orderDetailsPage.readSuccessNotification();
         if (!Objects.equals(cancellationMessage, "Order cancelled successfully!")) {
             return Results.failure("Order cancellation failed");

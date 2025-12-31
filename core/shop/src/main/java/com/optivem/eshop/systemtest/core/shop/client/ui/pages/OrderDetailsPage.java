@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 
 public class OrderDetailsPage extends BasePage {
+    private static final String NOTIFICATION_SELECTOR = "#notifications .notification";
     private static final String ORDER_DETAILS_CONTAINER_SELECTOR = "[aria-label='Order Details']";
     private static final String ORDER_NUMBER_OUTPUT_SELECTOR = "[aria-label='Display Order Number']";
     private static final String SKU_OUTPUT_SELECTOR = "[aria-label='Display SKU']";
@@ -94,7 +95,7 @@ public class OrderDetailsPage extends BasePage {
 
     public void clickCancelOrder() {
         pageClient.click(CANCEL_ORDER_OUTPUT_SELECTOR);
-        pageClient.waitForHidden(CANCEL_ORDER_OUTPUT_SELECTOR);
+        pageClient.waitForVisible(NOTIFICATION_SELECTOR);
     }
 
     public boolean isCancelButtonHidden() {
