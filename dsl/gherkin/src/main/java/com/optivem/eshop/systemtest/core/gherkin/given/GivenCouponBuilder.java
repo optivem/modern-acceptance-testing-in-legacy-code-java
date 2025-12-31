@@ -17,9 +17,9 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
 
         withCouponCode(DEFAULT_COUPON_CODE);
         withDiscountRate(DEFAULT_DISCOUNT_RATE);
-        withValidFrom(DEFAULT_VALID_FROM);
-        withValidTo(DEFAULT_VALID_TO);
-        withUsageLimit(DEFAULT_USAGE_LIMIT);
+        withValidFrom(EMPTY);
+        withValidTo(EMPTY);
+        withUsageLimit(EMPTY);
     }
 
     public GivenCouponBuilder withCouponCode(String couponCode) {

@@ -69,9 +69,11 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
                 .build();
         var result = driver.orders().placeOrder(request);
 
-        if (result.isSuccess() && orderNumberResultAlias != null) {
+        if(result.isSuccess()) {
             var orderNumber = result.getValue().getOrderNumber();
             context.setResultEntry(orderNumberResultAlias, orderNumber);
+        } else {
+            context.setResultEntryFailed(orderNumberResultAlias, result.getError().toString());
         }
 
         return new ShopUseCaseResult<>(result, context, PlaceOrderVerification::new);

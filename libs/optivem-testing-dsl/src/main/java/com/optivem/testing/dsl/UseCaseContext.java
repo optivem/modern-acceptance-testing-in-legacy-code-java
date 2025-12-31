@@ -65,10 +65,18 @@ public class UseCaseContext {
         resultMap.put(alias, value);
     }
 
+    public void setResultEntryFailed(String alias, String errorMessage) {
+        setResultEntry(alias, "FAILED: " + errorMessage);
+    }
+
     public String getResultValue(String alias) {
         var value = resultMap.get(alias);
         if (value == null) {
             return alias; // Return literal value if not found as alias
+        }
+
+        if(value.contains("FAILED")) {
+            throw new IllegalStateException("Cannot get result value for alias '" + alias + "' because the operation failed: " + value);
         }
 
         return value;
@@ -79,6 +87,7 @@ public class UseCaseContext {
         expandedMessage = expandAlias(expandedMessage, resultMap);
         return expandedMessage;
     }
+
 
 
 }

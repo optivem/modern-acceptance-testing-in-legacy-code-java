@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;
 import com.optivem.testing.annotations.Time;
@@ -51,7 +52,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .and().order().expectOrderNumberPrefix("ORD-");
     }
 
-    @Disabled
+    // @Disabled("TODO: Continue")
     @TestTemplate
     // @Channel({ChannelType.UI, ChannelType.API})
     @Channel(ChannelType.API)
@@ -59,7 +60,9 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().coupon().withCouponCode("SUMMER2025").withDiscountRate(0.15)
                 .when().placeOrder().withCouponCode("SUMMER2025")
-                .then().order().hasAppliedCoupon("SUMMER2025").hasDiscountRate(0.15);
+                .then().order().hasStatus(OrderStatus.PLACED)
+                    .hasAppliedCoupon("SUMMER2025")
+                    .hasDiscountRate(0.15);
     }
 
 //    @TestTemplate
