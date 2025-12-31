@@ -26,6 +26,7 @@ public class UseCaseContext {
     }
 
     private static String generateParamValue(String alias) {
+        ensureAliasNotNullBlank(alias);
         var suffix = UUID.randomUUID().toString().substring(0, 8);
         return alias + "-" + suffix;
     }
@@ -35,7 +36,7 @@ public class UseCaseContext {
     }
 
     public String getParamValue(String alias) {
-        if (alias == null || alias.isBlank()) {
+        if(isNullOrBlank(alias)) {
             return alias;
         }
 
@@ -50,6 +51,10 @@ public class UseCaseContext {
     }
 
     public String getParamValueOrLiteral(String alias) {
+        if(isNullOrBlank(alias)) {
+            return alias;
+        }
+
         return switch (externalSystemMode) {
             case STUB -> getParamValue(alias);
             case REAL -> alias;
@@ -58,6 +63,8 @@ public class UseCaseContext {
     }
 
     public void setResultEntry(String alias, String value) {
+        ensureAliasNotNullBlank(alias);
+
         if (resultMap.containsKey(alias)) {
             throw new IllegalStateException("Alias already exists: " + alias);
         }
@@ -66,10 +73,13 @@ public class UseCaseContext {
     }
 
     public void setResultEntryFailed(String alias, String errorMessage) {
+        ensureAliasNotNullBlank(alias);
         setResultEntry(alias, "FAILED: " + errorMessage);
     }
 
     public String getResultValue(String alias) {
+        ensureAliasNotNullBlank(alias);
+
         var value = resultMap.get(alias);
         if (value == null) {
             return alias; // Return literal value if not found as alias
@@ -88,7 +98,13 @@ public class UseCaseContext {
         return expandedMessage;
     }
 
+    private static void ensureAliasNotNullBlank(String alias) {
+        if (isNullOrBlank(alias)) {
+            throw new IllegalArgumentException("Alias cannot be null or blank");
+        }
+    }
 
-
+    private static boolean isNullOrBlank(String alias) {
+        return alias == null || alias.isBlank();
+    }
 }
-

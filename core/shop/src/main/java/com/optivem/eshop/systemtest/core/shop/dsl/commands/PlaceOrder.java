@@ -9,6 +9,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.verifications.PlaceOrderVerifi
 import com.optivem.testing.dsl.UseCaseContext;
 
 public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVerification> {
+    private static final String DEFAULT_ORDER_NUMBER_ALIAS = "ORDER-NUMBER";
     private static final String DEFAULT_SKU = "DEFAULT-SKU";
     private static final int DEFAULT_QUANTITY = 1;
     private static final String DEFAULT_COUNTRY = "US";
@@ -21,6 +22,7 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
     public PlaceOrder(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
 
+        orderNumber(DEFAULT_ORDER_NUMBER_ALIAS);
         sku(DEFAULT_SKU);
         quantity(DEFAULT_QUANTITY);
         country(DEFAULT_COUNTRY);
