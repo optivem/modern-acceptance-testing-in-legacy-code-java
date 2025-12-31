@@ -21,6 +21,7 @@ public class OrderDetailsPage extends BasePage {
     private static final String TAX_AMOUNT_OUTPUT_SELECTOR = "[aria-label='Display Tax Amount']";
     private static final String TOTAL_PRICE_OUTPUT_SELECTOR = "[aria-label='Display Total Price']";
     private static final String STATUS_OUTPUT_SELECTOR = "[aria-label='Display Status']";
+    private static final String APPLIED_COUPON_OUTPUT_SELECTOR = "[aria-label='Display Applied Coupon']";
     private static final String CANCEL_ORDER_OUTPUT_SELECTOR = "[aria-label='Cancel Order']";
 
     public OrderDetailsPage(PageClient pageClient) {
@@ -84,6 +85,11 @@ public class OrderDetailsPage extends BasePage {
     public OrderStatus getStatus() {
         var status = pageClient.readTextContent(STATUS_OUTPUT_SELECTOR);
         return OrderStatus.valueOf(status);
+    }
+
+    public String getAppliedCoupon() {
+        var coupon = pageClient.readTextContent(APPLIED_COUPON_OUTPUT_SELECTOR);
+        return "None".equals(coupon) ? null : coupon;
     }
 
     public void clickCancelOrder() {

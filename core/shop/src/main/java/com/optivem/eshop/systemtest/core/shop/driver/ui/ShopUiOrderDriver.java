@@ -34,11 +34,13 @@ public class ShopUiOrderDriver implements OrderDriver {
         var sku = request.getSku();
         var quantity = request.getQuantity();
         var country = request.getCountry();
+        var couponCode = request.getCouponCode();
 
         ensureOnNewOrderPage();
         newOrderPage.inputSku(sku);
         newOrderPage.inputQuantity(quantity);
         newOrderPage.inputCountry(country);
+        newOrderPage.inputCouponCode(couponCode);
         newOrderPage.clickPlaceOrder();
 
         var isSuccess = newOrderPage.hasSuccessNotification();
@@ -102,6 +104,7 @@ public class ShopUiOrderDriver implements OrderDriver {
         var taxAmount = orderDetailsPage.getTaxAmount();
         var totalPrice = orderDetailsPage.getTotalPrice();
         var status = orderDetailsPage.getStatus();
+        var appliedCoupon = orderDetailsPage.getAppliedCoupon();
 
         var response = ViewOrderDetailsResponse.builder()
                 .orderNumber(displayOrderNumber)
@@ -117,6 +120,7 @@ public class ShopUiOrderDriver implements OrderDriver {
                 .totalPrice(totalPrice)
                 .country(country)
                 .status(status)
+                .appliedCouponCode(appliedCoupon)
                 .build();
 
         return Results.success(response);

@@ -52,10 +52,8 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .and().order().expectOrderNumberPrefix("ORD-");
     }
 
-    // @Disabled("TODO: Continue")
     @TestTemplate
-    // @Channel({ChannelType.UI, ChannelType.API})
-    @Channel(ChannelType.API)
+    @Channel({ChannelType.UI, ChannelType.API})
     void discountRateShouldBeAppliedForCoupon() {
         scenario
                 .given().coupon().withCouponCode("SUMMER2025").withDiscountRate(0.15)
