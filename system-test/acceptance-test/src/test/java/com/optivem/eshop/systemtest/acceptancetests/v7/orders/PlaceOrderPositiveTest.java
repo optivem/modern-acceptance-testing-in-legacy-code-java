@@ -98,74 +98,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .hasSubtotalPrice(100.00);
     }
 
-    /*
-
-                .given().product().withUnitPrice(20.00)
-                .when().placeOrder().withQuantity(5)
-                .then().order().hasBasePrice(100.00);
-
-     */
-
-
-//    @TestTemplate
-//    @Time
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    void discountRateShouldBe0percentWhenTimeBefore5pm() {
-//        scenario
-//                .given().clock().withTime("2025-12-24T10:02:00Z")
-//                .when().placeOrder()
-//                .then().order().hasDiscountRate(0);
-//    }
-//
-//    @TestTemplate
-//    @Time
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    void discountRateShouldBe15percentWhenTimeAfter5pm() {
-//        scenario
-//                .given().clock().withTime("2025-12-24T17:01:00Z")
-//                .when().placeOrder()
-//                .then().order().hasDiscountRate(0.15);
-//    }
-//
-//    @TestTemplate
-//    @Time
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    void discountAmountShouldBe0WhenTimeBefore5pm() {
-//        scenario
-//                .given().clock().withTime("2025-12-24T10:02:00Z")
-//                .when().placeOrder()
-//                .then().order().hasDiscountAmount(0);
-//    }
-//
-//    @TestTemplate
-//    @Time
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    @DataSource({"20.00", "6", "18.00"})
-//    @DataSource({"15.00", "4", "9.00"})
-//    void discountAmountShouldBe15percentOfSubtotalPriceWhenTimeAfter5pm(String unitPrice, String quantity, String expectedDiscountAmount) {
-//        scenario
-//                .given().clock().withTime("2025-12-24T17:02:00Z")
-//                .and().product().withUnitPrice(unitPrice)
-//                .when().placeOrder().withQuantity(quantity)
-//                .then().order().hasDiscountAmount(expectedDiscountAmount);
-//    }
-//
-//    @TestTemplate
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    @DataSource({"20.00", "6", "120.00", "18.00", "102.00"})
-//    @DataSource({"15.00", "4", "60.00", "9.00", "51.00"})
-//    void subtotalPriceShouldBeBasePriceMinusDiscountAmountWhenTimeAfter5pm(String unitPrice, String quantity, String expectedBasePrice, String expectedDiscountAmount, String expectedSubtotalPrice) {
-//        scenario
-//                .given().clock().withTime("2025-12-24T17:02:00Z")
-//                .and().product().withUnitPrice(unitPrice)
-//                .when().placeOrder().withQuantity(quantity)
-//                .then().order().hasBasePrice(expectedBasePrice)
-//                .hasDiscountAmount(expectedDiscountAmount)
-//                .hasSubtotalPrice(expectedSubtotalPrice);
-//    }
-
     @TestTemplate
-    @Time
     @Channel({ChannelType.UI, ChannelType.API})
     @DataSource({"UK", "0.09"})
     @DataSource({"US", "0.20"})
@@ -176,45 +109,23 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .then().order().hasTaxRate(taxRate);
     }
 
-//    // TODO: VJ: Introduce coupon codes, rather than time based
-//    @Disabled
-//    @TestTemplate
-//    @Time
-//    @Channel({ChannelType.UI, ChannelType.API})
-//    @DataSource({"0.10", "100.00", "10.00"})
-//    @DataSource({"0.15", "100.00", "15.00" })
-//    void taxAmountShouldBeCalculatedAsProductOfSubtotalPriceAndTaxRate(String taxRate, String subtotalPrice, String expectedTaxAmount) {
-//        scenario
-//                .given().taxRate().withTaxRate(taxRate)
-//                .and().product().withUnitPrice(subtotalPrice)
-//                .when().placeOrder().withQuantity(1)
-//                .then().order().hasTaxRate(taxRate).hasTaxAmount(expectedTaxAmount);
-//    }
-
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void discountAmountShouldBeGreaterThanOrEqualToZero() {
+    @DataSource({"UK", "0.09", "50.00", "4.50"})
+    @DataSource({"US", "0.20", "100.00", "20.00"})
+    void taxAmountShouldBeProductOfTaxRateAndBasePrice(String country, String taxRate, String basePrice, String expectedTaxAmount) {
         scenario
-                .when().placeOrder()
-                .then().order().hasDiscountAmountGreaterThanOrEqualToZero();
+                .given().taxRate().withCountry(country).withTaxRate(taxRate)
+                .and().product().withUnitPrice(basePrice)
+                .when().placeOrder().withCountry(country).withQuantity(1)
+                .then().order().hasTaxRate(taxRate)
+                .hasBasePrice(basePrice)
+                .hasTaxAmount(expectedTaxAmount);
     }
 
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void subtotalPriceShouldBeGreaterThanZero() {
-        scenario
-                .when().placeOrder()
-                .then().order().hasSubtotalPriceGreaterThanZero();
-    }
 
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void taxRateShouldBeGreaterThanOrEqualToZero() {
-        scenario
-                .when().placeOrder()
-                .then().order().hasTaxRateGreaterThanOrEqualToZero();
-    }
+
+
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
