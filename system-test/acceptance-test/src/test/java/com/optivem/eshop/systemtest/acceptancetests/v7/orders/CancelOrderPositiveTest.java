@@ -33,8 +33,8 @@ public class CancelOrderPositiveTest extends BaseAcceptanceTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToCancelAnOrderOn31stDecBetween2200And2230() {
         scenario
-                .given().order().withStatus(OrderStatus.PLACED)
-                .and().clock().withTime("2024-12-31T22:15:00Z")
+                .given().clock().withTime("2024-12-31T22:15:00Z")
+                .and().order().withStatus(OrderStatus.PLACED)
                 .when().cancelOrder()
                 .then().shouldFail().errorMessage("Order cancellation is not allowed on December 31st between 22:00 and 23:00")
                 .and().order().hasStatus(OrderStatus.PLACED);
