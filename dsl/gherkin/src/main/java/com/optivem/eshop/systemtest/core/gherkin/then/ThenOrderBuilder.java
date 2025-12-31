@@ -35,6 +35,16 @@ public class ThenOrderBuilder extends BaseThenBuilder {
         return this;
     }
 
+    public ThenOrderBuilder shouldHaveBasePrice(double expectedBasePrice) {
+        orderVerification.basePrice(expectedBasePrice);
+        return this;
+    }
+
+    public ThenOrderBuilder shouldHaveBasePrice(String basePrice) {
+        orderVerification.basePrice(basePrice);
+        return this;
+    }
+
     public ThenOrderBuilder shouldHaveSubtotalPrice(double expectedSubtotalPrice) {
         orderVerification.subtotalPrice(expectedSubtotalPrice);
         return this;
@@ -129,4 +139,6 @@ public class ThenOrderBuilder extends BaseThenBuilder {
         orderVerification.orderNumberHasPrefix(expectedPrefix);
         return this;
     }
+
+
 }

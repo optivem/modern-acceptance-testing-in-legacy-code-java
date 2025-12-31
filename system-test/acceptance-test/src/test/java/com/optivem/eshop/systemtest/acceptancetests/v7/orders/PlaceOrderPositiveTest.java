@@ -23,11 +23,11 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateSubtotalPriceAsProductOfUnitPriceAndQuantity() {
+    void shouldCalculateBasePriceAsProductOfUnitPriceAndQuantity() {
         scenario
                 .given().product().withUnitPrice(20.00)
                 .when().placeOrder().withQuantity(5)
-                .then().order().shouldHaveSubtotalPrice(100.00);
+                .then().order().shouldHaveBasePrice(100.00);
     }
 
     @TestTemplate
@@ -36,11 +36,11 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"10.00", "3", "30.00"})
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
-    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
+    void shouldPlaceOrderWithCorrectBasePriceParameterized(String unitPrice, String quantity, String basePrice) {
         scenario
                 .given().product().withUnitPrice(unitPrice)
                 .when().placeOrder().withQuantity(quantity)
-                .then().order().shouldHaveSubtotalPrice(subtotalPrice);
+                .then().order().shouldHaveBasePrice(basePrice);
     }
 
     @TestTemplate
@@ -70,6 +70,16 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .then().order().hasStatus(OrderStatus.PLACED)
                 .hasAppliedCoupon(null)
                 .hasDiscountRate(0.00);
+    }
+
+    @TestTemplate
+    @Channel({ChannelType.UI, ChannelType.API})
+    void subtotalPriceShouldBeCalculatedAsTheBasePriceMinusDiscountAmount() {
+        scenario
+                .given().coupon().withCouponCode("SUMMER2025").withDiscountRate(0.15)
+                .when().placeOrder().withCouponCode("SUMMER2025")
+                .then().order().hasAppliedCoupon("SUMMER2025")
+                    .hasDiscountRate(0.15);
     }
 
 
