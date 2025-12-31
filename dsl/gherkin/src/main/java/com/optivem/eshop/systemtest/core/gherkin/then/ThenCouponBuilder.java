@@ -6,35 +6,29 @@ import com.optivem.eshop.systemtest.core.shop.dsl.verifications.BrowseCouponsVer
 
 public class ThenCouponBuilder extends BaseThenBuilder {
     private final BrowseCouponsVerification verification;
-    private String couponCode;
+    private final String couponCode;
 
-    public ThenCouponBuilder(ThenClause thenClause, SystemDsl app) {
+    public ThenCouponBuilder(ThenClause thenClause, SystemDsl app, String couponCode) {
         super(thenClause);
+        this.couponCode = couponCode;
         this.verification = app.shop().browseCoupons()
                 .execute()
                 .shouldSucceed();
-    }
 
-    public ThenCouponBuilder hasCouponCode(String couponCode) {
-        this.couponCode = couponCode;
         verification.hasCouponWithCode(couponCode);
-        return this;
     }
 
     public ThenCouponBuilder hasDiscountRate(double discountRate) {
-        verification.hasCouponWithCode(couponCode);
         verification.couponHasDiscountRate(couponCode, discountRate);
         return this;
     }
 
     public ThenCouponBuilder isValidFrom(String validFrom) {
-        verification.hasCouponWithCode(couponCode);
         verification.couponHasValidFrom(couponCode, validFrom);
         return this;
     }
 
     public ThenCouponBuilder hasUsageLimit(int usageLimit) {
-        verification.hasCouponWithCode(couponCode);
         verification.couponHasUsageLimit(couponCode, usageLimit);
         return this;
     }

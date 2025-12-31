@@ -48,8 +48,18 @@ public class ThenClause {
         return order(orderNumber);
     }
 
-    public ThenCouponBuilder coupon() {
+    public ThenCouponBuilder coupon(String couponCode) {
         scenario.markAsExecuted();
-        return new ThenCouponBuilder(this, app);
+        return new ThenCouponBuilder(this, app, couponCode);
+    }
+
+    public ThenCouponBuilder coupon() {
+        var couponCode = executionResult.getCouponCode();
+
+        if(couponCode == null) {
+            throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
+        }
+
+        return coupon(couponCode);
     }
 }
