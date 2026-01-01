@@ -5,9 +5,8 @@ import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.testing.annotations.Time;
 import com.optivem.testing.channels.Channel;
+import com.optivem.testing.channels.DataSource;
 import org.junit.jupiter.api.TestTemplate;
-import org.junit.jupiter.api.parallel.ResourceAccessMode;
-import org.junit.jupiter.api.parallel.ResourceLock;
 
 public class CancelOrderPositiveTest extends BaseAcceptanceTest {
 
@@ -19,6 +18,33 @@ public class CancelOrderPositiveTest extends BaseAcceptanceTest {
                 .when().cancelOrder()
                 .then().shouldSucceed();
     }
+
+    @Time
+    @TestTemplate
+    @Channel({ChannelType.UI, ChannelType.API})
+    @DataSource({"2024-12-31T21:59:59Z"})   // 1 second before blackout period starts
+    @DataSource({"2024-12-31T22:30:01Z"})   // 1 second after blackout period ends
+    @DataSource({"2024-12-31T10:00:00Z"})   // Another time on blackout day but outside blackout period
+    @DataSource({"2025-01-01T22:15:00Z"})   // Another day entirely (same time but different day)
+    void shouldBeAbleToCancelOrderOutsideOfBlackoutPeriod31stDecBetween2200And2230(String timeIso) {
+        scenario
+                .given().clock().withTime(timeIso)
+                .and().order().withStatus(OrderStatus.PLACED)
+                .when().cancelOrder()
+                .then().shouldSucceed();
+    }
+
+
+
+    // TODO: Add tests
+    /*
+
+
+restricted days - positive case (millisecond before and after, normal case)
+
+
+     */
+
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

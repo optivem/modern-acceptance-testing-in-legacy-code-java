@@ -55,7 +55,7 @@ public class CancelOrderNegativeTest extends BaseAcceptanceTest {
     @DataSource({"2025-12-31T22:15:00Z"})   // Middle of blackout period
     @DataSource({"2028-12-31T22:29:59Z"})   // Just before end
     @DataSource({"2021-12-31T22:30:00Z"})   // End of blackout period
-    void cannotCancelAnOrderOn31stDecBetween2200And2300(String timeIso) {
+    void cannotCancelAnOrderOn31stDecBetween2200And2230(String timeIso) {
         scenario
                 .given().clock().withTime(timeIso)
                 .and().order().withStatus(OrderStatus.PLACED)

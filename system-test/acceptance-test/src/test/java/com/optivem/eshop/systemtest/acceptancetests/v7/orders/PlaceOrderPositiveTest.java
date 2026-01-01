@@ -167,15 +167,6 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         // TODO: VJ: Make message Coupon code LIMITED2024 has exceeded its usage limit
     }
 
-
-    // TODO: Add tests
-    /*
-
-
-restricted days - positive case (millisecond before and after, normal case)
-
-
-     */
 }
 
 
