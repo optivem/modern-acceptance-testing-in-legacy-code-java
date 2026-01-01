@@ -33,6 +33,7 @@ public class PublishCouponPositiveTest extends BaseAcceptanceTest {
     }
 
     @TestTemplate
+    // @Channel({ ChannelType.UI, ChannelType.API }) // TODO: VJ: Not working for UI
     @Channel({ ChannelType.API })
     void shouldBeAbleToCorrectlySaveCoupon() {
         scenario

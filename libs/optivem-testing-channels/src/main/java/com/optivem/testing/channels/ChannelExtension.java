@@ -39,9 +39,10 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
                     .filter(channel -> channel.equalsIgnoreCase(channelFilter))
                     .toArray(String[]::new);
             
-            // If no channels match the filter, return empty stream to skip this test
+            // If no channels match the filter, return a disabled context instead of empty stream
             if (channels.length == 0) {
-                return Stream.empty();
+                String skipMessage = channelFilter + " channel was not specified";
+                return Stream.of(new DisabledInvocationContext(testMethod.getName(), skipMessage));
             }
         }
 
@@ -504,6 +505,45 @@ public class ChannelExtension implements TestTemplateInvocationContextProvider {
             }
             // Default: return as string
             return value;
+        }
+    }
+
+    /**
+     * A test invocation context that disables the test.
+     */
+    private static class DisabledInvocationContext implements TestTemplateInvocationContext {
+        private final String methodName;
+        private final String reason;
+
+        public DisabledInvocationContext(String methodName, String reason) {
+            this.methodName = methodName;
+            this.reason = reason;
+        }
+
+        @Override
+        public String getDisplayName(int invocationIndex) {
+            return methodName + "() [Skipped: " + reason + "]";
+        }
+
+        @Override
+        public List<Extension> getAdditionalExtensions() {
+            return List.of(new DisableTestExtension(reason));
+        }
+    }
+
+    /**
+     * Extension that disables a test with a reason.
+     */
+    private static class DisableTestExtension implements org.junit.jupiter.api.extension.ExecutionCondition {
+        private final String reason;
+
+        public DisableTestExtension(String reason) {
+            this.reason = reason;
+        }
+
+        @Override
+        public org.junit.jupiter.api.extension.ConditionEvaluationResult evaluateExecutionCondition(ExtensionContext context) {
+            return org.junit.jupiter.api.extension.ConditionEvaluationResult.disabled(reason);
         }
     }
 }
