@@ -21,17 +21,12 @@ public class ShopDsl implements Closeable {
     private final UseCaseContext context;
 
     public ShopDsl(String uiBaseUrl, String apiBaseUrl, UseCaseContext context) {
-        this.driver = createDriver(uiBaseUrl, apiBaseUrl, context);
+        this.driver = createDriver(uiBaseUrl, apiBaseUrl);
         this.context = context;
     }
 
-    private static ShopDriver createDriver(String uiBaseUrl, String apiBaseUrl, UseCaseContext context) {
-        // Use context's channel if explicitly set, otherwise fall back to thread-local
-        var channel = context.getChannel();
-        if (channel == null) {
-            channel = ChannelContext.get();
-        }
-        
+    private static ShopDriver createDriver(String uiBaseUrl, String apiBaseUrl) {
+        var channel = ChannelContext.get();
         if (ChannelType.UI.equals(channel)) {
             return new ShopUiDriver(uiBaseUrl);
         } else if (ChannelType.API.equals(channel)) {

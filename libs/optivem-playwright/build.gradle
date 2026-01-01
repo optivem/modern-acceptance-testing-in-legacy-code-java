@@ -17,5 +17,4 @@ repositories {
 
 dependencies {
     api 'com.microsoft.playwright:playwright:1.44.0'
-    api 'org.junit.jupiter:junit-jupiter-api:5.10.2'
 }

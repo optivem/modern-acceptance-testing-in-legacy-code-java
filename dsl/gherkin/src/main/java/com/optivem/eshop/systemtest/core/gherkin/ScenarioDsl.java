@@ -6,23 +6,21 @@ import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 import com.optivem.lang.Closer;
 
 public class ScenarioDsl implements AutoCloseable {
-    private final SystemDsl setupDsl;  // For given() - fast API setup
-    private final SystemDsl testDsl;   // For when()/then() - actual test
+    private final SystemDsl app;
     private boolean executed = false;
 
-    public ScenarioDsl(SystemDsl setupDsl, SystemDsl testDsl) {
-        this.setupDsl = setupDsl;
-        this.testDsl = testDsl;
+    public ScenarioDsl(SystemDsl app) {
+        this.app = app;
     }
 
     public GivenClause given() {
         ensureNotExecuted();
-        return new GivenClause(setupDsl, this);
+        return new GivenClause(app, this);
     }
 
     public WhenClause when() {
         ensureNotExecuted();
-        return new WhenClause(testDsl, this);
+        return new WhenClause(app, this);
     }
 
     public void markAsExecuted() {
@@ -39,6 +37,6 @@ public class ScenarioDsl implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
-        // DSLs are managed by BaseScenarioDslTest, don't close here
+        Closer.close(app);
     }
 }

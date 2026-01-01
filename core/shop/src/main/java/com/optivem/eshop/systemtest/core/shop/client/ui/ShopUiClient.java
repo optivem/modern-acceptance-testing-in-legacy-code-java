@@ -14,7 +14,52 @@ public class ShopUiClient implements AutoCloseable {
     private static final String HTML_OPENING_TAG = "<html";
     private static final String HTML_CLOSING_TAG = "</html>";
 
+    // Headless mode configuration:
+    // - Set via system property: -Dheadless=false (to see browser locally)
+    // - Or via environment variable: HEADLESS=false
+    // - Defaults to true (headless) for CI environments
+    // - Can also detect CI environment automatically
+    private static final boolean IS_HEADLESS = getHeadlessMode();
+    private static final int SLOW_MO_MS = 100;
+
+    private static final boolean DEFAULT_HEADLESS = false;
+
+    private static boolean getHeadlessMode() {
+        // Check system property first (e.g., -Dheadless=false)
+        String systemProperty = System.getProperty("headless");
+        if (systemProperty != null) {
+            return Boolean.parseBoolean(systemProperty);
+        }
+
+        // Check environment variable (e.g., HEADLESS=false)
+        String envVariable = System.getenv("HEADLESS");
+        if (envVariable != null) {
+            return Boolean.parseBoolean(envVariable);
+        }
+
+        // Auto-detect CI environment (CI=true, JENKINS_HOME, GITHUB_ACTIONS, etc.)
+        if (isRunningInCI()) {
+            return true;  // Always headless in CI
+        }
+
+        // Default to true (headless) for safety
+        return DEFAULT_HEADLESS;
+    }
+
+    private static boolean isRunningInCI() {
+        // Check common CI environment variables
+        return System.getenv("CI") != null ||
+               System.getenv("JENKINS_HOME") != null ||
+               System.getenv("GITHUB_ACTIONS") != null ||
+               System.getenv("GITLAB_CI") != null ||
+               System.getenv("CIRCLECI") != null ||
+               System.getenv("TRAVIS") != null ||
+               System.getenv("TEAMCITY_VERSION") != null ||
+               System.getenv("BUILDKITE") != null;
+    }
+
     private final String baseUrl;
+    private final Playwright playwright;
     private final Browser browser;
     private final BrowserContext context;
     private final Page page;
@@ -24,9 +69,14 @@ public class ShopUiClient implements AutoCloseable {
 
     public ShopUiClient(String baseUrl) {
         this.baseUrl = baseUrl;
-        
-        // Get shared browser from BrowserLifecycleExtension (created lazily per thread)
-        this.browser = com.optivem.playwright.BrowserLifecycleExtension.getBrowser();
+        this.playwright = Playwright.create();
+
+        // Launch browser with options for parallel test isolation
+        var launchOptions = new BrowserType.LaunchOptions()
+                .setHeadless(IS_HEADLESS)
+                .setSlowMo(SLOW_MO_MS);
+
+        this.browser = playwright.chromium().launch(launchOptions);
 
         // Create isolated browser context for this test instance
         var contextOptions = new Browser.NewContextOptions()
@@ -72,7 +122,8 @@ public class ShopUiClient implements AutoCloseable {
     public void close() {
         Closer.close(page);
         Closer.close(context);
-        // Browser is shared and managed by BrowserLifecycleExtension - don't close it
+        Closer.close(browser);
+        Closer.close(playwright);
     }
 }
 

@@ -28,20 +28,6 @@ public class SystemDsl implements Closeable {
         this(configuration, new UseCaseContext(configuration.getExternalSystemMode()));
     }
 
-    /**
-     * Creates a SystemDsl instance that always uses the specified channel.
-     * Useful for setup operations that should always use API regardless of test channel.
-     *
-     * @param configuration system configuration
-     * @param channel channel to use ("API" or "UI")
-     * @return SystemDsl instance configured for the specified channel
-     */
-    public static SystemDsl forChannel(SystemConfiguration configuration, String channel) {
-        var context = new UseCaseContext(configuration.getExternalSystemMode());
-        context.setChannel(channel);
-        return new SystemDsl(configuration, context);
-    }
-
     @Override
     public void close() {
         Closer.close(shop);

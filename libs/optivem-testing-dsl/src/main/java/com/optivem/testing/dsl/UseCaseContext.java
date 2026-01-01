@@ -8,25 +8,11 @@ public class UseCaseContext {
     private final ExternalSystemMode externalSystemMode;
     private final Map<String, String> paramMap;
     private final Map<String, String> resultMap;
-    private String channel;  // Optional: force specific channel (API/UI)
 
     public UseCaseContext(ExternalSystemMode externalSystemMode) {
         this.externalSystemMode = externalSystemMode;
         this.paramMap = new HashMap<>();
         this.resultMap = new HashMap<>();
-        this.channel = null;  // Use default channel from ChannelContext
-    }
-
-    public void setChannel(String channel) {
-        this.channel = channel;
-    }
-
-    public String getChannel() {
-        if (channel != null) {
-            return channel;
-        }
-        // Fall back to ChannelContext if not explicitly set
-        return com.optivem.testing.channels.ChannelContext.get();
     }
 
     private static String expandAlias(String message, Map<String, String> map) {
