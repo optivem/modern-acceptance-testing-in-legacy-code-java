@@ -22,7 +22,7 @@ public class ShopUiClient implements AutoCloseable {
     private static final boolean IS_HEADLESS = getHeadlessMode();
     private static final int SLOW_MO_MS = 100;
 
-    private static final boolean DEFAULT_HEADLESS = false;
+    private static final boolean DEFAULT_HEADLESS = true;
 
     private static boolean getHeadlessMode() {
         // Check system property first (e.g., -Dheadless=false)
@@ -67,13 +67,27 @@ public class ShopUiClient implements AutoCloseable {
 
     private Response response;
 
+    private static boolean USE_EXTENSION = false;
+
     public ShopUiClient(String baseUrl) {
         long totalStart = System.currentTimeMillis();
         this.baseUrl = baseUrl;
         
-        // Use shared browser from pool (one per thread)
-        this.browser = com.optivem.playwright.BrowserLifecycleExtension.getBrowser();
-        this.playwright = null; // Managed by extension
+        if(USE_EXTENSION) {
+            // Use shared browser from pool (one per thread)
+            this.browser = com.optivem.playwright.BrowserLifecycleExtension.getBrowser();
+            this.playwright = null; // Managed by extension
+        } else {
+            this.playwright = Playwright.create();
+
+            // Launch browser with options for parallel test isolation
+            var launchOptions = new BrowserType.LaunchOptions()
+                    .setHeadless(IS_HEADLESS)
+                    .setSlowMo(SLOW_MO_MS);
+
+            this.browser = playwright.chromium().launch(launchOptions);
+        }
+
 
         // Create isolated browser context for this test instance
         var contextOptions = new Browser.NewContextOptions()
@@ -127,8 +141,14 @@ public class ShopUiClient implements AutoCloseable {
     public void close() {
         Closer.close(page);
         Closer.close(context);
-        // Don't close browser - it's shared and managed by BrowserLifecycleExtension
-        // Don't close playwright - it's null (managed by extension)
+        if(USE_EXTENSION) {
+            // Don't close browser - it's shared and managed by BrowserLifecycleExtension
+            // Don't close playwright - it's null (managed by extension)
+        } else {
+            Closer.close(page);
+            Closer.close(context);
+        }
+
     }
 }
 
