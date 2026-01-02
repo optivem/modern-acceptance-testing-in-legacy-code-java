@@ -58,7 +58,6 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
 
     @Override
     protected ExecutionResult execute(SystemDsl app) {
-        long start = System.currentTimeMillis();
         var result = app.shop().placeOrder()
                 .orderNumber(orderNumber)
                 .sku(sku)
@@ -66,8 +65,6 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
                 .country(country)
                 .couponCode(couponCode)
                 .execute();
-        long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] PlaceOrderBuilder.execute took " + elapsed + "ms");
 
         return ExecutionResult.builder(result)
                 .orderNumber(orderNumber)

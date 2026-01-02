@@ -18,9 +18,7 @@ public class ShopUiDriver implements ShopDriver {
     private HomePage homePage;
 
     public ShopUiDriver(String baseUrl) {
-        long start = System.currentTimeMillis();
         this.client = new ShopUiClient(baseUrl);
-        System.out.println("[PERF] ShopUiDriver - ShopUiClient creation took " + (System.currentTimeMillis() - start) + "ms");
         this.pageNavigator = new PageNavigator();
         this.orderDriver = new ShopUiOrderDriver(this::getHomePage, pageNavigator);
         this.couponDriver = new ShopUiCouponDriver(this::getHomePage, pageNavigator);
@@ -28,7 +26,6 @@ public class ShopUiDriver implements ShopDriver {
 
     @Override
     public Result<Void, SystemError> goToShop() {
-        long start = System.currentTimeMillis();
         homePage = client.openHomePage();
 
         if (!client.isStatusOk() || !client.isPageLoaded()) {
@@ -36,7 +33,6 @@ public class ShopUiDriver implements ShopDriver {
         }
 
         pageNavigator.setCurrentPage(PageNavigator.Page.HOME);
-        System.out.println("[PERF] ShopUiDriver.goToShop() took " + (System.currentTimeMillis() - start) + "ms");
         return Results.success();
     }
 

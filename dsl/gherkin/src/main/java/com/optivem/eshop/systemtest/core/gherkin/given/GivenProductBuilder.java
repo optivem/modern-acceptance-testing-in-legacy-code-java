@@ -31,13 +31,10 @@ public class GivenProductBuilder extends BaseGivenBuilder {
     }
 
     void execute(SystemDsl app) {
-        long start = System.currentTimeMillis();
         app.erp().returnsProduct()
                 .sku(sku)
                 .unitPrice(unitPrice)
                 .execute()
                 .shouldSucceed();
-        long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] GivenProductBuilder.execute took " + elapsed + "ms");
     }
 }

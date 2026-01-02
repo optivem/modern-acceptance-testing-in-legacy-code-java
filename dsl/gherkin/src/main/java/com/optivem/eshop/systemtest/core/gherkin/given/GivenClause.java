@@ -56,28 +56,11 @@ public class GivenClause {
     }
 
     public WhenClause when() {
-        long start = System.currentTimeMillis();
-        System.out.println("[PERF] GivenClause.when() starting setup...");
-        
-        long cStart = System.currentTimeMillis();
         setupClock();
-        System.out.println("[PERF] setupClock took " + (System.currentTimeMillis() - cStart) + "ms");
-        
-        long eStart = System.currentTimeMillis();
         setupErp();
-        System.out.println("[PERF] setupErp took " + (System.currentTimeMillis() - eStart) + "ms");
-        
-        long tStart = System.currentTimeMillis();
         setupTax();
-        System.out.println("[PERF] setupTax took " + (System.currentTimeMillis() - tStart) + "ms");
-        
-        long sStart = System.currentTimeMillis();
         setupShop();
-        System.out.println("[PERF] setupShop took " + (System.currentTimeMillis() - sStart) + "ms");
 
-        long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] GivenClause.when() total setup took " + elapsed + "ms");
-        
         return new WhenClause(app, scenario, !products.isEmpty(), !taxRates.isEmpty());
     }
 

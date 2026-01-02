@@ -30,14 +30,11 @@ public class GivenTaxRateBuilder extends BaseGivenBuilder {
     }
 
     void execute(SystemDsl app) {
-        long start = System.currentTimeMillis();
         app.tax().returnsTaxRate()
                 .country(country)
                 .taxRate(taxRate)
                 .execute()
                 .shouldSucceed();
-        long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] GivenTaxRateBuilder.execute took " + elapsed + "ms");
     }
 }
 

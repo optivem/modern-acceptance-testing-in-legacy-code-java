@@ -9,7 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-@ExtendWith({ChannelExtension.class, com.optivem.playwright.BrowserLifecycleExtension.class})
+@ExtendWith(ChannelExtension.class)
 public class BaseScenarioDslTest extends BaseConfigurableTest {
     protected SystemDsl app;
     protected ScenarioDsl scenario;

@@ -23,30 +23,23 @@ public class WhenClause {
     }
 
     private void ensureDefaults() {
-        long start = System.currentTimeMillis();
         if (!hasProduct) {
-            long pStart = System.currentTimeMillis();
             app.erp().returnsProduct()
                     .sku(DEFAULT_SKU)
                     .unitPrice(DEFAULT_UNIT_PRICE)
                     .execute()
                     .shouldSucceed();
             hasProduct = true;
-            System.out.println("[PERF] ensureDefaults - default product took " + (System.currentTimeMillis() - pStart) + "ms");
         }
 
         if (!hasTaxRate) {
-            long tStart = System.currentTimeMillis();
             app.tax().returnsTaxRate()
                     .country(DEFAULT_COUNTRY)
                     .taxRate(DEFAULT_TAX_RATE)
                     .execute()
                     .shouldSucceed();
             hasTaxRate = true;
-            System.out.println("[PERF] ensureDefaults - default taxRate took " + (System.currentTimeMillis() - tStart) + "ms");
         }
-        long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] WhenClause.ensureDefaults total took " + elapsed + "ms");
     }
 
     public PlaceOrderBuilder placeOrder() {

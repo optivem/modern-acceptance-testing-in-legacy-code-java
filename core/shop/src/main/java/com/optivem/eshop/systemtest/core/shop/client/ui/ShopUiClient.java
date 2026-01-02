@@ -68,12 +68,15 @@ public class ShopUiClient implements AutoCloseable {
     private Response response;
 
     public ShopUiClient(String baseUrl) {
-        long totalStart = System.currentTimeMillis();
         this.baseUrl = baseUrl;
-        
-        // Use shared browser from pool (one per thread)
-        this.browser = com.optivem.playwright.BrowserLifecycleExtension.getBrowser();
-        this.playwright = null; // Managed by extension
+        this.playwright = Playwright.create();
+
+        // Launch browser with options for parallel test isolation
+        var launchOptions = new BrowserType.LaunchOptions()
+                .setHeadless(IS_HEADLESS)
+                .setSlowMo(SLOW_MO_MS);
+
+        this.browser = playwright.chromium().launch(launchOptions);
 
         // Create isolated browser context for this test instance
         var contextOptions = new Browser.NewContextOptions()
@@ -81,27 +84,19 @@ public class ShopUiClient implements AutoCloseable {
                 // Ensure complete isolation between parallel tests
                 .setStorageStatePath(null);
 
-        long contextStart = System.currentTimeMillis();
         this.context = browser.newContext(contextOptions);
-        System.out.println("[PERF] Browser context creation took " + (System.currentTimeMillis() - contextStart) + "ms");
 
         // Each test gets its own page
-        long pageStart = System.currentTimeMillis();
         this.page = context.newPage();
-        System.out.println("[PERF] New page creation took " + (System.currentTimeMillis() - pageStart) + "ms");
 
         var pageClient = PageClient.builder(page)
                 .baseUrl(baseUrl)
                 .build();
         this.homePage = new HomePage(pageClient);
-        
-        System.out.println("[PERF] ShopUiClient constructor total took " + (System.currentTimeMillis() - totalStart) + "ms");
     }
 
     public HomePage openHomePage() {
-        long start = System.currentTimeMillis();
         response = page.navigate(baseUrl);
-        System.out.println("[PERF] page.navigate() took " + (System.currentTimeMillis() - start) + "ms");
         return homePage;
     }
 
@@ -127,8 +122,8 @@ public class ShopUiClient implements AutoCloseable {
     public void close() {
         Closer.close(page);
         Closer.close(context);
-        // Don't close browser - it's shared and managed by BrowserLifecycleExtension
-        // Don't close playwright - it's null (managed by extension)
+        Closer.close(browser);
+        Closer.close(playwright);
     }
 }
 
