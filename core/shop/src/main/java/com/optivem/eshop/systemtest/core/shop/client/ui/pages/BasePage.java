@@ -5,13 +5,12 @@ import com.optivem.playwright.PageClient;
 import java.util.List;
 
 public abstract class BasePage {
-
-    // React uses [role='alert'] directly, without #notifications wrapper
+    // Use role='alert' for semantic HTML and accessibility
     private static final String NOTIFICATION_SELECTOR = "[role='alert']";
-    private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].success";
-    private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].error";
-    private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].error .error-message";
-    private static final String FIELD_ERROR_SELECTOR = "[role='alert'].error .field-error";
+    private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].notification.success";
+    private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].notification.error";
+    private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error";
+    private static final String FIELD_ERROR_SELECTOR = "[role='alert'].notification.error .field-error";
     private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No success or error notification appeared";
 
     protected final PageClient pageClient;
@@ -21,20 +20,22 @@ public abstract class BasePage {
     }
 
     public boolean hasSuccessNotification() {
-        // Wait for either success or error notification to appear (not just any alert)
-        // Try waiting for success notification first (most common case)
-        try {
-            pageClient.waitForVisible(SUCCESS_NOTIFICATION_SELECTOR);
+
+        pageClient.waitForVisible(NOTIFICATION_SELECTOR);
+
+        var isSuccess = pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR);
+
+        if(isSuccess) {
             return true;
-        } catch (Exception e) {
-            // If success notification didn't appear, check for error notification
-            try {
-                pageClient.waitForVisible(ERROR_NOTIFICATION_SELECTOR);
-                return false;
-            } catch (Exception e2) {
-                throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
-            }
         }
+
+        var isError = pageClient.exists(ERROR_NOTIFICATION_SELECTOR);
+
+        if(isError) {
+            return false;
+        }
+
+        throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
     }
 
 
