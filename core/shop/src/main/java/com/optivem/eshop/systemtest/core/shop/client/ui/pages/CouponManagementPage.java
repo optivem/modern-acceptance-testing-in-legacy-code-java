@@ -103,19 +103,17 @@ public class CouponManagementPage extends BasePage {
             return new ArrayList<>();
         }
         
-        // Wait for React to render table rows - give it time to populate
-        try {
-            pageClient.waitForVisible(TABLE_ROW_SELECTOR);
-        } catch (Exception e) {
-            // No rows visible, return empty list
-            return new ArrayList<>();
-        }
-        
         var coupons = new ArrayList<CouponDto>();
 
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
         var codes = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_CODE_SELECTOR);
+        
+        // If no codes found, table is empty
+        if (codes.isEmpty()) {
+            return new ArrayList<>();
+        }
+        
         var discountRates = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_DISCOUNT_SELECTOR);
         var validFroms = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_FROM_SELECTOR);
         var validTos = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_TO_SELECTOR);

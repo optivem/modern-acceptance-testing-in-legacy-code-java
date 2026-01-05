@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 public class OrderDetailsPage extends BasePage {
     // React uses [role='alert'] directly, without #notifications wrapper
     private static final String NOTIFICATION_SELECTOR = "[role='alert']";
-    private static final String ORDER_DETAILS_CONTAINER_SELECTOR = "[aria-label='Order Details']";
     private static final String ORDER_NUMBER_OUTPUT_SELECTOR = "[aria-label='Display Order Number']";
     private static final String SKU_OUTPUT_SELECTOR = "[aria-label='Display SKU']";
     private static final String COUNTRY_OUTPUT_SELECTOR = "[aria-label='Display Country']";

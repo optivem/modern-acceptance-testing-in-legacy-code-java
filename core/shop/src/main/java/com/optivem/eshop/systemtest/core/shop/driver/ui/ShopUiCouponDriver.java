@@ -67,7 +67,8 @@ public class ShopUiCouponDriver implements CouponDriver {
 
     @Override
     public Result<BrowseCouponsResponse, SystemError> browseCoupons(BrowseCouponsRequest request) {
-        ensureOnCouponManagementPage();
+        // Always navigate fresh to ensure we get the latest coupon data (e.g., updated used counts)
+        navigateToCouponManagementPage();
         
         var coupons = couponManagementPage.readCoupons();
         
@@ -80,10 +81,14 @@ public class ShopUiCouponDriver implements CouponDriver {
 
     private void ensureOnCouponManagementPage() {
         if (!pageNavigator.isOnPage(PageNavigator.Page.COUPON_MANAGEMENT)) {
-            var homePage = homePageSupplier.get();
-            couponManagementPage = homePage.clickCouponManagement();
-            pageNavigator.setCurrentPage(PageNavigator.Page.COUPON_MANAGEMENT);
+            navigateToCouponManagementPage();
         }
+    }
+
+    private void navigateToCouponManagementPage() {
+        var homePage = homePageSupplier.get();
+        couponManagementPage = homePage.clickCouponManagement();
+        pageNavigator.setCurrentPage(PageNavigator.Page.COUPON_MANAGEMENT);
     }
 }
 

@@ -125,8 +125,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .hasTaxAmount(expectedTaxAmount)
                 .hasTotalPrice(expectedTotalPrice);
     }
-
-    @Disabled("TODO: Fix this because UI test started failing after React migration")
+    
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void couponUsageCountHasBeenIncrementedAfterItsBeenUsed() {
