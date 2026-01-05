@@ -8,8 +8,11 @@ import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.lang.Result;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ShopUiDriver implements ShopDriver {
+    private static final Logger log = LoggerFactory.getLogger(ShopUiDriver.class);
     private final ShopUiClient client;
     private final PageNavigator pageNavigator;
     private final OrderDriver orderDriver;
@@ -20,7 +23,7 @@ public class ShopUiDriver implements ShopDriver {
     public ShopUiDriver(String baseUrl) {
         long start = System.currentTimeMillis();
         this.client = new ShopUiClient(baseUrl);
-        System.out.println("[PERF] ShopUiDriver - ShopUiClient creation took " + (System.currentTimeMillis() - start) + "ms");
+        log.info("[PERF] ShopUiDriver - ShopUiClient creation took {}ms", System.currentTimeMillis() - start);
         this.pageNavigator = new PageNavigator();
         this.orderDriver = new ShopUiOrderDriver(this::getHomePage, pageNavigator);
         this.couponDriver = new ShopUiCouponDriver(this::getHomePage, pageNavigator);
@@ -36,7 +39,7 @@ public class ShopUiDriver implements ShopDriver {
         }
 
         pageNavigator.setCurrentPage(PageNavigator.Page.HOME);
-        System.out.println("[PERF] ShopUiDriver.goToShop() took " + (System.currentTimeMillis() - start) + "ms");
+        log.info("[PERF] ShopUiDriver.goToShop() took {}ms", System.currentTimeMillis() - start);
         return Results.success();
     }
 

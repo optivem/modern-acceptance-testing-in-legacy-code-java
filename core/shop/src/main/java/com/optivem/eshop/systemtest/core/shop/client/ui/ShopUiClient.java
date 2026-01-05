@@ -5,10 +5,13 @@ import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.lang.Closer;
 import com.optivem.playwright.BrowserLifecycleExtension;
 import com.optivem.playwright.PageClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 
 public class ShopUiClient implements AutoCloseable {
+    private static final Logger log = LoggerFactory.getLogger(ShopUiClient.class);
 
     private static final String CONTENT_TYPE = "content-type";
     private static final String TEXT_HTML = "text/html";
@@ -37,25 +40,25 @@ public class ShopUiClient implements AutoCloseable {
 
         long contextStart = System.currentTimeMillis();
         this.context = browser.newContext(contextOptions);
-        System.out.println("[PERF] Browser context creation took " + (System.currentTimeMillis() - contextStart) + "ms");
+        log.info("[PERF] Browser context creation took {}ms", System.currentTimeMillis() - contextStart);
 
         // Each test gets its own page
         long pageStart = System.currentTimeMillis();
         this.page = context.newPage();
-        System.out.println("[PERF] New page creation took " + (System.currentTimeMillis() - pageStart) + "ms");
+        log.info("[PERF] New page creation took {}ms", System.currentTimeMillis() - pageStart);
 
         var pageClient = PageClient.builder(page)
                 .baseUrl(baseUrl)
                 .build();
         this.homePage = new HomePage(pageClient);
         
-        System.out.println("[PERF] ShopUiClient constructor total took " + (System.currentTimeMillis() - totalStart) + "ms");
+        log.info("[PERF] ShopUiClient constructor total took {}ms", System.currentTimeMillis() - totalStart);
     }
 
     public HomePage openHomePage() {
         long start = System.currentTimeMillis();
         response = page.navigate(baseUrl);
-        System.out.println("[PERF] page.navigate() took " + (System.currentTimeMillis() - start) + "ms");
+        log.info("[PERF] page.navigate() took {}ms", System.currentTimeMillis() - start);
         return homePage;
     }
 

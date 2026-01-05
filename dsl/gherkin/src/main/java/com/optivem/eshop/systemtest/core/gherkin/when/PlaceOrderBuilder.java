@@ -6,8 +6,11 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.given.GivenOrderBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PlaceOrderBuilder extends BaseWhenBuilder {
+    private static final Logger log = LoggerFactory.getLogger(PlaceOrderBuilder.class);
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -67,7 +70,7 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
                 .couponCode(couponCode)
                 .execute();
         long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] PlaceOrderBuilder.execute took " + elapsed + "ms");
+        log.info("[PERF] PlaceOrderBuilder.execute took {}ms", elapsed);
 
         return ExecutionResult.builder(result)
                 .orderNumber(orderNumber)

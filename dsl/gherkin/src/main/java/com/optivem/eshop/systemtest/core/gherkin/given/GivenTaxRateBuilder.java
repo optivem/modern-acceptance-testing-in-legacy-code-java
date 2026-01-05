@@ -2,10 +2,13 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 public class GivenTaxRateBuilder extends BaseGivenBuilder {
+    private static final Logger log = LoggerFactory.getLogger(GivenTaxRateBuilder.class);
     private String country;
     private String taxRate;
 
@@ -37,7 +40,7 @@ public class GivenTaxRateBuilder extends BaseGivenBuilder {
                 .execute()
                 .shouldSucceed();
         long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] GivenTaxRateBuilder.execute took " + elapsed + "ms");
+        log.info("[PERF] GivenTaxRateBuilder.execute took {}ms", elapsed);
     }
 }
 

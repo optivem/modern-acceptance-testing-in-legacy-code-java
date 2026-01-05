@@ -2,10 +2,13 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 public class GivenProductBuilder extends BaseGivenBuilder {
+    private static final Logger log = LoggerFactory.getLogger(GivenProductBuilder.class);
     private String sku;
     private String unitPrice;
 
@@ -38,6 +41,6 @@ public class GivenProductBuilder extends BaseGivenBuilder {
                 .execute()
                 .shouldSucceed();
         long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] GivenProductBuilder.execute took " + elapsed + "ms");
+        log.info("[PERF] GivenProductBuilder.execute took {}ms", elapsed);
     }
 }
