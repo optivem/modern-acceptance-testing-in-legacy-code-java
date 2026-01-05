@@ -106,7 +106,9 @@ public class CouponManagementPage extends BasePage {
         var rowCount = codes.size();
         
         // Double-check we have data before trying to access it
-        if (rowCount == 0) {
+        // Also verify all columns have the same row count (handles empty tables or malformed data)
+        if (rowCount == 0 || discountRates.size() != rowCount || validFroms.size() != rowCount 
+                || validTos.size() != rowCount || usageLimits.size() != rowCount || usedCounts.size() != rowCount) {
             return new ArrayList<>();
         }
 
