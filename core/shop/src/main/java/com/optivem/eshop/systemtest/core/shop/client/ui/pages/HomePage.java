@@ -4,9 +4,9 @@ import com.optivem.playwright.PageClient;
 
 public class HomePage extends BasePage {
 
-    private static final String SHOP_BUTTON_SELECTOR = "a[href='/shop.html']";
-    private static final String ORDER_HISTORY_BUTTON_SELECTOR = "a[href='/order-history.html']";
-    private static final String COUPON_MANAGEMENT_BUTTON_SELECTOR = "a[href='/admin-coupons.html']";
+    private static final String SHOP_BUTTON_SELECTOR = "a[href='/shop']";
+    private static final String ORDER_HISTORY_BUTTON_SELECTOR = "a[href='/order-history']";
+    private static final String COUPON_MANAGEMENT_BUTTON_SELECTOR = "a[href='/admin-coupons']";
 
     public HomePage(PageClient pageClient) {
         super(pageClient);
