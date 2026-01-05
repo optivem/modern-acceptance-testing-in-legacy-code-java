@@ -23,19 +23,6 @@ public class OrderHistoryPage extends BasePage {
 
     public boolean isOrderListed(String orderNumber) {
         var rowSelector = getRowSelector(orderNumber);
-        logger.debug("Looking for order row with selector: {}", rowSelector);
-        
-        // Debug: check what's actually on the page
-        try {
-            var allRows = pageClient.readAllTextContentsWithoutWait("table tbody tr");
-            logger.debug("Found {} rows in table", allRows.size());
-            for (int i = 0; i < Math.min(3, allRows.size()); i++) {
-                logger.debug("Row {}: {}", i, allRows.get(i));
-            }
-        } catch (Exception e) {
-            logger.debug("Could not read table rows: {}", e.getMessage());
-        }
-        
         return pageClient.exists(rowSelector);
     }
 
