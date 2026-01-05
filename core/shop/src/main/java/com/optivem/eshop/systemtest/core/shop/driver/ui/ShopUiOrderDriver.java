@@ -175,6 +175,13 @@ public class ShopUiOrderDriver implements OrderDriver {
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
 
+        // Wait a moment for React to fetch and render the data
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
         var isOrderListed = orderHistoryPage.isOrderListed(orderNumber);
         if (!isOrderListed) {
             return Results.failure("Order " + orderNumber + " does not exist.");

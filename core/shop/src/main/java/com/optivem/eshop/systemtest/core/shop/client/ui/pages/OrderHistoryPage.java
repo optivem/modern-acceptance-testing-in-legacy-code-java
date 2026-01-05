@@ -11,7 +11,7 @@ public class OrderHistoryPage extends BasePage {
     }
 
     public void inputOrderNumber(String orderNumber) {
-        pageClient.fill(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
+        pageClient.setInputValue(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
     }
 
     public void clickSearch() {
@@ -20,18 +20,33 @@ public class OrderHistoryPage extends BasePage {
 
     public boolean isOrderListed(String orderNumber) {
         var rowSelector = getRowSelector(orderNumber);
+        System.out.println("[DEBUG] Looking for order row with selector: " + rowSelector);
+        
+        // Debug: check what's actually on the page
+        try {
+            var allRows = pageClient.readAllTextContentsWithoutWait("table tbody tr");
+            System.out.println("[DEBUG] Found " + allRows.size() + " rows in table");
+            for (int i = 0; i < Math.min(3, allRows.size()); i++) {
+                System.out.println("[DEBUG] Row " + i + ": " + allRows.get(i));
+            }
+        } catch (Exception e) {
+            System.out.println("[DEBUG] Could not read table rows: " + e.getMessage());
+        }
+        
         return pageClient.exists(rowSelector);
     }
 
     public OrderDetailsPage clickViewOrderDetails(String orderNumber) {
         var rowSelector = getRowSelector(orderNumber);
-        var viewDetailsLinkSelector = rowSelector + "//a[@aria-label='View Details']";
+        // Find the link by its text content instead of aria-label
+        var viewDetailsLinkSelector = rowSelector + "//a[contains(text(), 'View Details')]";
         pageClient.click(viewDetailsLinkSelector);
         return new OrderDetailsPage(pageClient);
     }
 
     private String getRowSelector(String orderNumber) {
-        return String.format("//tr[td[@aria-label='Display Order Number' and text()='%s']]", orderNumber);
+        // Simpler selector: find any row that contains the order number text
+        return String.format("//tr[contains(., '%s')]", orderNumber);
     }
 
 

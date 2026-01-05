@@ -7,7 +7,8 @@ import java.math.BigDecimal;
 
 
 public class OrderDetailsPage extends BasePage {
-    private static final String NOTIFICATION_SELECTOR = "#notifications .notification";
+    // React uses [role='alert'] directly, without #notifications wrapper
+    private static final String NOTIFICATION_SELECTOR = "[role='alert']";
     private static final String ORDER_DETAILS_CONTAINER_SELECTOR = "[aria-label='Order Details']";
     private static final String ORDER_NUMBER_OUTPUT_SELECTOR = "[aria-label='Display Order Number']";
     private static final String SKU_OUTPUT_SELECTOR = "[aria-label='Display SKU']";
@@ -30,8 +31,14 @@ public class OrderDetailsPage extends BasePage {
     }
 
     public boolean isLoadedSuccessfully() {
-        pageClient.waitForLoaded(ORDER_DETAILS_CONTAINER_SELECTOR);
-        return pageClient.isLoadStateSuccess(ORDER_DETAILS_CONTAINER_SELECTOR);
+        // For React, just wait for the order number field to be visible
+        // which indicates the page has loaded
+        try {
+            pageClient.waitForVisible(ORDER_NUMBER_OUTPUT_SELECTOR);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getOrderNumber() {

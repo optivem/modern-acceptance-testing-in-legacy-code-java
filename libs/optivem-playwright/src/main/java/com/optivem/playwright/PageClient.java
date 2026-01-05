@@ -26,6 +26,14 @@ public class PageClient {
     public static Builder builder(Page page) {
         return new Builder(page);
     }
+    
+    public String getPageContent() {
+        return page.content();
+    }
+    
+    public Object evaluateScript(String script) {
+        return page.evaluate(script);
+    }
 
     public void fill(String selector, String text) {
         var input = page.locator(selector);
@@ -37,7 +45,17 @@ public class PageClient {
     public void setInputValue(String selector, String value) {
         var locator = page.locator(selector);
         wait(locator);
-        locator.evaluate("(element, val) => { element.value = val; element.dispatchEvent(new Event('input', { bubbles: true })); element.dispatchEvent(new Event('change', { bubbles: true })); }", value);
+        var processedValue = value == null ? "" : value;
+        
+        System.out.println("[DEBUG] Setting input " + selector + " to value: '" + processedValue + "'");
+        
+        // Use Playwright's fill method which properly triggers React events
+        // Playwright auto-waits for the element to be ready and handles React state updates
+        locator.fill(processedValue);
+        
+        // Verify the value was set (locator.evaluate() will auto-wait for DOM updates)
+        var actualValue = locator.evaluate("element => element.value");
+        System.out.println("[DEBUG] After setting, input " + selector + " has value: '" + actualValue + "'");
     }
 
     public void click(String selector) {

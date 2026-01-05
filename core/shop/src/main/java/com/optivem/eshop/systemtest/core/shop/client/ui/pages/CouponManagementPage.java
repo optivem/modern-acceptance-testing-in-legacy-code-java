@@ -24,16 +24,16 @@ public class CouponManagementPage extends BasePage {
     }
 
     public void inputCouponCode(String couponCode) {
-        pageClient.fill(COUPON_CODE_INPUT_SELECTOR, couponCode);
+        pageClient.setInputValue(COUPON_CODE_INPUT_SELECTOR, couponCode);
     }
 
     public void inputDiscountRate(String discountRate) {
-        pageClient.fill(DISCOUNT_RATE_INPUT_SELECTOR, discountRate);
+        pageClient.setInputValue(DISCOUNT_RATE_INPUT_SELECTOR, discountRate);
     }
 
     public void inputValidFrom(String validFrom) {
         var datetimeValue = getValidFromDateTimeString(validFrom);
-        pageClient.fill(VALID_FROM_INPUT_SELECTOR, datetimeValue);
+        pageClient.setInputValue(VALID_FROM_INPUT_SELECTOR, datetimeValue);
     }
 
     private static String getValidFromDateTimeString(String validFrom) {
@@ -49,7 +49,7 @@ public class CouponManagementPage extends BasePage {
 
     public void inputValidTo(String validTo) {
         var datetimeValue = getValidToDateTimeString(validTo);
-        pageClient.fill(VALID_TO_INPUT_SELECTOR, datetimeValue);
+        pageClient.setInputValue(VALID_TO_INPUT_SELECTOR, datetimeValue);
     }
 
     private static String getValidToDateTimeString(String validTo) {
@@ -64,7 +64,7 @@ public class CouponManagementPage extends BasePage {
     }
 
     public void inputUsageLimit(String usageLimit) {
-        pageClient.fill(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
+        pageClient.setInputValue(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
     }
 
     public void clickPublishCoupon() {
@@ -84,18 +84,31 @@ public class CouponManagementPage extends BasePage {
             return new ArrayList<>();
         }
         
+        // Wait for React to render table rows - give it time to populate
+        try {
+            pageClient.waitForVisible("table.table tbody tr");
+        } catch (Exception e) {
+            // No rows visible, return empty list
+            return new ArrayList<>();
+        }
+        
         var coupons = new ArrayList<CouponDto>();
 
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
-        var codes = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(1)");
-        var discountRates = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(2)");
-        var validFroms = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(3)");
-        var validTos = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(4)");
-        var usageLimits = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(5)");
-        var usedCounts = pageClient.readAllTextContentsWithoutWait("#couponTableBody tr td:nth-child(6)");
+        var codes = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(1)");
+        var discountRates = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(2)");
+        var validFroms = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(3)");
+        var validTos = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(4)");
+        var usageLimits = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(5)");
+        var usedCounts = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(6)");
 
         var rowCount = codes.size();
+        
+        // Double-check we have data before trying to access it
+        if (rowCount == 0) {
+            return new ArrayList<>();
+        }
 
         // Build coupon objects from the collected data
         for (int i = 0; i < rowCount; i++) {

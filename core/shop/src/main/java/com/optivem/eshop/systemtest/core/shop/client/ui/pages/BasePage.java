@@ -6,7 +6,8 @@ import java.util.List;
 
 public abstract class BasePage {
 
-    private static final String NOTIFICATION_SELECTOR = "#notifications .notification";
+    // React uses [role='alert'] directly, without #notifications wrapper
+    private static final String NOTIFICATION_SELECTOR = "[role='alert']";
     private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].success";
     private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].error";
     private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].error .error-message";
@@ -19,17 +20,20 @@ public abstract class BasePage {
     }
 
     public boolean hasSuccessNotification() {
-        pageClient.waitForVisible(NOTIFICATION_SELECTOR);
-
-        if (pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR)) {
+        // Wait for either success or error notification to appear (not just any alert)
+        // Try waiting for success notification first (most common case)
+        try {
+            pageClient.waitForVisible(SUCCESS_NOTIFICATION_SELECTOR);
             return true;
+        } catch (Exception e) {
+            // If success notification didn't appear, check for error notification
+            try {
+                pageClient.waitForVisible(ERROR_NOTIFICATION_SELECTOR);
+                return false;
+            } catch (Exception e2) {
+                throw new RuntimeException("No success or error notification appeared");
+            }
         }
-
-        if (pageClient.exists(ERROR_NOTIFICATION_SELECTOR)) {
-            return false;
-        }
-
-        throw new RuntimeException("Notification is neither success nor error");
     }
 
 

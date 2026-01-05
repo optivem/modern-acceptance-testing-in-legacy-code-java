@@ -19,19 +19,19 @@ public class NewOrderPage extends BasePage {
     }
 
     public void inputSku(String sku) {
-        pageClient.fill(SKU_INPUT_SELECTOR, sku);
+        pageClient.setInputValue(SKU_INPUT_SELECTOR, sku);
     }
 
     public void inputQuantity(String quantity) {
-        pageClient.fill(QUANTITY_INPUT_SELECTOR, quantity);
+        pageClient.setInputValue(QUANTITY_INPUT_SELECTOR, quantity);
     }
 
     public void inputCountry(String country) {
-        pageClient.fill(COUNTRY_INPUT_SELECTOR, country);
+        pageClient.setInputValue(COUNTRY_INPUT_SELECTOR, country);
     }
 
     public void inputCouponCode(String couponCode) {
-        pageClient.fill(COUPON_CODE_INPUT_SELECTOR, couponCode);
+        pageClient.setInputValue(COUPON_CODE_INPUT_SELECTOR, couponCode);
     }
 
     public void clickPlaceOrder() {
