@@ -9,7 +9,7 @@ public abstract class BasePage {
     private static final String NOTIFICATION_SELECTOR = "[role='alert']";
     private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].notification.success";
     private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].notification.error";
-    private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error";
+    private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error .error-message";
     private static final String FIELD_ERROR_SELECTOR = "[role='alert'].notification.error .field-error";
     private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No success or error notification appeared";
 
