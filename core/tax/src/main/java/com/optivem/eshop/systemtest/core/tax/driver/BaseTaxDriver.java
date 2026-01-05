@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.driver;
 
 import com.optivem.eshop.systemtest.core.tax.client.BaseTaxClient;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
@@ -27,8 +26,7 @@ public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements Ta
     }
 
     @Override
-    public Result<GetTaxResponse, TaxErrorResponse> getTaxRate(GetTaxRequest request) {
-        var country = request.getCountry();
+    public Result<GetTaxResponse, TaxErrorResponse> getTaxRate(String country) {
         return client.getCountry(country)
                 .map(taxRateResponse -> GetTaxResponse.builder()
                         .country(taxRateResponse.getId())

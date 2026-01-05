@@ -58,5 +58,12 @@ public class Result<T, E> {
         }
         return Result.failure(mapper.apply(error));
     }
+
+    public Result<Void, E> mapVoid() {
+        if (success) {
+            return Result.success();
+        }
+        return Result.failure(error);
+    }
 }
 

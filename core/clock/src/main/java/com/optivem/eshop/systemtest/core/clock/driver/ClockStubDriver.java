@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorRespo
 import com.optivem.lang.Closer;
 import com.optivem.lang.Result;
 
-import java.time.Instant;
 
 public class ClockStubDriver implements ClockDriver {
 
@@ -39,6 +38,9 @@ public class ClockStubDriver implements ClockDriver {
                 .build();
 
         client.configureGetTime(response);
-        return Result.success();
+
+        return client.getTime()
+                .mapVoid()
+                .mapError(ClockErrorResponse::from);
     }
 }

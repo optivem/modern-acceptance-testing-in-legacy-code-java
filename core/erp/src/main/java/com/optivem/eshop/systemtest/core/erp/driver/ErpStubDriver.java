@@ -26,6 +26,9 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
                 .build();
 
         client.configureGetProduct(extProductDetailsResponse);
-        return Result.success();
+
+        return client.getProduct(request.getSku())
+                .mapVoid()
+                .mapError(ErpErrorResponse::from);
     }
 }

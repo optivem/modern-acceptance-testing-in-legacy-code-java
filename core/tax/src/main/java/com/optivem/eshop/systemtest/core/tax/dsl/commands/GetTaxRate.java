@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.TaxUseCaseResult;
@@ -28,11 +27,7 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
     public TaxUseCaseResult<GetTaxResponse, GetTaxVerification> execute() {
         var country = context.getParamValueOrLiteral(countryValueOrAlias);
 
-        var request = GetTaxRequest.builder()
-                .country(country)
-                .build();
-
-        var result = driver.getTaxRate(request);
+        var result = driver.getTaxRate(country);
 
         return new TaxUseCaseResult<>(result, context, GetTaxVerification::new);
     }

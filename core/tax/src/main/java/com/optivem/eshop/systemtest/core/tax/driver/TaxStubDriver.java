@@ -2,43 +2,36 @@ package com.optivem.eshop.systemtest.core.tax.driver;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.eshop.systemtest.core.tax.client.TaxStubClient;
+import com.optivem.eshop.systemtest.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
 import com.optivem.lang.Result;
 
+import java.math.BigDecimal;
 import java.net.URI;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 
 public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
-    private final WireMock wireMock;
 
     public TaxStubDriver(String baseUrl) {
         super(new TaxStubClient(baseUrl));
-
-        var url = URI.create(baseUrl);
-        var host = url.getHost();
-        var port = url.getPort();
-
-        this.wireMock = new WireMock(host, port);
     }
 
     @Override
     public Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request) {
         var country = request.getCountry();
-        var taxRate = request.getTaxRate();
+        var taxRate = new BigDecimal(request.getTaxRate());
 
-        // Stub GET request for the tax rate
-        wireMock.register(get(urlPathEqualTo("/tax/api/countries/" + country))
-                .willReturn(aResponse()
-                        .withStatus(200)
-                        .withHeader("Content-Type", "application/json")
-                        .withBody(String.format(
-                                "{\"id\":\"%s\",\"countryName\":\"%s\",\"taxRate\":%s}",
-                                country, request.getCountry(), taxRate))));
+        var response = ExtCountryDetailsResponse.builder()
+                .id(country)
+                .taxRate(taxRate)
+                .countryName(country)
+                .build();
 
-        // TODO: VJ: Should make Dto for request body
+        client.configureGetCountry(response);
 
-        return Result.success();
+        return getTaxRate(country)
+                .mapVoid();
     }
 }
