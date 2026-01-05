@@ -1,8 +1,11 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
 import com.optivem.playwright.PageClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OrderHistoryPage extends BasePage {
+    private static final Logger logger = LoggerFactory.getLogger(OrderHistoryPage.class);
     private static final String ORDER_NUMBER_INPUT_SELECTOR = "[aria-label='Order Number']";
     private static final String SEARCH_BUTTON_SELECTOR = "[aria-label='Search']";
 
@@ -20,17 +23,17 @@ public class OrderHistoryPage extends BasePage {
 
     public boolean isOrderListed(String orderNumber) {
         var rowSelector = getRowSelector(orderNumber);
-        System.out.println("[DEBUG] Looking for order row with selector: " + rowSelector);
+        logger.debug("Looking for order row with selector: {}", rowSelector);
         
         // Debug: check what's actually on the page
         try {
             var allRows = pageClient.readAllTextContentsWithoutWait("table tbody tr");
-            System.out.println("[DEBUG] Found " + allRows.size() + " rows in table");
+            logger.debug("Found {} rows in table", allRows.size());
             for (int i = 0; i < Math.min(3, allRows.size()); i++) {
-                System.out.println("[DEBUG] Row " + i + ": " + allRows.get(i));
+                logger.debug("Row {}: {}", i, allRows.get(i));
             }
         } catch (Exception e) {
-            System.out.println("[DEBUG] Could not read table rows: " + e.getMessage());
+            logger.debug("Could not read table rows: {}", e.getMessage());
         }
         
         return pageClient.exists(rowSelector);
