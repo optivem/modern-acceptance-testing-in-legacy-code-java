@@ -2,10 +2,13 @@ package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 public class WhenClause {
+    private static final Logger log = LoggerFactory.getLogger(WhenClause.class);
     private final SystemDsl app;
     private final ScenarioDsl scenario;
     private boolean hasProduct;
@@ -32,7 +35,7 @@ public class WhenClause {
                     .execute()
                     .shouldSucceed();
             hasProduct = true;
-            System.out.println("[PERF] ensureDefaults - default product took " + (System.currentTimeMillis() - pStart) + "ms");
+            log.info("[PERF] ensureDefaults - default product took {}ms", System.currentTimeMillis() - pStart);
         }
 
         if (!hasTaxRate) {
@@ -43,10 +46,10 @@ public class WhenClause {
                     .execute()
                     .shouldSucceed();
             hasTaxRate = true;
-            System.out.println("[PERF] ensureDefaults - default taxRate took " + (System.currentTimeMillis() - tStart) + "ms");
+            log.info("[PERF] ensureDefaults - default taxRate took {}ms", System.currentTimeMillis() - tStart);
         }
         long elapsed = System.currentTimeMillis() - start;
-        System.out.println("[PERF] WhenClause.ensureDefaults total took " + elapsed + "ms");
+        log.info("[PERF] WhenClause.ensureDefaults total took {}ms", elapsed);
     }
 
     public PlaceOrderBuilder placeOrder() {
