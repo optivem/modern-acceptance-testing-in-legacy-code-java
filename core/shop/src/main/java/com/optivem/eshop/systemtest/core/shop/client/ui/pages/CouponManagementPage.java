@@ -18,6 +18,25 @@ public class CouponManagementPage extends BasePage {
     
     // Selectors for browsing coupons
     private static final String COUPONS_TABLE_SELECTOR = "[aria-label=\"Coupons Table\"]";
+    
+    // Time format constants
+    private static final String TIME_MIDNIGHT = "T00:00";
+    private static final String TIME_END_OF_DAY = "T23:59";
+    
+    // Table selectors
+    private static final String TABLE_ROW_SELECTOR = "table.table tbody tr";
+    private static final String TABLE_CELL_CODE_SELECTOR = "table.table tbody tr td:nth-child(1)";
+    private static final String TABLE_CELL_DISCOUNT_SELECTOR = "table.table tbody tr td:nth-child(2)";
+    private static final String TABLE_CELL_VALID_FROM_SELECTOR = "table.table tbody tr td:nth-child(3)";
+    private static final String TABLE_CELL_VALID_TO_SELECTOR = "table.table tbody tr td:nth-child(4)";
+    private static final String TABLE_CELL_USAGE_LIMIT_SELECTOR = "table.table tbody tr td:nth-child(5)";
+    private static final String TABLE_CELL_USED_COUNT_SELECTOR = "table.table tbody tr td:nth-child(6)";
+    
+    // Display text constants
+    private static final String PERCENT_SYMBOL = "%";
+    private static final String TEXT_IMMEDIATE = "Immediate";
+    private static final String TEXT_NEVER = "Never";
+    private static final String TEXT_UNLIMITED = "Unlimited";
 
     public CouponManagementPage(PageClient pageClient) {
         super(pageClient);
@@ -44,7 +63,7 @@ public class CouponManagementPage extends BasePage {
         // Extract date from ISO 8601 format (2024-06-01T00:00:00Z -> 2024-06-01)
         // Then convert to datetime-local format (2024-06-01T00:00) for HTML input
         String dateOnly = validFrom.substring(0, 10); // YYYY-MM-DD
-        return dateOnly + "T00:00";
+        return dateOnly + TIME_MIDNIGHT;
     }
 
     public void inputValidTo(String validTo) {
@@ -60,7 +79,7 @@ public class CouponManagementPage extends BasePage {
         // Extract date from ISO 8601 format (2024-08-31T23:59:59Z -> 2024-08-31)
         // Then convert to datetime-local format (2024-08-31T23:59) for HTML input
         String dateOnly = validTo.substring(0, 10); // YYYY-MM-DD
-        return dateOnly + "T23:59";
+        return dateOnly + TIME_END_OF_DAY;
     }
 
     public void inputUsageLimit(String usageLimit) {
@@ -86,7 +105,7 @@ public class CouponManagementPage extends BasePage {
         
         // Wait for React to render table rows - give it time to populate
         try {
-            pageClient.waitForVisible("table.table tbody tr");
+            pageClient.waitForVisible(TABLE_ROW_SELECTOR);
         } catch (Exception e) {
             // No rows visible, return empty list
             return new ArrayList<>();
@@ -96,12 +115,12 @@ public class CouponManagementPage extends BasePage {
 
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
-        var codes = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(1)");
-        var discountRates = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(2)");
-        var validFroms = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(3)");
-        var validTos = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(4)");
-        var usageLimits = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(5)");
-        var usedCounts = pageClient.readAllTextContentsWithoutWait("table.table tbody tr td:nth-child(6)");
+        var codes = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_CODE_SELECTOR);
+        var discountRates = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_DISCOUNT_SELECTOR);
+        var validFroms = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_FROM_SELECTOR);
+        var validTos = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_TO_SELECTOR);
+        var usageLimits = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_USAGE_LIMIT_SELECTOR);
+        var usedCounts = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_USED_COUNT_SELECTOR);
 
         var rowCount = codes.size();
         
@@ -115,7 +134,7 @@ public class CouponManagementPage extends BasePage {
         // Build coupon objects from the collected data
         for (int i = 0; i < rowCount; i++) {
             var code = codes.get(i).trim();
-            var discountRateText = discountRates.get(i).trim().replace("%", "");
+            var discountRateText = discountRates.get(i).trim().replace(PERCENT_SYMBOL, "");
             var validFromText = validFroms.get(i).trim();
             var validToText = validTos.get(i).trim();
             var usageLimitText = usageLimits.get(i).trim();
@@ -145,7 +164,7 @@ public class CouponManagementPage extends BasePage {
     }
 
     private Instant parseInstant(String text) {
-        if (text == null || text.equalsIgnoreCase("Immediate") || text.equalsIgnoreCase("Never") || text.isEmpty()) {
+        if (text == null || text.equalsIgnoreCase(TEXT_IMMEDIATE) || text.equalsIgnoreCase(TEXT_NEVER) || text.isEmpty()) {
             return null;
         }
         try {
@@ -158,7 +177,7 @@ public class CouponManagementPage extends BasePage {
     }
 
     private Integer parseUsageLimit(String text) {
-        if (text == null || text.equalsIgnoreCase("Unlimited") || text.isEmpty()) {
+        if (text == null || text.equalsIgnoreCase(TEXT_UNLIMITED) || text.isEmpty()) {
             return null;
         }
         try {

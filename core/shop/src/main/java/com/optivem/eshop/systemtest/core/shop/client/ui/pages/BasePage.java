@@ -12,6 +12,7 @@ public abstract class BasePage {
     private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].error";
     private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].error .error-message";
     private static final String FIELD_ERROR_SELECTOR = "[role='alert'].error .field-error";
+    private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No success or error notification appeared";
 
     protected final PageClient pageClient;
 
@@ -31,7 +32,7 @@ public abstract class BasePage {
                 pageClient.waitForVisible(ERROR_NOTIFICATION_SELECTOR);
                 return false;
             } catch (Exception e2) {
-                throw new RuntimeException("No success or error notification appeared");
+                throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
             }
         }
     }

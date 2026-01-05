@@ -25,6 +25,11 @@ public class OrderDetailsPage extends BasePage {
     private static final String STATUS_OUTPUT_SELECTOR = "[aria-label='Display Status']";
     private static final String APPLIED_COUPON_OUTPUT_SELECTOR = "[aria-label='Display Applied Coupon']";
     private static final String CANCEL_ORDER_OUTPUT_SELECTOR = "[aria-label='Cancel Order']";
+    
+    // Display text constants
+    private static final String TEXT_NONE = "None";
+    private static final String DOLLAR_SYMBOL = "$";
+    private static final String PERCENT_SYMBOL = "%";
 
     public OrderDetailsPage(PageClient pageClient) {
         super(pageClient);
@@ -97,7 +102,7 @@ public class OrderDetailsPage extends BasePage {
 
     public String getAppliedCoupon() {
         var coupon = pageClient.readTextContent(APPLIED_COUPON_OUTPUT_SELECTOR);
-        return "None".equals(coupon) ? null : coupon;
+        return TEXT_NONE.equals(coupon) ? null : coupon;
     }
 
     public void clickCancelOrder() {
@@ -111,13 +116,13 @@ public class OrderDetailsPage extends BasePage {
 
     private BigDecimal readTextMoney(String selector) {
         var textContent = pageClient.readTextContent(selector);
-        var cleaned = textContent.replace("$", "").trim();
+        var cleaned = textContent.replace(DOLLAR_SYMBOL, "").trim();
         return new BigDecimal(cleaned);
     }
 
     private BigDecimal readTextPercentage(String selector) {
         var textContent = pageClient.readTextContent(selector);
-        var cleaned = textContent.replace("%", "").trim();
+        var cleaned = textContent.replace(PERCENT_SYMBOL, "").trim();
         var value = new BigDecimal(cleaned);
         return value.divide(BigDecimal.valueOf(100), 4, java.math.RoundingMode.HALF_UP);
     }
