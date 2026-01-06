@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 public class OrderHistoryPage extends BasePage {
     private static final Logger logger = LoggerFactory.getLogger(OrderHistoryPage.class);
     private static final String ORDER_NUMBER_INPUT_SELECTOR = "[aria-label='Order Number']";
-    private static final String SEARCH_BUTTON_SELECTOR = "[aria-label='Search']";
+    private static final String SEARCH_BUTTON_SELECTOR = "[aria-label='Refresh Order List']";
     
     private static final String VIEW_DETAILS_LINK_TEXT = "View Details";
     private static final String ROW_SELECTOR_TEMPLATE = "//tr[contains(., '%s')]";
