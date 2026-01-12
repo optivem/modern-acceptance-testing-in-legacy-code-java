@@ -29,9 +29,7 @@ public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
                 .countryName(country)
                 .build();
 
-        client.configureGetCountry(response);
-
-        return getTaxRate(country)
-                .mapVoid();
+        return client.configureGetCountry(response)
+                .mapError(TaxErrorResponse::from);
     }
 }

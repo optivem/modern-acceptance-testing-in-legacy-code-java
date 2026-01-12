@@ -37,10 +37,7 @@ public class ClockStubDriver implements ClockDriver {
                 .time(request.getTime())
                 .build();
 
-        client.configureGetTime(response);
-
-        return client.getTime()
-                .mapVoid()
+        return client.configureGetTime(response)
                 .mapError(ClockErrorResponse::from);
     }
 }

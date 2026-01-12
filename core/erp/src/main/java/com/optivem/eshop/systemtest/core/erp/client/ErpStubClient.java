@@ -3,6 +3,8 @@ package com.optivem.eshop.systemtest.core.erp.client;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
+import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
+import com.optivem.lang.Result;
 import com.optivem.wiremock.JsonWireMockClient;
 
 import java.net.URI;
@@ -23,9 +25,10 @@ public class ErpStubClient extends BaseErpClient {
         this.wireMockClient = new JsonWireMockClient(wireMock);
     }
 
-    public void configureGetProduct(ExtProductDetailsResponse response) {
+    public Result<Void, ExtErpErrorResponse> configureGetProduct(ExtProductDetailsResponse response) {
         var sku = response.getId();
-        wireMockClient.configureGet("/erp/api/products/" + sku, 200, response);
+        return wireMockClient.configureGet("/erp/api/products/" + sku, 200, response)
+                .mapError(ExtErpErrorResponse::new);
     }
 }
 

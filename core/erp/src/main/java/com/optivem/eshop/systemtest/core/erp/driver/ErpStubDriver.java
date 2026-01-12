@@ -25,10 +25,7 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
                 .price(new BigDecimal(request.getPrice()))
                 .build();
 
-        client.configureGetProduct(extProductDetailsResponse);
-
-        return client.getProduct(request.getSku())
-                .mapVoid()
+        return client.configureGetProduct(extProductDetailsResponse)
                 .mapError(ErpErrorResponse::from);
     }
 }

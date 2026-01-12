@@ -1,6 +1,7 @@
 package com.optivem.wiremock;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
+import com.optivem.lang.Result;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -30,7 +31,7 @@ public class JsonWireMockClient {
         return mapper;
     }
 
-    public <T> void configureGet(String path, int statusCode, T response) {
+    public <T> Result<Void, String> configureGet(String path, int statusCode, T response) {
         var responseBody = serialize(response);
 
         wireMock.register(WireMock.get(urlPathEqualTo(path))
@@ -38,6 +39,17 @@ public class JsonWireMockClient {
                         .withStatus(statusCode)
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON)
                         .withBody(responseBody)));
+
+        var mappings = wireMock.allStubMappings();
+        var registered = mappings.getMappings().stream()
+                .anyMatch(m -> "GET".equals(m.getRequest().getMethod().getName())
+                        && m.getRequest().getUrlPath().equals(path));
+
+        if (!registered) {
+            return Result.failure("Failed to register stub for GET " + path);
+        }
+
+        return Result.success();
     }
 
     private String serialize(Object object) {
