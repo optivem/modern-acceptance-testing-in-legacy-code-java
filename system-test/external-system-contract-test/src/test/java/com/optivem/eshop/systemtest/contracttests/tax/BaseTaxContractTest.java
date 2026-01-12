@@ -9,6 +9,7 @@ public abstract class BaseTaxContractTest extends BaseExternalSystemContractTest
     void shouldBeAbleToGetTaxRate() {
         app.tax().returnsTaxRate()
                 .country("US")
+                .taxRate(0.09)
                 .execute()
                 .shouldSucceed();
 
