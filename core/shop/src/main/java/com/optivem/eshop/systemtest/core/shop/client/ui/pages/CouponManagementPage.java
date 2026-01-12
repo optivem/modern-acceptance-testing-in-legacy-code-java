@@ -91,7 +91,7 @@ public class CouponManagementPage extends BasePage {
     }
 
     public boolean hasCouponsTable() {
-        return pageClient.exists(COUPONS_TABLE_SELECTOR);
+        return pageClient.isVisible(COUPONS_TABLE_SELECTOR);
     }
     
     public List<CouponDto> readCoupons() {

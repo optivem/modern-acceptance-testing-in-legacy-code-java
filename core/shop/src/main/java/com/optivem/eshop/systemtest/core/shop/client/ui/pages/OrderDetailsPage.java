@@ -35,14 +35,7 @@ public class OrderDetailsPage extends BasePage {
     }
 
     public boolean isLoadedSuccessfully() {
-        // For React, just wait for the order number field to be visible
-        // which indicates the page has loaded
-        try {
-            pageClient.waitForVisible(ORDER_NUMBER_OUTPUT_SELECTOR);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        return pageClient.isVisible(ORDER_NUMBER_OUTPUT_SELECTOR);
     }
 
     public String getOrderNumber() {
@@ -106,7 +99,6 @@ public class OrderDetailsPage extends BasePage {
 
     public void clickCancelOrder() {
         pageClient.click(CANCEL_ORDER_OUTPUT_SELECTOR);
-        pageClient.waitForVisible(NOTIFICATION_SELECTOR);
     }
 
     public boolean isCancelButtonHidden() {

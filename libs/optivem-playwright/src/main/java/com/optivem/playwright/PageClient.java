@@ -4,7 +4,6 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.WaitForSelectorState;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -27,14 +26,6 @@ public class PageClient {
         return new Builder(page);
     }
 
-
-
-    /**
-     * Fills an input field with the specified value.
-     * Null values are converted to empty string.
-     * @param selector The CSS selector for the input element
-     * @param value The value to fill (null will be converted to empty string)
-     */
     public void fill(String selector, String value) {
         var locator = getLocator(selector);
         var processedValue = value == null ? "" : value;
@@ -55,11 +46,11 @@ public class PageClient {
         var locator = page.locator(selector);
         // Wait for at least one element to be visible
         // allTextContents() doesn't trigger strict mode - it's designed for multiple elements
-        locator.first().waitFor(getWaitForOptions());
+        locator.first().waitFor(getDefaultWaitForOptions());
         return locator.allTextContents();
     }
 
-    public boolean exists(String selector) {
+    public boolean isVisible(String selector) {
         try {
             var locator = getLocator(selector);
             return locator.count() > 0;
@@ -73,28 +64,25 @@ public class PageClient {
         return locator.count() == 0;
     }
 
-    public void waitForVisible(String selector) {
-        var waitForOptions = getWaitForOptions()
-                .setState(WaitForSelectorState.VISIBLE)
-                .setTimeout(timeoutMilliseconds);
-
-        var locator = page.locator(selector);
-        locator.waitFor(waitForOptions);
-    }
-
-    private Locator.WaitForOptions getWaitForOptions() {
-        return new Locator.WaitForOptions().setTimeout(timeoutMilliseconds);
-    }
-
     private Locator getLocator(String selector, Locator.WaitForOptions waitForOptions) {
         var locator = page.locator(selector);
         locator.waitFor(waitForOptions);
+
+        if(locator.count() == 0) {
+            throw new RuntimeException("No elements found for selector: " + selector);
+        }
+
         return locator;
     }
 
     private Locator getLocator(String selector) {
-        var waitForOptions = getWaitForOptions();
+        var waitForOptions = getDefaultWaitForOptions();
         return getLocator(selector, waitForOptions);
+    }
+    private Locator.WaitForOptions getDefaultWaitForOptions() {
+        return new Locator.WaitForOptions()
+                .setState(WaitForSelectorState.VISIBLE)
+                .setTimeout(timeoutMilliseconds);
     }
 
     public static class Builder {

@@ -6,7 +6,6 @@ import com.optivem.lang.Result;
 import com.optivem.playwright.PageClient;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 public abstract class BasePage {
     // Use role='alert' for semantic HTML and accessibility
@@ -15,7 +14,8 @@ public abstract class BasePage {
     private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].notification.error";
     private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error .error-message";
     private static final String FIELD_ERROR_SELECTOR = "[role='alert'].notification.error .field-error";
-    private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No success or error notification appeared";
+    private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No notification appeared";
+    private static final String UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE = "Notification type is not recognized";
 
     protected final PageClient pageClient;
 
@@ -25,21 +25,25 @@ public abstract class BasePage {
 
     private boolean hasSuccessNotification() {
 
-        pageClient.waitForVisible(NOTIFICATION_SELECTOR);
+        var hasNotification = pageClient.isVisible(NOTIFICATION_SELECTOR);
 
-        var isSuccess = pageClient.exists(SUCCESS_NOTIFICATION_SELECTOR);
+        if (!hasNotification) {
+            throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
+        }
+
+        var isSuccess = pageClient.isVisible(SUCCESS_NOTIFICATION_SELECTOR);
 
         if(isSuccess) {
             return true;
         }
 
-        var isError = pageClient.exists(ERROR_NOTIFICATION_SELECTOR);
+        var isError = pageClient.isVisible(ERROR_NOTIFICATION_SELECTOR);
 
         if(isError) {
             return false;
         }
 
-        throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
+        throw new RuntimeException(UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE);
     }
 
 
@@ -53,12 +57,11 @@ public abstract class BasePage {
     }
 
     private String readGeneralErrorMessage() {
-        pageClient.waitForVisible(ERROR_MESSAGE_SELECTOR);
         return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
     }
 
     private List<String> readFieldErrors() {
-        if (!pageClient.exists(FIELD_ERROR_SELECTOR)) {
+        if (!pageClient.isVisible(FIELD_ERROR_SELECTOR)) {
             return List.of();
         }
         return pageClient.readAllTextContents(FIELD_ERROR_SELECTOR);

@@ -26,7 +26,7 @@ public class OrderHistoryPage extends BasePage {
 
     public boolean isOrderListed(String orderNumber) {
         var rowSelector = getRowSelector(orderNumber);
-        return pageClient.exists(rowSelector);
+        return pageClient.isVisible(rowSelector);
     }
 
     public OrderDetailsPage clickViewOrderDetails(String orderNumber) {
