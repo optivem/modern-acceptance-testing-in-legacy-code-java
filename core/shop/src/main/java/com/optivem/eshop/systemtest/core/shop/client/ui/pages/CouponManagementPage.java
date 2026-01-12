@@ -90,10 +90,6 @@ public class CouponManagementPage extends BasePage {
         pageClient.click(PUBLISH_COUPON_BUTTON_SELECTOR);
     }
 
-    public boolean hasSuccessCouponNotification() {
-        return hasSuccessNotification();
-    }
-    
     public boolean hasCouponsTable() {
         return pageClient.exists(COUPONS_TABLE_SELECTOR);
     }

@@ -43,37 +43,10 @@ public class ShopUiOrderDriver implements OrderDriver {
         newOrderPage.inputCouponCode(couponCode);
         newOrderPage.clickPlaceOrder();
 
-        var isSuccess = newOrderPage.hasSuccessNotification();
-
-        if (!isSuccess) {
-            var generalMessage = newOrderPage.readGeneralErrorMessage();
-            var fieldErrorTexts = newOrderPage.readFieldErrors();
-
-            if (fieldErrorTexts.isEmpty()) {
-                return Results.failure(generalMessage);
-            } else {
-                var fieldErrors = fieldErrorTexts.stream()
-                        .map(text -> {
-                            var parts = text.split(":", 2);
-                            if (parts.length == 2) {
-                                return new SystemError.FieldError(parts[0].trim(), parts[1].trim());
-                            }
-                            return new SystemError.FieldError("unknown", text);
-                        })
-                        .toList();
-
-                var error = SystemError.builder()
-                        .message(generalMessage)
-                        .fields(fieldErrors)
-                        .build();
-
-                return Results.failure(error);
-            }
-        }
-
-        var orderNumberValue = newOrderPage.getOrderNumber();
-        var response = PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
-        return Results.success(response);
+        return newOrderPage.getResult(() -> {
+            var orderNumberValue = newOrderPage.getOrderNumber();
+            return PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
+        });
     }
 
     @Override

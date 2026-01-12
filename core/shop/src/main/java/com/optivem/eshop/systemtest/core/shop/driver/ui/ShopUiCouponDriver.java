@@ -34,35 +34,7 @@ public class ShopUiCouponDriver implements CouponDriver {
         couponManagementPage.inputUsageLimit(request.getUsageLimit());
         couponManagementPage.clickPublishCoupon();
 
-        var isSuccess = couponManagementPage.hasSuccessCouponNotification();
-
-        if (!isSuccess) {
-            var generalMessage = couponManagementPage.readGeneralErrorMessage();
-            var fieldErrorTexts = couponManagementPage.readFieldErrors();
-
-            if (fieldErrorTexts.isEmpty()) {
-                return Results.failure(generalMessage);
-            } else {
-                var fieldErrors = fieldErrorTexts.stream()
-                        .map(text -> {
-                            var parts = text.split(":", 2);
-                            if (parts.length == 2) {
-                                return new SystemError.FieldError(parts[0].trim(), parts[1].trim());
-                            }
-                            return new SystemError.FieldError("unknown", text);
-                        })
-                        .toList();
-
-                var error = SystemError.builder()
-                        .message(generalMessage)
-                        .fields(fieldErrors)
-                        .build();
-
-                return Results.failure(error);
-            }
-        }
-
-        return Results.success();
+        return couponManagementPage.getResult();
     }
 
     @Override

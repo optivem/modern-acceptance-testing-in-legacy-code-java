@@ -1,8 +1,12 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
+import com.optivem.eshop.systemtest.core.shop.commons.Results;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
+import com.optivem.lang.Result;
 import com.optivem.playwright.PageClient;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 public abstract class BasePage {
     // Use role='alert' for semantic HTML and accessibility
@@ -49,6 +53,7 @@ public abstract class BasePage {
     }
 
     public String readGeneralErrorMessage() {
+        pageClient.waitForVisible(ERROR_MESSAGE_SELECTOR);
         return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
     }
 
@@ -57,5 +62,53 @@ public abstract class BasePage {
             return List.of();
         }
         return pageClient.readAllTextContents(FIELD_ERROR_SELECTOR);
+    }
+
+    /**
+     * Checks if the page operation succeeded and returns a Result based on notification state.
+     * @param successValueSupplier Supplier that provides the success value (only called if operation succeeded)
+     * @return Success result with value, or failure result with error details
+     */
+    public <T> Result<T, SystemError> getResult(Supplier<T> successValueSupplier) {
+        var isSuccess = hasSuccessNotification();
+
+        if (isSuccess) {
+            return Results.success(successValueSupplier.get());
+        }
+
+        var generalMessage = readGeneralErrorMessage();
+        var fieldErrorTexts = readFieldErrors();
+
+        if (fieldErrorTexts.isEmpty()) {
+            return Results.failure(generalMessage);
+        }
+
+        var fieldErrors = fieldErrorTexts.stream()
+                .map(text -> {
+                    var parts = text.split(":", 2);
+                    if (parts.length == 2) {
+                        return new SystemError.FieldError(
+                                parts[0].trim(),
+                                parts[1].trim()
+                        );
+                    }
+                    return new SystemError.FieldError("unknown", text);
+                })
+                .toList();
+
+        var error = SystemError.builder()
+                .message(generalMessage)
+                .fields(fieldErrors)
+                .build();
+
+        return Results.failure(error);
+    }
+
+    /**
+     * Checks if the page operation succeeded and returns a Result for void operations.
+     * @return Success result, or failure result with error details
+     */
+    public Result<Void, SystemError> getResult() {
+        return getResult(() -> null);
     }
 }
