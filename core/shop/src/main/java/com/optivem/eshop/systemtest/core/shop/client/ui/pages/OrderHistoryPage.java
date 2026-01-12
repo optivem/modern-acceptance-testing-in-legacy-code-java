@@ -17,7 +17,7 @@ public class OrderHistoryPage extends BasePage {
     }
 
     public void inputOrderNumber(String orderNumber) {
-        pageClient.setInputValue(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
+        pageClient.fill(ORDER_NUMBER_INPUT_SELECTOR, orderNumber);
     }
 
     public void clickSearch() {

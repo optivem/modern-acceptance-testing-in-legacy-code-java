@@ -20,30 +20,29 @@ public class NewOrderPage extends BasePage {
     }
 
     public void inputSku(String sku) {
-        pageClient.setInputValue(SKU_INPUT_SELECTOR, sku);
+        pageClient.fill(SKU_INPUT_SELECTOR, sku);
     }
 
     public void inputQuantity(String quantity) {
-        pageClient.setInputValue(QUANTITY_INPUT_SELECTOR, quantity);
+        pageClient.fill(QUANTITY_INPUT_SELECTOR, quantity);
     }
 
     public void inputCountry(String country) {
-        pageClient.setInputValue(COUNTRY_INPUT_SELECTOR, country);
+        pageClient.fill(COUNTRY_INPUT_SELECTOR, country);
     }
 
     public void inputCouponCode(String couponCode) {
-        pageClient.setInputValue(COUPON_CODE_INPUT_SELECTOR, couponCode);
+        pageClient.fill(COUPON_CODE_INPUT_SELECTOR, couponCode);
     }
 
     public void clickPlaceOrder() {
         pageClient.click(PLACE_ORDER_BUTTONG_SELECTOR);
     }
 
-    public String getOrderNumber() {
-        var confirmationMessageText = readSuccessNotification();
+    public static String getOrderNumber(String successMessageText) {
 
         var pattern = Pattern.compile(ORDER_NUMBER_REGEX);
-        var matcher = pattern.matcher(confirmationMessageText);
+        var matcher = pattern.matcher(successMessageText);
 
         if (!matcher.find()) {
             throw new RuntimeException(ORDER_NUMBER_NOT_FOUND_ERROR);

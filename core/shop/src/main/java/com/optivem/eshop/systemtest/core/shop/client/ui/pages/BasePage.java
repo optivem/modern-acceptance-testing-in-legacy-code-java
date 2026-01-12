@@ -23,7 +23,7 @@ public abstract class BasePage {
         this.pageClient = pageClient;
     }
 
-    public boolean hasSuccessNotification() {
+    private boolean hasSuccessNotification() {
 
         pageClient.waitForVisible(NOTIFICATION_SELECTOR);
 
@@ -43,37 +43,33 @@ public abstract class BasePage {
     }
 
 
-    public String readSuccessNotification() {
+    private String readSuccessNotification() {
         return pageClient.readTextContent(SUCCESS_NOTIFICATION_SELECTOR);
     }
 
-    public List<String> readErrorNotification() {
+    private List<String> readErrorNotification() {
         var text = pageClient.readTextContent(ERROR_NOTIFICATION_SELECTOR);
         return text.lines().toList();
     }
 
-    public String readGeneralErrorMessage() {
+    private String readGeneralErrorMessage() {
         pageClient.waitForVisible(ERROR_MESSAGE_SELECTOR);
         return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
     }
 
-    public List<String> readFieldErrors() {
+    private List<String> readFieldErrors() {
         if (!pageClient.exists(FIELD_ERROR_SELECTOR)) {
             return List.of();
         }
         return pageClient.readAllTextContents(FIELD_ERROR_SELECTOR);
     }
 
-    /**
-     * Checks if the page operation succeeded and returns a Result based on notification state.
-     * @param successValueSupplier Supplier that provides the success value (only called if operation succeeded)
-     * @return Success result with value, or failure result with error details
-     */
-    public <T> Result<T, SystemError> getResult(Supplier<T> successValueSupplier) {
+    public Result<String, SystemError> getResult() {
         var isSuccess = hasSuccessNotification();
 
         if (isSuccess) {
-            return Results.success(successValueSupplier.get());
+            var successMessage = readSuccessNotification();
+            return Results.success(successMessage);
         }
 
         var generalMessage = readGeneralErrorMessage();
@@ -102,13 +98,5 @@ public abstract class BasePage {
                 .build();
 
         return Results.failure(error);
-    }
-
-    /**
-     * Checks if the page operation succeeded and returns a Result for void operations.
-     * @return Success result, or failure result with error details
-     */
-    public Result<Void, SystemError> getResult() {
-        return getResult(() -> null);
     }
 }

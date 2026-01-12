@@ -26,115 +26,51 @@ public class PageClient {
     public static Builder builder(Page page) {
         return new Builder(page);
     }
-    
-    public String getPageContent() {
-        return page.content();
-    }
-    
-    public Object evaluateScript(String script) {
-        return page.evaluate(script);
-    }
 
-    public void fill(String selector, String text) {
-        var input = page.locator(selector);
-        wait(input);
-        var processedText = text == null ? "" : text;
-        input.fill(processedText);
-    }
 
-    public void setInputValue(String selector, String value) {
-        var locator = page.locator(selector);
-        wait(locator);
+
+    /**
+     * Fills an input field with the specified value.
+     * Null values are converted to empty string.
+     * @param selector The CSS selector for the input element
+     * @param value The value to fill (null will be converted to empty string)
+     */
+    public void fill(String selector, String value) {
+        var locator = getLocator(selector);
         var processedValue = value == null ? "" : value;
-        
-        System.out.println("[DEBUG] Setting input " + selector + " to value: '" + processedValue + "'");
-        
-        // Use Playwright's fill method which properly triggers React events
-        // Playwright auto-waits for the element to be ready and handles React state updates
         locator.fill(processedValue);
-        
-        // Verify the value was set (locator.evaluate() will auto-wait for DOM updates)
-        var actualValue = locator.evaluate("element => element.value");
-        System.out.println("[DEBUG] After setting, input " + selector + " has value: '" + actualValue + "'");
     }
 
     public void click(String selector) {
-        var button = page.locator(selector);
-        wait(button);
-        button.click();
+        var locator = getLocator(selector);
+        locator.click();
     }
 
     public String readTextContent(String selector) {
-        var locator = page.locator(selector);
-        wait(locator);
+        var locator = getLocator(selector);
         return locator.textContent();
     }
 
     public List<String> readAllTextContents(String selector) {
         var locator = page.locator(selector);
-        wait(locator);
-        return locator.allTextContents();
-    }
-
-    public List<String> readAllTextContentsWithoutWait(String selector) {
-        // Use this when the selector intentionally matches multiple elements (e.g., table cells)
-        // to avoid Playwright's strict mode violation
-        var locator = page.locator(selector);
+        // Wait for at least one element to be visible
+        // allTextContents() doesn't trigger strict mode - it's designed for multiple elements
+        locator.first().waitFor(getWaitForOptions());
         return locator.allTextContents();
     }
 
     public boolean exists(String selector) {
-        var locator = page.locator(selector);
         try {
-            wait(locator);
+            var locator = getLocator(selector);
             return locator.count() > 0;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public String readInputValue(String selector) {
-        var locator = page.locator(selector);
-        wait(locator);
-        return locator.inputValue();
-    }
-
-    public int readInputInteger(String selector) {
-        var inputValue = readInputValue(selector);
-        return Integer.parseInt(inputValue);
-    }
-
-    public BigDecimal readInputDecimal(String selector) {
-        var inputValue = readInputValue(selector);
-        return new BigDecimal(inputValue);
-    }
-
-    public BigDecimal readInputDecimal(String selector, String... remove) {
-        var inputValue = readInputValue(selector);
-        for (var ch : remove) {
-            inputValue = inputValue.replace(ch, "");
-        }
-        return new BigDecimal(inputValue);
-    }
-
     public boolean isHidden(String selector) {
         var locator = page.locator(selector);
         return locator.count() == 0;
-    }
-
-    public String getAttribute(String selector, String attributeName) {
-        var locator = page.locator(selector);
-        wait(locator);
-        return locator.getAttribute(attributeName);
-    }
-
-    public void waitForHidden(String selector) {
-        var waitForOptions = getWaitForOptions()
-                .setState(WaitForSelectorState.HIDDEN)
-                .setTimeout(timeoutMilliseconds);
-
-        var locator = page.locator(selector);
-        locator.waitFor(waitForOptions);
     }
 
     public void waitForVisible(String selector) {
@@ -146,38 +82,20 @@ public class PageClient {
         locator.waitFor(waitForOptions);
     }
 
-    private void wait(Locator locator) {
-        var waitForOptions = getWaitForOptions();
-        locator.waitFor(waitForOptions);
-    }
-
     private Locator.WaitForOptions getWaitForOptions() {
         return new Locator.WaitForOptions().setTimeout(timeoutMilliseconds);
     }
 
-    public void waitForLoaded(String selector) {
+    private Locator getLocator(String selector, Locator.WaitForOptions waitForOptions) {
         var locator = page.locator(selector);
-        locator.waitFor(new Locator.WaitForOptions()
-                .setState(WaitForSelectorState.ATTACHED)
-                .setTimeout(timeoutMilliseconds));
-
-        page.waitForFunction(
-                "selector => document.querySelector(selector)?.getAttribute('aria-busy') === 'false'",
-                selector,
-                new Page.WaitForFunctionOptions().setTimeout(timeoutMilliseconds)
-        );
+        locator.waitFor(waitForOptions);
+        return locator;
     }
 
-    public String getLoadState(String selector) {
-        return page.getAttribute(selector, "data-load-state");
+    private Locator getLocator(String selector) {
+        var waitForOptions = getWaitForOptions();
+        return getLocator(selector, waitForOptions);
     }
-
-    public boolean isLoadStateSuccess(String selector) {
-        var loadState = getLoadState(selector);
-        return "success".equals(loadState);
-    }
-
-
 
     public static class Builder {
         private final Page page;

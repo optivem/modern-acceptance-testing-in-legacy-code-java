@@ -43,16 +43,16 @@ public class CouponManagementPage extends BasePage {
     }
 
     public void inputCouponCode(String couponCode) {
-        pageClient.setInputValue(COUPON_CODE_INPUT_SELECTOR, couponCode);
+        pageClient.fill(COUPON_CODE_INPUT_SELECTOR, couponCode);
     }
 
     public void inputDiscountRate(String discountRate) {
-        pageClient.setInputValue(DISCOUNT_RATE_INPUT_SELECTOR, discountRate);
+        pageClient.fill(DISCOUNT_RATE_INPUT_SELECTOR, discountRate);
     }
 
     public void inputValidFrom(String validFrom) {
         var datetimeValue = getValidFromDateTimeString(validFrom);
-        pageClient.setInputValue(VALID_FROM_INPUT_SELECTOR, datetimeValue);
+        pageClient.fill(VALID_FROM_INPUT_SELECTOR, datetimeValue);
     }
 
     private static String getValidFromDateTimeString(String validFrom) {
@@ -68,7 +68,7 @@ public class CouponManagementPage extends BasePage {
 
     public void inputValidTo(String validTo) {
         var datetimeValue = getValidToDateTimeString(validTo);
-        pageClient.setInputValue(VALID_TO_INPUT_SELECTOR, datetimeValue);
+        pageClient.fill(VALID_TO_INPUT_SELECTOR, datetimeValue);
     }
 
     private static String getValidToDateTimeString(String validTo) {
@@ -83,7 +83,7 @@ public class CouponManagementPage extends BasePage {
     }
 
     public void inputUsageLimit(String usageLimit) {
-        pageClient.setInputValue(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
+        pageClient.fill(USAGE_LIMIT_INPUT_SELECTOR, usageLimit);
     }
 
     public void clickPublishCoupon() {
@@ -103,18 +103,18 @@ public class CouponManagementPage extends BasePage {
 
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
-        var codes = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_CODE_SELECTOR);
+        var codes = pageClient.readAllTextContents(TABLE_CELL_CODE_SELECTOR);
         
         // If no codes found, table is empty
         if (codes.isEmpty()) {
             return new ArrayList<>();
         }
         
-        var discountRates = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_DISCOUNT_SELECTOR);
-        var validFroms = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_FROM_SELECTOR);
-        var validTos = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_VALID_TO_SELECTOR);
-        var usageLimits = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_USAGE_LIMIT_SELECTOR);
-        var usedCounts = pageClient.readAllTextContentsWithoutWait(TABLE_CELL_USED_COUNT_SELECTOR);
+        var discountRates = pageClient.readAllTextContents(TABLE_CELL_DISCOUNT_SELECTOR);
+        var validFroms = pageClient.readAllTextContents(TABLE_CELL_VALID_FROM_SELECTOR);
+        var validTos = pageClient.readAllTextContents(TABLE_CELL_VALID_TO_SELECTOR);
+        var usageLimits = pageClient.readAllTextContents(TABLE_CELL_USAGE_LIMIT_SELECTOR);
+        var usedCounts = pageClient.readAllTextContents(TABLE_CELL_USED_COUNT_SELECTOR);
 
         var rowCount = codes.size();
         

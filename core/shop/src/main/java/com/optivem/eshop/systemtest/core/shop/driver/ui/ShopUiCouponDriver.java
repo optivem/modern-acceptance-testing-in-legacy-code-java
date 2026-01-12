@@ -34,7 +34,7 @@ public class ShopUiCouponDriver implements CouponDriver {
         couponManagementPage.inputUsageLimit(request.getUsageLimit());
         couponManagementPage.clickPublishCoupon();
 
-        return couponManagementPage.getResult();
+        return couponManagementPage.getResult().mapVoid();
     }
 
     @Override

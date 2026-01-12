@@ -43,10 +43,16 @@ public class ShopUiOrderDriver implements OrderDriver {
         newOrderPage.inputCouponCode(couponCode);
         newOrderPage.clickPlaceOrder();
 
-        return newOrderPage.getResult(() -> {
-            var orderNumberValue = newOrderPage.getOrderNumber();
-            return PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
-        });
+        var result = newOrderPage.getResult();
+
+        if (result.isFailure()) {
+            return Results.failure(result.getError());
+        }
+
+        var orderNumberValue = newOrderPage.getOrderNumber(result.getValue());
+
+        var response = PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
+        return Result.success(response);
     }
 
     @Override
@@ -59,9 +65,7 @@ public class ShopUiOrderDriver implements OrderDriver {
         var isSuccess = orderDetailsPage.isLoadedSuccessfully();
 
         if (!isSuccess) {
-            var errorMessages = orderDetailsPage.readErrorNotification();
-            var errorMessage = !errorMessages.isEmpty() ? errorMessages.get(0) : "Order not found";
-            return Results.failure(errorMessage);
+            return Result.failure(result.getError());
         }
 
         var displayOrderNumber = orderDetailsPage.getOrderNumber();
@@ -104,15 +108,13 @@ public class ShopUiOrderDriver implements OrderDriver {
         viewOrder(orderNumberAlias);
         orderDetailsPage.clickCancelOrder();
 
-        var hasSuccessNotification = orderDetailsPage.hasSuccessNotification();
+        var result = orderDetailsPage.getResult();
 
-        // Check for error notification first
-        if (!hasSuccessNotification) {
-            var errorMessage = orderDetailsPage.readGeneralErrorMessage();
-            return Results.failure(errorMessage);
+        if(result.isFailure()) {
+            return result.mapVoid();
         }
 
-        var cancellationMessage = orderDetailsPage.readSuccessNotification();
+        var cancellationMessage = result.getValue();
         if (!Objects.equals(cancellationMessage, "Order cancelled successfully!")) {
             return Results.failure("Did not receive expected cancellation success message");
         }
