@@ -51,11 +51,6 @@ public abstract class BasePage {
         return pageClient.readTextContent(SUCCESS_NOTIFICATION_SELECTOR);
     }
 
-    private List<String> readErrorNotification() {
-        var text = pageClient.readTextContent(ERROR_NOTIFICATION_SELECTOR);
-        return text.lines().toList();
-    }
-
     private String readGeneralErrorMessage() {
         return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
     }

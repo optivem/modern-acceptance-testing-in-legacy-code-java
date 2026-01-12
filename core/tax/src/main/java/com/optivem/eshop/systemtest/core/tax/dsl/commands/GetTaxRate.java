@@ -9,13 +9,10 @@ import com.optivem.testing.dsl.ExternalSystemMode;
 import com.optivem.testing.dsl.UseCaseContext;
 
 public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerification> {
-    private static final String DEFAULT_COUNTRY = "DEFAULT_COUNTRY";
-
     private String countryValueOrAlias;
 
     public GetTaxRate(TaxDriver driver, UseCaseContext context) {
         super(driver, context);
-        country(DEFAULT_COUNTRY);
     }
 
     public GetTaxRate country(String countryValueOrAlias) {

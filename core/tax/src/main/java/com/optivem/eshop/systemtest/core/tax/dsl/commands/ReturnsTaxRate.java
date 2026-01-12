@@ -8,16 +8,11 @@ import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidVerification;
 
 public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification<UseCaseContext>> {
-    private static final String DEFAULT_COUNTRY = "DEFAULT_COUNTRY";
-    private static final double DEFAULT_TAX_RATE = 0.07;
-
     private String countryAlias;
     private String taxRate;
 
     public ReturnsTaxRate(TaxDriver driver, UseCaseContext context) {
         super(driver, context);
-        country(DEFAULT_COUNTRY);
-        taxRate(DEFAULT_TAX_RATE);
     }
 
     public ReturnsTaxRate country(String countryAlias) {

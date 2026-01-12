@@ -9,10 +9,6 @@ import com.optivem.eshop.systemtest.core.shop.dsl.verifications.PlaceOrderVerifi
 import com.optivem.testing.dsl.UseCaseContext;
 
 public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVerification> {
-    private static final String DEFAULT_ORDER_NUMBER_ALIAS = "ORDER-NUMBER";
-    private static final String DEFAULT_SKU = "DEFAULT-SKU";
-    private static final int DEFAULT_QUANTITY = 1;
-    private static final String DEFAULT_COUNTRY = "US";
     private String orderNumberResultAlias;
     private String skuParamAlias;
     private String quantity;
@@ -21,11 +17,6 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
 
     public PlaceOrder(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
-
-        orderNumber(DEFAULT_ORDER_NUMBER_ALIAS);
-        sku(DEFAULT_SKU);
-        quantity(DEFAULT_QUANTITY);
-        country(DEFAULT_COUNTRY);
     }
 
     public PlaceOrder orderNumber(String orderNumberResultAlias) {
@@ -71,11 +62,13 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
                 .build();
         var result = driver.orders().placeOrder(request);
 
-        if(result.isSuccess()) {
-            var orderNumber = result.getValue().getOrderNumber();
-            context.setResultEntry(orderNumberResultAlias, orderNumber);
-        } else {
-            context.setResultEntryFailed(orderNumberResultAlias, result.getError().toString());
+        if(orderNumberResultAlias != null) {
+            if(result.isSuccess()) {
+                var orderNumber = result.getValue().getOrderNumber();
+                context.setResultEntry(orderNumberResultAlias, orderNumber);
+            } else {
+                context.setResultEntryFailed(orderNumberResultAlias, result.getError().toString());
+            }
         }
 
         return new ShopUseCaseResult<>(result, context, PlaceOrderVerification::new);

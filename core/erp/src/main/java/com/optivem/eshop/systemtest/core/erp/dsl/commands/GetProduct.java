@@ -9,13 +9,10 @@ import com.optivem.eshop.systemtest.core.erp.dsl.verifications.GetProductVerific
 import com.optivem.testing.dsl.UseCaseContext;
 
 public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVerification> {
-    private static final String DEFAULT_SKU = "DEFAULT_SKU";
-
     private String skuParamAlias;
 
     public GetProduct(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
-        sku(DEFAULT_SKU);
     }
 
     public GetProduct sku(String skuParamAlias) {
