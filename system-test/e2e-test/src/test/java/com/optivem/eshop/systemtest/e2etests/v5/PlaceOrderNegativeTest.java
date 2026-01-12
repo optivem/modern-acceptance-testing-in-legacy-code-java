@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
 public class PlaceOrderNegativeTest extends BaseE2eTest {
 
@@ -16,6 +16,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithInvalidQuantity() {
         app.shop().placeOrder()
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity("invalid-quantity")
                 .execute()
                 .shouldFail()
@@ -28,6 +30,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     void shouldRejectOrderWithNonExistentSku() {
         app.shop().placeOrder()
                 .sku("NON-EXISTENT-SKU-12345")
+                .quantity(QUANTITY)
+                .country(COUNTRY)
                 .execute()
                 .shouldFail()
                 .errorMessage("The request contains one or more validation errors")
@@ -38,6 +42,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithNegativeQuantity() {
         app.shop().placeOrder()
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(-10)
                 .execute()
                 .shouldFail()
@@ -50,6 +56,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     void shouldRejectOrderWithZeroQuantity() {
         app.shop().placeOrder()
                 .sku("ANOTHER-SKU-67890")
+                .country(COUNTRY)
                 .quantity(0)
                 .execute()
                 .shouldFail()
@@ -63,6 +70,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     void shouldRejectOrderWithEmptySku(String sku) {
         app.shop().placeOrder()
                 .sku(sku)
+                .quantity(QUANTITY)
+                .country(COUNTRY)
                 .execute()
                 .shouldFail()
                 .errorMessage("The request contains one or more validation errors")
@@ -74,6 +83,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @ArgumentsSource(EmptyArgumentsProvider.class)
     void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
         app.shop().placeOrder()
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(emptyQuantity)
                 .execute()
                 .shouldFail()
@@ -86,6 +97,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @ValueSource(strings = {"3.5", "lala"})
     void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
         app.shop().placeOrder()
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(nonIntegerQuantity)
                 .execute()
                 .shouldFail()
@@ -98,6 +111,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @ArgumentsSource(EmptyArgumentsProvider.class)
     void shouldRejectOrderWithEmptyCountry(String emptyCountry) {
         app.shop().placeOrder()
+                .sku(SKU)
+                .quantity(QUANTITY)
                 .country(emptyCountry)
                 .execute()
                 .shouldFail()
@@ -115,6 +130,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
 
         app.shop().placeOrder()
                 .sku(SKU)
+                .quantity(QUANTITY)
                 .country("XX")
                 .execute()
                 .shouldFail()
@@ -126,6 +142,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullQuantity() {
         app.shop().placeOrder()
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(null)
                 .execute()
                 .shouldFail()
@@ -138,6 +156,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     void shouldRejectOrderWithNullSku() {
         app.shop().placeOrder()
                 .sku(null)
+                .quantity(QUANTITY)
+                .country(COUNTRY)
                 .execute()
                 .shouldFail()
                 .errorMessage("The request contains one or more validation errors")
@@ -148,6 +168,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullCountry() {
         app.shop().placeOrder()
+                .sku(SKU)
+                .quantity(QUANTITY)
                 .country(null)
                 .execute()
                 .shouldFail()

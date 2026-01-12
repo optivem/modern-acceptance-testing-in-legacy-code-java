@@ -7,8 +7,7 @@ import com.optivem.testing.channels.Channel;
 import com.optivem.testing.channels.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.ORDER_NUMBER;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
 public class PlaceOrderPositiveTest extends BaseE2eTest {
 
@@ -16,18 +15,19 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
         app.erp().returnsProduct()
-                .sku("ABC")
+                .sku(SKU)
                 .unitPrice(20.00)
                 .execute()
                 .shouldSucceed();
 
-        app.shop().placeOrder().orderNumber("ORDER-1001")
-                .sku("ABC")
+        app.shop().placeOrder().orderNumber(ORDER_NUMBER)
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(5)
                 .execute()
                 .shouldSucceed();
 
-        app.shop().viewOrder().orderNumber("ORDER-1001").execute()
+        app.shop().viewOrder().orderNumber(ORDER_NUMBER).execute()
                 .shouldSucceed()
                 .subtotalPrice(100.00);
     }
@@ -40,20 +40,21 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
         app.erp().returnsProduct()
-                .sku("ABC")
+                .sku(SKU)
                 .unitPrice(unitPrice)
                 .execute()
                 .shouldSucceed();
 
         app.shop().placeOrder()
-                .orderNumber("ORDER-1001")
-                .sku("ABC")
+                .orderNumber(ORDER_NUMBER)
+                .sku(SKU)
+                .country(COUNTRY)
                 .quantity(quantity)
                 .execute()
                 .shouldSucceed();
 
         app.shop().viewOrder()
-                .orderNumber("ORDER-1001")
+                .orderNumber(ORDER_NUMBER)
                 .execute()
                 .shouldSucceed()
                 .subtotalPrice(subtotalPrice);
@@ -71,8 +72,8 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
         app.shop().placeOrder()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)
+                .country(COUNTRY)
                 .quantity(5)
-                .country("US")
                 .execute()
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
@@ -84,8 +85,8 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)
+                .country(COUNTRY)
                 .quantity(5)
-                .country("US")
                 .unitPrice(20.00)
                 .subtotalPrice(100.00)
                 .status(OrderStatus.PLACED)

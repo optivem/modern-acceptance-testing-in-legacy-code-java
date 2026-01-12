@@ -18,11 +18,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
         scenario
                 .given()
                 .product()
-                .withSku("SKU-001")
                 .when()
                 .placeOrder()
-                .withOrderNumber("ORDER-4001")
-                .withSku("SKU-001")
                 .withQuantity("invalid-quantity")
                 .then()
                 .shouldFail()
@@ -62,7 +59,6 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
         scenario
                 .when()
                 .placeOrder()
-                .withSku("ANOTHER-SKU-67890")
                 .withQuantity(0)
                 .then()
                 .shouldFail()
@@ -132,10 +128,8 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
         scenario
                 .given()
                 .product()
-                .withSku(SKU)
                 .when()
                 .placeOrder()
-                .withSku(SKU)
                 .withCountry("XX")
                 .then()
                 .shouldFail()
@@ -149,7 +143,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
         scenario
                 .when()
                 .placeOrder()
-                .withQuantity((String) null)
+                .withQuantity(null)
                 .then()
                 .shouldFail()
                 .errorMessage("The request contains one or more validation errors")

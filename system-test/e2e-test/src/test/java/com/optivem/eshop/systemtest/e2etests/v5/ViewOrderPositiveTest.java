@@ -6,8 +6,7 @@ import com.optivem.eshop.systemtest.e2etests.v5.base.BaseE2eTest;
 import com.optivem.testing.channels.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.ORDER_NUMBER;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
 public class ViewOrderPositiveTest extends BaseE2eTest {
 
@@ -23,8 +22,8 @@ public class ViewOrderPositiveTest extends BaseE2eTest {
         app.shop().placeOrder()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)
+                .country(COUNTRY)
                 .quantity(4)
-                .country("US")
                 .execute()
                 .shouldSucceed();
 
@@ -34,8 +33,8 @@ public class ViewOrderPositiveTest extends BaseE2eTest {
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)
+                .country(COUNTRY)
                 .quantity(4)
-                .country("US")
                 .unitPrice(25.00)
                 .subtotalPrice(100.00)
                 .status(OrderStatus.PLACED)

@@ -15,10 +15,10 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldCalculateSubtotalPrice() {
         scenario
-                .given().product().withSku("ABC").withUnitPrice(20.00)
-                .when().placeOrder().withOrderNumber("ORDER-1001").withSku("ABC").withQuantity(5)
+                .given().product().withUnitPrice(20.00)
+                .when().placeOrder().withQuantity(5)
                 .then().shouldSucceed()
-                .and().order("ORDER-1001").hasSubtotalPrice(100.00);
+                .and().order().hasSubtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -27,17 +27,14 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
         scenario
                 .given()
                 .product()
-                .withSku("ABC")
                 .withUnitPrice(20.00)
                 .when()
                 .placeOrder()
-                .withOrderNumber("ORDER-1001")
-                .withSku("ABC")
                 .withQuantity(5)
                 .then()
                 .shouldSucceed()
                 .and()
-                .order("ORDER-1001")
+                .order()
                 .hasSubtotalPrice(100.00);
     }
 
@@ -51,17 +48,14 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
         scenario
                 .given()
                 .product()
-                .withSku("ABC")
                 .withUnitPrice(unitPrice)
                 .when()
                 .placeOrder()
-                .withOrderNumber("ORDER-1001")
-                .withSku("ABC")
                 .withQuantity(quantity)
                 .then()
                 .shouldSucceed()
                 .and()
-                .order("ORDER-1001")
+                .order()
                 .hasSubtotalPrice(subtotalPrice);
     }
 
@@ -71,22 +65,16 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
         scenario
                 .given()
                 .product()
-                .withSku(SKU)
                 .withUnitPrice(20.00)
                 .when()
                 .placeOrder()
-                .withOrderNumber(ORDER_NUMBER)
-                .withSku(SKU)
                 .withQuantity(5)
-                .withCountry("US")
                 .then()
                 .shouldSucceed()
                 .hasOrderNumberPrefix("ORD-")
                 .and()
-                .order(ORDER_NUMBER)
-                .hasSku(SKU)
+                .order()
                 .hasQuantity(5)
-                .hasCountry("US")
                 .hasUnitPrice(20.00)
                 .hasSubtotalPrice(100.00)
                 .hasStatus(OrderStatus.PLACED)

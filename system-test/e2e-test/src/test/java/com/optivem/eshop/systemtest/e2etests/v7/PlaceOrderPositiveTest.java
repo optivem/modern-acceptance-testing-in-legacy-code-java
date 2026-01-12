@@ -8,12 +8,10 @@ import org.junit.jupiter.api.TestTemplate;
 public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateSubtotalPrice() {
+    void shouldPlaceOrder() {
         scenario
-                .given().product().withSku("ABC").withUnitPrice(20.00)
-                .when().placeOrder().withOrderNumber("ORDER-1001").withSku("ABC").withQuantity(5)
-                .then().shouldSucceed()
-                .and().order("ORDER-1001").hasSubtotalPrice(100.00);
+                .when().placeOrder()
+                .then().shouldSucceed();
     }
 }
 
