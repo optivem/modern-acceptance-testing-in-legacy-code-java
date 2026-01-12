@@ -72,6 +72,14 @@ $Config = @{
             Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -Dchannel=API";
             Path = ".";
             TestReportPath = "system-test\e2e-test\build\reports\tests\test\index.html";
+            TestInstallCommands = $null; },
+
+        @{
+            Id = "e2e-ui";
+            Name = "E2E Tests - Channel: UI";
+            Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -Dchannel=UI";
+            Path = ".";
+            TestReportPath = "system-test\e2e-test\build\reports\tests\test\index.html";
             TestInstallCommands = $null; }
 
     )

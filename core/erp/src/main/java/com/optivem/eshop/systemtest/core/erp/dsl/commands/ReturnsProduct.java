@@ -8,17 +8,11 @@ import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidVerification;
 
 public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification<UseCaseContext>> {
-    private static final String DEFAULT_SKU = "DEFAULT_SKU";
-    private static final double DEFAULT_UNIT_PRICE = 20.00;
-
     private String skuParamAlias;
     private String unitPrice;
 
     public ReturnsProduct(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
-
-        sku(DEFAULT_SKU);
-        unitPrice(DEFAULT_UNIT_PRICE);
     }
 
 
