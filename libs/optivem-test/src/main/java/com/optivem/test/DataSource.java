@@ -1,4 +1,4 @@
-package com.optivem.testing.channels;
+package com.optivem.test;
 
 import java.lang.annotation.*;
 

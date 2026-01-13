@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.core.clock.dsl.commands;
 import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.BaseClockCommand;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.ClockUseCaseResult;
-import com.optivem.testing.dsl.UseCaseContext;
-import com.optivem.testing.dsl.VoidVerification;
+import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.test.dsl.VoidVerification;
 
 public class GoToClock extends BaseClockCommand<Void, VoidVerification<UseCaseContext>> {
     public GoToClock(ClockDriver clockDriver, UseCaseContext useCaseContext) {

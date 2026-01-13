@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.erp.dsl.ErpDsl;
 import com.optivem.eshop.systemtest.core.shop.dsl.ShopDsl;
 import com.optivem.eshop.systemtest.core.tax.dsl.TaxDsl;
 import com.optivem.lang.Closer;
-import com.optivem.testing.dsl.UseCaseContext;
+import com.optivem.test.dsl.UseCaseContext;
 
 import java.io.Closeable;
 import java.util.function.Supplier;

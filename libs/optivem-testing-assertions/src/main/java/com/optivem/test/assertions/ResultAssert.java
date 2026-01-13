@@ -1,4 +1,4 @@
-package com.optivem.testing.assertions;
+package com.optivem.test.assertions;
 
 import com.optivem.lang.Result;
 import org.assertj.core.api.AbstractAssert;

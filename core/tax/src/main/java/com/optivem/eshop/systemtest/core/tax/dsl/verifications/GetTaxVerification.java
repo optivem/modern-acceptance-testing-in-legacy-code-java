@@ -2,9 +2,8 @@ package com.optivem.eshop.systemtest.core.tax.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.lang.Converter;
-import com.optivem.testing.dsl.ExternalSystemMode;
-import com.optivem.testing.dsl.ResponseVerification;
-import com.optivem.testing.dsl.UseCaseContext;
+import com.optivem.test.dsl.ResponseVerification;
+import com.optivem.test.dsl.UseCaseContext;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package com.optivem.testing.channels;
+package com.optivem.test.channels;
 
 /**
  * Test channel types for unit testing the ChannelExtension.

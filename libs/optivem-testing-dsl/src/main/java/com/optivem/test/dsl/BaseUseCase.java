@@ -1,4 +1,4 @@
-package com.optivem.testing.dsl;
+package com.optivem.test.dsl;
 
 public abstract class BaseUseCase<TDriver, TContext, TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> implements UseCase<UseCaseResult<TSuccessResponse, TFailureResponse, TContext, TSuccessVerification, TFailureVerification>> {
     protected final TDriver driver;

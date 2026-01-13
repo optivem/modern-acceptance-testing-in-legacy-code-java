@@ -1,4 +1,4 @@
-package com.optivem.testing.dsl;
+package com.optivem.test.dsl;
 
 public interface UseCase<TResult> {
     TResult execute();

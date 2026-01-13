@@ -3,12 +3,9 @@ package com.optivem.eshop.systemtest.e2etests.v6;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.e2etests.v6.base.BaseE2eTest;
-import com.optivem.testing.channels.Channel;
-import com.optivem.testing.channels.DataSource;
+import com.optivem.test.Channel;
+import com.optivem.test.DataSource;
 import org.junit.jupiter.api.TestTemplate;
-
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.ORDER_NUMBER;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 
 public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate

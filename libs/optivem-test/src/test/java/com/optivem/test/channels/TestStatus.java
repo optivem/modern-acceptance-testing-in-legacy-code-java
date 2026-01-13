@@ -1,4 +1,4 @@
-package com.optivem.testing.channels;
+package com.optivem.test.channels;
 
 /**
  * Test enum for EnumSource tests.

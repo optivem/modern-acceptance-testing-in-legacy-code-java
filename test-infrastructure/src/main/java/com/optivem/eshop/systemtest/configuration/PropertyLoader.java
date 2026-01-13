@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.configuration;
 
-import com.optivem.testing.dsl.ExternalSystemMode;
+import com.optivem.test.dsl.ExternalSystemMode;
 
 public class PropertyLoader {
 

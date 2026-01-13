@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.clock;
 
-import com.optivem.testing.dsl.ExternalSystemMode;
+import com.optivem.test.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;

@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.e2etests.v5;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.e2etests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.e2etests.v5.base.BaseE2eTest;
-import com.optivem.testing.channels.Channel;
+import com.optivem.test.Channel;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;

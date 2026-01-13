@@ -1,4 +1,4 @@
-package com.optivem.testing.channels;
+package com.optivem.test.channels;
 
 /**
  * Thread-local context holder for the current channel being tested.

@@ -1,4 +1,4 @@
-package com.optivem.testing.dsl;
+package com.optivem.test.dsl;
 
 import java.util.HashMap;
 import java.util.Map;

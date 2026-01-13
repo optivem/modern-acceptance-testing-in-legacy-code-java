@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.tax;
 
-import com.optivem.testing.dsl.ExternalSystemMode;
+import com.optivem.test.dsl.ExternalSystemMode;
 
 public class TaxRealContractTest extends BaseTaxContractTest {
     @Override

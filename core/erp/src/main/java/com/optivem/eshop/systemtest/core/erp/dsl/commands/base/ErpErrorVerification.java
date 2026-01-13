@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.erp.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
-import com.optivem.testing.dsl.ResponseVerification;
-import com.optivem.testing.dsl.UseCaseContext;
+import com.optivem.test.dsl.ResponseVerification;
+import com.optivem.test.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

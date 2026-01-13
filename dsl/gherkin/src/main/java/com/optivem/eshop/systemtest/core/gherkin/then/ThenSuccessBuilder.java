@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.eshop.systemtest.core.shop.dsl.verifications.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.verifications.ViewOrderVerification;
-import com.optivem.testing.dsl.ResponseVerification;
-import com.optivem.testing.dsl.UseCaseContext;
+import com.optivem.test.dsl.ResponseVerification;
+import com.optivem.test.dsl.UseCaseContext;
 
 public class ThenSuccessBuilder<TVerification extends ResponseVerification<?, UseCaseContext>> extends BaseThenBuilder {
     private final TVerification successVerification;

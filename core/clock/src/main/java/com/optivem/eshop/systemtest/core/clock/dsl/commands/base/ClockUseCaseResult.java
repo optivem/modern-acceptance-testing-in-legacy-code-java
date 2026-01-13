@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.core.clock.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorResponse;
 import com.optivem.lang.Result;
-import com.optivem.testing.dsl.UseCaseContext;
-import com.optivem.testing.dsl.UseCaseResult;
+import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.test.dsl.UseCaseResult;
 
 import java.util.function.BiFunction;
 

@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.clock.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
-import com.optivem.testing.dsl.ResponseVerification;
-import com.optivem.testing.dsl.UseCaseContext;
+import com.optivem.test.dsl.ResponseVerification;
+import com.optivem.test.dsl.UseCaseContext;
 
 import java.time.Instant;
 
