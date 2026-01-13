@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.base.v6;
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.lang.Closer;
+import com.optivem.commons.util.Closer;
 import com.optivem.test.extensions.ChannelExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

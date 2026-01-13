@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.when;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.lang.Converter;
+import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 

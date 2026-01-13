@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDeta
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Result;
 
 public class CouponController {
 

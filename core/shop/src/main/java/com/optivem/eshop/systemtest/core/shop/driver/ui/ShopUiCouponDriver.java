@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCoupons
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 import java.util.function.Supplier;
 

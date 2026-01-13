@@ -1,4 +1,4 @@
-package com.optivem.test.dsl;
+package com.optivem.commons.dsl;
 
 public class ResponseVerification<TResponse, TContext> {
     protected final TResponse response;

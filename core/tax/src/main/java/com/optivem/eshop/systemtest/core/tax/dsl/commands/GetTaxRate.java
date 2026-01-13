@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.TaxUseCaseResult;
 import com.optivem.eshop.systemtest.core.tax.dsl.verifications.GetTaxVerification;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.dsl.UseCaseContext;
 
 public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerification> {
     private String countryValueOrAlias;

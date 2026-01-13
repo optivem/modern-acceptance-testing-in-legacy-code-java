@@ -3,10 +3,10 @@ package com.optivem.eshop.systemtest.core.clock.client;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.eshop.systemtest.core.clock.client.dtos.error.ExtClockErrorResponse;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
-import com.optivem.wiremock.JsonWireMockClient;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
+import com.optivem.commons.wiremock.JsonWireMockClient;
 
 import java.net.URI;
 import java.net.http.HttpClient;

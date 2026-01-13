@@ -6,9 +6,9 @@ import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 
 import java.net.http.HttpClient;
 

@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.core.erp.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
-import com.optivem.lang.Result;
-import com.optivem.test.dsl.UseCaseContext;
-import com.optivem.test.dsl.UseCaseResult;
+import com.optivem.commons.util.Result;
+import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.dsl.UseCaseResult;
 
 import java.util.function.BiFunction;
 

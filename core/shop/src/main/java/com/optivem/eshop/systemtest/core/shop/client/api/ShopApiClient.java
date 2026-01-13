@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.shop.client.api.controllers.CouponContr
 import com.optivem.eshop.systemtest.core.shop.client.api.controllers.HealthController;
 import com.optivem.eshop.systemtest.core.shop.client.api.controllers.OrderController;
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.http.JsonHttpClient;
+import com.optivem.commons.http.JsonHttpClient;
 
 public class ShopApiClient {
 

@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.base.v3.BaseDriverTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.test.assertions.ResultAssert.assertThatResult;
+import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
 public class ErpSmokeTest extends BaseDriverTest {
     @BeforeEach

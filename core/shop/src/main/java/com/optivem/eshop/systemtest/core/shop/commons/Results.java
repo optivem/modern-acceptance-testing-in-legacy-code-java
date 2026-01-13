@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.commons;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public final class Results {
     private Results() {

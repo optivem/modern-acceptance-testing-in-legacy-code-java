@@ -6,8 +6,8 @@ import com.optivem.eshop.systemtest.core.clock.driver.ClockStubDriver;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.GetTime;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.GoToClock;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.ReturnsTime;
-import com.optivem.lang.Closer;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.dsl.UseCaseContext;
 
 public class ClockDsl implements AutoCloseable {
     protected final ClockDriver driver;

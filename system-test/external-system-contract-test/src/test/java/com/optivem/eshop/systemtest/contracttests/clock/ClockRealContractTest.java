@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.clock;
 
-import com.optivem.test.dsl.ExternalSystemMode;
+import com.optivem.commons.dsl.ExternalSystemMode;
 
 public class ClockRealContractTest extends BaseClockContractTest {
 

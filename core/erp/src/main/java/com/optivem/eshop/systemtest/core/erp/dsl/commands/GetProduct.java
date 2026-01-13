@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductResponse;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
 import com.optivem.eshop.systemtest.core.erp.dsl.verifications.GetProductVerification;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.dsl.UseCaseContext;
 
 public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVerification> {
     private String skuParamAlias;

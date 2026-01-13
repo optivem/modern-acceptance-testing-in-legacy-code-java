@@ -5,7 +5,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemConfiguration;
-import com.optivem.lang.Closer;
+import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 
 import java.net.http.HttpClient;

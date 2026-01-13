@@ -4,8 +4,8 @@ package com.optivem.eshop.systemtest.core.erp.client;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.lang.Result;
-import com.optivem.wiremock.JsonWireMockClient;
+import com.optivem.commons.util.Result;
+import com.optivem.commons.wiremock.JsonWireMockClient;
 
 import java.net.URI;
 

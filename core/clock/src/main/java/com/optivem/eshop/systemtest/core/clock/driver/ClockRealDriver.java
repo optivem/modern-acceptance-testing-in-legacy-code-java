@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.clock.driver;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorResponse;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 import java.time.Instant;
 

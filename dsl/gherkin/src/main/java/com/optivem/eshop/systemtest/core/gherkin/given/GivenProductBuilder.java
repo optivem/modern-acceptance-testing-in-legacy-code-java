@@ -1,8 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
-import com.optivem.lang.Converter;
+import com.optivem.commons.util.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

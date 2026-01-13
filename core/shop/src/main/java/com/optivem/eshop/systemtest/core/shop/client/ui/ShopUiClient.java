@@ -2,9 +2,9 @@ package com.optivem.eshop.systemtest.core.shop.client.ui;
 
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
-import com.optivem.lang.Closer;
-import com.optivem.playwright.BrowserLifecycleExtension;
-import com.optivem.playwright.PageClient;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
+import com.optivem.commons.playwright.PageClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

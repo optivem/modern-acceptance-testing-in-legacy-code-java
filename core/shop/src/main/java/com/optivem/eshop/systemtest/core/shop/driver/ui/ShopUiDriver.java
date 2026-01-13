@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

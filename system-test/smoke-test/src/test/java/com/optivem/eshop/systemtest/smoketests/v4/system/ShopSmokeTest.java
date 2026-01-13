@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.test.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-import static com.optivem.test.assertions.ResultAssert.assertThatResult;
+import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
 public class ShopSmokeTest extends BaseChannelDriverTest {
     @TestTemplate

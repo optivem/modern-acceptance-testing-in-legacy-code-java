@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.tax.driver;
 import com.optivem.eshop.systemtest.core.tax.client.TaxRealClient;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public class TaxRealDriver extends BaseTaxDriver<TaxRealClient> {
 

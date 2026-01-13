@@ -1,4 +1,4 @@
-package com.optivem.lang;
+package com.optivem.commons.util;
 
 import java.math.BigDecimal;
 

@@ -1,4 +1,4 @@
-package com.optivem.test.dsl;
+package com.optivem.commons.dsl;
 
 public class VoidVerification<TContext> extends ResponseVerification<Void, TContext> {
 

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
-import com.optivem.playwright.PageClient;
+import com.optivem.commons.playwright.PageClient;
 
 import java.util.regex.Pattern;
 

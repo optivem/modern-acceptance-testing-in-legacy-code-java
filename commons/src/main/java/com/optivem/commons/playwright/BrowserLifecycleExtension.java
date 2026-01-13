@@ -1,4 +1,4 @@
-package com.optivem.playwright;
+package com.optivem.commons.playwright;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;

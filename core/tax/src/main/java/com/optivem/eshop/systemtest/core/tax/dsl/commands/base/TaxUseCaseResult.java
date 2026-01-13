@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.core.tax.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
-import com.optivem.lang.Result;
-import com.optivem.test.dsl.ResponseVerification;
-import com.optivem.test.dsl.UseCaseContext;
-import com.optivem.test.dsl.UseCaseResult;
+import com.optivem.commons.util.Result;
+import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.dsl.UseCaseResult;
 
 import java.util.function.BiFunction;
 

@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.erp.client;
 
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsRequest;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public class ErpRealClient extends BaseErpClient {
 

@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequ
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public interface OrderDriver {
     Result<PlaceOrderResponse, SystemError> placeOrder(PlaceOrderRequest request);

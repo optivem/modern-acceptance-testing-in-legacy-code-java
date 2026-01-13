@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResp
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public class ShopApiOrderDriver implements OrderDriver {
     private final ShopApiClient apiClient;

@@ -1,8 +1,8 @@
-package com.optivem.http;
+package com.optivem.commons.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 import org.springframework.http.HttpStatus;
 
 import java.net.URI;

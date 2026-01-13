@@ -1,6 +1,5 @@
-package com.optivem.test.assertions;
+package com.optivem.commons.util;
 
-import com.optivem.lang.Result;
 import org.assertj.core.api.AbstractAssert;
 
 public class ResultAssert<T, E> extends AbstractAssert<ResultAssert<T, E>, Result<T, E>> {

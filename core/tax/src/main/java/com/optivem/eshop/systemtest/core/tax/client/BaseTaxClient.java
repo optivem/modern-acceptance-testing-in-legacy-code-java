@@ -2,9 +2,9 @@ package com.optivem.eshop.systemtest.core.tax.client;
 
 import com.optivem.eshop.systemtest.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.core.tax.client.dtos.error.ExtTaxErrorResponse;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 
 import java.net.http.HttpClient;
 

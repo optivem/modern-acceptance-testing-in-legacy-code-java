@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.BaseClockCommand;
 import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.ClockUseCaseResult;
-import com.optivem.test.dsl.UseCaseContext;
-import com.optivem.test.dsl.VoidVerification;
+import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.dsl.VoidVerification;
 
 import java.time.Instant;
 

@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.given.GivenClause;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
-import com.optivem.lang.Closer;
+import com.optivem.commons.util.Closer;
 
 public class ScenarioDsl implements AutoCloseable {
     private final SystemDsl app;

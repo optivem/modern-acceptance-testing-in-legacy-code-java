@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import com.optivem.test.dsl.ResponseVerification;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.commons.dsl.UseCaseContext;
 
 import java.math.BigDecimal;
 import java.time.Instant;

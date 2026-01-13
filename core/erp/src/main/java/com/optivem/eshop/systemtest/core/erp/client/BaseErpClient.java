@@ -2,9 +2,9 @@ package com.optivem.eshop.systemtest.core.erp.client;
 
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 
 import java.net.http.HttpClient;
 

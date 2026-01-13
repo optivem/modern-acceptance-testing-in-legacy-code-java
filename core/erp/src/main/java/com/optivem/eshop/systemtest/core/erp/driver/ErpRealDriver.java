@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.erp.client.ErpRealClient;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 

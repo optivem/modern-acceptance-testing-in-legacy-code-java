@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.test.dsl.ResponseVerification;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

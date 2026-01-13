@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.tax.client.BaseTaxClient;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 
 public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements TaxDriver {
 

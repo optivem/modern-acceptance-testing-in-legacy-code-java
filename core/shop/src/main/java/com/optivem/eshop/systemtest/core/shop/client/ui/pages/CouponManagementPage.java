@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.CouponDto;
-import com.optivem.playwright.PageClient;
+import com.optivem.commons.playwright.PageClient;
 
 import java.time.Instant;
 import java.util.ArrayList;

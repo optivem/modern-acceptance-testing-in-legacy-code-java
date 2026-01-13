@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.erp.client.ErpStubClient;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 import java.math.BigDecimal;
 

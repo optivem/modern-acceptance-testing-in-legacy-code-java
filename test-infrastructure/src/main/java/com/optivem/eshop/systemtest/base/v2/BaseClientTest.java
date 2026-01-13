@@ -7,8 +7,8 @@ import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.tax.client.TaxRealClient;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Closer;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 
 import java.net.http.HttpClient;

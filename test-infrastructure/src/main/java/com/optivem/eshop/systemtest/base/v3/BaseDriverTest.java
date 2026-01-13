@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxRealDriver;
-import com.optivem.lang.Closer;
+import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 
 public class BaseDriverTest extends BaseConfigurableTest {

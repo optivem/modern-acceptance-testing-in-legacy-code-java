@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import com.optivem.playwright.PageClient;
+import com.optivem.commons.playwright.PageClient;
 
 import java.math.BigDecimal;
 

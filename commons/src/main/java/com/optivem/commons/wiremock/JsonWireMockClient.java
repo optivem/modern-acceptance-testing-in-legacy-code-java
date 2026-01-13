@@ -1,7 +1,7 @@
-package com.optivem.wiremock;
+package com.optivem.commons.wiremock;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 

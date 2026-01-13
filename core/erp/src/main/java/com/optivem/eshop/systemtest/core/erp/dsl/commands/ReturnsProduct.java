@@ -4,9 +4,9 @@ import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
-import com.optivem.lang.Converter;
-import com.optivem.test.dsl.UseCaseContext;
-import com.optivem.test.dsl.VoidVerification;
+import com.optivem.commons.util.Converter;
+import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.dsl.VoidVerification;
 
 public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification<UseCaseContext>> {
     private String skuParamAlias;

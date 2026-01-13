@@ -4,10 +4,8 @@ import com.optivem.eshop.systemtest.core.tax.client.TaxStubClient;
 import com.optivem.eshop.systemtest.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
-import com.optivem.lang.Converter;
-import com.optivem.lang.Result;
-
-import java.math.BigDecimal;
+import com.optivem.commons.util.Converter;
+import com.optivem.commons.util.Result;
 
 public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
 

@@ -6,8 +6,8 @@ import com.optivem.eshop.systemtest.core.tax.driver.TaxStubDriver;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.GetTaxRate;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.GoToTax;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.ReturnsTaxRate;
-import com.optivem.lang.Closer;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.dsl.UseCaseContext;
 
 import java.io.Closeable;
 

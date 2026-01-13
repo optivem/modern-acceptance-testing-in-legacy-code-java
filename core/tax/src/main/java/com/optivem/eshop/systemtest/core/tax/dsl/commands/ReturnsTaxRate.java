@@ -4,9 +4,9 @@ import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.TaxUseCaseResult;
-import com.optivem.lang.Converter;
-import com.optivem.test.dsl.UseCaseContext;
-import com.optivem.test.dsl.VoidVerification;
+import com.optivem.commons.util.Converter;
+import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.dsl.VoidVerification;
 
 public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification<UseCaseContext>> {
     private String countryAlias;

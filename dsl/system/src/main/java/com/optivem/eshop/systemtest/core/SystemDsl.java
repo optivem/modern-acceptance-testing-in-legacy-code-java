@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.clock.dsl.ClockDsl;
 import com.optivem.eshop.systemtest.core.erp.dsl.ErpDsl;
 import com.optivem.eshop.systemtest.core.shop.dsl.ShopDsl;
 import com.optivem.eshop.systemtest.core.tax.dsl.TaxDsl;
-import com.optivem.lang.Closer;
-import com.optivem.test.dsl.UseCaseContext;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.dsl.UseCaseContext;
 
 import java.io.Closeable;
 import java.util.function.Supplier;

@@ -5,8 +5,8 @@ import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductResponse;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
-import com.optivem.lang.Closer;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 
 public abstract class BaseErpDriver<TClient extends BaseErpClient> implements ErpDriver {
 

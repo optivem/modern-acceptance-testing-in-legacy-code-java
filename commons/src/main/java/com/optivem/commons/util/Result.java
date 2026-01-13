@@ -1,4 +1,4 @@
-package com.optivem.lang;
+package com.optivem.commons.util;
 
 public class Result<T, E> {
     private final boolean success;

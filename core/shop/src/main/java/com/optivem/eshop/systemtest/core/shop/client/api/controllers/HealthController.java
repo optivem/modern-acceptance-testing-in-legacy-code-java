@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.shop.client.api.controllers;
 
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Result;
 
 public class HealthController {
 

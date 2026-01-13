@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetai
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.http.JsonHttpClient;
-import com.optivem.lang.Result;
+import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.commons.util.Result;
 
 public class OrderController {
 

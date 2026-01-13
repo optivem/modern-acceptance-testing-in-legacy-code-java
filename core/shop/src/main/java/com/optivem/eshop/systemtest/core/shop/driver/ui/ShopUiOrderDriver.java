@@ -11,7 +11,7 @@ import com.optivem.eshop.systemtest.core.shop.client.ui.pages.OrderDetailsPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.OrderHistoryPage;
 import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.lang.Result;
+import com.optivem.commons.util.Result;
 
 import java.util.Objects;
 import java.util.function.Supplier;
