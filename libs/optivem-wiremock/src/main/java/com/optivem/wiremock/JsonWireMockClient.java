@@ -31,7 +31,7 @@ public class JsonWireMockClient {
         return mapper;
     }
 
-    public <T> Result<Void, String> configureGet(String path, int statusCode, T response) {
+    public <T> Result<Void, String> stubGet(String path, int statusCode, T response) {
         var responseBody = serialize(response);
 
         wireMock.register(WireMock.get(urlPathEqualTo(path))

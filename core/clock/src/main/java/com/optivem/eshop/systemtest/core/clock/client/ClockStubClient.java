@@ -2,7 +2,6 @@ package com.optivem.eshop.systemtest.core.clock.client;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.eshop.systemtest.core.clock.client.dtos.error.ExtClockErrorResponse;
-import com.optivem.eshop.systemtest.core.clock.driver.ClockStubDriver;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.http.JsonHttpClient;
 import com.optivem.lang.Closer;
@@ -39,7 +38,7 @@ public class ClockStubClient implements AutoCloseable {
     }
 
     public Result<Void, ExtClockErrorResponse> configureGetTime(GetTimeResponse response) {
-        return wireMockClient.configureGet("/clock/api/time", 200, response)
+        return wireMockClient.stubGet("/clock/api/time", 200, response)
                 .mapError(ExtClockErrorResponse::new);
     }
 

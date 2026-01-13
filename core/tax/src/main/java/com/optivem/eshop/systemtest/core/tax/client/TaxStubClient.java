@@ -23,7 +23,7 @@ public class TaxStubClient extends BaseTaxClient {
 
     public Result<Void, ExtTaxErrorResponse> configureGetCountry(ExtCountryDetailsResponse response) {
         var country = response.getId();
-        return wireMockClient.configureGet("/tax/api/countries/" + country, 200, response)
+        return wireMockClient.stubGet("/tax/api/countries/" + country, 200, response)
                 .mapError(ExtTaxErrorResponse::new);
     }
 }

@@ -27,7 +27,7 @@ public class ErpStubClient extends BaseErpClient {
 
     public Result<Void, ExtErpErrorResponse> configureGetProduct(ExtProductDetailsResponse response) {
         var sku = response.getId();
-        return wireMockClient.configureGet("/erp/api/products/" + sku, 200, response)
+        return wireMockClient.stubGet("/erp/api/products/" + sku, 200, response)
                 .mapError(ExtErpErrorResponse::new);
     }
 }
