@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import com.optivem.lang.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ public class GivenProductBuilder extends BaseGivenBuilder {
     }
 
     public GivenProductBuilder withUnitPrice(double unitPrice) {
-        withUnitPrice(String.valueOf(unitPrice));
+        withUnitPrice(Converter.fromDouble(unitPrice));
         return this;
     }
 

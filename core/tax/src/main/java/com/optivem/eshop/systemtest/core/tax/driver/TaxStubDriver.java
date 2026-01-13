@@ -4,6 +4,7 @@ import com.optivem.eshop.systemtest.core.tax.client.TaxStubClient;
 import com.optivem.eshop.systemtest.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
+import com.optivem.lang.Converter;
 import com.optivem.lang.Result;
 
 import java.math.BigDecimal;
@@ -17,8 +18,7 @@ public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
     @Override
     public Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request) {
         var country = request.getCountry();
-        var taxRateString = request.getTaxRate();
-        var taxRate = taxRateString != null ? new BigDecimal(taxRateString) : null;
+        var taxRate = Converter.toBigDecimal(request.getTaxRate());
 
         var response = ExtCountryDetailsResponse.builder()
                 .id(country)

@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import com.optivem.lang.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
@@ -28,7 +29,7 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
     }
 
     public GivenCouponBuilder withDiscountRate(double discountRate) {
-        this.discountRate = String.valueOf(discountRate);
+        this.discountRate = Converter.fromDouble(discountRate);
         return this;
     }
 

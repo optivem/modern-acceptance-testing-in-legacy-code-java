@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.tax.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
+import com.optivem.lang.Converter;
 import com.optivem.testing.dsl.ExternalSystemMode;
 import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;
@@ -42,7 +43,7 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse, Use
     }
 
     public GetTaxVerification taxRate(String expectedTaxRate) {
-        return taxRate(new BigDecimal(expectedTaxRate));
+        return taxRate(Converter.toBigDecimal(expectedTaxRate));
     }
 
     public GetTaxVerification taxRateIsPositive() {

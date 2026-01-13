@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import com.optivem.lang.Converter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ public class GivenTaxRateBuilder extends BaseGivenBuilder {
     }
 
     public GivenTaxRateBuilder withTaxRate(double taxRate) {
-        return withTaxRate(String.valueOf(taxRate));
+        return withTaxRate(Converter.fromDouble(taxRate));
     }
 
     void execute(SystemDsl app) {

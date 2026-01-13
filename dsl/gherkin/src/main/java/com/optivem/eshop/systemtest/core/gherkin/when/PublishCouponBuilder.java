@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.when;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
+import com.optivem.lang.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
@@ -30,7 +31,7 @@ public class PublishCouponBuilder extends BaseWhenBuilder {
     }
 
     public PublishCouponBuilder withDiscountRate(double discountRate) {
-        return withDiscountRate(String.valueOf(discountRate));
+        return withDiscountRate(Converter.fromDouble(discountRate));
     }
 
     public PublishCouponBuilder withValidFrom(String validFrom) {

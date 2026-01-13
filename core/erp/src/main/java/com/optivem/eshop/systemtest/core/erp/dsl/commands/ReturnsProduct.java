@@ -4,6 +4,7 @@ import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
 import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
+import com.optivem.lang.Converter;
 import com.optivem.testing.dsl.UseCaseContext;
 import com.optivem.testing.dsl.VoidVerification;
 
@@ -27,7 +28,7 @@ public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification<UseCas
     }
 
     public ReturnsProduct unitPrice(double unitPrice) {
-        return unitPrice(String.valueOf(unitPrice));
+        return unitPrice(Converter.fromDouble(unitPrice));
     }
 
     @Override

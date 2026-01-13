@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.erp.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductResponse;
+import com.optivem.lang.Converter;
 import com.optivem.testing.dsl.ResponseVerification;
 import com.optivem.testing.dsl.UseCaseContext;
 
@@ -32,10 +33,10 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
     }
 
     public GetProductVerification price(double expectedPrice) {
-        return price(BigDecimal.valueOf(expectedPrice));
+        return price(Converter.toBigDecimal(expectedPrice));
     }
 
     public GetProductVerification price(String expectedPrice) {
-        return price(new BigDecimal(expectedPrice));
+        return price(Converter.toBigDecimal(expectedPrice));
     }
 }
