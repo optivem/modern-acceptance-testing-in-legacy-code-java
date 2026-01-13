@@ -16,10 +16,11 @@ repositories {
 }
 
 dependencies {
-    api 'org.junit.jupiter:junit-jupiter-api:5.10.2'
-    api 'org.junit.jupiter:junit-jupiter-params:5.10.2'
+    // JUnit Jupiter API and Parameters for both annotations and channels
+    api 'org.junit.jupiter:junit-jupiter-api:5.11.4'
+    api 'org.junit.jupiter:junit-jupiter-params:5.11.4'
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
