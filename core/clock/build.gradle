@@ -16,10 +16,7 @@ repositories {
 }
 
 dependencies {
-    api project(':libs:optivem-lang')
-    api project(':libs:optivem-http')
-    api project(':libs:optivem-wiremock')
-    api project(':libs:optivem-testing-dsl')
+    api project(':commons')
 
     api 'org.assertj:assertj-core:3.24.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'

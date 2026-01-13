@@ -16,10 +16,8 @@ repositories {
 }
 
 dependencies {
-    api project(':libs:optivem-http')
-    api project(':libs:optivem-playwright')
+    api project(':commons')
     api project(':libs:optivem-test')
-    api project(':libs:optivem-testing-dsl')
 
     implementation 'org.springframework:spring-web:6.1.5'
 

@@ -18,13 +18,9 @@ repositories {
 }
 
 dependencies {
-    api project(':libs:optivem-lang')
+    api project(':commons')
     api project(':libs:optivem-results')
-    api project(':libs:optivem-http')
-    api project(':libs:optivem-playwright')
-    api project(':libs:optivem-testing-assertions')
     api project(':libs:optivem-test')
-    api project(':libs:optivem-testing-dsl')
     api project(':core')
 
     implementation 'org.springframework.boot:spring-boot-starter'

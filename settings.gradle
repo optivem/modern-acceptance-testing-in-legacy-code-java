@@ -1,13 +1,9 @@
 rootProject.name = 'modern-acceptance-testing-in-legacy-code-java'
 
-include 'libs:optivem-lang'
+include 'commons'
+
 include 'libs:optivem-results'
-include 'libs:optivem-http'
-include 'libs:optivem-playwright'
-include 'libs:optivem-testing-assertions'
 include 'libs:optivem-test'
-include 'libs:optivem-testing-dsl'
-include 'libs:optivem-wiremock'
 
 include 'test-infrastructure'
 
