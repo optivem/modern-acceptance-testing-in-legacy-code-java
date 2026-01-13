@@ -9,7 +9,7 @@ import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxRealDriver;
 import com.optivem.lang.Closer;
-import com.optivem.test.channels.ChannelContext;
+import com.optivem.test.contexts.ChannelContext;
 import com.optivem.test.extensions.ChannelExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
