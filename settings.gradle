@@ -2,8 +2,6 @@ rootProject.name = 'modern-acceptance-testing-in-legacy-code-java'
 
 include 'commons'
 
-include 'optivem-test'
-
 include 'test-infrastructure'
 
 include 'dsl'

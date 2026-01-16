@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     api project(':commons')
-    api project(':optivem-test')
+    api 'com.optivem:optivem-test:1.0.9'
 
     implementation 'org.springframework:spring-web:6.1.5'
 
