@@ -16,7 +16,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     void shouldBeAbleToPlaceOrderForValidInput() {
         scenario
                 .given().product().withSku("ABC").withUnitPrice(20.00)
-                .and().taxRate().withCountry("US").withTaxRate(0.10)
+                .and().country().withCode("US").withTaxRate(0.10)
                 .when().placeOrder().withSku("ABC").withQuantity(5).withCountry("US")
                 .then().shouldSucceed();
     }
@@ -105,7 +105,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"US", "0.20"})
     void correctTaxRateShouldBeUsedBasedOnCountry(String country, String taxRate) {
         scenario
-                .given().taxRate().withCountry(country).withTaxRate(taxRate)
+                .given().country().withCode(country).withTaxRate(taxRate)
                 .when().placeOrder().withCountry(country)
                 .then().order().hasTaxRate(taxRate);
     }
@@ -116,7 +116,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"US", "0.20", "100.00", "20.00", "120.00"})
     void totalPriceShouldBeSubtotalPricePlusTaxAmount(String country, String taxRate, String subtotalPrice, String expectedTaxAmount, String expectedTotalPrice) {
         scenario
-                .given().taxRate().withCountry(country).withTaxRate(taxRate)
+                .given().country().withCode(country).withTaxRate(taxRate)
                 .and().product().withUnitPrice(subtotalPrice)
                 .when().placeOrder().withCountry(country).withQuantity(1)
                 .then().order().hasTaxRate(taxRate)

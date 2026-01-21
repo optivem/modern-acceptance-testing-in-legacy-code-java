@@ -16,7 +16,7 @@ public class GivenClause {
     private final List<GivenProductBuilder> products;
     private final List<GivenOrderBuilder> orders;
     private GivenClockBuilder clock;
-    private final List<GivenTaxRateBuilder> taxRates;
+    private final List<GivenCountryBuilder> countries;
     private final List<GivenCouponBuilder> coupons;
 
     public GivenClause(SystemDsl app, ScenarioDsl scenario) {
@@ -25,7 +25,7 @@ public class GivenClause {
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.clock = new GivenClockBuilder(this);
-        this.taxRates = new ArrayList<>();
+        this.countries = new ArrayList<>();
         this.coupons = new ArrayList<>();
     }
 
@@ -46,9 +46,9 @@ public class GivenClause {
         return clock;
     }
 
-    public GivenTaxRateBuilder taxRate() {
-        var taxRateBuilder = new GivenTaxRateBuilder(this);
-        taxRates.add(taxRateBuilder);
+    public GivenCountryBuilder country() {
+        var taxRateBuilder = new GivenCountryBuilder(this);
+        countries.add(taxRateBuilder);
         return taxRateBuilder;
     }
 
@@ -81,7 +81,7 @@ public class GivenClause {
         long elapsed = System.currentTimeMillis() - start;
         log.info("[PERF] GivenClause.when() total setup took {}ms", elapsed);
         
-        return new WhenClause(app, scenario, !products.isEmpty(), !taxRates.isEmpty());
+        return new WhenClause(app, scenario, !products.isEmpty(), !countries.isEmpty());
     }
 
     private void setupClock() {
@@ -100,13 +100,13 @@ public class GivenClause {
     }
 
     private void setupTax() {
-        if (!orders.isEmpty() && taxRates.isEmpty()) {
-            var defaultTaxRate = new GivenTaxRateBuilder(this);
-            taxRates.add(defaultTaxRate);
+        if (!orders.isEmpty() && countries.isEmpty()) {
+            var defaultCountry = new GivenCountryBuilder(this);
+            countries.add(defaultCountry);
         }
 
-        for (var taxRate : taxRates) {
-            taxRate.execute(app);
+        for (var country : countries) {
+            country.execute(app);
         }
     }
 
