@@ -10,15 +10,11 @@ import java.net.URI;
 
 public class TaxStubClient extends BaseTaxClient {
 
-    private final WireMock wireMock;
     private final JsonWireMockClient wireMockClient;
 
     public TaxStubClient(String baseUrl) {
         super(baseUrl);
-
-        var url = URI.create(baseUrl);
-        this.wireMock = new WireMock(url.getHost(), url.getPort());
-        this.wireMockClient = new JsonWireMockClient(wireMock);
+        this.wireMockClient = new JsonWireMockClient(baseUrl);
     }
 
     public Result<Void, ExtTaxErrorResponse> configureGetCountry(ExtCountryDetailsResponse response) {

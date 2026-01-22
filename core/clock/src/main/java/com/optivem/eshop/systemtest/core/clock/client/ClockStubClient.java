@@ -16,15 +16,11 @@ public class ClockStubClient implements AutoCloseable {
 
     private final JsonHttpClient<ExtClockErrorResponse> httpClient;
 
-    private final WireMock wireMock;
     private final JsonWireMockClient wireMockClient;
 
     public ClockStubClient(String baseUrl) {
         this.httpClient = new JsonHttpClient<>(baseUrl, ExtClockErrorResponse.class);
-
-        var url = URI.create(baseUrl);
-        this.wireMock = new WireMock(url.getHost(), url.getPort());
-        this.wireMockClient = new JsonWireMockClient(wireMock);
+        this.wireMockClient = new JsonWireMockClient(baseUrl);
     }
 
     @Override

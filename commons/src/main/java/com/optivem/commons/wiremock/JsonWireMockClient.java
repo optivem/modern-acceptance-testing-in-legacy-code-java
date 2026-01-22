@@ -5,6 +5,8 @@ import com.optivem.commons.util.Result;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.net.URI;
+
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
 
@@ -16,13 +18,10 @@ public class JsonWireMockClient {
 
     private final WireMock wireMock;
 
-    public JsonWireMockClient(WireMock wireMock, ObjectMapper objectMapper) {
-        this.wireMock = wireMock;
-        this.objectMapper = objectMapper;
-    }
-
-    public JsonWireMockClient(WireMock wireMock) {
-        this(wireMock, createObjectMapper());
+    public JsonWireMockClient(String baseUrl) {
+        var url = URI.create(baseUrl);
+        this.wireMock = new WireMock(url.getHost(), url.getPort());
+        this.objectMapper = createObjectMapper();
     }
 
     private static ObjectMapper createObjectMapper() {

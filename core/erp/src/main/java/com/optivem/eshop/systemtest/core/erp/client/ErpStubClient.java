@@ -14,15 +14,11 @@ import java.net.URI;
  */
 public class ErpStubClient extends BaseErpClient {
 
-    private final WireMock wireMock;
     private final JsonWireMockClient wireMockClient;
 
     public ErpStubClient(String baseUrl) {
         super(baseUrl);
-
-        var url = URI.create(baseUrl);
-        this.wireMock = new WireMock(url.getHost(), url.getPort());
-        this.wireMockClient = new JsonWireMockClient(wireMock);
+        this.wireMockClient = new JsonWireMockClient(baseUrl);
     }
 
     public Result<Void, ExtErpErrorResponse> configureGetProduct(ExtProductDetailsResponse response) {
