@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.erp.driver;
 
 import com.optivem.eshop.systemtest.core.erp.client.ErpRealClient;
-import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsRequest;
+import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
 import com.optivem.commons.util.Result;
@@ -19,7 +19,7 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
     @Override
     public Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request) {
-        var createProductRequest = ExtProductDetailsRequest.builder()
+        var createProductRequest = ExtCreateProductRequest.builder()
                 .id(request.getSku())
                 .title(DEFAULT_TITLE)
                 .description(DEFAULT_DESCRIPTION)

@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ExtProductDetailsRequest {
+public class ExtCreateProductRequest {
     private String id;
     private String title;
     private String description;

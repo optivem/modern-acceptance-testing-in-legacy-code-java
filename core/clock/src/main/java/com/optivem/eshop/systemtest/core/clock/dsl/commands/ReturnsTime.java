@@ -28,7 +28,6 @@ public class ReturnsTime extends BaseClockCommand<Void, VoidVerification<UseCase
 
     @Override
     public ClockUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
-
         var request = ReturnsTimeRequest.builder()
             .time(time)
             .build();

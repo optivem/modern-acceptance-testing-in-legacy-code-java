@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.clock.client;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
+import com.optivem.eshop.systemtest.core.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.client.dtos.error.ExtClockErrorResponse;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.commons.http.JsonHttpClient;
@@ -33,16 +34,18 @@ public class ClockStubClient implements AutoCloseable {
         Closer.close(rawHttpClient);
     }
 
-    public Result<GetTimeResponse, ExtClockErrorResponse> getTime() {
-        return httpClient.get("/api/time", GetTimeResponse.class);
-    }
-
-    public Result<Void, ExtClockErrorResponse> configureGetTime(GetTimeResponse response) {
-        return wireMockClient.stubGet("/clock/api/time", 200, response)
-                .mapError(ExtClockErrorResponse::new);
-    }
 
     public Result<Void, ExtClockErrorResponse> checkHealth() {
         return httpClient.get("/health");
     }
+
+    public Result<ExtGetTimeResponse, ExtClockErrorResponse> getTime() {
+        return httpClient.get("/api/time", ExtGetTimeResponse.class);
+    }
+
+    public Result<Void, ExtClockErrorResponse> configureGetTime(ExtGetTimeResponse response) {
+        return wireMockClient.stubGet("/clock/api/time", 200, response)
+                .mapError(ExtClockErrorResponse::new);
+    }
+
 }

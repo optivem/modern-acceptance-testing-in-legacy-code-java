@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.core.clock.driver;
 
 import com.optivem.eshop.systemtest.core.clock.client.ClockStubClient;
+import com.optivem.eshop.systemtest.core.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorResponse;
@@ -28,16 +29,16 @@ public class ClockStubDriver implements ClockDriver {
 
     @Override
     public Result<GetTimeResponse, ClockErrorResponse> getTime() {
-        return client.getTime().mapError(ClockErrorResponse::from);
+        return client.getTime().map(GetTimeResponse::from).mapError(ClockErrorResponse::from);
     }
 
     @Override
     public Result<Void, ClockErrorResponse> returnsTime(ReturnsTimeRequest request) {
-        var response = GetTimeResponse.builder()
+        var extResponse = ExtGetTimeResponse.builder()
                 .time(request.getTime())
                 .build();
 
-        return client.configureGetTime(response)
+        return client.configureGetTime(extResponse)
                 .mapError(ClockErrorResponse::from);
     }
 }
