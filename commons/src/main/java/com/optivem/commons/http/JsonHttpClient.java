@@ -2,6 +2,7 @@ package com.optivem.commons.http;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 import org.springframework.http.HttpStatus;
 
@@ -10,7 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class JsonHttpClient<E> {
+public class JsonHttpClient<E> implements AutoCloseable {
 
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
@@ -27,14 +28,19 @@ public class JsonHttpClient<E> {
         this.objectMapper = objectMapper;
     }
 
-    public JsonHttpClient(HttpClient httpClient, String baseUrl, Class<E> errorType) {
-        this(httpClient, baseUrl, errorType, createObjectMapper());
+    public JsonHttpClient(String baseUrl, Class<E> errorType) {
+        this(HttpClient.newHttpClient(), baseUrl, errorType, createObjectMapper());
     }
 
     private static ObjectMapper createObjectMapper() {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         return mapper;
+    }
+
+    @Override
+    public void close() {
+        Closer.close(httpClient);
     }
 
     // GET Methods

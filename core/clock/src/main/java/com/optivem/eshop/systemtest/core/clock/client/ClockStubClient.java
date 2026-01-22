@@ -15,14 +15,12 @@ import java.net.http.HttpClient;
 public class ClockStubClient implements AutoCloseable {
 
     private final JsonHttpClient<ExtClockErrorResponse> httpClient;
-    private final HttpClient rawHttpClient;
 
     private final WireMock wireMock;
     private final JsonWireMockClient wireMockClient;
 
     public ClockStubClient(String baseUrl) {
-        this.rawHttpClient = HttpClient.newHttpClient();
-        this.httpClient = new JsonHttpClient<>(rawHttpClient, baseUrl, ExtClockErrorResponse.class);
+        this.httpClient = new JsonHttpClient<>(baseUrl, ExtClockErrorResponse.class);
 
         var url = URI.create(baseUrl);
         this.wireMock = new WireMock(url.getHost(), url.getPort());
@@ -31,7 +29,7 @@ public class ClockStubClient implements AutoCloseable {
 
     @Override
     public void close() {
-        Closer.close(rawHttpClient);
+        Closer.close(httpClient);
     }
 
 

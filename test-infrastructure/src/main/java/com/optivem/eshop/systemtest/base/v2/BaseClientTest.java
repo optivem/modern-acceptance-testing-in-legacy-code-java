@@ -11,15 +11,12 @@ import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 
-import java.net.http.HttpClient;
-
 public class BaseClientTest extends BaseConfigurableTest {
     protected ErpRealClient erpClient;
     protected TaxRealClient taxClient;
     protected ShopApiClient shopApiClient;
     protected ShopUiClient shopUiClient;
     protected JsonHttpClient<ProblemDetailResponse> shopHttpClient;
-    protected HttpClient rawShopHttpClient;
     protected SystemConfiguration configuration;
 
     protected void setUpExternalClients() {
@@ -32,8 +29,7 @@ public class BaseClientTest extends BaseConfigurableTest {
         if (configuration == null) {
             configuration = loadConfiguration();
         }
-        rawShopHttpClient = HttpClient.newHttpClient();
-        shopHttpClient = new JsonHttpClient<>(rawShopHttpClient, configuration.getShopApiBaseUrl(), ProblemDetailResponse.class);
+        shopHttpClient = new JsonHttpClient<>(configuration.getShopApiBaseUrl(), ProblemDetailResponse.class);
         shopApiClient = new ShopApiClient(shopHttpClient);
     }
 
@@ -49,7 +45,7 @@ public class BaseClientTest extends BaseConfigurableTest {
         Closer.close(shopUiClient);
         Closer.close(erpClient);
         Closer.close(taxClient);
-        Closer.close(rawShopHttpClient);
+        Closer.close(shopHttpClient);
     }
 }
 

@@ -11,17 +11,14 @@ import java.net.http.HttpClient;
 public abstract class BaseTaxClient implements AutoCloseable {
 
     protected final JsonHttpClient<ExtTaxErrorResponse> httpClient;
-    private final HttpClient rawHttpClient;
 
     protected BaseTaxClient(String baseUrl) {
-        this.rawHttpClient = HttpClient.newHttpClient();
-        // TODO: VJ: Actually, this is not the response, it's instead some Error
-        this.httpClient = new JsonHttpClient<>(rawHttpClient, baseUrl, ExtTaxErrorResponse.class);
+        this.httpClient = new JsonHttpClient<>(baseUrl, ExtTaxErrorResponse.class);
     }
 
     @Override
     public void close() {
-        Closer.close(rawHttpClient);
+        Closer.close(httpClient);
     }
 
     public Result<Void, ExtTaxErrorResponse> checkHealth() {
