@@ -23,6 +23,15 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
+    void orderStatusShouldBePlacedAfterPlacingOrder() {
+        scenario
+                .when().placeOrder()
+                .then().shouldSucceed()
+                .and().order().hasStatus(OrderStatus.PLACED);
+    }
+
+    @TestTemplate
+    @Channel({ChannelType.UI, ChannelType.API})
     void shouldCalculateBasePriceAsProductOfUnitPriceAndQuantity() {
         scenario
                 .given().product().withUnitPrice(20.00)
@@ -73,6 +82,8 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .hasDiscountAmount(0.00);
     }
 
+
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void subtotalPriceShouldBeCalculatedAsTheBasePriceMinusDiscountAmountWhenWeHaveCoupon() {
@@ -119,7 +130,8 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .given().country().withCode(country).withTaxRate(taxRate)
                 .and().product().withUnitPrice(subtotalPrice)
                 .when().placeOrder().withCountry(country).withQuantity(1)
-                .then().order().hasTaxRate(taxRate)
+                .then().shouldSucceed()
+                .and().order().hasTaxRate(taxRate)
                 .hasSubtotalPrice(subtotalPrice)
                 .hasTaxAmount(expectedTaxAmount)
                 .hasTotalPrice(expectedTotalPrice);
