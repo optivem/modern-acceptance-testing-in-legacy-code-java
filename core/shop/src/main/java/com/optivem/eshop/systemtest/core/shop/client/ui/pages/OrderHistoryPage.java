@@ -5,7 +5,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class OrderHistoryPage extends BasePage {
-    private static final Logger logger = LoggerFactory.getLogger(OrderHistoryPage.class);
     private static final String ORDER_NUMBER_INPUT_SELECTOR = "[aria-label='Order Number']";
     private static final String SEARCH_BUTTON_SELECTOR = "[aria-label='Refresh Order List']";
     
@@ -41,6 +40,4 @@ public class OrderHistoryPage extends BasePage {
         // Simpler selector: find any row that contains the order number text
         return String.format(ROW_SELECTOR_TEMPLATE, orderNumber);
     }
-
-
 }

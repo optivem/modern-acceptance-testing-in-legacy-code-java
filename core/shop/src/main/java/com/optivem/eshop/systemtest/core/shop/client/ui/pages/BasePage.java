@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
-import com.optivem.eshop.systemtest.core.shop.commons.Results;
+import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.util.Result;
 import com.optivem.commons.playwright.PageClient;
@@ -67,14 +67,14 @@ public abstract class BasePage {
 
         if (isSuccess) {
             var successMessage = readSuccessNotification();
-            return Results.success(successMessage);
+            return SystemResults.success(successMessage);
         }
 
         var generalMessage = readGeneralErrorMessage();
         var fieldErrorTexts = readFieldErrors();
 
         if (fieldErrorTexts.isEmpty()) {
-            return Results.failure(generalMessage);
+            return SystemResults.failure(generalMessage);
         }
 
         var fieldErrors = fieldErrorTexts.stream()
@@ -95,6 +95,6 @@ public abstract class BasePage {
                 .fields(fieldErrors)
                 .build();
 
-        return Results.failure(error);
+        return SystemResults.failure(error);
     }
 }

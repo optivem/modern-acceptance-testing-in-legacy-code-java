@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.CouponDto;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 
@@ -67,7 +66,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
         return this;
     }
 
-    private CouponDto findCouponByCode(String couponCodeAlias) {
+    private BrowseCouponsResponse.CouponDto findCouponByCode(String couponCodeAlias) {
         if (response == null || response.getCoupons() == null) {
             throw new AssertionError("No coupons found in response");
         }
@@ -81,7 +80,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
                         String.format("Coupon with code '%s' not found. Available coupons: %s",
                                 couponCode,
                                 response.getCoupons().stream()
-                                        .map(CouponDto::getCode)
+                                        .map(BrowseCouponsResponse.CouponDto::getCode)
                                         .toList())));
     }
 

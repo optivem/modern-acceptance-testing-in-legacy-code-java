@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.CouponDto;
 import com.optivem.commons.playwright.PageClient;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -94,12 +94,12 @@ public class CouponManagementPage extends BasePage {
         return pageClient.isVisible(COUPONS_TABLE_SELECTOR);
     }
     
-    public List<CouponDto> readCoupons() {
+    public List<BrowseCouponsResponse.CouponDto> readCoupons() {
         if (!hasCouponsTable()) {
             return new ArrayList<>();
         }
         
-        var coupons = new ArrayList<CouponDto>();
+        var coupons = new ArrayList<BrowseCouponsResponse.CouponDto>();
 
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
@@ -134,7 +134,7 @@ public class CouponManagementPage extends BasePage {
             var usageLimitText = usageLimits.get(i).trim();
             var usedCountText = usedCounts.get(i).trim();
 
-            var coupon = CouponDto.builder()
+            var coupon = BrowseCouponsResponse.CouponDto.builder()
                     .code(code)
                     .discountRate(parseDiscountRate(discountRateText))
                     .validFrom(parseInstant(validFromText))

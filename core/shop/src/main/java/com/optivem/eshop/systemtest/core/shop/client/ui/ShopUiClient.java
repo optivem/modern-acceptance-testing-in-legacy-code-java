@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 
 
 public class ShopUiClient implements AutoCloseable {
-    private static final Logger log = LoggerFactory.getLogger(ShopUiClient.class);
-
     private static final String CONTENT_TYPE = "content-type";
     private static final String TEXT_HTML = "text/html";
     private static final String HTML_OPENING_TAG = "<html";
@@ -26,7 +24,6 @@ public class ShopUiClient implements AutoCloseable {
     private Response response;
 
     public ShopUiClient(String baseUrl) {
-        long totalStart = System.currentTimeMillis();
         this.baseUrl = baseUrl;
 
         // Get browser for current thread from BrowserLifecycleExtension
@@ -38,27 +35,19 @@ public class ShopUiClient implements AutoCloseable {
                 // Ensure complete isolation between parallel tests
                 .setStorageStatePath(null);
 
-        long contextStart = System.currentTimeMillis();
         this.context = browser.newContext(contextOptions);
-        log.info("[PERF] Browser context creation took {}ms", System.currentTimeMillis() - contextStart);
 
         // Each test gets its own page
-        long pageStart = System.currentTimeMillis();
         this.page = context.newPage();
-        log.info("[PERF] New page creation took {}ms", System.currentTimeMillis() - pageStart);
 
         var pageClient = PageClient.builder(page)
                 .baseUrl(baseUrl)
                 .build();
         this.homePage = new HomePage(pageClient);
-        
-        log.info("[PERF] ShopUiClient constructor total took {}ms", System.currentTimeMillis() - totalStart);
     }
 
     public HomePage openHomePage() {
-        long start = System.currentTimeMillis();
         response = page.navigate(baseUrl);
-        log.info("[PERF] page.navigate() took {}ms", System.currentTimeMillis() - start);
         return homePage;
     }
 

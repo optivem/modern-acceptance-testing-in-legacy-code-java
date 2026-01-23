@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.driver.ui;
 
-import com.optivem.eshop.systemtest.core.shop.commons.Results;
+import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
@@ -35,12 +35,12 @@ public class ShopUiDriver implements ShopDriver {
         homePage = client.openHomePage();
 
         if (!client.isStatusOk() || !client.isPageLoaded()) {
-            return Results.failure("Failed to load home page");
+            return SystemResults.failure("Failed to load home page");
         }
 
         pageNavigator.setCurrentPage(PageNavigator.Page.HOME);
         log.info("[PERF] ShopUiDriver.goToShop() took {}ms", System.currentTimeMillis() - start);
-        return Results.success();
+        return SystemResults.success();
     }
 
     @Override

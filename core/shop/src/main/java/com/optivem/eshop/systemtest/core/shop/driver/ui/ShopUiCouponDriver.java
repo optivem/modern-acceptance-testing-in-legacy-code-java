@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.shop.driver.ui;
 
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.CouponManagementPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
-import com.optivem.eshop.systemtest.core.shop.commons.Results;
+import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
@@ -48,7 +48,7 @@ public class ShopUiCouponDriver implements CouponDriver {
                 .coupons(coupons)
                 .build();
         
-        return Results.success(response);
+        return SystemResults.success(response);
     }
 
     private void ensureOnCouponManagementPage() {
