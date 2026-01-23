@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.driver;
+package com.optivem.eshop.systemtest.core.shop.driver.internal;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;

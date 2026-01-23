@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.driver.ui;
+package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.CouponManagementPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCoupons
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.internal.CouponDriver;
 import com.optivem.commons.util.Result;
 
 import java.util.function.Supplier;

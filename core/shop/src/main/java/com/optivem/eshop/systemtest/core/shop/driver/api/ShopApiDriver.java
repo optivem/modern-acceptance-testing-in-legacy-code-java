@@ -2,13 +2,15 @@ package com.optivem.eshop.systemtest.core.shop.driver.api;
 
 import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.core.shop.driver.CouponDriver;
-import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.internal.CouponDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.internal.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
+import com.optivem.eshop.systemtest.core.shop.driver.api.internal.ShopApiCouponDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.api.internal.ShopApiOrderDriver;
 
 public class ShopApiDriver implements ShopDriver {
     private final JsonHttpClient<ProblemDetailResponse> httpClient;
@@ -24,6 +26,11 @@ public class ShopApiDriver implements ShopDriver {
     }
 
     @Override
+    public void close() {
+        Closer.close(httpClient);
+    }
+
+    @Override
     public Result<Void, SystemError> goToShop() {
         return apiClient.health().checkHealth().mapError(SystemError::from);
     }
@@ -36,11 +43,6 @@ public class ShopApiDriver implements ShopDriver {
     @Override
     public CouponDriver coupons() {
         return couponDriver;
-    }
-
-    @Override
-    public void close() {
-        Closer.close(httpClient);
     }
 }
 

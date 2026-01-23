@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.driver.ui;
+package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 
 import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
@@ -9,7 +9,7 @@ import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.OrderDetailsPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.OrderHistoryPage;
-import com.optivem.eshop.systemtest.core.shop.driver.OrderDriver;
+import com.optivem.eshop.systemtest.core.shop.driver.internal.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.util.Result;
 
