@@ -12,10 +12,10 @@ public class ShopApiClient {
     private final OrderController orderController;
     private final CouponController couponController;
 
-    public ShopApiClient(JsonHttpClient<ProblemDetailResponse> httpGateway) {
-        this.healthController = new HealthController(httpGateway);
-        this.orderController = new OrderController(httpGateway);
-        this.couponController = new CouponController(httpGateway);
+    public ShopApiClient(JsonHttpClient<ProblemDetailResponse> httpClient) {
+        this.healthController = new HealthController(httpClient);
+        this.orderController = new OrderController(httpClient);
+        this.couponController = new CouponController(httpClient);
     }
 
     public HealthController health() {

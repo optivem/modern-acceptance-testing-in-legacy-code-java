@@ -17,11 +17,14 @@ public abstract class BaseErpDriver<TClient extends BaseErpClient> implements Er
     }
 
     @Override
+    public void close() throws Exception {
+        Closer.close(client);
+    }
+
+    @Override
     public Result<Void, ErpErrorResponse> goToErp() {
         return client.checkHealth().mapError(ErpErrorResponse::from);
     }
-
-    public abstract Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
 
     @Override
     public Result<GetProductResponse, ErpErrorResponse> getProduct(GetProductRequest request) {
@@ -33,8 +36,5 @@ public abstract class BaseErpDriver<TClient extends BaseErpClient> implements Er
                 .mapError(ErpErrorResponse::from);
     }
 
-    @Override
-    public void close() throws Exception {
-        Closer.close(client);
-    }
+    public abstract Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
 }

@@ -9,7 +9,7 @@ import com.optivem.commons.util.Result;
 public interface ErpDriver extends AutoCloseable {
     Result<Void, ErpErrorResponse> goToErp();
 
-    Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
-
     Result<GetProductResponse, ErpErrorResponse> getProduct(GetProductRequest request);
+
+    Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
 }

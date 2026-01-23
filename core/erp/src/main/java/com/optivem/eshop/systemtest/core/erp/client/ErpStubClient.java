@@ -9,9 +9,6 @@ import com.optivem.commons.wiremock.JsonWireMockClient;
 
 import java.net.URI;
 
-/**
- * Stub ERP client for making HTTP calls to the WireMock stub.
- */
 public class ErpStubClient extends BaseErpClient {
 
     private final JsonWireMockClient wireMockClient;

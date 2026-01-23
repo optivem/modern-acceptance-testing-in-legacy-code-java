@@ -28,7 +28,6 @@ public class ClockStubClient implements AutoCloseable {
         Closer.close(httpClient);
     }
 
-
     public Result<Void, ExtClockErrorResponse> checkHealth() {
         return httpClient.get("/health");
     }
