@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
+package com.optivem.eshop.systemtest.core.shop.dsl.orders;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.commons.dsl.ResponseVerification;

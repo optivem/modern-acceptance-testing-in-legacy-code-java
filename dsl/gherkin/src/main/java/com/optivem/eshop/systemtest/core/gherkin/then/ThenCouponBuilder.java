@@ -1,8 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
-import com.optivem.eshop.systemtest.core.shop.dsl.verifications.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.coupons.BrowseCouponsVerification;
 
 public class ThenCouponBuilder extends BaseThenBuilder {
     private final BrowseCouponsVerification verification;

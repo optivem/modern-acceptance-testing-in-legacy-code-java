@@ -1,9 +1,9 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.commands;
+package com.optivem.eshop.systemtest.core.shop.dsl.coupons;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.common.BaseShopCommand;
+import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
@@ -47,9 +47,7 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
     @Override
     public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
         var couponCode = context.getParamValue(couponCodeParamAlias);
-        
-        // Dates are already in ISO 8601 format (YYYY-MM-DDTHH:mm:ssZ) from test
-        // Pass them directly to the request
+
         var request = PublishCouponRequest.builder()
                 .code(couponCode)
                 .discountRate(discountRate)

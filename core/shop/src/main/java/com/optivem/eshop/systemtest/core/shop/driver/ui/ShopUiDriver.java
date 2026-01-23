@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ShopUiDriver implements ShopDriver {
-    private static final Logger log = LoggerFactory.getLogger(ShopUiDriver.class);
     private final ShopUiClient client;
     private final PageNavigator pageNavigator;
     private final OrderDriver orderDriver;
@@ -24,17 +23,19 @@ public class ShopUiDriver implements ShopDriver {
     private HomePage homePage;
 
     public ShopUiDriver(String baseUrl) {
-        long start = System.currentTimeMillis();
         this.client = new ShopUiClient(baseUrl);
-        log.info("[PERF] ShopUiDriver - ShopUiClient creation took {}ms", System.currentTimeMillis() - start);
         this.pageNavigator = new PageNavigator();
         this.orderDriver = new ShopUiOrderDriver(this::getHomePage, pageNavigator);
         this.couponDriver = new ShopUiCouponDriver(this::getHomePage, pageNavigator);
     }
 
     @Override
+    public void close() {
+        client.close();
+    }
+
+    @Override
     public Result<Void, SystemError> goToShop() {
-        long start = System.currentTimeMillis();
         homePage = client.openHomePage();
 
         if (!client.isStatusOk() || !client.isPageLoaded()) {
@@ -42,7 +43,6 @@ public class ShopUiDriver implements ShopDriver {
         }
 
         pageNavigator.setCurrentPage(PageNavigator.Page.HOME);
-        log.info("[PERF] ShopUiDriver.goToShop() took {}ms", System.currentTimeMillis() - start);
         return SystemResults.success();
     }
 
@@ -54,11 +54,6 @@ public class ShopUiDriver implements ShopDriver {
     @Override
     public CouponDriver coupons() {
         return couponDriver;
-    }
-
-    @Override
-    public void close() {
-        client.close();
     }
 
     private HomePage getHomePage() {

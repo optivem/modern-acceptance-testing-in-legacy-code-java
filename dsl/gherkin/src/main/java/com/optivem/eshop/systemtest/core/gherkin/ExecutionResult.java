@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
 import lombok.Getter;
 
 @Getter

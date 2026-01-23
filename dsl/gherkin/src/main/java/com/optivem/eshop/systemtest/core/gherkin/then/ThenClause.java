@@ -3,9 +3,6 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
-
-import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
 public class ThenClause {
     private final SystemDsl app;
