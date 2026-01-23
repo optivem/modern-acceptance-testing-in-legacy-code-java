@@ -10,17 +10,15 @@ import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
-import java.net.http.HttpClient;
-
 public class ShopApiDriver implements ShopDriver {
-    private final JsonHttpClient<ProblemDetailResponse> testHttpClient;
+    private final JsonHttpClient<ProblemDetailResponse> httpClient;
     private final ShopApiClient apiClient;
     private final OrderDriver orderDriver;
     private final CouponDriver couponDriver;
 
     public ShopApiDriver(String baseUrl) {
-        this.testHttpClient = new JsonHttpClient<>(baseUrl, ProblemDetailResponse.class);
-        this.apiClient = new ShopApiClient(testHttpClient);
+        this.httpClient = new JsonHttpClient<>(baseUrl, ProblemDetailResponse.class);
+        this.apiClient = new ShopApiClient(httpClient);
         this.orderDriver = new ShopApiOrderDriver(apiClient);
         this.couponDriver = new ShopApiCouponDriver(apiClient);
     }
@@ -42,7 +40,7 @@ public class ShopApiDriver implements ShopDriver {
 
     @Override
     public void close() {
-        Closer.close(testHttpClient);
+        Closer.close(httpClient);
     }
 }
 
