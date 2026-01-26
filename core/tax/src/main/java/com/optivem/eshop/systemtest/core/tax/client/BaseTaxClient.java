@@ -6,8 +6,6 @@ import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
-import java.net.http.HttpClient;
-
 public abstract class BaseTaxClient implements AutoCloseable {
 
     protected final JsonHttpClient<ExtTaxErrorResponse> httpClient;

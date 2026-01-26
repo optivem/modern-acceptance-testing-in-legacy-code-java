@@ -26,6 +26,7 @@ public class ClockDsl implements AutoCloseable {
         return switch (context.getExternalSystemMode()) {
             case REAL -> new ClockRealDriver();
             case STUB -> new ClockStubDriver(baseUrl);
+            default -> throw new UnsupportedOperationException("External system mode not supported: " + context.getExternalSystemMode());
         };
     }
 

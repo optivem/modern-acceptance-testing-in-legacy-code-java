@@ -22,7 +22,8 @@ public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements Ta
 
     @Override
     public Result<Void, TaxErrorResponse> goToTax() {
-        return client.checkHealth().mapError(TaxErrorResponse::from);
+        return client.checkHealth()
+            .mapError(TaxErrorResponse::from);
     }
 
     @Override
