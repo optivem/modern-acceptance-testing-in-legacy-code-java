@@ -30,6 +30,7 @@ public class GivenProductBuilder extends BaseGivenBuilder {
         return this;
     }
 
+    @Override
     void execute(SystemDsl app) {
         app.erp().returnsProduct()
                 .sku(sku)

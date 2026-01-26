@@ -27,14 +27,13 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
         return this;
     }
 
-    public GivenCouponBuilder withDiscountRate(double discountRate) {
-        this.discountRate = Converter.fromDouble(discountRate);
-        return this;
-    }
-
     public GivenCouponBuilder withDiscountRate(String discountRate) {
         this.discountRate = discountRate;
         return this;
+    }
+
+    public GivenCouponBuilder withDiscountRate(double discountRate) {
+        return withDiscountRate(Converter.fromDouble(discountRate));
     }
 
     public GivenCouponBuilder withValidFrom(String validFrom) {
@@ -53,10 +52,10 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
     }
 
     public GivenCouponBuilder withUsageLimit(int usageLimit) {
-        withUsageLimit(String.valueOf(usageLimit));
-        return this;
+        return withUsageLimit(String.valueOf(usageLimit));
     }
 
+    @Override
     void execute(SystemDsl app) {
         var result = app.shop().publishCoupon()
                 .couponCode(couponCode)
