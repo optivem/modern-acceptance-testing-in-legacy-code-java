@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.orders;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
@@ -10,9 +10,9 @@ import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ViewOrderVerification extends ResponseVerification<ViewOrderDetailsResponse, UseCaseContext> {
+public class ViewOrderVerification extends ResponseVerification<ViewOrderResponse, UseCaseContext> {
 
-    public ViewOrderVerification(ViewOrderDetailsResponse response, UseCaseContext context) {
+    public ViewOrderVerification(ViewOrderResponse response, UseCaseContext context) {
         super(response, context);
     }
 

@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.shop.driver.api.internal;
 import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.internal.OrderDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.util.Result;
@@ -26,7 +26,7 @@ public class ShopApiOrderDriver implements OrderDriver {
     }
 
     @Override
-    public Result<ViewOrderDetailsResponse, SystemError> viewOrder(String orderNumber) {
+    public Result<ViewOrderResponse, SystemError> viewOrder(String orderNumber) {
         return apiClient.orders().viewOrder(orderNumber).mapError(SystemError::from);
     }
 }

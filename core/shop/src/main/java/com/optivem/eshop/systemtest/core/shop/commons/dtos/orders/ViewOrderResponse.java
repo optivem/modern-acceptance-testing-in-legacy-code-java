@@ -12,7 +12,7 @@ import java.time.Instant;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ViewOrderDetailsResponse {
+public class ViewOrderResponse {
     private String orderNumber;
     private Instant orderTimestamp;
     private String sku;

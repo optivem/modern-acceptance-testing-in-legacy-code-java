@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderDetailsResponse;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
@@ -56,7 +56,7 @@ public class ShopUiOrderDriver implements OrderDriver {
     }
 
     @Override
-    public Result<ViewOrderDetailsResponse, SystemError> viewOrder(String orderNumber) {
+    public Result<ViewOrderResponse, SystemError> viewOrder(String orderNumber) {
         var result = ensureOnOrderDetailsPage(orderNumber);
         if (result.isFailure()) {
             return SystemResults.failure(result.getError());
@@ -83,7 +83,7 @@ public class ShopUiOrderDriver implements OrderDriver {
         var status = orderDetailsPage.getStatus();
         var appliedCoupon = orderDetailsPage.getAppliedCoupon();
 
-        var response = ViewOrderDetailsResponse.builder()
+        var response = ViewOrderResponse.builder()
                 .orderNumber(displayOrderNumber)
                 .sku(sku)
                 .quantity(quantity)
