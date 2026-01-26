@@ -5,8 +5,6 @@ import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.playwright.PageClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 
 

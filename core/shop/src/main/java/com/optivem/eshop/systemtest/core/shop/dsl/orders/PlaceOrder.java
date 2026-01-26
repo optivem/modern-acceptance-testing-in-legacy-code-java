@@ -59,6 +59,7 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
                 .country(country)
                 .couponCode(couponCode)
                 .build();
+
         var result = driver.orders().placeOrder(request);
 
         if(orderNumberResultAlias != null) {

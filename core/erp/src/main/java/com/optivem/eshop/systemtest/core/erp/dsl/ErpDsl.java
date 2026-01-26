@@ -26,6 +26,7 @@ public class ErpDsl implements AutoCloseable {
         return switch (context.getExternalSystemMode()) {
             case REAL -> new ErpRealDriver(baseUrl);
             case STUB -> new ErpStubDriver(baseUrl);
+            default -> throw new UnsupportedOperationException("External system mode not supported: " + context.getExternalSystemMode());
         };
     }
 

@@ -3,14 +3,11 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GivenClause {
-    private static final Logger log = LoggerFactory.getLogger(GivenClause.class);
     private final SystemDsl app;
     private final ScenarioDsl scenario;
     private final List<GivenProductBuilder> products;
@@ -59,28 +56,11 @@ public class GivenClause {
     }
 
     public WhenClause when() {
-        long start = System.currentTimeMillis();
-        log.info("[PERF] GivenClause.when() starting setup...");
-        
-        long cStart = System.currentTimeMillis();
         setupClock();
-        log.info("[PERF] setupClock took {}ms", System.currentTimeMillis() - cStart);
-        
-        long eStart = System.currentTimeMillis();
         setupErp();
-        log.info("[PERF] setupErp took {}ms", System.currentTimeMillis() - eStart);
-        
-        long tStart = System.currentTimeMillis();
         setupTax();
-        log.info("[PERF] setupTax took {}ms", System.currentTimeMillis() - tStart);
-        
-        long sStart = System.currentTimeMillis();
         setupShop();
-        log.info("[PERF] setupShop took {}ms", System.currentTimeMillis() - sStart);
 
-        long elapsed = System.currentTimeMillis() - start;
-        log.info("[PERF] GivenClause.when() total setup took {}ms", elapsed);
-        
         return new WhenClause(app, scenario, !products.isEmpty(), !countries.isEmpty());
     }
 

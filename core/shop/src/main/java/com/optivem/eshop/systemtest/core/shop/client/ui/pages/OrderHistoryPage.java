@@ -1,8 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
 import com.optivem.commons.playwright.PageClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OrderHistoryPage extends BasePage {
     private static final String ORDER_NUMBER_INPUT_SELECTOR = "[aria-label='Order Number']";

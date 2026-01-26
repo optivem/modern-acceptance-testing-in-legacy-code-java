@@ -5,12 +5,8 @@ import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.GivenOrderBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class PlaceOrderBuilder extends BaseWhenBuilder {
-    private static final Logger log = LoggerFactory.getLogger(PlaceOrderBuilder.class);
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -61,7 +57,6 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
 
     @Override
     protected ExecutionResult execute(SystemDsl app) {
-        long start = System.currentTimeMillis();
         var result = app.shop().placeOrder()
                 .orderNumber(orderNumber)
                 .sku(sku)
@@ -69,8 +64,6 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
                 .country(country)
                 .couponCode(couponCode)
                 .execute();
-        long elapsed = System.currentTimeMillis() - start;
-        log.info("[PERF] PlaceOrderBuilder.execute took {}ms", elapsed);
 
         return ExecutionResult.builder(result)
                 .orderNumber(orderNumber)

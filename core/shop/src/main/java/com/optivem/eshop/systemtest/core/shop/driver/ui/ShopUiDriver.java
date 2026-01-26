@@ -11,8 +11,6 @@ import com.optivem.commons.util.Result;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.PageNavigator;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.ShopUiCouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.ShopUiOrderDriver;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ShopUiDriver implements ShopDriver {
     private final ShopUiClient client;

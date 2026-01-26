@@ -4,8 +4,6 @@ import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
 import com.microsoft.playwright.Playwright;
 import org.junit.jupiter.api.extension.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,8 +21,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Browser browser = BrowserLifecycleExtension.getBrowser();
  */
 public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCallback, BeforeEachCallback, AfterEachCallback {
-    private static final Logger log = LoggerFactory.getLogger(BrowserLifecycleExtension.class);
-    
     // One browser per worker thread for parallel execution safety
     private static final Map<Long, BrowserResource> BROWSERS_BY_THREAD = new ConcurrentHashMap<>();
     private static final ThreadLocal<Browser> THREAD_LOCAL_BROWSER = new ThreadLocal<>();
@@ -66,20 +62,15 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
 
     @Override
     public void beforeAll(ExtensionContext context) {
-        int count = ACTIVE_TEST_CLASSES.incrementAndGet();
-        long threadId = Thread.currentThread().getId();
-        log.info("[BROWSER] Test class starting on thread {}, active classes: {}", threadId, count);
+        ACTIVE_TEST_CLASSES.incrementAndGet();
     }
 
     @Override
     public void afterAll(ExtensionContext context) {
         int count = ACTIVE_TEST_CLASSES.decrementAndGet();
-        long threadId = Thread.currentThread().getId();
-        log.info("[BROWSER] Test class finished on thread {}, active classes: {}", threadId, count);
-        
+
         // Clean up all browsers when last test class finishes
         if (count == 0) {
-            log.info("[BROWSER] Cleaning up all browsers");
             BROWSERS_BY_THREAD.values().forEach(BrowserResource::close);
             BROWSERS_BY_THREAD.clear();
         }
@@ -137,8 +128,7 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
         
         public BrowserResource(long threadId) {
             this.threadId = threadId;
-            long start = System.currentTimeMillis();
-            
+
             this.playwright = Playwright.create();
             
             var launchOptions = new BrowserType.LaunchOptions()
@@ -146,8 +136,6 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
                     .setSlowMo(SLOW_MO_MS);
 
             this.browser = playwright.chromium().launch(launchOptions);
-            
-            log.info("[PERF] Browser creation for thread {} took {}ms", threadId, System.currentTimeMillis() - start);
         }
         
         public Browser getBrowser() {
@@ -155,12 +143,11 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
         }
         
         public void close() {
-            log.info("[CLEANUP] Closing browser for thread {}", threadId);
             if (browser != null) {
                 try {
                     browser.close();
                 } catch (Exception e) {
-                    log.warn("[WARN] Error closing browser: {}", e.getMessage());
+                    // Ignore
                 }
             }
             if (playwright != null) {
