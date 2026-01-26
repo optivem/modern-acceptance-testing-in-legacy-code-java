@@ -6,7 +6,7 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import java.time.Instant;
 
-public class BrowseCouponsVerification extends ResponseVerification<BrowseCouponsResponse, UseCaseContext> {
+public class BrowseCouponsVerification extends ResponseVerification<BrowseCouponsResponse> {
 
     public BrowseCouponsVerification(BrowseCouponsResponse response, UseCaseContext context) {
         super(response, context);

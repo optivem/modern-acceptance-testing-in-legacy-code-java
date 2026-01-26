@@ -1,13 +1,13 @@
 package com.optivem.commons.dsl;
 
-public abstract class BaseUseCase<TDriver, TContext, TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> implements UseCase<UseCaseResult<TSuccessResponse, TFailureResponse, TContext, TSuccessVerification, TFailureVerification>> {
+public abstract class BaseUseCase<TDriver, TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> implements UseCase<UseCaseResult<TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification>> {
     protected final TDriver driver;
-    protected final TContext context;
+    protected final UseCaseContext context;
 
-    protected BaseUseCase(TDriver driver, TContext context) {
+    protected BaseUseCase(TDriver driver, UseCaseContext context) {
         this.driver = driver;
         this.context = context;
     }
 
-    public abstract UseCaseResult<TSuccessResponse, TFailureResponse, TContext, TSuccessVerification, TFailureVerification> execute();
+    public abstract UseCaseResult<TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> execute();
 }

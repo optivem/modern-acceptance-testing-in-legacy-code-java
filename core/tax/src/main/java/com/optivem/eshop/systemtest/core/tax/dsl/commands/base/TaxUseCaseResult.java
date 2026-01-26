@@ -8,8 +8,8 @@ import com.optivem.commons.dsl.UseCaseResult;
 
 import java.util.function.BiFunction;
 
-public class TaxUseCaseResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse, UseCaseContext>>
-        extends UseCaseResult<TSuccessResponse, TaxErrorResponse, UseCaseContext, TSuccessVerification, TaxErrorVerification> {
+public class TaxUseCaseResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+        extends UseCaseResult<TSuccessResponse, TaxErrorResponse, TSuccessVerification, TaxErrorVerification> {
 
     public TaxUseCaseResult(
             Result<TSuccessResponse, TaxErrorResponse> result,

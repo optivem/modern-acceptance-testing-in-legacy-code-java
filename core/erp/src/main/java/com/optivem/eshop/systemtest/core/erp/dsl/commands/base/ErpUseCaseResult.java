@@ -8,7 +8,7 @@ import com.optivem.commons.dsl.UseCaseResult;
 import java.util.function.BiFunction;
 
 public class ErpUseCaseResult<TSuccessResponse, TSuccessVerification>
-        extends UseCaseResult<TSuccessResponse, ErpErrorResponse, UseCaseContext, TSuccessVerification, ErpErrorVerification> {
+        extends UseCaseResult<TSuccessResponse, ErpErrorResponse, TSuccessVerification, ErpErrorVerification> {
 
     public ErpUseCaseResult(
             Result<TSuccessResponse, ErpErrorResponse> result,

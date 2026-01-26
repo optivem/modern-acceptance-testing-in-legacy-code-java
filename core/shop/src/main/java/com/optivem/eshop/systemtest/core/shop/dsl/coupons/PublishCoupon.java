@@ -8,7 +8,7 @@ import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
 
-public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCaseContext>> {
+public class PublishCoupon extends BaseShopCommand<Void, VoidVerification> {
     private String couponCodeParamAlias;
     private String discountRate;
     private String validFrom;
@@ -45,7 +45,7 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification<UseCas
     }
 
     @Override
-    public ShopUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public ShopUseCaseResult<Void, VoidVerification> execute() {
         var couponCode = context.getParamValue(couponCodeParamAlias);
 
         var request = PublishCouponRequest.builder()

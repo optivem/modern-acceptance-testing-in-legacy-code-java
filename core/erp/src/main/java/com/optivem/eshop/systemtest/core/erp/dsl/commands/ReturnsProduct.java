@@ -8,7 +8,7 @@ import com.optivem.commons.util.Converter;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
-public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification<UseCaseContext>> {
+public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification> {
     private String skuParamAlias;
     private String unitPrice;
 
@@ -32,7 +32,7 @@ public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification<UseCas
     }
 
     @Override
-    public ErpUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public ErpUseCaseResult<Void, VoidVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
 
         var request = ReturnsProductRequest.builder()

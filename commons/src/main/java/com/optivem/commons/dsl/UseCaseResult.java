@@ -3,20 +3,21 @@ package com.optivem.commons.dsl;
 import com.optivem.commons.util.Result;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class UseCaseResult<TSuccessResponse, TFailureResponse, TContext, TSuccessVerification, TFailureVerification> {
+public class UseCaseResult<TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> {
     private final Result<TSuccessResponse, TFailureResponse> result;
-    private final TContext context;
-    private final BiFunction<TSuccessResponse, TContext, TSuccessVerification> verificationFactory;
-    private final BiFunction<TFailureResponse, TContext, TFailureVerification> failureVerificationFactory;
+    private final UseCaseContext context;
+    private final BiFunction<TSuccessResponse, UseCaseContext, TSuccessVerification> verificationFactory;
+    private final BiFunction<TFailureResponse, UseCaseContext, TFailureVerification> failureVerificationFactory;
 
     public UseCaseResult(
             Result<TSuccessResponse, TFailureResponse> result,
-            TContext context,
-            BiFunction<TSuccessResponse, TContext, TSuccessVerification> verificationFactory,
-            BiFunction<TFailureResponse, TContext, TFailureVerification> failureVerificationFactory) {
+            UseCaseContext context,
+            BiFunction<TSuccessResponse, UseCaseContext, TSuccessVerification> verificationFactory,
+            BiFunction<TFailureResponse, UseCaseContext, TFailureVerification> failureVerificationFactory) {
         this.result = result;
         this.context = context;
         this.verificationFactory = verificationFactory;

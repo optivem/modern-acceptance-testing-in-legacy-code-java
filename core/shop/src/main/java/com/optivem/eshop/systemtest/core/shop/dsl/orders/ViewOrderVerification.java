@@ -10,7 +10,7 @@ import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ViewOrderVerification extends ResponseVerification<ViewOrderResponse, UseCaseContext> {
+public class ViewOrderVerification extends ResponseVerification<ViewOrderResponse> {
 
     public ViewOrderVerification(ViewOrderResponse response, UseCaseContext context) {
         super(response, context);

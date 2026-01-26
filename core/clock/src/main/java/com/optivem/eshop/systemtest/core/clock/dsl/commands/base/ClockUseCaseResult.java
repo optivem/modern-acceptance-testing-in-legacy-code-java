@@ -6,12 +6,13 @@ import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.UseCaseResult;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class ClockUseCaseResult<TSuccessResponse, TSuccessVerification>
-        extends UseCaseResult<TSuccessResponse, ClockErrorResponse, UseCaseContext, TSuccessVerification, ClockErrorVerification> {
-    public ClockUseCaseResult(Result<TSuccessResponse, ClockErrorResponse> result, 
-                              UseCaseContext useCaseContext, 
+        extends UseCaseResult<TSuccessResponse, ClockErrorResponse, TSuccessVerification, ClockErrorVerification> {
+    public ClockUseCaseResult(Result<TSuccessResponse, ClockErrorResponse> result,
+                              UseCaseContext context,
                               BiFunction<TSuccessResponse, UseCaseContext, TSuccessVerification> verificationFactory) {
-        super(result, useCaseContext, verificationFactory, ClockErrorVerification::new);
+        super(result, context, verificationFactory, ClockErrorVerification::new);
     }
 }

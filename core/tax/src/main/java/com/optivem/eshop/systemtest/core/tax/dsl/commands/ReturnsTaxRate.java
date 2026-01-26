@@ -8,7 +8,7 @@ import com.optivem.commons.util.Converter;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
-public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification<UseCaseContext>> {
+public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification> {
     private String countryAlias;
     private String taxRate;
 
@@ -31,7 +31,7 @@ public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification<UseCas
     }
 
     @Override
-    public TaxUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public TaxUseCaseResult<Void, VoidVerification> execute() {
         var country = context.getParamValueOrLiteral(countryAlias);
 
         var request = ReturnsTaxRateRequest.builder()

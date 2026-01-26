@@ -6,13 +6,13 @@ import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
-public class GoToErp extends BaseErpCommand<Void, VoidVerification<UseCaseContext>> {
+public class GoToErp extends BaseErpCommand<Void, VoidVerification> {
     public GoToErp(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
     }
 
     @Override
-    public ErpUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public ErpUseCaseResult<Void, VoidVerification> execute() {
         var result = driver.goToErp();
         return new ErpUseCaseResult<>(result, context, VoidVerification::new);
     }

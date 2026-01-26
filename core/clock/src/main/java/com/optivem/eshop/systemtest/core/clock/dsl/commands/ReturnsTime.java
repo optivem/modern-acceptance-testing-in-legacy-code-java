@@ -9,7 +9,7 @@ import com.optivem.commons.dsl.VoidVerification;
 
 import java.time.Instant;
 
-public class ReturnsTime extends BaseClockCommand<Void, VoidVerification<UseCaseContext>> {
+public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
 
     private String time;
 
@@ -23,17 +23,13 @@ public class ReturnsTime extends BaseClockCommand<Void, VoidVerification<UseCase
     }
 
     @Override
-    public ClockUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public ClockUseCaseResult<Void, VoidVerification> execute() {
         var request = ReturnsTimeRequest.builder()
             .time(time)
             .build();
 
         var result = driver.returnsTime(request);
 
-        return new ClockUseCaseResult<>(
-            result,
-            context,
-            VoidVerification::new
-        );
+        return new ClockUseCaseResult<>(result,  context, VoidVerification::new);
     }
 }

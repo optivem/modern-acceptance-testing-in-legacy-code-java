@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GetTaxVerification extends ResponseVerification<GetTaxResponse, UseCaseContext> {
+public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
 
     public GetTaxVerification(GetTaxResponse response, UseCaseContext context) {
         super(response, context);

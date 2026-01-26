@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorRespo
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 
-public class ClockErrorVerification extends ResponseVerification<ClockErrorResponse, UseCaseContext> {
+public class ClockErrorVerification extends ResponseVerification<ClockErrorResponse> {
     public ClockErrorVerification(ClockErrorResponse clockErrorResponse, UseCaseContext useCaseContext) {
         super(clockErrorResponse, useCaseContext);
     }

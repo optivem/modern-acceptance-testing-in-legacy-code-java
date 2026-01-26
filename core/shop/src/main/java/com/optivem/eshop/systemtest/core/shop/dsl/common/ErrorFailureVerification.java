@@ -6,7 +6,7 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ErrorFailureVerification extends ResponseVerification<SystemError, UseCaseContext> {
+public class ErrorFailureVerification extends ResponseVerification<SystemError> {
 
     public ErrorFailureVerification(SystemError error, UseCaseContext context) {
         super(error, context);

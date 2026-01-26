@@ -6,13 +6,13 @@ import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.ClockUseCaseRes
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
-public class GoToClock extends BaseClockCommand<Void, VoidVerification<UseCaseContext>> {
+public class GoToClock extends BaseClockCommand<Void, VoidVerification> {
     public GoToClock(ClockDriver clockDriver, UseCaseContext useCaseContext) {
         super(clockDriver, useCaseContext);
     }
 
     @Override
-    public ClockUseCaseResult<Void, VoidVerification<UseCaseContext>> execute() {
+    public ClockUseCaseResult<Void, VoidVerification> execute() {
         var result = driver.goToClock();
         return new ClockUseCaseResult<>(result, context, VoidVerification::new);
     }

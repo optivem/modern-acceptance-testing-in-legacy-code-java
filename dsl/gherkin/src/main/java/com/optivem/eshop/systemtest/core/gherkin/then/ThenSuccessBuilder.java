@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrderVerification;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 
-public class ThenSuccessBuilder<TVerification extends ResponseVerification<?, UseCaseContext>> extends BaseThenBuilder {
+public class ThenSuccessBuilder<TVerification extends ResponseVerification<?>> extends BaseThenBuilder {
     private final TVerification successVerification;
 
     public ThenSuccessBuilder(ThenClause thenClause, TVerification successVerification) {

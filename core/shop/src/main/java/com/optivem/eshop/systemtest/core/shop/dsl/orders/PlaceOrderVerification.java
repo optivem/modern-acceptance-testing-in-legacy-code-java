@@ -6,7 +6,7 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PlaceOrderVerification extends ResponseVerification<PlaceOrderResponse, UseCaseContext> {
+public class PlaceOrderVerification extends ResponseVerification<PlaceOrderResponse> {
 
     public PlaceOrderVerification(PlaceOrderResponse response, UseCaseContext context) {
         super(response, context);

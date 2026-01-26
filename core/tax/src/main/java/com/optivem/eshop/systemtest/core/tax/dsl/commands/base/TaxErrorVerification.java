@@ -6,7 +6,7 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class TaxErrorVerification extends ResponseVerification<TaxErrorResponse, UseCaseContext> {
+public class TaxErrorVerification extends ResponseVerification<TaxErrorResponse> {
 
     public TaxErrorVerification(TaxErrorResponse error, UseCaseContext context) {
         super(error, context);

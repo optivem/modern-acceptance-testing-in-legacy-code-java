@@ -1,8 +1,8 @@
 package com.optivem.commons.dsl;
 
-public class VoidVerification<TContext> extends ResponseVerification<Void, TContext> {
+public class VoidVerification extends ResponseVerification<Void> {
 
-    public VoidVerification(Void response, TContext context) {
+    public VoidVerification(Void response, UseCaseContext context) {
         super(response, context);
     }
 }
