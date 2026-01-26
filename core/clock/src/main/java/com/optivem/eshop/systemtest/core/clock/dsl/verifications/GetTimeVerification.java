@@ -28,6 +28,11 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse, U
         return this;
     }
 
+    public GetTimeVerification time(String expectedTime) {
+        return time(Instant.parse(expectedTime));
+    }
+
+
     public GetTimeVerification timeIsAfter(Instant time) {
         assertThat(response.getTime())
                 .withFailMessage("Expected time %s to be after %s", response.getTime(), time)
@@ -48,7 +53,5 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse, U
                 .isBetween(start, end);
         return this;
     }
-
-
 }
 

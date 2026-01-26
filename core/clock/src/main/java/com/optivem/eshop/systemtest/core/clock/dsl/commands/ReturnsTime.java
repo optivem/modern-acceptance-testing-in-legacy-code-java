@@ -11,19 +11,15 @@ import java.time.Instant;
 
 public class ReturnsTime extends BaseClockCommand<Void, VoidVerification<UseCaseContext>> {
 
-    private Instant time;
+    private String time;
 
     public ReturnsTime(ClockDriver driver, UseCaseContext context) {
         super(driver, context);
     }
 
-    public ReturnsTime time(Instant time) {
+    public ReturnsTime time(String time) {
         this.time = time;
         return this;
-    }
-
-    public ReturnsTime time(String time) {
-        return time(Instant.parse(time));
     }
 
     @Override

@@ -15,14 +15,14 @@ public class ClockStubContractTest extends BaseClockContractTest {
     @Test
     void shouldBeAbleToGetConfiguredTime() {
         app.clock().returnsTime()
-                .time(Instant.parse("2024-01-02T09:00:00Z"))
+                .time("2024-01-02T09:00:00Z")
                 .execute()
                 .shouldSucceed();
 
         app.clock().getTime()
                 .execute()
                 .shouldSucceed()
-                .time(Instant.parse("2024-01-02T09:00:00Z"));
+                .time("2024-01-02T09:00:00Z");
     }
 }
 

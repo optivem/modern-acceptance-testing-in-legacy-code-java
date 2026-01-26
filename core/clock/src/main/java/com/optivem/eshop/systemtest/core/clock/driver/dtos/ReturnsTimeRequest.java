@@ -12,5 +12,5 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReturnsTimeRequest {
-    Instant time;
+    String time;
 }

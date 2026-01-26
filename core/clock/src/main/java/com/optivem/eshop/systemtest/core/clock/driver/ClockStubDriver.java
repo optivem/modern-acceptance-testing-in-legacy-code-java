@@ -8,6 +8,8 @@ import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorRespo
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
+import java.time.Instant;
+
 
 public class ClockStubDriver implements ClockDriver {
 
@@ -34,8 +36,10 @@ public class ClockStubDriver implements ClockDriver {
 
     @Override
     public Result<Void, ClockErrorResponse> returnsTime(ReturnsTimeRequest request) {
+        var time = Instant.parse(request.getTime());
+
         var extResponse = ExtGetTimeResponse.builder()
-                .time(request.getTime())
+                .time(time)
                 .build();
 
         return client.configureGetTime(extResponse)
