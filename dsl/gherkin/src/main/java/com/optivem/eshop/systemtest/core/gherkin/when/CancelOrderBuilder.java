@@ -1,13 +1,15 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
+import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
+import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.then.ThenClause;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
-public class CancelOrderBuilder extends BaseWhenBuilder {
+public class CancelOrderBuilder extends BaseWhenBuilder<Void, VoidVerification> {
     private String orderNumber;
 
     public CancelOrderBuilder(SystemDsl app, ScenarioDsl scenario) {
@@ -21,12 +23,12 @@ public class CancelOrderBuilder extends BaseWhenBuilder {
     }
 
     @Override
-    protected ExecutionResult execute(SystemDsl app) {
+    protected ExecutionResult<Void, VoidVerification> execute(SystemDsl app) {
         var result = app.shop().cancelOrder()
                 .orderNumber(orderNumber)
                 .execute();
 
-        return ExecutionResult.builder(result)
+        return new ExecutionResultBuilder<>(result)
                 .orderNumber(orderNumber)
                 .build();
     }

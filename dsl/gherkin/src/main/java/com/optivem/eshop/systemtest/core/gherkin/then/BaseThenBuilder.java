@@ -1,13 +1,15 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
-public abstract class BaseThenBuilder {
-    private final ThenClause thenClause;
+import com.optivem.commons.dsl.ResponseVerification;
 
-    protected BaseThenBuilder(ThenClause thenClause) {
+public abstract class BaseThenBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
+    private final ThenClause<TSuccessResponse, TSuccessVerification> thenClause;
+
+    protected BaseThenBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause) {
         this.thenClause = thenClause;
     }
 
-    public ThenClause and() {
+    public ThenClause<TSuccessResponse, TSuccessVerification> and() {
         return thenClause;
     }
 }

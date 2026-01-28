@@ -4,9 +4,12 @@ import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
+import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.core.shop.dsl.orders.PlaceOrderVerification;
 
-public class PlaceOrderBuilder extends BaseWhenBuilder {
+public class PlaceOrderBuilder extends BaseWhenBuilder<PlaceOrderResponse, PlaceOrderVerification> {
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -56,7 +59,7 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
     }
 
     @Override
-    protected ExecutionResult execute(SystemDsl app) {
+    protected ExecutionResult<PlaceOrderResponse, PlaceOrderVerification> execute(SystemDsl app) {
         var result = app.shop().placeOrder()
                 .orderNumber(orderNumber)
                 .sku(sku)
@@ -65,7 +68,7 @@ public class PlaceOrderBuilder extends BaseWhenBuilder {
                 .couponCode(couponCode)
                 .execute();
 
-        return ExecutionResult.builder(result)
+        return new ExecutionResultBuilder<>(result)
                 .orderNumber(orderNumber)
                 .couponCode(couponCode)
                 .build();

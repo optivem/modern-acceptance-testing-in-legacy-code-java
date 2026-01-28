@@ -4,15 +4,16 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrderVerification;
 import com.optivem.commons.dsl.ResponseVerification;
 
-public class ThenSuccessBuilder<TVerification extends ResponseVerification<?>> extends BaseThenBuilder {
-    private final TVerification successVerification;
+public class ThenSuccessBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+        extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {
+    private final TSuccessVerification successVerification;
 
-    public ThenSuccessBuilder(ThenClause thenClause, TVerification successVerification) {
+    public ThenSuccessBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause, TSuccessVerification successVerification) {
         super(thenClause);
         this.successVerification = successVerification;
     }
 
-    public ThenSuccessBuilder<TVerification> hasOrderNumberPrefix(String prefix) {
+    public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String prefix) {
         if (successVerification instanceof PlaceOrderVerification verification) {
             verification.orderNumberStartsWith(prefix);
         } else if(successVerification instanceof ViewOrderVerification verification) {

@@ -1,28 +1,29 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
+import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 
-public class ThenClause {
+public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
     private final ScenarioDsl scenario;
-    private final ExecutionResult executionResult;
+    private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
 
 
-    public ThenClause(SystemDsl app, ScenarioDsl scenario, ExecutionResult executionResult) {
+    public ThenClause(SystemDsl app, ScenarioDsl scenario, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
         this.app = app;
         this.scenario = scenario;
         this.executionResult = executionResult;
     }
 
-    public ThenSuccessBuilder<?> shouldSucceed() {
+    public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> shouldSucceed() {
         if (executionResult == null) {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
         scenario.markAsExecuted();
         var successVerification = executionResult.getResult().shouldSucceed();
-        return new ThenSuccessBuilder<>(this, successVerification);
+        return new ThenSuccessBuilder<TSuccessResponse, TSuccessVerification>(this, successVerification);
     }
 
     public ThenFailureBuilder shouldFail() {
