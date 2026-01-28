@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrderVerification;
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.UseCaseContext;
 
 public class ThenSuccessBuilder<TVerification extends ResponseVerification<?>> extends BaseThenBuilder {
     private final TVerification successVerification;

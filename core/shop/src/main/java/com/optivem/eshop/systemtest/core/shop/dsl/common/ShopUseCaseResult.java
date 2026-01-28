@@ -9,12 +9,12 @@ import com.optivem.commons.dsl.UseCaseResult;
 import java.util.function.BiFunction;
 
 public class ShopUseCaseResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends UseCaseResult<TSuccessResponse, SystemError, TSuccessVerification, ErrorFailureVerification> {
+        extends UseCaseResult<TSuccessResponse, SystemError, TSuccessVerification, SystemErrorFailureVerification> {
 
     public ShopUseCaseResult(
             Result<TSuccessResponse, SystemError> result,
             UseCaseContext context,
             BiFunction<TSuccessResponse, UseCaseContext, TSuccessVerification> verificationFactory) {
-        super(result, context, verificationFactory, ErrorFailureVerification::new);
+        super(result, context, verificationFactory, SystemErrorFailureVerification::new);
     }
 }

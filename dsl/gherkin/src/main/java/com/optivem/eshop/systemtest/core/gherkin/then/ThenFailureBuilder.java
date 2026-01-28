@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
-import com.optivem.eshop.systemtest.core.shop.dsl.common.ErrorFailureVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.common.SystemErrorFailureVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
 
 public class ThenFailureBuilder extends BaseThenBuilder {
-    private final ErrorFailureVerification failureVerification;
+    private final SystemErrorFailureVerification failureVerification;
 
     public ThenFailureBuilder(ThenClause thenClause, ShopUseCaseResult<?, ?> result) {
         super(thenClause);

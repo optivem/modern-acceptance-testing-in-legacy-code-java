@@ -6,13 +6,13 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ErrorFailureVerification extends ResponseVerification<SystemError> {
+public class SystemErrorFailureVerification extends ResponseVerification<SystemError> {
 
-    public ErrorFailureVerification(SystemError error, UseCaseContext context) {
+    public SystemErrorFailureVerification(SystemError error, UseCaseContext context) {
         super(error, context);
     }
 
-    public ErrorFailureVerification errorMessage(String expectedMessage) {
+    public SystemErrorFailureVerification errorMessage(String expectedMessage) {
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
         var error = getResponse();
         var errorMessage = error.getMessage();
@@ -22,7 +22,7 @@ public class ErrorFailureVerification extends ResponseVerification<SystemError> 
         return this;
     }
 
-    public ErrorFailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
+    public SystemErrorFailureVerification fieldErrorMessage(String expectedField, String expectedMessage) {
         var expandedExpectedField = getContext().expandAliases(expectedField);
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
         var error = getResponse();
