@@ -11,15 +11,15 @@ public class WhenClause {
     private boolean hasProduct;
     private boolean hasTaxRate;
 
-    public WhenClause(SystemDsl app, ScenarioDsl scenario) {
-        this(app, scenario, false, false);
-    }
-
     public WhenClause(SystemDsl app, ScenarioDsl scenario, boolean hasProduct, boolean hasTaxRate) {
         this.app = app;
         this.scenario = scenario;
         this.hasProduct = hasProduct;
         this.hasTaxRate = hasTaxRate;
+    }
+
+    public WhenClause(SystemDsl app, ScenarioDsl scenario) {
+        this(app, scenario, false, false);
     }
 
     private void ensureDefaults() {

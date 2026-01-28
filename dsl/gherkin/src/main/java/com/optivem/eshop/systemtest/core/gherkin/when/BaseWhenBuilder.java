@@ -14,9 +14,9 @@ public abstract class BaseWhenBuilder<TSuccessResponse, TSuccessVerification ext
         this.app = app;
         this.scenario = scenario;
     }
-    public ThenClause then() {
+    public ThenClause<TSuccessResponse, TSuccessVerification> then() {
         var result = execute(app);
-        return new ThenClause(app, scenario, result);
+        return new ThenClause<>(app, scenario, result);
     }
 
     protected abstract ExecutionResult<TSuccessResponse, TSuccessVerification> execute(SystemDsl app);
