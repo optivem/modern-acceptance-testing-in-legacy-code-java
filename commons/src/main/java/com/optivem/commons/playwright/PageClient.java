@@ -6,8 +6,6 @@ import com.microsoft.playwright.options.WaitForSelectorState;
 
 import java.util.List;
 
-import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
-
 public class PageClient {
     // Increased default timeout for parallel test execution
     private static final int DEFAULT_TIMEOUT_SECONDS = 30;

@@ -1,5 +1,6 @@
 package com.optivem.commons.http;
 
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.optivem.commons.util.Closer;
@@ -35,6 +36,7 @@ public class JsonHttpClient<E> implements AutoCloseable {
     private static ObjectMapper createObjectMapper() {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
+        mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES);
         return mapper;
     }
 
@@ -55,15 +57,15 @@ public class JsonHttpClient<E> implements AutoCloseable {
         return getResultOrFailure(httpResponse, Void.class);
     }
 
-    public <T> Result<T, E> post(String path, Object requestBody, Class<T> responseType) {
-        var httpResponse = doPost(path, requestBody);
+    public <T> Result<T, E> post(String path, Object request, Class<T> responseType) {
+        var httpResponse = doPost(path, request);
         return getResultOrFailure(httpResponse, responseType);
     }
 
     // POST Methods
 
-    public <T> Result<Void, E> post(String path, Object requestBody) {
-        var httpResponse = doPost(path, requestBody);
+    public <T> Result<Void, E> post(String path, Object request) {
+        var httpResponse = doPost(path, request);
         return getResultOrFailure(httpResponse, Void.class);
     }
 
@@ -77,9 +79,29 @@ public class JsonHttpClient<E> implements AutoCloseable {
         return getResultOrFailure(httpResponse, Void.class);
     }
 
-    // TODO: VJ: Add PUT, DELETE methods as needed
+    // PUT Methods
 
-    // TODO: VJ: Add isolated tests for JsonHttpClient
+    public <T> Result<T, E> put(String path, Object request, Class<T> responseType) {
+        var httpResponse = doPut(path, request);
+        return getResultOrFailure(httpResponse, responseType);
+    }
+
+    public Result<Void, E> put(String path, Object request) {
+        var httpResponse = doPut(path, request);
+        return getResultOrFailure(httpResponse, Void.class);
+    }
+
+    // DELETE Methods
+
+    public <T> Result<T, E> delete(String path, Class<T> responseType) {
+        var httpResponse = doDelete(path);
+        return getResultOrFailure(httpResponse, responseType);
+    }
+
+    public Result<Void, E> delete(String path) {
+        var httpResponse = doDelete(path);
+        return getResultOrFailure(httpResponse, Void.class);
+    }
 
     // Private helper methods
 
@@ -93,37 +115,61 @@ public class JsonHttpClient<E> implements AutoCloseable {
 
     private HttpResponse<String> doGet(String path) {
         var uri = getUri(path);
-        var request = HttpRequest.newBuilder()
+        var httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
                 .build();
 
-        return sendRequest(request);
+        return sendRequest(httpRequest);
     }
 
-    private HttpResponse<String> doPost(String path, Object requestBody) {
+    private HttpResponse<String> doPost(String path, Object request) {
         var uri = getUri(path);
-        var jsonBody = serializeRequest(requestBody);
+        var jsonBody = serializeRequest(request);
 
-        var request = HttpRequest.newBuilder()
+        var httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .header(CONTENT_TYPE, APPLICATION_JSON)
                 .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                 .build();
 
-        return sendRequest(request);
+        return sendRequest(httpRequest);
     }
 
     private HttpResponse<String> doPost(String path) {
         var uri = getUri(path);
 
-        var request = HttpRequest.newBuilder()
+        var httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .header(CONTENT_TYPE, APPLICATION_JSON)
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
-        return sendRequest(request);
+        return sendRequest(httpRequest);
+    }
+
+    private HttpResponse<String> doPut(String path, Object request) {
+        var uri = getUri(path);
+        var jsonBody = serializeRequest(request);
+
+        var httpRequest = HttpRequest.newBuilder()
+                .uri(uri)
+                .header(CONTENT_TYPE, APPLICATION_JSON)
+                .PUT(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        return sendRequest(httpRequest);
+    }
+
+    private HttpResponse<String> doDelete(String path) {
+        var uri = getUri(path);
+
+        var httpRequest = HttpRequest.newBuilder()
+                .uri(uri)
+                .DELETE()
+                .build();
+
+        return sendRequest(httpRequest);
     }
 
     private HttpResponse<String> sendRequest(HttpRequest httpRequest) {
