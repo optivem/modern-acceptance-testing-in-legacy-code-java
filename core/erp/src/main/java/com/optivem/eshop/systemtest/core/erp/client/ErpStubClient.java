@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.erp.client;
 
 
 import com.github.tomakehurst.wiremock.client.WireMock;
+import com.optivem.commons.http.HttpStatus;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
 import com.optivem.commons.util.Result;
@@ -20,7 +21,7 @@ public class ErpStubClient extends BaseErpClient {
 
     public Result<Void, ExtErpErrorResponse> configureGetProduct(ExtProductDetailsResponse response) {
         var sku = response.getId();
-        return wireMockClient.stubGet("/erp/api/products/" + sku, 200, response)
+        return wireMockClient.stubGet("/erp/api/products/" + sku, HttpStatus.OK, response)
                 .mapError(ExtErpErrorResponse::new);
     }
 }

@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.core.clock.client;
 
+import com.optivem.commons.http.HttpStatus;
 import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
@@ -32,7 +33,7 @@ public class ClockStubClient implements AutoCloseable {
     }
 
     public Result<Void, ExtClockErrorResponse> configureGetTime(ExtGetTimeResponse response) {
-        return wireMockClient.stubGet("/clock/api/time", 200, response)
+        return wireMockClient.stubGet("/clock/api/time", HttpStatus.OK, response)
                 .mapError(ExtClockErrorResponse::new);
     }
 
