@@ -53,6 +53,22 @@ public class JsonWireMockClient {
         return runOnVirtualThread(() -> performStubRegistration(path, statusCode, response, WireMock::delete, "DELETE"));
     }
 
+    public Result<Void, String> stubGet(String path, int statusCode) {
+        return runOnVirtualThread(() -> performStubRegistrationWithoutBody(path, statusCode, WireMock::get, "GET"));
+    }
+
+    public Result<Void, String> stubPost(String path, int statusCode) {
+        return runOnVirtualThread(() -> performStubRegistrationWithoutBody(path, statusCode, WireMock::post, "POST"));
+    }
+
+    public Result<Void, String> stubPut(String path, int statusCode) {
+        return runOnVirtualThread(() -> performStubRegistrationWithoutBody(path, statusCode, WireMock::put, "PUT"));
+    }
+
+    public Result<Void, String> stubDelete(String path, int statusCode) {
+        return runOnVirtualThread(() -> performStubRegistrationWithoutBody(path, statusCode, WireMock::delete, "DELETE"));
+    }
+
     private Result<Void, String> runOnVirtualThread(Supplier<Result<Void, String>> work) {
         try {
             // Execute WireMock operations on virtual thread for non-blocking I/O
@@ -76,6 +92,28 @@ public class JsonWireMockClient {
                 .withStatus(statusCode)
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .withBody(responseBody)));
+
+        var mappings = wireMock.allStubMappings();
+        var registered = mappings.getMappings().stream()
+            .anyMatch(m -> methodName.equals(m.getRequest().getMethod().getName())
+                && m.getRequest().getUrlPath().equals(path));
+
+        if (!registered) {
+            return Result.failure("Failed to register stub for " + methodName + " " + path);
+        }
+
+        return Result.success();
+    }
+
+    private Result<Void, String> performStubRegistrationWithoutBody(
+        String path,
+        int statusCode,
+        Function<UrlPathPattern, MappingBuilder> methodBuilder,
+        String methodName
+    ) {
+        wireMock.register(methodBuilder.apply(urlPathEqualTo(path))
+            .willReturn(aResponse()
+                .withStatus(statusCode)));
 
         var mappings = wireMock.allStubMappings();
         var registered = mappings.getMappings().stream()
