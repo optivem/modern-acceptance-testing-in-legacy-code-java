@@ -1,19 +1,19 @@
 package com.optivem.commons.dsl;
 
 public class ResponseVerification<TResponse> {
-    protected final TResponse response;
-    protected final UseCaseContext context;
+    private final TResponse response;
+    private final UseCaseContext context;
 
     public ResponseVerification(TResponse response, UseCaseContext context) {
         this.response = response;
         this.context = context;
     }
 
-    public TResponse getResponse() {
+    protected TResponse getResponse() {
         return response;
     }
 
-    public UseCaseContext getContext() {
+    protected UseCaseContext getContext() {
         return context;
     }
 }

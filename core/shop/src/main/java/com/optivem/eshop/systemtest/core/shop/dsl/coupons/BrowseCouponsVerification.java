@@ -67,19 +67,19 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     }
 
     private BrowseCouponsResponse.CouponDto findCouponByCode(String couponCodeAlias) {
-        if (response == null || response.getCoupons() == null) {
+        if (getResponse() == null || getResponse().getCoupons() == null) {
             throw new AssertionError("No coupons found in response");
         }
 
-        var couponCode = context.getParamValue(couponCodeAlias);
+        var couponCode = getContext().getParamValue(couponCodeAlias);
 
-        return response.getCoupons().stream()
+        return getResponse().getCoupons().stream()
                 .filter(c -> couponCode.equals(c.getCode()))
                 .findFirst()
                 .orElseThrow(() -> new AssertionError(
                         String.format("Coupon with code '%s' not found. Available coupons: %s",
                                 couponCode,
-                                response.getCoupons().stream()
+                                getResponse().getCoupons().stream()
                                         .map(BrowseCouponsResponse.CouponDto::getCode)
                                         .toList())));
     }

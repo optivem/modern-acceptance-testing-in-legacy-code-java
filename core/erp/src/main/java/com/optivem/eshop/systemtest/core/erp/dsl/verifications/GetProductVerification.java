@@ -16,8 +16,8 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
     }
 
     public GetProductVerification sku(String skuParamAlias) {
-        var expectedSku = context.getParamValue(skuParamAlias);
-        var actualSku = response.getSku();
+        var expectedSku = getContext().getParamValue(skuParamAlias);
+        var actualSku = getResponse().getSku();
         assertThat(actualSku)
                 .withFailMessage("Expected SKU to be '%s', but was '%s'", expectedSku, actualSku)
                 .isEqualTo(expectedSku);
@@ -25,7 +25,7 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
     }
 
     public GetProductVerification price(BigDecimal expectedPrice) {
-        var actualPrice = response.getPrice();
+        var actualPrice = getResponse().getPrice();
         assertThat(actualPrice)
                 .withFailMessage("Expected price to be %s, but was %s", expectedPrice, actualPrice)
                 .isEqualTo(expectedPrice);

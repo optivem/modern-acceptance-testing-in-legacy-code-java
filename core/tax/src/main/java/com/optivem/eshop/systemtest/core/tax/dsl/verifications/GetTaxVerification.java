@@ -16,8 +16,8 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
     }
 
     public GetTaxVerification country(String expectedCountryAlias) {
-        var expectedCountry = context.getParamValueOrLiteral(expectedCountryAlias);
-        var actualCountry = response.getCountry();
+        var expectedCountry = getContext().getParamValueOrLiteral(expectedCountryAlias);
+        var actualCountry = getResponse().getCountry();
         assertThat(actualCountry)
                 .withFailMessage("Expected country to be '%s', but was '%s'", expectedCountryAlias, actualCountry)
                 .isEqualTo(expectedCountry);
@@ -25,12 +25,12 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
     }
 
     public GetTaxVerification countryFromParam(String countryParamAlias) {
-        var expectedCountry = context.getParamValue(countryParamAlias);
+        var expectedCountry = getContext().getParamValue(countryParamAlias);
         return country(expectedCountry);
     }
 
     public GetTaxVerification taxRate(BigDecimal expectedTaxRate) {
-        var actualTaxRate = response.getTaxRate();
+        var actualTaxRate = getResponse().getTaxRate();
         assertThat(actualTaxRate)
                 .withFailMessage("Expected tax rate to be %s, but was %s", expectedTaxRate, actualTaxRate)
                 .isEqualTo(expectedTaxRate);
@@ -46,7 +46,7 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
     }
 
     public GetTaxVerification taxRateIsPositive() {
-        var actualTaxRate = response.getTaxRate();
+        var actualTaxRate = getResponse().getTaxRate();
         assertThat(actualTaxRate)
                 .withFailMessage("Expected tax rate to be positive, but was %s", actualTaxRate)
                 .isPositive();

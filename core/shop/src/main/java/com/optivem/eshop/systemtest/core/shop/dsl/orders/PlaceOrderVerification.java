@@ -13,8 +13,8 @@ public class PlaceOrderVerification extends ResponseVerification<PlaceOrderRespo
     }
 
     public PlaceOrderVerification orderNumber(String orderNumberResultAlias) {
-        var expectedOrderNumber = context.getResultValue(orderNumberResultAlias);
-        var actualOrderNumber = response.getOrderNumber();
+        var expectedOrderNumber = getContext().getResultValue(orderNumberResultAlias);
+        var actualOrderNumber = getResponse().getOrderNumber();
         assertThat(actualOrderNumber)
                 .withFailMessage("Expected order number to be '%s', but was '%s'", expectedOrderNumber, actualOrderNumber)
                 .isEqualTo(expectedOrderNumber);
@@ -22,7 +22,7 @@ public class PlaceOrderVerification extends ResponseVerification<PlaceOrderRespo
     }
 
     public PlaceOrderVerification orderNumberStartsWith(String prefix) {
-        var actualOrderNumber = response.getOrderNumber();
+        var actualOrderNumber = getResponse().getOrderNumber();
         assertThat(actualOrderNumber)
                 .withFailMessage("Expected order number to start with '%s', but was '%s'", prefix, actualOrderNumber)
                 .startsWith(prefix);
