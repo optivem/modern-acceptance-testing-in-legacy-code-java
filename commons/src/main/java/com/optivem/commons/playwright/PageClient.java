@@ -14,14 +14,14 @@ public class PageClient {
     private final String baseUrl;
     private final int timeoutMilliseconds;
 
-    private PageClient(Builder builder) {
-        this.page = builder.page;
-        this.baseUrl = builder.baseUrl;
-        this.timeoutMilliseconds = builder.timeoutMilliseconds;
+    public PageClient(Page page) {
+        this(page, null, DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
-    public static Builder builder(Page page) {
-        return new Builder(page);
+    public PageClient(Page page, String baseUrl, int timeoutMilliseconds) {
+        this.page = page;
+        this.baseUrl = baseUrl;
+        this.timeoutMilliseconds = timeoutMilliseconds;
     }
 
     public void fill(String selector, String value) {
@@ -77,33 +77,10 @@ public class PageClient {
         var waitForOptions = getDefaultWaitForOptions();
         return getLocator(selector, waitForOptions);
     }
+
     private Locator.WaitForOptions getDefaultWaitForOptions() {
         return new Locator.WaitForOptions()
                 .setState(WaitForSelectorState.VISIBLE)
                 .setTimeout(timeoutMilliseconds);
-    }
-
-    public static class Builder {
-        private final Page page;
-        private String baseUrl = null;
-        private int timeoutMilliseconds = DEFAULT_TIMEOUT_MILLISECONDS;
-
-        private Builder(Page page) {
-            this.page = page;
-        }
-
-        public Builder baseUrl(String baseUrl) {
-            this.baseUrl = baseUrl;
-            return this;
-        }
-
-        public Builder timeoutMilliseconds(int timeoutMilliseconds) {
-            this.timeoutMilliseconds = timeoutMilliseconds;
-            return this;
-        }
-
-        public PageClient build() {
-            return new PageClient(this);
-        }
     }
 }

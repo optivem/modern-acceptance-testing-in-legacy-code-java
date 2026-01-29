@@ -38,9 +38,7 @@ public class ShopUiClient implements AutoCloseable {
         // Each test gets its own page
         this.page = context.newPage();
 
-        var pageClient = PageClient.builder(page)
-                .baseUrl(baseUrl)
-                .build();
+        var pageClient = new PageClient(page);
         this.homePage = new HomePage(pageClient);
     }
 
