@@ -15,22 +15,6 @@ public class UseCaseContext {
         this.resultMap = new HashMap<>();
     }
 
-    private static String expandAlias(String message, Map<String, String> map) {
-        var expandedMessage = message;
-        for (var entry : map.entrySet()) {
-            var alias = entry.getKey();
-            var actualValue = entry.getValue();
-            expandedMessage = expandedMessage.replace(alias, actualValue);
-        }
-        return expandedMessage;
-    }
-
-    private static String generateParamValue(String alias) {
-        ensureAliasNotNullBlank(alias);
-        var suffix = UUID.randomUUID().toString().substring(0, 8);
-        return alias + "-" + suffix;
-    }
-
     public ExternalSystemMode getExternalSystemMode() {
         return externalSystemMode;
     }
@@ -98,6 +82,22 @@ public class UseCaseContext {
         var expandedMessage = expandAlias(message, paramMap);
         expandedMessage = expandAlias(expandedMessage, resultMap);
         return expandedMessage;
+    }
+
+    private static String expandAlias(String message, Map<String, String> map) {
+        var expandedMessage = message;
+        for (var entry : map.entrySet()) {
+            var alias = entry.getKey();
+            var actualValue = entry.getValue();
+            expandedMessage = expandedMessage.replace(alias, actualValue);
+        }
+        return expandedMessage;
+    }
+
+    private static String generateParamValue(String alias) {
+        ensureAliasNotNullBlank(alias);
+        var suffix = UUID.randomUUID().toString().substring(0, 8);
+        return alias + "-" + suffix;
     }
 
     private static void ensureAliasNotNullBlank(String alias) {
