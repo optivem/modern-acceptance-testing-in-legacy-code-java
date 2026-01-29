@@ -1,6 +1,8 @@
 package com.optivem.commons.wiremock;
 
+import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.matching.UrlPathPattern;
 import com.optivem.commons.util.Result;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -8,6 +10,8 @@ import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.net.URI;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
@@ -34,33 +38,52 @@ public class JsonWireMockClient {
     }
 
     public <T> Result<Void, String> stubGet(String path, int statusCode, T response) {
+        return runOnVirtualThread(() -> performStubRegistration(path, statusCode, response, WireMock::get, "GET"));
+    }
+
+    public <T> Result<Void, String> stubPost(String path, int statusCode, T response) {
+        return runOnVirtualThread(() -> performStubRegistration(path, statusCode, response, WireMock::post, "POST"));
+    }
+
+    public <T> Result<Void, String> stubPut(String path, int statusCode, T response) {
+        return runOnVirtualThread(() -> performStubRegistration(path, statusCode, response, WireMock::put, "PUT"));
+    }
+
+    public <T> Result<Void, String> stubDelete(String path, int statusCode, T response) {
+        return runOnVirtualThread(() -> performStubRegistration(path, statusCode, response, WireMock::delete, "DELETE"));
+    }
+
+    private Result<Void, String> runOnVirtualThread(Supplier<Result<Void, String>> work) {
         try {
             // Execute WireMock operations on virtual thread for non-blocking I/O
-            return VIRTUAL_THREAD_EXECUTOR.submit(() -> {
-                Result<Void, String> result = performStubRegistration(path, statusCode, response);
-                return result;
-            }).get();
+            return VIRTUAL_THREAD_EXECUTOR.submit(work::get).get();
         } catch (Exception ex) {
             throw new RuntimeException("Failed to register stub", ex);
         }
     }
 
-    private <T> Result<Void, String> performStubRegistration(String path, int statusCode, T response) {
+    private <T> Result<Void, String> performStubRegistration(
+        String path,
+        int statusCode,
+        T response,
+        Function<UrlPathPattern, MappingBuilder> methodBuilder,
+        String methodName
+    ) {
         var responseBody = serialize(response);
 
-        wireMock.register(WireMock.get(urlPathEqualTo(path))
-                .willReturn(aResponse()
-                        .withStatus(statusCode)
-                        .withHeader(CONTENT_TYPE, APPLICATION_JSON)
-                        .withBody(responseBody)));
+        wireMock.register(methodBuilder.apply(urlPathEqualTo(path))
+            .willReturn(aResponse()
+                .withStatus(statusCode)
+                .withHeader(CONTENT_TYPE, APPLICATION_JSON)
+                .withBody(responseBody)));
 
         var mappings = wireMock.allStubMappings();
         var registered = mappings.getMappings().stream()
-                .anyMatch(m -> "GET".equals(m.getRequest().getMethod().getName())
-                        && m.getRequest().getUrlPath().equals(path));
+            .anyMatch(m -> methodName.equals(m.getRequest().getMethod().getName())
+                && m.getRequest().getUrlPath().equals(path));
 
         if (!registered) {
-            return Result.failure("Failed to register stub for GET " + path);
+            return Result.failure("Failed to register stub for " + methodName + " " + path);
         }
 
         return Result.success();
