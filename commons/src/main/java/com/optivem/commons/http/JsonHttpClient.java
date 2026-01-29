@@ -11,11 +11,14 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class JsonHttpClient<E> implements AutoCloseable {
 
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
+    private static final ExecutorService VIRTUAL_THREAD_EXECUTOR = Executors.newVirtualThreadPerTaskExecutor();
     private final ObjectMapper objectMapper;
 
     private final HttpClient httpClient;
@@ -174,7 +177,10 @@ public class JsonHttpClient<E> implements AutoCloseable {
 
     private HttpResponse<String> sendRequest(HttpRequest httpRequest) {
         try {
-            return httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            // Execute HTTP request on virtual thread for non-blocking I/O
+            return VIRTUAL_THREAD_EXECUTOR.submit(() -> 
+                httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString())
+            ).get();
         } catch (Exception ex) {
             throw new RuntimeException("Failed to send HTTP request", ex);
         }

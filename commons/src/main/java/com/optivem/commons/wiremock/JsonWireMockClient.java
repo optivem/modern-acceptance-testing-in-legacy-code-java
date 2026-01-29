@@ -6,6 +6,8 @@ import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.net.URI;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
@@ -14,6 +16,7 @@ public class JsonWireMockClient {
 
     private static final String CONTENT_TYPE = "Content-Type";
     private static final String APPLICATION_JSON = "application/json";
+    private static final ExecutorService VIRTUAL_THREAD_EXECUTOR = Executors.newVirtualThreadPerTaskExecutor();
     private final ObjectMapper objectMapper;
 
     private final WireMock wireMock;
@@ -31,6 +34,18 @@ public class JsonWireMockClient {
     }
 
     public <T> Result<Void, String> stubGet(String path, int statusCode, T response) {
+        try {
+            // Execute WireMock operations on virtual thread for non-blocking I/O
+            return VIRTUAL_THREAD_EXECUTOR.submit(() -> {
+                Result<Void, String> result = performStubRegistration(path, statusCode, response);
+                return result;
+            }).get();
+        } catch (Exception ex) {
+            throw new RuntimeException("Failed to register stub", ex);
+        }
+    }
+
+    private <T> Result<Void, String> performStubRegistration(String path, int statusCode, T response) {
         var responseBody = serialize(response);
 
         wireMock.register(WireMock.get(urlPathEqualTo(path))
