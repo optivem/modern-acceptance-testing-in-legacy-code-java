@@ -4,6 +4,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderRespo
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.util.Converter;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -43,7 +44,7 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification quantity(String expectedQuantity) {
-        return quantity(Integer.parseInt(expectedQuantity));
+        return quantity(Converter.toInteger(expectedQuantity));
     }
 
     public ViewOrderVerification country(String expectedCountryAliasOrValue) {
@@ -56,7 +57,7 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification unitPrice(double expectedUnitPrice) {
-        var expectedPrice = BigDecimal.valueOf(expectedUnitPrice);
+        var expectedPrice = Converter.toBigDecimal(expectedUnitPrice);
         var actualPrice = response.getUnitPrice();
         assertThat(actualPrice)
                 .withFailMessage("Expected unit price to be %s, but was %s", expectedPrice, actualPrice)
@@ -65,11 +66,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification unitPrice(String expectedUnitPrice) {
-        return unitPrice(Double.parseDouble(expectedUnitPrice));
+        return unitPrice(Converter.toDouble(expectedUnitPrice));
     }
 
     public ViewOrderVerification subtotalPrice(double expectedSubtotalPrice) {
-        var expectedPrice = BigDecimal.valueOf(expectedSubtotalPrice);
+        var expectedPrice = Converter.toBigDecimal(expectedSubtotalPrice);
         var actualPrice = response.getSubtotalPrice();
         assertThat(actualPrice)
                 .withFailMessage("Expected subtotal price to be %s, but was %s", expectedPrice, actualPrice)
@@ -78,7 +79,7 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification subtotalPrice(String expectedSubtotalPrice) {
-        return subtotalPrice(Double.parseDouble(expectedSubtotalPrice));
+        return subtotalPrice(Converter.toDouble(expectedSubtotalPrice));
     }
 
     public ViewOrderVerification subtotalPriceGreaterThanZero() {
@@ -98,11 +99,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification basePrice(double expectedBasePrice) {
-        return basePrice(BigDecimal.valueOf(expectedBasePrice));
+        return basePrice(Converter.toBigDecimal(expectedBasePrice));
     }
 
     public ViewOrderVerification basePrice(String expectedBasePrice) {
-        return basePrice(new BigDecimal(expectedBasePrice));
+        return basePrice(Converter.toBigDecimal(expectedBasePrice));
     }
 
     public ViewOrderVerification basePriceGreaterThanZero() {
@@ -136,7 +137,7 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
 
 
     public ViewOrderVerification discountRate(double expectedDiscountRate) {
-        return discountRate(BigDecimal.valueOf(expectedDiscountRate));
+        return discountRate(Converter.toBigDecimal(expectedDiscountRate));
     }
 
     public ViewOrderVerification discountRateGreaterThanOrEqualToZero() {
@@ -165,11 +166,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification discountAmount(double expectedDiscountAmount) {
-        return discountAmount(BigDecimal.valueOf(expectedDiscountAmount));
+        return discountAmount(Converter.toBigDecimal(expectedDiscountAmount));
     }
 
     public ViewOrderVerification discountAmount(String expectedDiscountAmount) {
-        return discountAmount(new BigDecimal(expectedDiscountAmount));
+        return discountAmount(Converter.toBigDecimal(expectedDiscountAmount));
     }
 
     public ViewOrderVerification appliedCouponCode(String expectedCouponCodeAlias) {
@@ -192,11 +193,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification taxRate(double expectedTaxRate) {
-        return taxRate(BigDecimal.valueOf(expectedTaxRate));
+        return taxRate(Converter.toBigDecimal(expectedTaxRate));
     }
 
     public ViewOrderVerification taxRate(String expectedTaxRate) {
-        return taxRate(new BigDecimal(expectedTaxRate));
+        return taxRate(Converter.toBigDecimal(expectedTaxRate));
     }
 
     public ViewOrderVerification taxRateGreaterThanOrEqualToZero() {
@@ -216,11 +217,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification taxAmount(double expectedTaxAmount) {
-        return taxAmount(new BigDecimal(expectedTaxAmount));
+        return taxAmount(Converter.toBigDecimal(expectedTaxAmount));
     }
 
     public ViewOrderVerification taxAmount(String expectedTaxAmount) {
-        return taxAmount(new BigDecimal(expectedTaxAmount));
+        return taxAmount(Converter.toBigDecimal(expectedTaxAmount));
     }
 
     public ViewOrderVerification taxAmountGreaterThanOrEqualToZero() {
@@ -240,11 +241,11 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification totalPrice(double expectedTotalPrice) {
-        return totalPrice(BigDecimal.valueOf(expectedTotalPrice));
+        return totalPrice(Converter.toBigDecimal(expectedTotalPrice));
     }
 
     public ViewOrderVerification totalPrice(String expectedTotalPrice) {
-        return totalPrice(new BigDecimal(expectedTotalPrice));
+        return totalPrice(Converter.toBigDecimal(expectedTotalPrice));
     }
 
     public ViewOrderVerification totalPriceGreaterThanZero() {
@@ -271,7 +272,7 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
     }
 
     public ViewOrderVerification orderTimestamp(String expectedTimestamp) {
-        return orderTimestamp(Instant.parse(expectedTimestamp));
+        return orderTimestamp(Converter.toInstant(expectedTimestamp));
     }
 
     public ViewOrderVerification orderTimestampIsNotNull() {

@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.core.clock.dsl.verifications;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.util.Converter;
 
 import java.time.Instant;
 
@@ -29,7 +30,7 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
     }
 
     public GetTimeVerification time(String expectedTime) {
-        return time(Instant.parse(expectedTime));
+        return time(Converter.toInstant(expectedTime));
     }
 
 
