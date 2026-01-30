@@ -1,13 +1,16 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
+import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.commons.playwright.PageClient;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 
 
 public class OrderDetailsPage extends BasePage {
     private static final String ORDER_NUMBER_OUTPUT_SELECTOR = "[aria-label='Display Order Number']";
+    private static final String ORDER_TIMESTAMP_OUTPUT_SELECTOR = "[aria-label='Display Order Timestamp']";
     private static final String SKU_OUTPUT_SELECTOR = "[aria-label='Display SKU']";
     private static final String COUNTRY_OUTPUT_SELECTOR = "[aria-label='Display Country']";
     private static final String QUANTITY_OUTPUT_SELECTOR = "[aria-label='Display Quantity']";
@@ -38,6 +41,11 @@ public class OrderDetailsPage extends BasePage {
 
     public String getOrderNumber() {
         return pageClient.readTextContent(ORDER_NUMBER_OUTPUT_SELECTOR);
+    }
+
+    public Instant getOrderTimestamp() {
+        var textContent = pageClient.readTextContent(ORDER_TIMESTAMP_OUTPUT_SELECTOR);
+        return Converter.parseInstant(textContent);
     }
 
     public String getSku() {

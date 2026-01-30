@@ -72,6 +72,7 @@ public class ShopUiOrderDriver implements OrderDriver {
         }
 
         var displayOrderNumber = orderDetailsPage.getOrderNumber();
+        var orderTimestamp = orderDetailsPage.getOrderTimestamp();
         var sku = orderDetailsPage.getSku();
         var quantity = orderDetailsPage.getQuantity();
         var country = orderDetailsPage.getCountry();
@@ -88,6 +89,7 @@ public class ShopUiOrderDriver implements OrderDriver {
 
         var response = ViewOrderResponse.builder()
                 .orderNumber(displayOrderNumber)
+                .orderTimestamp(orderTimestamp)
                 .sku(sku)
                 .quantity(quantity)
                 .unitPrice(unitPrice)

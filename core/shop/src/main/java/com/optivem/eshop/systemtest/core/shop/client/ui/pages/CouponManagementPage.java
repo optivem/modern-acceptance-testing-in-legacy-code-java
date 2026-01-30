@@ -1,17 +1,12 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
 import com.optivem.commons.playwright.PageClient;
+import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CouponManagementPage extends BasePage {
 
@@ -171,29 +166,7 @@ public class CouponManagementPage extends BasePage {
             return null;
         }
         
-        // Try ISO format first
-        try {
-            return Instant.parse(text);
-        } catch (Exception ignored) {
-        }
-        
-        // Try various locale-specific formats that JavaScript's toLocaleString() might produce
-        DateTimeFormatter[] formatters = {
-            DateTimeFormatter.ofPattern("M/d/yyyy, h:mm:ss a", Locale.US),
-            DateTimeFormatter.ofPattern("d/M/yyyy, HH:mm:ss", Locale.UK),
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
-            DateTimeFormatter.ofPattern("M/d/yyyy h:mm:ss a", Locale.US),
-        };
-        
-        for (DateTimeFormatter formatter : formatters) {
-            try {
-                LocalDateTime localDateTime = LocalDateTime.parse(text, formatter);
-                return localDateTime.atZone(ZoneId.systemDefault()).toInstant();
-            } catch (Exception ignored) {
-            }
-        }
-        
-        throw new RuntimeException("Invalid date format: " + text + ". Expected ISO format or locale-specific format.");
+        return Converter.parseInstant(text);
     }
 
     private Integer parseUsageLimit(String text) {

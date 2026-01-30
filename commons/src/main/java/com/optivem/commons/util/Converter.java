@@ -2,6 +2,10 @@ package com.optivem.commons.util;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class Converter {
@@ -39,6 +43,36 @@ public class Converter {
 
     public static String fromInstant(Instant value) {
         return from(value, Instant::toString);
+    }
+
+    public static Instant parseInstant(String text) {
+        if (text == null || text.isEmpty()) {
+            return null;
+        }
+        
+        // Try ISO format first
+        try {
+            return Instant.parse(text);
+        } catch (Exception ignored) {
+        }
+        
+        // Try various locale-specific formats that JavaScript's toLocaleString() might produce
+        DateTimeFormatter[] formatters = {
+            DateTimeFormatter.ofPattern("M/d/yyyy, h:mm:ss a", Locale.US),
+            DateTimeFormatter.ofPattern("d/M/yyyy, HH:mm:ss", Locale.UK),
+            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"),
+            DateTimeFormatter.ofPattern("M/d/yyyy h:mm:ss a", Locale.US),
+        };
+        
+        for (DateTimeFormatter formatter : formatters) {
+            try {
+                LocalDateTime localDateTime = LocalDateTime.parse(text, formatter);
+                return localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+            } catch (Exception ignored) {
+            }
+        }
+        
+        throw new RuntimeException("Invalid date format: " + text + " - Expected ISO format or locale-specific format.");
     }
 
     private static <T, R> R from(T value, Function<T, R> converter) {
