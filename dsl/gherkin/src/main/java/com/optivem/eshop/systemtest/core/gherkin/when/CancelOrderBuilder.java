@@ -5,7 +5,6 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.eshop.systemtest.core.gherkin.then.ThenClause;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 

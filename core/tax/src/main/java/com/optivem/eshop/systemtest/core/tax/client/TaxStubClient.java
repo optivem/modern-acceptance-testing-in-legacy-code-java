@@ -1,13 +1,11 @@
 package com.optivem.eshop.systemtest.core.tax.client;
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.commons.http.HttpStatus;
 import com.optivem.eshop.systemtest.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.core.tax.client.dtos.error.ExtTaxErrorResponse;
 import com.optivem.commons.util.Result;
 import com.optivem.commons.wiremock.JsonWireMockClient;
 
-import java.net.URI;
 
 public class TaxStubClient extends BaseTaxClient {
 

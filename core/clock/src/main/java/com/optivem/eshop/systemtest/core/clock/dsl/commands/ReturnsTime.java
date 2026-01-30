@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.core.clock.dsl.commands.base.ClockUseCaseRes
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
-import java.time.Instant;
 
 public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
 

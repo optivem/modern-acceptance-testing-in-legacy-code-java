@@ -1,14 +1,12 @@
 package com.optivem.eshop.systemtest.core.erp.client;
 
 
-import com.github.tomakehurst.wiremock.client.WireMock;
 import com.optivem.commons.http.HttpStatus;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.error.ExtErpErrorResponse;
 import com.optivem.commons.util.Result;
 import com.optivem.commons.wiremock.JsonWireMockClient;
 
-import java.net.URI;
 
 public class ErpStubClient extends BaseErpClient {
 

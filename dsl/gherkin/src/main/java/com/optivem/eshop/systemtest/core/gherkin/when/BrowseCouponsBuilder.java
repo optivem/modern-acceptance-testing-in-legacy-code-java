@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
-import com.optivem.eshop.systemtest.core.gherkin.then.ThenClause;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.coupons.BrowseCouponsVerification;
 

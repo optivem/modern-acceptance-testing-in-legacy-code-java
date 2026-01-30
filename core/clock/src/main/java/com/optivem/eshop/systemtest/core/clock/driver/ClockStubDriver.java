@@ -9,7 +9,6 @@ import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;
 
-import java.time.Instant;
 
 
 public class ClockStubDriver implements ClockDriver {

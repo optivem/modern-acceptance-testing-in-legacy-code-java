@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;

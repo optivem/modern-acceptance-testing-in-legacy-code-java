@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.contracttests.clock;
 import com.optivem.commons.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
 
 public class ClockStubContractTest extends BaseClockContractTest {
 

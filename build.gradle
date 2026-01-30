@@ -17,10 +17,17 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'com.diffplug.spotless'
 
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    spotless {
+        java {
+            removeUnusedImports()
         }
     }
 }
