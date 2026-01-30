@@ -6,12 +6,14 @@ import com.optivem.commons.util.Result;
 
 public class ErpRealClient extends BaseErpClient {
 
+    private static final String PRODUCTS_ENDPOINT = "/api/products";
+
     public ErpRealClient(String baseUrl) {
         super(baseUrl);
     }
 
     public Result<Void, ExtErpErrorResponse> createProduct(ExtCreateProductRequest request) {
-        return httpClient.post("/api/products", request);
+        return httpClient.post(PRODUCTS_ENDPOINT, request);
     }
 }
 

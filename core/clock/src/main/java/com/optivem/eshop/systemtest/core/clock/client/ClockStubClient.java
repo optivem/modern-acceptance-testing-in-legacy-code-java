@@ -10,6 +10,10 @@ import com.optivem.eshop.systemtest.core.clock.client.dtos.error.ExtClockErrorRe
 
 public class ClockStubClient implements AutoCloseable {
 
+    private static final String HEALTH_ENDPOINT = "/health";
+    private static final String TIME_ENDPOINT = "/api/time";
+    private static final String CLOCK_TIME_ENDPOINT = "/clock/api/time";
+
     private final JsonHttpClient<ExtClockErrorResponse> httpClient;
 
     private final JsonWireMockClient wireMockClient;
@@ -25,15 +29,15 @@ public class ClockStubClient implements AutoCloseable {
     }
 
     public Result<Void, ExtClockErrorResponse> checkHealth() {
-        return httpClient.get("/health");
+        return httpClient.get(HEALTH_ENDPOINT);
     }
 
     public Result<ExtGetTimeResponse, ExtClockErrorResponse> getTime() {
-        return httpClient.get("/api/time", ExtGetTimeResponse.class);
+        return httpClient.get(TIME_ENDPOINT, ExtGetTimeResponse.class);
     }
 
     public Result<Void, ExtClockErrorResponse> configureGetTime(ExtGetTimeResponse response) {
-        return wireMockClient.stubGet("/clock/api/time", HttpStatus.OK, response)
+        return wireMockClient.stubGet(CLOCK_TIME_ENDPOINT, HttpStatus.OK, response)
                 .mapError(ExtClockErrorResponse::new);
     }
 

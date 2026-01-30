@@ -11,6 +11,9 @@ import java.net.http.HttpResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ShopApiSmokeTest extends BaseRawTest {
+
+    private static final String HEALTH_ENDPOINT = "/health";
+
     @BeforeEach
     void setUp() {
         setUpShopHttpClient();
@@ -18,7 +21,7 @@ public class ShopApiSmokeTest extends BaseRawTest {
 
     @Test
     void shouldBeAbleToGoToShop() throws Exception {
-        var uri = URI.create(getShopApiBaseUrl() + "/health");
+        var uri = URI.create(getShopApiBaseUrl() + HEALTH_ENDPOINT);
         var request = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
