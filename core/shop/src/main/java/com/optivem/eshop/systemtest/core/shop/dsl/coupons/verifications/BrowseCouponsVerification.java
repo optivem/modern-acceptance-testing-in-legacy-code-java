@@ -6,6 +6,8 @@ import com.optivem.commons.dsl.UseCaseContext;
 
 import java.time.Instant;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class BrowseCouponsVerification extends ResponseVerification<BrowseCouponsResponse> {
 
     public BrowseCouponsVerification(BrowseCouponsResponse response, UseCaseContext context) {
@@ -13,63 +15,54 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     }
 
     public BrowseCouponsVerification hasCouponWithCode(String couponCodeAlias) {
-        findCouponByCode(couponCodeAlias); // Throws if not found
+        findCouponByCode(couponCodeAlias);
         return this;
     }
 
     public BrowseCouponsVerification couponHasDiscountRate(String couponCodeAlias, double expectedDiscountRate) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        double actualDiscountRate = coupon.getDiscountRate();
-        if (actualDiscountRate != expectedDiscountRate) {
-            throw new AssertionError(String.format(
-                    "Expected coupon '%s' to have discount rate %.2f, but was %.2f",
-                    couponCodeAlias, expectedDiscountRate, actualDiscountRate));
-        }
+        assertThat(coupon.getDiscountRate())
+                .as("Discount rate for coupon '%s'", couponCodeAlias)
+                .isEqualTo(expectedDiscountRate);
         return this;
     }
 
     public BrowseCouponsVerification couponHasValidFrom(String couponCodeAlias, String expectedValidFrom) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        Instant actualValidFrom = coupon.getValidFrom();
-        String actualValidFromString = actualValidFrom != null ? actualValidFrom.toString() : null;
-        if (!expectedValidFrom.equals(actualValidFromString)) {
-            throw new AssertionError(String.format(
-                    "Expected coupon '%s' to have validFrom '%s', but was '%s'",
-                    couponCodeAlias, expectedValidFrom, actualValidFromString));
-        }
+        String actualValidFromString = coupon.getValidFrom() != null ? coupon.getValidFrom().toString() : null;
+        assertThat(actualValidFromString)
+                .as("ValidFrom for coupon '%s'", couponCodeAlias)
+                .isEqualTo(expectedValidFrom);
         return this;
     }
 
     public BrowseCouponsVerification couponHasUsageLimit(String couponCodeAlias, int expectedUsageLimit) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        var actualUsageLimit = coupon.getUsageLimit();
-        if (actualUsageLimit == null || actualUsageLimit != expectedUsageLimit) {
-            throw new AssertionError(String.format(
-                    "Expected coupon '%s' to have usage limit %d, but was %d",
-                    couponCodeAlias, expectedUsageLimit, actualUsageLimit));
-        }
+        assertThat(coupon.getUsageLimit())
+                .as("Usage limit for coupon '%s'", couponCodeAlias)
+                .isEqualTo(expectedUsageLimit);
         return this;
     }
 
     public BrowseCouponsVerification couponHasUsedCount(String couponCode, int expectedUsedCount) {
         var coupon = findCouponByCode(couponCode);
 
-        var actualUsedCount = coupon.getUsedCount();
-        if (actualUsedCount != expectedUsedCount) {
-            throw new AssertionError(String.format(
-                    "Expected coupon '%s' to have used count %d, but was %d",
-                    couponCode, expectedUsedCount, actualUsedCount));
-        }
+        assertThat(coupon.getUsedCount())
+                .as("Used count for coupon '%s'", couponCode)
+                .isEqualTo(expectedUsedCount);
         return this;
     }
 
     private BrowseCouponsResponse.CouponDto findCouponByCode(String couponCodeAlias) {
-        if (getResponse() == null || getResponse().getCoupons() == null) {
-            throw new AssertionError("No coupons found in response");
-        }
+        assertThat(getResponse())
+                .as("Response should not be null")
+                .isNotNull();
+        assertThat(getResponse().getCoupons())
+                .as("Coupons list should not be null")
+                .isNotNull();
 
         var couponCode = getContext().getParamValue(couponCodeAlias);
 
