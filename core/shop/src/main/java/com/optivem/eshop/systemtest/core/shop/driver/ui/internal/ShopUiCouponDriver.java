@@ -12,6 +12,8 @@ import com.optivem.commons.util.Result;
 
 import java.util.function.Supplier;
 
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
+
 public class ShopUiCouponDriver implements CouponDriver {
     private final Supplier<HomePage> homePageSupplier;
     private final PageNavigator pageNavigator;
@@ -48,7 +50,7 @@ public class ShopUiCouponDriver implements CouponDriver {
                 .coupons(coupons)
                 .build();
         
-        return SystemResults.success(response);
+        return success(response);
     }
 
     private void ensureOnCouponManagementPage() {

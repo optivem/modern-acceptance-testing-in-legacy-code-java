@@ -7,6 +7,9 @@ import com.optivem.commons.playwright.PageClient;
 
 import java.util.List;
 
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.failure;
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
+
 public abstract class BasePage {
     private static final String NOTIFICATION_SELECTOR = "[role='alert']";
     private static final String NOTIFICATION_SUCCESS_SELECTOR = "[role='alert'].notification.success";
@@ -66,14 +69,14 @@ public abstract class BasePage {
 
         if (isSuccess) {
             var successMessage = readSuccessNotification();
-            return SystemResults.success(successMessage);
+            return success(successMessage);
         }
 
         var generalMessage = readGeneralErrorMessage();
         var fieldErrorTexts = readFieldErrors();
 
         if (fieldErrorTexts.isEmpty()) {
-            return SystemResults.failure(generalMessage);
+            return failure(generalMessage);
         }
 
         var fieldErrors = fieldErrorTexts.stream()
@@ -96,6 +99,6 @@ public abstract class BasePage {
                 .fields(fieldErrors)
                 .build();
 
-        return SystemResults.failure(error);
+        return failure(error);
     }
 }

@@ -16,6 +16,9 @@ import com.optivem.commons.util.Result;
 import java.util.Objects;
 import java.util.function.Supplier;
 
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.failure;
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
+
 public class ShopUiOrderDriver implements OrderDriver {
     private final Supplier<HomePage> homePageSupplier;
     private final PageNavigator pageNavigator;
@@ -46,7 +49,7 @@ public class ShopUiOrderDriver implements OrderDriver {
         var result = newOrderPage.getResult();
 
         if (result.isFailure()) {
-            return SystemResults.failure(result.getError());
+            return failure(result.getError());
         }
 
         var orderNumberValue = NewOrderPage.getOrderNumber(result.getValue());
@@ -59,7 +62,7 @@ public class ShopUiOrderDriver implements OrderDriver {
     public Result<ViewOrderResponse, SystemError> viewOrder(String orderNumber) {
         var result = ensureOnOrderDetailsPage(orderNumber);
         if (result.isFailure()) {
-            return SystemResults.failure(result.getError());
+            return failure(result.getError());
         }
 
         var isSuccess = orderDetailsPage.isLoadedSuccessfully();
@@ -100,12 +103,17 @@ public class ShopUiOrderDriver implements OrderDriver {
                 .appliedCouponCode(appliedCoupon)
                 .build();
 
-        return SystemResults.success(response);
+        return success(response);
     }
 
     @Override
-    public Result<Void, SystemError> cancelOrder(String orderNumberAlias) {
-        viewOrder(orderNumberAlias);
+    public Result<Void, SystemError> cancelOrder(String orderNumber) {
+        var viewResult = viewOrder(orderNumber);
+
+        if(viewResult.isFailure()) {
+            return viewResult.mapVoid();
+        }
+
         orderDetailsPage.clickCancelOrder();
 
         var result = orderDetailsPage.getResult();
@@ -116,19 +124,19 @@ public class ShopUiOrderDriver implements OrderDriver {
 
         var cancellationMessage = result.getValue();
         if (!Objects.equals(cancellationMessage, "Order cancelled successfully!")) {
-            return SystemResults.failure("Did not receive expected cancellation success message");
+            return failure("Did not receive expected cancellation success message");
         }
 
         var displayStatusAfterCancel = orderDetailsPage.getStatus();
         if (!Objects.equals(displayStatusAfterCancel, OrderStatus.CANCELLED)) {
-            return SystemResults.failure("Order status not updated to CANCELLED");
+            return failure("Order status not updated to CANCELLED");
         }
 
         if (!orderDetailsPage.isCancelButtonHidden()) {
-            return SystemResults.failure("Cancel button still visible");
+            return failure("Cancel button still visible");
         }
 
-        return SystemResults.success();
+        return success();
     }
 
     private void ensureOnNewOrderPage() {
@@ -154,13 +162,13 @@ public class ShopUiOrderDriver implements OrderDriver {
 
         var isOrderListed = orderHistoryPage.isOrderListed(orderNumber);
         if (!isOrderListed) {
-            return SystemResults.failure("Order " + orderNumber + " does not exist.");
+            return failure("Order " + orderNumber + " does not exist.");
         }
 
         orderDetailsPage = orderHistoryPage.clickViewOrderDetails(orderNumber);
         pageNavigator.setCurrentPage(PageNavigator.Page.ORDER_DETAILS);
 
-        return SystemResults.success();
+        return success();
     }
 }
 

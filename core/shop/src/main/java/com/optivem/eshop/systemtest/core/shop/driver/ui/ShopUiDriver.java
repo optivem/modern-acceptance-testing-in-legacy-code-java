@@ -12,6 +12,9 @@ import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.PageNavigator;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.ShopUiCouponDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ui.internal.ShopUiOrderDriver;
 
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.failure;
+import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
+
 public class ShopUiDriver implements ShopDriver {
     private final ShopUiClient client;
     private final PageNavigator pageNavigator;
@@ -37,11 +40,11 @@ public class ShopUiDriver implements ShopDriver {
         homePage = client.openHomePage();
 
         if (!client.isStatusOk() || !client.isPageLoaded()) {
-            return SystemResults.failure("Failed to load home page");
+            return failure("Failed to load home page");
         }
 
         pageNavigator.setCurrentPage(PageNavigator.Page.HOME);
-        return SystemResults.success();
+        return success();
     }
 
     @Override
