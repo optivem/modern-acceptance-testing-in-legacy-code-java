@@ -118,7 +118,7 @@ public class CouponManagementPage extends BasePage {
                     .validFrom(parseInstant(validFromText))
                     .validTo(parseInstant(validToText))
                     .usageLimit(parseUsageLimit(usageLimitText))
-                    .usedCount(Integer.parseInt(usedCountText))
+                    .usedCount(Converter.toInteger(usedCountText))
                     .build();
 
             coupons.add(coupon);
@@ -154,11 +154,8 @@ public class CouponManagementPage extends BasePage {
             return 0.00;
         }
 
-        try {
-            return Double.parseDouble(text) / 100.0; // Convert percentage to decimal
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Invalid discount rate format: " + text);
-        }
+        var value = Converter.toDouble(text);
+        return value == null ? 0.00 : value / 100.0; // Convert percentage to decimal
     }
 
     private Instant parseInstant(String text) {
@@ -173,11 +170,7 @@ public class CouponManagementPage extends BasePage {
         if (text == null || text.equalsIgnoreCase(TEXT_UNLIMITED) || text.isEmpty()) {
             return null;
         }
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            throw new RuntimeException("Invalid usage limit format: " + text);
-        }
+        return Converter.toInteger(text);
     }
 }
 
