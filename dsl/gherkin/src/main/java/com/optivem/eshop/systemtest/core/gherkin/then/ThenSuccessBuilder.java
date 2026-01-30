@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
-import com.optivem.eshop.systemtest.core.shop.dsl.orders.PlaceOrderVerification;
-import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrderVerification;
 import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.PlaceOrderVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 public class ThenSuccessBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {

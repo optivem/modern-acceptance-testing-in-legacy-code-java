@@ -2,7 +2,6 @@ package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.CouponManagementPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
-import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;

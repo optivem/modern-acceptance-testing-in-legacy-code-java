@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.SystemErrorFailureVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.common.verifications.SystemErrorFailureVerification;
 
 public class ThenFailureBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {

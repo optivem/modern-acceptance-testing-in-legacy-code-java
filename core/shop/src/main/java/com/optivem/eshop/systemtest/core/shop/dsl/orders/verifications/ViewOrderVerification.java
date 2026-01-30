@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.orders;
+package com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;

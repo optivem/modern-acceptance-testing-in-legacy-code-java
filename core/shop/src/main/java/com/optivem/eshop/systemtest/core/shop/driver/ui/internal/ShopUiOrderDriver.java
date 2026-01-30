@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 
-import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;

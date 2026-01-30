@@ -159,18 +159,11 @@ public class CouponManagementPage extends BasePage {
     }
 
     private Instant parseInstant(String text) {
-        if (text == null || text.equalsIgnoreCase(TEXT_IMMEDIATE) || text.equalsIgnoreCase(TEXT_NEVER) || text.isEmpty()) {
-            return null;
-        }
-        
-        return Converter.parseInstant(text);
+        return Converter.parseInstant(text, TEXT_IMMEDIATE, TEXT_NEVER);
     }
 
     private Integer parseUsageLimit(String text) {
-        if (text == null || text.equalsIgnoreCase(TEXT_UNLIMITED) || text.isEmpty()) {
-            return null;
-        }
-        return Converter.toInteger(text);
+        return Converter.toInteger(text, TEXT_UNLIMITED);
     }
 }
 

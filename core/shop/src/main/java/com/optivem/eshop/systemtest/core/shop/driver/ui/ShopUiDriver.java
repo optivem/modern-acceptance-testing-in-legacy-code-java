@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.driver.ui;
 
-import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
 import com.optivem.eshop.systemtest.core.shop.driver.internal.CouponDriver;

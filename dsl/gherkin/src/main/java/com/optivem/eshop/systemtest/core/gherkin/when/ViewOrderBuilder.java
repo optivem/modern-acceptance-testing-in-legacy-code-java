@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
-import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrderVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 public class ViewOrderBuilder extends BaseWhenBuilder<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumber;

@@ -26,6 +26,20 @@ public class Converter {
     }
 
     public static Integer toInteger(String value) {
+        return toInteger(value, new String[0]);
+    }
+
+    public static Integer toInteger(String value, String... nullValues) {
+        if (value == null || value.isEmpty()) {
+            return null;
+        }
+
+        for (String nullValue : nullValues) {
+            if (value.equalsIgnoreCase(nullValue)) {
+                return null;
+            }
+        }
+
         return to(value, Integer::parseInt);
     }
 
@@ -46,8 +60,18 @@ public class Converter {
     }
 
     public static Instant parseInstant(String text) {
+        return parseInstant(text, new String[0]);
+    }
+
+    public static Instant parseInstant(String text, String... nullValues) {
         if (text == null || text.isEmpty()) {
             return null;
+        }
+
+        for (String nullValue : nullValues) {
+            if (text.equalsIgnoreCase(nullValue)) {
+                return null;
+            }
         }
         
         // Try ISO format first

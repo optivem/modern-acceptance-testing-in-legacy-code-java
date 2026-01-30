@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.coupons;
+package com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.commons.dsl.ResponseVerification;

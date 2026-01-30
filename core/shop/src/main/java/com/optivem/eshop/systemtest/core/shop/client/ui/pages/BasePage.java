@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.client.ui.pages;
 
-import com.optivem.eshop.systemtest.core.shop.commons.SystemResults;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.util.Result;
 import com.optivem.commons.playwright.PageClient;
