@@ -10,6 +10,8 @@ import com.optivem.commons.wiremock.JsonWireMockClient;
 
 public class ErpStubClient extends BaseErpClient {
 
+    private static final String ERP_PRODUCTS_ENDPOINT = "/erp/api/products/";
+
     private final JsonWireMockClient wireMockClient;
 
     public ErpStubClient(String baseUrl) {
@@ -19,7 +21,7 @@ public class ErpStubClient extends BaseErpClient {
 
     public Result<Void, ExtErpErrorResponse> configureGetProduct(ExtProductDetailsResponse response) {
         var sku = response.getId();
-        return wireMockClient.stubGet("/erp/api/products/" + sku, HttpStatus.OK, response)
+        return wireMockClient.stubGet(ERP_PRODUCTS_ENDPOINT + sku, HttpStatus.OK, response)
                 .mapError(ExtErpErrorResponse::new);
     }
 }

@@ -22,7 +22,11 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
     public Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request) {
         var extProductDetailsResponse = ExtProductDetailsResponse.builder()
                 .id(request.getSku())
+                .title("")
+                .description("")
                 .price(new BigDecimal(request.getPrice()))
+                .category("")
+                .brand("")
                 .build();
 
         return client.configureGetProduct(extProductDetailsResponse)
