@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
+import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
@@ -40,7 +41,7 @@ public class GivenOrderBuilder extends BaseGivenBuilder {
     }
 
     public GivenOrderBuilder withQuantity(int quantity) {
-        return withQuantity(String.valueOf(quantity));
+        return withQuantity(Converter.fromInteger(quantity));
     }
 
     public GivenOrderBuilder withCountry(String country) {

@@ -7,13 +7,10 @@ import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 
 public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
-    private final ScenarioDsl scenario;
     private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
-
 
     public ThenClause(SystemDsl app, ScenarioDsl scenario, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
         this.app = app;
-        this.scenario = scenario;
         this.executionResult = executionResult;
     }
 
@@ -21,22 +18,19 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         if (executionResult == null) {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
-        scenario.markAsExecuted();
         var successVerification = executionResult.getResult().shouldSucceed();
         return new ThenSuccessBuilder<TSuccessResponse, TSuccessVerification>(this, successVerification);
     }
 
-    public ThenFailureBuilder shouldFail() {
-        scenario.markAsExecuted();
-        return new ThenFailureBuilder(this, executionResult.getResult());
+    public ThenFailureBuilder<TSuccessResponse, TSuccessVerification> shouldFail() {
+        return new ThenFailureBuilder<>(this, executionResult.getResult());
     }
 
-    public ThenOrderBuilder order(String orderNumber) {
-        scenario.markAsExecuted();
-        return new ThenOrderBuilder(this, app, orderNumber);
+    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> order(String orderNumber) {
+        return new ThenOrderBuilder<>(this, app, orderNumber);
     }
 
-    public ThenOrderBuilder order() {
+    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> order() {
         var orderNumber = executionResult.getOrderNumber();
 
         if(orderNumber == null) {
@@ -46,12 +40,11 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         return order(orderNumber);
     }
 
-    public ThenCouponBuilder coupon(String couponCode) {
-        scenario.markAsExecuted();
-        return new ThenCouponBuilder(this, app, couponCode);
+    public ThenCouponBuilder<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
+        return new ThenCouponBuilder<>(this, app, couponCode);
     }
 
-    public ThenCouponBuilder coupon() {
+    public ThenCouponBuilder<TSuccessResponse, TSuccessVerification> coupon() {
         var couponCode = executionResult.getCouponCode();
 
         if(couponCode == null) {

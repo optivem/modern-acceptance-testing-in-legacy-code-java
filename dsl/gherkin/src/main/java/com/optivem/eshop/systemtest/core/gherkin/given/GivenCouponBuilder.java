@@ -52,7 +52,7 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
     }
 
     public GivenCouponBuilder withUsageLimit(int usageLimit) {
-        return withUsageLimit(String.valueOf(usageLimit));
+        return withUsageLimit(Converter.fromInteger(usageLimit));
     }
 
     @Override
