@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
+import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
@@ -41,7 +42,7 @@ public class PlaceOrderBuilder extends BaseWhenBuilder<PlaceOrderResponse, Place
     }
 
     public PlaceOrderBuilder withQuantity(int quantity) {
-        return withQuantity(String.valueOf(quantity));
+        return withQuantity(Converter.fromInteger(quantity));
     }
 
     public PlaceOrderBuilder withCountry(String country) {
