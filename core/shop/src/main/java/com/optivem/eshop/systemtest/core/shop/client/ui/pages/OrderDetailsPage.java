@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 
 
 public class OrderDetailsPage extends BasePage {
-    // React uses [role='alert'] directly, without #notifications wrapper
-    private static final String NOTIFICATION_SELECTOR = "[role='alert']";
     private static final String ORDER_NUMBER_OUTPUT_SELECTOR = "[aria-label='Display Order Number']";
     private static final String SKU_OUTPUT_SELECTOR = "[aria-label='Display SKU']";
     private static final String COUNTRY_OUTPUT_SELECTOR = "[aria-label='Display Country']";
@@ -115,7 +113,7 @@ public class OrderDetailsPage extends BasePage {
         var textContent = pageClient.readTextContent(selector);
         var cleaned = textContent.replace(PERCENT_SYMBOL, "").trim();
         var value = new BigDecimal(cleaned);
-        return value.divide(BigDecimal.valueOf(100), 4, java.math.RoundingMode.HALF_UP);
+        return value.divide(BigDecimal.valueOf(100));
     }
 }
 
