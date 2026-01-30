@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.commons.util.Converter;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,10 +31,10 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     public BrowseCouponsVerification couponHasValidFrom(String couponCodeAlias, String expectedValidFrom) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        var actualValidFromString = coupon.getValidFrom() != null ? coupon.getValidFrom().toString() : null;
-        assertThat(actualValidFromString)
+        var expectedInstant = Converter.parseInstant(expectedValidFrom);
+        assertThat(coupon.getValidFrom())
                 .as("ValidFrom for coupon '%s'", couponCodeAlias)
-                .isEqualTo(expectedValidFrom);
+                .isEqualTo(expectedInstant);
         return this;
     }
 
@@ -56,6 +57,10 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     }
 
     private BrowseCouponsResponse.CouponDto findCouponByCode(String couponCodeAlias) {
+        assertThat(couponCodeAlias)
+                .as("Coupon code alias parameter")
+                .isNotNull();
+                
         assertThat(getResponse())
                 .as("Response should not be null")
                 .isNotNull();
