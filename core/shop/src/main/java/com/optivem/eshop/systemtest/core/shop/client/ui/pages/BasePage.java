@@ -8,12 +8,11 @@ import com.optivem.commons.playwright.PageClient;
 import java.util.List;
 
 public abstract class BasePage {
-    // Use role='alert' for semantic HTML and accessibility
     private static final String NOTIFICATION_SELECTOR = "[role='alert']";
-    private static final String SUCCESS_NOTIFICATION_SELECTOR = "[role='alert'].notification.success";
-    private static final String ERROR_NOTIFICATION_SELECTOR = "[role='alert'].notification.error";
-    private static final String ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error .error-message";
-    private static final String FIELD_ERROR_SELECTOR = "[role='alert'].notification.error .field-error";
+    private static final String NOTIFICATION_SUCCESS_SELECTOR = "[role='alert'].notification.success";
+    private static final String NOTIFICATION_ERROR_SELECTOR = "[role='alert'].notification.error";
+    private static final String NOTIFICATION_ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error .error-message";
+    private static final String NOTIFICATION_ERROR_FIELD_SELECTOR = "[role='alert'].notification.error .field-error";
     private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No notification appeared";
     private static final String UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE = "Notification type is not recognized";
 
@@ -31,13 +30,13 @@ public abstract class BasePage {
             throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
         }
 
-        var isSuccess = pageClient.isVisible(SUCCESS_NOTIFICATION_SELECTOR);
+        var isSuccess = pageClient.isVisible(NOTIFICATION_SUCCESS_SELECTOR);
 
         if(isSuccess) {
             return true;
         }
 
-        var isError = pageClient.isVisible(ERROR_NOTIFICATION_SELECTOR);
+        var isError = pageClient.isVisible(NOTIFICATION_ERROR_SELECTOR);
 
         if(isError) {
             return false;
@@ -48,18 +47,18 @@ public abstract class BasePage {
 
 
     private String readSuccessNotification() {
-        return pageClient.readTextContent(SUCCESS_NOTIFICATION_SELECTOR);
+        return pageClient.readTextContent(NOTIFICATION_SUCCESS_SELECTOR);
     }
 
     private String readGeneralErrorMessage() {
-        return pageClient.readTextContent(ERROR_MESSAGE_SELECTOR);
+        return pageClient.readTextContent(NOTIFICATION_ERROR_MESSAGE_SELECTOR);
     }
 
     private List<String> readFieldErrors() {
-        if (!pageClient.isVisible(FIELD_ERROR_SELECTOR)) {
+        if (!pageClient.isVisible(NOTIFICATION_ERROR_FIELD_SELECTOR)) {
             return List.of();
         }
-        return pageClient.readAllTextContents(FIELD_ERROR_SELECTOR);
+        return pageClient.readAllTextContents(NOTIFICATION_ERROR_FIELD_SELECTOR);
     }
 
     public Result<String, SystemError> getResult() {
