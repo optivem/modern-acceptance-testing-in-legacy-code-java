@@ -3,11 +3,10 @@ package com.optivem.eshop.systemtest.core.clock.client;
 import com.optivem.commons.http.HttpStatus;
 import com.optivem.commons.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
+import com.optivem.commons.util.Result;
 import com.optivem.commons.wiremock.JsonWireMockClient;
 import com.optivem.eshop.systemtest.core.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.client.dtos.error.ExtClockErrorResponse;
-
-import static com.optivem.eshop.systemtest.core.clock.client.ClockClientResult.from;
 
 public class ClockStubClient implements AutoCloseable {
 
@@ -29,17 +28,17 @@ public class ClockStubClient implements AutoCloseable {
         Closer.close(httpClient);
     }
 
-    public ClockClientResult<Void> checkHealth() {
-        return from(httpClient.get(HEALTH_ENDPOINT));
+    public Result<Void, ExtClockErrorResponse> checkHealth() {
+        return httpClient.get(HEALTH_ENDPOINT);
     }
 
-    public ClockClientResult<ExtGetTimeResponse> getTime() {
-        return from(httpClient.get(TIME_ENDPOINT, ExtGetTimeResponse.class));
+    public Result<ExtGetTimeResponse, ExtClockErrorResponse> getTime() {
+        return httpClient.get(TIME_ENDPOINT, ExtGetTimeResponse.class);
     }
 
-    public ClockClientResult<Void> configureGetTime(ExtGetTimeResponse response) {
-        return from(wireMockClient.stubGet(CLOCK_TIME_ENDPOINT, HttpStatus.OK, response)
-                .mapError(ExtClockErrorResponse::new));
+    public Result<Void, ExtClockErrorResponse> configureGetTime(ExtGetTimeResponse response) {
+        return wireMockClient.stubGet(CLOCK_TIME_ENDPOINT, HttpStatus.OK, response)
+                .mapError(ExtClockErrorResponse::new);
     }
 
 }

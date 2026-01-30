@@ -16,6 +16,6 @@ public class GetTime extends BaseClockCommand<GetTimeResponse, GetTimeVerificati
     @Override
     public ClockUseCaseResult<GetTimeResponse, GetTimeVerification> execute() {
         var result = driver.getTime();
-        return new ClockUseCaseResult<>(result.toResult(), context, GetTimeVerification::new);
+        return new ClockUseCaseResult<>(result, context, GetTimeVerification::new);
     }
 }

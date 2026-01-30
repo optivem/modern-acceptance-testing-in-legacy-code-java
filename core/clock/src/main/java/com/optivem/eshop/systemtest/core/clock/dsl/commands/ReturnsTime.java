@@ -29,6 +29,6 @@ public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
 
         var result = driver.returnsTime(request);
 
-        return new ClockUseCaseResult<>(result.toResult(),  context, VoidVerification::new);
+        return new ClockUseCaseResult<>(result,  context, VoidVerification::new);
     }
 }
