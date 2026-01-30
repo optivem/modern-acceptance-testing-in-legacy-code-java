@@ -30,7 +30,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     public BrowseCouponsVerification couponHasValidFrom(String couponCodeAlias, String expectedValidFrom) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        String actualValidFromString = coupon.getValidFrom() != null ? coupon.getValidFrom().toString() : null;
+        var actualValidFromString = coupon.getValidFrom() != null ? coupon.getValidFrom().toString() : null;
         assertThat(actualValidFromString)
                 .as("ValidFrom for coupon '%s'", couponCodeAlias)
                 .isEqualTo(expectedValidFrom);
