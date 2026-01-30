@@ -49,7 +49,7 @@ public class ShopUiOrderDriver implements OrderDriver {
             return SystemResults.failure(result.getError());
         }
 
-        var orderNumberValue = newOrderPage.getOrderNumber(result.getValue());
+        var orderNumberValue = NewOrderPage.getOrderNumber(result.getValue());
 
         var response = PlaceOrderResponse.builder().orderNumber(orderNumberValue).build();
         return Result.success(response);
