@@ -9,7 +9,7 @@ import com.optivem.commons.util.Result;
 public abstract class BaseTaxClient implements AutoCloseable {
 
     private static final String HEALTH_ENDPOINT = "/health";
-    private static final String COUNTRIES_ENDPOINT = "/api/countries/";
+    private static final String COUNTRIES_ENDPOINT = "/api/countries";
 
     protected final JsonHttpClient<ExtTaxErrorResponse> httpClient;
 
@@ -27,7 +27,7 @@ public abstract class BaseTaxClient implements AutoCloseable {
     }
 
     public Result<ExtCountryDetailsResponse, ExtTaxErrorResponse> getCountry(String country) {
-        return httpClient.get(COUNTRIES_ENDPOINT + country, ExtCountryDetailsResponse.class);
+        return httpClient.get(COUNTRIES_ENDPOINT + "/" + country, ExtCountryDetailsResponse.class);
     }
 }
 

@@ -9,7 +9,7 @@ import com.optivem.commons.util.Result;
 public abstract class BaseErpClient implements AutoCloseable {
 
     private static final String HEALTH_ENDPOINT = "/health";
-    private static final String PRODUCTS_ENDPOINT = "/api/products/";
+    private static final String PRODUCTS_ENDPOINT = "/api/products";
 
     protected final JsonHttpClient<ExtErpErrorResponse> httpClient;
 
@@ -27,6 +27,6 @@ public abstract class BaseErpClient implements AutoCloseable {
     }
 
     public Result<ExtProductDetailsResponse, ExtErpErrorResponse> getProduct(String sku) {
-        return httpClient.get(PRODUCTS_ENDPOINT + sku, ExtProductDetailsResponse.class);
+        return httpClient.get(PRODUCTS_ENDPOINT + "/" + sku, ExtProductDetailsResponse.class);
     }
 }
