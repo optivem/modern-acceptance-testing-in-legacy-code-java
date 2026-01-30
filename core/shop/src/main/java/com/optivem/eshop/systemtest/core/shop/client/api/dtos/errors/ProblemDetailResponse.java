@@ -18,5 +18,16 @@ public class ProblemDetailResponse {
     private String detail;
     private String instance;
     private String timestamp;
-    private List<ProblemDetailsFieldErrorResponse> errors;
+    private List<FieldError> errors;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class FieldError {
+        private String field;
+        private String message;
+        private String code;
+        private Object rejectedValue;
+    }
 }
