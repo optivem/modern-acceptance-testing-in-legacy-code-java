@@ -7,9 +7,8 @@ import com.optivem.eshop.systemtest.core.clock.driver.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Converter;
-import com.optivem.commons.util.Result;
 
-
+import static com.optivem.eshop.systemtest.core.clock.driver.ClockResult.from;
 
 public class ClockStubDriver implements ClockDriver {
 
@@ -25,24 +24,24 @@ public class ClockStubDriver implements ClockDriver {
     }
 
     @Override
-    public Result<Void, ClockErrorResponse> goToClock() {
-        return client.checkHealth().mapError(ClockErrorResponse::from);
+    public ClockResult<Void> goToClock() {
+        return from(client.checkHealth().mapError(ClockErrorResponse::from));
     }
 
     @Override
-    public Result<GetTimeResponse, ClockErrorResponse> getTime() {
-        return client.getTime().map(GetTimeResponse::from).mapError(ClockErrorResponse::from);
+    public ClockResult<GetTimeResponse> getTime() {
+        return from(client.getTime().map(GetTimeResponse::from).mapError(ClockErrorResponse::from));
     }
 
     @Override
-    public Result<Void, ClockErrorResponse> returnsTime(ReturnsTimeRequest request) {
+    public ClockResult<Void> returnsTime(ReturnsTimeRequest request) {
         var time = Converter.toInstant(request.getTime());
 
         var extResponse = ExtGetTimeResponse.builder()
                 .time(time)
                 .build();
 
-        return client.configureGetTime(extResponse)
-                .mapError(ClockErrorResponse::from);
+        return from(client.configureGetTime(extResponse)
+                .mapError(ClockErrorResponse::from));
     }
 }

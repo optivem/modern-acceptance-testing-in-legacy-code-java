@@ -14,6 +14,6 @@ public class GoToClock extends BaseClockCommand<Void, VoidVerification> {
     @Override
     public ClockUseCaseResult<Void, VoidVerification> execute() {
         var result = driver.goToClock();
-        return new ClockUseCaseResult<>(result, context, VoidVerification::new);
+        return new ClockUseCaseResult<>(result.toResult(), context, VoidVerification::new);
     }
 }
