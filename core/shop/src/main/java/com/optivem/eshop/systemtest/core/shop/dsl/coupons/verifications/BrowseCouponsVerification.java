@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCoupons
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 
-import java.time.Instant;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
