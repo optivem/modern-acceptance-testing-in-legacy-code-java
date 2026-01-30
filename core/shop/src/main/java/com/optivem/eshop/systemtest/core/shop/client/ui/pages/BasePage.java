@@ -79,13 +79,15 @@ public abstract class BasePage {
         var fieldErrors = fieldErrorTexts.stream()
                 .map(text -> {
                     var parts = text.split(":", 2);
-                    if (parts.length == 2) {
-                        return new SystemError.FieldError(
-                                parts[0].trim(),
-                                parts[1].trim()
-                        );
+
+                    if(parts.length != 2) {
+                        throw new RuntimeException("Invalid field error format: " + text);
                     }
-                    return new SystemError.FieldError("unknown", text);
+
+                    return new SystemError.FieldError(
+                            parts[0].trim(),
+                            parts[1].trim()
+                    );
                 })
                 .toList();
 

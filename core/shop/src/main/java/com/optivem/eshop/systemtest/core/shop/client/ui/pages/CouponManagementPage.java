@@ -24,7 +24,6 @@ public class CouponManagementPage extends BasePage {
     private static final String TIME_END_OF_DAY = "T23:59";
     
     // Table selectors
-    private static final String TABLE_ROW_SELECTOR = "table.table tbody tr";
     private static final String TABLE_CELL_CODE_SELECTOR = "table.table tbody tr td:nth-child(1)";
     private static final String TABLE_CELL_DISCOUNT_SELECTOR = "table.table tbody tr td:nth-child(2)";
     private static final String TABLE_CELL_VALID_FROM_SELECTOR = "table.table tbody tr td:nth-child(3)";
@@ -55,31 +54,9 @@ public class CouponManagementPage extends BasePage {
         pageClient.fill(VALID_FROM_INPUT_SELECTOR, datetimeValue);
     }
 
-    private static String getValidFromDateTimeString(String validFrom) {
-        if(validFrom == null || validFrom.isEmpty()) {
-            return "";
-        }
-
-        // Extract date from ISO 8601 format (2024-06-01T00:00:00Z -> 2024-06-01)
-        // Then convert to datetime-local format (2024-06-01T00:00) for HTML input
-        String dateOnly = validFrom.substring(0, 10); // YYYY-MM-DD
-        return dateOnly + TIME_MIDNIGHT;
-    }
-
     public void inputValidTo(String validTo) {
         var datetimeValue = getValidToDateTimeString(validTo);
         pageClient.fill(VALID_TO_INPUT_SELECTOR, datetimeValue);
-    }
-
-    private static String getValidToDateTimeString(String validTo) {
-        if(validTo == null || validTo.isEmpty()) {
-            return "";
-        }
-
-        // Extract date from ISO 8601 format (2024-08-31T23:59:59Z -> 2024-08-31)
-        // Then convert to datetime-local format (2024-08-31T23:59) for HTML input
-        String dateOnly = validTo.substring(0, 10); // YYYY-MM-DD
-        return dateOnly + TIME_END_OF_DAY;
     }
 
     public void inputUsageLimit(String usageLimit) {
@@ -149,11 +126,37 @@ public class CouponManagementPage extends BasePage {
         return coupons;
     }
 
+    private static String getValidFromDateTimeString(String validFrom) {
+        if(validFrom == null || validFrom.isEmpty()) {
+            return "";
+        }
+
+        // Extract date from ISO 8601 format (2024-06-01T00:00:00Z -> 2024-06-01)
+        // Then convert to datetime-local format (2024-06-01T00:00) for HTML input
+        String dateOnly = validFrom.substring(0, 10); // YYYY-MM-DD
+        return dateOnly + TIME_MIDNIGHT;
+    }
+
+    private static String getValidToDateTimeString(String validTo) {
+        if(validTo == null || validTo.isEmpty()) {
+            return "";
+        }
+
+        // Extract date from ISO 8601 format (2024-08-31T23:59:59Z -> 2024-08-31)
+        // Then convert to datetime-local format (2024-08-31T23:59) for HTML input
+        String dateOnly = validTo.substring(0, 10); // YYYY-MM-DD
+        return dateOnly + TIME_END_OF_DAY;
+    }
+
     private double parseDiscountRate(String text) {
+        if(text == null || text.isEmpty()) {
+            return 0.00;
+        }
+
         try {
             return Double.parseDouble(text) / 100.0; // Convert percentage to decimal
         } catch (NumberFormatException e) {
-            return 0.0;
+            throw new RuntimeException("Invalid discount rate format: " + text);
         }
     }
 
@@ -165,8 +168,7 @@ public class CouponManagementPage extends BasePage {
             // Try to parse as ISO format first
             return Instant.parse(text);
         } catch (Exception e) {
-            // If it fails, return null (UI might show formatted date)
-            return null;
+            throw new RuntimeException("Invalid date format: " + text);
         }
     }
 
@@ -177,7 +179,7 @@ public class CouponManagementPage extends BasePage {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            return null;
+            throw new RuntimeException("Invalid usage limit format: " + text);
         }
     }
 }
