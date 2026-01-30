@@ -9,6 +9,8 @@ import com.optivem.commons.wiremock.JsonWireMockClient;
 
 public class TaxStubClient extends BaseTaxClient {
 
+    private static final String COUNTRIES_ENDPOINT = "/tax/api/countries";
+    
     private final JsonWireMockClient wireMockClient;
 
     public TaxStubClient(String baseUrl) {
@@ -18,7 +20,7 @@ public class TaxStubClient extends BaseTaxClient {
 
     public Result<Void, ExtTaxErrorResponse> configureGetCountry(ExtCountryDetailsResponse response) {
         var country = response.getId();
-        return wireMockClient.stubGet("/tax/api/countries/" + country, HttpStatus.OK, response)
+        return wireMockClient.stubGet(COUNTRIES_ENDPOINT + "/" + country, HttpStatus.OK, response)
                 .mapError(ExtTaxErrorResponse::new);
     }
 }

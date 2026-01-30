@@ -24,11 +24,6 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
         return this;
     }
 
-    public GetTaxVerification countryFromParam(String countryParamAlias) {
-        var expectedCountry = getContext().getParamValue(countryParamAlias);
-        return country(expectedCountry);
-    }
-
     public GetTaxVerification taxRate(BigDecimal expectedTaxRate) {
         var actualTaxRate = getResponse().getTaxRate();
         assertThat(actualTaxRate)
