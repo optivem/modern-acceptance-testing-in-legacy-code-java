@@ -9,30 +9,30 @@ import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxRealDriver;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 public class BaseDriverTest extends BaseConfigurableTest {
+    protected SystemConfiguration configuration;
+
     protected ErpRealDriver erpDriver;
     protected TaxRealDriver taxDriver;
     protected ShopDriver shopDriver;
-    protected SystemConfiguration configuration;
+
+    @BeforeEach
+    protected void setUpConfiguration() {
+        configuration = loadConfiguration();
+    }
 
     protected void setUpExternalDrivers() {
-        configuration = loadConfiguration();
         erpDriver = new ErpRealDriver(configuration.getErpBaseUrl());
         taxDriver = new TaxRealDriver(configuration.getTaxBaseUrl());
     }
 
     protected void setUpShopApiDriver() {
-        if (configuration == null) {
-            configuration = loadConfiguration();
-        }
         shopDriver = new ShopApiDriver(configuration.getShopApiBaseUrl());
     }
 
     protected void setUpShopUiDriver() {
-        if (configuration == null) {
-            configuration = loadConfiguration();
-        }
         shopDriver = new ShopUiDriver(configuration.getShopUiBaseUrl());
     }
 
