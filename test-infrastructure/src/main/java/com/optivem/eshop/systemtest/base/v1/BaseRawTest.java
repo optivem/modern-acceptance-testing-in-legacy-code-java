@@ -55,10 +55,25 @@ public class BaseRawTest extends BaseConfigurableTest {
     }
 
     protected void setUpExternalHttpClients() {
-        configuration = loadConfiguration();
         erpHttpClient = HttpClient.newHttpClient();
         taxHttpClient = HttpClient.newHttpClient();
         httpObjectMapper = createObjectMapper();
+    }
+
+    protected String getShopApiBaseUrl() {
+        return configuration.getShopApiBaseUrl();
+    }
+
+    protected String getShopUiBaseUrl() {
+        return configuration.getShopUiBaseUrl();
+    }
+
+    protected String getErpBaseUrl() {
+        return configuration.getErpBaseUrl();
+    }
+
+    protected String getTaxBaseUrl() {
+        return configuration.getTaxBaseUrl();
     }
 
     private ObjectMapper createObjectMapper() {
