@@ -16,7 +16,6 @@ public class BaseClientTest extends BaseConfigurableTest {
     protected TaxRealClient taxClient;
     protected ShopApiClient shopApiClient;
     protected ShopUiClient shopUiClient;
-    protected JsonHttpClient<ProblemDetailResponse> shopHttpClient;
     protected SystemConfiguration configuration;
 
     protected void setUpExternalClients() {
@@ -29,8 +28,7 @@ public class BaseClientTest extends BaseConfigurableTest {
         if (configuration == null) {
             configuration = loadConfiguration();
         }
-        shopHttpClient = new JsonHttpClient<>(configuration.getShopApiBaseUrl(), ProblemDetailResponse.class);
-        shopApiClient = new ShopApiClient(shopHttpClient);
+        shopApiClient = new ShopApiClient(configuration.getShopApiBaseUrl());
     }
 
     protected void setUpShopUiClient() {
@@ -43,9 +41,9 @@ public class BaseClientTest extends BaseConfigurableTest {
     @AfterEach
     void tearDown() {
         Closer.close(shopUiClient);
+        Closer.close(shopApiClient);
         Closer.close(erpClient);
         Closer.close(taxClient);
-        Closer.close(shopHttpClient);
     }
 }
 
