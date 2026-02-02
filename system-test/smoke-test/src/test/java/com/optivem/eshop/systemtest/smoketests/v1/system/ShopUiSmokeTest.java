@@ -15,14 +15,14 @@ public class ShopUiSmokeTest extends BaseRawTest {
 
     @Test
     void shouldBeAbleToGoToShop() {
-        var response = page.navigate(getShopUiBaseUrl());
+        var response = shopUiPage.navigate(getShopUiBaseUrl());
 
         assertEquals(200, response.status());
 
         var contentType = response.headers().get("content-type");
         assertTrue(contentType != null && contentType.contains("text/html"));
 
-        var pageContent = page.content();
+        var pageContent = shopUiPage.content();
         assertTrue(pageContent.contains("<html"));
         assertTrue(pageContent.contains("</html>"));
     }

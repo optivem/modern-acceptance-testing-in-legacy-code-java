@@ -14,16 +14,16 @@ import java.net.http.HttpClient;
 public class BaseRawTest extends BaseConfigurableTest {
     protected SystemConfiguration configuration;
 
-    protected HttpClient shopHttpClient;
+    protected Playwright shopUiPlaywright;
+    protected Browser shopUiBrowser;
+    protected BrowserContext shopUiBrowserContext;
+    protected Page shopUiPage;
+
+    protected HttpClient shopApiHttpClient;
     protected HttpClient erpHttpClient;
     protected HttpClient taxHttpClient;
 
-    protected Playwright playwright;
-    protected Browser browser;
-    protected BrowserContext browserContext;
-    protected Page page;
-
-    protected ObjectMapper objectMapper;
+    protected ObjectMapper httpObjectMapper;
 
     @BeforeEach
     protected void setUpConfiguration() {
@@ -31,26 +31,26 @@ public class BaseRawTest extends BaseConfigurableTest {
     }
 
     protected void setUpShopBrowser() {
-        playwright = Playwright.create();
+        shopUiPlaywright = Playwright.create();
 
         var launchOptions = new BrowserType.LaunchOptions()
                 .setHeadless(true)
                 .setSlowMo(100);
 
-        browser = playwright.chromium().launch(launchOptions);
+        shopUiBrowser = shopUiPlaywright.chromium().launch(launchOptions);
 
         var contextOptions = new Browser.NewContextOptions()
                 .setViewportSize(1920, 1080)
                 .setStorageStatePath(null);
 
-        browserContext = browser.newContext(contextOptions);
-        page = browserContext.newPage();
+        shopUiBrowserContext = shopUiBrowser.newContext(contextOptions);
+        shopUiPage = shopUiBrowserContext.newPage();
     }
 
     protected void setUpShopHttpClient() {
-        shopHttpClient = HttpClient.newHttpClient();
-        if (objectMapper == null) {
-            objectMapper = createObjectMapper();
+        shopApiHttpClient = HttpClient.newHttpClient();
+        if (httpObjectMapper == null) {
+            httpObjectMapper = createObjectMapper();
         }
     }
 
@@ -58,7 +58,7 @@ public class BaseRawTest extends BaseConfigurableTest {
         configuration = loadConfiguration();
         erpHttpClient = HttpClient.newHttpClient();
         taxHttpClient = HttpClient.newHttpClient();
-        objectMapper = createObjectMapper();
+        httpObjectMapper = createObjectMapper();
     }
 
     protected String getShopUiBaseUrl() {
@@ -85,13 +85,13 @@ public class BaseRawTest extends BaseConfigurableTest {
 
     @AfterEach
     void tearDown() {
-        Closer.close(page);
-        Closer.close(browserContext);
-        Closer.close(browser);
-        Closer.close(playwright);
+        Closer.close(shopUiPage);
+        Closer.close(shopUiBrowserContext);
+        Closer.close(shopUiBrowser);
+        Closer.close(shopUiPlaywright);
         Closer.close(erpHttpClient);
         Closer.close(taxHttpClient);
-        Closer.close(shopHttpClient);
+        Closer.close(shopApiHttpClient);
     }
 }
 

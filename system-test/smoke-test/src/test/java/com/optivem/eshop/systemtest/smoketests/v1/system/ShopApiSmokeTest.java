@@ -27,7 +27,7 @@ public class ShopApiSmokeTest extends BaseRawTest {
                 .GET()
                 .build();
 
-        var response = shopHttpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        var response = shopApiHttpClient.send(request, HttpResponse.BodyHandlers.ofString());
 
         assertEquals(200, response.statusCode());
     }
