@@ -61,22 +61,6 @@ public class BaseRawTest extends BaseConfigurableTest {
         httpObjectMapper = createObjectMapper();
     }
 
-    protected String getShopUiBaseUrl() {
-        return configuration.getShopUiBaseUrl();
-    }
-
-    protected String getShopApiBaseUrl() {
-        return configuration.getShopApiBaseUrl();
-    }
-
-    protected String getErpBaseUrl() {
-        return configuration.getErpBaseUrl();
-    }
-
-    protected String getTaxBaseUrl() {
-        return configuration.getTaxBaseUrl();
-    }
-
     private ObjectMapper createObjectMapper() {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());

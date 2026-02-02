@@ -4,14 +4,13 @@ import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.commons.dsl.ExternalSystemMode;
 import org.yaml.snakeyaml.Yaml;
 
-import java.io.InputStream;
 import java.util.Map;
 
 public class SystemConfigurationLoader {
 
     public static SystemConfiguration load(Environment environmentMode, ExternalSystemMode externalSystemMode) {
-        String configFile = getConfigFileName(environmentMode, externalSystemMode);
-        Map<String, Object> config = loadYamlFile(configFile);
+        var configFile = getConfigFileName(environmentMode, externalSystemMode);
+        var config = loadYamlFile(configFile);
 
         var shopUiBaseUrl = getNestedStringValue(config, "test", "eshop", "ui", "baseUrl");
         var shopApiBaseUrl = getNestedStringValue(config, "test", "eshop", "api", "baseUrl");
@@ -23,24 +22,14 @@ public class SystemConfigurationLoader {
     }
 
     private static String getConfigFileName(Environment environmentMode, ExternalSystemMode externalSystemMode) {
-        // Only LOCAL and ACCEPTANCE environments can use STUB mode
-        if (externalSystemMode == ExternalSystemMode.STUB &&
-                environmentMode != Environment.LOCAL &&
-                environmentMode != Environment.ACCEPTANCE) {
-            throw new IllegalArgumentException(
-                    String.format("STUB mode is only allowed for LOCAL and ACCEPTANCE environments. Cannot use STUB for %s environment.",
-                            environmentMode)
-            );
-        }
-
-        String env = environmentMode.name().toLowerCase();
-        String mode = externalSystemMode.name().toLowerCase();
+        var env = environmentMode.name().toLowerCase();
+        var mode = externalSystemMode.name().toLowerCase();
         return String.format("test-config-%s-%s.yml", env, mode);
     }
 
     private static Map<String, Object> loadYamlFile(String fileName) {
         var yaml = new Yaml();
-        InputStream inputStream = SystemConfigurationLoader.class
+        var inputStream = SystemConfigurationLoader.class
                 .getClassLoader()
                 .getResourceAsStream(fileName);
 
