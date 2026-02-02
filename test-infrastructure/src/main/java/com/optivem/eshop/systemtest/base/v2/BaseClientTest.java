@@ -13,10 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 public class BaseClientTest extends BaseConfigurableTest {
     protected SystemConfiguration configuration;
 
+    protected ShopUiClient shopUiClient;
+    protected ShopApiClient shopApiClient;
     protected ErpRealClient erpClient;
     protected TaxRealClient taxClient;
-    protected ShopApiClient shopApiClient;
-    protected ShopUiClient shopUiClient;
 
 
     @BeforeEach
@@ -24,17 +24,17 @@ public class BaseClientTest extends BaseConfigurableTest {
         configuration = loadConfiguration();
     }
 
-    protected void setUpExternalClients() {
-        erpClient = new ErpRealClient(configuration.getErpBaseUrl());
-        taxClient = new TaxRealClient(configuration.getTaxBaseUrl());
+    protected void setUpShopUiClient() {
+        shopUiClient = new ShopUiClient(configuration.getShopUiBaseUrl());
     }
 
     protected void setUpShopApiClient() {
         shopApiClient = new ShopApiClient(configuration.getShopApiBaseUrl());
     }
 
-    protected void setUpShopUiClient() {
-        shopUiClient = new ShopUiClient(configuration.getShopUiBaseUrl());
+    protected void setUpExternalClients() {
+        erpClient = new ErpRealClient(configuration.getErpBaseUrl());
+        taxClient = new TaxRealClient(configuration.getTaxBaseUrl());
     }
 
     @AfterEach
