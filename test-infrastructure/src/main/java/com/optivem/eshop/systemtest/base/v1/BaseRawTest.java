@@ -7,42 +7,30 @@ import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.net.http.HttpClient;
 
 public class BaseRawTest extends BaseConfigurableTest {
+    protected SystemConfiguration configuration;
+
+    protected HttpClient shopHttpClient;
     protected HttpClient erpHttpClient;
     protected HttpClient taxHttpClient;
-    protected HttpClient shopHttpClient;
+
     protected Playwright playwright;
     protected Browser browser;
     protected BrowserContext browserContext;
     protected Page page;
-    protected SystemConfiguration configuration;
+
     protected ObjectMapper objectMapper;
 
-    protected void setUpExternalHttpClients() {
+    @BeforeEach
+    protected void setUpConfiguration() {
         configuration = loadConfiguration();
-        erpHttpClient = HttpClient.newHttpClient();
-        taxHttpClient = HttpClient.newHttpClient();
-        objectMapper = createObjectMapper();
-    }
-
-    protected void setUpShopHttpClient() {
-        if (configuration == null) {
-            configuration = loadConfiguration();
-        }
-        shopHttpClient = HttpClient.newHttpClient();
-        if (objectMapper == null) {
-            objectMapper = createObjectMapper();
-        }
     }
 
     protected void setUpShopBrowser() {
-        if (configuration == null) {
-            configuration = loadConfiguration();
-        }
-
         playwright = Playwright.create();
 
         var launchOptions = new BrowserType.LaunchOptions()
@@ -59,20 +47,34 @@ public class BaseRawTest extends BaseConfigurableTest {
         page = browserContext.newPage();
     }
 
-    protected String getErpBaseUrl() {
-        return configuration.getErpBaseUrl();
+    protected void setUpShopHttpClient() {
+        shopHttpClient = HttpClient.newHttpClient();
+        if (objectMapper == null) {
+            objectMapper = createObjectMapper();
+        }
     }
 
-    protected String getTaxBaseUrl() {
-        return configuration.getTaxBaseUrl();
+    protected void setUpExternalHttpClients() {
+        configuration = loadConfiguration();
+        erpHttpClient = HttpClient.newHttpClient();
+        taxHttpClient = HttpClient.newHttpClient();
+        objectMapper = createObjectMapper();
+    }
+
+    protected String getShopUiBaseUrl() {
+        return configuration.getShopUiBaseUrl();
     }
 
     protected String getShopApiBaseUrl() {
         return configuration.getShopApiBaseUrl();
     }
 
-    protected String getShopUiBaseUrl() {
-        return configuration.getShopUiBaseUrl();
+    protected String getErpBaseUrl() {
+        return configuration.getErpBaseUrl();
+    }
+
+    protected String getTaxBaseUrl() {
+        return configuration.getTaxBaseUrl();
     }
 
     private ObjectMapper createObjectMapper() {
