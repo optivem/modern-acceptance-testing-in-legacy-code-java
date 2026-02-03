@@ -22,17 +22,10 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
         scenario
-                .given()
-                .product()
-                .withUnitPrice(20.00)
-                .when()
-                .placeOrder()
-                .withQuantity(5)
-                .then()
-                .shouldSucceed()
-                .and()
-                .order()
-                .hasSubtotalPrice(100.00);
+                .given().product().withUnitPrice(20.00)
+                .when().placeOrder().withQuantity(5)
+                .then().shouldSucceed()
+                .and().order().hasSubtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -43,34 +36,20 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
         scenario
-                .given()
-                .product()
-                .withUnitPrice(unitPrice)
-                .when()
-                .placeOrder()
-                .withQuantity(quantity)
-                .then()
-                .shouldSucceed()
-                .and()
-                .order()
-                .hasSubtotalPrice(subtotalPrice);
+                .given().product().withUnitPrice(unitPrice)
+                .when().placeOrder().withQuantity(quantity)
+                .then().shouldSucceed()
+                .and().order().hasSubtotalPrice(subtotalPrice);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrder() {
         scenario
-                .given()
-                .product()
-                .withUnitPrice(20.00)
-                .when()
-                .placeOrder()
-                .withQuantity(5)
-                .then()
-                .shouldSucceed()
-                .hasOrderNumberPrefix("ORD-")
-                .and()
-                .order()
+                .given().product().withUnitPrice(20.00)
+                .when().placeOrder().withQuantity(5)
+                .then().shouldSucceed().hasOrderNumberPrefix("ORD-")
+                .and().order()
                 .hasQuantity(5)
                 .hasUnitPrice(20.00)
                 .hasSubtotalPrice(100.00)

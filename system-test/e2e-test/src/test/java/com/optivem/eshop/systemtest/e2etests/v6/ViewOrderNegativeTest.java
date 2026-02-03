@@ -24,12 +24,8 @@ public class ViewOrderNegativeTest extends BaseE2eTest {
     @MethodSource("provideNonExistentOrderValues")
     void shouldNotBeAbleToViewNonExistentOrder(String orderNumber, String expectedErrorMessage) {
         scenario
-                .given()
-                .when()
-                .viewOrder()
-                .withOrderNumber(orderNumber)
-                .then()
-                .shouldFail()
+                .when().viewOrder().withOrderNumber(orderNumber)
+                .then().shouldFail()
                 .errorMessage(expectedErrorMessage);
     }
 }
