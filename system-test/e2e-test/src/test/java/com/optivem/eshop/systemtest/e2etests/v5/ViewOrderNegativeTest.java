@@ -23,9 +23,7 @@ public class ViewOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     @MethodSource("provideNonExistentOrderValues")
     void shouldNotBeAbleToViewNonExistentOrder(String orderNumber, String expectedErrorMessage) {
-        app.shop().viewOrder()
-                .orderNumber(orderNumber)
-                .execute()
+        app.shop().viewOrder().orderNumber(orderNumber).execute()
                 .shouldFail()
                 .errorMessage(expectedErrorMessage);
     }

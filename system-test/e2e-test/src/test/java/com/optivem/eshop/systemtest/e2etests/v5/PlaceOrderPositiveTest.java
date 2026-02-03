@@ -14,17 +14,10 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
-        app.erp().returnsProduct()
-                .sku(SKU)
-                .unitPrice(20.00)
-                .execute()
+        app.erp().returnsProduct().sku(SKU).unitPrice(20.00).execute()
                 .shouldSucceed();
 
-        app.shop().placeOrder().orderNumber(ORDER_NUMBER)
-                .sku(SKU)
-                .country(COUNTRY)
-                .quantity(5)
-                .execute()
+        app.shop().placeOrder().orderNumber(ORDER_NUMBER).sku(SKU).country(COUNTRY).quantity(5).execute()
                 .shouldSucceed();
 
         app.shop().viewOrder().orderNumber(ORDER_NUMBER).execute()
@@ -39,23 +32,13 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"15.50", "4", "62.00"})
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String subtotalPrice) {
-        app.erp().returnsProduct()
-                .sku(SKU)
-                .unitPrice(unitPrice)
-                .execute()
+        app.erp().returnsProduct().sku(SKU).unitPrice(unitPrice).execute()
                 .shouldSucceed();
 
-        app.shop().placeOrder()
-                .orderNumber(ORDER_NUMBER)
-                .sku(SKU)
-                .country(COUNTRY)
-                .quantity(quantity)
-                .execute()
+        app.shop().placeOrder().orderNumber(ORDER_NUMBER).sku(SKU).country(COUNTRY).quantity(quantity).execute()
                 .shouldSucceed();
 
-        app.shop().viewOrder()
-                .orderNumber(ORDER_NUMBER)
-                .execute()
+        app.shop().viewOrder().orderNumber(ORDER_NUMBER).execute()
                 .shouldSucceed()
                 .subtotalPrice(subtotalPrice);
     }
@@ -63,25 +46,15 @@ public class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrder() {
-        app.erp().returnsProduct()
-                .sku(SKU)
-                .unitPrice(20.00)
-                .execute()
+        app.erp().returnsProduct().sku(SKU).unitPrice(20.00).execute()
                 .shouldSucceed();
 
-        app.shop().placeOrder()
-                .orderNumber(ORDER_NUMBER)
-                .sku(SKU)
-                .country(COUNTRY)
-                .quantity(5)
-                .execute()
+        app.shop().placeOrder().orderNumber(ORDER_NUMBER).sku(SKU).country(COUNTRY).quantity(5).execute()
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
                 .orderNumberStartsWith("ORD-");
 
-        app.shop().viewOrder()
-                .orderNumber(ORDER_NUMBER)
-                .execute()
+        app.shop().viewOrder().orderNumber(ORDER_NUMBER).execute()
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)

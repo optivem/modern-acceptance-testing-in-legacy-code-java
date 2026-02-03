@@ -13,23 +13,13 @@ public class ViewOrderPositiveTest extends BaseE2eTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldViewPlacedOrder() {
-        app.erp().returnsProduct()
-                .sku(SKU)
-                .unitPrice(25.00)
-                .execute()
+        app.erp().returnsProduct().sku(SKU).unitPrice(25.00).execute()
                 .shouldSucceed();
 
-        app.shop().placeOrder()
-                .orderNumber(ORDER_NUMBER)
-                .sku(SKU)
-                .country(COUNTRY)
-                .quantity(4)
-                .execute()
+        app.shop().placeOrder().orderNumber(ORDER_NUMBER).sku(SKU).country(COUNTRY).quantity(4).execute()
                 .shouldSucceed();
 
-        app.shop().viewOrder()
-                .orderNumber(ORDER_NUMBER)
-                .execute()
+        app.shop().viewOrder().orderNumber(ORDER_NUMBER).execute()
                 .shouldSucceed()
                 .orderNumber(ORDER_NUMBER)
                 .sku(SKU)
