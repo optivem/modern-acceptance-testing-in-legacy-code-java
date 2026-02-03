@@ -177,7 +177,6 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .when().placeOrder().withOrderNumber("ORD-3").withCouponCode("LIMITED2024")
                 .then().shouldFail().errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("couponCode", "Coupon code LIMITED2024 has exceeded its usage limit");
-        // TODO: VJ: Make message Coupon code LIMITED2024 has exceeded its usage limit
     }
 
 }
