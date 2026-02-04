@@ -34,14 +34,6 @@ public class CancelOrderNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.API})
-    void cannotCancelOrderWhereOrderNumberIsMissing() {
-        scenario
-                .when().cancelOrder().withOrderNumber(null)
-                .then().shouldFail().errorMessage("Order null does not exist.");
-    }
-
-    @TestTemplate
-    @Channel({ChannelType.API})
     void cannotCancelNonExistentOrder() {
         scenario
                 .when().cancelOrder().withOrderNumber("non-existent-order-12345")

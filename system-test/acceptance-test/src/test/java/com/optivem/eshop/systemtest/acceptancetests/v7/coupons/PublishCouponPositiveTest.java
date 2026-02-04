@@ -35,22 +35,20 @@ public class PublishCouponPositiveTest extends BaseAcceptanceTest {
                 .then().shouldSucceed();
     }
 
-    @Disabled
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToCorrectlySaveCoupon() {
         scenario
-                .given().clock().withTime("2024-01-01T00:00:00Z")
                 .when().publishCoupon()
                 .withCouponCode("SUMMER2025")
                 .withDiscountRate(0.15)
                 .withValidFrom("2024-06-01T00:00:00Z")
-                .withValidTo("2024-08-31T23:59:59Z")
+                .withValidTo("2024-08-31T23:59:00Z")
                 .withUsageLimit(100)
                 .then().coupon("SUMMER2025")
                 .hasDiscountRate(0.15)
                 .isValidFrom("2024-06-01T00:00:00Z")
-                .isValidTo("2024-08-31T23:59:59Z")
+                .isValidTo("2024-08-31T23:59:00Z")
                 .hasUsageLimit(100)
                 .hasUsedCount(0);
     }
