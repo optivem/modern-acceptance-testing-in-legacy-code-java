@@ -38,6 +38,16 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
         return this;
     }
 
+    public BrowseCouponsVerification couponHasValidTo(String couponCodeAlias, String expectedValidTo) {
+        var coupon = findCouponByCode(couponCodeAlias);
+
+        var expectedInstant = Converter.parseInstant(expectedValidTo);
+        assertThat(coupon.getValidTo())
+                .as("ValidTo for coupon '%s'", couponCodeAlias)
+                .isEqualTo(expectedInstant);
+        return this;
+    }
+
     public BrowseCouponsVerification couponHasUsageLimit(String couponCodeAlias, int expectedUsageLimit) {
         var coupon = findCouponByCode(couponCodeAlias);
 
@@ -80,5 +90,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
                                         .map(BrowseCouponsResponse.CouponDto::getCode)
                                         .toList())));
     }
+
+
 
 }

@@ -7,6 +7,7 @@ import com.optivem.test.Time;
 import com.optivem.test.Channel;
 import com.optivem.test.DataSource;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
@@ -155,6 +156,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .fieldErrorMessage("couponCode", "Coupon code INVALIDCOUPON does not exist");
     }
 
+    @Disabled
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

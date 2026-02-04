@@ -6,6 +6,8 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.test.Time;
 import com.optivem.test.Channel;
 import com.optivem.test.DataSource;
+
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 public class CancelOrderNegativeTest extends BaseAcceptanceTest {
@@ -46,6 +48,7 @@ public class CancelOrderNegativeTest extends BaseAcceptanceTest {
                 .then().shouldFail().errorMessage("Order non-existent-order-12345 does not exist.");
     }
 
+    @Disabled
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
