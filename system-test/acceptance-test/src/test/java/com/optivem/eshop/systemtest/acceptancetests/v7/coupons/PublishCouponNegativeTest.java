@@ -35,8 +35,7 @@ public class PublishCouponNegativeTest extends BaseAcceptanceTest {
                 .errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("discountRate", "Discount rate must be at most 1.00");
     }
-
-    @Disabled("Disabled until bug is fixed")
+    
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
