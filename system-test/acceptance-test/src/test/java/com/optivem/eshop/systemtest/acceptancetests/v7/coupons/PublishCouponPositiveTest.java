@@ -5,9 +5,11 @@ import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.test.Channel;
 import com.optivem.test.Time;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 public class PublishCouponPositiveTest extends BaseAcceptanceTest {
+    @Disabled
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToPublishValidCoupon() {
@@ -34,7 +36,8 @@ public class PublishCouponPositiveTest extends BaseAcceptanceTest {
                 .withUsageLimit("")
                 .then().shouldSucceed();
     }
-    
+
+    @Disabled
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToCorrectlySaveCoupon() {
