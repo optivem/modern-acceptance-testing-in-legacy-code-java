@@ -155,8 +155,7 @@ public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .then().shouldFail().errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("couponCode", "Coupon code INVALIDCOUPON does not exist");
     }
-
-    @Disabled
+    
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

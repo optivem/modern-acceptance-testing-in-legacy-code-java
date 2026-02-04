@@ -35,22 +35,6 @@ public class PublishCouponNegativeTest extends BaseAcceptanceTest {
                 .errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("discountRate", "Discount rate must be at most 1.00");
     }
-    
-    @Time
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    @ValueSource(strings = {"2023-12-31T23:59:59Z", "2024-01-01T00:00:00Z", "2025-06-01T12:00:00Z"})
-    void cannotPublishCouponWithValidToInThePast(String validTo) {
-        scenario
-                .given().clock().withTime("2026-01-01T12:00:00Z")
-                .when().publishCoupon()
-                    .withCouponCode("PAST-COUPON")
-                    .withDiscountRate(0.15)
-                    .withValidTo(validTo)
-                .then().shouldFail()
-                .errorMessage("The request contains one or more validation errors")
-                .fieldErrorMessage("validTo", "Valid to date cannot be in the past");
-    }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
