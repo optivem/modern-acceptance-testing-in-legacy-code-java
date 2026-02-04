@@ -9,12 +9,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 public class PublishCouponPositiveTest extends BaseAcceptanceTest {
-    @Disabled
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToPublishValidCoupon() {
         scenario
-                .given().clock().withTime("2024-01-01T00:00:00Z")
                 .when().publishCoupon()
                     .withCouponCode("SUMMER2025")
                     .withDiscountRate(0.15)
