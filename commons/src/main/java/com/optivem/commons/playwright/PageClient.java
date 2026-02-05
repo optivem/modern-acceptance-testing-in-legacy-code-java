@@ -11,16 +11,14 @@ public class PageClient {
     private static final int DEFAULT_TIMEOUT_SECONDS = 30;
     private static final int DEFAULT_TIMEOUT_MILLISECONDS = DEFAULT_TIMEOUT_SECONDS * 1000;
     private final Page page;
-    private final String baseUrl;
     private final int timeoutMilliseconds;
 
     public PageClient(Page page) {
-        this(page, null, DEFAULT_TIMEOUT_MILLISECONDS);
+        this(page, DEFAULT_TIMEOUT_MILLISECONDS);
     }
 
-    public PageClient(Page page, String baseUrl, int timeoutMilliseconds) {
+    public PageClient(Page page, int timeoutMilliseconds) {
         this.page = page;
-        this.baseUrl = baseUrl;
         this.timeoutMilliseconds = timeoutMilliseconds;
     }
 

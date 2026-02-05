@@ -39,7 +39,9 @@ public class JsonHttpClient<E> implements AutoCloseable {
     private static ObjectMapper createObjectMapper() {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
-        mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES);
+        // Enable case-insensitive property binding
+        mapper.setConfig(mapper.getDeserializationConfig()
+                .with(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES));
         return mapper;
     }
 

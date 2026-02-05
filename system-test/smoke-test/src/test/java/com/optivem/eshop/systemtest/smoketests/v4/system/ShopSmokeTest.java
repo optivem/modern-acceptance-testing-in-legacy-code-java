@@ -7,7 +7,7 @@ import org.junit.jupiter.api.TestTemplate;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class ShopSmokeTest extends BaseChannelDriverTest {
+class ShopSmokeTest extends BaseChannelDriverTest {
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToGoToShop() {

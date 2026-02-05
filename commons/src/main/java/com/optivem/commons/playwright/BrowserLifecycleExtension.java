@@ -78,10 +78,10 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
 
     @Override
     public void beforeEach(ExtensionContext context) {
-        long threadId = Thread.currentThread().getId();
+        long threadId = Thread.currentThread().threadId();
         
         // Create browser for this thread if not already exists (lazy initialization)
-        BROWSERS_BY_THREAD.computeIfAbsent(threadId, id -> new BrowserResource(id));
+        BROWSERS_BY_THREAD.computeIfAbsent(threadId, id -> new BrowserResource());
         
         // Set browser in ThreadLocal for this test
         Browser browser = getBrowser();
@@ -107,7 +107,7 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
         }
         
         // Fallback: get from thread map
-        long threadId = Thread.currentThread().getId();
+        long threadId = Thread.currentThread().threadId();
         BrowserResource resource = BROWSERS_BY_THREAD.get(threadId);
         if (resource != null) {
             return resource.getBrowser();
@@ -122,13 +122,10 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
      * Resource wrapper that manages browser lifecycle.
      */
     private static class BrowserResource {
-        private final long threadId;
         private final Playwright playwright;
         private final Browser browser;
         
-        public BrowserResource(long threadId) {
-            this.threadId = threadId;
-
+        public BrowserResource() {
             this.playwright = Playwright.create();
             
             var launchOptions = new BrowserType.LaunchOptions()
@@ -147,14 +144,14 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
                 try {
                     browser.close();
                 } catch (Exception e) {
-                    // Ignore
+                    // Ignore - browser cleanup best effort
                 }
             }
             if (playwright != null) {
                 try {
                     playwright.close();
                 } catch (Exception e) {
-                    System.err.println("[WARN] Error closing playwright: " + e.getMessage());
+                    // Ignore - playwright cleanup best effort
                 }
             }
         }
