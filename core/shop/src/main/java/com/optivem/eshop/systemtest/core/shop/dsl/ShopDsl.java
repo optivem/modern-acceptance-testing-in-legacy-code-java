@@ -11,7 +11,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.coupons.PublishCoupon;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.ViewOrder;
 import com.optivem.commons.util.Closer;
 import com.optivem.eshop.systemtest.core.shop.dsl.system.GoToShop;
-import com.optivem.test.contexts.ChannelContext;
+import com.optivem.testing.contexts.ChannelContext;
 import com.optivem.commons.dsl.UseCaseContext;
 
 import java.io.Closeable;

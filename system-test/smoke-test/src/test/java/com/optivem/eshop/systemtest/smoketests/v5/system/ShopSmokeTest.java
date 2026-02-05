@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.smoketests.v5.system;
 
 import com.optivem.eshop.systemtest.base.v5.BaseSystemDslTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
-import com.optivem.test.Channel;
+import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
 public class ShopSmokeTest extends BaseSystemDslTest {

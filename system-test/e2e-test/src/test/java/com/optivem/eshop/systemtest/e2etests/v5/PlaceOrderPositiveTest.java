@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.e2etests.v5;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.e2etests.v5.base.BaseE2eTest;
-import com.optivem.test.Channel;
-import com.optivem.test.DataSource;
+import com.optivem.testing.Channel;
+import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
