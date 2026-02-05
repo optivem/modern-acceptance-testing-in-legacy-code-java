@@ -34,7 +34,11 @@ class PlaceOrderNegativeUiTest extends BaseClientTest {
         // Then
         assertThatResult(result).isFailure();
         var error = result.getError();
-        assertThat(error.getMessage()).contains("quantity");
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must be positive");
+        });
     }
 
     @Test
@@ -54,7 +58,11 @@ class PlaceOrderNegativeUiTest extends BaseClientTest {
         // Then
         assertThatResult(result).isFailure();
         var error = result.getError();
-        assertThat(error.getMessage()).contains("SKU");
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("sku");
+            assertThat(field.getMessage()).isEqualTo("Product does not exist for SKU: INVALID-SKU");
+        });
     }
 
     @Test
@@ -74,6 +82,10 @@ class PlaceOrderNegativeUiTest extends BaseClientTest {
         // Then
         assertThatResult(result).isFailure();
         var error = result.getError();
-        assertThat(error.getMessage()).contains("SKU");
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("sku");
+            assertThat(field.getMessage()).isEqualTo("SKU must not be empty");
+        });
     }
 }

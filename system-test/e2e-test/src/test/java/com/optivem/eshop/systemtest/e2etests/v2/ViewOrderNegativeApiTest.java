@@ -26,6 +26,6 @@ class ViewOrderNegativeApiTest extends BaseClientTest {
         // Then
         assertThatResult(viewOrderResult).isFailure();
         var error = viewOrderResult.getError();
-        assertThat(error.getDetail()).contains("Order");
+        assertThat(error.getDetail()).isEqualTo("Order ORD-99999999 does not exist.");
     }
 }

@@ -19,6 +19,6 @@ abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
         // Then
         assertThatResult(viewOrderResult).isFailure();
         var error = viewOrderResult.getError();
-        assertThat(error.getMessage()).contains("Order");
+        assertThat(error.getMessage()).isEqualTo("Order ORD-99999999 does not exist.");
     }
 }
