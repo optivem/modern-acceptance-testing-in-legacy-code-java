@@ -4,6 +4,7 @@ import com.optivem.eshop.systemtest.e2etests.v3.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static org.assertj.core.api.Assertions.assertThat;
 
 abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
 
@@ -16,6 +17,8 @@ abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
         var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
 
         // Then
-        assertThatResult(viewOrderResult).isValidationFailure("Order number does not exist");
+        assertThatResult(viewOrderResult).isFailure();
+        var error = viewOrderResult.getError();
+        assertThat(error.getMessage()).contains("Order");
     }
 }

@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.e2etests.v3;
+package com.optivem.eshop.systemtest.e2etests.v2;
 
+import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.e2etests.v3.base.BaseE2eTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
@@ -9,7 +10,13 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.C
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 import static org.assertj.core.api.Assertions.assertThat;
 
-abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
+class PlaceOrderNegativeApiTest extends BaseClientTest {
+
+    @BeforeEach
+    void setUp() {
+        setUpShopApiClient();
+        setUpExternalClients();
+    }
 
     @Test
     void shouldNotPlaceOrderWhenQuantityIsZero() {
@@ -21,12 +28,12 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
                 .build();
 
         // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopApiClient.orders().placeOrder(placeOrderRequest);
 
         // Then
         assertThatResult(placeOrderResult).isFailure();
         var error = placeOrderResult.getError();
-        assertThat(error.getMessage()).contains("quantity");
+        assertThat(error.getDetail()).contains("quantity");
     }
 
     @Test
@@ -39,12 +46,12 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
                 .build();
 
         // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopApiClient.orders().placeOrder(placeOrderRequest);
 
         // Then
         assertThatResult(placeOrderResult).isFailure();
         var error = placeOrderResult.getError();
-        assertThat(error.getMessage()).contains("SKU");
+        assertThat(error.getDetail()).contains("SKU");
     }
 
     @Test
@@ -57,11 +64,11 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
                 .build();
 
         // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopApiClient.orders().placeOrder(placeOrderRequest);
 
         // Then
         assertThatResult(placeOrderResult).isFailure();
         var error = placeOrderResult.getError();
-        assertThat(error.getMessage()).contains("SKU");
+        assertThat(error.getDetail()).contains("SKU");
     }
 }
