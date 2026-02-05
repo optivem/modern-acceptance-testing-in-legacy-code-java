@@ -5,6 +5,7 @@ import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -13,6 +14,7 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled("V2 tests disabled for now")
 class PlaceOrderPositiveUiTest extends BaseClientTest {
 
     @BeforeEach

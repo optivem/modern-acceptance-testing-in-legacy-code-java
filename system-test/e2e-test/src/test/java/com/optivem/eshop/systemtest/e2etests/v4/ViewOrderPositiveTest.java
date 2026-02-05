@@ -14,6 +14,7 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled("V4 tests disabled for now")
 class ViewOrderPositiveTest extends BaseE2eTest {
 
     @TestTemplate

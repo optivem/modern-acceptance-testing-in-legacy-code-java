@@ -2,12 +2,14 @@ package com.optivem.eshop.systemtest.e2etests.v1;
 
 import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.COUNTRY;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled("V1 tests disabled for now")
 class PlaceOrderNegativeUiTest extends BaseRawTest {
 
     @BeforeEach

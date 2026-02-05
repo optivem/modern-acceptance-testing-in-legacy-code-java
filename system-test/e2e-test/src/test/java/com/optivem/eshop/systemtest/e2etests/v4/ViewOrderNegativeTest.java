@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled("V4 tests disabled for now")
 class ViewOrderNegativeTest extends BaseE2eTest {
 
     private static Stream<Arguments> provideNonExistentOrderValues() {

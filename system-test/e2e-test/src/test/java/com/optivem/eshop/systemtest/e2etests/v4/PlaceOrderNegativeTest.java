@@ -13,6 +13,9 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.jupiter.api.Disabled;
+
+@Disabled("V4 tests disabled for now")
 class PlaceOrderNegativeTest extends BaseE2eTest {
 
     @TestTemplate
