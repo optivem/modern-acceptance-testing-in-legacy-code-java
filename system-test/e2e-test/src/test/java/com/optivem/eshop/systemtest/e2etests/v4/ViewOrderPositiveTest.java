@@ -6,6 +6,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.e2etests.v4.base.BaseE2eTest;
 import com.optivem.testing.Channel;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 import java.math.BigDecimal;

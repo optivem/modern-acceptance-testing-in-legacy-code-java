@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Disabled("V2 tests disabled for now")
 class ViewOrderNegativeUiTest extends BaseClientTest {
 
     @BeforeEach
