@@ -38,6 +38,9 @@ tasks.named('test') {
         }
     }
 
+    // Force UTC timezone for consistent test behavior across environments
+    jvmArgs '-Duser.timezone=UTC'
+    
     // Pass system properties from command line to test JVM
     systemProperty 'environment', System.getProperty('environment')
     systemProperty 'externalSystemMode', System.getProperty('externalSystemMode')
