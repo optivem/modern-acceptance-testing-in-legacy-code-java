@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications.BrowseCouponsVerification;
 

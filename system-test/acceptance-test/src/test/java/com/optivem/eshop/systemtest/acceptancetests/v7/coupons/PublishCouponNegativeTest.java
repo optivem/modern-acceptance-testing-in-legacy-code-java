@@ -2,9 +2,7 @@ package com.optivem.eshop.systemtest.acceptancetests.v7.coupons;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
-import com.optivem.testing.Time;
 import com.optivem.testing.Channel;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ValueSource;
 
