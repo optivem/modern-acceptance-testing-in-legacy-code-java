@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
 
     @Test
-    void shouldViewOrder() {
+    void shouldViewPlacedOrder() {
         // Given
         var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()

@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
 
     @Test
-    void shouldNotPlaceOrderWhenQuantityIsZero() {
+    void shouldRejectOrderWithZeroQuantity() {
         // Given
         var placeOrderRequest = PlaceOrderRequest.builder()
                 .sku(createUniqueSku(SKU))
@@ -34,7 +34,7 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
     }
 
     @Test
-    void shouldNotPlaceOrderWhenSKUDoesNotExist() {
+    void shouldRejectOrderWithNonExistentSku() {
         // Given
         var placeOrderRequest = PlaceOrderRequest.builder()
                 .sku("INVALID-SKU")
@@ -56,7 +56,7 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
     }
 
     @Test
-    void shouldNotPlaceOrderWhenSKUIsMissing() {
+    void shouldRejectOrderWithEmptySku() {
         // Given
         var placeOrderRequest = PlaceOrderRequest.builder()
                 .sku("")

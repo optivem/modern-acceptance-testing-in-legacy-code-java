@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
 
     @Test
-    void shouldNotViewOrderWhenOrderNumberDoesNotExist() {
+    void shouldNotBeAbleToViewNonExistentOrder() {
         // Given
         var orderNumber = "ORD-99999999";
 
