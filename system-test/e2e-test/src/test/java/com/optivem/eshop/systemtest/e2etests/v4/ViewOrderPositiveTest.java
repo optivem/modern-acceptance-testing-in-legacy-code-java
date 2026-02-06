@@ -20,8 +20,9 @@ class ViewOrderPositiveTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldViewPlacedOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("25.00")
                 .build();
 
@@ -29,7 +30,7 @@ class ViewOrderPositiveTest extends BaseE2eTest {
         assertThatResult(returnsProductResult).isSuccess();
 
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("4")
                 .country(COUNTRY)
                 .build();
@@ -47,7 +48,7 @@ class ViewOrderPositiveTest extends BaseE2eTest {
 
         var order = viewOrderResult.getValue();
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(order.getSku()).isEqualTo(SKU);
+        assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
         assertThat(order.getQuantity()).isEqualTo(4);
         assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("25.00"));

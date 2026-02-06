@@ -19,13 +19,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderPositiveTest extends BaseE2eTest {
 
-    @Disabled("TODO: FIX")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("20.00")
                 .build();
 
@@ -34,7 +34,7 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
 
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -60,8 +60,9 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String expectedSubtotalPrice) {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price(unitPrice)
                 .build();
 
@@ -70,7 +71,7 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
 
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity(quantity)
                 .country(COUNTRY)
                 .build();
@@ -92,8 +93,9 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("20.00")
                 .build();
 
@@ -102,7 +104,7 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
 
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -119,7 +121,7 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
 
         var order = viewOrderResult.getValue();
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(order.getSku()).isEqualTo(SKU);
+        assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
         assertThat(order.getQuantity()).isEqualTo(5);
         assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

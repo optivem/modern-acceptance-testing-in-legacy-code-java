@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v4;
 
+import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.e2etests.commons.providers.EmptyArgumentsProvider;
@@ -19,7 +20,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithInvalidQuantity() {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity("invalid-quantity")
                 .country(COUNTRY)
                 .build();
@@ -59,7 +60,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithNegativeQuantity() {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity("-10")
                 .country(COUNTRY)
                 .build();
@@ -121,7 +122,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @ArgumentsSource(EmptyArgumentsProvider.class)
     void shouldRejectOrderWithEmptyQuantity(String emptyQuantity) {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity(emptyQuantity)
                 .country(COUNTRY)
                 .build();
@@ -142,7 +143,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @ValueSource(strings = {"3.5", "lala"})
     void shouldRejectOrderWithNonIntegerQuantity(String nonIntegerQuantity) {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity(nonIntegerQuantity)
                 .country(COUNTRY)
                 .build();
@@ -163,7 +164,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @ArgumentsSource(EmptyArgumentsProvider.class)
     void shouldRejectOrderWithEmptyCountry(String emptyCountry) {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity(QUANTITY)
                 .country(emptyCountry)
                 .build();
@@ -183,8 +184,18 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     @ValueSource(strings = {"XX", "InvalidCountry"})
     void shouldRejectOrderWithInvalidCountry(String invalidCountry) {
+
+        var sku = createUniqueSku(SKU);
+        var returnsProductRequest = ReturnsProductRequest.builder()
+                .sku(sku)
+                .price("20.00")
+                .build();
+
+        var returnsProductResult = erpDriver.returnsProduct(returnsProductRequest);
+        assertThatResult(returnsProductResult).isSuccess();
+
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity(QUANTITY)
                 .country(invalidCountry)
                 .build();
@@ -204,7 +215,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullQuantity() {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .country(COUNTRY)
                 .quantity(null)
                 .build();
@@ -244,7 +255,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullCountry() {
         var request = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity(QUANTITY)
                 .country(null)
                 .build();
