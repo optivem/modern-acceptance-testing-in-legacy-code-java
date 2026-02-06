@@ -1,6 +1,12 @@
 package com.optivem.eshop.systemtest.e2etests.v3;
 
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V3 tests disabled for now")
 class PlaceOrderNegativeApiTest extends PlaceOrderNegativeBaseTest {
@@ -8,5 +14,62 @@ class PlaceOrderNegativeApiTest extends PlaceOrderNegativeBaseTest {
     @Override
     protected void setShopDriver() {
         setUpShopApiDriver();
+    }
+
+    @Test
+    void shouldRejectOrderWithNullQuantity() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .country(COUNTRY)
+                .quantity(null)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must not be empty");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithNullSku() {
+        var request = PlaceOrderRequest.builder()
+                .sku(null)
+                .quantity(QUANTITY)
+                .country(COUNTRY)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("sku");
+            assertThat(field.getMessage()).isEqualTo("SKU must not be empty");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithNullCountry() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .quantity(QUANTITY)
+                .country(null)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("country");
+            assertThat(field.getMessage()).isEqualTo("Country must not be empty");
+        });
     }
 }

@@ -47,6 +47,38 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
     }
 
     @Test
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() {
+        // Given
+        var sku = createUniqueSku(SKU);
+        var returnsProductRequest = ReturnsProductRequest.builder()
+                .sku(sku)
+                .price("15.50")
+                .build();
+
+        var returnsProductResult = erpDriver.returnsProduct(returnsProductRequest);
+        assertThatResult(returnsProductResult).isSuccess();
+
+        // When
+        var placeOrderRequest = PlaceOrderRequest.builder()
+                .sku(sku)
+                .quantity("4")
+                .country(COUNTRY)
+                .build();
+
+        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        assertThatResult(placeOrderResult).isSuccess();
+
+        var orderNumber = placeOrderResult.getValue().getOrderNumber();
+
+        // Then
+        var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
+        assertThatResult(viewOrderResult).isSuccess();
+
+        var order = viewOrderResult.getValue();
+        assertThat(order.getSubtotalPrice()).isEqualTo(new BigDecimal("62.00"));
+    }
+
+    @Test
     void shouldPlaceOrder() {
         // Given
         var sku = createUniqueSku(SKU);

@@ -1,31 +1,66 @@
 package com.optivem.eshop.systemtest.e2etests.v3;
 
+import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.e2etests.v3.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.COUNTRY;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
 
     @Test
-    void shouldRejectOrderWithZeroQuantity() {
-        // Given
-        var placeOrderRequest = PlaceOrderRequest.builder()
+    void shouldRejectOrderWithInvalidQuantity() {
+        var request = PlaceOrderRequest.builder()
                 .sku(createUniqueSku(SKU))
-                .quantity("0")
+                .quantity("invalid-quantity")
                 .country(COUNTRY)
                 .build();
 
-        // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var result = shopDriver.orders().placeOrder(request);
 
-        // Then
-        assertThatResult(placeOrderResult).isFailure();
-        var error = placeOrderResult.getError();
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must be an integer");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithNonExistentSku() {
+        var request = PlaceOrderRequest.builder()
+                .sku("NON-EXISTENT-SKU-12345")
+                .quantity(QUANTITY)
+                .country(COUNTRY)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("sku");
+            assertThat(field.getMessage()).isEqualTo("Product does not exist for SKU: NON-EXISTENT-SKU-12345");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithNegativeQuantity() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .quantity("-10")
+                .country(COUNTRY)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
         assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
         assertThat(error.getFields()).anySatisfy(field -> {
             assertThat(field.getField()).isEqualTo("quantity");
@@ -34,46 +69,125 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
     }
 
     @Test
-    void shouldRejectOrderWithNonExistentSku() {
-        // Given
-        var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku("INVALID-SKU")
-                .quantity("5")
+    void shouldRejectOrderWithZeroQuantity() {
+        var request = PlaceOrderRequest.builder()
+                .sku("ANOTHER-SKU-67890")
+                .quantity("0")
                 .country(COUNTRY)
                 .build();
 
-        // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var result = shopDriver.orders().placeOrder(request);
 
-        // Then
-        assertThatResult(placeOrderResult).isFailure();
-        var error = placeOrderResult.getError();
+        assertThatResult(result).isFailure();
+        var error = result.getError();
         assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
         assertThat(error.getFields()).anySatisfy(field -> {
-            assertThat(field.getField()).isEqualTo("sku");
-            assertThat(field.getMessage()).isEqualTo("Product does not exist for SKU: INVALID-SKU");
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must be positive");
         });
     }
 
     @Test
     void shouldRejectOrderWithEmptySku() {
-        // Given
-        var placeOrderRequest = PlaceOrderRequest.builder()
+        var request = PlaceOrderRequest.builder()
                 .sku("")
-                .quantity("5")
+                .quantity(QUANTITY)
                 .country(COUNTRY)
                 .build();
 
-        // When
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var result = shopDriver.orders().placeOrder(request);
 
-        // Then
-        assertThatResult(placeOrderResult).isFailure();
-        var error = placeOrderResult.getError();
+        assertThatResult(result).isFailure();
+        var error = result.getError();
         assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
         assertThat(error.getFields()).anySatisfy(field -> {
             assertThat(field.getField()).isEqualTo("sku");
             assertThat(field.getMessage()).isEqualTo("SKU must not be empty");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithEmptyQuantity() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .quantity("")
+                .country(COUNTRY)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must not be empty");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithNonIntegerQuantity() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .quantity("3.5")
+                .country(COUNTRY)
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("quantity");
+            assertThat(field.getMessage()).isEqualTo("Quantity must be an integer");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithEmptyCountry() {
+        var request = PlaceOrderRequest.builder()
+                .sku(createUniqueSku(SKU))
+                .quantity(QUANTITY)
+                .country("")
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("country");
+            assertThat(field.getMessage()).isEqualTo("Country must not be empty");
+        });
+    }
+
+    @Test
+    void shouldRejectOrderWithInvalidCountry() {
+        var sku = createUniqueSku(SKU);
+        var returnsProductRequest = ReturnsProductRequest.builder()
+                .sku(sku)
+                .price("20.00")
+                .build();
+
+        var returnsProductResult = erpDriver.returnsProduct(returnsProductRequest);
+        assertThatResult(returnsProductResult).isSuccess();
+
+        var request = PlaceOrderRequest.builder()
+                .sku(sku)
+                .quantity(QUANTITY)
+                .country("XX")
+                .build();
+
+        var result = shopDriver.orders().placeOrder(request);
+
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getMessage()).isEqualTo("The request contains one or more validation errors");
+        assertThat(error.getFields()).anySatisfy(field -> {
+            assertThat(field.getField()).isEqualTo("country");
+            assertThat(field.getMessage()).isEqualTo("Country does not exist: XX");
         });
     }
 }

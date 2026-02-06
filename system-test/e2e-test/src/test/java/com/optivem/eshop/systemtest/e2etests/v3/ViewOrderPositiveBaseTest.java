@@ -21,7 +21,7 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
         var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
                 .sku(sku)
-                .price("20.00")
+                .price("25.00")
                 .build();
 
         var returnsProductResult = erpDriver.returnsProduct(returnsProductRequest);
@@ -29,7 +29,7 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
 
         var placeOrderRequest = PlaceOrderRequest.builder()
                 .sku(sku)
-                .quantity("5")
+                .quantity("4")
                 .country(COUNTRY)
                 .build();
 
@@ -48,10 +48,10 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
         assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
-        assertThat(order.getQuantity()).isEqualTo(5);
-        assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));
+        assertThat(order.getQuantity()).isEqualTo(4);
+        assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("25.00"));
         assertThat(order.getSubtotalPrice()).isEqualTo(new BigDecimal("100.00"));
-        assertThat(order.getStatus()).isEqualTo(OrderStatus.PLACED);
+        assertThat(order.getStatus()).isEqualTo(OrderStatus.PLACED); 
         assertThat(order.getDiscountRate()).isGreaterThanOrEqualTo(BigDecimal.ZERO);
         assertThat(order.getDiscountAmount()).isGreaterThanOrEqualTo(BigDecimal.ZERO);
         assertThat(order.getTaxRate()).isGreaterThanOrEqualTo(BigDecimal.ZERO);
