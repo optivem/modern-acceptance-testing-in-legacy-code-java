@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.e2etests.v4;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.e2etests.v4.base.BaseE2eTest;
 import com.optivem.testing.Channel;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -13,7 +12,6 @@ import java.util.stream.Stream;
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V4 tests disabled for now")
 class ViewOrderNegativeTest extends BaseE2eTest {
 
     private static Stream<Arguments> provideNonExistentOrderValues() {

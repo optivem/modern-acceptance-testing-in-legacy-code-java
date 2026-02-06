@@ -30,5 +30,8 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
         return client.createProduct(createProductRequest).mapError(ErpErrorResponse::from);
     }
-}
 
+    public void deleteProductIfExists(String sku) {
+        client.deleteProduct(sku);
+    }
+}

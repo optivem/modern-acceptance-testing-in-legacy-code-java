@@ -200,6 +200,28 @@ public class JsonHttpClient<E> implements AutoCloseable {
         try {
             var responseBody = httpResponse.body();
             return objectMapper.readValue(responseBody, responseType);
+        } catch (com.fasterxml.jackson.core.JsonParseException ex) {
+            // If we can't parse JSON, try to create an error response from the raw body
+            var responseBody = httpResponse.body();
+            try {
+                // Try to create the error type with just the response body as the message
+                var constructor = responseType.getDeclaredConstructor();
+                constructor.setAccessible(true);
+                var instance = constructor.newInstance();
+                
+                // Try to set the message field using reflection
+                try {
+                    var messageField = responseType.getDeclaredField("message");
+                    messageField.setAccessible(true);
+                    messageField.set(instance, responseBody);
+                } catch (NoSuchFieldException e) {
+                    // If message field doesn't exist, just throw the original exception
+                    throw ex;
+                }
+                return instance;
+            } catch (Exception fallbackEx) {
+                throw new RuntimeException("Failed to deserialize response to " + responseType.getSimpleName() + ". Response body: " + responseBody, ex);
+            }
         } catch (Exception ex) {
             throw new RuntimeException("Failed to deserialize response to " + responseType.getSimpleName(), ex);
         }

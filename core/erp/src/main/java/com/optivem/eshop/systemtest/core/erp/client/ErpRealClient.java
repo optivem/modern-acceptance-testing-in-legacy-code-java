@@ -15,5 +15,8 @@ public class ErpRealClient extends BaseErpClient {
     public Result<Void, ExtErpErrorResponse> createProduct(ExtCreateProductRequest request) {
         return httpClient.post(PRODUCTS_ENDPOINT, request);
     }
-}
 
+    public Result<Void, ExtErpErrorResponse> deleteProduct(String sku) {
+        return httpClient.delete(PRODUCTS_ENDPOINT + "/" + sku);
+    }
+}
