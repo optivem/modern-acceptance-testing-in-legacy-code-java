@@ -17,8 +17,9 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
     @Test
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("20.00")
                 .build();
 
@@ -27,7 +28,7 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
 
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -48,8 +49,9 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
     @Test
     void shouldPlaceOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("20.00")
                 .build();
 
@@ -58,7 +60,7 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
 
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -75,7 +77,7 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
 
         var order = viewOrderResult.getValue();
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(order.getSku()).isEqualTo(SKU);
+        assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
         assertThat(order.getQuantity()).isEqualTo(5);
         assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

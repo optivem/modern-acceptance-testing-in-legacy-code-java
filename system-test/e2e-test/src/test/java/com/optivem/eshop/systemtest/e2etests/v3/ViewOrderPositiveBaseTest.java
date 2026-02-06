@@ -18,8 +18,9 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
     @Test
     void shouldViewOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var returnsProductRequest = ReturnsProductRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .price("20.00")
                 .build();
 
@@ -27,7 +28,7 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
         assertThatResult(returnsProductResult).isSuccess();
 
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -45,7 +46,7 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
 
         var order = viewOrderResult.getValue();
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(order.getSku()).isEqualTo(SKU);
+        assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
         assertThat(order.getQuantity()).isEqualTo(5);
         assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

@@ -15,7 +15,7 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
     void shouldNotPlaceOrderWhenQuantityIsZero() {
         // Given
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(createUniqueSku(SKU))
                 .quantity("0")
                 .country(COUNTRY)
                 .build();
