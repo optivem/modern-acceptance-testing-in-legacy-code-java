@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
 import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -12,7 +11,6 @@ import java.util.regex.Pattern;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V1 tests disabled for now")
 class PlaceOrderPositiveUiTest extends BaseE2eTest {
 
     @Override

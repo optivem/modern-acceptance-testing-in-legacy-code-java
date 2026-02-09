@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
 import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -11,7 +10,6 @@ import java.net.http.HttpResponse;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V1 tests disabled for now")
 class PlaceOrderNegativeApiTest extends BaseE2eTest {
 
     @Override
@@ -293,7 +291,7 @@ class PlaceOrderNegativeApiTest extends BaseE2eTest {
     }
 
     private void assertValidationError(int statusCode, String responseBody, String field, String message) throws Exception {
-        assertThat(statusCode).isEqualTo(400);
+        assertThat(statusCode).isEqualTo(422);
         var errorBody = httpObjectMapper.readTree(responseBody);
         assertThat(errorBody.get("detail").asText()).isEqualTo("The request contains one or more validation errors");
         var errors = errorBody.get("errors");
