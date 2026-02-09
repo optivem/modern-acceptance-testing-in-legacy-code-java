@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -13,17 +12,16 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class ViewOrderPositiveApiTest extends BaseRawTest {
+class ViewOrderPositiveApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopHttpClient();
-        setUpExternalHttpClients();
     }
 
     @Test
-    void shouldViewOrderAfterPlacing() throws Exception {
-        // Given - Create product and place order
+    void shouldViewPlacedOrder() throws Exception {
+        var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
                     "id": "%s",
@@ -33,7 +31,7 @@ class ViewOrderPositiveApiTest extends BaseRawTest {
                     "brand": "Test Brand",
                     "price": "20.00"
                 }
-                """.formatted(SKU);
+                """.formatted(sku);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -51,7 +49,7 @@ class ViewOrderPositiveApiTest extends BaseRawTest {
                     "quantity": "5",
                     "country": "%s"
                 }
-                """.formatted(SKU, COUNTRY);
+                """.formatted(sku, COUNTRY);
 
         var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
         var placeOrderRequest = HttpRequest.newBuilder()
@@ -66,7 +64,6 @@ class ViewOrderPositiveApiTest extends BaseRawTest {
         var placeOrderBody = httpObjectMapper.readTree(placeOrderResponse.body());
         var orderNumber = placeOrderBody.get("orderNumber").asText();
 
-        // When - View order
         var viewOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders/" + orderNumber);
         var viewOrderRequest = HttpRequest.newBuilder()
                 .uri(viewOrderUri)
@@ -76,12 +73,11 @@ class ViewOrderPositiveApiTest extends BaseRawTest {
 
         var viewOrderResponse = shopApiHttpClient.send(viewOrderRequest, HttpResponse.BodyHandlers.ofString());
 
-        // Then
         assertThat(viewOrderResponse.statusCode()).isEqualTo(200);
 
         var order = httpObjectMapper.readTree(viewOrderResponse.body());
         assertThat(order.get("orderNumber").asText()).isEqualTo(orderNumber);
-        assertThat(order.get("sku").asText()).isEqualTo(SKU);
+        assertThat(order.get("sku").asText()).isEqualTo(sku);
         assertThat(order.get("country").asText()).isEqualTo(COUNTRY);
         assertThat(order.get("quantity").asInt()).isEqualTo(5);
         assertThat(order.get("unitPrice").asDouble()).isEqualTo(20.00);

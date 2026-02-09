@@ -18,11 +18,6 @@ public abstract class BaseE2eTest extends BaseDriverTest {
     protected abstract void setShopDriver();
 
     @Override
-    protected Environment getFixedEnvironment() {
-        return Environment.LOCAL;
-    }
-
-    @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.REAL;
     }

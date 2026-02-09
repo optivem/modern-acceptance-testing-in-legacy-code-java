@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -9,142 +8,304 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.COUNTRY;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class PlaceOrderNegativeApiTest extends BaseRawTest {
+class PlaceOrderNegativeApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopHttpClient();
-        setUpExternalHttpClients();
     }
 
     @Test
-    void shouldNotPlaceOrderWhenQuantityIsZero() throws Exception {
-        // Given
+    void shouldRejectOrderWithInvalidQuantity() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "invalid-quantity",
+                    "country": "%s"
+                }
+                """.formatted(createUniqueSku(SKU), COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must be an integer");
+    }
+
+    @Test
+    void shouldRejectOrderWithNonExistentSku() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "NON-EXISTENT-SKU-12345",
+                    "quantity": "%s",
+                    "country": "%s"
+                }
+                """.formatted(QUANTITY, COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "sku", "Product does not exist for SKU: NON-EXISTENT-SKU-12345");
+    }
+
+    @Test
+    void shouldRejectOrderWithNegativeQuantity() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "-10",
+                    "country": "%s"
+                }
+                """.formatted(createUniqueSku(SKU), COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must be positive");
+    }
+
+    @Test
+    void shouldRejectOrderWithZeroQuantity() throws Exception {
         var placeOrderJson = """
                 {
                     "sku": "%s",
                     "quantity": "0",
                     "country": "%s"
                 }
-                """.formatted(SKU, COUNTRY);
+                """.formatted(createUniqueSku(SKU), COUNTRY);
 
-        // When
-        var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
-        var placeOrderRequest = HttpRequest.newBuilder()
-                .uri(placeOrderUri)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
-                .build();
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
 
-        var placeOrderResponse = shopApiHttpClient.send(placeOrderRequest, HttpResponse.BodyHandlers.ofString());
-
-        // Then
-        assertThat(placeOrderResponse.statusCode()).isEqualTo(400);
-
-        var errorBody = httpObjectMapper.readTree(placeOrderResponse.body());
-        assertThat(errorBody.get("detail").asText()).isEqualTo("The request contains one or more validation errors");
-        
-        var errors = errorBody.get("errors");
-        assertThat(errors).isNotNull();
-        assertThat(errors.isArray()).isTrue();
-        
-        boolean foundQuantityError = false;
-        for (var error : errors) {
-            if (error.get("field").asText().equals("quantity") && 
-                error.get("message").asText().equals("Quantity must be positive")) {
-                foundQuantityError = true;
-                break;
-            }
-        }
-        assertThat(foundQuantityError).isTrue();
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must be positive");
     }
 
     @Test
-    void shouldNotPlaceOrderWhenSKUDoesNotExist() throws Exception {
-        // Given
-        var placeOrderJson = """
-                {
-                    "sku": "INVALID-SKU",
-                    "quantity": "5",
-                    "country": "%s"
-                }
-                """.formatted(COUNTRY);
-
-        // When
-        var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
-        var placeOrderRequest = HttpRequest.newBuilder()
-                .uri(placeOrderUri)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
-                .build();
-
-        var placeOrderResponse = shopApiHttpClient.send(placeOrderRequest, HttpResponse.BodyHandlers.ofString());
-
-        // Then
-        assertThat(placeOrderResponse.statusCode()).isEqualTo(400);
-
-        var errorBody = httpObjectMapper.readTree(placeOrderResponse.body());
-        assertThat(errorBody.get("detail").asText()).isEqualTo("The request contains one or more validation errors");
-        
-        var errors = errorBody.get("errors");
-        assertThat(errors).isNotNull();
-        assertThat(errors.isArray()).isTrue();
-        
-        boolean foundSkuError = false;
-        for (var error : errors) {
-            if (error.get("field").asText().equals("sku") && 
-                error.get("message").asText().equals("Product does not exist for SKU: INVALID-SKU")) {
-                foundSkuError = true;
-                break;
-            }
-        }
-        assertThat(foundSkuError).isTrue();
-    }
-
-    @Test
-    void shouldNotPlaceOrderWhenSKUIsMissing() throws Exception {
-        // Given
+    void shouldRejectOrderWithEmptySku() throws Exception {
         var placeOrderJson = """
                 {
                     "sku": "",
-                    "quantity": "5",
+                    "quantity": "%s",
                     "country": "%s"
                 }
-                """.formatted(COUNTRY);
+                """.formatted(QUANTITY, COUNTRY);
 
-        // When
-        var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
-        var placeOrderRequest = HttpRequest.newBuilder()
-                .uri(placeOrderUri)
-                .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
-                .build();
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
 
-        var placeOrderResponse = shopApiHttpClient.send(placeOrderRequest, HttpResponse.BodyHandlers.ofString());
+        assertValidationError(response.statusCode(), response.body(), "sku", "SKU must not be empty");
+    }
 
-        // Then
-        assertThat(placeOrderResponse.statusCode()).isEqualTo(400);
+    @Test
+    void shouldRejectOrderWithEmptyQuantity() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "",
+                    "country": "%s"
+                }
+                """.formatted(createUniqueSku(SKU), COUNTRY);
 
-        var errorBody = httpObjectMapper.readTree(placeOrderResponse.body());
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithNonIntegerQuantity() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "3.5",
+                    "country": "%s"
+                }
+                """.formatted(createUniqueSku(SKU), COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must be an integer");
+    }
+
+    @Test
+    void shouldRejectOrderWithEmptyCountry() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "%s",
+                    "country": ""
+                }
+                """.formatted(createUniqueSku(SKU), QUANTITY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "country", "Country must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithInvalidCountry() throws Exception {
+        var sku = createUniqueSku(SKU);
+        var createProductJson = """
+                {
+                    "id": "%s",
+                    "title": "Test Product",
+                    "description": "Test Description",
+                    "category": "Test Category",
+                    "brand": "Test Brand",
+                    "price": "20.00"
+                }
+                """.formatted(sku);
+
+        var createProductResponse = erpHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getErpBaseUrl() + "/api/products"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(createProductJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+        assertThat(createProductResponse.statusCode()).isEqualTo(201);
+
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "%s",
+                    "country": "XX"
+                }
+                """.formatted(sku, QUANTITY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "country", "Country does not exist: XX");
+    }
+
+    @Test
+    void shouldRejectOrderWithNullQuantity() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "country": "%s",
+                    "quantity": null
+                }
+                """.formatted(createUniqueSku(SKU), COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "quantity", "Quantity must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithNullSku() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": null,
+                    "quantity": "%s",
+                    "country": "%s"
+                }
+                """.formatted(QUANTITY, COUNTRY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "sku", "SKU must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithNullCountry() throws Exception {
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "%s",
+                    "country": null
+                }
+                """.formatted(createUniqueSku(SKU), QUANTITY);
+
+        var response = shopApiHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getShopApiBaseUrl() + "/api/orders"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+
+        assertValidationError(response.statusCode(), response.body(), "country", "Country must not be empty");
+    }
+
+    private void assertValidationError(int statusCode, String responseBody, String field, String message) throws Exception {
+        assertThat(statusCode).isEqualTo(400);
+        var errorBody = httpObjectMapper.readTree(responseBody);
         assertThat(errorBody.get("detail").asText()).isEqualTo("The request contains one or more validation errors");
-        
         var errors = errorBody.get("errors");
         assertThat(errors).isNotNull();
         assertThat(errors.isArray()).isTrue();
-        
-        boolean foundSkuError = false;
+        boolean found = false;
         for (var error : errors) {
-            if (error.get("field").asText().equals("sku") && 
-                error.get("message").asText().equals("SKU must not be empty")) {
-                foundSkuError = true;
+            if (error.get("field").asText().equals(field) && error.get("message").asText().equals(message)) {
+                found = true;
                 break;
             }
         }
-        assertThat(foundSkuError).isTrue();
+        assertThat(found).isTrue();
     }
 }

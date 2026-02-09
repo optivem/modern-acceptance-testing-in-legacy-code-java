@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -12,20 +11,17 @@ import java.net.http.HttpResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class ViewOrderNegativeApiTest extends BaseRawTest {
+class ViewOrderNegativeApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopHttpClient();
-        setUpExternalHttpClients();
     }
 
     @Test
-    void shouldNotViewOrderWhenOrderNumberDoesNotExist() throws Exception {
-        // Given
-        var orderNumber = "ORD-99999999";
+    void shouldNotBeAbleToViewNonExistentOrder() throws Exception {
+        var orderNumber = "NON-EXISTENT-ORDER-99999";
 
-        // When
         var viewOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders/" + orderNumber);
         var viewOrderRequest = HttpRequest.newBuilder()
                 .uri(viewOrderUri)
@@ -35,10 +31,9 @@ class ViewOrderNegativeApiTest extends BaseRawTest {
 
         var viewOrderResponse = shopApiHttpClient.send(viewOrderRequest, HttpResponse.BodyHandlers.ofString());
 
-        // Then
         assertThat(viewOrderResponse.statusCode()).isEqualTo(404);
 
         var errorBody = httpObjectMapper.readTree(viewOrderResponse.body());
-        assertThat(errorBody.get("detail").asText()).isEqualTo("Order ORD-99999999 does not exist.");
+        assertThat(errorBody.get("detail").asText()).isEqualTo("Order NON-EXISTENT-ORDER-99999 does not exist.");
     }
 }

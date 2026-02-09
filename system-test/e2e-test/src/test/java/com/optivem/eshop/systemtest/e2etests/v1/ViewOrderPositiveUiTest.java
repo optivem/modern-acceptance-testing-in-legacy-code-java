@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -14,17 +13,16 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class ViewOrderPositiveUiTest extends BaseRawTest {
+class ViewOrderPositiveUiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopBrowser();
-        setUpExternalHttpClients();
     }
 
     @Test
-    void shouldViewOrderAfterPlacing() throws Exception {
-        // Given - Create product and place order via UI
+    void shouldViewPlacedOrder() throws Exception {
+        var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
                     "id": "%s",
@@ -34,7 +32,7 @@ class ViewOrderPositiveUiTest extends BaseRawTest {
                     "brand": "Test Brand",
                     "price": "20.00"
                 }
-                """.formatted(SKU);
+                """.formatted(sku);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -49,7 +47,7 @@ class ViewOrderPositiveUiTest extends BaseRawTest {
         shopUiPage.navigate(getShopUiBaseUrl());
         shopUiPage.locator("a[href='/shop']").click();
 
-        shopUiPage.locator("[aria-label=\"SKU\"]").fill(SKU);
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(sku);
         shopUiPage.locator("[aria-label=\"Quantity\"]").fill("5");
         shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
         shopUiPage.locator("[aria-label=\"Place Order\"]").click();
@@ -60,7 +58,7 @@ class ViewOrderPositiveUiTest extends BaseRawTest {
         assertThat(matcher.find()).isTrue();
         var orderNumber = matcher.group(1);
 
-        // When - Navigate to order history and view order
+        shopUiPage.navigate(getShopUiBaseUrl());
         shopUiPage.locator("a[href='/order-history']").click();
         shopUiPage.locator("[aria-label='Order Number']").fill(orderNumber);
         shopUiPage.locator("[aria-label='Refresh Order List']").click();
@@ -71,32 +69,31 @@ class ViewOrderPositiveUiTest extends BaseRawTest {
         var viewDetailsSelector = String.format("%s//a[contains(text(), 'View Details')]", rowSelector);
         shopUiPage.locator(viewDetailsSelector).click();
 
-        // Then - Verify order details
         assertThat(shopUiPage.locator("[aria-label='Display Order Number']").textContent()).isEqualTo(orderNumber);
-        assertThat(shopUiPage.locator("[aria-label='Display SKU']").textContent()).isEqualTo(SKU);
+        assertThat(shopUiPage.locator("[aria-label='Display SKU']").textContent()).isEqualTo(sku);
         assertThat(shopUiPage.locator("[aria-label='Display Country']").textContent()).isEqualTo(COUNTRY);
         assertThat(Integer.parseInt(shopUiPage.locator("[aria-label='Display Quantity']").textContent())).isEqualTo(5);
-        
+
         var unitPriceText = shopUiPage.locator("[aria-label='Display Unit Price']").textContent().replace("$", "");
         assertThat(Double.parseDouble(unitPriceText)).isEqualTo(20.00);
-        
+
         var subtotalText = shopUiPage.locator("[aria-label='Display Subtotal Price']").textContent().replace("$", "");
         assertThat(Double.parseDouble(subtotalText)).isEqualTo(100.00);
-        
+
         assertThat(shopUiPage.locator("[aria-label='Display Status']").textContent()).isEqualTo("PLACED");
-        
+
         var discountRateText = shopUiPage.locator("[aria-label='Display Discount Rate']").textContent().replace("%", "");
         assertThat(Double.parseDouble(discountRateText)).isGreaterThanOrEqualTo(0.0);
-        
+
         var discountAmountText = shopUiPage.locator("[aria-label='Display Discount Amount']").textContent().replace("$", "");
         assertThat(Double.parseDouble(discountAmountText)).isGreaterThanOrEqualTo(0.0);
-        
+
         var taxRateText = shopUiPage.locator("[aria-label='Display Tax Rate']").textContent().replace("%", "");
         assertThat(Double.parseDouble(taxRateText)).isGreaterThanOrEqualTo(0.0);
-        
+
         var taxAmountText = shopUiPage.locator("[aria-label='Display Tax Amount']").textContent().replace("$", "");
         assertThat(Double.parseDouble(taxAmountText)).isGreaterThanOrEqualTo(0.0);
-        
+
         var totalPriceText = shopUiPage.locator("[aria-label='Display Total Price']").textContent().replace("$", "");
         assertThat(Double.parseDouble(totalPriceText)).isGreaterThan(0.0);
     }

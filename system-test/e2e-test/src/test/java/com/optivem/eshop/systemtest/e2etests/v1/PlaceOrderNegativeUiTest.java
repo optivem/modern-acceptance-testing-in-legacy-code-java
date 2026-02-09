@@ -1,83 +1,168 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.COUNTRY;
-import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
+import java.net.URI;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class PlaceOrderNegativeUiTest extends BaseRawTest {
+class PlaceOrderNegativeUiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopBrowser();
-        setUpExternalHttpClients();
     }
 
     @Test
-    void shouldNotPlaceOrderWhenQuantityIsZero() {
-        // Given
+    void shouldRejectOrderWithInvalidQuantity() {
         shopUiPage.navigate(getShopUiBaseUrl());
         shopUiPage.locator("a[href='/shop']").click();
 
-        // When
-        shopUiPage.locator("[aria-label=\"SKU\"]").fill(SKU);
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("invalid-quantity");
+        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "quantity", "Quantity must be an integer");
+    }
+
+    @Test
+    void shouldRejectOrderWithNonExistentSku() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill("NON-EXISTENT-SKU-12345");
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill(QUANTITY);
+        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "sku", "Product does not exist for SKU: NON-EXISTENT-SKU-12345");
+    }
+
+    @Test
+    void shouldRejectOrderWithNegativeQuantity() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("-10");
+        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "quantity", "Quantity must be positive");
+    }
+
+    @Test
+    void shouldRejectOrderWithZeroQuantity() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
         shopUiPage.locator("[aria-label=\"Quantity\"]").fill("0");
         shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
         shopUiPage.locator("[aria-label=\"Place Order\"]").click();
 
-        // Then - Verify error message is displayed
-        var errorAlert = shopUiPage.locator("[role='alert']");
-        assertThat(errorAlert.isVisible()).isTrue();
-        var errorText = errorAlert.textContent();
-        assertThat(errorText).contains("The request contains one or more validation errors");
-        assertThat(errorText).contains("quantity");
-        assertThat(errorText).contains("Quantity must be positive");
+        assertErrorAlertContains("The request contains one or more validation errors", "quantity", "Quantity must be positive");
     }
 
     @Test
-    void shouldNotPlaceOrderWhenSKUDoesNotExist() {
-        // Given
+    void shouldRejectOrderWithEmptySku() {
         shopUiPage.navigate(getShopUiBaseUrl());
         shopUiPage.locator("a[href='/shop']").click();
 
-        // When
-        shopUiPage.locator("[aria-label=\"SKU\"]").fill("INVALID-SKU");
-        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("5");
-        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
-        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
-
-        // Then - Verify error message is displayed
-        var errorAlert = shopUiPage.locator("[role='alert']");
-        assertThat(errorAlert.isVisible()).isTrue();
-        var errorText = errorAlert.textContent();
-        assertThat(errorText).contains("The request contains one or more validation errors");
-        assertThat(errorText).contains("sku");
-        assertThat(errorText).contains("Product does not exist for SKU: INVALID-SKU");
-    }
-
-    @Test
-    void shouldNotPlaceOrderWhenSKUIsMissing() {
-        // Given
-        shopUiPage.navigate(getShopUiBaseUrl());
-        shopUiPage.locator("a[href='/shop']").click();
-
-        // When
         shopUiPage.locator("[aria-label=\"SKU\"]").fill("");
-        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("5");
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill(QUANTITY);
         shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
         shopUiPage.locator("[aria-label=\"Place Order\"]").click();
 
-        // Then - Verify error message is displayed
+        assertErrorAlertContains("The request contains one or more validation errors", "sku", "SKU must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithEmptyQuantity() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("");
+        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "quantity", "Quantity must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithNonIntegerQuantity() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("3.5");
+        shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "quantity", "Quantity must be an integer");
+    }
+
+    @Test
+    void shouldRejectOrderWithEmptyCountry() {
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(createUniqueSku(SKU));
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill(QUANTITY);
+        shopUiPage.locator("[aria-label=\"Country\"]").fill("");
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "country", "Country must not be empty");
+    }
+
+    @Test
+    void shouldRejectOrderWithInvalidCountry() throws Exception {
+        var sku = createUniqueSku(SKU);
+        var createProductJson = """
+                {
+                    "id": "%s",
+                    "title": "Test Product",
+                    "description": "Test Description",
+                    "category": "Test Category",
+                    "brand": "Test Brand",
+                    "price": "20.00"
+                }
+                """.formatted(sku);
+
+        var createProductResponse = erpHttpClient.send(
+                HttpRequest.newBuilder()
+                        .uri(URI.create(getErpBaseUrl() + "/api/products"))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(createProductJson))
+                        .build(),
+                HttpResponse.BodyHandlers.ofString());
+        assertThat(createProductResponse.statusCode()).isEqualTo(201);
+
+        shopUiPage.navigate(getShopUiBaseUrl());
+        shopUiPage.locator("a[href='/shop']").click();
+
+        shopUiPage.locator("[aria-label=\"SKU\"]").fill(sku);
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill(QUANTITY);
+        shopUiPage.locator("[aria-label=\"Country\"]").fill("XX");
+        shopUiPage.locator("[aria-label=\"Place Order\"]").click();
+
+        assertErrorAlertContains("The request contains one or more validation errors", "country", "Country does not exist: XX");
+    }
+
+    private void assertErrorAlertContains(String... expected) {
         var errorAlert = shopUiPage.locator("[role='alert']");
         assertThat(errorAlert.isVisible()).isTrue();
         var errorText = errorAlert.textContent();
-        assertThat(errorText).contains("The request contains one or more validation errors");
-        assertThat(errorText).contains("sku");
-        assertThat(errorText).contains("SKU must not be empty");
+        for (var text : expected) {
+            assertThat(errorText).contains(text);
+        }
     }
 }

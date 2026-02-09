@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
-import com.optivem.eshop.systemtest.base.v1.BaseRawTest;
-import org.junit.jupiter.api.BeforeEach;
+import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -13,17 +12,16 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Disabled("V1 tests disabled for now")
-class PlaceOrderPositiveApiTest extends BaseRawTest {
+class PlaceOrderPositiveApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopHttpClient();
-        setUpExternalHttpClients();
     }
 
     @Test
     void shouldPlaceOrderWithCorrectSubtotalPrice() throws Exception {
-        // Given - Create product in ERP
+        var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
                     "id": "%s",
@@ -33,7 +31,7 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
                     "brand": "Test Brand",
                     "price": "20.00"
                 }
-                """.formatted(SKU);
+                """.formatted(sku);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -45,14 +43,13 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
         var createProductResponse = erpHttpClient.send(createProductRequest, HttpResponse.BodyHandlers.ofString());
         assertThat(createProductResponse.statusCode()).isEqualTo(201);
 
-        // When - Place order
         var placeOrderJson = """
                 {
                     "sku": "%s",
                     "quantity": "5",
                     "country": "%s"
                 }
-                """.formatted(SKU, COUNTRY);
+                """.formatted(sku, COUNTRY);
 
         var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
         var placeOrderRequest = HttpRequest.newBuilder()
@@ -67,7 +64,6 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
         var placeOrderBody = httpObjectMapper.readTree(placeOrderResponse.body());
         var orderNumber = placeOrderBody.get("orderNumber").asText();
 
-        // Then - View order and verify subtotal
         var viewOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders/" + orderNumber);
         var viewOrderRequest = HttpRequest.newBuilder()
                 .uri(viewOrderUri)
@@ -83,8 +79,8 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
     }
 
     @Test
-    void shouldPlaceOrder() throws Exception {
-        // Given - Create product in ERP
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() throws Exception {
+        var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
                     "id": "%s",
@@ -92,9 +88,9 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
                     "description": "Test Description",
                     "category": "Test Category",
                     "brand": "Test Brand",
-                    "price": "20.00"
+                    "price": "15.50"
                 }
-                """.formatted(SKU);
+                """.formatted(sku);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -106,14 +102,72 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
         var createProductResponse = erpHttpClient.send(createProductRequest, HttpResponse.BodyHandlers.ofString());
         assertThat(createProductResponse.statusCode()).isEqualTo(201);
 
-        // When - Place order
+        var placeOrderJson = """
+                {
+                    "sku": "%s",
+                    "quantity": "4",
+                    "country": "%s"
+                }
+                """.formatted(sku, COUNTRY);
+
+        var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
+        var placeOrderRequest = HttpRequest.newBuilder()
+                .uri(placeOrderUri)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(placeOrderJson))
+                .build();
+
+        var placeOrderResponse = shopApiHttpClient.send(placeOrderRequest, HttpResponse.BodyHandlers.ofString());
+        assertThat(placeOrderResponse.statusCode()).isEqualTo(201);
+
+        var placeOrderBody = httpObjectMapper.readTree(placeOrderResponse.body());
+        var orderNumber = placeOrderBody.get("orderNumber").asText();
+
+        var viewOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders/" + orderNumber);
+        var viewOrderRequest = HttpRequest.newBuilder()
+                .uri(viewOrderUri)
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        var viewOrderResponse = shopApiHttpClient.send(viewOrderRequest, HttpResponse.BodyHandlers.ofString());
+        assertThat(viewOrderResponse.statusCode()).isEqualTo(200);
+
+        var viewOrderBody = httpObjectMapper.readTree(viewOrderResponse.body());
+        assertThat(viewOrderBody.get("subtotalPrice").asDouble()).isEqualTo(62.00);
+    }
+
+    @Test
+    void shouldPlaceOrder() throws Exception {
+        var sku = createUniqueSku(SKU);
+        var createProductJson = """
+                {
+                    "id": "%s",
+                    "title": "Test Product",
+                    "description": "Test Description",
+                    "category": "Test Category",
+                    "brand": "Test Brand",
+                    "price": "20.00"
+                }
+                """.formatted(sku);
+
+        var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
+        var createProductRequest = HttpRequest.newBuilder()
+                .uri(createProductUri)
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(createProductJson))
+                .build();
+
+        var createProductResponse = erpHttpClient.send(createProductRequest, HttpResponse.BodyHandlers.ofString());
+        assertThat(createProductResponse.statusCode()).isEqualTo(201);
+
         var placeOrderJson = """
                 {
                     "sku": "%s",
                     "quantity": "5",
                     "country": "%s"
                 }
-                """.formatted(SKU, COUNTRY);
+                """.formatted(sku, COUNTRY);
 
         var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
         var placeOrderRequest = HttpRequest.newBuilder()
@@ -129,7 +183,6 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
         var orderNumber = placeOrderBody.get("orderNumber").asText();
         assertThat(orderNumber).startsWith("ORD-");
 
-        // Then - View order and verify all fields
         var viewOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders/" + orderNumber);
         var viewOrderRequest = HttpRequest.newBuilder()
                 .uri(viewOrderUri)
@@ -142,7 +195,7 @@ class PlaceOrderPositiveApiTest extends BaseRawTest {
 
         var order = httpObjectMapper.readTree(viewOrderResponse.body());
         assertThat(order.get("orderNumber").asText()).isEqualTo(orderNumber);
-        assertThat(order.get("sku").asText()).isEqualTo(SKU);
+        assertThat(order.get("sku").asText()).isEqualTo(sku);
         assertThat(order.get("country").asText()).isEqualTo(COUNTRY);
         assertThat(order.get("quantity").asInt()).isEqualTo(5);
         assertThat(order.get("unitPrice").asDouble()).isEqualTo(20.00);

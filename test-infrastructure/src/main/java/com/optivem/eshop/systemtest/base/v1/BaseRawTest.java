@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.net.http.HttpClient;
+import java.util.UUID;
 
 public class BaseRawTest extends BaseConfigurableTest {
     protected SystemConfiguration configuration;
@@ -80,6 +81,11 @@ public class BaseRawTest extends BaseConfigurableTest {
         var mapper = new ObjectMapper();
         mapper.registerModule(new JavaTimeModule());
         return mapper;
+    }
+
+    protected String createUniqueSku(String baseSku) {
+        var suffix = UUID.randomUUID().toString().substring(0, 8);
+        return baseSku + "-" + suffix;
     }
 
     @AfterEach
