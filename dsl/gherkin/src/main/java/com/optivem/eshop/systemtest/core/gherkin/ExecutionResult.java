@@ -5,7 +5,8 @@ import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
 import lombok.Getter;
 
 @Getter
-public class ExecutionResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
+public class ExecutionResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+        implements ExecutionResultContext {
     private final ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result;
     private String orderNumber;
     private String couponCode;

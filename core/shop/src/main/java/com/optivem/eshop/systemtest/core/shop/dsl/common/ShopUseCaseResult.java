@@ -10,7 +10,8 @@ import com.optivem.commons.dsl.UseCaseResult;
 import java.util.function.BiFunction;
 
 public class ShopUseCaseResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends UseCaseResult<TSuccessResponse, SystemError, TSuccessVerification, SystemErrorFailureVerification> {
+        extends UseCaseResult<TSuccessResponse, SystemError, TSuccessVerification, SystemErrorFailureVerification>
+        implements FailureResult {
 
     public ShopUseCaseResult(
             Result<TSuccessResponse, SystemError> result,

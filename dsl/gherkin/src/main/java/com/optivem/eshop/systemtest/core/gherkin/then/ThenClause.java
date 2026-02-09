@@ -4,7 +4,8 @@ import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 
-public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
+public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+        implements ThenClauseContext {
     private final SystemDsl app;
     private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
 
@@ -13,11 +14,11 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         this.executionResult = executionResult;
     }
 
-    SystemDsl getApp() {
+    public SystemDsl getApp() {
         return app;
     }
 
-    ExecutionResult<TSuccessResponse, TSuccessVerification> getExecutionResult() {
+    public ExecutionResult<TSuccessResponse, TSuccessVerification> getExecutionResult() {
         return executionResult;
     }
 

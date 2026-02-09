@@ -1,151 +1,148 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_COUPON_CODE;
 
-public class ThenOrderBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {
+public class ThenOrderBuilder extends BaseThenVerificationBuilder {
     private final ViewOrderVerification orderVerification;
 
-    public ThenOrderBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause, SystemDsl app, String orderNumber) {
-        super(thenClause);
-        this.orderVerification = app.shop().viewOrder()
+    public ThenOrderBuilder(ThenClauseContext thenClauseContext, String orderNumber) {
+        super(thenClauseContext);
+        this.orderVerification = thenClauseContext.getApp().shop().viewOrder()
                 .orderNumber(orderNumber)
                 .execute()
                 .shouldSucceed();
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasSku(String expectedSku) {
+    public ThenOrderBuilder hasSku(String expectedSku) {
         orderVerification.sku(expectedSku);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasQuantity(int expectedQuantity) {
+    public ThenOrderBuilder hasQuantity(int expectedQuantity) {
         orderVerification.quantity(expectedQuantity);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasCountry(String expectedCountry) {
+    public ThenOrderBuilder hasCountry(String expectedCountry) {
         orderVerification.country(expectedCountry);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasUnitPrice(double expectedUnitPrice) {
+    public ThenOrderBuilder hasUnitPrice(double expectedUnitPrice) {
         orderVerification.unitPrice(expectedUnitPrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasBasePrice(double expectedBasePrice) {
+    public ThenOrderBuilder hasBasePrice(double expectedBasePrice) {
         orderVerification.basePrice(expectedBasePrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasBasePrice(String basePrice) {
+    public ThenOrderBuilder hasBasePrice(String basePrice) {
         orderVerification.basePrice(basePrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasSubtotalPrice(double expectedSubtotalPrice) {
+    public ThenOrderBuilder hasSubtotalPrice(double expectedSubtotalPrice) {
         orderVerification.subtotalPrice(expectedSubtotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasSubtotalPrice(String expectedSubtotalPrice) {
+    public ThenOrderBuilder hasSubtotalPrice(String expectedSubtotalPrice) {
         return hasSubtotalPrice(Double.parseDouble(expectedSubtotalPrice));
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTotalPrice(double expectedTotalPrice) {
+    public ThenOrderBuilder hasTotalPrice(double expectedTotalPrice) {
         orderVerification.totalPrice(expectedTotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasStatus(OrderStatus expectedStatus) {
+    public ThenOrderBuilder hasStatus(OrderStatus expectedStatus) {
         orderVerification.status(expectedStatus);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasDiscountRateGreaterThanOrEqualToZero() {
+    public ThenOrderBuilder hasDiscountRateGreaterThanOrEqualToZero() {
         orderVerification.discountRateGreaterThanOrEqualToZero();
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasDiscountRate(double expectedDiscountRate) {
+    public ThenOrderBuilder hasDiscountRate(double expectedDiscountRate) {
         orderVerification.discountRate(expectedDiscountRate);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasDiscountAmount(double expectedDiscountAmount) {
+    public ThenOrderBuilder hasDiscountAmount(double expectedDiscountAmount) {
         orderVerification.discountAmount(expectedDiscountAmount);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasDiscountAmount(String expectedDiscountAmount) {
+    public ThenOrderBuilder hasDiscountAmount(String expectedDiscountAmount) {
         orderVerification.discountAmount(expectedDiscountAmount);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasAppliedCoupon(String expectedCouponCode) {
+    public ThenOrderBuilder hasAppliedCoupon(String expectedCouponCode) {
         orderVerification.appliedCouponCode(expectedCouponCode);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasAppliedCoupon() {
+    public ThenOrderBuilder hasAppliedCoupon() {
         return hasAppliedCoupon(DEFAULT_COUPON_CODE);
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasDiscountAmountGreaterThanOrEqualToZero() {
+    public ThenOrderBuilder hasDiscountAmountGreaterThanOrEqualToZero() {
         orderVerification.discountAmountGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasSubtotalPriceGreaterThanZero() {
+    public ThenOrderBuilder hasSubtotalPriceGreaterThanZero() {
         orderVerification.subtotalPriceGreaterThanZero();
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTaxRate(double expectedTaxRate) {
+    public ThenOrderBuilder hasTaxRate(double expectedTaxRate) {
         orderVerification.taxRate(expectedTaxRate);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTaxRate(String expectedTaxRate) {
+    public ThenOrderBuilder hasTaxRate(String expectedTaxRate) {
         orderVerification.taxRate(expectedTaxRate);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTaxRateGreaterThanOrEqualToZero() {
+    public ThenOrderBuilder hasTaxRateGreaterThanOrEqualToZero() {
         orderVerification.taxRateGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTaxAmount(String expectedTaxAmount) {
+    public ThenOrderBuilder hasTaxAmount(String expectedTaxAmount) {
         orderVerification.taxAmount(expectedTaxAmount);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTaxAmountGreaterThanOrEqualToZero() {
+    public ThenOrderBuilder hasTaxAmountGreaterThanOrEqualToZero() {
         orderVerification.taxAmountGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTotalPrice(String expectedTotalPrice) {
+    public ThenOrderBuilder hasTotalPrice(String expectedTotalPrice) {
         orderVerification.totalPrice(expectedTotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTotalPriceGreaterThanZero() {
+    public ThenOrderBuilder hasTotalPriceGreaterThanZero() {
         orderVerification.totalPriceGreaterThanZero();
         return this;
     }
 
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String expectedPrefix) {
+    public ThenOrderBuilder hasOrderNumberPrefix(String expectedPrefix) {
         orderVerification.orderNumberHasPrefix(expectedPrefix);
         return this;
     }
