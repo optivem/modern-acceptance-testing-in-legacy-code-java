@@ -2,8 +2,6 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.core.gherkin.then.state.ThenCouponBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.then.state.ThenOrderBuilder;
 
 public abstract class BaseThenBuilder {
     private final SystemDsl app;

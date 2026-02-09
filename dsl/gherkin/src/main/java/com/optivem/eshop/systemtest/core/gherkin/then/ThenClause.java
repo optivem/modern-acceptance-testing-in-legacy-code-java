@@ -3,8 +3,6 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
-import com.optivem.eshop.systemtest.core.gherkin.then.outcome.ThenFailureBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.then.outcome.ThenSuccessBuilder;
 
 public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
