@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.PlaceOrde
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 public class ThenSuccessBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {
+        extends BaseThenOutcomeBuilder<TSuccessResponse, TSuccessVerification> {
     private final TSuccessVerification successVerification;
 
     public ThenSuccessBuilder(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {

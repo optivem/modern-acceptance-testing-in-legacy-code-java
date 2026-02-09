@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.common.FailureResult;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.verifications.SystemErrorFailureVerification;
 
 public class ThenFailureBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {
+        extends BaseThenOutcomeBuilder<TSuccessResponse, TSuccessVerification> {
     private final SystemErrorFailureVerification failureVerification;
 
     public ThenFailureBuilder(SystemDsl app, ExecutionResultContext executionResult, FailureResult result) {

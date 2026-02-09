@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrder
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_COUPON_CODE;
 
-public class ThenOrderBuilder extends BaseThenVerificationBuilder {
+public class ThenOrderBuilder extends BaseThenStateBuilder {
     private final ViewOrderVerification orderVerification;
 
     public ThenOrderBuilder(SystemDsl app, ExecutionResultContext executionResult, String orderNumber) {

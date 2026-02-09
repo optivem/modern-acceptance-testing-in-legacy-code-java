@@ -5,16 +5,16 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.gherkin.then.state.ThenCouponBuilder;
 import com.optivem.eshop.systemtest.core.gherkin.then.state.ThenOrderBuilder;
 
-public abstract class BaseThenBuilderCore {
+public abstract class BaseThenBuilder {
     private final SystemDsl app;
     private final ExecutionResultContext executionResult;
 
-    protected BaseThenBuilderCore(SystemDsl app, ExecutionResultContext executionResult) {
+    protected BaseThenBuilder(SystemDsl app, ExecutionResultContext executionResult) {
         this.app = app;
         this.executionResult = executionResult;
     }
 
-    public BaseThenBuilderCore and() {
+    public BaseThenBuilder and() {
         return this;
     }
 
