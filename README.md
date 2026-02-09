@@ -127,6 +127,20 @@ You can open these URLs in your browser:
 - **Tax API**: [http://localhost:9001/tax/health](http://localhost:9001/tax/health)
 - **PostgreSQL Database**: localhost:5401 (database: `eshop`, user: `eshop_user`, password: `eshop_password`)
 
+## Pre-commit Checks
+
+Before each commit, the following checks run automatically: **Spotless** (formatting), **SonarLint** (static analysis), and **compilation** (Java + tests).
+
+**One-time setup:**
+
+```powershell
+.\gradlew installPreCommitHook
+```
+
+**Bypass** (when needed): `git commit --no-verify`
+
+**Run checks manually:** `.\gradlew preCommitCheck`
+
 ## License
 
 [![MIT License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)

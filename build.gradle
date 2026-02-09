@@ -37,3 +37,33 @@ subprojects {
     }
 }
 
+// Pre-commit verification task: format, lint, compile
+def preCommitTasks = []
+subprojects.each { sub ->
+    ['spotlessCheck', 'sonarlintMain', 'compileJava', 'compileTestJava'].each { taskName ->
+        def t = sub.tasks.findByName(taskName)
+        if (t != null) {
+            preCommitTasks.add(t)
+        }
+    }
+}
+tasks.register('preCommitCheck') {
+    group = 'verification'
+    description = 'Runs format, lint, and compilation checks (for pre-commit hook)'
+    dependsOn(preCommitTasks)
+}
+
+tasks.register('installPreCommitHook', Copy) {
+    group = 'help'
+    description = 'Installs pre-commit hook to run format, lint, and compilation checks before each commit'
+    from file('scripts/pre-commit')
+    into file('.git/hooks')
+    rename { 'pre-commit' }
+    fileMode 0755
+    doFirst {
+        if (!file('.git').exists()) {
+            throw new GradleException('Not a Git repository. Run from project root.')
+        }
+    }
+}
+

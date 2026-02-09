@@ -7,7 +7,6 @@ import com.optivem.testing.Time;
 import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 class CancelOrderNegativeTest extends BaseAcceptanceTest {
