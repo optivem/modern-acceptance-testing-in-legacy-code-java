@@ -8,9 +8,11 @@ import com.optivem.commons.util.Result;
 import org.springframework.http.HttpStatus;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -113,8 +115,8 @@ public class JsonHttpClient<E> implements AutoCloseable {
     private URI getUri(String path) {
         try {
             return new URI(baseUrl + path);
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to create URI for path: " + path, ex);
+        } catch (URISyntaxException ex) {
+            throw new IllegalArgumentException("Failed to create URI for path: " + path, ex);
         }
     }
 
@@ -180,19 +182,23 @@ public class JsonHttpClient<E> implements AutoCloseable {
     private HttpResponse<String> sendRequest(HttpRequest httpRequest) {
         try {
             // Execute HTTP request on virtual thread for non-blocking I/O
-            return VIRTUAL_THREAD_EXECUTOR.submit(() -> 
-                httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString())
+            return VIRTUAL_THREAD_EXECUTOR.submit(() ->
+                    httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString())
             ).get();
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to send HTTP request", ex);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Failed to send HTTP request", e);
+        } catch (ExecutionException e) {
+            var cause = e.getCause();
+            throw new IllegalStateException("Failed to send HTTP request", cause != null ? cause : e);
         }
     }
 
     private String serializeRequest(Object request) {
         try {
             return objectMapper.writeValueAsString(request);
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to serialize request object", ex);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException ex) {
+            throw new IllegalStateException("Failed to serialize request object", ex);
         }
     }
 
@@ -201,29 +207,29 @@ public class JsonHttpClient<E> implements AutoCloseable {
             var responseBody = httpResponse.body();
             return objectMapper.readValue(responseBody, responseType);
         } catch (com.fasterxml.jackson.core.JsonParseException ex) {
-            // If we can't parse JSON, try to create an error response from the raw body
             var responseBody = httpResponse.body();
-            try {
-                // Try to create the error type with just the response body as the message
-                var constructor = responseType.getDeclaredConstructor();
-                constructor.setAccessible(true);
-                var instance = constructor.newInstance();
-                
-                // Try to set the message field using reflection
-                try {
-                    var messageField = responseType.getDeclaredField("message");
-                    messageField.setAccessible(true);
-                    messageField.set(instance, responseBody);
-                } catch (NoSuchFieldException e) {
-                    // If message field doesn't exist, just throw the original exception
-                    throw ex;
-                }
-                return instance;
-            } catch (Exception fallbackEx) {
-                throw new RuntimeException("Failed to deserialize response to " + responseType.getSimpleName() + ". Response body: " + responseBody, ex);
+            var fallback = tryCreateErrorFromBody(responseType, responseBody, ex);
+            if (fallback != null) {
+                return fallback;
             }
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to deserialize response to " + responseType.getSimpleName(), ex);
+            throw new IllegalStateException("Failed to deserialize response to " + responseType.getSimpleName() + ". Response body: " + responseBody, ex);
+        } catch (com.fasterxml.jackson.core.JsonProcessingException ex) {
+            throw new IllegalStateException("Failed to deserialize response to " + responseType.getSimpleName(), ex);
+        }
+    }
+
+    @SuppressWarnings("java:S3011") // Reflection needed for error response fallback when JSON parsing fails
+    private <T> T tryCreateErrorFromBody(Class<T> responseType, String responseBody, com.fasterxml.jackson.core.JsonParseException ex) {
+        try {
+            var constructor = responseType.getDeclaredConstructor();
+            constructor.setAccessible(true);
+            var instance = constructor.newInstance();
+            var messageField = responseType.getDeclaredField("message");
+            messageField.setAccessible(true);
+            messageField.set(instance, responseBody);
+            return instance;
+        } catch (ReflectiveOperationException e) {
+            return null;
         }
     }
 

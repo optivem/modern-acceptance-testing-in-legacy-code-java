@@ -8,6 +8,7 @@ import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.net.URI;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.Function;
@@ -73,8 +74,12 @@ public class JsonWireMockClient {
         try {
             // Execute WireMock operations on virtual thread for non-blocking I/O
             return VIRTUAL_THREAD_EXECUTOR.submit(work::get).get();
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to register stub", ex);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException("Failed to register stub", e);
+        } catch (ExecutionException e) {
+            var cause = e.getCause();
+            throw new IllegalStateException("Failed to register stub", cause != null ? cause : e);
         }
     }
 
@@ -130,8 +135,8 @@ public class JsonWireMockClient {
     private String serialize(Object object) {
         try {
             return objectMapper.writeValueAsString(object);
-        } catch (Exception ex) {
-            throw new RuntimeException("Failed to serialize object", ex);
+        } catch (wiremock.com.fasterxml.jackson.core.JsonProcessingException ex) {
+            throw new IllegalStateException("Failed to serialize object", ex);
         }
     }
 }

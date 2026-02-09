@@ -64,8 +64,8 @@ public class PageClient {
         var locator = page.locator(selector);
         locator.waitFor(waitForOptions);
 
-        if(locator.count() == 0) {
-            throw new RuntimeException("No elements found for selector: " + selector);
+        if (locator.count() == 0) {
+            throw new IllegalStateException("No elements found for selector: " + selector);
         }
 
         return locator;

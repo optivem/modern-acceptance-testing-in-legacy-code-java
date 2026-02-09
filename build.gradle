@@ -20,6 +20,10 @@ subprojects {
     apply plugin: 'com.diffplug.spotless'
     apply plugin: 'name.remal.sonarlint'
 
+    plugins.withId('name.remal.sonarlint') {
+        project.extensions.getByName('sonarLint').rules.disable('java:S119')
+    }
+
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)

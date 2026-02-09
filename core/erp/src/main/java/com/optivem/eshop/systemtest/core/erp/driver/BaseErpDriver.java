@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.core.erp.driver;
 import com.optivem.eshop.systemtest.core.erp.client.BaseErpClient;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductResponse;
-import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
@@ -35,6 +34,4 @@ public abstract class BaseErpDriver<TClient extends BaseErpClient> implements Er
                         .build())
                 .mapError(ErpErrorResponse::from);
     }
-
-    public abstract Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
 }

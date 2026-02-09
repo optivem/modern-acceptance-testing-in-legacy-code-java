@@ -103,7 +103,7 @@ public class Converter {
             }
         }
         
-        throw new RuntimeException("Invalid date format: " + text + " - Expected ISO format or locale-specific format.");
+        throw new IllegalArgumentException("Invalid date format: " + text + " - Expected ISO format or locale-specific format.");
     }
 
     private static <T, R> R from(T value, Function<T, R> converter) {

@@ -11,7 +11,7 @@ public class Closer {
             try {
                 closeable.close();
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                throw new IllegalStateException("Failed to close resource", e);
             }
         }
     }

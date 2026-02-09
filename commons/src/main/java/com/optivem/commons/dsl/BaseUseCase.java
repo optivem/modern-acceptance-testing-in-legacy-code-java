@@ -8,6 +8,4 @@ public abstract class BaseUseCase<TDriver, TSuccessResponse, TFailureResponse, T
         this.driver = driver;
         this.context = context;
     }
-
-    public abstract UseCaseResult<TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> execute();
 }

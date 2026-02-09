@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class SystemConfigurationLoader {
 
+    private static final String BASE_URL = "baseUrl";
+
     private SystemConfigurationLoader() {
         throw new IllegalStateException("Utility class");
     }
@@ -16,11 +18,11 @@ public class SystemConfigurationLoader {
         var configFile = getConfigFileName(environmentMode, externalSystemMode);
         var config = loadYamlFile(configFile);
 
-        var shopUiBaseUrl = getNestedStringValue(config, "test", "eshop", "ui", "baseUrl");
-        var shopApiBaseUrl = getNestedStringValue(config, "test", "eshop", "api", "baseUrl");
-        var erpBaseUrl = getNestedStringValue(config, "test", "erp", "api", "baseUrl");
-        var taxBaseUrl = getNestedStringValue(config, "test", "tax", "api", "baseUrl");
-        var clockBaseUrl = getNestedStringValue(config, "test", "clock", "api", "baseUrl");
+        var shopUiBaseUrl = getNestedStringValue(config, "test", "eshop", "ui", BASE_URL);
+        var shopApiBaseUrl = getNestedStringValue(config, "test", "eshop", "api", BASE_URL);
+        var erpBaseUrl = getNestedStringValue(config, "test", "erp", "api", BASE_URL);
+        var taxBaseUrl = getNestedStringValue(config, "test", "tax", "api", BASE_URL);
+        var clockBaseUrl = getNestedStringValue(config, "test", "clock", "api", BASE_URL);
 
         return new SystemConfiguration(shopUiBaseUrl, shopApiBaseUrl, erpBaseUrl, taxBaseUrl, clockBaseUrl, externalSystemMode);
     }
