@@ -14,6 +14,14 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         this.executionResult = executionResult;
     }
 
+    SystemDsl getApp() {
+        return app;
+    }
+
+    ExecutionResult<TSuccessResponse, TSuccessVerification> getExecutionResult() {
+        return executionResult;
+    }
+
     public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> shouldSucceed() {
         if (executionResult == null) {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
@@ -24,33 +32,5 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
 
     public ThenFailureBuilder<TSuccessResponse, TSuccessVerification> shouldFail() {
         return new ThenFailureBuilder<>(this, executionResult.getResult());
-    }
-
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> order(String orderNumber) {
-        return new ThenOrderBuilder<>(this, app, orderNumber);
-    }
-
-    public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> order() {
-        var orderNumber = executionResult.getOrderNumber();
-
-        if(orderNumber == null) {
-            throw new IllegalStateException("Cannot verify order: no order number available from the executed operation");
-        }
-
-        return order(orderNumber);
-    }
-
-    public ThenCouponBuilder<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
-        return new ThenCouponBuilder<>(this, app, couponCode);
-    }
-
-    public ThenCouponBuilder<TSuccessResponse, TSuccessVerification> coupon() {
-        var couponCode = executionResult.getCouponCode();
-
-        if(couponCode == null) {
-            throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
-        }
-
-        return coupon(couponCode);
     }
 }
