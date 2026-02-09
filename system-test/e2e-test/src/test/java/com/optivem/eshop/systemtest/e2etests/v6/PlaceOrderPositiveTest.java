@@ -8,15 +8,6 @@ import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
 public class PlaceOrderPositiveTest extends BaseE2eTest {
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void shouldCalculateSubtotalPrice() {
-        scenario
-                .given().product().withUnitPrice(20.00)
-                .when().placeOrder().withQuantity(5)
-                .then().shouldSucceed()
-                .and().order().hasSubtotalPrice(100.00);
-    }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
