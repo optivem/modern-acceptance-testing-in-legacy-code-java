@@ -7,10 +7,10 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrder
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_COUPON_CODE;
 
-public class ThenOrderBuilder extends BaseThenStateBuilder {
+public class ThenOrderVerifier extends BaseThenStateVerifier {
     private final ViewOrderVerification orderVerification;
 
-    public ThenOrderBuilder(SystemDsl app, ExecutionResultContext executionResult, String orderNumber) {
+    public ThenOrderVerifier(SystemDsl app, ExecutionResultContext executionResult, String orderNumber) {
         super(app, executionResult);
         this.orderVerification = app.shop().viewOrder()
                 .orderNumber(orderNumber)
@@ -18,133 +18,133 @@ public class ThenOrderBuilder extends BaseThenStateBuilder {
                 .shouldSucceed();
     }
 
-    public ThenOrderBuilder hasSku(String expectedSku) {
+    public ThenOrderVerifier hasSku(String expectedSku) {
         orderVerification.sku(expectedSku);
         return this;
     }
 
-    public ThenOrderBuilder hasQuantity(int expectedQuantity) {
+    public ThenOrderVerifier hasQuantity(int expectedQuantity) {
         orderVerification.quantity(expectedQuantity);
         return this;
     }
 
-    public ThenOrderBuilder hasCountry(String expectedCountry) {
+    public ThenOrderVerifier hasCountry(String expectedCountry) {
         orderVerification.country(expectedCountry);
         return this;
     }
 
-    public ThenOrderBuilder hasUnitPrice(double expectedUnitPrice) {
+    public ThenOrderVerifier hasUnitPrice(double expectedUnitPrice) {
         orderVerification.unitPrice(expectedUnitPrice);
         return this;
     }
 
-    public ThenOrderBuilder hasBasePrice(double expectedBasePrice) {
+    public ThenOrderVerifier hasBasePrice(double expectedBasePrice) {
         orderVerification.basePrice(expectedBasePrice);
         return this;
     }
 
-    public ThenOrderBuilder hasBasePrice(String basePrice) {
+    public ThenOrderVerifier hasBasePrice(String basePrice) {
         orderVerification.basePrice(basePrice);
         return this;
     }
 
-    public ThenOrderBuilder hasSubtotalPrice(double expectedSubtotalPrice) {
+    public ThenOrderVerifier hasSubtotalPrice(double expectedSubtotalPrice) {
         orderVerification.subtotalPrice(expectedSubtotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder hasSubtotalPrice(String expectedSubtotalPrice) {
+    public ThenOrderVerifier hasSubtotalPrice(String expectedSubtotalPrice) {
         return hasSubtotalPrice(Double.parseDouble(expectedSubtotalPrice));
     }
 
-    public ThenOrderBuilder hasTotalPrice(double expectedTotalPrice) {
+    public ThenOrderVerifier hasTotalPrice(double expectedTotalPrice) {
         orderVerification.totalPrice(expectedTotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder hasStatus(OrderStatus expectedStatus) {
+    public ThenOrderVerifier hasStatus(OrderStatus expectedStatus) {
         orderVerification.status(expectedStatus);
         return this;
     }
 
-    public ThenOrderBuilder hasDiscountRateGreaterThanOrEqualToZero() {
+    public ThenOrderVerifier hasDiscountRateGreaterThanOrEqualToZero() {
         orderVerification.discountRateGreaterThanOrEqualToZero();
         return this;
     }
 
-    public ThenOrderBuilder hasDiscountRate(double expectedDiscountRate) {
+    public ThenOrderVerifier hasDiscountRate(double expectedDiscountRate) {
         orderVerification.discountRate(expectedDiscountRate);
         return this;
     }
 
-    public ThenOrderBuilder hasDiscountAmount(double expectedDiscountAmount) {
+    public ThenOrderVerifier hasDiscountAmount(double expectedDiscountAmount) {
         orderVerification.discountAmount(expectedDiscountAmount);
         return this;
     }
 
-    public ThenOrderBuilder hasDiscountAmount(String expectedDiscountAmount) {
+    public ThenOrderVerifier hasDiscountAmount(String expectedDiscountAmount) {
         orderVerification.discountAmount(expectedDiscountAmount);
         return this;
     }
 
-    public ThenOrderBuilder hasAppliedCoupon(String expectedCouponCode) {
+    public ThenOrderVerifier hasAppliedCoupon(String expectedCouponCode) {
         orderVerification.appliedCouponCode(expectedCouponCode);
         return this;
     }
 
-    public ThenOrderBuilder hasAppliedCoupon() {
+    public ThenOrderVerifier hasAppliedCoupon() {
         return hasAppliedCoupon(DEFAULT_COUPON_CODE);
     }
 
-    public ThenOrderBuilder hasDiscountAmountGreaterThanOrEqualToZero() {
+    public ThenOrderVerifier hasDiscountAmountGreaterThanOrEqualToZero() {
         orderVerification.discountAmountGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder hasSubtotalPriceGreaterThanZero() {
+    public ThenOrderVerifier hasSubtotalPriceGreaterThanZero() {
         orderVerification.subtotalPriceGreaterThanZero();
         return this;
     }
 
-    public ThenOrderBuilder hasTaxRate(double expectedTaxRate) {
+    public ThenOrderVerifier hasTaxRate(double expectedTaxRate) {
         orderVerification.taxRate(expectedTaxRate);
         return this;
     }
 
-    public ThenOrderBuilder hasTaxRate(String expectedTaxRate) {
+    public ThenOrderVerifier hasTaxRate(String expectedTaxRate) {
         orderVerification.taxRate(expectedTaxRate);
         return this;
     }
 
-    public ThenOrderBuilder hasTaxRateGreaterThanOrEqualToZero() {
+    public ThenOrderVerifier hasTaxRateGreaterThanOrEqualToZero() {
         orderVerification.taxRateGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder hasTaxAmount(String expectedTaxAmount) {
+    public ThenOrderVerifier hasTaxAmount(String expectedTaxAmount) {
         orderVerification.taxAmount(expectedTaxAmount);
         return this;
     }
 
-    public ThenOrderBuilder hasTaxAmountGreaterThanOrEqualToZero() {
+    public ThenOrderVerifier hasTaxAmountGreaterThanOrEqualToZero() {
         orderVerification.taxAmountGreaterThanOrEqualToZero();
         return this;
     }
 
 
-    public ThenOrderBuilder hasTotalPrice(String expectedTotalPrice) {
+    public ThenOrderVerifier hasTotalPrice(String expectedTotalPrice) {
         orderVerification.totalPrice(expectedTotalPrice);
         return this;
     }
 
-    public ThenOrderBuilder hasTotalPriceGreaterThanZero() {
+    public ThenOrderVerifier hasTotalPriceGreaterThanZero() {
         orderVerification.totalPriceGreaterThanZero();
         return this;
     }
 
-    public ThenOrderBuilder hasOrderNumberPrefix(String expectedPrefix) {
+    public ThenOrderVerifier hasOrderNumberPrefix(String expectedPrefix) {
         orderVerification.orderNumberHasPrefix(expectedPrefix);
         return this;
     }

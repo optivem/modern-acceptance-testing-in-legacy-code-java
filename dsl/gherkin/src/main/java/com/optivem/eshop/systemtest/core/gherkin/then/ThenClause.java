@@ -13,15 +13,15 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         this.executionResult = executionResult;
     }
 
-    public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> shouldSucceed() {
+    public ThenSuccessVerifier<TSuccessResponse, TSuccessVerification> shouldSucceed() {
         if (executionResult == null) {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
         var successVerification = executionResult.getResult().shouldSucceed();
-        return new ThenSuccessBuilder<>(app, executionResult.getContext(), successVerification);
+        return new ThenSuccessVerifier<>(app, executionResult.getContext(), successVerification);
     }
 
-    public ThenFailureBuilder<TSuccessResponse, TSuccessVerification> shouldFail() {
-        return new ThenFailureBuilder<>(app, executionResult.getContext(), executionResult.getResult());
+    public ThenFailureVerifier<TSuccessResponse, TSuccessVerification> shouldFail() {
+        return new ThenFailureVerifier<>(app, executionResult.getContext(), executionResult.getResult());
     }
 }

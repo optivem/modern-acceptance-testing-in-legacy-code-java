@@ -4,11 +4,11 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications.BrowseCouponsVerification;
 
-public class ThenCouponBuilder extends BaseThenStateBuilder {
+public class ThenCouponVerifier extends BaseThenStateVerifier {
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
-    public ThenCouponBuilder(SystemDsl app, ExecutionResultContext executionResult, String couponCode) {
+    public ThenCouponVerifier(SystemDsl app, ExecutionResultContext executionResult, String couponCode) {
         super(app, executionResult);
         this.couponCode = couponCode;
         this.verification = app.shop().browseCoupons()
@@ -18,27 +18,27 @@ public class ThenCouponBuilder extends BaseThenStateBuilder {
         verification.hasCouponWithCode(couponCode);
     }
 
-    public ThenCouponBuilder hasDiscountRate(double discountRate) {
+    public ThenCouponVerifier hasDiscountRate(double discountRate) {
         verification.couponHasDiscountRate(couponCode, discountRate);
         return this;
     }
 
-    public ThenCouponBuilder isValidFrom(String validFrom) {
+    public ThenCouponVerifier isValidFrom(String validFrom) {
         verification.couponHasValidFrom(couponCode, validFrom);
         return this;
     }
 
-    public ThenCouponBuilder isValidTo(String validTo) {
+    public ThenCouponVerifier isValidTo(String validTo) {
         verification.couponHasValidTo(couponCode, validTo);
         return this;
     }
 
-    public ThenCouponBuilder hasUsageLimit(int usageLimit) {
+    public ThenCouponVerifier hasUsageLimit(int usageLimit) {
         verification.couponHasUsageLimit(couponCode, usageLimit);
         return this;
     }
 
-    public ThenCouponBuilder hasUsedCount(int expectedUsedCount) {
+    public ThenCouponVerifier hasUsedCount(int expectedUsedCount) {
         verification.couponHasUsedCount(couponCode, expectedUsedCount);
         return this;
     }
