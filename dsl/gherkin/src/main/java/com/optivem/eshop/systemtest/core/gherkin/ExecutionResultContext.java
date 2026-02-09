@@ -1,7 +1,19 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
-public interface ExecutionResultContext {
-    String getOrderNumber();
+public class ExecutionResultContext {
+    private final String orderNumber;
+    private final String couponCode;
 
-    String getCouponCode();
+    public ExecutionResultContext(String orderNumber, String couponCode) {
+        this.orderNumber = orderNumber;
+        this.couponCode = couponCode;
+    }
+
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public String getCouponCode() {
+        return couponCode;
+    }
 }

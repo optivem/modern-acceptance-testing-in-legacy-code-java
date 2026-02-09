@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.gherkin.then;
+package com.optivem.eshop.systemtest.core.gherkin.then.state;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;

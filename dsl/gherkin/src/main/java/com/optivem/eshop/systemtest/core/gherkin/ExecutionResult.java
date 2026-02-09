@@ -5,19 +5,15 @@ import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
 import lombok.Getter;
 
 @Getter
-public class ExecutionResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        implements ExecutionResultContext {
+public class ExecutionResult<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result;
-    private String orderNumber;
-    private String couponCode;
+    private final ExecutionResultContext context;
 
     ExecutionResult(ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result, String orderNumber, String couponCode) {
         if (result == null) {
             throw new IllegalArgumentException("Result cannot be null");
         }
-
         this.result = result;
-        this.orderNumber = orderNumber;
-        this.couponCode = couponCode;
+        this.context = new ExecutionResultContext(orderNumber, couponCode);
     }
 }

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.gherkin.then;
+package com.optivem.eshop.systemtest.core.gherkin.then.outcome;
 
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
