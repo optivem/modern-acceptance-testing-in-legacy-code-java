@@ -8,7 +8,7 @@ import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
-public class CancelOrderPositiveTest extends BaseAcceptanceTest {
+class CancelOrderPositiveTest extends BaseAcceptanceTest {
 
     @Time
     @TestTemplate

@@ -8,6 +8,10 @@ import java.util.Map;
 
 public class SystemConfigurationLoader {
 
+    private SystemConfigurationLoader() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static SystemConfiguration load(Environment environmentMode, ExternalSystemMode externalSystemMode) {
         var configFile = getConfigFileName(environmentMode, externalSystemMode);
         var config = loadYamlFile(configFile);

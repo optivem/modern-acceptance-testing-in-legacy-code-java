@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-public class ViewOrderNegativeTest extends BaseAcceptanceTest {
+class ViewOrderNegativeTest extends BaseAcceptanceTest {
 
     private static Stream<Arguments> provideNonExistentOrderValues() {
         return Stream.of(

@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-public class ShopSmokeTest extends BaseSystemDslTest {
+class ShopSmokeTest extends BaseSystemDslTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

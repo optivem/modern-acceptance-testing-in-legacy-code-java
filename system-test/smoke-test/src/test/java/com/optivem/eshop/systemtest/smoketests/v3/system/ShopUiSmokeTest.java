@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.smoketests.v3.system;
 
-public class ShopUiSmokeTest extends ShopBaseSmokeTest {
+class ShopUiSmokeTest extends ShopBaseSmokeTest {
     @Override
     protected void setShopApiDriver() {
         setUpShopUiDriver();

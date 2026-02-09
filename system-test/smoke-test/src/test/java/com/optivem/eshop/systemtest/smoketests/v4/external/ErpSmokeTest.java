@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class ErpSmokeTest extends BaseChannelDriverTest {
+class ErpSmokeTest extends BaseChannelDriverTest {
     @Test
     void shouldBeAbleToGoToErp() {
         var result = erpDriver.goToErp();

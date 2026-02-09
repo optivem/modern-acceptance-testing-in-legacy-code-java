@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-public class BrowseCouponsPositiveTest extends BaseAcceptanceTest {
+class BrowseCouponsPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })

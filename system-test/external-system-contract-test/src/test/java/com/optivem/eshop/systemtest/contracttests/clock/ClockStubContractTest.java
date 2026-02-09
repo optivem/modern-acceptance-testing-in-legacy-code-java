@@ -4,7 +4,7 @@ import com.optivem.commons.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
 
-public class ClockStubContractTest extends BaseClockContractTest {
+class ClockStubContractTest extends BaseClockContractTest {
 
     @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {

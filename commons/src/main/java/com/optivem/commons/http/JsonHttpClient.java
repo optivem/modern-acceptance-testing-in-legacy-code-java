@@ -69,7 +69,7 @@ public class JsonHttpClient<E> implements AutoCloseable {
 
     // POST Methods
 
-    public <T> Result<Void, E> post(String path, Object request) {
+    public Result<Void, E> post(String path, Object request) {
         var httpResponse = doPost(path, request);
         return getResultOrFailure(httpResponse, Void.class);
     }

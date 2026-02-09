@@ -10,7 +10,7 @@ import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
-public class CancelOrderNegativeTest extends BaseAcceptanceTest {
+class CancelOrderNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.API})
@@ -40,7 +40,7 @@ public class CancelOrderNegativeTest extends BaseAcceptanceTest {
                 .then().shouldFail().errorMessage("Order non-existent-order-12345 does not exist.");
     }
 
-    @Disabled
+    @Disabled("Blackout period test - requires clock stub configuration")
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

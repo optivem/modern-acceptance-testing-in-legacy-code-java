@@ -16,7 +16,6 @@ public class ClockRealDriver implements ClockDriver {
 
     @Override
     public Result<Void, ClockErrorResponse> goToClock() {
-        Instant.now();
         return Result.success();
     }
 

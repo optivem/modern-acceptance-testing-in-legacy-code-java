@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ShopUiSmokeTest extends BaseRawTest {
+class ShopUiSmokeTest extends BaseRawTest {
     @BeforeEach
     void setUp() {
         setUpShopBrowser();

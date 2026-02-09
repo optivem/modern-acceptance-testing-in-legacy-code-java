@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class TaxSmokeTest extends BaseChannelDriverTest {
+class TaxSmokeTest extends BaseChannelDriverTest {
     @Test
     void shouldBeAbleToGoToTax() {
         var result = taxDriver.goToTax();

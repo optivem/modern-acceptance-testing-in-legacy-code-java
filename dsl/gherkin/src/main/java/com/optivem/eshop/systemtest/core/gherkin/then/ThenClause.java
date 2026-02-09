@@ -19,7 +19,7 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
         var successVerification = executionResult.getResult().shouldSucceed();
-        return new ThenSuccessBuilder<TSuccessResponse, TSuccessVerification>(this, successVerification);
+        return new ThenSuccessBuilder<>(this, successVerification);
     }
 
     public ThenFailureBuilder<TSuccessResponse, TSuccessVerification> shouldFail() {

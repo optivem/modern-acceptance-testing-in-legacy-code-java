@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
-public class PlaceOrderNegativeTest extends BaseE2eTest {
+class PlaceOrderNegativeTest extends BaseE2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

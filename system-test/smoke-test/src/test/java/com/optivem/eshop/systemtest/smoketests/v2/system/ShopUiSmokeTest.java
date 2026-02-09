@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ShopUiSmokeTest extends BaseClientTest {
+class ShopUiSmokeTest extends BaseClientTest {
     @BeforeEach
     void setUp() {
         setUpShopUiClient();

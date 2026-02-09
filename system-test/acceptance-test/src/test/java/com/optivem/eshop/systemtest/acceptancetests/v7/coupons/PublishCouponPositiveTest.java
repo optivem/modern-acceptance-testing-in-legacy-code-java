@@ -6,7 +6,7 @@ import com.optivem.testing.Channel;
 
 import org.junit.jupiter.api.TestTemplate;
 
-public class PublishCouponPositiveTest extends BaseAcceptanceTest {
+class PublishCouponPositiveTest extends BaseAcceptanceTest {
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToPublishValidCoupon() {

@@ -9,6 +9,11 @@ import java.util.Locale;
 import java.util.function.Function;
 
 public class Converter {
+
+    private Converter() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static BigDecimal toBigDecimal(String value) {
         return from(value, BigDecimal::new);
     }
@@ -78,6 +83,7 @@ public class Converter {
         try {
             return Instant.parse(text);
         } catch (Exception ignored) {
+            // Fall through to try locale-specific formats
         }
         
         // Try various locale-specific formats that JavaScript's toLocaleString() might produce
@@ -93,6 +99,7 @@ public class Converter {
                 LocalDateTime localDateTime = LocalDateTime.parse(text, formatter);
                 return localDateTime.atZone(ZoneId.systemDefault()).toInstant();
             } catch (Exception ignored) {
+                // Try next formatter
             }
         }
         

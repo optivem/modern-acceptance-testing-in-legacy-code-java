@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class ShopApiSmokeTest extends BaseClientTest {
+class ShopApiSmokeTest extends BaseClientTest {
     @BeforeEach
     void setUp() {
         setUpShopApiClient();

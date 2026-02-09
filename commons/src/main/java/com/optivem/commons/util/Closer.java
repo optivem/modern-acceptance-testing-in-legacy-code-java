@@ -1,6 +1,11 @@
 package com.optivem.commons.util;
 
 public class Closer {
+
+    private Closer() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void close(AutoCloseable closeable) {
         if (closeable != null) {
             try {

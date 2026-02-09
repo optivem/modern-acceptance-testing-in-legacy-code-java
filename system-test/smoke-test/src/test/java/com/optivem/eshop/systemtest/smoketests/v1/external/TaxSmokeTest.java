@@ -10,7 +10,7 @@ import java.net.http.HttpResponse;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TaxSmokeTest extends BaseRawTest {
+class TaxSmokeTest extends BaseRawTest {
 
     private static final String HEALTH_ENDPOINT = "/health";
 

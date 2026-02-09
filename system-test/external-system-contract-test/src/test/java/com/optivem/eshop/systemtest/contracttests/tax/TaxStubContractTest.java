@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.configuration.Environment;
 import com.optivem.commons.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
-public class TaxStubContractTest extends BaseTaxContractTest {
+class TaxStubContractTest extends BaseTaxContractTest {
 
     @Override
     protected Environment getFixedEnvironment() {

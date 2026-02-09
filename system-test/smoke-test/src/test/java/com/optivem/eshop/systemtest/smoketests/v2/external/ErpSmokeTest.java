@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 
-public class ErpSmokeTest extends BaseClientTest {
+class ErpSmokeTest extends BaseClientTest {
     @BeforeEach
     void setUp() {
         setUpExternalClients();

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.TestTemplate;
 
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
-public class ViewOrderPositiveTest extends BaseE2eTest {
+class ViewOrderPositiveTest extends BaseE2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

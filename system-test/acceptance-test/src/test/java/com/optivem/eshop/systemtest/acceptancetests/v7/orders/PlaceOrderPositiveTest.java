@@ -9,7 +9,7 @@ import com.optivem.testing.DataSource;
 
 import org.junit.jupiter.api.TestTemplate;
 
-public class PlaceOrderPositiveTest extends BaseAcceptanceTest {
+class PlaceOrderPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

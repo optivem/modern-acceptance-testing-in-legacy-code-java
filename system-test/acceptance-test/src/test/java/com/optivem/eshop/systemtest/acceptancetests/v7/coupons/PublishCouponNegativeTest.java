@@ -6,7 +6,7 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class PublishCouponNegativeTest extends BaseAcceptanceTest {
+class PublishCouponNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
