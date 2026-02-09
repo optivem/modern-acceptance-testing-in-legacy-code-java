@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v6;
 
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
+import com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults;
 import com.optivem.eshop.systemtest.e2etests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.e2etests.v6.base.BaseE2eTest;
 import com.optivem.testing.Channel;
@@ -120,7 +121,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullSku() {
         scenario
-                .when().placeOrder().withSku(null).withSku(null)
+                .when().placeOrder().withSku(null).withQuantity(Defaults.QUANTITY).withCountry(Defaults.COUNTRY)
                 .then().shouldFail()
                 .errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("sku", "SKU must not be empty");
