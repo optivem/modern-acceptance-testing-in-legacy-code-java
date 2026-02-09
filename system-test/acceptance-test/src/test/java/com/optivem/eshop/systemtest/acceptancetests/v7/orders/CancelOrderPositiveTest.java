@@ -31,7 +31,7 @@ class CancelOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().order()
                 .when().cancelOrder()
-                .then().order().hasStatus(OrderStatus.CANCELLED);
+                .then().shouldSucceed().and().order().hasStatus(OrderStatus.CANCELLED);
     }
 }
 

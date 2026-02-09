@@ -36,7 +36,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().product().withUnitPrice(20.00)
                 .when().placeOrder().withQuantity(5)
-                .then().order().hasBasePrice(100.00);
+                .then().shouldSucceed().and().order().hasBasePrice(100.00);
     }
 
     @TestTemplate
@@ -49,7 +49,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().product().withUnitPrice(unitPrice)
                 .when().placeOrder().withQuantity(quantity)
-                .then().order().hasBasePrice(basePrice);
+                .then().shouldSucceed().and().order().hasBasePrice(basePrice);
     }
 
     @TestTemplate
@@ -67,7 +67,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().coupon().withCouponCode("SUMMER2025").withDiscountRate(0.15)
                 .when().placeOrder().withCouponCode("SUMMER2025")
-                .then().order().hasAppliedCoupon("SUMMER2025")
+                .then().shouldSucceed().and().order().hasAppliedCoupon("SUMMER2025")
                 .hasDiscountRate(0.15);
     }
 
@@ -76,7 +76,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     void discountRateShouldBeNotAppliedWhenThereIsNoCoupon() {
         scenario
                 .when().placeOrder().withCouponCode(null)
-                .then().order().hasStatus(OrderStatus.PLACED)
+                .then().shouldSucceed().and().order().hasStatus(OrderStatus.PLACED)
                 .hasAppliedCoupon(null)
                 .hasDiscountRate(0.00)
                 .hasDiscountAmount(0.00);
@@ -91,7 +91,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .given().coupon().withDiscountRate(0.15)
                 .and().product().withUnitPrice(20.00)
                 .when().placeOrder().withCouponCode().withQuantity(5)
-                .then().order().hasAppliedCoupon()
+                .then().shouldSucceed().and().order().hasAppliedCoupon()
                 .hasDiscountRate(0.15)
                 .hasBasePrice(100.00)
                 .hasDiscountAmount(15.00)
@@ -104,7 +104,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().product().withUnitPrice(20.00)
                 .when().placeOrder().withQuantity(5)
-                .then().order()
+                .then().shouldSucceed().and().order()
                 .hasBasePrice(100.00)
                 .hasDiscountAmount(0.00)
                 .hasSubtotalPrice(100.00);
@@ -118,7 +118,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().country().withCode(country).withTaxRate(taxRate)
                 .when().placeOrder().withCountry(country)
-                .then().order().hasTaxRate(taxRate);
+                .then().shouldSucceed().and().order().hasTaxRate(taxRate);
     }
 
     @TestTemplate
@@ -143,7 +143,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().coupon().withCouponCode("SUMMER2025")
                 .when().placeOrder().withCouponCode("SUMMER2025")
-                .then().coupon("SUMMER2025").hasUsedCount(1);
+                .then().shouldSucceed().and().coupon("SUMMER2025").hasUsedCount(1);
     }
 
     @TestTemplate

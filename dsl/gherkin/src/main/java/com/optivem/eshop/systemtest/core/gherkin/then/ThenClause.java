@@ -27,7 +27,6 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
     }
 
     public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> order(String orderNumber) {
-        shouldSucceed();
         return new ThenOrderBuilder<>(this, app, orderNumber);
     }
 
@@ -42,7 +41,6 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
     }
 
     public ThenCouponBuilder<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
-        shouldSucceed();
         return new ThenCouponBuilder<>(this, app, couponCode);
     }
 
