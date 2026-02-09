@@ -1,15 +1,17 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
+import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications.BrowseCouponsVerification;
 
 public class ThenCouponBuilder extends BaseThenVerificationBuilder {
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
-    public ThenCouponBuilder(ThenClauseContext thenClauseContext, String couponCode) {
-        super(thenClauseContext);
+    public ThenCouponBuilder(SystemDsl app, ExecutionResultContext executionResult, String couponCode) {
+        super(app, executionResult);
         this.couponCode = couponCode;
-        this.verification = thenClauseContext.getApp().shop().browseCoupons()
+        this.verification = app.shop().browseCoupons()
                 .execute()
                 .shouldSucceed();
 

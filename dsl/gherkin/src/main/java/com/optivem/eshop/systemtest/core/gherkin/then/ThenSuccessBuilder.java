@@ -9,7 +9,7 @@ public class ThenSuccessBuilder<TSuccessResponse, TSuccessVerification extends R
     private final TSuccessVerification successVerification;
 
     public ThenSuccessBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause, TSuccessVerification successVerification) {
-        super(thenClause);
+        super(thenClause.getApp(), thenClause.getExecutionResult());
         this.successVerification = successVerification;
     }
 

@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
+import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
@@ -8,9 +10,9 @@ import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_
 public class ThenOrderBuilder extends BaseThenVerificationBuilder {
     private final ViewOrderVerification orderVerification;
 
-    public ThenOrderBuilder(ThenClauseContext thenClauseContext, String orderNumber) {
-        super(thenClauseContext);
-        this.orderVerification = thenClauseContext.getApp().shop().viewOrder()
+    public ThenOrderBuilder(SystemDsl app, ExecutionResultContext executionResult, String orderNumber) {
+        super(app, executionResult);
+        this.orderVerification = app.shop().viewOrder()
                 .orderNumber(orderNumber)
                 .execute()
                 .shouldSucceed();

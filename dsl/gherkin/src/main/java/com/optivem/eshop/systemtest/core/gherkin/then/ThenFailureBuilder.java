@@ -9,7 +9,7 @@ public class ThenFailureBuilder<TSuccessResponse, TSuccessVerification extends R
     private final SystemErrorFailureVerification failureVerification;
 
     public ThenFailureBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause, FailureResult result) {
-        super(thenClause);
+        super(thenClause.getApp(), thenClause.getExecutionResult());
         if (result == null) {
             throw new IllegalStateException("Cannot verify failure: no operation was executed");
         }
