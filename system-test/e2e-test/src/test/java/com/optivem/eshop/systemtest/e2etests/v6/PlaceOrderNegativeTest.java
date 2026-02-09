@@ -121,7 +121,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.API})
     void shouldRejectOrderWithNullSku() {
         scenario
-                .when().placeOrder().withSku(null).withQuantity(Defaults.QUANTITY).withCountry(Defaults.COUNTRY)
+                .when().placeOrder().withSku(null)
                 .then().shouldFail()
                 .errorMessage("The request contains one or more validation errors")
                 .fieldErrorMessage("sku", "SKU must not be empty");
