@@ -80,7 +80,7 @@ public class PlaceOrderNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldRejectOrderWithUnsupportedCountry() {
+    void shouldRejectOrderWithInvalidCountry() {
         scenario
                 .when().placeOrder().withCountry("XX")
                 .then().shouldFail().errorMessage("The request contains one or more validation errors").fieldErrorMessage("country", "Country does not exist: XX");

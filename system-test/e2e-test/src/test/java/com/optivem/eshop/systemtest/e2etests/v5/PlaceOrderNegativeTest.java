@@ -90,7 +90,7 @@ public class PlaceOrderNegativeTest extends BaseE2eTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    void shouldRejectOrderWithUnsupportedCountry() {
+    void shouldRejectOrderWithInvalidCountry() {
         app.erp().returnsProduct().sku(SKU).execute()
                 .shouldSucceed();
 
