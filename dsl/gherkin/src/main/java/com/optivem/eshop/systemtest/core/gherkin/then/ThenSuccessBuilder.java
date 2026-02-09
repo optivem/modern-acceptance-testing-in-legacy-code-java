@@ -14,14 +14,11 @@ public class ThenSuccessBuilder<TSuccessResponse, TSuccessVerification extends R
     }
 
     public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String prefix) {
-        if (successVerification instanceof PlaceOrderVerification verification) {
-            verification.orderNumberStartsWith(prefix);
-        } else if(successVerification instanceof ViewOrderVerification verification) {
-            verification.orderNumberHasPrefix(prefix);
-        } else {
-            throw new IllegalStateException("hasOrderNumberPrefix is not supported for this verification type");
+        switch (successVerification) {
+            case PlaceOrderVerification placeOrderVerification -> placeOrderVerification.orderNumberStartsWith(prefix);
+            case ViewOrderVerification viewOrderVerification -> viewOrderVerification.orderNumberHasPrefix(prefix);
+            default -> throw new IllegalStateException("hasOrderNumberPrefix is not supported for this verification type");
         }
-
         return this;
     }
 }

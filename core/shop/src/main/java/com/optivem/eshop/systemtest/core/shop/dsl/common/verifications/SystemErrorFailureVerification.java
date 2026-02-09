@@ -37,12 +37,11 @@ public class SystemErrorFailureVerification extends ResponseVerification<SystemE
                 .filter(f -> expandedExpectedField.equals(f.getField()))
                 .findFirst();
 
-        assertThat(matchingFieldError)
-                .withFailMessage("Expected field error for field '%s', but field was not found in errors: %s",
-                        expandedExpectedField, fields)
-                .isPresent();
-
-        var actualMessage = matchingFieldError.get().getMessage();
+        var actualMessage = matchingFieldError
+                .map(SystemError.FieldError::getMessage)
+                .orElseThrow(() -> new AssertionError(
+                        String.format("Expected field error for field '%s', but field was not found in errors: %s",
+                                expandedExpectedField, fields)));
         assertThat(actualMessage)
                 .withFailMessage("Expected field error message for field '%s': '%s', but got: '%s'",
                         expandedExpectedField, expandedExpectedMessage, actualMessage)

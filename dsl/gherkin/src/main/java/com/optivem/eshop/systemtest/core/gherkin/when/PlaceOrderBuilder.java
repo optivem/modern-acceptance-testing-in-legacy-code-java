@@ -6,7 +6,6 @@ import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.PlaceOrderVerification;
 
@@ -17,8 +16,8 @@ public class PlaceOrderBuilder extends BaseWhenBuilder<PlaceOrderResponse, Place
     private String country;
     private String couponCode;
 
-    public PlaceOrderBuilder(SystemDsl app, ScenarioDsl scenario) {
-        super(app, scenario);
+    public PlaceOrderBuilder(SystemDsl app) {
+        super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
         withSku(DEFAULT_SKU);
         withQuantity(DEFAULT_QUANTITY);

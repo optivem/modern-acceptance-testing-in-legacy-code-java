@@ -3,13 +3,12 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 
 public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
     private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
 
-    public ThenClause(SystemDsl app, ScenarioDsl scenario, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
+    public ThenClause(SystemDsl app, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
         this.app = app;
         this.executionResult = executionResult;
     }

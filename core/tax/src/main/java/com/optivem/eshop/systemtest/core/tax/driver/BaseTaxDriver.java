@@ -2,7 +2,6 @@ package com.optivem.eshop.systemtest.core.tax.driver;
 
 import com.optivem.eshop.systemtest.core.tax.client.BaseTaxClient;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
@@ -35,6 +34,4 @@ public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements Ta
                         .build())
                 .mapError(TaxErrorResponse::from);
     }
-
-    public abstract Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request);
 }

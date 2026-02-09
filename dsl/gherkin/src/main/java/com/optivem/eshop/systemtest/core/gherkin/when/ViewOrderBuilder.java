@@ -5,15 +5,14 @@ import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 public class ViewOrderBuilder extends BaseWhenBuilder<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumber;
 
-    public ViewOrderBuilder(SystemDsl app, ScenarioDsl scenario) {
-        super(app, scenario);
+    public ViewOrderBuilder(SystemDsl app) {
+        super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 

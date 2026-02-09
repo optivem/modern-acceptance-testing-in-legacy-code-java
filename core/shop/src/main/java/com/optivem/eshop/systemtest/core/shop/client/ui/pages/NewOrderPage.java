@@ -45,7 +45,7 @@ public class NewOrderPage extends BasePage {
         var matcher = pattern.matcher(successMessageText);
 
         if (!matcher.find()) {
-            throw new RuntimeException(ORDER_NUMBER_NOT_FOUND_ERROR);
+            throw new IllegalStateException(ORDER_NUMBER_NOT_FOUND_ERROR);
         }
 
         return matcher.group(ORDER_NUMBER_MATCHER_GROUP);

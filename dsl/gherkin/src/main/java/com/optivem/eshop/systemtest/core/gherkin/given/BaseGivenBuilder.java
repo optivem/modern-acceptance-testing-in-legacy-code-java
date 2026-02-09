@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 public abstract class BaseGivenBuilder {
     private final GivenClause givenClause;
 
-    public BaseGivenBuilder(GivenClause givenClause) {
+    protected BaseGivenBuilder(GivenClause givenClause) {
         this.givenClause = givenClause;
     }
 

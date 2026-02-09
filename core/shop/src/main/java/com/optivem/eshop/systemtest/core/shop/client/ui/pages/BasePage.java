@@ -20,7 +20,7 @@ public abstract class BasePage {
 
     protected final PageClient pageClient;
 
-    public BasePage(PageClient pageClient) {
+    protected BasePage(PageClient pageClient) {
         this.pageClient = pageClient;
     }
 
@@ -29,7 +29,7 @@ public abstract class BasePage {
         var hasNotification = pageClient.isVisible(NOTIFICATION_SELECTOR);
 
         if (!hasNotification) {
-            throw new RuntimeException(NO_NOTIFICATION_ERROR_MESSAGE);
+            throw new IllegalStateException(NO_NOTIFICATION_ERROR_MESSAGE);
         }
 
         var isSuccess = pageClient.isVisible(NOTIFICATION_SUCCESS_SELECTOR);
@@ -44,7 +44,7 @@ public abstract class BasePage {
             return false;
         }
 
-        throw new RuntimeException(UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE);
+        throw new IllegalStateException(UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE);
     }
 
 
@@ -83,7 +83,7 @@ public abstract class BasePage {
                     var parts = text.split(":", 2);
 
                     if(parts.length != 2) {
-                        throw new RuntimeException("Invalid field error format: " + text);
+                        throw new IllegalArgumentException("Invalid field error format: " + text);
                     }
 
                     return new SystemError.FieldError(

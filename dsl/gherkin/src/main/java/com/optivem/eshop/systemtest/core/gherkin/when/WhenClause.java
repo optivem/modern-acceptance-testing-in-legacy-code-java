@@ -1,25 +1,22 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
 public class WhenClause {
     private final SystemDsl app;
-    private final ScenarioDsl scenario;
     private boolean hasProduct;
     private boolean hasTaxRate;
 
-    public WhenClause(SystemDsl app, ScenarioDsl scenario, boolean hasProduct, boolean hasTaxRate) {
+    public WhenClause(SystemDsl app, boolean hasProduct, boolean hasTaxRate) {
         this.app = app;
-        this.scenario = scenario;
         this.hasProduct = hasProduct;
         this.hasTaxRate = hasTaxRate;
     }
 
-    public WhenClause(SystemDsl app, ScenarioDsl scenario) {
-        this(app, scenario, false, false);
+    public WhenClause(SystemDsl app) {
+        this(app, false, false);
     }
 
     private void ensureDefaults() {
@@ -44,24 +41,24 @@ public class WhenClause {
 
     public PlaceOrderBuilder placeOrder() {
         ensureDefaults();
-        return new PlaceOrderBuilder(app, scenario);
+        return new PlaceOrderBuilder(app);
     }
 
     public CancelOrderBuilder cancelOrder() {
         ensureDefaults();
-        return new CancelOrderBuilder(app, scenario);
+        return new CancelOrderBuilder(app);
     }
 
     public ViewOrderBuilder viewOrder() {
         ensureDefaults();
-        return new ViewOrderBuilder(app, scenario);
+        return new ViewOrderBuilder(app);
     }
 
     public PublishCouponBuilder publishCoupon() {
-        return new PublishCouponBuilder(app, scenario);
+        return new PublishCouponBuilder(app);
     }
 
     public BrowseCouponsBuilder browseCoupons() {
-        return new BrowseCouponsBuilder(app, scenario);
+        return new BrowseCouponsBuilder(app);
     }
 }

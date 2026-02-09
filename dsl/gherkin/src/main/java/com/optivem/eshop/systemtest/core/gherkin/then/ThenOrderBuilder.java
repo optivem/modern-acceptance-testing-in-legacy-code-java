@@ -59,7 +59,7 @@ public class ThenOrderBuilder<TSuccessResponse, TSuccessVerification extends Res
     }
 
     public ThenOrderBuilder<TSuccessResponse, TSuccessVerification> hasTotalPrice(double expectedTotalPrice) {
-        orderVerification.totalPriceGreaterThanZero();
+        orderVerification.totalPrice(expectedTotalPrice);
         return this;
     }
 

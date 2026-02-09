@@ -4,7 +4,6 @@ import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
@@ -16,8 +15,8 @@ public class PublishCouponBuilder extends BaseWhenBuilder<Void, VoidVerification
     private String validTo;
     private String usageLimit;
 
-    public PublishCouponBuilder(SystemDsl app, ScenarioDsl scenario) {
-        super(app, scenario);
+    public PublishCouponBuilder(SystemDsl app) {
+        super(app);
         withCouponCode(DEFAULT_COUPON_CODE);
         withDiscountRate(DEFAULT_DISCOUNT_RATE);
     }

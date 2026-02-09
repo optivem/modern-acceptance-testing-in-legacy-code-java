@@ -14,12 +14,12 @@ public class ScenarioDsl {
 
     public GivenClause given() {
         ensureNotExecuted();
-        return new GivenClause(app, this);
+        return new GivenClause(app);
     }
 
     public WhenClause when() {
         ensureNotExecuted();
-        return new WhenClause(app, this);
+        return new WhenClause(app);
     }
 
     public void markAsExecuted() {

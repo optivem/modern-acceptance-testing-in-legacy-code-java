@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
 
 import java.util.ArrayList;
@@ -9,16 +8,14 @@ import java.util.List;
 
 public class GivenClause {
     private final SystemDsl app;
-    private final ScenarioDsl scenario;
     private final List<GivenProductBuilder> products;
     private final List<GivenOrderBuilder> orders;
     private GivenClockBuilder clock;
     private final List<GivenCountryBuilder> countries;
     private final List<GivenCouponBuilder> coupons;
 
-    public GivenClause(SystemDsl app, ScenarioDsl scenario) {
+    public GivenClause(SystemDsl app) {
         this.app = app;
-        this.scenario = scenario;
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
         this.clock = new GivenClockBuilder(this);
@@ -61,7 +58,7 @@ public class GivenClause {
         setupTax();
         setupShop();
 
-        return new WhenClause(app, scenario, !products.isEmpty(), !countries.isEmpty());
+        return new WhenClause(app, !products.isEmpty(), !countries.isEmpty());
     }
 
     private void setupClock() {

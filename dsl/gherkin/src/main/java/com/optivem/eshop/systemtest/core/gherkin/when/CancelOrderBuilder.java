@@ -4,15 +4,14 @@ import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
 public class CancelOrderBuilder extends BaseWhenBuilder<Void, VoidVerification> {
     private String orderNumber;
 
-    public CancelOrderBuilder(SystemDsl app, ScenarioDsl scenario) {
-        super(app, scenario);
+    public CancelOrderBuilder(SystemDsl app) {
+        super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 
