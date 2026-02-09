@@ -9,11 +9,6 @@ import java.util.UUID;
 public abstract class BaseE2eTest extends BaseChannelDriverTest {
 
     @Override
-    protected Environment getFixedEnvironment() {
-        return Environment.LOCAL;
-    }
-
-    @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.REAL;
     }

@@ -1,11 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
-import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
+import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -14,20 +12,19 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V2 tests disabled for now")
-class PlaceOrderPositiveUiTest extends BaseClientTest {
+class PlaceOrderPositiveUiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopUiClient();
-        setUpExternalClients();
     }
 
     @Test
     void shouldPlaceOrderWithCorrectSubtotalPrice() {
         // Given
+        var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
-                .id(SKU)
+                .id(sku)
                 .title("Test Product")
                 .description("Test Description")
                 .category("Test Category")
@@ -41,7 +38,7 @@ class PlaceOrderPositiveUiTest extends BaseClientTest {
         // When - Place order using UI pages
         var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
-        newOrderPage.inputSku(SKU);
+        newOrderPage.inputSku(sku);
         newOrderPage.inputQuantity("5");
         newOrderPage.inputCountry(COUNTRY);
         newOrderPage.clickPlaceOrder();
@@ -51,8 +48,8 @@ class PlaceOrderPositiveUiTest extends BaseClientTest {
 
         var orderNumber = NewOrderPage.getOrderNumber(placeOrderResult.getValue());
 
-        // Then - View order using UI pages
-        var orderHistoryPage = homePage.clickOrderHistory();
+        // Then - View order using UI pages (navigate back to home first, then to order history)
+        var orderHistoryPage = shopUiClient.openHomePage().clickOrderHistory();
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isTrue();
@@ -62,10 +59,50 @@ class PlaceOrderPositiveUiTest extends BaseClientTest {
     }
 
     @Test
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() {
+        // Given
+        var sku = createUniqueSku(SKU);
+        var createProductRequest = ExtCreateProductRequest.builder()
+                .id(sku)
+                .title("Test Product")
+                .description("Test Description")
+                .category("Test Category")
+                .brand("Test Brand")
+                .price("15.50")
+                .build();
+
+        var createProductResult = erpClient.createProduct(createProductRequest);
+        assertThatResult(createProductResult).isSuccess();
+
+        // When - Place order using UI pages
+        var homePage = shopUiClient.openHomePage();
+        var newOrderPage = homePage.clickNewOrder();
+        newOrderPage.inputSku(sku);
+        newOrderPage.inputQuantity("4");
+        newOrderPage.inputCountry(COUNTRY);
+        newOrderPage.clickPlaceOrder();
+
+        var placeOrderResult = newOrderPage.getResult();
+        assertThatResult(placeOrderResult).isSuccess();
+
+        var orderNumber = NewOrderPage.getOrderNumber(placeOrderResult.getValue());
+
+        // Then - View order using UI pages (navigate back to home first, then to order history)
+        var orderHistoryPage = shopUiClient.openHomePage().clickOrderHistory();
+        orderHistoryPage.inputOrderNumber(orderNumber);
+        orderHistoryPage.clickSearch();
+        assertThat(orderHistoryPage.isOrderListed(orderNumber)).isTrue();
+
+        var orderDetailsPage = orderHistoryPage.clickViewOrderDetails(orderNumber);
+        assertThat(orderDetailsPage.getSubtotalPrice()).isEqualTo(new BigDecimal("62.00"));
+    }
+
+    @Test
     void shouldPlaceOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
-                .id(SKU)
+                .id(sku)
                 .title("Test Product")
                 .description("Test Description")
                 .category("Test Category")
@@ -79,7 +116,7 @@ class PlaceOrderPositiveUiTest extends BaseClientTest {
         // When - Place order using UI pages
         var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
-        newOrderPage.inputSku(SKU);
+        newOrderPage.inputSku(sku);
         newOrderPage.inputQuantity("5");
         newOrderPage.inputCountry(COUNTRY);
         newOrderPage.clickPlaceOrder();
@@ -90,15 +127,15 @@ class PlaceOrderPositiveUiTest extends BaseClientTest {
         var orderNumber = NewOrderPage.getOrderNumber(placeOrderResult.getValue());
         assertThat(orderNumber).startsWith("ORD-");
 
-        // Then - View order using UI pages
-        var orderHistoryPage = homePage.clickOrderHistory();
+        // Then - View order using UI pages (navigate back to home first, then to order history)
+        var orderHistoryPage = shopUiClient.openHomePage().clickOrderHistory();
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isTrue();
 
         var orderDetailsPage = orderHistoryPage.clickViewOrderDetails(orderNumber);
         assertThat(orderDetailsPage.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(orderDetailsPage.getSku()).isEqualTo(SKU);
+        assertThat(orderDetailsPage.getSku()).isEqualTo(sku);
         assertThat(orderDetailsPage.getCountry()).isEqualTo(COUNTRY);
         assertThat(orderDetailsPage.getQuantity()).isEqualTo(5);
         assertThat(orderDetailsPage.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

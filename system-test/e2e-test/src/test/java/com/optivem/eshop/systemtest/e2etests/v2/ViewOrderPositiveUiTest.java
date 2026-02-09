@@ -1,11 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
-import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
+import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -15,20 +13,19 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.C
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V2 tests disabled for now")
-class ViewOrderPositiveUiTest extends BaseClientTest {
+class ViewOrderPositiveUiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopUiClient();
-        setUpExternalClients();
     }
 
     @Test
-    void shouldViewOrder() {
+    void shouldViewPlacedOrder() {
         // Given - Create product and place order
+        var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
-                .id(SKU)
+                .id(sku)
                 .title("Test Product")
                 .description("Test Description")
                 .category("Test Category")
@@ -41,7 +38,7 @@ class ViewOrderPositiveUiTest extends BaseClientTest {
 
         var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
-        newOrderPage.inputSku(SKU);
+        newOrderPage.inputSku(sku);
         newOrderPage.inputQuantity("5");
         newOrderPage.inputCountry(COUNTRY);
         newOrderPage.clickPlaceOrder();
@@ -51,8 +48,8 @@ class ViewOrderPositiveUiTest extends BaseClientTest {
 
         var orderNumber = NewOrderPage.getOrderNumber(placeOrderResult.getValue());
 
-        // When - View order using UI pages
-        var orderHistoryPage = homePage.clickOrderHistory();
+        // When - View order using UI pages (navigate back to home first, then to order history)
+        var orderHistoryPage = shopUiClient.openHomePage().clickOrderHistory();
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isTrue();
@@ -61,7 +58,7 @@ class ViewOrderPositiveUiTest extends BaseClientTest {
 
         // Then
         assertThat(orderDetailsPage.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(orderDetailsPage.getSku()).isEqualTo(SKU);
+        assertThat(orderDetailsPage.getSku()).isEqualTo(sku);
         assertThat(orderDetailsPage.getCountry()).isEqualTo(COUNTRY);
         assertThat(orderDetailsPage.getQuantity()).isEqualTo(5);
         assertThat(orderDetailsPage.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

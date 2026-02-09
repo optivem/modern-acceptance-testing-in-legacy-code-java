@@ -1,11 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
-import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
+import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -15,20 +13,19 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.C
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.SKU;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V2 tests disabled for now")
-class ViewOrderPositiveApiTest extends BaseClientTest {
+class ViewOrderPositiveApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopApiClient();
-        setUpExternalClients();
     }
 
     @Test
-    void shouldViewOrder() {
+    void shouldViewPlacedOrder() {
         // Given
+        var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
-                .id(SKU)
+                .id(sku)
                 .title("Test Product")
                 .description("Test Description")
                 .category("Test Category")
@@ -40,7 +37,7 @@ class ViewOrderPositiveApiTest extends BaseClientTest {
         assertThatResult(createProductResult).isSuccess();
 
         var placeOrderRequest = PlaceOrderRequest.builder()
-                .sku(SKU)
+                .sku(sku)
                 .quantity("5")
                 .country(COUNTRY)
                 .build();
@@ -58,7 +55,7 @@ class ViewOrderPositiveApiTest extends BaseClientTest {
 
         var order = viewOrderResult.getValue();
         assertThat(order.getOrderNumber()).isEqualTo(orderNumber);
-        assertThat(order.getSku()).isEqualTo(SKU);
+        assertThat(order.getSku()).isEqualTo(sku);
         assertThat(order.getCountry()).isEqualTo(COUNTRY);
         assertThat(order.getQuantity()).isEqualTo(5);
         assertThat(order.getUnitPrice()).isEqualTo(new BigDecimal("20.00"));

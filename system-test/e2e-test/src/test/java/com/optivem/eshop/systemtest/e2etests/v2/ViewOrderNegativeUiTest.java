@@ -1,33 +1,26 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
-import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V2 tests disabled for now")
-class ViewOrderNegativeUiTest extends BaseClientTest {
+class ViewOrderNegativeUiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopUiClient();
-        setUpExternalClients();
     }
 
     @Test
-    void shouldNotViewOrderWhenOrderNumberDoesNotExist() {
-        // Given
-        var orderNumber = "ORD-99999999";
+    void shouldNotBeAbleToViewNonExistentOrder() {
+        var orderNumber = "NON-EXISTENT-ORDER-99999";
         var homePage = shopUiClient.openHomePage();
         var orderHistoryPage = homePage.clickOrderHistory();
 
-        // When
         orderHistoryPage.inputOrderNumber(orderNumber);
         orderHistoryPage.clickSearch();
 
-        // Then
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isFalse();
     }
 }

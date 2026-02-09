@@ -1,33 +1,26 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
-import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Disabled("V2 tests disabled for now")
-class ViewOrderNegativeApiTest extends BaseClientTest {
+class ViewOrderNegativeApiTest extends BaseE2eTest {
 
-    @BeforeEach
-    void setUp() {
+    @Override
+    protected void setShopDriver() {
         setUpShopApiClient();
-        setUpExternalClients();
     }
 
     @Test
-    void shouldNotViewOrderWhenOrderNumberDoesNotExist() {
-        // Given
-        var orderNumber = "ORD-99999999";
+    void shouldNotBeAbleToViewNonExistentOrder() {
+        var orderNumber = "NON-EXISTENT-ORDER-99999";
 
-        // When
-        var viewOrderResult = shopApiClient.orders().viewOrder(orderNumber);
+        var result = shopApiClient.orders().viewOrder(orderNumber);
 
-        // Then
-        assertThatResult(viewOrderResult).isFailure();
-        var error = viewOrderResult.getError();
-        assertThat(error.getDetail()).isEqualTo("Order ORD-99999999 does not exist.");
+        assertThatResult(result).isFailure();
+        var error = result.getError();
+        assertThat(error.getDetail()).isEqualTo("Order NON-EXISTENT-ORDER-99999 does not exist.");
     }
 }
