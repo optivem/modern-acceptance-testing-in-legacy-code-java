@@ -1,6 +1,8 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.FailureResult;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.verifications.SystemErrorFailureVerification;
 
@@ -8,8 +10,8 @@ public class ThenFailureBuilder<TSuccessResponse, TSuccessVerification extends R
         extends BaseThenBuilder<TSuccessResponse, TSuccessVerification> {
     private final SystemErrorFailureVerification failureVerification;
 
-    public ThenFailureBuilder(ThenClause<TSuccessResponse, TSuccessVerification> thenClause, FailureResult result) {
-        super(thenClause.getApp(), thenClause.getExecutionResult());
+    public ThenFailureBuilder(SystemDsl app, ExecutionResultContext executionResult, FailureResult result) {
+        super(app, executionResult);
         if (result == null) {
             throw new IllegalStateException("Cannot verify failure: no operation was executed");
         }

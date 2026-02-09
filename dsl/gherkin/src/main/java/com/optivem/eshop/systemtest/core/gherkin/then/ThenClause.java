@@ -13,23 +13,15 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         this.executionResult = executionResult;
     }
 
-    SystemDsl getApp() {
-        return app;
-    }
-
-    ExecutionResult<TSuccessResponse, TSuccessVerification> getExecutionResult() {
-        return executionResult;
-    }
-
     public ThenSuccessBuilder<TSuccessResponse, TSuccessVerification> shouldSucceed() {
         if (executionResult == null) {
             throw new IllegalStateException("Cannot verify success: no operation was executed");
         }
         var successVerification = executionResult.getResult().shouldSucceed();
-        return new ThenSuccessBuilder<>(this, successVerification);
+        return new ThenSuccessBuilder<>(app, executionResult, successVerification);
     }
 
     public ThenFailureBuilder<TSuccessResponse, TSuccessVerification> shouldFail() {
-        return new ThenFailureBuilder<>(this, executionResult.getResult());
+        return new ThenFailureBuilder<>(app, executionResult, executionResult.getResult());
     }
 }
