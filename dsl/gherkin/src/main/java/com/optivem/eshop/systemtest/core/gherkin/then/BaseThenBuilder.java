@@ -9,6 +9,7 @@ public abstract class BaseThenBuilder<TSuccessResponse, TSuccessVerification ext
         super(thenClauseContext);
     }
 
+    @Override
     public BaseThenBuilder<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
