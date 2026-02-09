@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.client.api.controllers;
 
 import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.commons.http.JsonHttpClient;
@@ -21,7 +20,7 @@ public class CouponController {
         return httpClient.post(ENDPOINT, request);
     }
 
-    public Result<BrowseCouponsResponse, ProblemDetailResponse> browseCoupons(BrowseCouponsRequest request) {
+    public Result<BrowseCouponsResponse, ProblemDetailResponse> browseCoupons() {
         return httpClient.get(ENDPOINT, BrowseCouponsResponse.class);
     }
 }

@@ -2,7 +2,6 @@
 package com.optivem.eshop.systemtest.core.shop.driver.api.internal;
 
 import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
@@ -22,8 +21,8 @@ public class ShopApiCouponDriver implements CouponDriver {
     }
 
     @Override
-    public Result<BrowseCouponsResponse, SystemError> browseCoupons(BrowseCouponsRequest request) {
-        return apiClient.coupons().browseCoupons(request).mapError(SystemError::from);
+    public Result<BrowseCouponsResponse, SystemError> browseCoupons() {
+        return apiClient.coupons().browseCoupons().mapError(SystemError::from);
     }
 }
 

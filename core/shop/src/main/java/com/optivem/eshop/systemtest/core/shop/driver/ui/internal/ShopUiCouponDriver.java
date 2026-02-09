@@ -2,7 +2,6 @@ package com.optivem.eshop.systemtest.core.shop.driver.ui.internal;
 
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.CouponManagementPage;
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.HomePage;
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
@@ -39,7 +38,7 @@ public class ShopUiCouponDriver implements CouponDriver {
     }
 
     @Override
-    public Result<BrowseCouponsResponse, SystemError> browseCoupons(BrowseCouponsRequest request) {
+    public Result<BrowseCouponsResponse, SystemError> browseCoupons() {
         // Always navigate fresh to ensure we get the latest coupon data (e.g., updated used counts)
         navigateToCouponManagementPage();
         

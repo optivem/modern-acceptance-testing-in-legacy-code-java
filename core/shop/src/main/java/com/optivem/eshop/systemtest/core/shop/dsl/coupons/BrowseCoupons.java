@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.coupons;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.common.BaseShopCommand;
@@ -16,8 +15,7 @@ public class BrowseCoupons extends BaseShopCommand<BrowseCouponsResponse, Browse
 
     @Override
     public ShopUseCaseResult<BrowseCouponsResponse, BrowseCouponsVerification> execute() {
-        var request = new BrowseCouponsRequest();
-        var result = driver.coupons().browseCoupons(request);
+        var result = driver.coupons().browseCoupons();
         return new ShopUseCaseResult<>(result, context, BrowseCouponsVerification::new);
     }
 }
