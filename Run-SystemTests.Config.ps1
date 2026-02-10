@@ -67,6 +67,13 @@ $Config = @{
 
         # E2E Tests
         @{ 
+            Id = "e2e-no-channel";
+            Name = "E2E Tests - No Channel (v1, v2, v3)";
+            Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -DtestScope=noChannel";
+            Path = ".";
+            TestReportPath = "system-test\e2e-test\build\reports\tests\test\index.html";
+            TestInstallCommands = $null; },
+        @{ 
             Id = "e2e-api";
             Name = "E2E Tests - Channel: API";
             Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -Dchannel=API";
