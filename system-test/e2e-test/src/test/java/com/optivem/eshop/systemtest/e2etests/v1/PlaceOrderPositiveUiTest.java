@@ -2,6 +2,8 @@ package com.optivem.eshop.systemtest.e2etests.v1;
 
 import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -72,8 +74,14 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         assertThat(subtotalValue).isEqualTo(100.00);
     }
 
-    @Test
-    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() throws Exception {
+    @ParameterizedTest
+    @CsvSource({
+            "20.00, 5, 100.00",
+            "10.00, 3, 30.00",
+            "15.50, 4, 62.00",
+            "99.99, 1, 99.99"
+    })
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String expectedSubtotalPrice) throws Exception {
         var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
@@ -82,9 +90,9 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
                     "description": "Test Description",
                     "category": "Test Category",
                     "brand": "Test Brand",
-                    "price": "15.50"
+                    "price": "%s"
                 }
-                """.formatted(sku);
+                """.formatted(sku, unitPrice);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -100,7 +108,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         shopUiPage.locator("a[href='/shop']").click();
 
         shopUiPage.locator("[aria-label=\"SKU\"]").fill(sku);
-        shopUiPage.locator("[aria-label=\"Quantity\"]").fill("4");
+        shopUiPage.locator("[aria-label=\"Quantity\"]").fill(quantity);
         shopUiPage.locator("[aria-label=\"Country\"]").fill(COUNTRY);
         shopUiPage.locator("[aria-label=\"Place Order\"]").click();
 
@@ -123,7 +131,8 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
 
         var subtotalText = shopUiPage.locator("[aria-label='Display Subtotal Price']").textContent();
         var subtotalValue = Double.parseDouble(subtotalText.replace("$", ""));
-        assertThat(subtotalValue).isEqualTo(62.00);
+        var expectedSubtotal = Double.parseDouble(expectedSubtotalPrice);
+        assertThat(subtotalValue).isEqualTo(expectedSubtotal);
     }
 
     @Test

@@ -2,6 +2,8 @@ package com.optivem.eshop.systemtest.e2etests.v1;
 
 import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.net.URI;
 import java.net.http.HttpRequest;
@@ -76,8 +78,14 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThat(viewOrderBody.get("subtotalPrice").asDouble()).isEqualTo(100.00);
     }
 
-    @Test
-    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() throws Exception {
+    @ParameterizedTest
+    @CsvSource({
+            "20.00, 5, 100.00",
+            "10.00, 3, 30.00",
+            "15.50, 4, 62.00",
+            "99.99, 1, 99.99"
+    })
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String expectedSubtotalPrice) throws Exception {
         var sku = createUniqueSku(SKU);
         var createProductJson = """
                 {
@@ -86,9 +94,9 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
                     "description": "Test Description",
                     "category": "Test Category",
                     "brand": "Test Brand",
-                    "price": "15.50"
+                    "price": "%s"
                 }
-                """.formatted(sku);
+                """.formatted(sku, unitPrice);
 
         var createProductUri = URI.create(getErpBaseUrl() + "/api/products");
         var createProductRequest = HttpRequest.newBuilder()
@@ -103,10 +111,10 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         var placeOrderJson = """
                 {
                     "sku": "%s",
-                    "quantity": "4",
+                    "quantity": "%s",
                     "country": "%s"
                 }
-                """.formatted(sku, COUNTRY);
+                """.formatted(sku, quantity, COUNTRY);
 
         var placeOrderUri = URI.create(getShopApiBaseUrl() + "/api/orders");
         var placeOrderRequest = HttpRequest.newBuilder()
@@ -132,7 +140,8 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThat(viewOrderResponse.statusCode()).isEqualTo(200);
 
         var viewOrderBody = httpObjectMapper.readTree(viewOrderResponse.body());
-        assertThat(viewOrderBody.get("subtotalPrice").asDouble()).isEqualTo(62.00);
+        var expectedSubtotal = Double.parseDouble(expectedSubtotalPrice);
+        assertThat(viewOrderBody.get("subtotalPrice").asDouble()).isEqualTo(expectedSubtotal);
     }
 
     @Test

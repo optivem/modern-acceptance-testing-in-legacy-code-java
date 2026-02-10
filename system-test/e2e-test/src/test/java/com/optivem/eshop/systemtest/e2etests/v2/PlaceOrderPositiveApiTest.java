@@ -5,6 +5,8 @@ import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigDecimal;
 
@@ -55,8 +57,14 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThat(order.getSubtotalPrice()).isEqualTo(new BigDecimal("100.00"));
     }
 
-    @Test
-    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() {
+    @ParameterizedTest
+    @CsvSource({
+            "20.00, 5, 100.00",
+            "10.00, 3, 30.00",
+            "15.50, 4, 62.00",
+            "99.99, 1, 99.99"
+    })
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String expectedSubtotalPrice) {
         // Given
         var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
@@ -65,7 +73,7 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
                 .description("Test Description")
                 .category("Test Category")
                 .brand("Test Brand")
-                .price("15.50")
+                .price(unitPrice)
                 .build();
 
         var createProductResult = erpClient.createProduct(createProductRequest);
@@ -74,7 +82,7 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         // When
         var placeOrderRequest = PlaceOrderRequest.builder()
                 .sku(sku)
-                .quantity("4")
+                .quantity(quantity)
                 .country(COUNTRY)
                 .build();
 
@@ -88,7 +96,7 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThatResult(viewOrderResult).isSuccess();
 
         var order = viewOrderResult.getValue();
-        assertThat(order.getSubtotalPrice()).isEqualTo(new BigDecimal("62.00"));
+        assertThat(order.getSubtotalPrice()).isEqualTo(new BigDecimal(expectedSubtotalPrice));
     }
 
     @Test

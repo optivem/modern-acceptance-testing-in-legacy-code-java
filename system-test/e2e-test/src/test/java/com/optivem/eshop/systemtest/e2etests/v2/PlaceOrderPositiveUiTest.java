@@ -5,6 +5,8 @@ import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtCreateProductRequest
 import com.optivem.eshop.systemtest.core.shop.client.ui.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.math.BigDecimal;
 
@@ -58,8 +60,14 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         assertThat(orderDetailsPage.getSubtotalPrice()).isEqualTo(new BigDecimal("100.00"));
     }
 
-    @Test
-    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized() {
+    @ParameterizedTest
+    @CsvSource({
+            "20.00, 5, 100.00",
+            "10.00, 3, 30.00",
+            "15.50, 4, 62.00",
+            "99.99, 1, 99.99"
+    })
+    void shouldPlaceOrderWithCorrectSubtotalPriceParameterized(String unitPrice, String quantity, String expectedSubtotalPrice) {
         // Given
         var sku = createUniqueSku(SKU);
         var createProductRequest = ExtCreateProductRequest.builder()
@@ -68,7 +76,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
                 .description("Test Description")
                 .category("Test Category")
                 .brand("Test Brand")
-                .price("15.50")
+                .price(unitPrice)
                 .build();
 
         var createProductResult = erpClient.createProduct(createProductRequest);
@@ -78,7 +86,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         var homePage = shopUiClient.openHomePage();
         var newOrderPage = homePage.clickNewOrder();
         newOrderPage.inputSku(sku);
-        newOrderPage.inputQuantity("4");
+        newOrderPage.inputQuantity(quantity);
         newOrderPage.inputCountry(COUNTRY);
         newOrderPage.clickPlaceOrder();
 
@@ -94,7 +102,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isTrue();
 
         var orderDetailsPage = orderHistoryPage.clickViewOrderDetails(orderNumber);
-        assertThat(orderDetailsPage.getSubtotalPrice()).isEqualTo(new BigDecimal("62.00"));
+        assertThat(orderDetailsPage.getSubtotalPrice()).isEqualTo(new BigDecimal(expectedSubtotalPrice));
     }
 
     @Test
