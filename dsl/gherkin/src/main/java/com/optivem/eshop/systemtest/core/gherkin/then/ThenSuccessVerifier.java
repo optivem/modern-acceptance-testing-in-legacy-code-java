@@ -12,13 +12,4 @@ public class ThenSuccessVerifier<TSuccessResponse, TSuccessVerification extends 
     public ThenSuccessVerifier(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
         super(app, executionResult, successVerification);
     }
-
-    public ThenSuccessVerifier<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String prefix) {
-        switch (successVerification) {
-            case PlaceOrderVerification placeOrderVerification -> placeOrderVerification.orderNumberStartsWith(prefix);
-            case ViewOrderVerification viewOrderVerification -> viewOrderVerification.orderNumberHasPrefix(prefix);
-            default -> throw new IllegalStateException("hasOrderNumberPrefix is not supported for this verification type");
-        }
-        return this;
-    }
 }

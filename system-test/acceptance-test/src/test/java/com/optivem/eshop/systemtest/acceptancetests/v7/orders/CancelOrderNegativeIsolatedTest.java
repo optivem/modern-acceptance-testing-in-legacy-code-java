@@ -3,16 +3,13 @@ package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import com.optivem.testing.Channel;
-import com.optivem.testing.DataSource;
-import com.optivem.testing.Isolated;
-import com.optivem.testing.Time;
+import com.optivem.testing.*;
 import org.junit.jupiter.api.TestTemplate;
 
 @Isolated
 class CancelOrderNegativeIsolatedTest extends BaseAcceptanceTest {
 
-    @Time
+    @TimeDependent
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     @DataSource({"2024-12-31T22:00:00Z"})   // Start of blackout period
