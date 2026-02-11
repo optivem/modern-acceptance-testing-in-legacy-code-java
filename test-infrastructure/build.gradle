@@ -21,7 +21,7 @@ dependencies {
     api project(':commons')
     api project(':core')
 
-    api 'com.optivem:optivem-testing:1.0.2'
+    api 'com.optivem:optivem-testing:1.0.4'
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework:spring-web'
     implementation 'com.fasterxml.jackson.core:jackson-databind'
