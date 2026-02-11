@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.testing.Channel;
 import com.optivem.testing.Isolated;
-import com.optivem.testing.Time;
 import com.optivem.testing.TimeDependent;
 import org.junit.jupiter.api.TestTemplate;
 

@@ -154,8 +154,8 @@ public class ThenOrderVerifier<TSuccessResponse, TSuccessVerification extends Re
         switch (successVerification) {
             case PlaceOrderVerification placeOrderVerification -> placeOrderVerification.orderNumberStartsWith(expectedPrefix);
             case ViewOrderVerification viewOrderVerification -> viewOrderVerification.orderNumberHasPrefix(expectedPrefix);
-            case null -> { }
-            default -> { }
+            case null -> { /* no-op: orderNumber prefix not applicable */ }
+            default -> { /* no-op: verification type has no order number prefix check */ }
         }
         orderVerification.orderNumberHasPrefix(expectedPrefix);
         return this;
