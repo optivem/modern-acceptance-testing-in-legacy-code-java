@@ -145,40 +145,6 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .when().placeOrder().withCouponCode("SUMMER2025")
                 .then().shouldSucceed().and().coupon("SUMMER2025").hasUsedCount(1);
     }
-
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void cannotPlaceOrderWithNonExistentCoupon() {
-        scenario
-                .when().placeOrder().withCouponCode("INVALIDCOUPON")
-                .then().shouldFail().errorMessage("The request contains one or more validation errors")
-                .fieldErrorMessage("couponCode", "Coupon code INVALIDCOUPON does not exist");
-    }
-    
-    @Time
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void cannotPlaceOrderWithExpiredCoupon() {
-        scenario
-                .given().clock().withTime("2023-09-01T12:00:00Z")
-                .and().coupon().withCouponCode("SUMMER2023").withValidFrom("2023-06-01T00:00:00Z").withValidTo("2023-08-31T23:59:59Z")
-                .when().placeOrder().withCouponCode("SUMMER2023")
-                .then().shouldFail().errorMessage("The request contains one or more validation errors")
-                .fieldErrorMessage("couponCode", "Coupon code SUMMER2023 has expired");
-    }
-
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void cannotPlaceOrderWithCouponThatHasExceededUsageLimit() {
-        scenario
-                .given().coupon().withCouponCode("LIMITED2024").withUsageLimit(2)
-                .and().order().withOrderNumber("ORD-1").withCouponCode("LIMITED2024")
-                .and().order().withOrderNumber("ORD-2").withCouponCode("LIMITED2024")
-                .when().placeOrder().withOrderNumber("ORD-3").withCouponCode("LIMITED2024")
-                .then().shouldFail().errorMessage("The request contains one or more validation errors")
-                .fieldErrorMessage("couponCode", "Coupon code LIMITED2024 has exceeded its usage limit");
-    }
-
 }
 
 
