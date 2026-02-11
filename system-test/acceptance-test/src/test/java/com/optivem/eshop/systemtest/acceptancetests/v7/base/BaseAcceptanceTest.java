@@ -9,9 +9,4 @@ public class BaseAcceptanceTest extends BaseScenarioDslTest {
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.STUB;
     }
-
-    @Override
-    protected Environment getFixedEnvironment() {
-        return Environment.LOCAL;
-    }
 }
