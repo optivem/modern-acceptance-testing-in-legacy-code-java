@@ -27,11 +27,14 @@ public abstract class BaseThenVerifier<TSuccessResponse, TSuccessVerification ex
         return order(executionResult.getOrderNumber());
     }
 
-    public ThenCouponVerifier coupon(String couponCode) {
-        return new ThenCouponVerifier(app, executionResult, couponCode);
+    public ThenCouponVerifier<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
+        return new ThenCouponVerifier<>(app, executionResult, couponCode, successVerification);
     }
 
-    public ThenCouponVerifier coupon() {
+    public ThenCouponVerifier<TSuccessResponse, TSuccessVerification> coupon() {
+        if (executionResult.getCouponCode() == null) {
+            throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
+        }
         return coupon(executionResult.getCouponCode());
     }
 }
