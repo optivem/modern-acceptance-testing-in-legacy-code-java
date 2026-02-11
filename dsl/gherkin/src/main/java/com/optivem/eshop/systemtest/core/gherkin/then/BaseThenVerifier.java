@@ -24,6 +24,9 @@ public abstract class BaseThenVerifier<TSuccessResponse, TSuccessVerification ex
     }
 
     public ThenOrderVerifier<TSuccessResponse, TSuccessVerification> order() {
+        if (executionResult.getOrderNumber() == null) {
+            throw new IllegalStateException("Cannot verify order: no order number available from the executed operation");
+        }
         return order(executionResult.getOrderNumber());
     }
 
