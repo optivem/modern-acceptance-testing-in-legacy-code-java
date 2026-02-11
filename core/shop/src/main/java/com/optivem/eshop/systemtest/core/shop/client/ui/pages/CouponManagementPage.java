@@ -115,8 +115,8 @@ public class CouponManagementPage extends BasePage {
             var coupon = BrowseCouponsResponse.CouponDto.builder()
                     .code(code)
                     .discountRate(parseDiscountRate(discountRateText))
-                    .validFrom(parseInstant(validFromText))
-                    .validTo(parseInstant(validToText))
+                    .validFrom(toInstant(validFromText))
+                    .validTo(toInstant(validToText))
                     .usageLimit(parseUsageLimit(usageLimitText))
                     .usedCount(Converter.toInteger(usedCountText))
                     .build();
@@ -158,8 +158,8 @@ public class CouponManagementPage extends BasePage {
         return value == null ? 0.00 : value / 100.0; // Convert percentage to decimal
     }
 
-    private Instant parseInstant(String text) {
-        return Converter.parseInstant(text, TEXT_IMMEDIATE, TEXT_NEVER);
+    private Instant toInstant(String text) {
+        return Converter.toInstant(text, TEXT_IMMEDIATE, TEXT_NEVER);
     }
 
     private Integer parseUsageLimit(String text) {

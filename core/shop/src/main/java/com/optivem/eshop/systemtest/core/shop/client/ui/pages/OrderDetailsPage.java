@@ -45,7 +45,7 @@ public class OrderDetailsPage extends BasePage {
 
     public Instant getOrderTimestamp() {
         var textContent = pageClient.readTextContent(ORDER_TIMESTAMP_OUTPUT_SELECTOR);
-        return Converter.parseInstant(textContent);
+        return Converter.toInstant(textContent);
     }
 
     public String getSku() {
