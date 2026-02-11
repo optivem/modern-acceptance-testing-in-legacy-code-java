@@ -127,6 +127,9 @@ jobs:
       - name: Run External System Contract Tests (Real External Systems)
         run: ./gradlew :system-test:external-system-contract-test:test -Denvironment=acceptance -DexternalSystemMode=real
 
+      - name: Run E2E Tests - No Channel (v1, v2, v3)
+        run: ./gradlew :system-test:e2e-test:test -Denvironment=acceptance -DtestScope=noChannel
+
       - name: Run E2E Tests - API Channel
         run: ./gradlew :system-test:e2e-test:test -Denvironment=acceptance -Dchannel=API
 
