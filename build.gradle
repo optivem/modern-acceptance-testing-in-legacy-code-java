@@ -21,7 +21,7 @@ subprojects {
     apply plugin: 'name.remal.sonarlint'
 
     plugins.withId('name.remal.sonarlint') {
-        project.extensions.getByName('sonarLint').rules.disable('java:S119', 'java:S5976')
+        project.extensions.getByName('sonarLint').rules.disable('java:S119', 'java:S5976', 'java:S00119')
     }
 
     java {
