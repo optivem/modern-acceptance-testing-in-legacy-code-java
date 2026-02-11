@@ -31,11 +31,11 @@ public abstract class BaseThenVerifier<TSuccessResponse, TSuccessVerification ex
         return order(orderNumber);
     }
 
-    public ThenCouponVerifier<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
-        return new ThenCouponVerifier<>(app, executionResult, couponCode, successVerification);
+    public ThenCouponVerifier coupon(String couponCode) {
+        return new ThenCouponVerifier(app, executionResult, couponCode);
     }
 
-    public ThenCouponVerifier<TSuccessResponse, TSuccessVerification> coupon() {
+    public ThenCouponVerifier coupon() {
         var couponCode = executionResult.getCouponCode();
         if (couponCode == null) {
             throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
