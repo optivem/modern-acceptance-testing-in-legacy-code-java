@@ -38,22 +38,7 @@ class CancelOrderNegativeTest extends BaseAcceptanceTest {
                 .when().cancelOrder().withOrderNumber("non-existent-order-12345")
                 .then().shouldFail().errorMessage("Order non-existent-order-12345 does not exist.");
     }
-
-    // TODO: VJ: DELETE
-    // @Time
-    // @TestTemplate
-    // @Channel({ChannelType.UI, ChannelType.API})
-    // @DataSource({"2024-12-31T22:00:00Z"})   // Start of blackout period   // End of blackout period
-    // void cannotCancelAnOrderOn31stDecBetween2200And2230(String timeIso) {
-    //     scenario
-    //             .given().clock().withTime(timeIso)
-    //             .and().order().withStatus(OrderStatus.PLACED)
-    //             .when().cancelOrder()
-    //             .then().shouldFail().errorMessage("Order cancellation is not allowed on December 31st between 22:00 and 23:00")
-    //             .and().order().hasStatus(OrderStatus.PLACED);
-    // }
-
-    // TODO: VJ: Bring back
+    
     @Time
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
