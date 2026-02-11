@@ -39,8 +39,8 @@ class PlaceOrderPositiveTest extends BaseE2eTest {
         scenario
                 .given().product().withUnitPrice(20.00)
                 .when().placeOrder().withQuantity(5)
-                .then().shouldSucceed().hasOrderNumberPrefix("ORD-")
-                .and().order()
+                .then().shouldSucceed()
+                .and().order().hasOrderNumberPrefix("ORD-")
                 .hasQuantity(5)
                 .hasUnitPrice(20.00)
                 .hasSubtotalPrice(100.00)
