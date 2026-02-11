@@ -21,7 +21,7 @@ public class ThenClause<TSuccessResponse, TSuccessVerification extends ResponseV
         return new ThenSuccessVerifier<>(app, executionResult.getContext(), successVerification);
     }
 
-    public ThenFailureVerifier<TSuccessResponse, TSuccessVerification> shouldFail() {
-        return new ThenFailureVerifier<>(app, executionResult.getContext(), executionResult.getResult());
+    public ThenFailureVerifier shouldFail() {
+        return new ThenFailureVerifier(app, executionResult.getContext(), executionResult.getResult());
     }
 }

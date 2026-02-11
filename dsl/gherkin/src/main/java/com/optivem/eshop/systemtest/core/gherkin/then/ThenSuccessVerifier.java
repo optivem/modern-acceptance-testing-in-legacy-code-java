@@ -7,12 +7,10 @@ import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.PlaceOrde
 import com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications.ViewOrderVerification;
 
 public class ThenSuccessVerifier<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenOutcomeVerifier<TSuccessResponse, TSuccessVerification> {
-    private final TSuccessVerification successVerification;
+        extends BaseThenVerifier<TSuccessResponse, TSuccessVerification> {
 
     public ThenSuccessVerifier(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
-        super(app, executionResult);
-        this.successVerification = successVerification;
+        super(app, executionResult, successVerification);
     }
 
     public ThenSuccessVerifier<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String prefix) {
