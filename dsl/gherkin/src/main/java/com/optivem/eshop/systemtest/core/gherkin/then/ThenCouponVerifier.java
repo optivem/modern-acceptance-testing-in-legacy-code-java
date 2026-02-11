@@ -9,18 +9,6 @@ public class ThenCouponVerifier extends BaseThenVerifier<Void, VoidVerification>
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
-    public ThenCouponVerifier(SystemDsl app, ExecutionResultContext executionResult) {
-        this(app, executionResult, requireCouponCode(executionResult));
-    }
-
-    private static String requireCouponCode(ExecutionResultContext executionResult) {
-        var couponCode = executionResult.getCouponCode();
-        if (couponCode == null) {
-            throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
-        }
-        return couponCode;
-    }
-
     public ThenCouponVerifier(SystemDsl app, ExecutionResultContext executionResult, String couponCode) {
         super(app, executionResult, null);
         this.couponCode = couponCode;

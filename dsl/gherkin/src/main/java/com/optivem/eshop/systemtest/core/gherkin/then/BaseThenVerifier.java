@@ -24,7 +24,7 @@ public abstract class BaseThenVerifier<TSuccessResponse, TSuccessVerification ex
     }
 
     public ThenOrderVerifier<TSuccessResponse, TSuccessVerification> order() {
-        return new ThenOrderVerifier<>(app, executionResult, successVerification);
+        return order(executionResult.getOrderNumber());
     }
 
     public ThenCouponVerifier coupon(String couponCode) {
@@ -32,6 +32,6 @@ public abstract class BaseThenVerifier<TSuccessResponse, TSuccessVerification ex
     }
 
     public ThenCouponVerifier coupon() {
-        return new ThenCouponVerifier(app, executionResult);
+        return coupon(executionResult.getCouponCode());
     }
 }

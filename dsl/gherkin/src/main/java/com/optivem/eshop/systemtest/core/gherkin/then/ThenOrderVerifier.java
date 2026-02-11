@@ -13,10 +13,6 @@ public class ThenOrderVerifier<TSuccessResponse, TSuccessVerification extends Re
         extends BaseThenVerifier<TSuccessResponse, TSuccessVerification> {
     private final ViewOrderVerification orderVerification;
 
-    public ThenOrderVerifier(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
-        this(app, executionResult, executionResult.getOrderNumber(), successVerification);
-    }
-
     public ThenOrderVerifier(SystemDsl app, ExecutionResultContext executionResult, String orderNumber, TSuccessVerification successVerification) {
         super(app, executionResult, successVerification);
         if (orderNumber == null) {
