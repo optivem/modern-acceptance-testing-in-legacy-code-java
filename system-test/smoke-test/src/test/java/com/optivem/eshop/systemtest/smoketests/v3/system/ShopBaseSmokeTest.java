@@ -9,10 +9,10 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 public abstract class ShopBaseSmokeTest extends BaseDriverTest {
     @BeforeEach
     void setUp() {
-        setShopApiDriver();
+        setShopDriver();
     }
 
-    protected abstract void setShopApiDriver();
+    protected abstract void setShopDriver();
 
     @Test
     void shouldBeAbleToGoToShop() {
