@@ -56,7 +56,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     void orderPrefixShouldBeORD() {
         scenario
                 .when().placeOrder()
-                .then().shouldSucceed().hasOrderNumberPrefix("ORD-")
+                .then().shouldSucceed()
                 .and().order().hasOrderNumberPrefix("ORD-");
     }
 
