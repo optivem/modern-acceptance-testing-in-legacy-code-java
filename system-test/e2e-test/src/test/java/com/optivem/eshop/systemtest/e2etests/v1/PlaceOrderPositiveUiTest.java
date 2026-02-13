@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v1;
 
+import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.options.WaitForSelectorState;
 import com.optivem.eshop.systemtest.e2etests.v1.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -64,6 +66,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         shopUiPage.locator("[aria-label='Refresh Order List']").click();
 
         var rowSelector = String.format("//tr[contains(., '%s')]", orderNumber);
+        shopUiPage.locator(rowSelector).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
         assertThat(shopUiPage.locator(rowSelector).isVisible()).isTrue();
 
         var viewDetailsSelector = String.format("%s//a[contains(text(), 'View Details')]", rowSelector);
@@ -124,6 +127,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         shopUiPage.locator("[aria-label='Refresh Order List']").click();
 
         var rowSelector = String.format("//tr[contains(., '%s')]", orderNumber);
+        shopUiPage.locator(rowSelector).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
         assertThat(shopUiPage.locator(rowSelector).isVisible()).isTrue();
 
         var viewDetailsSelector = String.format("%s//a[contains(text(), 'View Details')]", rowSelector);
@@ -180,6 +184,7 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         shopUiPage.locator("[aria-label='Refresh Order List']").click();
 
         var rowSelector = String.format("//tr[contains(., '%s')]", orderNumber);
+        shopUiPage.locator(rowSelector).waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
         assertThat(shopUiPage.locator(rowSelector).isVisible()).isTrue();
 
         var viewDetailsSelector = String.format("%s//a[contains(text(), 'View Details')]", rowSelector);
