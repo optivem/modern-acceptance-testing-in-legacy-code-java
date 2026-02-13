@@ -31,7 +31,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     public BrowseCouponsVerification couponHasValidFrom(String couponCodeAlias, String expectedValidFrom) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        var expectedInstant = Converter.parseInstant(expectedValidFrom);
+        var expectedInstant = Converter.toInstant(expectedValidFrom);
         assertThat(coupon.getValidFrom())
                 .as("ValidFrom for coupon '%s'", couponCodeAlias)
                 .isEqualTo(expectedInstant);
@@ -41,7 +41,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
     public BrowseCouponsVerification couponHasValidTo(String couponCodeAlias, String expectedValidTo) {
         var coupon = findCouponByCode(couponCodeAlias);
 
-        var expectedInstant = Converter.parseInstant(expectedValidTo);
+        var expectedInstant = Converter.toInstant(expectedValidTo);
         assertThat(coupon.getValidTo())
                 .as("ValidTo for coupon '%s'", couponCodeAlias)
                 .isEqualTo(expectedInstant);

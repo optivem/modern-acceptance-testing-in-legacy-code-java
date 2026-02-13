@@ -56,19 +56,11 @@ public class Converter {
         return to(value, Double::parseDouble);
     }
 
-    public static Instant toInstant(String value) {
-        return to(value, Instant::parse);
-    }
-
     public static String fromInstant(Instant value) {
         return from(value, Instant::toString);
     }
 
-    public static Instant parseInstant(String text) {
-        return parseInstant(text, new String[0]);
-    }
-
-    public static Instant parseInstant(String text, String... nullValues) {
+    public static Instant toInstant(String text, String... nullValues) {
         if (text == null || text.isEmpty()) {
             return null;
         }
