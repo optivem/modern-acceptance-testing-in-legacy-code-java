@@ -5,7 +5,6 @@ import com.optivem.commons.util.Result;
 import com.optivem.commons.playwright.PageClient;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.failure;
 import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
@@ -47,18 +46,7 @@ public abstract class BasePage {
         }
 
         var fieldErrors = fieldErrorTexts.stream()
-                .map(text -> {
-                    var parts = text.split(":", 2);
-
-                    if(parts.length != 2) {
-                        throw new IllegalArgumentException("Invalid field error format: " + text);
-                    }
-
-                    return new SystemError.FieldError(
-                            parts[0].trim(),
-                            parts[1].trim()
-                    );
-                })
+            .map(this::parseFieldError)
                 .toList();
 
         var error = SystemError.builder()
@@ -80,17 +68,25 @@ public abstract class BasePage {
             throw new IllegalStateException(NO_NOTIFICATION_ERROR_MESSAGE);
         }
 
-        return pageClient.readAttribute(selector, NOTIFICATION_ID_ATTRIBUTE);
+        var notificationId = pageClient.readAttribute(selector, NOTIFICATION_ID_ATTRIBUTE);
+
+        if(notificationId == null) {
+            throw new IllegalStateException("Notification does not have an ID");
+        }
+
+        return notificationId;
     }
 
     private boolean isSuccessNotification(String notificationId) {
-        var isSuccess = pageClient.isVisible(withNotificationId(NOTIFICATION_SUCCESS_SELECTOR, notificationId));
+        var successSelector = withNotificationId(NOTIFICATION_SUCCESS_SELECTOR, notificationId);
+        var isSuccess = pageClient.isVisible(successSelector);
 
         if(isSuccess) {
             return true;
         }
 
-        var isError = pageClient.isVisible(withNotificationId(NOTIFICATION_ERROR_SELECTOR, notificationId));
+        var errorSelector = withNotificationId(NOTIFICATION_ERROR_SELECTOR, notificationId);
+        var isError = pageClient.isVisible(errorSelector);
 
         if(isError) {
             return false;
@@ -115,6 +111,19 @@ public abstract class BasePage {
             return List.of();
         }
         return pageClient.readAllTextContents(selector);
+    }
+
+    private SystemError.FieldError parseFieldError(String text) {
+        var parts = text.split(":", 2);
+
+        if (parts.length != 2) {
+            throw new IllegalArgumentException("Invalid field error format: " + text);
+        }
+
+        return new SystemError.FieldError(
+                parts[0].trim(),
+                parts[1].trim()
+        );
     }
 
     private static String withNotificationId(String selector, String notificationId) {
