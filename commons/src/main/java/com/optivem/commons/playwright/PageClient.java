@@ -38,6 +38,11 @@ public class PageClient {
         return locator.textContent();
     }
 
+    public String readAttribute(String selector, String attribute) {
+        var locator = getLocator(selector);
+        return locator.getAttribute(attribute);
+    }
+
     public List<String> readAllTextContents(String selector) {
         var locator = page.locator(selector);
         // Wait for at least one element to be visible
@@ -53,6 +58,10 @@ public class PageClient {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void removeElements(String selector) {
+        page.evaluate("selector => document.querySelectorAll(selector).forEach(el => el.remove())", selector);
     }
 
     public boolean isHidden(String selector) {

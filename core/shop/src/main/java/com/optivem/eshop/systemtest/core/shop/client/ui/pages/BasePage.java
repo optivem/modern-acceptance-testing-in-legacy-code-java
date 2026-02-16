@@ -5,6 +5,7 @@ import com.optivem.commons.util.Result;
 import com.optivem.commons.playwright.PageClient;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.failure;
 import static com.optivem.eshop.systemtest.core.shop.commons.SystemResults.success;
@@ -15,25 +16,31 @@ public abstract class BasePage {
     private static final String NOTIFICATION_ERROR_SELECTOR = "[role='alert'].notification.error";
     private static final String NOTIFICATION_ERROR_MESSAGE_SELECTOR = "[role='alert'].notification.error .error-message";
     private static final String NOTIFICATION_ERROR_FIELD_SELECTOR = "[role='alert'].notification.error .field-error";
+    private static final String NOTIFICATION_ID_ATTRIBUTE = "data-notification-id";
     private static final String NO_NOTIFICATION_ERROR_MESSAGE = "No notification appeared";
     private static final String UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE = "Notification type is not recognized";
 
     protected final PageClient pageClient;
+
+    private String lastNotificationId = null;
 
     protected BasePage(PageClient pageClient) {
         this.pageClient = pageClient;
     }
 
     public Result<String, SystemError> getResult() {
-        var isSuccess = hasSuccessNotification();
+        var notificationId = waitForNewNotification();
+        lastNotificationId = notificationId;
+
+        var isSuccess = isSuccessNotification(notificationId);
 
         if (isSuccess) {
-            var successMessage = readSuccessNotification();
+            var successMessage = readSuccessNotification(notificationId);
             return success(successMessage);
         }
 
-        var generalMessage = readGeneralErrorMessage();
-        var fieldErrorTexts = readFieldErrors();
+        var generalMessage = readGeneralErrorMessage(notificationId);
+        var fieldErrorTexts = readFieldErrors(notificationId);
 
         if (fieldErrorTexts.isEmpty()) {
             return failure(generalMessage);
@@ -62,21 +69,28 @@ public abstract class BasePage {
         return failure(error);
     }
 
-    private boolean hasSuccessNotification() {
+    private String waitForNewNotification() {
+        var selector = lastNotificationId == null
+                ? NOTIFICATION_SELECTOR
+                : NOTIFICATION_SELECTOR + ":not([" + NOTIFICATION_ID_ATTRIBUTE + "='" + lastNotificationId + "'])";
 
-        var hasNotification = pageClient.isVisible(NOTIFICATION_SELECTOR);
+        var hasNotification = pageClient.isVisible(selector);
 
         if (!hasNotification) {
             throw new IllegalStateException(NO_NOTIFICATION_ERROR_MESSAGE);
         }
 
-        var isSuccess = pageClient.isVisible(NOTIFICATION_SUCCESS_SELECTOR);
+        return pageClient.readAttribute(selector, NOTIFICATION_ID_ATTRIBUTE);
+    }
+
+    private boolean isSuccessNotification(String notificationId) {
+        var isSuccess = pageClient.isVisible(withNotificationId(NOTIFICATION_SUCCESS_SELECTOR, notificationId));
 
         if(isSuccess) {
             return true;
         }
 
-        var isError = pageClient.isVisible(NOTIFICATION_ERROR_SELECTOR);
+        var isError = pageClient.isVisible(withNotificationId(NOTIFICATION_ERROR_SELECTOR, notificationId));
 
         if(isError) {
             return false;
@@ -85,19 +99,26 @@ public abstract class BasePage {
         throw new IllegalStateException(UNRECOGNIZED_NOTIFICATION_ERROR_MESSAGE);
     }
 
-
-    private String readSuccessNotification() {
-        return pageClient.readTextContent(NOTIFICATION_SUCCESS_SELECTOR);
+    private String readSuccessNotification(String notificationId) {
+        var selector = withNotificationId(NOTIFICATION_SUCCESS_SELECTOR, notificationId);
+        return pageClient.readTextContent(selector);
     }
 
-    private String readGeneralErrorMessage() {
-        return pageClient.readTextContent(NOTIFICATION_ERROR_MESSAGE_SELECTOR);
+    private String readGeneralErrorMessage(String notificationId) {
+        var selector = withNotificationId(NOTIFICATION_ERROR_MESSAGE_SELECTOR, notificationId);
+        return pageClient.readTextContent(selector);
     }
 
-    private List<String> readFieldErrors() {
-        if (!pageClient.isVisible(NOTIFICATION_ERROR_FIELD_SELECTOR)) {
+    private List<String> readFieldErrors(String notificationId) {
+        var selector = withNotificationId(NOTIFICATION_ERROR_FIELD_SELECTOR, notificationId);
+        if (!pageClient.isVisible(selector)) {
             return List.of();
         }
-        return pageClient.readAllTextContents(NOTIFICATION_ERROR_FIELD_SELECTOR);
+        return pageClient.readAllTextContents(selector);
+    }
+
+    private static String withNotificationId(String selector, String notificationId) {
+        var idAttribute = "[" + NOTIFICATION_ID_ATTRIBUTE + "='" + notificationId + "']";
+        return selector.replace(NOTIFICATION_SELECTOR, NOTIFICATION_SELECTOR + idAttribute);
     }
 }
