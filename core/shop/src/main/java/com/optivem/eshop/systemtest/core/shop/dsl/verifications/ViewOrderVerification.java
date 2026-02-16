@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications;
+package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
@@ -126,7 +126,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return status(OrderStatus.valueOf(expectedStatus));
     }
 
-
     public ViewOrderVerification discountRate(BigDecimal expectedDiscountRate) {
         var actualDiscountRate = getResponse().getDiscountRate();
         assertThat(actualDiscountRate)
@@ -134,7 +133,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
                 .isEqualByComparingTo(expectedDiscountRate);
         return this;
     }
-
 
     public ViewOrderVerification discountRate(double expectedDiscountRate) {
         return discountRate(Converter.toBigDecimal(expectedDiscountRate));
@@ -155,7 +153,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
                 .isGreaterThanOrEqualTo(BigDecimal.ZERO);
         return this;
     }
-
 
     public ViewOrderVerification discountAmount(BigDecimal expectedDiscountAmount) {
         var actualDiscountAmount = getResponse().getDiscountAmount();
@@ -181,8 +178,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
                 .isEqualTo(expectedCouponCode);
         return this;
     }
-
-
 
     public ViewOrderVerification taxRate(BigDecimal expectedTaxRate) {
         var actualTaxRate = getResponse().getTaxRate();
@@ -283,7 +278,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return this;
     }
 
-
     public ViewOrderVerification appliedCouponCodeIsNull() {
         var actualCouponCode = getResponse().getAppliedCouponCode();
         assertThat(actualCouponCode)
@@ -292,4 +286,3 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return this;
     }
 }
-

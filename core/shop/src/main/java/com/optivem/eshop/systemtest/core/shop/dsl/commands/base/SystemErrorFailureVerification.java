@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.common.verifications;
+package com.optivem.eshop.systemtest.core.shop.dsl.commands.base;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
 import com.optivem.commons.dsl.ResponseVerification;

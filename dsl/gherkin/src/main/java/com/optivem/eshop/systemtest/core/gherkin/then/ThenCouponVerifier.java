@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.verifications.BrowseCouponsVerification;
 
 public class ThenCouponVerifier<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenVerifier<TSuccessResponse, TSuccessVerification> {
     private final BrowseCouponsVerification verification;

@@ -1,10 +1,9 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.coupons.verifications;
+package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.util.Converter;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -70,7 +69,7 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
         assertThat(couponCodeAlias)
                 .as("Coupon code alias parameter")
                 .isNotNull();
-                
+
         assertThat(getResponse())
                 .as("Response should not be null")
                 .isNotNull();
@@ -90,7 +89,4 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
                                         .map(BrowseCouponsResponse.CouponDto::getCode)
                                         .toList())));
     }
-
-
-
 }

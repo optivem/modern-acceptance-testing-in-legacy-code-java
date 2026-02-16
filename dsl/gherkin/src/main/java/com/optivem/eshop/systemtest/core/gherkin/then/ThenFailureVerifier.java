@@ -4,8 +4,8 @@ import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.verifications.SystemErrorFailureVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.SystemErrorFailureVerification;
 
 public class ThenFailureVerifier<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenVerifier<Void, VoidVerification> {

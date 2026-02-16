@@ -1,12 +1,11 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.coupons;
+package com.optivem.eshop.systemtest.core.shop.dsl.commands;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.BaseShopCommand;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.BaseShopCommand;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
-
 
 public class PublishCoupon extends BaseShopCommand<Void, VoidVerification> {
     private String couponCodeParamAlias;
@@ -60,4 +59,3 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification> {
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
-

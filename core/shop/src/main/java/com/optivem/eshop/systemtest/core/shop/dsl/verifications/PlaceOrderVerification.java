@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.orders.verifications;
+package com.optivem.eshop.systemtest.core.shop.dsl.verifications;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.commons.dsl.ResponseVerification;
@@ -29,4 +29,3 @@ public class PlaceOrderVerification extends ResponseVerification<PlaceOrderRespo
         return this;
     }
 }
-

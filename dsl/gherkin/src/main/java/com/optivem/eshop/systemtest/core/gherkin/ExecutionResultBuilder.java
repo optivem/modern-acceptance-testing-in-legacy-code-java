@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.shop.dsl.common.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
 
 public class ExecutionResultBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
 
