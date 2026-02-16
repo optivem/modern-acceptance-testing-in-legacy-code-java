@@ -3,9 +3,9 @@ package com.optivem.eshop.systemtest.core.clock.dsl;
 import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
 import com.optivem.eshop.systemtest.core.clock.driver.ClockRealDriver;
 import com.optivem.eshop.systemtest.core.clock.driver.ClockStubDriver;
-import com.optivem.eshop.systemtest.core.clock.dsl.commands.GetTime;
-import com.optivem.eshop.systemtest.core.clock.dsl.commands.GoToClock;
-import com.optivem.eshop.systemtest.core.clock.dsl.commands.ReturnsTime;
+import com.optivem.eshop.systemtest.core.clock.dsl.usecases.GetTime;
+import com.optivem.eshop.systemtest.core.clock.dsl.usecases.GoToClock;
+import com.optivem.eshop.systemtest.core.clock.dsl.usecases.ReturnsTime;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;
 

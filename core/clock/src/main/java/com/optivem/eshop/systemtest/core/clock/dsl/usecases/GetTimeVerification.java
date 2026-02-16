@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.clock.dsl.verifications;
+package com.optivem.eshop.systemtest.core.clock.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.GetTimeResponse;
 import com.optivem.commons.dsl.ResponseVerification;
@@ -33,7 +33,6 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
         return time(Converter.toInstant(expectedTime));
     }
 
-
     public GetTimeVerification timeIsAfter(Instant time) {
         assertThat(getResponse().getTime())
                 .withFailMessage("Expected time %s to be after %s", getResponse().getTime(), time)
@@ -55,4 +54,3 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
         return this;
     }
 }
-

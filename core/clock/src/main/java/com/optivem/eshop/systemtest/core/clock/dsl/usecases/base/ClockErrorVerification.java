@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.clock.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.clock.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.core.clock.driver.dtos.error.ClockErrorResponse;
 import com.optivem.commons.dsl.ResponseVerification;
