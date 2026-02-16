@@ -157,6 +157,7 @@ class PlaceOrderNegativeUiTest extends BaseE2eTest {
 
     private void assertErrorAlertContains(String... expected) {
         var errorAlert = shopUiPage.locator("[role='alert']");
+        errorAlert.waitFor();
         assertThat(errorAlert.isVisible()).isTrue();
         var errorText = errorAlert.textContent();
         for (var text : expected) {
