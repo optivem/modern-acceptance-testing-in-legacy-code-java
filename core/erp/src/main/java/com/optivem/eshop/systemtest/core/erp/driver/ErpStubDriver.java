@@ -4,9 +4,8 @@ import com.optivem.eshop.systemtest.core.erp.client.ErpStubClient;
 import com.optivem.eshop.systemtest.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
+import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;
-
-import java.math.BigDecimal;
 
 /**
  * ErpStubDriver uses WireMock to stub ERP API responses.
@@ -24,7 +23,7 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
                 .id(request.getSku())
                 .title("")
                 .description("")
-                .price(new BigDecimal(request.getPrice()))
+                .price(Converter.toBigDecimal(request.getPrice()))
                 .category("")
                 .brand("")
                 .build();
