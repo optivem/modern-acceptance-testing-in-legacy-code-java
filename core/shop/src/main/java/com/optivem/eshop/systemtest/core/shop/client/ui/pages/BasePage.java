@@ -24,6 +24,44 @@ public abstract class BasePage {
         this.pageClient = pageClient;
     }
 
+    public Result<String, SystemError> getResult() {
+        var isSuccess = hasSuccessNotification();
+
+        if (isSuccess) {
+            var successMessage = readSuccessNotification();
+            return success(successMessage);
+        }
+
+        var generalMessage = readGeneralErrorMessage();
+        var fieldErrorTexts = readFieldErrors();
+
+        if (fieldErrorTexts.isEmpty()) {
+            return failure(generalMessage);
+        }
+
+        var fieldErrors = fieldErrorTexts.stream()
+                .map(text -> {
+                    var parts = text.split(":", 2);
+
+                    if(parts.length != 2) {
+                        throw new IllegalArgumentException("Invalid field error format: " + text);
+                    }
+
+                    return new SystemError.FieldError(
+                            parts[0].trim(),
+                            parts[1].trim()
+                    );
+                })
+                .toList();
+
+        var error = SystemError.builder()
+                .message(generalMessage)
+                .fields(fieldErrors)
+                .build();
+
+        return failure(error);
+    }
+
     private boolean hasSuccessNotification() {
 
         var hasNotification = pageClient.isVisible(NOTIFICATION_SELECTOR);
@@ -61,43 +99,5 @@ public abstract class BasePage {
             return List.of();
         }
         return pageClient.readAllTextContents(NOTIFICATION_ERROR_FIELD_SELECTOR);
-    }
-
-    public Result<String, SystemError> getResult() {
-        var isSuccess = hasSuccessNotification();
-
-        if (isSuccess) {
-            var successMessage = readSuccessNotification();
-            return success(successMessage);
-        }
-
-        var generalMessage = readGeneralErrorMessage();
-        var fieldErrorTexts = readFieldErrors();
-
-        if (fieldErrorTexts.isEmpty()) {
-            return failure(generalMessage);
-        }
-
-        var fieldErrors = fieldErrorTexts.stream()
-                .map(text -> {
-                    var parts = text.split(":", 2);
-
-                    if(parts.length != 2) {
-                        throw new IllegalArgumentException("Invalid field error format: " + text);
-                    }
-
-                    return new SystemError.FieldError(
-                            parts[0].trim(),
-                            parts[1].trim()
-                    );
-                })
-                .toList();
-
-        var error = SystemError.builder()
-                .message(generalMessage)
-                .fields(fieldErrors)
-                .build();
-
-        return failure(error);
     }
 }
