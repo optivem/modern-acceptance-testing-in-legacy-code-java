@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.shop.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;

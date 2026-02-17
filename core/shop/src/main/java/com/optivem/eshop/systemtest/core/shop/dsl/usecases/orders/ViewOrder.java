@@ -1,10 +1,9 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.commands;
+package com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
-import com.optivem.eshop.systemtest.core.shop.dsl.verifications.ViewOrderVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.BaseShopCommand;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 
 public class ViewOrder extends BaseShopCommand<ViewOrderResponse, ViewOrderVerification> {

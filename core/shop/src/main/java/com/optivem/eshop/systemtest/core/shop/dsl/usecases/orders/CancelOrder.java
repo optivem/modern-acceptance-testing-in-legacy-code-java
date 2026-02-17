@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.commands;
+package com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders;
 
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.core.shop.dsl.commands.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.BaseShopCommand;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
