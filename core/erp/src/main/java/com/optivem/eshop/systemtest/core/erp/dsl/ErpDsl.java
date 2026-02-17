@@ -3,9 +3,9 @@ package com.optivem.eshop.systemtest.core.erp.dsl;
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.ErpRealDriver;
 import com.optivem.eshop.systemtest.core.erp.driver.ErpStubDriver;
-import com.optivem.eshop.systemtest.core.erp.dsl.commands.GetProduct;
-import com.optivem.eshop.systemtest.core.erp.dsl.commands.GoToErp;
-import com.optivem.eshop.systemtest.core.erp.dsl.commands.ReturnsProduct;
+import com.optivem.eshop.systemtest.core.erp.dsl.usecases.GetProduct;
+import com.optivem.eshop.systemtest.core.erp.dsl.usecases.GoToErp;
+import com.optivem.eshop.systemtest.core.erp.dsl.usecases.ReturnsProduct;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;
 

@@ -1,10 +1,9 @@
-package com.optivem.eshop.systemtest.core.tax.dsl.commands;
+package com.optivem.eshop.systemtest.core.tax.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
-import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.BaseTaxCommand;
-import com.optivem.eshop.systemtest.core.tax.dsl.commands.base.TaxUseCaseResult;
-import com.optivem.eshop.systemtest.core.tax.dsl.verifications.GetTaxVerification;
+import com.optivem.eshop.systemtest.core.tax.dsl.usecases.base.BaseTaxCommand;
+import com.optivem.eshop.systemtest.core.tax.dsl.usecases.base.TaxUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 
 public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerification> {
@@ -28,5 +27,3 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
         return new TaxUseCaseResult<>(result, context, GetTaxVerification::new);
     }
 }
-
-

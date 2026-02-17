@@ -1,18 +1,18 @@
-package com.optivem.eshop.systemtest.core.erp.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.tax.dsl.usecases.base;
 
-import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
+import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ErpErrorVerification extends ResponseVerification<ErpErrorResponse> {
+public class TaxErrorVerification extends ResponseVerification<TaxErrorResponse> {
 
-    public ErpErrorVerification(ErpErrorResponse error, UseCaseContext context) {
+    public TaxErrorVerification(TaxErrorResponse error, UseCaseContext context) {
         super(error, context);
     }
 
-    public ErpErrorVerification errorMessage(String expectedMessage) {
+    public TaxErrorVerification errorMessage(String expectedMessage) {
         var expandedExpectedMessage = getContext().expandAliases(expectedMessage);
         var error = getResponse();
         var errorMessage = error.getMessage();

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.tax.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
 import com.optivem.commons.util.Result;

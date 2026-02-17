@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.tax.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.error.TaxErrorResponse;
@@ -10,4 +10,3 @@ public abstract class BaseTaxCommand<TResponse, TVerification> extends BaseUseCa
         super(driver, context);
     }
 }
-

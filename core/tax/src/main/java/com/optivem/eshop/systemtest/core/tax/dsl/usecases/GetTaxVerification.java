@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.tax.dsl.verifications;
+package com.optivem.eshop.systemtest.core.tax.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
 import com.optivem.commons.util.Converter;
@@ -48,4 +48,3 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
         return this;
     }
 }
-

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.erp.dsl.commands.base;
+package com.optivem.eshop.systemtest.core.erp.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.error.ErpErrorResponse;
 import com.optivem.commons.util.Result;

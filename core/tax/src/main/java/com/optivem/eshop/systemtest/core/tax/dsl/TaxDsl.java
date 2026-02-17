@@ -3,9 +3,9 @@ package com.optivem.eshop.systemtest.core.tax.dsl;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxRealDriver;
 import com.optivem.eshop.systemtest.core.tax.driver.TaxStubDriver;
-import com.optivem.eshop.systemtest.core.tax.dsl.commands.GetTaxRate;
-import com.optivem.eshop.systemtest.core.tax.dsl.commands.GoToTax;
-import com.optivem.eshop.systemtest.core.tax.dsl.commands.ReturnsTaxRate;
+import com.optivem.eshop.systemtest.core.tax.dsl.usecases.GetTaxRate;
+import com.optivem.eshop.systemtest.core.tax.dsl.usecases.GoToTax;
+import com.optivem.eshop.systemtest.core.tax.dsl.usecases.ReturnsTaxRate;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;
 

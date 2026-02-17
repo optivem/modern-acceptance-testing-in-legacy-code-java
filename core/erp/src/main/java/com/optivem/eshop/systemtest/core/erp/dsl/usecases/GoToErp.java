@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.core.erp.dsl.commands;
+package com.optivem.eshop.systemtest.core.erp.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
-import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.BaseErpCommand;
-import com.optivem.eshop.systemtest.core.erp.dsl.commands.base.ErpUseCaseResult;
+import com.optivem.eshop.systemtest.core.erp.dsl.usecases.base.BaseErpCommand;
+import com.optivem.eshop.systemtest.core.erp.dsl.usecases.base.ErpUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.commons.dsl.VoidVerification;
 
@@ -17,4 +17,3 @@ public class GoToErp extends BaseErpCommand<Void, VoidVerification> {
         return new ErpUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
-

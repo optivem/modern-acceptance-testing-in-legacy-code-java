@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.erp.dsl.verifications;
+package com.optivem.eshop.systemtest.core.erp.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.GetProductResponse;
 import com.optivem.commons.util.Converter;
