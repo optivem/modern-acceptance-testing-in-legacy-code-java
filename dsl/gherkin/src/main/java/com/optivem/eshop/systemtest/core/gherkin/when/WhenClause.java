@@ -38,6 +38,10 @@ public class WhenClause {
             hasTaxRate = true;
         }
     }
+    
+    public GoToShopBuilder goToShop() {
+        return new GoToShopBuilder(app);
+    }
 
     public PlaceOrderBuilder placeOrder() {
         ensureDefaults();
