@@ -51,6 +51,11 @@ public class PageClient {
         return locator.allTextContents();
     }
 
+    public void waitForVisible(String selector) {
+        var locator = page.locator(selector);
+        locator.waitFor(getDefaultWaitForOptions());
+    }
+
     public boolean isVisible(String selector) {
         try {
             var locator = getLocator(selector);

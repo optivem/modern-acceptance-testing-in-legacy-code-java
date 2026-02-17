@@ -68,17 +68,11 @@ public class CouponManagementPage extends BasePage {
         pageClient.click(PUBLISH_COUPON_BUTTON_SELECTOR);
     }
 
-    public boolean hasCouponsTable() {
-        return pageClient.isVisible(COUPONS_TABLE_SELECTOR);
-    }
-    
     public List<BrowseCouponsResponse.CouponDto> readCoupons() {
-        if (!hasCouponsTable()) {
-            return new ArrayList<>();
-        }
-        
-        var coupons = new ArrayList<BrowseCouponsResponse.CouponDto>();
+        // Wait for table to appear/refresh after operations like PublishCoupon
+        pageClient.waitForVisible(COUPONS_TABLE_SELECTOR);
 
+        var coupons = new ArrayList<BrowseCouponsResponse.CouponDto>();
         // Use readAllTextContentsWithoutWait to avoid strict mode violations
         // These selectors intentionally match multiple elements (one per table row)
         var codes = pageClient.readAllTextContents(TABLE_CELL_CODE_SELECTOR);
