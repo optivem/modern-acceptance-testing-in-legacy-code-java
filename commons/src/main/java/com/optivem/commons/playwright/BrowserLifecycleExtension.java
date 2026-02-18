@@ -37,9 +37,9 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
             return Boolean.parseBoolean(systemProperty);
         }
 
-        String envVariable = System.getenv("HEADLESS");
+        String envVariable = System.getenv("HEADED");
         if (envVariable != null) {
-            return Boolean.parseBoolean(envVariable);
+            return !Boolean.parseBoolean(envVariable);
         }
 
         if (isRunningInCI()) {
