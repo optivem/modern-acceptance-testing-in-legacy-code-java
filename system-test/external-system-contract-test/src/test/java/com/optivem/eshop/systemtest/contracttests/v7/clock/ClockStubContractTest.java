@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.contracttests.clock;
+package com.optivem.eshop.systemtest.contracttests.v7.clock;
 
 import com.optivem.commons.dsl.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
@@ -24,4 +24,3 @@ class ClockStubContractTest extends BaseClockContractTest {
                 .time("2024-01-02T09:00:00Z");
     }
 }
-

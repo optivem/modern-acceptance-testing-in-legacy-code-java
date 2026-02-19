@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.contracttests.erp;
+package com.optivem.eshop.systemtest.contracttests.v7.erp;
 
-import com.optivem.eshop.systemtest.contracttests.base.BaseExternalSystemContractTest;
+import com.optivem.eshop.systemtest.contracttests.v7.base.BaseExternalSystemContractTest;
 import org.junit.jupiter.api.Test;
 
 public abstract class BaseErpContractTest extends BaseExternalSystemContractTest {
