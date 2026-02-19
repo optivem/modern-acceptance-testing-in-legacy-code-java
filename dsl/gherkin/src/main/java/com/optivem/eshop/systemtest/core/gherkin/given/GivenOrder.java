@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
+import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
-import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenOrderBuilder extends BaseGivenBuilder {
+public class GivenOrder extends BaseGivenStep {
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -14,8 +14,8 @@ public class GivenOrderBuilder extends BaseGivenBuilder {
     private String couponCodeAlias;
     private OrderStatus status;
 
-    public GivenOrderBuilder(GivenClause givenClause) {
-        super(givenClause);
+    public GivenOrder(Given given) {
+        super(given);
 
         withOrderNumber(DEFAULT_ORDER_NUMBER);
         withSku(DEFAULT_SKU);
@@ -25,36 +25,36 @@ public class GivenOrderBuilder extends BaseGivenBuilder {
         withStatus(DEFAULT_ORDER_STATUS);
     }
 
-    public GivenOrderBuilder withOrderNumber(String orderNumber) {
+    public GivenOrder withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }
 
-    public GivenOrderBuilder withSku(String sku) {
+    public GivenOrder withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public GivenOrderBuilder withQuantity(String quantity) {
+    public GivenOrder withQuantity(String quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public GivenOrderBuilder withQuantity(int quantity) {
+    public GivenOrder withQuantity(int quantity) {
         return withQuantity(Converter.fromInteger(quantity));
     }
 
-    public GivenOrderBuilder withCountry(String country) {
+    public GivenOrder withCountry(String country) {
         this.country = country;
         return this;
     }
 
-    public GivenOrderBuilder withCouponCode(String couponCodeAlias) {
+    public GivenOrder withCouponCode(String couponCodeAlias) {
         this.couponCodeAlias = couponCodeAlias;
         return this;
     }
 
-    public GivenOrderBuilder withStatus(OrderStatus status) {
+    public GivenOrder withStatus(OrderStatus status) {
         this.status = status;
         return this;
     }

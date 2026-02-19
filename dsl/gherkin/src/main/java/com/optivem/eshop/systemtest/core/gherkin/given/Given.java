@@ -6,50 +6,50 @@ import com.optivem.eshop.systemtest.core.gherkin.when.When;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GivenClause {
+public class Given {
     private final SystemDsl app;
-    private final List<GivenProductBuilder> products;
-    private final List<GivenOrderBuilder> orders;
-    private GivenClockBuilder clock;
-    private final List<GivenCountryBuilder> countries;
-    private final List<GivenCouponBuilder> coupons;
+    private final List<GivenProduct> products;
+    private final List<GivenOrder> orders;
+    private GivenClock clock;
+    private final List<GivenCountry> countries;
+    private final List<GivenCoupon> coupons;
 
-    public GivenClause(SystemDsl app) {
+    public Given(SystemDsl app) {
         this.app = app;
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
-        this.clock = new GivenClockBuilder(this);
+        this.clock = new GivenClock(this);
         this.countries = new ArrayList<>();
         this.coupons = new ArrayList<>();
     }
 
-    public GivenProductBuilder product() {
-        var productBuilder = new GivenProductBuilder(this);
-        products.add(productBuilder);
-        return productBuilder;
+    public GivenProduct product() {
+        var product = new GivenProduct(this);
+        products.add(product);
+        return product;
     }
 
-    public GivenOrderBuilder order() {
-        var orderBuilder = new GivenOrderBuilder(this);
-        orders.add(orderBuilder);
-        return orderBuilder;
+    public GivenOrder order() {
+        var order = new GivenOrder(this);
+        orders.add(order);
+        return order;
     }
 
-    public GivenClockBuilder clock() {
-        clock = new GivenClockBuilder(this);
+    public GivenClock clock() {
+        clock = new GivenClock(this);
         return clock;
     }
 
-    public GivenCountryBuilder country() {
-        var taxRateBuilder = new GivenCountryBuilder(this);
-        countries.add(taxRateBuilder);
-        return taxRateBuilder;
+    public GivenCountry country() {
+        var country = new GivenCountry(this);
+        countries.add(country);
+        return country;
     }
 
-    public GivenCouponBuilder coupon() {
-        var couponBuilder = new GivenCouponBuilder(this);
-        coupons.add(couponBuilder);
-        return couponBuilder;
+    public GivenCoupon coupon() {
+        var coupon = new GivenCoupon(this);
+        coupons.add(coupon);
+        return coupon;
     }
 
     public When when() {
@@ -67,7 +67,7 @@ public class GivenClause {
 
     private void setupErp() {
         if (!orders.isEmpty() && products.isEmpty()) {
-            var defaultProduct = new GivenProductBuilder(this);
+            var defaultProduct = new GivenProduct(this);
             products.add(defaultProduct);
         }
 
@@ -78,7 +78,7 @@ public class GivenClause {
 
     private void setupTax() {
         if (!orders.isEmpty() && countries.isEmpty()) {
-            var defaultCountry = new GivenCountryBuilder(this);
+            var defaultCountry = new GivenCountry(this);
             countries.add(defaultCountry);
         }
 
@@ -94,7 +94,7 @@ public class GivenClause {
 
     private void setupCoupons() {
         if(!orders.isEmpty() && coupons.isEmpty()) {
-            var defaultCoupon = new GivenCouponBuilder(this);
+            var defaultCoupon = new GivenCoupon(this);
             coupons.add(defaultCoupon);
         }
 

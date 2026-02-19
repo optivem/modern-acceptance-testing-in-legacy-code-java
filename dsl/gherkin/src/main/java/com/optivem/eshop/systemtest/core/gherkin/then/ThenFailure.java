@@ -7,11 +7,11 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.SystemErrorFailureVerification;
 
-public class ThenFailureVerifier<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenVerifier<Void, VoidVerification> {
+public class ThenFailure<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+        extends BaseThenStep<Void, VoidVerification> {
     private final SystemErrorFailureVerification failureVerification;
 
-    public ThenFailureVerifier(SystemDsl app, ExecutionResultContext executionResult,
+    public ThenFailure(SystemDsl app, ExecutionResultContext executionResult,
             ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result) {
         super(app, executionResult, null);
         if (result == null) {
@@ -20,12 +20,12 @@ public class ThenFailureVerifier<TSuccessResponse, TSuccessVerification extends 
         this.failureVerification = result.shouldFail();
     }
 
-    public ThenFailureVerifier<TSuccessResponse, TSuccessVerification> errorMessage(String expectedMessage) {
+    public ThenFailure<TSuccessResponse, TSuccessVerification> errorMessage(String expectedMessage) {
         failureVerification.errorMessage(expectedMessage);
         return this;
     }
 
-    public ThenFailureVerifier<TSuccessResponse, TSuccessVerification> fieldErrorMessage(
+    public ThenFailure<TSuccessResponse, TSuccessVerification> fieldErrorMessage(
             String expectedField, String expectedMessage) {
         failureVerification.fieldErrorMessage(expectedField, expectedMessage);
         return this;

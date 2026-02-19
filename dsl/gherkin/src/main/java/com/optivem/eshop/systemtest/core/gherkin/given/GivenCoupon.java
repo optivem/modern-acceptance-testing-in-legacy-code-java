@@ -1,19 +1,19 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.commons.util.Converter;
+import com.optivem.eshop.systemtest.core.SystemDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenCouponBuilder extends BaseGivenBuilder {
+public class GivenCoupon extends BaseGivenStep {
     private String couponCode;
     private String discountRate;
     private String validFrom;
     private String validTo;
     private String usageLimit;
 
-    public GivenCouponBuilder(GivenClause givenClause) {
-        super(givenClause);
+    public GivenCoupon(Given given) {
+        super(given);
 
         withCouponCode(DEFAULT_COUPON_CODE);
         withDiscountRate(DEFAULT_DISCOUNT_RATE);
@@ -22,36 +22,36 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
         withUsageLimit(EMPTY);
     }
 
-    public GivenCouponBuilder withCouponCode(String couponCode) {
+    public GivenCoupon withCouponCode(String couponCode) {
         this.couponCode = couponCode;
         return this;
     }
 
-    public GivenCouponBuilder withDiscountRate(String discountRate) {
+    public GivenCoupon withDiscountRate(String discountRate) {
         this.discountRate = discountRate;
         return this;
     }
 
-    public GivenCouponBuilder withDiscountRate(double discountRate) {
+    public GivenCoupon withDiscountRate(double discountRate) {
         return withDiscountRate(Converter.fromDouble(discountRate));
     }
 
-    public GivenCouponBuilder withValidFrom(String validFrom) {
+    public GivenCoupon withValidFrom(String validFrom) {
         this.validFrom = validFrom;
         return this;
     }
 
-    public GivenCouponBuilder withValidTo(String validTo) {
+    public GivenCoupon withValidTo(String validTo) {
         this.validTo = validTo;
         return this;
     }
 
-    public GivenCouponBuilder withUsageLimit(String usageLimit) {
+    public GivenCoupon withUsageLimit(String usageLimit) {
         this.usageLimit = usageLimit;
         return this;
     }
 
-    public GivenCouponBuilder withUsageLimit(int usageLimit) {
+    public GivenCoupon withUsageLimit(int usageLimit) {
         return withUsageLimit(Converter.fromInteger(usageLimit));
     }
 
@@ -68,4 +68,3 @@ public class GivenCouponBuilder extends BaseGivenBuilder {
         result.shouldSucceed();
     }
 }
-

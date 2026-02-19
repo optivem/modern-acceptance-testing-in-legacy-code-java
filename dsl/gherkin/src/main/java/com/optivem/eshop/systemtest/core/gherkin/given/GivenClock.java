@@ -3,15 +3,15 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults;
 
-public class GivenClockBuilder extends BaseGivenBuilder {
+public class GivenClock extends BaseGivenStep {
     private String time;
 
-    public GivenClockBuilder(GivenClause givenClause) {
-        super(givenClause);
+    public GivenClock(Given given) {
+        super(given);
         withTime(GherkinDefaults.DEFAULT_TIME);
     }
 
-    public GivenClockBuilder withTime(String time) {
+    public GivenClock withTime(String time) {
         this.time = time;
         return this;
     }
@@ -24,4 +24,3 @@ public class GivenClockBuilder extends BaseGivenBuilder {
             .shouldSucceed();
     }
 }
-

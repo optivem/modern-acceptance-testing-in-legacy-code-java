@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.GivenClause;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
 public class ScenarioDsl {
@@ -12,9 +12,9 @@ public class ScenarioDsl {
         this.app = app;
     }
 
-    public GivenClause given() {
+    public Given given() {
         ensureNotExecuted();
-        return new GivenClause(app);
+        return new Given(app);
     }
 
     public When when() {

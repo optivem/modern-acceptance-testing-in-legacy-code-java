@@ -1,31 +1,31 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.commons.util.Converter;
+import com.optivem.eshop.systemtest.core.SystemDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenCountryBuilder extends BaseGivenBuilder {
+public class GivenCountry extends BaseGivenStep {
     private String country;
     private String taxRate;
 
-    public GivenCountryBuilder(GivenClause givenClause) {
-        super(givenClause);
+    public GivenCountry(Given given) {
+        super(given);
         withCode(DEFAULT_COUNTRY);
         withTaxRate(DEFAULT_TAX_RATE);
     }
 
-    public GivenCountryBuilder withCode(String country) {
+    public GivenCountry withCode(String country) {
         this.country = country;
         return this;
     }
 
-    public GivenCountryBuilder withTaxRate(String taxRate) {
+    public GivenCountry withTaxRate(String taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
-    public GivenCountryBuilder withTaxRate(double taxRate) {
+    public GivenCountry withTaxRate(double taxRate) {
         return withTaxRate(Converter.fromDouble(taxRate));
     }
 
@@ -38,4 +38,3 @@ public class GivenCountryBuilder extends BaseGivenBuilder {
                 .shouldSucceed();
     }
 }
-

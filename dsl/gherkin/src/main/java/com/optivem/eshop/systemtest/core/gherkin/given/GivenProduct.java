@@ -1,31 +1,31 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.commons.util.Converter;
+import com.optivem.eshop.systemtest.core.SystemDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenProductBuilder extends BaseGivenBuilder {
+public class GivenProduct extends BaseGivenStep {
     private String sku;
     private String unitPrice;
 
-    public GivenProductBuilder(GivenClause givenClause) {
-        super(givenClause);
+    public GivenProduct(Given given) {
+        super(given);
         withSku(DEFAULT_SKU);
         withUnitPrice(DEFAULT_UNIT_PRICE);
     }
 
-    public GivenProductBuilder withSku(String sku) {
+    public GivenProduct withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public GivenProductBuilder withUnitPrice(String unitPrice) {
+    public GivenProduct withUnitPrice(String unitPrice) {
         this.unitPrice = unitPrice;
         return this;
     }
 
-    public GivenProductBuilder withUnitPrice(double unitPrice) {
+    public GivenProduct withUnitPrice(double unitPrice) {
         withUnitPrice(Converter.fromDouble(unitPrice));
         return this;
     }
