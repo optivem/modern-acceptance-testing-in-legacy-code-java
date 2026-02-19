@@ -5,10 +5,10 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.then.ThenClause;
 
-public abstract class BaseWhenBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
+public abstract class BaseWhenStep<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
 
-    protected BaseWhenBuilder(SystemDsl app) {
+    protected BaseWhenStep(SystemDsl app) {
         this.app = app;
     }
     public ThenClause<TSuccessResponse, TSuccessVerification> then() {

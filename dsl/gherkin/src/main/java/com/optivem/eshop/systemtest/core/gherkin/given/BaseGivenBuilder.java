@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
 public abstract class BaseGivenBuilder {
     private final GivenClause givenClause;
@@ -14,7 +14,7 @@ public abstract class BaseGivenBuilder {
         return givenClause;
     }
 
-    public WhenClause when() {
+    public When when() {
         return givenClause.when();
     }
 

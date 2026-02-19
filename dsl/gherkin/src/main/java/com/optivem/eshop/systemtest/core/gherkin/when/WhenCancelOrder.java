@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
-public class WhenCancelOrder extends BaseWhenBuilder<Void, VoidVerification> {
+public class WhenCancelOrder extends BaseWhenStep<Void, VoidVerification> {
     private String orderNumber;
 
     public WhenCancelOrder(SystemDsl app) {

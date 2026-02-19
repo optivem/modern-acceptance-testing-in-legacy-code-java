@@ -9,7 +9,7 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.PlaceOrderVerification;
 
-public class WhenPlaceOrder extends BaseWhenBuilder<PlaceOrderResponse, PlaceOrderVerification> {
+public class WhenPlaceOrder extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> {
     private String orderNumber;
     private String sku;
     private String quantity;

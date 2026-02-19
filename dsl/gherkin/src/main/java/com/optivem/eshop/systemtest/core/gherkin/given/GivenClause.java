@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.when.WhenClause;
+import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +52,13 @@ public class GivenClause {
         return couponBuilder;
     }
 
-    public WhenClause when() {
+    public When when() {
         setupClock();
         setupErp();
         setupTax();
         setupShop();
 
-        return new WhenClause(app, !products.isEmpty(), !countries.isEmpty());
+        return new When(app, !products.isEmpty(), !countries.isEmpty());
     }
 
     private void setupClock() {

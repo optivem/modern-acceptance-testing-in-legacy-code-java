@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 
-public class WhenGoToShop extends BaseWhenBuilder<Void, VoidVerification> {
+public class WhenGoToShop extends BaseWhenStep<Void, VoidVerification> {
 
     public WhenGoToShop(SystemDsl app) {
         super(app);

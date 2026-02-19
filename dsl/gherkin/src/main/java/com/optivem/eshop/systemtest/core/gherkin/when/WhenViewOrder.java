@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.ViewOrderVerification;
 
-public class WhenViewOrder extends BaseWhenBuilder<ViewOrderResponse, ViewOrderVerification> {
+public class WhenViewOrder extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumber;
 
     public WhenViewOrder(SystemDsl app) {

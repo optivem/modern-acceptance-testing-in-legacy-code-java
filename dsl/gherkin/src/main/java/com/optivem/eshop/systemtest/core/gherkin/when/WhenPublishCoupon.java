@@ -8,7 +8,7 @@ import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class WhenPublishCoupon extends BaseWhenBuilder<Void, VoidVerification> {
+public class WhenPublishCoupon extends BaseWhenStep<Void, VoidVerification> {
     private String couponCode;
     private String discountRate;
     private String validFrom;

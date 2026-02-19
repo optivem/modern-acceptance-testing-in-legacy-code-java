@@ -4,18 +4,18 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class WhenClause {
+public class When {
     private final SystemDsl app;
     private boolean hasProduct;
     private boolean hasTaxRate;
 
-    public WhenClause(SystemDsl app, boolean hasProduct, boolean hasTaxRate) {
+    public When(SystemDsl app, boolean hasProduct, boolean hasTaxRate) {
         this.app = app;
         this.hasProduct = hasProduct;
         this.hasTaxRate = hasTaxRate;
     }
 
-    public WhenClause(SystemDsl app) {
+    public When(SystemDsl app) {
         this(app, false, false);
     }
 
@@ -38,7 +38,7 @@ public class WhenClause {
             hasTaxRate = true;
         }
     }
-    
+
     public WhenGoToShop goToShop() {
         return new WhenGoToShop(app);
     }
