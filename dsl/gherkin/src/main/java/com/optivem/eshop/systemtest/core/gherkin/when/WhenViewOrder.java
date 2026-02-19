@@ -8,15 +8,15 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.ViewOrderVerification;
 
-public class ViewOrderBuilder extends BaseWhenBuilder<ViewOrderResponse, ViewOrderVerification> {
+public class WhenViewOrder extends BaseWhenBuilder<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumber;
 
-    public ViewOrderBuilder(SystemDsl app) {
+    public WhenViewOrder(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 
-    public ViewOrderBuilder withOrderNumber(String orderNumber) {
+    public WhenViewOrder withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }

@@ -39,30 +39,30 @@ public class WhenClause {
         }
     }
     
-    public GoToShopBuilder goToShop() {
-        return new GoToShopBuilder(app);
+    public WhenGoToShop goToShop() {
+        return new WhenGoToShop(app);
     }
 
-    public PlaceOrderBuilder placeOrder() {
+    public WhenPlaceOrder placeOrder() {
         ensureDefaults();
-        return new PlaceOrderBuilder(app);
+        return new WhenPlaceOrder(app);
     }
 
-    public CancelOrderBuilder cancelOrder() {
+    public WhenCancelOrder cancelOrder() {
         ensureDefaults();
-        return new CancelOrderBuilder(app);
+        return new WhenCancelOrder(app);
     }
 
-    public ViewOrderBuilder viewOrder() {
+    public WhenViewOrder viewOrder() {
         ensureDefaults();
-        return new ViewOrderBuilder(app);
+        return new WhenViewOrder(app);
     }
 
-    public PublishCouponBuilder publishCoupon() {
-        return new PublishCouponBuilder(app);
+    public WhenPublishCoupon publishCoupon() {
+        return new WhenPublishCoupon(app);
     }
 
-    public BrowseCouponsBuilder browseCoupons() {
-        return new BrowseCouponsBuilder(app);
+    public WhenBrowseCoupons browseCoupons() {
+        return new WhenBrowseCoupons(app);
     }
 }

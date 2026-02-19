@@ -8,49 +8,49 @@ import com.optivem.commons.util.Converter;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class PublishCouponBuilder extends BaseWhenBuilder<Void, VoidVerification> {
+public class WhenPublishCoupon extends BaseWhenBuilder<Void, VoidVerification> {
     private String couponCode;
     private String discountRate;
     private String validFrom;
     private String validTo;
     private String usageLimit;
 
-    public PublishCouponBuilder(SystemDsl app) {
+    public WhenPublishCoupon(SystemDsl app) {
         super(app);
         withCouponCode(DEFAULT_COUPON_CODE);
         withDiscountRate(DEFAULT_DISCOUNT_RATE);
     }
 
-    public PublishCouponBuilder withCouponCode(String couponCode) {
+    public WhenPublishCoupon withCouponCode(String couponCode) {
         this.couponCode = couponCode;
         return this;
     }
 
-    public PublishCouponBuilder withDiscountRate(String discountRate) {
+    public WhenPublishCoupon withDiscountRate(String discountRate) {
         this.discountRate = discountRate;
         return this;
     }
 
-    public PublishCouponBuilder withDiscountRate(double discountRate) {
+    public WhenPublishCoupon withDiscountRate(double discountRate) {
         return withDiscountRate(Converter.fromDouble(discountRate));
     }
 
-    public PublishCouponBuilder withValidFrom(String validFrom) {
+    public WhenPublishCoupon withValidFrom(String validFrom) {
         this.validFrom = validFrom;
         return this;
     }
 
-    public PublishCouponBuilder withValidTo(String validTo) {
+    public WhenPublishCoupon withValidTo(String validTo) {
         this.validTo = validTo;
         return this;
     }
 
-    public PublishCouponBuilder withUsageLimit(String usageLimit) {
+    public WhenPublishCoupon withUsageLimit(String usageLimit) {
         this.usageLimit = usageLimit;
         return this;
     }
 
-    public PublishCouponBuilder withUsageLimit(int usageLimit) {
+    public WhenPublishCoupon withUsageLimit(int usageLimit) {
         return withUsageLimit(String.valueOf(usageLimit));
     }
 
@@ -69,4 +69,3 @@ public class PublishCouponBuilder extends BaseWhenBuilder<Void, VoidVerification
                 .build();
     }
 }
-

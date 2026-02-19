@@ -7,15 +7,15 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
-public class CancelOrderBuilder extends BaseWhenBuilder<Void, VoidVerification> {
+public class WhenCancelOrder extends BaseWhenBuilder<Void, VoidVerification> {
     private String orderNumber;
 
-    public CancelOrderBuilder(SystemDsl app) {
+    public WhenCancelOrder(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 
-    public CancelOrderBuilder withOrderNumber(String orderNumber) {
+    public WhenCancelOrder withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }

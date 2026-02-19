@@ -6,8 +6,8 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.BrowseCouponsVerification;
 
-public class BrowseCouponsBuilder extends BaseWhenBuilder<BrowseCouponsResponse, BrowseCouponsVerification> {
-    public BrowseCouponsBuilder(SystemDsl app) {
+public class WhenBrowseCoupons extends BaseWhenBuilder<BrowseCouponsResponse, BrowseCouponsVerification> {
+    public WhenBrowseCoupons(SystemDsl app) {
         super(app);
     }
 

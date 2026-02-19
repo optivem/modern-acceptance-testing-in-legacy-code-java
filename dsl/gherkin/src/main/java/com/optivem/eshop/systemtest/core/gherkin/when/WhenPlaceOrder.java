@@ -9,14 +9,14 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.PlaceOrderVerification;
 
-public class PlaceOrderBuilder extends BaseWhenBuilder<PlaceOrderResponse, PlaceOrderVerification> {
+public class WhenPlaceOrder extends BaseWhenBuilder<PlaceOrderResponse, PlaceOrderVerification> {
     private String orderNumber;
     private String sku;
     private String quantity;
     private String country;
     private String couponCode;
 
-    public PlaceOrderBuilder(SystemDsl app) {
+    public WhenPlaceOrder(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
         withSku(DEFAULT_SKU);
@@ -25,36 +25,36 @@ public class PlaceOrderBuilder extends BaseWhenBuilder<PlaceOrderResponse, Place
         withCouponCode(EMPTY);
     }
 
-    public PlaceOrderBuilder withOrderNumber(String orderNumber) {
+    public WhenPlaceOrder withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }
 
-    public PlaceOrderBuilder withSku(String sku) {
+    public WhenPlaceOrder withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public PlaceOrderBuilder withQuantity(String quantity) {
+    public WhenPlaceOrder withQuantity(String quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public PlaceOrderBuilder withQuantity(int quantity) {
+    public WhenPlaceOrder withQuantity(int quantity) {
         return withQuantity(Converter.fromInteger(quantity));
     }
 
-    public PlaceOrderBuilder withCountry(String country) {
+    public WhenPlaceOrder withCountry(String country) {
         this.country = country;
         return this;
     }
 
-    public PlaceOrderBuilder withCouponCode(String couponCode) {
+    public WhenPlaceOrder withCouponCode(String couponCode) {
         this.couponCode = couponCode;
         return this;
     }
 
-    public PlaceOrderBuilder withCouponCode() {
+    public WhenPlaceOrder withCouponCode() {
         return withCouponCode(DEFAULT_COUPON_CODE);
     }
 
