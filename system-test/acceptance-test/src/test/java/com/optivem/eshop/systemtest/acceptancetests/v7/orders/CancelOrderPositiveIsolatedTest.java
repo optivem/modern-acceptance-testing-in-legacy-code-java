@@ -18,8 +18,10 @@ class CancelOrderPositiveIsolatedTest extends BaseAcceptanceTest {
     @DataSource({"2025-01-01T22:15:00Z"})   // Another day entirely (same time but different day)
     void shouldBeAbleToCancelOrderOutsideOfBlackoutPeriod31stDecBetween2200And2230(String timeIso) {
         scenario
-                .given().clock().withTime(timeIso)
-                .and().order().withStatus(OrderStatus.PLACED)
+                .given().clock()
+                    .withTime(timeIso)
+                .and().order()
+                    .withStatus(OrderStatus.PLACED)
                 .when().cancelOrder()
                 .then().shouldSucceed();
     }

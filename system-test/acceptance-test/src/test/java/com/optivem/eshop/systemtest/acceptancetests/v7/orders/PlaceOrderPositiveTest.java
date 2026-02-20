@@ -14,9 +14,16 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToPlaceOrderForValidInput() {
         scenario
-                .given().product().withSku("ABC").withUnitPrice(20.00)
-                .and().country().withCode("US").withTaxRate(0.10)
-                .when().placeOrder().withSku("ABC").withQuantity(5).withCountry("US")
+                .given().product()
+                    .withSku("ABC")
+                    .withUnitPrice(20.00)
+                .and().country()
+                    .withCode("US")
+                    .withTaxRate(0.10)
+                .when().placeOrder()
+                    .withSku("ABC")
+                    .withQuantity(5)
+                    .withCountry("US")
                 .then().shouldSucceed();
     }
 
@@ -26,16 +33,21 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .when().placeOrder()
                 .then().shouldSucceed()
-                .and().order().hasStatus(OrderStatus.PLACED);
+                .and().order()
+                    .hasStatus(OrderStatus.PLACED);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldCalculateBasePriceAsProductOfUnitPriceAndQuantity() {
         scenario
-                .given().product().withUnitPrice(20.00)
-                .when().placeOrder().withQuantity(5)
-                .then().shouldSucceed().and().order().hasBasePrice(100.00);
+                .given().product()
+                    .withUnitPrice(20.00)
+                .when().placeOrder()
+                    .withQuantity(5)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasBasePrice(100.00);
     }
 
     @TestTemplate
@@ -46,9 +58,13 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"99.99", "1", "99.99"})
     void shouldPlaceOrderWithCorrectBasePriceParameterized(String unitPrice, String quantity, String basePrice) {
         scenario
-                .given().product().withUnitPrice(unitPrice)
-                .when().placeOrder().withQuantity(quantity)
-                .then().shouldSucceed().and().order().hasBasePrice(basePrice);
+                .given().product()
+                    .withUnitPrice(unitPrice)
+                .when().placeOrder()
+                    .withQuantity(quantity)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasBasePrice(basePrice);
     }
 
     @TestTemplate
@@ -57,56 +73,72 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
         scenario
                 .when().placeOrder()
                 .then().shouldSucceed()
-                .and().order().hasOrderNumberPrefix("ORD-");
+                .and().order()
+                    .hasOrderNumberPrefix("ORD-");
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void discountRateShouldBeAppliedForCoupon() {
         scenario
-                .given().coupon().withCouponCode("SUMMER2025").withDiscountRate(0.15)
-                .when().placeOrder().withCouponCode("SUMMER2025")
-                .then().shouldSucceed().and().order().hasAppliedCoupon("SUMMER2025")
-                .hasDiscountRate(0.15);
+                .given().coupon()
+                    .withCouponCode("SUMMER2025")
+                    .withDiscountRate(0.15)
+                .when().placeOrder()
+                    .withCouponCode("SUMMER2025")
+                .then().shouldSucceed()
+                .and().order()
+                    .hasAppliedCoupon("SUMMER2025")
+                    .hasDiscountRate(0.15);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void discountRateShouldBeNotAppliedWhenThereIsNoCoupon() {
         scenario
-                .when().placeOrder().withCouponCode(null)
-                .then().shouldSucceed().and().order().hasStatus(OrderStatus.PLACED)
-                .hasAppliedCoupon(null)
-                .hasDiscountRate(0.00)
-                .hasDiscountAmount(0.00);
+                .when().placeOrder()
+                    .withCouponCode(null)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasStatus(OrderStatus.PLACED)
+                    .hasAppliedCoupon(null)
+                    .hasDiscountRate(0.00)
+                    .hasDiscountAmount(0.00);
     }
-
-
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void subtotalPriceShouldBeCalculatedAsTheBasePriceMinusDiscountAmountWhenWeHaveCoupon() {
         scenario
-                .given().coupon().withDiscountRate(0.15)
-                .and().product().withUnitPrice(20.00)
-                .when().placeOrder().withCouponCode().withQuantity(5)
-                .then().shouldSucceed().and().order().hasAppliedCoupon()
-                .hasDiscountRate(0.15)
-                .hasBasePrice(100.00)
-                .hasDiscountAmount(15.00)
-                .hasSubtotalPrice(85.00);
+                .given().coupon()
+                    .withDiscountRate(0.15)
+                .and().product()
+                    .withUnitPrice(20.00)
+                .when().placeOrder()
+                    .withCouponCode()
+                    .withQuantity(5)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasAppliedCoupon()
+                    .hasDiscountRate(0.15)
+                    .hasBasePrice(100.00)
+                    .hasDiscountAmount(15.00)
+                    .hasSubtotalPrice(85.00);
     }
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void subtotalPriceShouldBeSameAsBasePriceWhenNoCoupon() {
         scenario
-                .given().product().withUnitPrice(20.00)
-                .when().placeOrder().withQuantity(5)
-                .then().shouldSucceed().and().order()
-                .hasBasePrice(100.00)
-                .hasDiscountAmount(0.00)
-                .hasSubtotalPrice(100.00);
+                .given().product()
+                    .withUnitPrice(20.00)
+                .when().placeOrder()
+                    .withQuantity(5)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasBasePrice(100.00)
+                    .hasDiscountAmount(0.00)
+                    .hasSubtotalPrice(100.00);
     }
 
     @TestTemplate
@@ -115,9 +147,14 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"US", "0.20"})
     void correctTaxRateShouldBeUsedBasedOnCountry(String country, String taxRate) {
         scenario
-                .given().country().withCode(country).withTaxRate(taxRate)
-                .when().placeOrder().withCountry(country)
-                .then().shouldSucceed().and().order().hasTaxRate(taxRate);
+                .given().country()
+                    .withCode(country)
+                    .withTaxRate(taxRate)
+                .when().placeOrder()
+                    .withCountry(country)
+                .then().shouldSucceed()
+                .and().order()
+                    .hasTaxRate(taxRate);
     }
 
     @TestTemplate
@@ -126,23 +163,33 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
     @DataSource({"US", "0.20", "100.00", "20.00", "120.00"})
     void totalPriceShouldBeSubtotalPricePlusTaxAmount(String country, String taxRate, String subtotalPrice, String expectedTaxAmount, String expectedTotalPrice) {
         scenario
-                .given().country().withCode(country).withTaxRate(taxRate)
-                .and().product().withUnitPrice(subtotalPrice)
-                .when().placeOrder().withCountry(country).withQuantity(1)
+                .given().country()
+                    .withCode(country)
+                    .withTaxRate(taxRate)
+                .and().product()
+                    .withUnitPrice(subtotalPrice)
+                .when().placeOrder()
+                    .withCountry(country)
+                    .withQuantity(1)
                 .then().shouldSucceed()
-                .and().order().hasTaxRate(taxRate)
-                .hasSubtotalPrice(subtotalPrice)
-                .hasTaxAmount(expectedTaxAmount)
-                .hasTotalPrice(expectedTotalPrice);
+                .and().order()
+                    .hasTaxRate(taxRate)
+                    .hasSubtotalPrice(subtotalPrice)
+                    .hasTaxAmount(expectedTaxAmount)
+                    .hasTotalPrice(expectedTotalPrice);
     }
-    
+
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void couponUsageCountHasBeenIncrementedAfterItsBeenUsed() {
         scenario
-                .given().coupon().withCouponCode("SUMMER2025")
-                .when().placeOrder().withCouponCode("SUMMER2025")
-                .then().shouldSucceed().and().coupon("SUMMER2025").hasUsedCount(1);
+                .given().coupon()
+                    .withCouponCode("SUMMER2025")
+                .when().placeOrder()
+                    .withCouponCode("SUMMER2025")
+                .then().shouldSucceed()
+                .and().coupon("SUMMER2025")
+                    .hasUsedCount(1);
     }
 }
 

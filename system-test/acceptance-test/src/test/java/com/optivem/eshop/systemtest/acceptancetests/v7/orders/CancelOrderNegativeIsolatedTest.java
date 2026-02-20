@@ -19,10 +19,14 @@ class CancelOrderNegativeIsolatedTest extends BaseAcceptanceTest {
     @DataSource({"2021-12-31T22:30:00Z"})   // End of blackout period
     void cannotCancelAnOrderOn31stDecBetween2200And2230(String timeIso) {
         scenario
-                .given().clock().withTime(timeIso)
-                .and().order().withStatus(OrderStatus.PLACED)
+                .given().clock()
+                    .withTime(timeIso)
+                .and().order()
+                    .withStatus(OrderStatus.PLACED)
                 .when().cancelOrder()
-                .then().shouldFail().errorMessage("Order cancellation is not allowed on December 31st between 22:00 and 23:00")
-                .and().order().hasStatus(OrderStatus.PLACED);
+                .then().shouldFail()
+                    .errorMessage("Order cancellation is not allowed on December 31st between 22:00 and 23:00")
+                .and().order()
+                    .hasStatus(OrderStatus.PLACED);
     }
 }
