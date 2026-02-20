@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 
 /**
- * Default values for Gherkin test builders.
+ * Default values for Gherkin test steps.
  * These defaults are used when test data is not explicitly specified.
  */
 public final class GherkinDefaults {
