@@ -9,7 +9,7 @@ public abstract class BaseClockContractTest extends BaseExternalSystemContractTe
     @Test
     void shouldBeAbleToGetTime() {
         app.clock().returnsTime()
-                .time("2024-06-15T12:00:00Z")
+                .time("2024-01-02T09:00:00Z")
                 .execute()
                 .shouldSucceed();
 
