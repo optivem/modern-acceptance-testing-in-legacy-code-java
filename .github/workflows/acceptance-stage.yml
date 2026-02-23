@@ -128,7 +128,7 @@ jobs:
         run: ./gradlew :system-test:external-system-contract-test:test -Denvironment=acceptance -DexternalSystemMode=real
 
       - name: Run E2E Tests - No Channel (v1, v2, v3)
-        run: ./gradlew :system-test:e2e-test:test -Denvironment=acceptance -DtestScope=noChannel
+        run: ./gradlew :system-test:e2e-test:test -Denvironment=acceptance --tests "com.optivem.eshop.systemtest.e2etests.v1.*" --tests "com.optivem.eshop.systemtest.e2etests.v2.*" --tests "com.optivem.eshop.systemtest.e2etests.v3.*"
 
       - name: Run E2E Tests - API Channel
         run: ./gradlew :system-test:e2e-test:test -Denvironment=acceptance -Dchannel=API

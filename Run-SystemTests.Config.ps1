@@ -69,7 +69,7 @@ $Config = @{
         @{ 
             Id = "e2e-no-channel";
             Name = "E2E Tests - No Channel (v1, v2, v3)";
-            Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -DtestScope=noChannel";
+            Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local --tests `"com.optivem.eshop.systemtest.e2etests.v1.*`" --tests `"com.optivem.eshop.systemtest.e2etests.v2.*`" --tests `"com.optivem.eshop.systemtest.e2etests.v3.*`"";
             Path = ".";
             TestReportPath = "system-test\e2e-test\build\reports\tests\test\index.html";
             TestInstallCommands = $null; },
