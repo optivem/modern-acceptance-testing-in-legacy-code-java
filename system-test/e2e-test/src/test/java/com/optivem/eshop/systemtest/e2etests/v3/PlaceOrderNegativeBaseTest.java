@@ -2,8 +2,11 @@ package com.optivem.eshop.systemtest.e2etests.v3;
 
 import com.optivem.eshop.systemtest.core.erp.driver.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.e2etests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.e2etests.v3.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
@@ -87,10 +90,11 @@ abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
         });
     }
 
-    @Test
-    void shouldRejectOrderWithEmptySku() {
+    @ParameterizedTest
+    @ArgumentsSource(EmptyArgumentsProvider.class)
+    void shouldRejectOrderWithEmptySku(String sku) {
         var request = PlaceOrderRequest.builder()
-                .sku("")
+                .sku(sku)
                 .quantity(QUANTITY)
                 .country(COUNTRY)
                 .build();
