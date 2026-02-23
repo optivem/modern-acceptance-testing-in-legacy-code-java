@@ -12,7 +12,7 @@ abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
     void shouldNotBeAbleToViewNonExistentOrder() {
         var orderNumber = "NON-EXISTENT-ORDER-99999";
 
-        var result = shopDriver.orders().viewOrder(orderNumber);
+        var result = shopDriver.viewOrder(orderNumber);
 
         assertThatResult(result).isFailure();
         var error = result.getError();

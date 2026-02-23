@@ -22,7 +22,7 @@ class PlaceOrderNegativeApiTest extends PlaceOrderNegativeBaseTest {
                 .quantity(null)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -41,7 +41,7 @@ class PlaceOrderNegativeApiTest extends PlaceOrderNegativeBaseTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -60,7 +60,7 @@ class PlaceOrderNegativeApiTest extends PlaceOrderNegativeBaseTest {
                 .country(null)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();

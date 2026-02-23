@@ -22,7 +22,7 @@ public class ViewOrder extends BaseShopCommand<ViewOrderResponse, ViewOrderVerif
     public ShopUseCaseResult<ViewOrderResponse, ViewOrderVerification> execute() {
         var orderNumber = context.getResultValue(orderNumberResultAlias);
 
-        var result = driver.orders().viewOrder(orderNumber);
+        var result = driver.viewOrder(orderNumber);
 
         return new ShopUseCaseResult<>(result, context, ViewOrderVerification::new);
     }

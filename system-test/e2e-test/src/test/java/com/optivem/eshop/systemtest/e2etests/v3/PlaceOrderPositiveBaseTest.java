@@ -35,13 +35,13 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
         assertThatResult(placeOrderResult).isSuccess();
 
         var orderNumber = placeOrderResult.getValue().getOrderNumber();
 
         // Then
-        var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
+        var viewOrderResult = shopDriver.viewOrder(orderNumber);
         assertThatResult(viewOrderResult).isSuccess();
 
         var order = viewOrderResult.getValue();
@@ -73,13 +73,13 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
         assertThatResult(placeOrderResult).isSuccess();
 
         var orderNumber = placeOrderResult.getValue().getOrderNumber();
 
         // Then
-        var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
+        var viewOrderResult = shopDriver.viewOrder(orderNumber);
         assertThatResult(viewOrderResult).isSuccess();
 
         var order = viewOrderResult.getValue();
@@ -105,14 +105,14 @@ abstract class PlaceOrderPositiveBaseTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
         assertThatResult(placeOrderResult).isSuccess();
 
         var orderNumber = placeOrderResult.getValue().getOrderNumber();
         assertThat(orderNumber).startsWith("ORD-");
 
         // Then
-        var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
+        var viewOrderResult = shopDriver.viewOrder(orderNumber);
         assertThatResult(viewOrderResult).isSuccess();
 
         var order = viewOrderResult.getValue();

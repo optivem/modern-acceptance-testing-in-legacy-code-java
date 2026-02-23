@@ -33,13 +33,13 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var placeOrderResult = shopDriver.orders().placeOrder(placeOrderRequest);
+        var placeOrderResult = shopDriver.placeOrder(placeOrderRequest);
         assertThatResult(placeOrderResult).isSuccess();
 
         var orderNumber = placeOrderResult.getValue().getOrderNumber();
 
         // When
-        var viewOrderResult = shopDriver.orders().viewOrder(orderNumber);
+        var viewOrderResult = shopDriver.viewOrder(orderNumber);
 
         // Then
         assertThatResult(viewOrderResult).isSuccess();

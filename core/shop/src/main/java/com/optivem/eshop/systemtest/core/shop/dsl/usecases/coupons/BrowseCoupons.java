@@ -14,7 +14,7 @@ public class BrowseCoupons extends BaseShopCommand<BrowseCouponsResponse, Browse
 
     @Override
     public ShopUseCaseResult<BrowseCouponsResponse, BrowseCouponsVerification> execute() {
-        var result = driver.coupons().browseCoupons();
+        var result = driver.browseCoupons();
         return new ShopUseCaseResult<>(result, context, BrowseCouponsVerification::new);
     }
 }

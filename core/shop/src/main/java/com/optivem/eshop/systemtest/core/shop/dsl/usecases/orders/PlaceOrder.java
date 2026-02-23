@@ -60,7 +60,7 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
                 .couponCode(couponCode)
                 .build();
 
-        var result = driver.orders().placeOrder(request);
+        var result = driver.placeOrder(request);
 
         if(orderNumberResultAlias != null) {
             if(result.isSuccess()) {

@@ -25,7 +25,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -45,7 +45,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -65,7 +65,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -85,7 +85,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -106,7 +106,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -127,7 +127,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -148,7 +148,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -169,7 +169,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(emptyCountry)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -200,7 +200,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(invalidCountry)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -220,7 +220,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .quantity(null)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -240,7 +240,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(COUNTRY)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
@@ -260,7 +260,7 @@ class PlaceOrderNegativeTest extends BaseE2eTest {
                 .country(null)
                 .build();
 
-        var result = shopDriver.orders().placeOrder(request);
+        var result = shopDriver.placeOrder(request);
 
         assertThatResult(result).isFailure();
         var error = result.getError();

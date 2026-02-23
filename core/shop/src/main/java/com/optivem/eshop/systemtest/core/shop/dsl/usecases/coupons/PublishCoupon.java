@@ -55,7 +55,7 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification> {
                 .usageLimit(usageLimit)
                 .build();
 
-        var result = driver.coupons().publishCoupon(request);
+        var result = driver.publishCoupon(request);
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }

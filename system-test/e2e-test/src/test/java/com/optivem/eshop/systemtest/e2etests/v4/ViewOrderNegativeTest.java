@@ -26,7 +26,7 @@ class ViewOrderNegativeTest extends BaseE2eTest {
     @Channel({ChannelType.UI, ChannelType.API})
     @MethodSource("provideNonExistentOrderValues")
     void shouldNotBeAbleToViewNonExistentOrder(String orderNumber, String expectedErrorMessage) {
-        var result = shopDriver.orders().viewOrder(orderNumber);
+        var result = shopDriver.viewOrder(orderNumber);
 
         assertThatResult(result).isFailure();
         var error = result.getError();
