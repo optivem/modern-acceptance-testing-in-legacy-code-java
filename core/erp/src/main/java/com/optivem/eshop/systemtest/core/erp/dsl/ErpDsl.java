@@ -1,8 +1,6 @@
 package com.optivem.eshop.systemtest.core.erp.dsl;
 
 import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
-import com.optivem.eshop.systemtest.core.erp.driver.ErpRealDriver;
-import com.optivem.eshop.systemtest.core.erp.driver.ErpStubDriver;
 import com.optivem.eshop.systemtest.core.erp.dsl.usecases.GetProduct;
 import com.optivem.eshop.systemtest.core.erp.dsl.usecases.GoToErp;
 import com.optivem.eshop.systemtest.core.erp.dsl.usecases.ReturnsProduct;
@@ -13,21 +11,9 @@ public class ErpDsl implements AutoCloseable {
     protected final ErpDriver driver;
     protected final UseCaseContext context;
 
-    private ErpDsl(ErpDriver driver, UseCaseContext context) {
+    public ErpDsl(ErpDriver driver, UseCaseContext context) {
         this.driver = driver;
         this.context = context;
-    }
-
-    public ErpDsl(String baseUrl, UseCaseContext context) {
-        this(createDriver(baseUrl, context), context);
-    }
-
-    private static ErpDriver createDriver(String baseUrl, UseCaseContext context) {
-        return switch (context.getExternalSystemMode()) {
-            case REAL -> new ErpRealDriver(baseUrl);
-            case STUB -> new ErpStubDriver(baseUrl);
-            default -> throw new UnsupportedOperationException("External system mode not supported: " + context.getExternalSystemMode());
-        };
     }
 
     @Override

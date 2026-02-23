@@ -1,9 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl;
 
-import com.optivem.eshop.systemtest.core.shop.ChannelType;
-import com.optivem.eshop.systemtest.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.GoToShop;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.BrowseCoupons;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.PublishCoupon;
@@ -11,7 +8,6 @@ import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.CancelOrder;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.PlaceOrder;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.ViewOrder;
 import com.optivem.commons.util.Closer;
-import com.optivem.testing.contexts.ChannelContext;
 import com.optivem.commons.dsl.UseCaseContext;
 
 import java.io.Closeable;
@@ -20,20 +16,9 @@ public class ShopDsl implements Closeable {
     private final ShopDriver driver;
     private final UseCaseContext context;
 
-    public ShopDsl(String uiBaseUrl, String apiBaseUrl, UseCaseContext context) {
-        this.driver = createDriver(uiBaseUrl, apiBaseUrl);
+    public ShopDsl(ShopDriver driver, UseCaseContext context) {
+        this.driver = driver;
         this.context = context;
-    }
-
-    private static ShopDriver createDriver(String uiBaseUrl, String apiBaseUrl) {
-        var channel = ChannelContext.get();
-        if (ChannelType.UI.equals(channel)) {
-            return new ShopUiDriver(uiBaseUrl);
-        } else if (ChannelType.API.equals(channel)) {
-            return new ShopApiDriver(apiBaseUrl);
-        } else {
-            throw new IllegalStateException("Unknown channel: " + channel);
-        }
     }
 
     @Override

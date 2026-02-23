@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.clock.driver.dtos;
 
-import com.optivem.eshop.systemtest.core.clock.client.dtos.ExtGetTimeResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,8 +13,4 @@ import java.time.Instant;
 @AllArgsConstructor
 public class GetTimeResponse {
     Instant time;
-
-    public static GetTimeResponse from(ExtGetTimeResponse response) {
-        return GetTimeResponse.builder().time(response.getTime()).build();
-    }
 }

@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.core.shop.commons.dtos.errors;
 
-import com.optivem.eshop.systemtest.core.shop.client.api.dtos.errors.ProblemDetailResponse;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -32,19 +31,6 @@ public class SystemError {
                 .message(message)
                 .fields(fieldErrors)
                 .build();
-    }
-
-    public static SystemError from(ProblemDetailResponse problemDetail) {
-        var message = problemDetail.getDetail() != null ? problemDetail.getDetail() : "Request failed";
-
-        if (problemDetail.getErrors() != null && !problemDetail.getErrors().isEmpty()) {
-            var fieldErrors = problemDetail.getErrors().stream()
-                    .map(e -> new SystemError.FieldError(e.getField(), e.getMessage(), e.getCode()))
-                    .toList();
-            return SystemError.of(message, fieldErrors);
-        }
-
-        return SystemError.of(message);
     }
 
     @Override

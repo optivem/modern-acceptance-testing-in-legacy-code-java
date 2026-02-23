@@ -21,6 +21,11 @@ dependencies {
     api project(':core:tax')
     api project(':core:clock')
 
+    api project(':infra:shop')
+    api project(':infra:erp')
+    api project(':infra:tax')
+    api project(':infra:clock')
+
     api project(':commons')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'

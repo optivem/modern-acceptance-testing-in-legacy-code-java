@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.optivem.eshop.systemtest.infra'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api project(':core:tax')
+    api project(':commons')
+
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
+
+    api 'org.assertj:assertj-core:3.24.2'
+    compileOnly 'org.projectlombok:lombok:1.18.38'
+    annotationProcessor 'org.projectlombok:lombok:1.18.38'
+}

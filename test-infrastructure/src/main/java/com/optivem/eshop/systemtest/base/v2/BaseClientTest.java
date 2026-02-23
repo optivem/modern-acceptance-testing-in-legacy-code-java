@@ -2,10 +2,10 @@ package com.optivem.eshop.systemtest.base.v2;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemConfiguration;
-import com.optivem.eshop.systemtest.core.erp.client.ErpRealClient;
-import com.optivem.eshop.systemtest.core.shop.client.api.ShopApiClient;
-import com.optivem.eshop.systemtest.core.shop.client.ui.ShopUiClient;
-import com.optivem.eshop.systemtest.core.tax.client.TaxRealClient;
+import com.optivem.eshop.systemtest.infra.erp.client.ErpRealClient;
+import com.optivem.eshop.systemtest.infra.shop.client.api.ShopApiClient;
+import com.optivem.eshop.systemtest.infra.shop.client.ui.ShopUiClient;
+import com.optivem.eshop.systemtest.infra.tax.client.TaxRealClient;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

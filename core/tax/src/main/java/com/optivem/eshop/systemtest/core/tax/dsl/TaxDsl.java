@@ -1,8 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.dsl;
 
 import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
-import com.optivem.eshop.systemtest.core.tax.driver.TaxRealDriver;
-import com.optivem.eshop.systemtest.core.tax.driver.TaxStubDriver;
 import com.optivem.eshop.systemtest.core.tax.dsl.usecases.GetTaxRate;
 import com.optivem.eshop.systemtest.core.tax.dsl.usecases.GoToTax;
 import com.optivem.eshop.systemtest.core.tax.dsl.usecases.ReturnsTaxRate;
@@ -15,20 +13,9 @@ public class TaxDsl implements Closeable {
     private final TaxDriver driver;
     private final UseCaseContext context;
 
-    private TaxDsl(TaxDriver driver, UseCaseContext context) {
+    public TaxDsl(TaxDriver driver, UseCaseContext context) {
         this.driver = driver;
         this.context = context;
-    }
-
-    public TaxDsl(String baseUrl, UseCaseContext context) {
-        this(createDriver(baseUrl, context), context);
-    }
-
-    private static TaxDriver createDriver(String baseUrl, UseCaseContext context) {
-        return switch (context.getExternalSystemMode()) {
-            case REAL -> new TaxRealDriver(baseUrl);
-            case STUB -> new TaxStubDriver(baseUrl);
-        };
     }
 
     @Override

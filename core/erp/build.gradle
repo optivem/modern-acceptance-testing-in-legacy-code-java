@@ -18,9 +18,6 @@ repositories {
 dependencies {
     api project(':commons')
 
-    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
-
-    api 'org.assertj:assertj-core:3.24.2'
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }

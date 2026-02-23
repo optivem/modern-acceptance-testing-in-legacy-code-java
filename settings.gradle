@@ -14,6 +14,12 @@ include 'core:erp'
 include 'core:shop'
 include 'core:tax'
 
+include 'infra'
+include 'infra:clock'
+include 'infra:erp'
+include 'infra:shop'
+include 'infra:tax'
+
 include 'system-test:acceptance-test'
 include 'system-test:smoke-test'
 include 'system-test:e2e-test'
