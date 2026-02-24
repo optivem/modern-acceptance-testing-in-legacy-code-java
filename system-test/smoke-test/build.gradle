@@ -51,13 +51,9 @@ tasks.named('test') {
         systemProperty 'junit.jupiter.execution.parallel.enabled', 'false'
     }
 
-    // Enable parallel test execution at Gradle level
-    // But run isolated tests sequentially to avoid interference
-    if (includeTags?.contains('isolated')) {
-        maxParallelForks = 1
-    } else {
-        maxParallelForks = Runtime.runtime.availableProcessors()
-    }
+    // Run smoke tests sequentially to avoid Playwright browser-install lock contention
+    // (C:\Users\<user>\AppData\Local\ms-playwright\__dirlock)
+    maxParallelForks = 1
 
     testLogging {
         events "passed", "skipped", "failed"
