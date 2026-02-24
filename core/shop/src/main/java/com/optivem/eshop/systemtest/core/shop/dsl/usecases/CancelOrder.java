@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders;
+package com.optivem.eshop.systemtest.core.shop.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.BaseShopCommand;
