@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.infra.shop.client.ui;
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.infra.shop.client.ui.pages.HomePage;
 import com.optivem.commons.util.Closer;
-import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.playwright.PageClient;
 import org.springframework.http.HttpStatus;
 
@@ -21,11 +20,8 @@ public class ShopUiClient implements AutoCloseable {
 
     private Response response;
 
-    public ShopUiClient(String baseUrl) {
+    public ShopUiClient(String baseUrl, Browser browser) {
         this.baseUrl = baseUrl;
-
-        // Get browser for current thread from BrowserLifecycleExtension
-        Browser browser = BrowserLifecycleExtension.getBrowser();
 
         // Create isolated browser context for this test instance
         var contextOptions = new Browser.NewContextOptions()
@@ -69,7 +65,7 @@ public class ShopUiClient implements AutoCloseable {
     public void close() {
         Closer.close(page);
         Closer.close(context);
-        // Don't close browser - it's shared and managed by BrowserLifecycleExtension
+        // Don't close browser - it's shared and managed by test lifecycle infrastructure
     }
 }
 

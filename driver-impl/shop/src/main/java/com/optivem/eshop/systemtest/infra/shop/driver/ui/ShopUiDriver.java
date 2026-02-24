@@ -14,6 +14,7 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResp
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Result;
 
 import java.util.Objects;
@@ -32,7 +33,7 @@ public class ShopUiDriver implements ShopDriver {
     private CouponManagementPage couponManagementPage;
 
     public ShopUiDriver(String baseUrl) {
-        this.client = new ShopUiClient(baseUrl);
+        this.client = new ShopUiClient(baseUrl, BrowserLifecycleExtension.getBrowser());
     }
 
     @Override

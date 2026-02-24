@@ -6,6 +6,7 @@ import com.optivem.eshop.systemtest.infra.erp.client.ErpRealClient;
 import com.optivem.eshop.systemtest.infra.shop.client.api.ShopApiClient;
 import com.optivem.eshop.systemtest.infra.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.infra.tax.client.TaxRealClient;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +28,7 @@ public class BaseClientTest extends BaseConfigurableTest {
     }
 
     protected void setUpShopUiClient() {
-        shopUiClient = new ShopUiClient(configuration.getShopUiBaseUrl());
+        shopUiClient = new ShopUiClient(configuration.getShopUiBaseUrl(), BrowserLifecycleExtension.getBrowser());
     }
 
     protected void setUpShopApiClient() {
