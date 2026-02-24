@@ -29,3 +29,4 @@ public class ResultAssert<T, E> extends AbstractAssert<ResultAssert<T, E>, Resul
     }
 }
 
+

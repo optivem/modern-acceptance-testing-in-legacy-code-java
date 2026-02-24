@@ -26,3 +26,4 @@ class CancelOrderPositiveIsolatedTest extends BaseAcceptanceTest {
                 .then().shouldSucceed();
     }
 }
+

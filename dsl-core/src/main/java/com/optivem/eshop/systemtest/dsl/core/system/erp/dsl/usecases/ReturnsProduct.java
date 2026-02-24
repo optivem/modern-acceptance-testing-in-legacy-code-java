@@ -44,3 +44,4 @@ public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification> {
         return new ErpUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

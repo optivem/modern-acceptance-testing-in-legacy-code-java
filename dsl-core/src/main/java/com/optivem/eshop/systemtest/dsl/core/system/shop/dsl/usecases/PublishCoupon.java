@@ -59,3 +59,4 @@ public class PublishCoupon extends BaseShopCommand<Void, VoidVerification> {
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

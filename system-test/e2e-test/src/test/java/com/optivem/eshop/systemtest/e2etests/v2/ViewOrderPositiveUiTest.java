@@ -71,3 +71,4 @@ class ViewOrderPositiveUiTest extends BaseE2eTest {
         assertThat(orderDetailsPage.getTotalPrice()).isGreaterThan(BigDecimal.ZERO);
     }
 }
+

@@ -25,3 +25,4 @@ class ViewOrderNegativeUiTest extends BaseE2eTest {
         assertThat(shopUiPage.locator(rowSelector).isVisible()).isFalse();
     }
 }
+

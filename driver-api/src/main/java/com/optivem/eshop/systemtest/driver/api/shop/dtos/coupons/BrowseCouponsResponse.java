@@ -28,3 +28,4 @@ public class BrowseCouponsResponse {
         private Integer usedCount;
     }
 }
+

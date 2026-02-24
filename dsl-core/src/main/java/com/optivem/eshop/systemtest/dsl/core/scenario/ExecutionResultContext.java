@@ -17,3 +17,4 @@ public class ExecutionResultContext {
         return couponCode;
     }
 }
+

@@ -32,3 +32,4 @@ public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVer
         return new ErpUseCaseResult<>(result, context, GetProductVerification::new);
     }
 }
+

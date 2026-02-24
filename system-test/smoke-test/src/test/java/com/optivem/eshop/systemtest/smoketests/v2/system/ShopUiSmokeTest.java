@@ -19,3 +19,4 @@ class ShopUiSmokeTest extends BaseClientTest {
     }
 }
 
+

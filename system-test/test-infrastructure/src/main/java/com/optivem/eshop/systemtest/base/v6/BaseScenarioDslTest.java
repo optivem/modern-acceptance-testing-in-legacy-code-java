@@ -26,3 +26,4 @@ public class BaseScenarioDslTest extends BaseConfigurableTest {
         Closer.close(app);
     }
 }
+

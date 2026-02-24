@@ -22,3 +22,4 @@ public class TaxErrorVerification extends ResponseVerification<TaxErrorResponse>
         return this;
     }
 }
+

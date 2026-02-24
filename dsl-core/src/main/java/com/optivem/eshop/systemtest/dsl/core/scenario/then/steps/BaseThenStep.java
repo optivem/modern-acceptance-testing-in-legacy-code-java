@@ -41,3 +41,4 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         return coupon(executionResult.getCouponCode());
     }
 }
+

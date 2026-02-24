@@ -62,3 +62,4 @@ class PublishCouponNegativeTest extends BaseAcceptanceTest {
     }
 
 }
+

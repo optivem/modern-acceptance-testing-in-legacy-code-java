@@ -7,3 +7,4 @@ class ViewOrderNegativeUiTest extends ViewOrderNegativeBaseTest {
         setUpShopUiDriver();
     }
 }
+

@@ -15,3 +15,4 @@ public class GetProductResponse {
     private String sku;
     private BigDecimal price;
 }
+

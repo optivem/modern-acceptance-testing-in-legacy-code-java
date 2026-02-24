@@ -17,3 +17,4 @@ public class GoToClock extends BaseClockCommand<Void, VoidVerification> {
         return new ClockUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

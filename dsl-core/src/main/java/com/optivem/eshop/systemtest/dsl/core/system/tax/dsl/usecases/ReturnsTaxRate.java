@@ -44,3 +44,4 @@ public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification> {
         return new TaxUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

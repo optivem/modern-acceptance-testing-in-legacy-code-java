@@ -27,3 +27,4 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
         return new TaxUseCaseResult<>(result, context, GetTaxVerification::new);
     }
 }
+

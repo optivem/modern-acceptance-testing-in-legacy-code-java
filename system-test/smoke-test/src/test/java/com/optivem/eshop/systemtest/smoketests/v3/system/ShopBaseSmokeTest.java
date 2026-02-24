@@ -20,3 +20,4 @@ public abstract class ShopBaseSmokeTest extends BaseDriverTest {
         assertThatResult(result).isSuccess();
     }
 }
+

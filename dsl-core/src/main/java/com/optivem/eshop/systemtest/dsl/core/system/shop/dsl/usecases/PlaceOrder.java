@@ -74,3 +74,4 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
         return new ShopUseCaseResult<>(result, context, PlaceOrderVerification::new);
     }
 }
+

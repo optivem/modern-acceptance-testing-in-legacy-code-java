@@ -18,3 +18,4 @@ public class BrowseCoupons extends BaseShopCommand<BrowseCouponsResponse, Browse
         return new ShopUseCaseResult<>(result, context, BrowseCouponsVerification::new);
     }
 }
+

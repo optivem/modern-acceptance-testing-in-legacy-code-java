@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
-import com.optivem.eshop.systemtest.dsl.api.ScenarioDslPort;
+import com.optivem.eshop.systemtest.dsl.api.ScenarioDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.WhenImpl;
 
-public class ScenarioDslImpl implements ScenarioDslPort {
+public class ScenarioDslImpl implements ScenarioDsl {
     private final SystemDsl app;
     private boolean executed = false;
 
@@ -35,3 +35,4 @@ public class ScenarioDslImpl implements ScenarioDslPort {
         }
     }
 }
+

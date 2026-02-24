@@ -7,3 +7,4 @@ class ShopUiSmokeTest extends ShopBaseSmokeTest {
     }
 }
 
+

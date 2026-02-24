@@ -18,3 +18,4 @@ public class HttpStatus {
         // Utility class - no instantiation
     }
 }
+

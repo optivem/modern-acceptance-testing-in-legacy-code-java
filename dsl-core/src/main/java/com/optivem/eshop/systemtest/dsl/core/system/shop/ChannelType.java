@@ -8,3 +8,4 @@ public class ChannelType {
         // Utility class
     }
 }
+

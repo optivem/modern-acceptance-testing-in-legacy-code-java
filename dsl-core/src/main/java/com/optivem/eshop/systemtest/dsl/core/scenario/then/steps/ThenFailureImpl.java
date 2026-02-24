@@ -4,12 +4,12 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailurePort;
+import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailure;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.SystemErrorFailureVerification;
 
 public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenStep<Void, VoidVerification> implements ThenFailurePort {
+        extends BaseThenStep<Void, VoidVerification> implements ThenFailure {
     private final SystemErrorFailureVerification failureVerification;
 
     public ThenFailureImpl(SystemDsl app, ExecutionResultContext executionResult,
@@ -37,3 +37,4 @@ public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends Resp
         return this;
     }
 }
+

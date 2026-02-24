@@ -110,3 +110,4 @@ public class UseCaseContext {
         return alias == null || alias.isBlank();
     }
 }
+

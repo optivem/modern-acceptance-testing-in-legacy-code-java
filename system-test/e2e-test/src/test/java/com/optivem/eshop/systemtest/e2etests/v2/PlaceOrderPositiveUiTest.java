@@ -157,3 +157,4 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         assertThat(orderDetailsPage.getTotalPrice()).isGreaterThan(BigDecimal.ZERO);
     }
 }
+

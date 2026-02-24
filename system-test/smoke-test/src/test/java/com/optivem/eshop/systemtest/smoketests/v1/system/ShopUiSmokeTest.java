@@ -28,3 +28,4 @@ class ShopUiSmokeTest extends BaseRawTest {
     }
 }
 
+

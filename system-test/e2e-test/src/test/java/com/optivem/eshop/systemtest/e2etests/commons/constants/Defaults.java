@@ -6,3 +6,4 @@ public class Defaults {
     public static final String QUANTITY = "1";
     public static final String COUNTRY = "US";
 }
+

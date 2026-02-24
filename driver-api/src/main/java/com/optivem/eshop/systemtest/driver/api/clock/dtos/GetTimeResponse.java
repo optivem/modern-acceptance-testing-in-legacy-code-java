@@ -14,3 +14,4 @@ import java.time.Instant;
 public class GetTimeResponse {
     Instant time;
 }
+

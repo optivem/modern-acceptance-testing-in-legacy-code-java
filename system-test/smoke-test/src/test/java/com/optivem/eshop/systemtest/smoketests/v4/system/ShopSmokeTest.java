@@ -15,3 +15,4 @@ class ShopSmokeTest extends BaseChannelDriverTest {
         assertThatResult(result).isSuccess();
     }
 }
+

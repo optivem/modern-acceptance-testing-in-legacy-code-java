@@ -18,3 +18,4 @@ public class ShopUseCaseResult<TSuccessResponse, TSuccessVerification extends Re
         super(result, context, verificationFactory, SystemErrorFailureVerification::new);
     }
 }
+

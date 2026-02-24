@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenProductPort;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenProduct;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-public class GivenProductImpl extends BaseGivenStep implements GivenProductPort {
+public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
     private String sku;
     private String unitPrice;
 
@@ -41,3 +41,4 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProductPort 
                 .shouldSucceed();
     }
 }
+

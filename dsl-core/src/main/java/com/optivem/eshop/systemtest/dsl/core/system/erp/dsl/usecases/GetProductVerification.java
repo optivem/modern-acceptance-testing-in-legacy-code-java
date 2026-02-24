@@ -40,3 +40,4 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
         return price(Converter.toBigDecimal(expectedPrice));
     }
 }
+

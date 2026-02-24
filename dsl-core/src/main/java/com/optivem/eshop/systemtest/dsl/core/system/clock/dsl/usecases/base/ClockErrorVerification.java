@@ -9,3 +9,4 @@ public class ClockErrorVerification extends ResponseVerification<ClockErrorRespo
         super(clockErrorResponse, useCaseContext);
     }
 }
+

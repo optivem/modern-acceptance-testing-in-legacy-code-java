@@ -21,3 +21,4 @@ public abstract class BaseErpContractTest extends BaseExternalSystemContractTest
                 .price(12.0);
     }
 }
+

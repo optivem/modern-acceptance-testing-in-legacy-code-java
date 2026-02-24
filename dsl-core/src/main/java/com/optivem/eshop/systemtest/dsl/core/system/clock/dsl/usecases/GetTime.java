@@ -18,3 +18,4 @@ public class GetTime extends BaseClockCommand<GetTimeResponse, GetTimeVerificati
         return new ClockUseCaseResult<>(result, context, GetTimeVerification::new);
     }
 }
+

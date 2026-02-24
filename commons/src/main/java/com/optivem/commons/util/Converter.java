@@ -106,3 +106,4 @@ public class Converter {
         return (value == null || value.isEmpty()) ? null : converter.apply(value);
     }
 }
+

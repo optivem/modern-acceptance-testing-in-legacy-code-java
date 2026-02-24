@@ -35,3 +35,4 @@ class ViewOrderNegativeApiTest extends BaseE2eTest {
         assertThat(errorBody.get("detail").asText()).isEqualTo("Order NON-EXISTENT-ORDER-99999 does not exist.");
     }
 }
+

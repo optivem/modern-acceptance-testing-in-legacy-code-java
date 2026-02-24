@@ -219,3 +219,4 @@ class PlaceOrderPositiveUiTest extends BaseE2eTest {
         assertThat(Double.parseDouble(totalPriceText)).isGreaterThan(0.0);
     }
 }
+

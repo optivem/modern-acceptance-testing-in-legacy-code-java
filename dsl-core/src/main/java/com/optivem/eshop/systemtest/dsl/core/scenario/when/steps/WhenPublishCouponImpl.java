@@ -5,11 +5,11 @@ import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.commons.util.Converter;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPublishCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPublishCoupon;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-public class WhenPublishCouponImpl extends BaseWhenStep<Void, VoidVerification> implements WhenPublishCouponPort {
+public class WhenPublishCouponImpl extends BaseWhenStep<Void, VoidVerification> implements WhenPublishCoupon {
     private String couponCode;
     private String discountRate;
     private String validFrom;
@@ -70,3 +70,4 @@ public class WhenPublishCouponImpl extends BaseWhenStep<Void, VoidVerification> 
                 .build();
     }
 }
+

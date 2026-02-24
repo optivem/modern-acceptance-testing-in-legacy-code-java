@@ -6,3 +6,4 @@ public enum Environment {
     QA,
     PRODUCTION
 }
+

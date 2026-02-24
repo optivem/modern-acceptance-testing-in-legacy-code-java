@@ -50,3 +50,4 @@ public class ShopDsl implements Closeable {
         return new BrowseCoupons(driver, context);
     }
 }
+

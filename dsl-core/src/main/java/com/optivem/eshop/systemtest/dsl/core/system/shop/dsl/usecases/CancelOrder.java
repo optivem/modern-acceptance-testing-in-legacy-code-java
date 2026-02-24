@@ -25,3 +25,4 @@ public class CancelOrder extends BaseShopCommand<Void, VoidVerification> {
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

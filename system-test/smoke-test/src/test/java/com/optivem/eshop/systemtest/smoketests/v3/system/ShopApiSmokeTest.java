@@ -7,3 +7,4 @@ class ShopApiSmokeTest extends ShopBaseSmokeTest {
     }
 }
 
+

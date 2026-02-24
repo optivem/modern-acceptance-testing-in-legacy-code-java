@@ -54,3 +54,4 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
         return this;
     }
 }
+

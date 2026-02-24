@@ -22,3 +22,4 @@ public class ErpErrorVerification extends ResponseVerification<ErpErrorResponse>
         return this;
     }
 }
+

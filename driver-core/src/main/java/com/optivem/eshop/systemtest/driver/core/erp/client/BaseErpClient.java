@@ -30,3 +30,4 @@ public abstract class BaseErpClient implements AutoCloseable {
         return httpClient.get(PRODUCTS_ENDPOINT + "/" + sku, ExtProductDetailsResponse.class);
     }
 }
+

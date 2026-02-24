@@ -31,3 +31,4 @@ public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
         return new ClockUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

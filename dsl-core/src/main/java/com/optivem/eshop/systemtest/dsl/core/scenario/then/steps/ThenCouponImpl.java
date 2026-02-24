@@ -3,10 +3,10 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenCoupon;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.BrowseCouponsVerification;
 
-public class ThenCouponImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCouponPort {
+public class ThenCouponImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCoupon {
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
@@ -50,3 +50,4 @@ public class ThenCouponImpl<TSuccessResponse, TSuccessVerification extends Respo
         return this;
     }
 }
+

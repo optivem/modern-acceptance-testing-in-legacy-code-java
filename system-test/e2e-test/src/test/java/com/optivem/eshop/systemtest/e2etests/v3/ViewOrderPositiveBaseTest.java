@@ -59,3 +59,4 @@ abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
         assertThat(order.getTotalPrice()).isGreaterThan(BigDecimal.ZERO);
     }
 }
+

@@ -39,3 +39,4 @@ public class ShopApiClient implements AutoCloseable {
     }
 }
 
+

@@ -8,3 +8,4 @@ public class TaxRealContractTest extends BaseTaxContractTest {
         return ExternalSystemMode.REAL;
     }
 }
+

@@ -13,3 +13,4 @@ public class ExtCreateProductRequest {
     private String category;
     private String brand;
 }
+

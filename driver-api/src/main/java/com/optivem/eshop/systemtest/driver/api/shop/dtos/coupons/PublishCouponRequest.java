@@ -16,3 +16,4 @@ public class PublishCouponRequest {
     private String validTo;
     private String usageLimit;
 }
+

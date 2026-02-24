@@ -13,3 +13,4 @@ public interface TaxDriver extends AutoCloseable {
     Result<Void, TaxErrorResponse> returnsTaxRate(ReturnsTaxRateRequest request);
 }
 
+

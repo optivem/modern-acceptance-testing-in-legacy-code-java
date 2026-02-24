@@ -4,9 +4,9 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStepPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStep;
 
-public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> implements WhenStepPort {
+public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> implements WhenStep {
 
     public WhenGoToShopImpl(SystemDsl app) {
         super(app);
@@ -18,3 +18,4 @@ public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> imple
         return new ExecutionResultBuilder<>(result).build();
     }
 }
+

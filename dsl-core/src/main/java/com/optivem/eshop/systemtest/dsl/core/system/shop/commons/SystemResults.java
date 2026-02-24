@@ -24,3 +24,4 @@ public final class SystemResults {
         return Result.failure(error);
     }
 }
+

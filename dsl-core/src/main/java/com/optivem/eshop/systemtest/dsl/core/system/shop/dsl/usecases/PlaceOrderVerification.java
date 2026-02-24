@@ -29,3 +29,4 @@ public class PlaceOrderVerification extends ResponseVerification<PlaceOrderRespo
         return this;
     }
 }
+

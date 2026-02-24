@@ -19,3 +19,4 @@ abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
         assertThat(error.getMessage()).isEqualTo("Order NON-EXISTENT-ORDER-99999 does not exist.");
     }
 }
+

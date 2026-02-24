@@ -36,3 +36,4 @@ public class OrderHistoryPage extends BasePage {
         return String.format(ROW_SELECTOR_TEMPLATE, orderNumber);
     }
 }
+

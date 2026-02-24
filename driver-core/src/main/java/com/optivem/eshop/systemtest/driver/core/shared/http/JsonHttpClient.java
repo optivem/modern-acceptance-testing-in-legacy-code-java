@@ -252,3 +252,4 @@ public class JsonHttpClient<E> implements AutoCloseable {
         return Result.success(response);
     }
 }
+

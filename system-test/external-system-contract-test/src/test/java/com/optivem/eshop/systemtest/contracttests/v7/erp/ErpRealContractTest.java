@@ -8,3 +8,4 @@ public class ErpRealContractTest extends BaseErpContractTest {
         return ExternalSystemMode.REAL;
     }
 }
+

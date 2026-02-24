@@ -7,3 +7,4 @@ class PlaceOrderNegativeUiTest extends PlaceOrderNegativeBaseTest {
         setUpShopUiDriver();
     }
 }
+

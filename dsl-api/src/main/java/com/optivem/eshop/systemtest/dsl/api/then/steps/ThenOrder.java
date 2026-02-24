@@ -1,0 +1,60 @@
+package com.optivem.eshop.systemtest.dsl.api.then.steps;
+
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
+
+public interface ThenOrder {
+    ThenOrder and();
+
+    ThenOrder hasSku(String expectedSku);
+
+    ThenOrder hasQuantity(int expectedQuantity);
+
+    ThenOrder hasCountry(String expectedCountry);
+
+    ThenOrder hasUnitPrice(double expectedUnitPrice);
+
+    ThenOrder hasBasePrice(double expectedBasePrice);
+
+    ThenOrder hasBasePrice(String basePrice);
+
+    ThenOrder hasSubtotalPrice(double expectedSubtotalPrice);
+
+    ThenOrder hasSubtotalPrice(String expectedSubtotalPrice);
+
+    ThenOrder hasTotalPrice(double expectedTotalPrice);
+
+    ThenOrder hasTotalPrice(String expectedTotalPrice);
+
+    ThenOrder hasStatus(OrderStatus expectedStatus);
+
+    ThenOrder hasDiscountRateGreaterThanOrEqualToZero();
+
+    ThenOrder hasDiscountRate(double expectedDiscountRate);
+
+    ThenOrder hasDiscountAmount(double expectedDiscountAmount);
+
+    ThenOrder hasDiscountAmount(String expectedDiscountAmount);
+
+    ThenOrder hasAppliedCoupon(String expectedCouponCode);
+
+    ThenOrder hasAppliedCoupon();
+
+    ThenOrder hasDiscountAmountGreaterThanOrEqualToZero();
+
+    ThenOrder hasSubtotalPriceGreaterThanZero();
+
+    ThenOrder hasTaxRate(double expectedTaxRate);
+
+    ThenOrder hasTaxRate(String expectedTaxRate);
+
+    ThenOrder hasTaxRateGreaterThanOrEqualToZero();
+
+    ThenOrder hasTaxAmount(String expectedTaxAmount);
+
+    ThenOrder hasTaxAmountGreaterThanOrEqualToZero();
+
+    ThenOrder hasTotalPriceGreaterThanZero();
+
+    ThenOrder hasOrderNumberPrefix(String expectedPrefix);
+}
+

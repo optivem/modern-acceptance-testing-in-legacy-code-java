@@ -10,3 +10,4 @@ public interface ClockDriver extends AutoCloseable {
     Result<GetTimeResponse, ClockErrorResponse> getTime();
     Result<Void, ClockErrorResponse> returnsTime(ReturnsTimeRequest request);
 }
+

@@ -7,10 +7,10 @@ import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrder;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PlaceOrderVerification;
 
-public class WhenPlaceOrderImpl extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> implements WhenPlaceOrderPort {
+public class WhenPlaceOrderImpl extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> implements WhenPlaceOrder {
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -75,3 +75,4 @@ public class WhenPlaceOrderImpl extends BaseWhenStep<PlaceOrderResponse, PlaceOr
                 .build();
     }
 }
+

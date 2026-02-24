@@ -24,3 +24,4 @@ class ClockStubContractTest extends BaseClockContractTest {
                 .time("2024-01-02T09:00:00Z");
     }
 }
+

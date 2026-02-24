@@ -90,3 +90,4 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
                                         .toList())));
     }
 }
+

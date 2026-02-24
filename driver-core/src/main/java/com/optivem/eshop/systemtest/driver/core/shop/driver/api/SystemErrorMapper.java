@@ -21,3 +21,4 @@ public class SystemErrorMapper {
         return SystemError.of(message);
     }
 }
+

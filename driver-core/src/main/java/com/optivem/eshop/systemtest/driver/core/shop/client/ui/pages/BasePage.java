@@ -131,3 +131,4 @@ public abstract class BasePage {
         return selector.replace(NOTIFICATION_SELECTOR, NOTIFICATION_SELECTOR + idAttribute);
     }
 }
+

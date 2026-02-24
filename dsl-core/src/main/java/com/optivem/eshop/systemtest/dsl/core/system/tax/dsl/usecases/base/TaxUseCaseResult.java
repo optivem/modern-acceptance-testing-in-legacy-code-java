@@ -18,3 +18,4 @@ public class TaxUseCaseResult<TSuccessResponse, TSuccessVerification extends Res
         super(result, context, verificationFactory, TaxErrorVerification::new);
     }
 }
+

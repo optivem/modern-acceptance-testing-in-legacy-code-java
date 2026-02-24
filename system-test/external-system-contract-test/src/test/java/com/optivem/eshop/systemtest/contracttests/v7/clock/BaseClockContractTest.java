@@ -19,3 +19,4 @@ public abstract class BaseClockContractTest extends BaseExternalSystemContractTe
                 .timeIsNotNull();
     }
 }
+

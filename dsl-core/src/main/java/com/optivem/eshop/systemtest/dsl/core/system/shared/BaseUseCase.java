@@ -9,3 +9,4 @@ public abstract class BaseUseCase<TDriver, TSuccessResponse, TFailureResponse, T
         this.context = context;
     }
 }
+

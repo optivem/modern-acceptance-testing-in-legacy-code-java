@@ -54,3 +54,4 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
         }
     }
 }
+

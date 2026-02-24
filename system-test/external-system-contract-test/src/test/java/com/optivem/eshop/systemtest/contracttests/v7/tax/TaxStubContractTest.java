@@ -26,3 +26,4 @@ class TaxStubContractTest extends BaseTaxContractTest {
                 .taxRate(0.23);
     }
 }
+

@@ -13,3 +13,4 @@ public interface ErpDriver extends AutoCloseable {
 
     Result<Void, ErpErrorResponse> returnsProduct(ReturnsProductRequest request);
 }
+

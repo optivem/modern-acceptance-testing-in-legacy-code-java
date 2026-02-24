@@ -10,3 +10,4 @@ public abstract class BaseTaxCommand<TResponse, TVerification> extends BaseUseCa
         super(driver, context);
     }
 }
+

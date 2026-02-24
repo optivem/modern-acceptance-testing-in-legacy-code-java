@@ -27,3 +27,4 @@ public class ExecutionResultBuilder<TSuccessResponse, TSuccessVerification exten
         return new ExecutionResult<>(result, orderNumber, couponCode);
     }
 }
+

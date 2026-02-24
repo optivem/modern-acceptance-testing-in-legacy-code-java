@@ -6,10 +6,10 @@ import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderResponse;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenViewOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenViewOrder;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrderVerification;
 
-public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrderPort {
+public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrder {
     private String orderNumber;
 
     public WhenViewOrderImpl(SystemDsl app) {
@@ -33,3 +33,4 @@ public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrder
                 .build();
     }
 }
+

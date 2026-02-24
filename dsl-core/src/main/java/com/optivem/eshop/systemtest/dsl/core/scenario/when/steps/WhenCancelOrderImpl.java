@@ -4,11 +4,11 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenCancelOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenCancelOrder;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.DEFAULT_ORDER_NUMBER;
 
-public class WhenCancelOrderImpl extends BaseWhenStep<Void, VoidVerification> implements WhenCancelOrderPort {
+public class WhenCancelOrderImpl extends BaseWhenStep<Void, VoidVerification> implements WhenCancelOrder {
     private String orderNumber;
 
     public WhenCancelOrderImpl(SystemDsl app) {
@@ -32,3 +32,4 @@ public class WhenCancelOrderImpl extends BaseWhenStep<Void, VoidVerification> im
                 .build();
     }
 }
+

@@ -21,3 +21,4 @@ public abstract class BaseTaxContractTest extends BaseExternalSystemContractTest
                 .taxRateIsPositive();
     }
 }
+

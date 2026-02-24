@@ -19,3 +19,4 @@ public class ExtProductDetailsResponse {
     private String category;
     private String brand;
 }
+

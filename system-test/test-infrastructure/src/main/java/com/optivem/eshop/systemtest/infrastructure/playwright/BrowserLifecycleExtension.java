@@ -157,3 +157,4 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
         }
     }
 }
+

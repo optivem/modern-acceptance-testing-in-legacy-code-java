@@ -28,3 +28,4 @@ class PlaceOrderNegativeIsolatedTest extends BaseAcceptanceTest {
                     .fieldErrorMessage("couponCode", "Coupon code SUMMER2023 has expired");
     }
 }
+

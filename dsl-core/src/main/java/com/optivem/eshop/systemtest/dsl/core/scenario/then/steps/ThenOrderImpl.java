@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenOrder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrderVerification;
@@ -11,7 +11,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrderV
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.DEFAULT_COUPON_CODE;
 
 public class ThenOrderImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenOrderPort {
+        extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenOrder {
     private final ViewOrderVerification orderVerification;
 
     public ThenOrderImpl(SystemDsl app, ExecutionResultContext executionResult, String orderNumber, TSuccessVerification successVerification) {
@@ -167,3 +167,4 @@ public class ThenOrderImpl<TSuccessResponse, TSuccessVerification extends Respon
         return this;
     }
 }
+

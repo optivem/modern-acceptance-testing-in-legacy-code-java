@@ -17,3 +17,4 @@ public class ExecutionResult<TSuccessResponse, TSuccessVerification extends Resp
         this.context = new ExecutionResultContext(orderNumber, couponCode);
     }
 }
+

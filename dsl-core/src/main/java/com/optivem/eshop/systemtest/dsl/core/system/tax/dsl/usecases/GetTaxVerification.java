@@ -48,3 +48,4 @@ public class GetTaxVerification extends ResponseVerification<GetTaxResponse> {
         return this;
     }
 }
+

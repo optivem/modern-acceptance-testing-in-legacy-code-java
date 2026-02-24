@@ -10,3 +10,4 @@ public abstract class BaseShopCommand<TResponse, TVerification> extends BaseUseC
         super(driver, context);
     }
 }
+

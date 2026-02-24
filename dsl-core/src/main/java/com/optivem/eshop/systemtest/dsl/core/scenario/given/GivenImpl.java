@@ -6,13 +6,13 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCountryIm
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCouponImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenProductImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.GivenPort;
+import com.optivem.eshop.systemtest.dsl.api.given.Given;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.WhenImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GivenImpl implements GivenPort {
+public class GivenImpl implements Given {
     private final SystemDsl app;
     private final List<GivenProductImpl> products;
     private final List<GivenOrderImpl> orders;
@@ -115,3 +115,4 @@ public class GivenImpl implements GivenPort {
         }
     }
 }
+

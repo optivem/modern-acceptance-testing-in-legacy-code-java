@@ -3,10 +3,10 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenSuccessPort;
+import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenSuccess;
 
 public class ThenSuccessImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenSuccessPort {
+        extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenSuccess {
 
     public ThenSuccessImpl(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
         super(app, executionResult, successVerification);
@@ -17,3 +17,4 @@ public class ThenSuccessImpl<TSuccessResponse, TSuccessVerification extends Resp
         return this;
     }
 }
+

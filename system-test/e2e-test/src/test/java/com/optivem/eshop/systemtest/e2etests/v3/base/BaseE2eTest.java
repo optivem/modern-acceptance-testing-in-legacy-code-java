@@ -26,3 +26,4 @@ public abstract class BaseE2eTest extends BaseDriverTest {
         return baseSku + "-" + suffix;
     }
 }
+

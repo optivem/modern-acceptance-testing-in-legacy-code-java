@@ -7,3 +7,4 @@ class ViewOrderPositiveApiTest extends ViewOrderPositiveBaseTest {
         setUpShopApiDriver();
     }
 }
+

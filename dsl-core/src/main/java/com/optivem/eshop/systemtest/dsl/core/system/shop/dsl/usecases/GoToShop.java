@@ -17,3 +17,4 @@ public class GoToShop extends BaseShopCommand<Void, VoidVerification> {
         return new ShopUseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+

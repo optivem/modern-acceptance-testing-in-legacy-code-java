@@ -30,3 +30,4 @@ class CancelOrderNegativeIsolatedTest extends BaseAcceptanceTest {
                     .hasStatus(OrderStatus.PLACED);
     }
 }
+

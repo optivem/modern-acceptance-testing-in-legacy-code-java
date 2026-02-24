@@ -148,3 +148,4 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThat(order.getTotalPrice()).isGreaterThan(BigDecimal.ZERO);
     }
 }
+

@@ -15,3 +15,4 @@ public class ClockUseCaseResult<TSuccessResponse, TSuccessVerification>
         super(result, context, verificationFactory, ClockErrorVerification::new);
     }
 }
+

@@ -28,3 +28,4 @@ public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
                 .mapError(ext -> TaxErrorResponse.builder().message(ext.getMessage()).build());
     }
 }
+

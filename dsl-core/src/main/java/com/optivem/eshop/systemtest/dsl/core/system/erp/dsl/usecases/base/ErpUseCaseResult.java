@@ -17,3 +17,4 @@ public class ErpUseCaseResult<TSuccessResponse, TSuccessVerification>
         super(result, context, verificationFactory, ErpErrorVerification::new);
     }
 }
+

@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCountryPort;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCountry;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-public class GivenCountryImpl extends BaseGivenStep implements GivenCountryPort {
+public class GivenCountryImpl extends BaseGivenStep implements GivenCountry {
     private String country;
     private String taxRate;
 
@@ -40,3 +40,4 @@ public class GivenCountryImpl extends BaseGivenStep implements GivenCountryPort 
                 .shouldSucceed();
     }
 }
+

@@ -37,3 +37,4 @@ public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements Ta
                 .mapError(ext -> TaxErrorResponse.builder().message(ext.getMessage()).build());
     }
 }
+

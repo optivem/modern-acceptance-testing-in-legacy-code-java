@@ -15,3 +15,4 @@ class ShopSmokeTest extends BaseSystemDslTest {
                 .shouldSucceed();
     }
 }
+

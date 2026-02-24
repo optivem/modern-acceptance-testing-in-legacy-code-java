@@ -24,3 +24,4 @@ class ViewOrderNegativeUiTest extends BaseE2eTest {
         assertThat(orderHistoryPage.isOrderListed(orderNumber)).isFalse();
     }
 }
+

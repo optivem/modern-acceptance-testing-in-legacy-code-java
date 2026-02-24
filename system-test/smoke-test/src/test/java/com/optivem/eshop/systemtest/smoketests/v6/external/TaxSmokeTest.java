@@ -12,3 +12,4 @@ class TaxSmokeTest extends BaseSystemDslTest {
                 .shouldSucceed();
     }
 }
+

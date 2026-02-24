@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCoupon;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-public class GivenCouponImpl extends BaseGivenStep implements GivenCouponPort {
+public class GivenCouponImpl extends BaseGivenStep implements GivenCoupon {
     private String couponCode;
     private String discountRate;
     private String validFrom;
@@ -70,3 +70,4 @@ public class GivenCouponImpl extends BaseGivenStep implements GivenCouponPort {
         result.shouldSucceed();
     }
 }
+

@@ -215,3 +215,4 @@ class PlaceOrderPositiveApiTest extends BaseE2eTest {
         assertThat(order.get("totalPrice").asDouble()).isGreaterThan(0.0);
     }
 }
+

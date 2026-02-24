@@ -9,3 +9,4 @@ public class ClockRealContractTest extends BaseClockContractTest {
         return ExternalSystemMode.REAL;
     }
 }
+

@@ -9,3 +9,4 @@ public class BaseAcceptanceTest extends BaseScenarioDslTest {
         return ExternalSystemMode.STUB;
     }
 }
+

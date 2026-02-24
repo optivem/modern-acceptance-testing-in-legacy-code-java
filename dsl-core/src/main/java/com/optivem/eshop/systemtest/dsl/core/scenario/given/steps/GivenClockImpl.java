@@ -3,9 +3,9 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenClockPort;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenClock;
 
-public class GivenClockImpl extends BaseGivenStep implements GivenClockPort {
+public class GivenClockImpl extends BaseGivenStep implements GivenClock {
     private String time;
 
     public GivenClockImpl(GivenImpl given) {
@@ -26,3 +26,4 @@ public class GivenClockImpl extends BaseGivenStep implements GivenClockPort {
             .shouldSucceed();
     }
 }
+

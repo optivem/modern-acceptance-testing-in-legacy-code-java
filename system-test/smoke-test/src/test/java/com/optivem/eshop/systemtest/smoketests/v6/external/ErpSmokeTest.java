@@ -12,3 +12,4 @@ class ErpSmokeTest extends BaseSystemDslTest {
                 .shouldSucceed();
     }
 }
+

@@ -27,3 +27,4 @@ public class ViewOrder extends BaseShopCommand<ViewOrderResponse, ViewOrderVerif
         return new ShopUseCaseResult<>(result, context, ViewOrderVerification::new);
     }
 }
+

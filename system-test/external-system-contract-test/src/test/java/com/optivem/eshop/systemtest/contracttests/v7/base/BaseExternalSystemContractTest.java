@@ -8,3 +8,4 @@ public abstract class BaseExternalSystemContractTest extends BaseSystemDslTest {
     @Override
     protected abstract ExternalSystemMode getFixedExternalSystemMode();
 }
+

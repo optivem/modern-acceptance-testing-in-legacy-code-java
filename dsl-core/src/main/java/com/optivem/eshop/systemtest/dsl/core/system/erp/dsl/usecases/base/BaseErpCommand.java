@@ -10,3 +10,4 @@ public abstract class BaseErpCommand<TResponse, TVerification> extends BaseUseCa
         super(driver, context);
     }
 }
+

@@ -3,12 +3,12 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenOrder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-public class GivenOrderImpl extends BaseGivenStep implements GivenOrderPort {
+public class GivenOrderImpl extends BaseGivenStep implements GivenOrder {
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -81,3 +81,4 @@ public class GivenOrderImpl extends BaseGivenStep implements GivenOrderPort {
         }
     }
 }
+

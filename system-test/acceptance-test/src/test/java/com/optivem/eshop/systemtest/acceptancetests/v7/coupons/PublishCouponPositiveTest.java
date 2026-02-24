@@ -51,3 +51,4 @@ class PublishCouponPositiveTest extends BaseAcceptanceTest {
                 .hasUsedCount(0);
     }
 }
+

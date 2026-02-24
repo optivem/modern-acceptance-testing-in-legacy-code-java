@@ -21,3 +21,4 @@ public interface ShopDriver extends AutoCloseable {
 
     Result<BrowseCouponsResponse, SystemError> browseCoupons();
 }
+
