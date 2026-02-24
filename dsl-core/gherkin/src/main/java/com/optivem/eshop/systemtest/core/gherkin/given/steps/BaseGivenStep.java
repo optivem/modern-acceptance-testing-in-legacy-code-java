@@ -1,9 +1,11 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
+import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenStepPort;
 import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
-public abstract class BaseGivenStep {
+public abstract class BaseGivenStep implements GivenStepPort {
     private final Given given;
 
     protected BaseGivenStep(Given given) {
@@ -18,5 +20,5 @@ public abstract class BaseGivenStep {
         return given.when();
     }
 
-    abstract void execute(SystemDsl app);
+    public abstract void execute(SystemDsl app);
 }

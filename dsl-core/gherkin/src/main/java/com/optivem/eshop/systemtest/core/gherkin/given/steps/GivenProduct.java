@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenProductPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
@@ -32,7 +33,7 @@ public class GivenProduct extends BaseGivenStep implements GivenProductPort {
     }
 
     @Override
-    void execute(SystemDsl app) {
+    public void execute(SystemDsl app) {
         app.erp().returnsProduct()
                 .sku(sku)
                 .unitPrice(unitPrice)

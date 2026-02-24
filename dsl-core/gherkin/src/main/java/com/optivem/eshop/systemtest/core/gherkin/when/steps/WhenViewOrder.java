@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.gherkin.when;
+package com.optivem.eshop.systemtest.core.gherkin.when.steps;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 

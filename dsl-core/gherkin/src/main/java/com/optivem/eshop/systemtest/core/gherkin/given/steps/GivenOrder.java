@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenOrderPort;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 
@@ -61,7 +62,7 @@ public class GivenOrder extends BaseGivenStep implements GivenOrderPort {
     }
 
     @Override
-    void execute(SystemDsl app) {
+    public void execute(SystemDsl app) {
 
         app.shop().placeOrder()
                 .orderNumber(orderNumber)

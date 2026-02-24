@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCouponPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
@@ -57,7 +58,7 @@ public class GivenCoupon extends BaseGivenStep implements GivenCouponPort {
     }
 
     @Override
-    void execute(SystemDsl app) {
+    public void execute(SystemDsl app) {
         var result = app.shop().publishCoupon()
                 .couponCode(couponCode)
                 .discountRate(discountRate)

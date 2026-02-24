@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.gherkin.when;
+package com.optivem.eshop.systemtest.core.gherkin.when.steps;
 
 import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;

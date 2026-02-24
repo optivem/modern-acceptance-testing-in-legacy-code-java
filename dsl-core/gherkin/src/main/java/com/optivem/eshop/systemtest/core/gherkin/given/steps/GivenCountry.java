@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCountryPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
@@ -31,7 +32,7 @@ public class GivenCountry extends BaseGivenStep implements GivenCountryPort {
     }
 
     @Override
-    void execute(SystemDsl app) {
+    public void execute(SystemDsl app) {
         app.tax().returnsTaxRate()
                 .country(country)
                 .taxRate(taxRate)

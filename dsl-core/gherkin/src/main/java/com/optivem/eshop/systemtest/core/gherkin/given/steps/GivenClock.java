@@ -1,7 +1,8 @@
-package com.optivem.eshop.systemtest.core.gherkin.given;
+package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults;
+import com.optivem.eshop.systemtest.core.gherkin.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenClockPort;
 
 public class GivenClock extends BaseGivenStep implements GivenClockPort {
@@ -18,7 +19,7 @@ public class GivenClock extends BaseGivenStep implements GivenClockPort {
     }
 
     @Override
-    void execute(SystemDsl app) {
+    public void execute(SystemDsl app) {
         app.clock().returnsTime()
             .time(time)
             .execute()
