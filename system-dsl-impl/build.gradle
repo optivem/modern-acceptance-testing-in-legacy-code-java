@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl')
+    api project(':dsl-impl')
     api project(':driver-port')
     api project(':system-dsl-impl:clock')
     api project(':system-dsl-impl:erp')

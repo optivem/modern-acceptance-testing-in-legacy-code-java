@@ -4,11 +4,11 @@ include 'commons'
 
 include 'test-infrastructure'
 
-include 'dsl'
+include 'dsl-impl'
 include 'dsl-port'
 include 'driver-port'
-include 'dsl:system'
-include 'dsl:gherkin'
+include 'dsl-impl:system'
+include 'dsl-impl:gherkin'
 
 include 'system-dsl-impl'
 include 'system-dsl-impl:clock'
