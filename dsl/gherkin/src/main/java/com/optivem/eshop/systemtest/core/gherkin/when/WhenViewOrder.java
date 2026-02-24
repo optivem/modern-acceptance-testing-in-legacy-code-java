@@ -6,9 +6,10 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
+import com.optivem.eshop.systemtest.core.gherkin.port.WhenViewOrderPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;
 
-public class WhenViewOrder extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> {
+public class WhenViewOrder extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrderPort {
     private String orderNumber;
 
     public WhenViewOrder(SystemDsl app) {

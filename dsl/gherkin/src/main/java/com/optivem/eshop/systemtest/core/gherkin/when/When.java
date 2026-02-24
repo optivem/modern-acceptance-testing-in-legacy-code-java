@@ -1,10 +1,11 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.port.WhenPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class When {
+public class When implements WhenPort {
     private final SystemDsl app;
     private boolean hasProduct;
     private boolean hasTaxRate;

@@ -3,9 +3,10 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
+import com.optivem.eshop.systemtest.core.gherkin.port.ThenCouponPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
 
-public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> {
+public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCouponPort {
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
@@ -41,6 +42,11 @@ public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseV
 
     public ThenCoupon<TSuccessResponse, TSuccessVerification> hasUsedCount(int expectedUsedCount) {
         verification.couponHasUsedCount(couponCode, expectedUsedCount);
+        return this;
+    }
+
+    @Override
+    public ThenCoupon<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
 }

@@ -2,8 +2,9 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults;
+import com.optivem.eshop.systemtest.core.gherkin.port.GivenClockPort;
 
-public class GivenClock extends BaseGivenStep {
+public class GivenClock extends BaseGivenStep implements GivenClockPort {
     private String time;
 
     public GivenClock(Given given) {

@@ -5,10 +5,11 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.commons.util.Converter;
+import com.optivem.eshop.systemtest.core.gherkin.port.WhenPublishCouponPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class WhenPublishCoupon extends BaseWhenStep<Void, VoidVerification> {
+public class WhenPublishCoupon extends BaseWhenStep<Void, VoidVerification> implements WhenPublishCouponPort {
     private String couponCode;
     private String discountRate;
     private String validFrom;

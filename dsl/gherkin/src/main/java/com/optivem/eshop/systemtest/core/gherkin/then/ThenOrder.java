@@ -3,6 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
+import com.optivem.eshop.systemtest.core.gherkin.port.ThenOrderPort;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;
@@ -10,7 +11,7 @@ import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_COUPON_CODE;
 
 public class ThenOrder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
-        extends BaseThenStep<TSuccessResponse, TSuccessVerification> {
+        extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenOrderPort {
     private final ViewOrderVerification orderVerification;
 
     public ThenOrder(SystemDsl app, ExecutionResultContext executionResult, String orderNumber, TSuccessVerification successVerification) {
@@ -158,6 +159,11 @@ public class ThenOrder<TSuccessResponse, TSuccessVerification extends ResponseVe
             default -> { /* no-op: verification type has no order number prefix check */ }
         }
         orderVerification.orderNumberHasPrefix(expectedPrefix);
+        return this;
+    }
+
+    @Override
+    public ThenOrder<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
 }

@@ -5,6 +5,7 @@ include 'commons'
 include 'test-infrastructure'
 
 include 'dsl'
+include 'dsl-port'
 include 'dsl:system'
 include 'dsl:gherkin'
 

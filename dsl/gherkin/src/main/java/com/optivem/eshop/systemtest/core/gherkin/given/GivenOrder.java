@@ -2,11 +2,12 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.port.GivenOrderPort;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenOrder extends BaseGivenStep {
+public class GivenOrder extends BaseGivenStep implements GivenOrderPort {
     private String orderNumber;
     private String sku;
     private String quantity;

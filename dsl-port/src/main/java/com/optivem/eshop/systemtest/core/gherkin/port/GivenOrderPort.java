@@ -1,0 +1,23 @@
+package com.optivem.eshop.systemtest.core.gherkin.port;
+
+import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
+
+public interface GivenOrderPort {
+    GivenOrderPort withOrderNumber(String orderNumber);
+
+    GivenOrderPort withSku(String sku);
+
+    GivenOrderPort withQuantity(String quantity);
+
+    GivenOrderPort withQuantity(int quantity);
+
+    GivenOrderPort withCountry(String country);
+
+    GivenOrderPort withCouponCode(String couponCode);
+
+    GivenOrderPort withStatus(OrderStatus status);
+
+    GivenPort and();
+
+    WhenPort when();
+}

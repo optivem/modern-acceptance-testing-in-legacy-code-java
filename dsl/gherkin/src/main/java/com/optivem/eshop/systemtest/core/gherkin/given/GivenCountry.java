@@ -2,10 +2,11 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.port.GivenCountryPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenCountry extends BaseGivenStep {
+public class GivenCountry extends BaseGivenStep implements GivenCountryPort {
     private String country;
     private String taxRate;
 

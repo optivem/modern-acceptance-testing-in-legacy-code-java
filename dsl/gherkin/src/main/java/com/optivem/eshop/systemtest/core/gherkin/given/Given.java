@@ -1,12 +1,13 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.port.GivenPort;
 import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Given {
+public class Given implements GivenPort {
     private final SystemDsl app;
     private final List<GivenProduct> products;
     private final List<GivenOrder> orders;

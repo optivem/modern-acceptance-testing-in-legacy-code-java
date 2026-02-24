@@ -2,10 +2,11 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.gherkin.port.GivenCouponPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenCoupon extends BaseGivenStep {
+public class GivenCoupon extends BaseGivenStep implements GivenCouponPort {
     private String couponCode;
     private String discountRate;
     private String validFrom;

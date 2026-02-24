@@ -21,6 +21,7 @@ dependencies {
     api project(':commons')
     api project(':core')
     api project(':infra')
+    api project(':dsl-port')
 
     api 'com.optivem:optivem-testing:1.0.4'
     implementation 'org.springframework.boot:spring-boot-starter'
