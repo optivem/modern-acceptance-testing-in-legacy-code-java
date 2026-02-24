@@ -1,7 +1,13 @@
 package com.optivem.eshop.systemtest.dsl.api.when;
 
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenCancelOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPublishCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStepPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenViewOrderPort;
+
 public interface WhenPort {
-    WhenActionPort goToShop();
+    WhenStepPort goToShop();
 
     WhenPlaceOrderPort placeOrder();
 
@@ -11,5 +17,5 @@ public interface WhenPort {
 
     WhenPublishCouponPort publishCoupon();
 
-    WhenActionPort browseCoupons();
+    WhenStepPort browseCoupons();
 }

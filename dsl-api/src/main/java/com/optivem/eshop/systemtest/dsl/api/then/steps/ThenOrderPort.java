@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api.then;
+package com.optivem.eshop.systemtest.dsl.api.then.steps;
 
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 

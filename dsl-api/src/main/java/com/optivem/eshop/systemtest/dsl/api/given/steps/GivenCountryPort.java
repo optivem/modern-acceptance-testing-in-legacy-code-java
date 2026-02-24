@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api.given;
+package com.optivem.eshop.systemtest.dsl.api.given.steps;
 
 public interface GivenCountryPort extends GivenStepPort {
     GivenCountryPort withCode(String country);

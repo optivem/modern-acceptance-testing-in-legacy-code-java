@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.dsl.api.when.WhenPlaceOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrderPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrderVerification;
 
 public class WhenPlaceOrder extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> implements WhenPlaceOrderPort {

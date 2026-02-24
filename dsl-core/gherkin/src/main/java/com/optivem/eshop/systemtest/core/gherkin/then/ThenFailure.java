@@ -4,7 +4,7 @@ import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.then.ThenFailurePort;
+import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailurePort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.SystemErrorFailureVerification;
 
