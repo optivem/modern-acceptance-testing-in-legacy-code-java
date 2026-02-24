@@ -9,15 +9,15 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderRespons
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenViewOrderPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;
 
-public class WhenViewOrder extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrderPort {
+public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrderPort {
     private String orderNumber;
 
-    public WhenViewOrder(SystemDsl app) {
+    public WhenViewOrderImpl(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 
-    public WhenViewOrder withOrderNumber(String orderNumber) {
+    public WhenViewOrderImpl withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }

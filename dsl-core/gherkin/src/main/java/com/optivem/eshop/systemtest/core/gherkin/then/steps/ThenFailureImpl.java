@@ -8,11 +8,11 @@ import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailurePort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.SystemErrorFailureVerification;
 
-public class ThenFailure<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenStep<Void, VoidVerification> implements ThenFailurePort {
     private final SystemErrorFailureVerification failureVerification;
 
-    public ThenFailure(SystemDsl app, ExecutionResultContext executionResult,
+    public ThenFailureImpl(SystemDsl app, ExecutionResultContext executionResult,
             ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result) {
         super(app, executionResult, null);
         if (result == null) {
@@ -21,19 +21,19 @@ public class ThenFailure<TSuccessResponse, TSuccessVerification extends Response
         this.failureVerification = result.shouldFail();
     }
 
-    public ThenFailure<TSuccessResponse, TSuccessVerification> errorMessage(String expectedMessage) {
+    public ThenFailureImpl<TSuccessResponse, TSuccessVerification> errorMessage(String expectedMessage) {
         failureVerification.errorMessage(expectedMessage);
         return this;
     }
 
-    public ThenFailure<TSuccessResponse, TSuccessVerification> fieldErrorMessage(
+    public ThenFailureImpl<TSuccessResponse, TSuccessVerification> fieldErrorMessage(
             String expectedField, String expectedMessage) {
         failureVerification.fieldErrorMessage(expectedField, expectedMessage);
         return this;
     }
 
     @Override
-    public ThenFailure<TSuccessResponse, TSuccessVerification> and() {
+    public ThenFailureImpl<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
 }

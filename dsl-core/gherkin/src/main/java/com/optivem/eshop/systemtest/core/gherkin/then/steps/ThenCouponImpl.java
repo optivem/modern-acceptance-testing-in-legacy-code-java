@@ -6,11 +6,11 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenCouponPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
 
-public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCouponPort {
+public class ThenCouponImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCouponPort {
     private final BrowseCouponsVerification verification;
     private final String couponCode;
 
-    public ThenCoupon(SystemDsl app, ExecutionResultContext executionResult, String couponCode, TSuccessVerification successVerification) {
+    public ThenCouponImpl(SystemDsl app, ExecutionResultContext executionResult, String couponCode, TSuccessVerification successVerification) {
         super(app, executionResult, successVerification);
         this.couponCode = couponCode;
         this.verification = app.shop().browseCoupons()
@@ -20,33 +20,33 @@ public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseV
         verification.hasCouponWithCode(couponCode);
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> hasDiscountRate(double discountRate) {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> hasDiscountRate(double discountRate) {
         verification.couponHasDiscountRate(couponCode, discountRate);
         return this;
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> isValidFrom(String validFrom) {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> isValidFrom(String validFrom) {
         verification.couponHasValidFrom(couponCode, validFrom);
         return this;
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> isValidTo(String validTo) {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> isValidTo(String validTo) {
         verification.couponHasValidTo(couponCode, validTo);
         return this;
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> hasUsageLimit(int usageLimit) {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> hasUsageLimit(int usageLimit) {
         verification.couponHasUsageLimit(couponCode, usageLimit);
         return this;
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> hasUsedCount(int expectedUsedCount) {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> hasUsedCount(int expectedUsedCount) {
         verification.couponHasUsedCount(couponCode, expectedUsedCount);
         return this;
     }
 
     @Override
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> and() {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
 }

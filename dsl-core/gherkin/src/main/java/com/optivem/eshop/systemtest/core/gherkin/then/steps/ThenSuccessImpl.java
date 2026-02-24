@@ -5,15 +5,15 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenSuccessPort;
 
-public class ThenSuccess<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
+public class ThenSuccessImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenSuccessPort {
 
-    public ThenSuccess(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
+    public ThenSuccessImpl(SystemDsl app, ExecutionResultContext executionResult, TSuccessVerification successVerification) {
         super(app, executionResult, successVerification);
     }
 
     @Override
-    public ThenSuccess<TSuccessResponse, TSuccessVerification> and() {
+    public ThenSuccessImpl<TSuccessResponse, TSuccessVerification> and() {
         return this;
     }
 }

@@ -2,25 +2,25 @@ package com.optivem.eshop.systemtest.core.gherkin;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.api.ScenarioDslPort;
-import com.optivem.eshop.systemtest.core.gherkin.given.Given;
-import com.optivem.eshop.systemtest.core.gherkin.when.When;
+import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.WhenImpl;
 
-public class ScenarioDsl implements ScenarioDslPort {
+public class ScenarioDslImpl implements ScenarioDslPort {
     private final SystemDsl app;
     private boolean executed = false;
 
-    public ScenarioDsl(SystemDsl app) {
+    public ScenarioDslImpl(SystemDsl app) {
         this.app = app;
     }
 
-    public Given given() {
+    public GivenImpl given() {
         ensureNotExecuted();
-        return new Given(app);
+        return new GivenImpl(app);
     }
 
-    public When when() {
+    public WhenImpl when() {
         ensureNotExecuted();
-        return new When(app);
+        return new WhenImpl(app);
     }
 
     public void markAsExecuted() {
@@ -30,7 +30,7 @@ public class ScenarioDsl implements ScenarioDslPort {
     private void ensureNotExecuted() {
         if (executed) {
             throw new IllegalStateException("Scenario has already been executed. " +
-                    "Each test method should contain only ONE scenario execution (Given-When-Then). " +
+                    "Each test method should contain only ONE scenario execution (GivenImpl-WhenImpl-ThenImpl). " +
                     "Split multiple scenarios into separate test methods.");
         }
     }

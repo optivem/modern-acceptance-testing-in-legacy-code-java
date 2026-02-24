@@ -2,13 +2,13 @@ package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.Given;
+import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenOrderPort;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenOrder extends BaseGivenStep implements GivenOrderPort {
+public class GivenOrderImpl extends BaseGivenStep implements GivenOrderPort {
     private String orderNumber;
     private String sku;
     private String quantity;
@@ -16,7 +16,7 @@ public class GivenOrder extends BaseGivenStep implements GivenOrderPort {
     private String couponCodeAlias;
     private OrderStatus status;
 
-    public GivenOrder(Given given) {
+    public GivenOrderImpl(GivenImpl given) {
         super(given);
 
         withOrderNumber(DEFAULT_ORDER_NUMBER);
@@ -27,36 +27,36 @@ public class GivenOrder extends BaseGivenStep implements GivenOrderPort {
         withStatus(DEFAULT_ORDER_STATUS);
     }
 
-    public GivenOrder withOrderNumber(String orderNumber) {
+    public GivenOrderImpl withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }
 
-    public GivenOrder withSku(String sku) {
+    public GivenOrderImpl withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public GivenOrder withQuantity(String quantity) {
+    public GivenOrderImpl withQuantity(String quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public GivenOrder withQuantity(int quantity) {
+    public GivenOrderImpl withQuantity(int quantity) {
         return withQuantity(Converter.fromInteger(quantity));
     }
 
-    public GivenOrder withCountry(String country) {
+    public GivenOrderImpl withCountry(String country) {
         this.country = country;
         return this;
     }
 
-    public GivenOrder withCouponCode(String couponCodeAlias) {
+    public GivenOrderImpl withCouponCode(String couponCodeAlias) {
         this.couponCodeAlias = couponCodeAlias;
         return this;
     }
 
-    public GivenOrder withStatus(OrderStatus status) {
+    public GivenOrderImpl withStatus(OrderStatus status) {
         this.status = status;
         return this;
     }

@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.base.v7;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDsl;
+import com.optivem.eshop.systemtest.core.gherkin.ScenarioDslImpl;
 import com.optivem.eshop.systemtest.dsl.api.ScenarioDslPort;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.playwright.BrowserLifecycleExtension;
@@ -20,7 +20,7 @@ public class BaseScenarioDslTest extends BaseConfigurableTest {
     void setUp() {
         var configuration = loadConfiguration();
         app = createSystemDsl(configuration);
-        scenario = new ScenarioDsl(app);
+        scenario = new ScenarioDslImpl(app);
     }
 
     @AfterEach

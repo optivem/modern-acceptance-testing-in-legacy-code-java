@@ -7,8 +7,8 @@ import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStepPort;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
 
-public class WhenBrowseCoupons extends BaseWhenStep<BrowseCouponsResponse, BrowseCouponsVerification> implements WhenStepPort {
-    public WhenBrowseCoupons(SystemDsl app) {
+public class WhenBrowseCouponsImpl extends BaseWhenStep<BrowseCouponsResponse, BrowseCouponsVerification> implements WhenStepPort {
+    public WhenBrowseCouponsImpl(SystemDsl app) {
         super(app);
     }
 

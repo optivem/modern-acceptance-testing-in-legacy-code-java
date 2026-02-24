@@ -2,32 +2,32 @@ package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.Given;
+import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCountryPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenCountry extends BaseGivenStep implements GivenCountryPort {
+public class GivenCountryImpl extends BaseGivenStep implements GivenCountryPort {
     private String country;
     private String taxRate;
 
-    public GivenCountry(Given given) {
+    public GivenCountryImpl(GivenImpl given) {
         super(given);
         withCode(DEFAULT_COUNTRY);
         withTaxRate(DEFAULT_TAX_RATE);
     }
 
-    public GivenCountry withCode(String country) {
+    public GivenCountryImpl withCode(String country) {
         this.country = country;
         return this;
     }
 
-    public GivenCountry withTaxRate(String taxRate) {
+    public GivenCountryImpl withTaxRate(String taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
-    public GivenCountry withTaxRate(double taxRate) {
+    public GivenCountryImpl withTaxRate(double taxRate) {
         return withTaxRate(Converter.fromDouble(taxRate));
     }
 

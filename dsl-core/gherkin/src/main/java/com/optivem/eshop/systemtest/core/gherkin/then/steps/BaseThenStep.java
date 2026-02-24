@@ -19,22 +19,22 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         return this;
     }
 
-    public ThenOrder<TSuccessResponse, TSuccessVerification> order(String orderNumber) {
-        return new ThenOrder<>(app, executionResult, orderNumber, successVerification);
+    public ThenOrderImpl<TSuccessResponse, TSuccessVerification> order(String orderNumber) {
+        return new ThenOrderImpl<>(app, executionResult, orderNumber, successVerification);
     }
 
-    public ThenOrder<TSuccessResponse, TSuccessVerification> order() {
+    public ThenOrderImpl<TSuccessResponse, TSuccessVerification> order() {
         if (executionResult.getOrderNumber() == null) {
             throw new IllegalStateException("Cannot verify order: no order number available from the executed operation");
         }
         return order(executionResult.getOrderNumber());
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
-        return new ThenCoupon<>(app, executionResult, couponCode, successVerification);
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> coupon(String couponCode) {
+        return new ThenCouponImpl<>(app, executionResult, couponCode, successVerification);
     }
 
-    public ThenCoupon<TSuccessResponse, TSuccessVerification> coupon() {
+    public ThenCouponImpl<TSuccessResponse, TSuccessVerification> coupon() {
         if (executionResult.getCouponCode() == null) {
             throw new IllegalStateException("Cannot verify coupon: no coupon code available from the executed operation");
         }

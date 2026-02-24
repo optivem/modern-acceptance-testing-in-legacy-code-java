@@ -2,32 +2,32 @@ package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.Given;
+import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenProductPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class GivenProduct extends BaseGivenStep implements GivenProductPort {
+public class GivenProductImpl extends BaseGivenStep implements GivenProductPort {
     private String sku;
     private String unitPrice;
 
-    public GivenProduct(Given given) {
+    public GivenProductImpl(GivenImpl given) {
         super(given);
         withSku(DEFAULT_SKU);
         withUnitPrice(DEFAULT_UNIT_PRICE);
     }
 
-    public GivenProduct withSku(String sku) {
+    public GivenProductImpl withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public GivenProduct withUnitPrice(String unitPrice) {
+    public GivenProductImpl withUnitPrice(String unitPrice) {
         this.unitPrice = unitPrice;
         return this;
     }
 
-    public GivenProduct withUnitPrice(double unitPrice) {
+    public GivenProductImpl withUnitPrice(double unitPrice) {
         withUnitPrice(Converter.fromDouble(unitPrice));
         return this;
     }

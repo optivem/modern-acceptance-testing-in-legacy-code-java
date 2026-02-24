@@ -2,18 +2,18 @@ package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults;
-import com.optivem.eshop.systemtest.core.gherkin.given.Given;
+import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenClockPort;
 
-public class GivenClock extends BaseGivenStep implements GivenClockPort {
+public class GivenClockImpl extends BaseGivenStep implements GivenClockPort {
     private String time;
 
-    public GivenClock(Given given) {
+    public GivenClockImpl(GivenImpl given) {
         super(given);
         withTime(GherkinDefaults.DEFAULT_TIME);
     }
 
-    public GivenClock withTime(String time) {
+    public GivenClockImpl withTime(String time) {
         this.time = time;
         return this;
     }

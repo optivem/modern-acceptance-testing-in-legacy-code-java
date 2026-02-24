@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.when.steps;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
-import com.optivem.eshop.systemtest.core.gherkin.then.Then;
+import com.optivem.eshop.systemtest.core.gherkin.then.ThenImpl;
 
 public abstract class BaseWhenStep<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final SystemDsl app;
@@ -11,9 +11,9 @@ public abstract class BaseWhenStep<TSuccessResponse, TSuccessVerification extend
     protected BaseWhenStep(SystemDsl app) {
         this.app = app;
     }
-    public Then<TSuccessResponse, TSuccessVerification> then() {
+    public ThenImpl<TSuccessResponse, TSuccessVerification> then() {
         var result = execute(app);
-        return new Then<>(app, result);
+        return new ThenImpl<>(app, result);
     }
 
     protected abstract ExecutionResult<TSuccessResponse, TSuccessVerification> execute(SystemDsl app);

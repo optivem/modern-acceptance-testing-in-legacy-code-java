@@ -10,14 +10,14 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderRespon
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrderPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrderVerification;
 
-public class WhenPlaceOrder extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> implements WhenPlaceOrderPort {
+public class WhenPlaceOrderImpl extends BaseWhenStep<PlaceOrderResponse, PlaceOrderVerification> implements WhenPlaceOrderPort {
     private String orderNumber;
     private String sku;
     private String quantity;
     private String country;
     private String couponCode;
 
-    public WhenPlaceOrder(SystemDsl app) {
+    public WhenPlaceOrderImpl(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
         withSku(DEFAULT_SKU);
@@ -26,36 +26,36 @@ public class WhenPlaceOrder extends BaseWhenStep<PlaceOrderResponse, PlaceOrderV
         withCouponCode(EMPTY);
     }
 
-    public WhenPlaceOrder withOrderNumber(String orderNumber) {
+    public WhenPlaceOrderImpl withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }
 
-    public WhenPlaceOrder withSku(String sku) {
+    public WhenPlaceOrderImpl withSku(String sku) {
         this.sku = sku;
         return this;
     }
 
-    public WhenPlaceOrder withQuantity(String quantity) {
+    public WhenPlaceOrderImpl withQuantity(String quantity) {
         this.quantity = quantity;
         return this;
     }
 
-    public WhenPlaceOrder withQuantity(int quantity) {
+    public WhenPlaceOrderImpl withQuantity(int quantity) {
         return withQuantity(Converter.fromInteger(quantity));
     }
 
-    public WhenPlaceOrder withCountry(String country) {
+    public WhenPlaceOrderImpl withCountry(String country) {
         this.country = country;
         return this;
     }
 
-    public WhenPlaceOrder withCouponCode(String couponCode) {
+    public WhenPlaceOrderImpl withCouponCode(String couponCode) {
         this.couponCode = couponCode;
         return this;
     }
 
-    public WhenPlaceOrder withCouponCode() {
+    public WhenPlaceOrderImpl withCouponCode() {
         return withCouponCode(DEFAULT_COUPON_CODE);
     }
 

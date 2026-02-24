@@ -8,15 +8,15 @@ import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenCancelOrderPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
-public class WhenCancelOrder extends BaseWhenStep<Void, VoidVerification> implements WhenCancelOrderPort {
+public class WhenCancelOrderImpl extends BaseWhenStep<Void, VoidVerification> implements WhenCancelOrderPort {
     private String orderNumber;
 
-    public WhenCancelOrder(SystemDsl app) {
+    public WhenCancelOrderImpl(SystemDsl app) {
         super(app);
         withOrderNumber(DEFAULT_ORDER_NUMBER);
     }
 
-    public WhenCancelOrder withOrderNumber(String orderNumber) {
+    public WhenCancelOrderImpl withOrderNumber(String orderNumber) {
         this.orderNumber = orderNumber;
         return this;
     }

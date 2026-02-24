@@ -1,28 +1,28 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenBrowseCoupons;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenCancelOrder;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenGoToShop;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenPlaceOrder;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenPublishCoupon;
-import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenViewOrder;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenBrowseCouponsImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenCancelOrderImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenGoToShopImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenPlaceOrderImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenPublishCouponImpl;
+import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenViewOrderImpl;
 import com.optivem.eshop.systemtest.dsl.api.when.WhenPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
-public class When implements WhenPort {
+public class WhenImpl implements WhenPort {
     private final SystemDsl app;
     private boolean hasProduct;
     private boolean hasTaxRate;
 
-    public When(SystemDsl app, boolean hasProduct, boolean hasTaxRate) {
+    public WhenImpl(SystemDsl app, boolean hasProduct, boolean hasTaxRate) {
         this.app = app;
         this.hasProduct = hasProduct;
         this.hasTaxRate = hasTaxRate;
     }
 
-    public When(SystemDsl app) {
+    public WhenImpl(SystemDsl app) {
         this(app, false, false);
     }
 
@@ -46,30 +46,30 @@ public class When implements WhenPort {
         }
     }
 
-    public WhenGoToShop goToShop() {
-        return new WhenGoToShop(app);
+    public WhenGoToShopImpl goToShop() {
+        return new WhenGoToShopImpl(app);
     }
 
-    public WhenPlaceOrder placeOrder() {
+    public WhenPlaceOrderImpl placeOrder() {
         ensureDefaults();
-        return new WhenPlaceOrder(app);
+        return new WhenPlaceOrderImpl(app);
     }
 
-    public WhenCancelOrder cancelOrder() {
+    public WhenCancelOrderImpl cancelOrder() {
         ensureDefaults();
-        return new WhenCancelOrder(app);
+        return new WhenCancelOrderImpl(app);
     }
 
-    public WhenViewOrder viewOrder() {
+    public WhenViewOrderImpl viewOrder() {
         ensureDefaults();
-        return new WhenViewOrder(app);
+        return new WhenViewOrderImpl(app);
     }
 
-    public WhenPublishCoupon publishCoupon() {
-        return new WhenPublishCoupon(app);
+    public WhenPublishCouponImpl publishCoupon() {
+        return new WhenPublishCouponImpl(app);
     }
 
-    public WhenBrowseCoupons browseCoupons() {
-        return new WhenBrowseCoupons(app);
+    public WhenBrowseCouponsImpl browseCoupons() {
+        return new WhenBrowseCouponsImpl(app);
     }
 }

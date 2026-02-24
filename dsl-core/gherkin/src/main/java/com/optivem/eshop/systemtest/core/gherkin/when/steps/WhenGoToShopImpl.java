@@ -6,9 +6,9 @@ import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStepPort;
 
-public class WhenGoToShop extends BaseWhenStep<Void, VoidVerification> implements WhenStepPort {
+public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> implements WhenStepPort {
 
-    public WhenGoToShop(SystemDsl app) {
+    public WhenGoToShopImpl(SystemDsl app) {
         super(app);
     }
 

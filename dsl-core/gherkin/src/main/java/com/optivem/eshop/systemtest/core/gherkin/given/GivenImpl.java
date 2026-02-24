@@ -1,70 +1,70 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenClock;
-import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCountry;
-import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCoupon;
-import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenOrder;
-import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenProduct;
+import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenClockImpl;
+import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCountryImpl;
+import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCouponImpl;
+import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenOrderImpl;
+import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenProductImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.GivenPort;
-import com.optivem.eshop.systemtest.core.gherkin.when.When;
+import com.optivem.eshop.systemtest.core.gherkin.when.WhenImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Given implements GivenPort {
+public class GivenImpl implements GivenPort {
     private final SystemDsl app;
-    private final List<GivenProduct> products;
-    private final List<GivenOrder> orders;
-    private GivenClock clock;
-    private final List<GivenCountry> countries;
-    private final List<GivenCoupon> coupons;
+    private final List<GivenProductImpl> products;
+    private final List<GivenOrderImpl> orders;
+    private GivenClockImpl clock;
+    private final List<GivenCountryImpl> countries;
+    private final List<GivenCouponImpl> coupons;
 
-    public Given(SystemDsl app) {
+    public GivenImpl(SystemDsl app) {
         this.app = app;
         this.products = new ArrayList<>();
         this.orders = new ArrayList<>();
-        this.clock = new GivenClock(this);
+        this.clock = new GivenClockImpl(this);
         this.countries = new ArrayList<>();
         this.coupons = new ArrayList<>();
     }
 
-    public GivenProduct product() {
-        var product = new GivenProduct(this);
+    public GivenProductImpl product() {
+        var product = new GivenProductImpl(this);
         products.add(product);
         return product;
     }
 
-    public GivenOrder order() {
-        var order = new GivenOrder(this);
+    public GivenOrderImpl order() {
+        var order = new GivenOrderImpl(this);
         orders.add(order);
         return order;
     }
 
-    public GivenClock clock() {
-        clock = new GivenClock(this);
+    public GivenClockImpl clock() {
+        clock = new GivenClockImpl(this);
         return clock;
     }
 
-    public GivenCountry country() {
-        var country = new GivenCountry(this);
+    public GivenCountryImpl country() {
+        var country = new GivenCountryImpl(this);
         countries.add(country);
         return country;
     }
 
-    public GivenCoupon coupon() {
-        var coupon = new GivenCoupon(this);
+    public GivenCouponImpl coupon() {
+        var coupon = new GivenCouponImpl(this);
         coupons.add(coupon);
         return coupon;
     }
 
-    public When when() {
+    public WhenImpl when() {
         setupClock();
         setupErp();
         setupTax();
         setupShop();
 
-        return new When(app, !products.isEmpty(), !countries.isEmpty());
+        return new WhenImpl(app, !products.isEmpty(), !countries.isEmpty());
     }
 
     private void setupClock() {
@@ -73,7 +73,7 @@ public class Given implements GivenPort {
 
     private void setupErp() {
         if (!orders.isEmpty() && products.isEmpty()) {
-            var defaultProduct = new GivenProduct(this);
+            var defaultProduct = new GivenProductImpl(this);
             products.add(defaultProduct);
         }
 
@@ -84,7 +84,7 @@ public class Given implements GivenPort {
 
     private void setupTax() {
         if (!orders.isEmpty() && countries.isEmpty()) {
-            var defaultCountry = new GivenCountry(this);
+            var defaultCountry = new GivenCountryImpl(this);
             countries.add(defaultCountry);
         }
 
@@ -100,7 +100,7 @@ public class Given implements GivenPort {
 
     private void setupCoupons() {
         if(!orders.isEmpty() && coupons.isEmpty()) {
-            var defaultCoupon = new GivenCoupon(this);
+            var defaultCoupon = new GivenCouponImpl(this);
             coupons.add(defaultCoupon);
         }
 
