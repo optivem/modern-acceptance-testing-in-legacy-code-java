@@ -20,7 +20,7 @@ repositories {
 dependencies {
     api project(':commons')
     api project(':system-dsl-impl')
-    api project(':infra')
+    api project(':driver-impl')
     api project(':dsl-port')
 
     api 'com.optivem:optivem-testing:1.0.4'

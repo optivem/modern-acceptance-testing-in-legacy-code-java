@@ -21,10 +21,10 @@ dependencies {
     api project(':system-dsl-impl:tax')
     api project(':system-dsl-impl:clock')
 
-    api project(':infra:shop')
-    api project(':infra:erp')
-    api project(':infra:tax')
-    api project(':infra:clock')
+    api project(':driver-impl:shop')
+    api project(':driver-impl:erp')
+    api project(':driver-impl:tax')
+    api project(':driver-impl:clock')
 
     api project(':commons')
 

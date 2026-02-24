@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'com.optivem.eshop.systemtest'
+group = 'com.optivem.eshop.systemtest.infra'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -11,22 +11,16 @@ java {
     }
 }
 
-tasks.withType(JavaCompile) {
-    options.compilerArgs << '-Xlint:unchecked'
-}
-
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    api project(':dsl-port')
-    api project(':dsl-impl:system')
-    
-    // Logging
-    api 'org.slf4j:slf4j-api:2.0.9'
+    api project(':driver-impl:clock')
+    api project(':driver-impl:erp')
+    api project(':driver-impl:shop')
+    api project(':driver-impl:tax')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
-
