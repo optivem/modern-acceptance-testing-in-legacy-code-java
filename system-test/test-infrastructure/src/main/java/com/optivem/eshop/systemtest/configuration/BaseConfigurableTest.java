@@ -42,10 +42,10 @@ public abstract class BaseConfigurableTest {
     protected SystemDsl createSystemDsl(SystemConfiguration configuration) {
         return new SystemDsl(
                 configuration,
-                createShopDriver(configuration),
-                createErpDriver(configuration),
-                createTaxDriver(configuration),
-                createClockDriver(configuration)
+                () -> createShopDriver(configuration),
+                () -> createErpDriver(configuration),
+                () -> createTaxDriver(configuration),
+                () -> createClockDriver(configuration)
         );
     }
 

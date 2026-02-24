@@ -16,26 +16,49 @@ import java.util.function.Supplier;
 
 public class SystemDsl implements Closeable {
     private final UseCaseContext context;
-    private final ShopDriver shopDriver;
-    private final ErpDriver erpDriver;
-    private final TaxDriver taxDriver;
-    private final ClockDriver clockDriver;
+    private final Supplier<ShopDriver> shopDriverSupplier;
+    private final Supplier<ErpDriver> erpDriverSupplier;
+    private final Supplier<TaxDriver> taxDriverSupplier;
+    private final Supplier<ClockDriver> clockDriverSupplier;
+
+    private ShopDriver shopDriver;
+    private ErpDriver erpDriver;
+    private TaxDriver taxDriver;
+    private ClockDriver clockDriver;
 
     private ShopDsl shop;
     private ErpDsl erp;
     private TaxDsl tax;
     private ClockDsl clock;
 
-    private SystemDsl(UseCaseContext context, ShopDriver shopDriver, ErpDriver erpDriver, TaxDriver taxDriver, ClockDriver clockDriver) {
+    private SystemDsl(UseCaseContext context,
+                      Supplier<ShopDriver> shopDriverSupplier,
+                      Supplier<ErpDriver> erpDriverSupplier,
+                      Supplier<TaxDriver> taxDriverSupplier,
+                      Supplier<ClockDriver> clockDriverSupplier) {
         this.context = context;
-        this.shopDriver = shopDriver;
-        this.erpDriver = erpDriver;
-        this.taxDriver = taxDriver;
-        this.clockDriver = clockDriver;
+        this.shopDriverSupplier = shopDriverSupplier;
+        this.erpDriverSupplier = erpDriverSupplier;
+        this.taxDriverSupplier = taxDriverSupplier;
+        this.clockDriverSupplier = clockDriverSupplier;
     }
 
     public SystemDsl(SystemConfiguration configuration, ShopDriver shopDriver, ErpDriver erpDriver, TaxDriver taxDriver, ClockDriver clockDriver) {
-        this(new UseCaseContext(configuration.getExternalSystemMode()), shopDriver, erpDriver, taxDriver, clockDriver);
+        this(
+                configuration,
+                () -> shopDriver,
+                () -> erpDriver,
+                () -> taxDriver,
+                () -> clockDriver
+        );
+    }
+
+    public SystemDsl(SystemConfiguration configuration,
+                     Supplier<ShopDriver> shopDriverSupplier,
+                     Supplier<ErpDriver> erpDriverSupplier,
+                     Supplier<TaxDriver> taxDriverSupplier,
+                     Supplier<ClockDriver> clockDriverSupplier) {
+        this(new UseCaseContext(configuration.getExternalSystemMode()), shopDriverSupplier, erpDriverSupplier, taxDriverSupplier, clockDriverSupplier);
     }
 
     @Override
@@ -66,19 +89,31 @@ public class SystemDsl implements Closeable {
     }
 
     public ShopDsl shop() {
-        return getOrCreate(shop, () -> shop = new ShopDsl(shopDriver, context));
+        return getOrCreate(shop, () -> {
+            shopDriver = getOrCreate(shopDriver, shopDriverSupplier);
+            return shop = new ShopDsl(shopDriver, context);
+        });
     }
 
     public ErpDsl erp() {
-        return getOrCreate(erp, () -> erp = new ErpDsl(erpDriver, context));
+        return getOrCreate(erp, () -> {
+            erpDriver = getOrCreate(erpDriver, erpDriverSupplier);
+            return erp = new ErpDsl(erpDriver, context);
+        });
     }
 
     public TaxDsl tax() {
-        return getOrCreate(tax, () -> tax = new TaxDsl(taxDriver, context));
+        return getOrCreate(tax, () -> {
+            taxDriver = getOrCreate(taxDriver, taxDriverSupplier);
+            return tax = new TaxDsl(taxDriver, context);
+        });
     }
 
     public ClockDsl clock() {
-        return getOrCreate(clock, () -> clock = new ClockDsl(clockDriver, context));
+        return getOrCreate(clock, () -> {
+            clockDriver = getOrCreate(clockDriver, clockDriverSupplier);
+            return clock = new ClockDsl(clockDriver, context);
+        });
     }
 
     private static <T> T getOrCreate(T instance, Supplier<T> supplier) {
