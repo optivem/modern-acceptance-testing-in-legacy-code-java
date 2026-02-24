@@ -6,6 +6,7 @@ include 'test-infrastructure'
 
 include 'dsl'
 include 'dsl-port'
+include 'driver-port'
 include 'dsl:system'
 include 'dsl:gherkin'
 

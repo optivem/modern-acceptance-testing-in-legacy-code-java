@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.port;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
 
-public interface GivenOrderPort {
+public interface GivenOrderPort extends GivenStep {
     GivenOrderPort withOrderNumber(String orderNumber);
 
     GivenOrderPort withSku(String sku);
@@ -17,7 +17,4 @@ public interface GivenOrderPort {
 
     GivenOrderPort withStatus(OrderStatus status);
 
-    GivenPort and();
-
-    WhenPort when();
 }

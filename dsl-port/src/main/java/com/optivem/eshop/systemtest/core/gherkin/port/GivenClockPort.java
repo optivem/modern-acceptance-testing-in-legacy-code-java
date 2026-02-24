@@ -1,9 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.port;
 
-public interface GivenClockPort {
+public interface GivenClockPort extends GivenStep {
     GivenClockPort withTime(String time);
 
-    GivenPort and();
-
-    WhenPort when();
 }

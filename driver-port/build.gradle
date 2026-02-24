@@ -16,14 +16,8 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl')
-    api project(':driver-port')
-    api project(':core:clock')
-    api project(':core:erp')
-    api project(':core:shop')
-    api project(':core:tax')
+    api project(':commons')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
-

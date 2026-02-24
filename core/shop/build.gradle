@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    api project(':driver-port')
     api project(':commons')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
