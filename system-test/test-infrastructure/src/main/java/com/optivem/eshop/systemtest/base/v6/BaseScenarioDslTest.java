@@ -17,7 +17,7 @@ public class BaseScenarioDslTest extends BaseConfigurableTest {
     @BeforeEach
     void setUp() {
         var configuration = loadConfiguration();
-        this.app = new SystemDsl(configuration);
+        this.app = createSystemDsl(configuration);
         scenario = new ScenarioDsl(app);
     }
 

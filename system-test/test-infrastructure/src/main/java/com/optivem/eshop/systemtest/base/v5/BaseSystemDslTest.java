@@ -15,7 +15,7 @@ public class BaseSystemDslTest extends BaseConfigurableTest {
     @BeforeEach
     void setUp() {
         var configuration = loadConfiguration();
-        app = new SystemDsl(configuration);
+        app = createSystemDsl(configuration);
     }
 
     @AfterEach

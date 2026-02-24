@@ -21,11 +21,6 @@ dependencies {
     api project(':dsl-impl:system:tax')
     api project(':dsl-impl:system:clock')
 
-    api project(':driver-impl:shop')
-    api project(':driver-impl:erp')
-    api project(':driver-impl:tax')
-    api project(':driver-impl:clock')
-
     api project(':commons')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
