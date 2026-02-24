@@ -8,6 +8,7 @@ import com.optivem.eshop.systemtest.infra.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.infra.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.infra.tax.driver.TaxRealDriver;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Closer;
 import com.optivem.testing.contexts.ChannelContext;
 import com.optivem.testing.extensions.ChannelExtension;
@@ -45,7 +46,7 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
         }
 
         if (ChannelType.UI.equals(channel)) {
-            return new ShopUiDriver(configuration.getShopUiBaseUrl());
+            return new ShopUiDriver(configuration.getShopUiBaseUrl(), BrowserLifecycleExtension.getBrowser());
         } else if (ChannelType.API.equals(channel)) {
             return new ShopApiDriver(configuration.getShopApiBaseUrl());
         } else {

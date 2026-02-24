@@ -1,5 +1,6 @@
 package com.optivem.eshop.systemtest.infra.shop.driver.ui;
 
+import com.microsoft.playwright.Browser;
 import com.optivem.eshop.systemtest.infra.shop.client.ui.ShopUiClient;
 import com.optivem.eshop.systemtest.infra.shop.client.ui.pages.CouponManagementPage;
 import com.optivem.eshop.systemtest.infra.shop.client.ui.pages.HomePage;
@@ -14,7 +15,6 @@ import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResp
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.errors.SystemError;
-import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Result;
 
 import java.util.Objects;
@@ -32,8 +32,8 @@ public class ShopUiDriver implements ShopDriver {
     private OrderDetailsPage orderDetailsPage;
     private CouponManagementPage couponManagementPage;
 
-    public ShopUiDriver(String baseUrl) {
-        this.client = new ShopUiClient(baseUrl, BrowserLifecycleExtension.getBrowser());
+    public ShopUiDriver(String baseUrl, Browser browser) {
+        this.client = new ShopUiClient(baseUrl, browser);
     }
 
     @Override

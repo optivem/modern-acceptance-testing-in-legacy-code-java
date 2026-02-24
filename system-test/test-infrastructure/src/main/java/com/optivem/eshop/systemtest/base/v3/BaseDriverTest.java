@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.infra.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.infra.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.infra.tax.driver.TaxRealDriver;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,7 +26,7 @@ public class BaseDriverTest extends BaseConfigurableTest {
     }
 
     protected void setUpShopUiDriver() {
-        shopDriver = new ShopUiDriver(configuration.getShopUiBaseUrl());
+        shopDriver = new ShopUiDriver(configuration.getShopUiBaseUrl(), BrowserLifecycleExtension.getBrowser());
     }
 
     protected void setUpShopApiDriver() {

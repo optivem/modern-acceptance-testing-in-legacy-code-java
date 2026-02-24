@@ -17,6 +17,7 @@ import com.optivem.eshop.systemtest.infra.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.infra.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.infra.tax.driver.TaxRealDriver;
 import com.optivem.eshop.systemtest.infra.tax.driver.TaxStubDriver;
+import com.optivem.commons.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;
 import com.optivem.testing.contexts.ChannelContext;
@@ -69,7 +70,7 @@ public class SystemDsl implements Closeable {
     private ShopDriver createShopDriver() {
         var channel = ChannelContext.get();
         if (ChannelType.UI.equals(channel)) {
-            return new ShopUiDriver(configuration.getShopUiBaseUrl());
+            return new ShopUiDriver(configuration.getShopUiBaseUrl(), BrowserLifecycleExtension.getBrowser());
         } else if (ChannelType.API.equals(channel)) {
             return new ShopApiDriver(configuration.getShopApiBaseUrl());
         } else {
