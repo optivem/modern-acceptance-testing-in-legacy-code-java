@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.driver.core.clock.client;
 
-import com.optivem.commons.http.HttpStatus;
-import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.core.shared.http.HttpStatus;
+import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
-import com.optivem.commons.wiremock.JsonWireMockClient;
+import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClient;
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClockErrorResponse;
 

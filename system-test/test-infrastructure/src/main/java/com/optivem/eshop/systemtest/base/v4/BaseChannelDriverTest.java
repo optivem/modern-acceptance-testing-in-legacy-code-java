@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.driver.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxRealDriver;
-import com.optivem.commons.playwright.BrowserLifecycleExtension;
+import com.optivem.eshop.systemtest.driver.core.shared.playwright.BrowserLifecycleExtension;
 import com.optivem.commons.util.Closer;
 import com.optivem.testing.contexts.ChannelContext;
 import com.optivem.testing.extensions.ChannelExtension;

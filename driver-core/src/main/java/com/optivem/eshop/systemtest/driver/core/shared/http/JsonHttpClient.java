@@ -1,4 +1,4 @@
-package com.optivem.commons.http;
+package com.optivem.eshop.systemtest.driver.core.shared.http;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.optivem.commons.wiremock;
+package com.optivem.eshop.systemtest.driver.core.shared.wiremock;
 
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.client.WireMock;

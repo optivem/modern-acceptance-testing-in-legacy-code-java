@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.driver.core.erp.client;
 
 
-import com.optivem.commons.http.HttpStatus;
+import com.optivem.eshop.systemtest.driver.core.shared.http.HttpStatus;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErrorResponse;
 import com.optivem.commons.util.Result;
-import com.optivem.commons.wiremock.JsonWireMockClient;
+import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClient;
 
 
 public class ErpStubClient extends BaseErpClient {

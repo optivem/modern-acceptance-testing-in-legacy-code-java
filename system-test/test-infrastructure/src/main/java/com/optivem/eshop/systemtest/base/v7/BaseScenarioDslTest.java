@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
 import com.optivem.eshop.systemtest.dsl.api.ScenarioDslPort;
 import com.optivem.commons.util.Closer;
-import com.optivem.commons.playwright.BrowserLifecycleExtension;
+import com.optivem.eshop.systemtest.driver.core.shared.playwright.BrowserLifecycleExtension;
 import com.optivem.testing.extensions.ChannelExtension;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

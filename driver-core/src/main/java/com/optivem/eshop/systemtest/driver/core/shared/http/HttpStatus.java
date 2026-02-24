@@ -1,4 +1,4 @@
-package com.optivem.commons.http;
+package com.optivem.eshop.systemtest.driver.core.shared.http;
 
 public class HttpStatus {
     public static final int OK = 200;

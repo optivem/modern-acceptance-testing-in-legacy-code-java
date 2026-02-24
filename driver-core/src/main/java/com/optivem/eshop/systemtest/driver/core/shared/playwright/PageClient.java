@@ -1,4 +1,4 @@
-package com.optivem.commons.playwright;
+package com.optivem.eshop.systemtest.driver.core.shared.playwright;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

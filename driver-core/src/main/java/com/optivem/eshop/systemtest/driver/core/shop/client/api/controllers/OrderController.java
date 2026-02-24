@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderRespons
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.core.shop.client.api.dtos.errors.ProblemDetailResponse;
-import com.optivem.commons.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
 import com.optivem.commons.util.Result;
 
 public class OrderController {
