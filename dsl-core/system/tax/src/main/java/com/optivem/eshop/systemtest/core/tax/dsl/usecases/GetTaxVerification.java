@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.tax.dsl.usecases;
 
-import com.optivem.eshop.systemtest.core.tax.driver.dtos.GetTaxResponse;
+import com.optivem.eshop.systemtest.driver.api.tax.driver.dtos.GetTaxResponse;
 import com.optivem.commons.util.Converter;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;

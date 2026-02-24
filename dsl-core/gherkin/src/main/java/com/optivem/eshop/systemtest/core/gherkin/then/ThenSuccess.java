@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.core.gherkin.port.ThenSuccessPort;
+import com.optivem.eshop.systemtest.dsl.api.ThenSuccessPort;
 
 public class ThenSuccess<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenSuccessPort {

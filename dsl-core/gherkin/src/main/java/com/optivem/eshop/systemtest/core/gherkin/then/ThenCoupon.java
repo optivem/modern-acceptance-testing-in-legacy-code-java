@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.core.gherkin.port.ThenCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.ThenCouponPort;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
 
 public class ThenCoupon<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCouponPort {

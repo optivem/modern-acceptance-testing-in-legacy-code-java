@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.commons.util.Converter;
-import com.optivem.eshop.systemtest.core.gherkin.port.WhenPublishCouponPort;
+import com.optivem.eshop.systemtest.dsl.api.WhenPublishCouponPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 

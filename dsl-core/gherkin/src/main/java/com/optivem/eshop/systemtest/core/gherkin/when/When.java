@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.port.WhenPort;
+import com.optivem.eshop.systemtest.dsl.api.WhenPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 

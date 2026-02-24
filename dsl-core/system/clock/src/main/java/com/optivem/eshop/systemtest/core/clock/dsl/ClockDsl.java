@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.clock.dsl;
 
-import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
+import com.optivem.eshop.systemtest.driver.api.clock.driver.ClockDriver;
 import com.optivem.eshop.systemtest.core.clock.dsl.usecases.GetTime;
 import com.optivem.eshop.systemtest.core.clock.dsl.usecases.GoToClock;
 import com.optivem.eshop.systemtest.core.clock.dsl.usecases.ReturnsTime;

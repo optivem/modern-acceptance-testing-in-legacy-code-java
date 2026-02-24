@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.usecases;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.PlaceOrderResponse;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.UseCaseContext;
 

@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.core.gherkin.port;
+package com.optivem.eshop.systemtest.dsl.api;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
 
 public interface GivenOrderPort extends GivenStepPort {
     GivenOrderPort withOrderNumber(String orderNumber);

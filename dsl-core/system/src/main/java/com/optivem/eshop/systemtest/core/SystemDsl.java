@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.core;
 
-import com.optivem.eshop.systemtest.core.clock.driver.ClockDriver;
+import com.optivem.eshop.systemtest.driver.api.clock.driver.ClockDriver;
 import com.optivem.eshop.systemtest.core.clock.dsl.ClockDsl;
-import com.optivem.eshop.systemtest.core.erp.driver.ErpDriver;
+import com.optivem.eshop.systemtest.driver.api.erp.driver.ErpDriver;
 import com.optivem.eshop.systemtest.core.erp.dsl.ErpDsl;
-import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.driver.api.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.ShopDsl;
-import com.optivem.eshop.systemtest.core.tax.driver.TaxDriver;
+import com.optivem.eshop.systemtest.driver.api.tax.driver.TaxDriver;
 import com.optivem.eshop.systemtest.core.tax.dsl.TaxDsl;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.shop.dsl;
 
-import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.driver.api.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.GoToShop;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCoupons;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.CancelOrder;

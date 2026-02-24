@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v3;
 
-import com.optivem.eshop.systemtest.core.shop.commons.dtos.orders.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.PlaceOrderRequest;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.commons.util.ResultAssert.assertThatResult;

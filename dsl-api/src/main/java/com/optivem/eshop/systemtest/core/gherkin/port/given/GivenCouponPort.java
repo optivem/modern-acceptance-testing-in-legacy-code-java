@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.gherkin.port;
+package com.optivem.eshop.systemtest.dsl.api;
 
 public interface GivenCouponPort extends GivenStepPort {
     GivenCouponPort withCouponCode(String couponCode);

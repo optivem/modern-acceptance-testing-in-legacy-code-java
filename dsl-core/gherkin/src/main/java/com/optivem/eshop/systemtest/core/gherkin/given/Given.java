@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.port.GivenPort;
+import com.optivem.eshop.systemtest.dsl.api.GivenPort;
 import com.optivem.eshop.systemtest.core.gherkin.when.When;
 
 import java.util.ArrayList;

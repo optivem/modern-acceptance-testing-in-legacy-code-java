@@ -4,7 +4,7 @@ import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.core.gherkin.port.WhenCancelOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.WhenCancelOrderPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
