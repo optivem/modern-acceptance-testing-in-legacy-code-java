@@ -19,9 +19,9 @@ repositories {
 
 dependencies {
     api project(':commons')
-    api project(':dsl-impl')
-    api project(':driver-impl')
-    api project(':dsl-port')
+    api project(':dsl-core')
+    api project(':driver-core')
+    api project(':dsl-api')
 
     api 'com.optivem:optivem-testing:1.0.4'
     implementation 'org.springframework.boot:spring-boot-starter'

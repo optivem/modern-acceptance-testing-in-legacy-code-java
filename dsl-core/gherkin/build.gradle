@@ -20,8 +20,8 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-port')
-    api project(':dsl-impl:system')
+    api project(':dsl-api')
+    api project(':dsl-core:system')
     
     // Logging
     api 'org.slf4j:slf4j-api:2.0.9'

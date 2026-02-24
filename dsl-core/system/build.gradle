@@ -16,10 +16,13 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-impl:system')
-    api project(':dsl-impl:gherkin')
+    api project(':dsl-core:system:shop')
+    api project(':dsl-core:system:erp')
+    api project(':dsl-core:system:tax')
+    api project(':dsl-core:system:clock')
+
+    api project(':commons')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
-

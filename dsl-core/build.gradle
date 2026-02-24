@@ -16,8 +16,8 @@ repositories {
 }
 
 dependencies {
-    api project(':driver-port')
-    api project(':commons')
+    api project(':dsl-core:system')
+    api project(':dsl-core:gherkin')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'

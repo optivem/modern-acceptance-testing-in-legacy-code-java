@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'com.optivem.eshop.systemtest'
+group = 'com.optivem.eshop.systemtest.infra'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -16,8 +16,10 @@ repositories {
 }
 
 dependencies {
-    api project(':driver-port')
-    api project(':commons')
+    api project(':driver-core:clock')
+    api project(':driver-core:erp')
+    api project(':driver-core:shop')
+    api project(':driver-core:tax')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
