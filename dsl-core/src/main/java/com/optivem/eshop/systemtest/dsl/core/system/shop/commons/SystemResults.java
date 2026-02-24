@@ -1,0 +1,26 @@
+package com.optivem.eshop.systemtest.dsl.core.system.shop.commons;
+
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
+import com.optivem.commons.util.Result;
+
+public final class SystemResults {
+    private SystemResults() {
+        // Utility class
+    }
+
+    public static <T> Result<T, SystemError> success(T value) {
+        return Result.success(value);
+    }
+
+    public static Result<Void, SystemError> success() {
+        return Result.success();
+    }
+
+    public static <T> Result<T, SystemError> failure(String message) {
+        return Result.failure(SystemError.of(message));
+    }
+
+    public static <T> Result<T, SystemError> failure(SystemError error) {
+        return Result.failure(error);
+    }
+}

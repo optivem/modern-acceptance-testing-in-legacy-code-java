@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.base.v2;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
-import com.optivem.eshop.systemtest.core.system.SystemConfiguration;
+import com.optivem.eshop.systemtest.dsl.core.system.SystemConfiguration;
 import com.optivem.eshop.systemtest.driver.core.erp.client.ErpRealClient;
 import com.optivem.eshop.systemtest.driver.core.shop.client.api.ShopApiClient;
 import com.optivem.eshop.systemtest.driver.core.shop.client.ui.ShopUiClient;

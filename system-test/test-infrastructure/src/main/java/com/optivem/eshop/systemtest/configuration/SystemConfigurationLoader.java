@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.configuration;
 
-import com.optivem.eshop.systemtest.core.system.SystemConfiguration;
+import com.optivem.eshop.systemtest.dsl.core.system.SystemConfiguration;
 import com.optivem.commons.dsl.ExternalSystemMode;
 import org.yaml.snakeyaml.Yaml;
 

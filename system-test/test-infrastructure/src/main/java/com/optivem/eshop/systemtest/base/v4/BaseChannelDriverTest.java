@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.base.v4;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
-import com.optivem.eshop.systemtest.core.system.SystemConfiguration;
+import com.optivem.eshop.systemtest.dsl.core.system.SystemConfiguration;
 import com.optivem.eshop.systemtest.driver.core.erp.driver.ErpRealDriver;
-import com.optivem.eshop.systemtest.core.system.shop.ChannelType;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;

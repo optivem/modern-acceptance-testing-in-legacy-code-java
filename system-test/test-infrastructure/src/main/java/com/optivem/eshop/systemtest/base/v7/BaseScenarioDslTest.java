@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.base.v7;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
-import com.optivem.eshop.systemtest.core.system.SystemDsl;
-import com.optivem.eshop.systemtest.core.gherkin.ScenarioDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
+import com.optivem.eshop.systemtest.dsl.core.gherkin.ScenarioDslImpl;
 import com.optivem.eshop.systemtest.dsl.api.ScenarioDslPort;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.playwright.BrowserLifecycleExtension;

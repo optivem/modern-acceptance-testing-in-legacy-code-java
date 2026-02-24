@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
-import com.optivem.eshop.systemtest.core.system.shop.ChannelType;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;
