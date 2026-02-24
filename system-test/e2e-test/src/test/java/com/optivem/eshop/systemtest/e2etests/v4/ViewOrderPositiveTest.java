@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests.v4;
 
-import com.optivem.eshop.systemtest.driver.api.erp.driver.dtos.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.driver.api.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.e2etests.v4.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;

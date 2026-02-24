@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.driver.core.tax.driver;
 
 import com.optivem.eshop.systemtest.driver.core.tax.client.TaxStubClient;
 import com.optivem.eshop.systemtest.driver.core.tax.client.dtos.ExtCountryDetailsResponse;
-import com.optivem.eshop.systemtest.driver.api.tax.driver.dtos.ReturnsTaxRateRequest;
-import com.optivem.eshop.systemtest.driver.api.tax.driver.dtos.error.TaxErrorResponse;
+import com.optivem.eshop.systemtest.driver.api.tax.dtos.ReturnsTaxRateRequest;
+import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
 import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;
 

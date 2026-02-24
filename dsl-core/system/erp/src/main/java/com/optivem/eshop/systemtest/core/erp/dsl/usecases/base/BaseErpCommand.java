@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.erp.dsl.usecases.base;
 
-import com.optivem.eshop.systemtest.driver.api.erp.driver.ErpDriver;
-import com.optivem.eshop.systemtest.driver.api.erp.driver.dtos.error.ErpErrorResponse;
+import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
+import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
 import com.optivem.commons.dsl.BaseUseCase;
 import com.optivem.commons.dsl.UseCaseContext;
 

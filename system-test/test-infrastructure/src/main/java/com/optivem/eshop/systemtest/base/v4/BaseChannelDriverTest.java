@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.core.SystemConfiguration;
 import com.optivem.eshop.systemtest.driver.core.erp.driver.ErpRealDriver;
 import com.optivem.eshop.systemtest.core.shop.ChannelType;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.api.ShopApiDriver;
-import com.optivem.eshop.systemtest.driver.api.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxRealDriver;
 import com.optivem.commons.playwright.BrowserLifecycleExtension;

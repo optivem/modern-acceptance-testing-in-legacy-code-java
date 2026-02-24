@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.driver.core.clock.driver;
 
-import com.optivem.eshop.systemtest.driver.api.clock.driver.ClockDriver;
+import com.optivem.eshop.systemtest.driver.api.clock.ClockDriver;
 
 import com.optivem.eshop.systemtest.driver.core.clock.client.ClockStubClient;
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
-import com.optivem.eshop.systemtest.driver.api.clock.driver.dtos.GetTimeResponse;
-import com.optivem.eshop.systemtest.driver.api.clock.driver.dtos.ReturnsTimeRequest;
-import com.optivem.eshop.systemtest.driver.api.clock.driver.dtos.error.ClockErrorResponse;
+import com.optivem.eshop.systemtest.driver.api.clock.dtos.GetTimeResponse;
+import com.optivem.eshop.systemtest.driver.api.clock.dtos.ReturnsTimeRequest;
+import com.optivem.eshop.systemtest.driver.api.clock.dtos.error.ClockErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;

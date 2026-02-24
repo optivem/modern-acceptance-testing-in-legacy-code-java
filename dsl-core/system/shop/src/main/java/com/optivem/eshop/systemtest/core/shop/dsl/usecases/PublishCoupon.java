@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.coupons.PublishCouponRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.driver.ShopDriver;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.PublishCouponRequest;
+import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.BaseShopCommand;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;

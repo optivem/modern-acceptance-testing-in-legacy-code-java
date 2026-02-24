@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.api.given.GivenOrderPort;
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 

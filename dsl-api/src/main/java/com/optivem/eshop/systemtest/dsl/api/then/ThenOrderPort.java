@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.api.then;
 
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 
 public interface ThenOrderPort {
     ThenOrderPort and();

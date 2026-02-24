@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.e2etests.v2;
 import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.driver.core.shop.client.ui.pages.NewOrderPage;
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

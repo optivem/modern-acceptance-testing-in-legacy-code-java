@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.clock.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.clock.driver.ClockDriver;
-import com.optivem.eshop.systemtest.driver.api.clock.driver.dtos.GetTimeResponse;
+import com.optivem.eshop.systemtest.driver.api.clock.ClockDriver;
+import com.optivem.eshop.systemtest.driver.api.clock.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.core.clock.dsl.usecases.base.BaseClockCommand;
 import com.optivem.eshop.systemtest.core.clock.dsl.usecases.base.ClockUseCaseResult;
 import com.optivem.commons.dsl.UseCaseContext;

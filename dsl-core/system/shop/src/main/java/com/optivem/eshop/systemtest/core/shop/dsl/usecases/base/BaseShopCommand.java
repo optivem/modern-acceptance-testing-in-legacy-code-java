@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.shop.dsl.usecases.base;
 
-import com.optivem.eshop.systemtest.driver.api.shop.driver.ShopDriver;
-import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.errors.SystemError;
+import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
 import com.optivem.commons.dsl.BaseUseCase;
 import com.optivem.commons.dsl.UseCaseContext;
 

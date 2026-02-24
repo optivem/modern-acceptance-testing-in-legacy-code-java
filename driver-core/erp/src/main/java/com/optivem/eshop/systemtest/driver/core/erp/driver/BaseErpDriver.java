@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.driver.core.erp.driver;
 
-import com.optivem.eshop.systemtest.driver.api.erp.driver.ErpDriver;
+import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
 
 import com.optivem.eshop.systemtest.driver.core.erp.client.BaseErpClient;
-import com.optivem.eshop.systemtest.driver.api.erp.driver.dtos.GetProductRequest;
-import com.optivem.eshop.systemtest.driver.api.erp.driver.dtos.GetProductResponse;
-import com.optivem.eshop.systemtest.driver.api.erp.driver.dtos.error.ErpErrorResponse;
+import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductRequest;
+import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductResponse;
+import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 

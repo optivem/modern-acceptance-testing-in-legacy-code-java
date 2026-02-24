@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.driver.core.tax.driver;
 
-import com.optivem.eshop.systemtest.driver.api.tax.driver.TaxDriver;
+import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 
 import com.optivem.eshop.systemtest.driver.core.tax.client.BaseTaxClient;
-import com.optivem.eshop.systemtest.driver.api.tax.driver.dtos.GetTaxResponse;
-import com.optivem.eshop.systemtest.driver.api.tax.driver.dtos.error.TaxErrorResponse;
+import com.optivem.eshop.systemtest.driver.api.tax.dtos.GetTaxResponse;
+import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
