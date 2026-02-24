@@ -15,10 +15,6 @@ include 'dsl-core:system:shop'
 include 'dsl-core:system:tax'
 
 include 'driver-core'
-include 'driver-core:clock'
-include 'driver-core:erp'
-include 'driver-core:shop'
-include 'driver-core:tax'
 
 include 'system-test:acceptance-test'
 include 'system-test:smoke-test'

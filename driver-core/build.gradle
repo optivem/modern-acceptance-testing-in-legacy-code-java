@@ -16,10 +16,19 @@ repositories {
 }
 
 dependencies {
-    api project(':driver-core:clock')
-    api project(':driver-core:erp')
-    api project(':driver-core:shop')
-    api project(':driver-core:tax')
+    api project(':dsl-core:system:clock')
+    api project(':dsl-core:system:erp')
+    api project(':dsl-core:system:shop')
+    api project(':dsl-core:system:tax')
+    api project(':commons')
+
+    api 'com.optivem:optivem-testing:1.0.4'
+    api 'org.assertj:assertj-core:3.24.2'
+    api 'org.slf4j:slf4j-api:2.0.9'
+
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.17.0'
+    implementation 'org.springframework:spring-web:6.1.5'
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
