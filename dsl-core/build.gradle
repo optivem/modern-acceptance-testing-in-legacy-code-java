@@ -16,8 +16,14 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-core:system')
-    api project(':dsl-core:gherkin')
+    api project(':dsl-api')
+    api project(':dsl-core:system:shop')
+    api project(':dsl-core:system:erp')
+    api project(':dsl-core:system:tax')
+    api project(':dsl-core:system:clock')
+    api project(':commons')
+
+    api 'org.slf4j:slf4j-api:2.0.9'
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'
