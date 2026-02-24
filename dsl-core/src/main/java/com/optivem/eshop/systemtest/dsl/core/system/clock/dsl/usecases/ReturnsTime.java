@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.driver.api.clock.ClockDriver;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.dsl.core.system.clock.dsl.usecases.base.BaseClockCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.clock.dsl.usecases.base.ClockUseCaseResult;
-import com.optivem.commons.dsl.UseCaseContext;
-import com.optivem.commons.dsl.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 
 public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
 

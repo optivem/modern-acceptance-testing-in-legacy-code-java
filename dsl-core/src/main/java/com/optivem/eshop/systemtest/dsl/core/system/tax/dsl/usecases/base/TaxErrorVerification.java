@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v2.base;
 
-import com.optivem.commons.dsl.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ExternalSystemMode;
 import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
 
 import org.junit.jupiter.api.BeforeEach;

@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases;
 
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 import com.optivem.commons.util.Converter;
 
 import java.math.BigDecimal;

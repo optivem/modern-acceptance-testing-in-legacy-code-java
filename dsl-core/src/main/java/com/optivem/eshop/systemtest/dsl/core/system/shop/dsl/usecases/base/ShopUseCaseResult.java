@@ -2,9 +2,9 @@ package com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base;
 
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
 import com.optivem.commons.util.Result;
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.UseCaseContext;
-import com.optivem.commons.dsl.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseResult;
 
 import java.util.function.BiFunction;
 

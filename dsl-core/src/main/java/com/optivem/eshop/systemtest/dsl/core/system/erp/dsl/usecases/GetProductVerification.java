@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases;
 
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductResponse;
 import com.optivem.commons.util.Converter;
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 import java.math.BigDecimal;
 

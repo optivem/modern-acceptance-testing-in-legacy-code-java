@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderRespons
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.BaseShopCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
-import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 public class ViewOrder extends BaseShopCommand<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumberResultAlias;

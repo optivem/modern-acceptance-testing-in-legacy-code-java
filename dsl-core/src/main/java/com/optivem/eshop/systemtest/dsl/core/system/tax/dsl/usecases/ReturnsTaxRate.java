@@ -5,8 +5,8 @@ import com.optivem.eshop.systemtest.driver.api.tax.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.TaxUseCaseResult;
 import com.optivem.commons.util.Converter;
-import com.optivem.commons.dsl.UseCaseContext;
-import com.optivem.commons.dsl.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 
 public class ReturnsTaxRate extends BaseTaxCommand<Void, VoidVerification> {
     private String countryAlias;

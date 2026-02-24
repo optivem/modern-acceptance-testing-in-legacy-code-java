@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 
-import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.commons.dsl.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailurePort;

@@ -16,7 +16,7 @@ import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxRealDriver;
 import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxStubDriver;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
-import com.optivem.commons.dsl.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ExternalSystemMode;
 import com.optivem.testing.contexts.ChannelContext;
 import org.junit.jupiter.api.extension.ExtendWith;
 

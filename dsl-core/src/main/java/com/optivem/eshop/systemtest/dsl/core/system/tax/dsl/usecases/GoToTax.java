@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases;
 import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.TaxUseCaseResult;
-import com.optivem.commons.dsl.UseCaseContext;
-import com.optivem.commons.dsl.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 
 public class GoToTax extends BaseTaxCommand<Void, VoidVerification> {
     public GoToTax(TaxDriver driver, UseCaseContext context) {

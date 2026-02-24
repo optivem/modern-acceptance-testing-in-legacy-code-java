@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PlaceOrder
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PublishCoupon;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrder;
 import com.optivem.commons.util.Closer;
-import com.optivem.commons.dsl.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 import java.io.Closeable;
 

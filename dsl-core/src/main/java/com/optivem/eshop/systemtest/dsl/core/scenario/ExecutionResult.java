@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
-import com.optivem.commons.dsl.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
 import lombok.Getter;
 
