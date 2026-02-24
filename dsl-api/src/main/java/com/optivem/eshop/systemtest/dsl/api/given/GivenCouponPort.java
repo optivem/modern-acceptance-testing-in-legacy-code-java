@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api;
+package com.optivem.eshop.systemtest.dsl.api.given;
 
 public interface GivenCouponPort extends GivenStepPort {
     GivenCouponPort withCouponCode(String couponCode);

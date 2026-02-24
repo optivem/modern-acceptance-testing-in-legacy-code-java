@@ -1,4 +1,6 @@
-package com.optivem.eshop.systemtest.dsl.api;
+package com.optivem.eshop.systemtest.dsl.api.when;
+
+import com.optivem.eshop.systemtest.dsl.api.then.ThenPort;
 
 public interface WhenPlaceOrderPort {
     WhenPlaceOrderPort withOrderNumber(String orderNumber);

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api;
+package com.optivem.eshop.systemtest.dsl.api.when;
 
 public interface WhenPort {
     WhenActionPort goToShop();

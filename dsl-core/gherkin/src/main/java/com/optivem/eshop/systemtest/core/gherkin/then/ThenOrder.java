@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.core.gherkin.then;
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
-import com.optivem.eshop.systemtest.dsl.api.ThenOrderPort;
+import com.optivem.eshop.systemtest.dsl.api.then.ThenOrderPort;
 import com.optivem.eshop.systemtest.driver.api.shop.commons.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;

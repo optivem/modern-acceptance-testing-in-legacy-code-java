@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api;
+package com.optivem.eshop.systemtest.dsl.api.then;
 
 public interface ThenFailurePort {
     ThenFailurePort errorMessage(String expectedMessage);

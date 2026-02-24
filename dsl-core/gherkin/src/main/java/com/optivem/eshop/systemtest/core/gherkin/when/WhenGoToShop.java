@@ -4,7 +4,7 @@ import com.optivem.commons.dsl.VoidVerification;
 import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.WhenActionPort;
+import com.optivem.eshop.systemtest.dsl.api.when.WhenActionPort;
 
 public class WhenGoToShop extends BaseWhenStep<Void, VoidVerification> implements WhenActionPort {
 

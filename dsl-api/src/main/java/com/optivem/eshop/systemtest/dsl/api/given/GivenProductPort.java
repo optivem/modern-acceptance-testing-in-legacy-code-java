@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api;
+package com.optivem.eshop.systemtest.dsl.api.given;
 
 public interface GivenProductPort extends GivenStepPort {
     GivenProductPort withSku(String sku);

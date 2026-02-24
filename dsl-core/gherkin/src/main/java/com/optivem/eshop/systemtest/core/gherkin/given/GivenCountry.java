@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.core.gherkin.given;
 
 import com.optivem.commons.util.Converter;
 import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.dsl.api.GivenCountryPort;
+import com.optivem.eshop.systemtest.dsl.api.given.GivenCountryPort;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.*;
 
