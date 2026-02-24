@@ -19,7 +19,7 @@ repositories {
 
 dependencies {
     api project(':commons')
-    api project(':core')
+    api project(':dsl-impl')
     api project(':infra')
     api project(':dsl-port')
 
