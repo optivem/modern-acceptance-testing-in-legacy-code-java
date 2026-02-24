@@ -16,5 +16,5 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-core:system:shop')
+    api project(':driver-api')
 }

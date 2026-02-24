@@ -16,10 +16,7 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-core:system:clock')
-    api project(':dsl-core:system:erp')
-    api project(':dsl-core:system:shop')
-    api project(':dsl-core:system:tax')
+    api project(':dsl-core')
     api project(':commons')
 
     api 'com.optivem:optivem-testing:1.0.4'
