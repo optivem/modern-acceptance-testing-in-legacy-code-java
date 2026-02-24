@@ -6,6 +6,7 @@ include 'system-test:test-infrastructure'
 
 include 'dsl-core'
 include 'dsl-api'
+include 'dsl-common'
 include 'driver-api'
 include 'driver-common'
 

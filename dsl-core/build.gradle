@@ -16,6 +16,7 @@ repositories {
 }
 
 dependencies {
+    api project(':dsl-common')
     api project(':dsl-api')
     api project(':driver-api')
     api project(':commons')
