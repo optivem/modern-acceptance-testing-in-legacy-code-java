@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.port;
 
-public interface GivenCountryPort extends GivenStep {
+public interface GivenCountryPort extends GivenStepPort {
     GivenCountryPort withCode(String country);
 
     GivenCountryPort withTaxRate(String taxRate);

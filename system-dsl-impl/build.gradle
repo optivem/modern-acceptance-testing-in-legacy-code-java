@@ -18,10 +18,10 @@ repositories {
 dependencies {
     api project(':dsl')
     api project(':driver-port')
-    api project(':dsl-impl:clock')
-    api project(':dsl-impl:erp')
-    api project(':dsl-impl:shop')
-    api project(':dsl-impl:tax')
+    api project(':system-dsl-impl:clock')
+    api project(':system-dsl-impl:erp')
+    api project(':system-dsl-impl:shop')
+    api project(':system-dsl-impl:tax')
 
     compileOnly 'org.projectlombok:lombok:1.18.38'
     annotationProcessor 'org.projectlombok:lombok:1.18.38'

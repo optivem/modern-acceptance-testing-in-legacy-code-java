@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.port;
 
-public interface ThenCouponPort {
-    ThenCouponPort and();
+public interface ThenCouponPort extends ThenStepPort {
 
     ThenCouponPort hasDiscountRate(double discountRate);
 

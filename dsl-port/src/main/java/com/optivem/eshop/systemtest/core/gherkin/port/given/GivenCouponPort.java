@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.port;
 
-public interface GivenCouponPort extends GivenStep {
+public interface GivenCouponPort extends GivenStepPort {
     GivenCouponPort withCouponCode(String couponCode);
 
     GivenCouponPort withDiscountRate(String discountRate);

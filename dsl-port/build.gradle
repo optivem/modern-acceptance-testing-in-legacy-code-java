@@ -16,5 +16,5 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-impl:shop')
+    api project(':system-dsl-impl:shop')
 }

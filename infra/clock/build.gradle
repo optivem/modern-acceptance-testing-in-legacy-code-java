@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    api project(':dsl-impl:clock')
+    api project(':system-dsl-impl:clock')
     api project(':commons')
 
     api 'org.assertj:assertj-core:3.24.2'
