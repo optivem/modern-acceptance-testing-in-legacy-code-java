@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.core.shared.playwright;
+package com.optivem.eshop.systemtest.infrastructure.playwright;
 
 import com.microsoft.playwright.Browser;
 import com.microsoft.playwright.BrowserType;
@@ -13,10 +13,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Proper JUnit 5 extension that manages browser lifecycle.
  * Creates one browser per worker thread (for parallel execution safety).
  * Uses ThreadLocal to make browser accessible to code without ExtensionContext.
- * 
+ *
  * Usage in test class:
  * @ExtendWith(BrowserLifecycleExtension.class)
- * 
+ *
  * Usage in code:
  * Browser browser = BrowserLifecycleExtension.getBrowser();
  */
@@ -24,9 +24,9 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
     // One browser per worker thread for parallel execution safety
     private static final Map<Long, BrowserResource> BROWSERS_BY_THREAD = new ConcurrentHashMap<>();
     private static final ThreadLocal<Browser> THREAD_LOCAL_BROWSER = new ThreadLocal<>();
-    
+
     private static final AtomicInteger ACTIVE_TEST_CLASSES = new AtomicInteger(0);
-    
+
     private static final boolean IS_HEADLESS = getHeadlessMode();
     private static final int SLOW_MO_MS = 100;
     private static final boolean DEFAULT_HEADLESS = true;
@@ -79,10 +79,10 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
     @Override
     public void beforeEach(ExtensionContext context) {
         long threadId = Thread.currentThread().threadId();
-        
+
         // Create browser for this thread if not already exists (lazy initialization)
         BROWSERS_BY_THREAD.computeIfAbsent(threadId, id -> new BrowserResource());
-        
+
         // Set browser in ThreadLocal for this test
         Browser browser = getBrowser();
         THREAD_LOCAL_BROWSER.set(browser);
@@ -96,7 +96,7 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
 
     /**
      * Get browser for current thread.
-     * 
+     *
      * @return Browser instance for current thread
      * @throws IllegalStateException if called outside test context
      */
@@ -105,14 +105,14 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
         if (browser != null) {
             return browser;
         }
-        
+
         // Fallback: get from thread map
         long threadId = Thread.currentThread().threadId();
         BrowserResource resource = BROWSERS_BY_THREAD.get(threadId);
         if (resource != null) {
             return resource.getBrowser();
         }
-        
+
         throw new IllegalStateException(
             "Browser not available. Ensure @ExtendWith(BrowserLifecycleExtension.class) is present on test class."
         );
@@ -124,21 +124,21 @@ public class BrowserLifecycleExtension implements BeforeAllCallback, AfterAllCal
     private static class BrowserResource {
         private final Playwright playwright;
         private final Browser browser;
-        
+
         public BrowserResource() {
             this.playwright = Playwright.create();
-            
+
             var launchOptions = new BrowserType.LaunchOptions()
                     .setHeadless(IS_HEADLESS)
                     .setSlowMo(SLOW_MO_MS);
 
             this.browser = playwright.chromium().launch(launchOptions);
         }
-        
+
         public Browser getBrowser() {
             return browser;
         }
-        
+
         public void close() {
             if (browser != null) {
                 try {
