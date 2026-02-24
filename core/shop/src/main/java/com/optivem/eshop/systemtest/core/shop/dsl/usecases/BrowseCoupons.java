@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons;
+package com.optivem.eshop.systemtest.core.shop.dsl.usecases;
 
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;

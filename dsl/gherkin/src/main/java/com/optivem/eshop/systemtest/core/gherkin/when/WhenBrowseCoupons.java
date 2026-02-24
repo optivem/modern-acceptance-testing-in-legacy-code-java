@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.core.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.core.shop.commons.dtos.coupons.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
 
 public class WhenBrowseCoupons extends BaseWhenStep<BrowseCouponsResponse, BrowseCouponsVerification> {
     public WhenBrowseCoupons(SystemDsl app) {

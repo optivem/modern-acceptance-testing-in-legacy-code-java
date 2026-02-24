@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.core.shop.dsl;
 
 import com.optivem.eshop.systemtest.core.shop.driver.ShopDriver;
 import com.optivem.eshop.systemtest.core.shop.dsl.usecases.GoToShop;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.BrowseCoupons;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.coupons.PublishCoupon;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.CancelOrder;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.PlaceOrder;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.orders.ViewOrder;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCoupons;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.CancelOrder;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrder;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PublishCoupon;
+import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrder;
 import com.optivem.commons.util.Closer;
 import com.optivem.commons.dsl.UseCaseContext;
 
