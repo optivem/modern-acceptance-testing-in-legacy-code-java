@@ -16,10 +16,10 @@ repositories {
 }
 
 dependencies {
-    api project(':system-dsl-impl:shop')
-    api project(':system-dsl-impl:erp')
-    api project(':system-dsl-impl:tax')
-    api project(':system-dsl-impl:clock')
+    api project(':dsl-impl:system:shop')
+    api project(':dsl-impl:system:erp')
+    api project(':dsl-impl:system:tax')
+    api project(':dsl-impl:system:clock')
 
     api project(':driver-impl:shop')
     api project(':driver-impl:erp')

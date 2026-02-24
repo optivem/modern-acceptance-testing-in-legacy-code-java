@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    api project(':system-dsl-impl:shop')
+    api project(':dsl-impl:system:shop')
     api project(':commons')
 
     api 'com.optivem:optivem-testing:1.0.4'
