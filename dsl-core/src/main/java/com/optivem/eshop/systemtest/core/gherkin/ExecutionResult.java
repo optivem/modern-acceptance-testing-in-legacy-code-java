@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
 import lombok.Getter;
 
 @Getter

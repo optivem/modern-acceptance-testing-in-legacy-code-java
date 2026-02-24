@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.given;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenClockImpl;
 import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCountryImpl;
 import com.optivem.eshop.systemtest.core.gherkin.given.steps.GivenCouponImpl;

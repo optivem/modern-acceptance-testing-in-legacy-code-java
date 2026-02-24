@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.core.gherkin.when.steps;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStepPort;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.BrowseCouponsVerification;
 
 public class WhenBrowseCouponsImpl extends BaseWhenStep<BrowseCouponsResponse, BrowseCouponsVerification> implements WhenStepPort {
     public WhenBrowseCouponsImpl(SystemDsl app) {

@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.then.steps;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenSuccessPort;
 

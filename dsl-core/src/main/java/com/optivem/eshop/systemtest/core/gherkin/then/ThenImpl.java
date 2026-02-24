@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.core.gherkin.then;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.then.steps.ThenFailureImpl;
 import com.optivem.eshop.systemtest.core.gherkin.then.steps.ThenSuccessImpl;

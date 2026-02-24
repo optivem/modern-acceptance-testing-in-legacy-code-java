@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.when;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenBrowseCouponsImpl;
 import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenCancelOrderImpl;
 import com.optivem.eshop.systemtest.core.gherkin.when.steps.WhenGoToShopImpl;

@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.configuration;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
-import com.optivem.eshop.systemtest.core.SystemConfiguration;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemConfiguration;
 import com.optivem.eshop.systemtest.driver.api.clock.ClockDriver;
 import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
-import com.optivem.eshop.systemtest.core.shop.ChannelType;
+import com.optivem.eshop.systemtest.core.system.shop.ChannelType;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.core.clock.driver.ClockRealDriver;

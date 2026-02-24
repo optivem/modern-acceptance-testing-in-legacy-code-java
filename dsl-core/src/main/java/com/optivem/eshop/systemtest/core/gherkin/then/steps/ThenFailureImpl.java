@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.core.gherkin.then.steps;
 
 import com.optivem.commons.dsl.ResponseVerification;
 import com.optivem.commons.dsl.VoidVerification;
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailurePort;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.ShopUseCaseResult;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.base.SystemErrorFailureVerification;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.base.SystemErrorFailureVerification;
 
 public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>>
         extends BaseThenStep<Void, VoidVerification> implements ThenFailurePort {

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.core.gherkin.given.steps;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenStepPort;
 import com.optivem.eshop.systemtest.core.gherkin.when.WhenImpl;

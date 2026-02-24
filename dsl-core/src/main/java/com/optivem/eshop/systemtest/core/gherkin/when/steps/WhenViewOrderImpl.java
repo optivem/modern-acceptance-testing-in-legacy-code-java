@@ -2,12 +2,12 @@ package com.optivem.eshop.systemtest.core.gherkin.when.steps;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_ORDER_NUMBER;
 
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResult;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenViewOrderPort;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.ViewOrderVerification;
 
 public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrderPort {
     private String orderNumber;

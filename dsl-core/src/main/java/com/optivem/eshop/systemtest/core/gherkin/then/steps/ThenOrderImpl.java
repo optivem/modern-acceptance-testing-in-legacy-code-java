@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.core.gherkin.then.steps;
 
 import com.optivem.commons.dsl.ResponseVerification;
-import com.optivem.eshop.systemtest.core.SystemDsl;
+import com.optivem.eshop.systemtest.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.core.gherkin.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenOrderPort;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.PlaceOrderVerification;
-import com.optivem.eshop.systemtest.core.shop.dsl.usecases.ViewOrderVerification;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.PlaceOrderVerification;
+import com.optivem.eshop.systemtest.core.system.shop.dsl.usecases.ViewOrderVerification;
 
 import static com.optivem.eshop.systemtest.core.gherkin.GherkinDefaults.DEFAULT_COUPON_CODE;
 
