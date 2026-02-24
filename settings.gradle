@@ -2,7 +2,7 @@ rootProject.name = 'modern-acceptance-testing-in-legacy-code-java'
 
 include 'commons'
 
-include 'test-infrastructure'
+include 'system-test:test-infrastructure'
 
 include 'dsl-impl'
 include 'dsl-port'
