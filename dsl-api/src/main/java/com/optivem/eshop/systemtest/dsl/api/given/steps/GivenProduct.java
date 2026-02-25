@@ -8,6 +8,5 @@ public interface GivenProduct extends GivenStep {
     GivenProduct withUnitPrice(String unitPrice);
 
     GivenProduct withUnitPrice(double unitPrice);
-
 }
 
