@@ -10,7 +10,8 @@ include 'dsl-common'
 include 'driver-api'
 include 'driver-common'
 
-include 'driver-core'
+include 'driver-adapters'
+project(':driver-adapters').projectDir = file('driver-core')
 
 include 'system-test:acceptance-test'
 include 'system-test:smoke-test'
