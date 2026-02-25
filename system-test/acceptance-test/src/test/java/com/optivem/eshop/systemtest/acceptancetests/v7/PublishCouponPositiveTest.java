@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7.coupons;
+package com.optivem.eshop.systemtest.acceptancetests.v7;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
@@ -51,4 +51,5 @@ class PublishCouponPositiveTest extends BaseAcceptanceTest {
                 .hasUsedCount(0);
     }
 }
+
 

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
+package com.optivem.eshop.systemtest.acceptancetests.v7;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
@@ -29,5 +29,6 @@ class ViewOrderNegativeTest extends BaseAcceptanceTest {
                     .errorMessage(expectedErrorMessage);
     }
 }
+
 
 

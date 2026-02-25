@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
+package com.optivem.eshop.systemtest.acceptancetests.v7;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
@@ -42,5 +42,6 @@ class CancelOrderNegativeTest extends BaseAcceptanceTest {
                     .errorMessage("Order non-existent-order-12345 does not exist.");
     }
 }
+
 
 

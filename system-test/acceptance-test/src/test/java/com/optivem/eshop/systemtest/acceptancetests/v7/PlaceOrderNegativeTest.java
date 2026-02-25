@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
+package com.optivem.eshop.systemtest.acceptancetests.v7;
 
 import com.optivem.eshop.systemtest.acceptancetests.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
@@ -177,5 +177,6 @@ class PlaceOrderNegativeTest extends BaseAcceptanceTest {
                     .fieldErrorMessage("couponCode", "Coupon code LIMITED2024 has exceeded its usage limit");
     }
 }
+
 
 

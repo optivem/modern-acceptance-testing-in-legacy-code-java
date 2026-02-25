@@ -1,19 +1,19 @@
-package com.optivem.eshop.systemtest.acceptancetests.v7.orders;
+package com.optivem.eshop.systemtest.acceptancetests.v7;
 
 import com.optivem.eshop.systemtest.acceptancetests.v7.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-class ViewOrderPositiveTest extends BaseAcceptanceTest {
+class BrowseCouponsPositiveTest extends BaseAcceptanceTest {
     @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void shouldBeAbleToViewOrder() {
+    @Channel({ ChannelType.UI, ChannelType.API })
+    void shouldBeAbleToBrowseCoupons() {
         scenario
-                .given().order()
-                .when().viewOrder()
+                .when().browseCoupons()
                 .then().shouldSucceed();
     }
+
 }
 
 
