@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
 class PlaceOrderNegativeTest extends BaseE2eTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithInvalidQuantity() {

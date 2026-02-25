@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 
 class ClockStubContractTest extends BaseClockContractTest {
-
     @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.STUB;

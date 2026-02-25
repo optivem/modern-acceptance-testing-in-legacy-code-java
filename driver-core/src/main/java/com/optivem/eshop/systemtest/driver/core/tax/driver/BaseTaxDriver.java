@@ -9,7 +9,6 @@ import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
 public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements TaxDriver {
-
     protected final TClient client;
 
     protected BaseTaxDriver(TClient client) {

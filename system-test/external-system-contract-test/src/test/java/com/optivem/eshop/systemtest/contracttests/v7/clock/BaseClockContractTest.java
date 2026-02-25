@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 
 public abstract class BaseClockContractTest extends BaseExternalSystemContractTest {
-
     @Test
     void shouldBeAbleToGetTime() {
         app.clock().returnsTime()

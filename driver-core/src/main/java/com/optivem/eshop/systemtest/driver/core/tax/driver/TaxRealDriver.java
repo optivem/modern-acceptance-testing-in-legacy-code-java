@@ -6,7 +6,6 @@ import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
 import com.optivem.commons.util.Result;
 
 public class TaxRealDriver extends BaseTaxDriver<TaxRealClient> {
-
     public TaxRealDriver(String baseUrl) {
         super(new TaxRealClient(baseUrl));
     }

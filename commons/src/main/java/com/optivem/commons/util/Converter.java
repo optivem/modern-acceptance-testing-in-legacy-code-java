@@ -9,7 +9,6 @@ import java.util.Locale;
 import java.util.function.Function;
 
 public class Converter {
-
     private Converter() {
         throw new IllegalStateException("Utility class");
     }

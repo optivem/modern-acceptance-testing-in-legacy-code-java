@@ -9,7 +9,6 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PlaceOrderNegativeTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldRejectOrderWithInvalidQuantity() {

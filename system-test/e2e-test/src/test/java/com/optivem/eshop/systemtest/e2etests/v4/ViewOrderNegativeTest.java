@@ -13,7 +13,6 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderNegativeTest extends BaseE2eTest {
-
     private static Stream<Arguments> provideNonExistentOrderValues() {
         return Stream.of(
                 Arguments.of("NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."),

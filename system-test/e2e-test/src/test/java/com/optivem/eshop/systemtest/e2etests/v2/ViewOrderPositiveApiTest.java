@@ -14,7 +14,6 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.S
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderPositiveApiTest extends BaseE2eTest {
-
     @Override
     protected void setShopDriver() {
         setUpShopApiClient();

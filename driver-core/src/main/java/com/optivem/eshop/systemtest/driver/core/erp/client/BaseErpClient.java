@@ -7,7 +7,6 @@ import com.optivem.commons.util.Closer;
 import com.optivem.commons.util.Result;
 
 public abstract class BaseErpClient implements AutoCloseable {
-
     private static final String HEALTH_ENDPOINT = "/health";
     private static final String PRODUCTS_ENDPOINT = "/api/products";
 

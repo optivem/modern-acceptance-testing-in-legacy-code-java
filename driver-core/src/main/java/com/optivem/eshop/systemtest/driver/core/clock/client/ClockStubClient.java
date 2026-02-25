@@ -9,7 +9,6 @@ import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResp
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClockErrorResponse;
 
 public class ClockStubClient implements AutoCloseable {
-
     private static final String HEALTH_ENDPOINT = "/health";
     private static final String TIME_ENDPOINT = "/api/time";
     private static final String CLOCK_TIME_ENDPOINT = "/clock/api/time";

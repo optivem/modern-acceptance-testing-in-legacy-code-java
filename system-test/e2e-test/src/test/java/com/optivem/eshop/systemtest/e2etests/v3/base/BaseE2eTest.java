@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import java.util.UUID;
 
 public abstract class BaseE2eTest extends BaseDriverTest {
-
     @BeforeEach
     void setUpDrivers() {
         setShopDriver();

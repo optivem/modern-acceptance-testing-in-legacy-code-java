@@ -8,7 +8,6 @@ import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClie
 
 
 public class TaxStubClient extends BaseTaxClient {
-
     private static final String COUNTRIES_ENDPOINT = "/tax/api/countries";
     
     private final JsonWireMockClient wireMockClient;

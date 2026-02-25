@@ -9,7 +9,6 @@ import org.junit.jupiter.api.TestTemplate;
 
 @Isolated
 class PlaceOrderNegativeIsolatedTest extends BaseAcceptanceTest {
-
     @TimeDependent
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

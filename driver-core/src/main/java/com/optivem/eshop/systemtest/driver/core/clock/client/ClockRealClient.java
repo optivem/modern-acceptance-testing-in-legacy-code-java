@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClock
 import java.time.Instant;
 
 public class ClockRealClient {
-
     public Result<Void, ExtClockErrorResponse> checkHealth() {
         now();
         return Result.success();

@@ -9,7 +9,6 @@ import com.optivem.eshop.systemtest.driver.api.clock.dtos.error.ClockErrorRespon
 import com.optivem.commons.util.Result;
 
 public class ClockRealDriver implements ClockDriver {
-
     private final ClockRealClient client;
 
     public ClockRealDriver() {

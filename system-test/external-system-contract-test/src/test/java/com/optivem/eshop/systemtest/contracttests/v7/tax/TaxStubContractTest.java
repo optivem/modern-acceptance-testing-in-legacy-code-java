@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
 class TaxStubContractTest extends BaseTaxContractTest {
-
     @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.STUB;

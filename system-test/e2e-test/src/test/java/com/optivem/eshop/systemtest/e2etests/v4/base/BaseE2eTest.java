@@ -6,7 +6,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.ExternalSystemMode;
 import java.util.UUID;
 
 public abstract class BaseE2eTest extends BaseChannelDriverTest {
-
     @Override
     protected ExternalSystemMode getFixedExternalSystemMode() {
         return ExternalSystemMode.REAL;

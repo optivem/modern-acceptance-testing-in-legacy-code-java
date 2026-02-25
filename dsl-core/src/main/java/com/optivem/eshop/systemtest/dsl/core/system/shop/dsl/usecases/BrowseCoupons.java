@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.ShopU
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 public class BrowseCoupons extends BaseShopCommand<BrowseCouponsResponse, BrowseCouponsVerification> {
-
     public BrowseCoupons(ShopDriver driver, UseCaseContext context) {
         super(driver, context);
     }

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.TestTemplate;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 
 class ViewOrderPositiveTest extends BaseE2eTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldViewPlacedOrder() {

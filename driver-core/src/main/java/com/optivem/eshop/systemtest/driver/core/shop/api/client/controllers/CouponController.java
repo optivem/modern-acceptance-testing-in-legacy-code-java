@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
 import com.optivem.commons.util.Result;
 
 public class CouponController {
-
     private static final String ENDPOINT = "/api/coupons";
 
     private final JsonHttpClient<ProblemDetailResponse> httpClient;

@@ -7,7 +7,6 @@ import org.yaml.snakeyaml.Yaml;
 import java.util.Map;
 
 public class SystemConfigurationLoader {
-
     private static final String BASE_URL = "baseUrl";
 
     private SystemConfigurationLoader() {

@@ -8,7 +8,6 @@ import org.junit.jupiter.api.TestTemplate;
 
 @Isolated
 class CancelOrderNegativeIsolatedTest extends BaseAcceptanceTest {
-
     @TimeDependent
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})

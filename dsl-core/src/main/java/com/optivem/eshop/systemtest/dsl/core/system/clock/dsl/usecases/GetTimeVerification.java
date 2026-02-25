@@ -10,7 +10,6 @@ import java.time.Instant;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
-
     public GetTimeVerification(GetTimeResponse response, UseCaseContext context) {
         super(response, context);
     }

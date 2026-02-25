@@ -5,7 +5,6 @@ import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErro
 import com.optivem.commons.util.Result;
 
 public class ErpRealClient extends BaseErpClient {
-
     private static final String PRODUCTS_ENDPOINT = "/api/products";
 
     public ErpRealClient(String baseUrl) {

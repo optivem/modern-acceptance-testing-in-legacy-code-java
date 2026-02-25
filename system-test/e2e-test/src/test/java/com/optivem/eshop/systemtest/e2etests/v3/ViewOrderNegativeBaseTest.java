@@ -7,7 +7,6 @@ import static com.optivem.commons.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 abstract class ViewOrderNegativeBaseTest extends BaseE2eTest {
-
     @Test
     void shouldNotBeAbleToViewNonExistentOrder() {
         var orderNumber = "NON-EXISTENT-ORDER-99999";

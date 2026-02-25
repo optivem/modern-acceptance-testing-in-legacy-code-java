@@ -8,7 +8,6 @@ import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
 import com.optivem.commons.util.Closer;
 
 public class ShopApiClient implements AutoCloseable {
-
     private final JsonHttpClient<ProblemDetailResponse> httpClient;
     private final HealthController healthController;
     private final OrderController orderController;

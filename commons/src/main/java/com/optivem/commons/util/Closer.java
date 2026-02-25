@@ -1,7 +1,6 @@
 package com.optivem.commons.util;
 
 public class Closer {
-
     private Closer() {
         throw new IllegalStateException("Utility class");
     }

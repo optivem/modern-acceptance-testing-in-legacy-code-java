@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
 import com.optivem.commons.util.Result;
 
 public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
-
     private static final String DEFAULT_TITLE = "Test Product Title";
     private static final String DEFAULT_DESCRIPTION = "Test Product Description";
     private static final String DEFAULT_CATEGORY = "Test Category";

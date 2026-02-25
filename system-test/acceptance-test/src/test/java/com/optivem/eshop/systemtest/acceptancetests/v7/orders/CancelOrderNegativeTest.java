@@ -8,7 +8,6 @@ import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
 class CancelOrderNegativeTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ChannelType.API})
     @DataSource({"NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."})

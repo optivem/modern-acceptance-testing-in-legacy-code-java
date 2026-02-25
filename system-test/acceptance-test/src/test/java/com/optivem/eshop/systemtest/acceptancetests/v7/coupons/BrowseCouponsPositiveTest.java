@@ -6,7 +6,6 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
 class BrowseCouponsPositiveTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ ChannelType.UI, ChannelType.API })
     void shouldBeAbleToBrowseCoupons() {

@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.contracttests.v7.base.BaseExternalSystemCont
 import org.junit.jupiter.api.Test;
 
 public abstract class BaseTaxContractTest extends BaseExternalSystemContractTest {
-
     @Test
     void shouldBeAbleToGetTaxRate() {
         app.tax().returnsTaxRate()

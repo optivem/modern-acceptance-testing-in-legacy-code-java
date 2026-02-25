@@ -10,7 +10,6 @@ import java.net.http.HttpResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderNegativeApiTest extends BaseE2eTest {
-
     @Override
     protected void setShopDriver() {
         setUpShopHttpClient();

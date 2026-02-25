@@ -7,7 +7,6 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
 class CancelOrderPositiveTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldHaveCancelledStatusWhenCancelled() {

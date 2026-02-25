@@ -8,7 +8,6 @@ import com.optivem.commons.util.Converter;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BrowseCouponsVerification extends ResponseVerification<BrowseCouponsResponse> {
-
     public BrowseCouponsVerification(BrowseCouponsResponse response, UseCaseContext context) {
         super(response, context);
     }

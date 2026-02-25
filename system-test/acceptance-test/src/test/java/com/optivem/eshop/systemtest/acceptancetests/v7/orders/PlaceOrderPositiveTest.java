@@ -9,7 +9,6 @@ import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
 class PlaceOrderPositiveTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToPlaceOrderForValidInput() {

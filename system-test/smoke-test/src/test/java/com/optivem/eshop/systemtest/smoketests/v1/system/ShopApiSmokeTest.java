@@ -11,7 +11,6 @@ import java.net.http.HttpResponse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ShopApiSmokeTest extends BaseRawTest {
-
     private static final String HEALTH_ENDPOINT = "/health";
 
     @BeforeEach

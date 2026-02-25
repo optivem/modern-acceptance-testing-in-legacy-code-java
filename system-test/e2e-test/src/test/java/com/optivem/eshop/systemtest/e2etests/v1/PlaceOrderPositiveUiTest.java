@@ -16,7 +16,6 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderPositiveUiTest extends BaseE2eTest {
-
     @Override
     protected void setShopDriver() {
         setUpShopBrowser();

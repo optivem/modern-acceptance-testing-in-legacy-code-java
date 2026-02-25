@@ -8,7 +8,6 @@ import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;
 
 public class TaxStubDriver extends BaseTaxDriver<TaxStubClient> {
-
     public TaxStubDriver(String baseUrl) {
         super(new TaxStubClient(baseUrl));
     }

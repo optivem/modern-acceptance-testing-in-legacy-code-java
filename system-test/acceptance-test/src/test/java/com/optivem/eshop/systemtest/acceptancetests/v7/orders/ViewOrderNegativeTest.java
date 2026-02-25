@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 class ViewOrderNegativeTest extends BaseAcceptanceTest {
-
     private static Stream<Arguments> provideNonExistentOrderValues() {
         return Stream.of(
                 Arguments.of("NON-EXISTENT-ORDER-99999", "Order NON-EXISTENT-ORDER-99999 does not exist."),

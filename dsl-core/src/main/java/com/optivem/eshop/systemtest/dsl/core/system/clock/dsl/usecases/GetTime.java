@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.clock.dsl.usecases.base.Cloc
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 public class GetTime extends BaseClockCommand<GetTimeResponse, GetTimeVerification> {
-
     public GetTime(ClockDriver driver, UseCaseContext context) {
         super(driver, context);
     }

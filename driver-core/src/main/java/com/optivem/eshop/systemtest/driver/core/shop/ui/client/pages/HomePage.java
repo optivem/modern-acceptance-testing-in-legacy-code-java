@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.driver.core.shop.client.ui.pages;
 import com.optivem.eshop.systemtest.driver.core.shared.playwright.PageClient;
 
 public class HomePage extends BasePage {
-
     private static final String SHOP_BUTTON_SELECTOR = "a[href='/shop']";
     private static final String ORDER_HISTORY_BUTTON_SELECTOR = "a[href='/order-history']";
     private static final String COUPON_MANAGEMENT_BUTTON_SELECTOR = "a[href='/admin-coupons']";

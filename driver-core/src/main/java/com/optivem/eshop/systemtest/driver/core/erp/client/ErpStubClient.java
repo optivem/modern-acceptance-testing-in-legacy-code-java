@@ -9,7 +9,6 @@ import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClie
 
 
 public class ErpStubClient extends BaseErpClient {
-
     private static final String ERP_PRODUCTS_ENDPOINT = "/erp/api/products";
 
     private final JsonWireMockClient wireMockClient;

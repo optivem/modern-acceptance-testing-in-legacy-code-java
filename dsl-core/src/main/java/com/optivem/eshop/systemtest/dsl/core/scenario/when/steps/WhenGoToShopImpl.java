@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
 
 public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> implements WhenStep {
-
     public WhenGoToShopImpl(SystemDsl app) {
         super(app);
     }

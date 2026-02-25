@@ -17,7 +17,6 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderPositiveTest extends BaseE2eTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldPlaceOrderWithCorrectSubtotalPrice() {

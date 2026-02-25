@@ -14,7 +14,6 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.S
 import static org.assertj.core.api.Assertions.assertThat;
 
 abstract class ViewOrderPositiveBaseTest extends BaseE2eTest {
-
     @Test
     void shouldViewPlacedOrder() {
         // Given

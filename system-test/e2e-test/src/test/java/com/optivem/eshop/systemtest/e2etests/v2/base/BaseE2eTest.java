@@ -6,7 +6,6 @@ import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseE2eTest extends BaseClientTest {
-
     @BeforeEach
     void setUp() {
         setShopDriver();

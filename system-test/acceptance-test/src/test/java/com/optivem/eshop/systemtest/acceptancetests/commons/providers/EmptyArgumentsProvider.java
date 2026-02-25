@@ -10,7 +10,6 @@ import java.util.stream.Stream;
  * Provides test arguments for empty quantity validation tests.
  */
 public class EmptyArgumentsProvider implements ArgumentsProvider {
-
     @Override
     public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(

@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ErpErrorVerification extends ResponseVerification<ErpErrorResponse> {
-
     public ErpErrorVerification(ErpErrorResponse error, UseCaseContext context) {
         super(error, context);
     }

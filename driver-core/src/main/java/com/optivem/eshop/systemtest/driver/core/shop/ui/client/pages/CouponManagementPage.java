@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CouponManagementPage extends BasePage {
-
     private static final String COUPON_CODE_INPUT_SELECTOR = "[aria-label=\"Coupon Code\"]";
     private static final String DISCOUNT_RATE_INPUT_SELECTOR = "[aria-label=\"Discount Rate\"]";
     private static final String VALID_FROM_INPUT_SELECTOR = "[aria-label=\"Valid From\"]";

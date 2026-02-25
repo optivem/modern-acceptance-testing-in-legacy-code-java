@@ -6,7 +6,6 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
 class ShopSmokeTest extends BaseSystemDslTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldBeAbleToGoToShop() {

@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetProductVerification extends ResponseVerification<GetProductResponse> {
-
     public GetProductVerification(GetProductResponse response, UseCaseContext context) {
         super(response, context);
     }

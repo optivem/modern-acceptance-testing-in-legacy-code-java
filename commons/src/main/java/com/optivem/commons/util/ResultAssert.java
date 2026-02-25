@@ -3,7 +3,6 @@ package com.optivem.commons.util;
 import org.assertj.core.api.AbstractAssert;
 
 public class ResultAssert<T, E> extends AbstractAssert<ResultAssert<T, E>, Result<T, E>> {
-
     private ResultAssert(Result<T, E> actual) {
         super(actual, ResultAssert.class);
     }

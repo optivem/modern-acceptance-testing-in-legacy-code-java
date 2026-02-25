@@ -12,7 +12,6 @@ import com.optivem.commons.util.Result;
  * This allows tests to run without a real ERP system.
  */
 public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
-
     public ErpStubDriver(String baseUrl) {
         super(new ErpStubClient(baseUrl));
     }

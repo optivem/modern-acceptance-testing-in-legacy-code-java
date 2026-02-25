@@ -12,7 +12,6 @@ import com.optivem.commons.util.Converter;
 import com.optivem.commons.util.Result;
 
 public class ClockStubDriver implements ClockDriver {
-
     private final ClockStubClient client;
 
     public ClockStubDriver(String baseUrl) {

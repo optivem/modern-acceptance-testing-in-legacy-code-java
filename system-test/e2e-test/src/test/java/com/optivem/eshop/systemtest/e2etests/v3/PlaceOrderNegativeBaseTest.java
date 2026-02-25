@@ -13,7 +13,6 @@ import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*
 import static org.assertj.core.api.Assertions.assertThat;
 
 abstract class PlaceOrderNegativeBaseTest extends BaseE2eTest {
-
     @Test
     void shouldRejectOrderWithInvalidQuantity() {
         var request = PlaceOrderRequest.builder()

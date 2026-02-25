@@ -7,7 +7,6 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PublishCouponNegativeTest extends BaseAcceptanceTest {
-
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     @ValueSource(strings = {"0.0", "-0.01", "-0.15"})

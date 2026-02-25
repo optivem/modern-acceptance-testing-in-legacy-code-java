@@ -4,7 +4,6 @@ import com.optivem.eshop.systemtest.base.v5.BaseSystemDslTest;
 import org.junit.jupiter.api.Test;
 
 class TaxSmokeTest extends BaseSystemDslTest {
-
     @Test
     void shouldBeAbleToGoToTax() {
         app.tax().goToTax()

@@ -8,7 +8,6 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 
 public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
-
     private String time;
 
     public ReturnsTime(ClockDriver driver, UseCaseContext context) {
