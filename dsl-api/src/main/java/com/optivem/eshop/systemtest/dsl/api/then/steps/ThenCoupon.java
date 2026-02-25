@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.api.then.steps;
 
+import com.optivem.eshop.systemtest.dsl.api.then.steps.base.ThenStep;
+
 public interface ThenCoupon extends ThenStep {
 
     ThenCoupon hasDiscountRate(double discountRate);

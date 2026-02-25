@@ -1,8 +1,9 @@
 package com.optivem.eshop.systemtest.dsl.api.when.steps;
 
 import com.optivem.eshop.systemtest.dsl.api.then.Then;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
 
-public interface WhenPlaceOrder {
+public interface WhenPlaceOrder extends WhenStep {
     WhenPlaceOrder withOrderNumber(String orderNumber);
 
     WhenPlaceOrder withSku(String sku);
@@ -16,7 +17,5 @@ public interface WhenPlaceOrder {
     WhenPlaceOrder withCouponCode(String couponCode);
 
     WhenPlaceOrder withCouponCode();
-
-    Then then();
 }
 

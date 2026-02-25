@@ -1,8 +1,9 @@
 package com.optivem.eshop.systemtest.dsl.api.when.steps;
 
 import com.optivem.eshop.systemtest.dsl.api.then.Then;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
 
-public interface WhenPublishCoupon {
+public interface WhenPublishCoupon extends WhenStep {
     WhenPublishCoupon withCouponCode(String couponCode);
 
     WhenPublishCoupon withDiscountRate(String discountRate);
@@ -16,7 +17,5 @@ public interface WhenPublishCoupon {
     WhenPublishCoupon withUsageLimit(String usageLimit);
 
     WhenPublishCoupon withUsageLimit(int usageLimit);
-
-    Then then();
 }
 

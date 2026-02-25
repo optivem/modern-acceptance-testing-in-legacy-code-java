@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStep;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
 
 public class WhenGoToShopImpl extends BaseWhenStep<Void, VoidVerification> implements WhenStep {
 

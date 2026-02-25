@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.when.steps;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenStep;
+import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.BrowseCouponsVerification;
 

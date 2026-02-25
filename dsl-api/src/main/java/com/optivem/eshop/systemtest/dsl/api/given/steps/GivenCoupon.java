@@ -1,5 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.api.given.steps;
 
+import com.optivem.eshop.systemtest.dsl.api.given.steps.base.GivenStep;
+
 public interface GivenCoupon extends GivenStep {
     GivenCoupon withCouponCode(String couponCode);
 

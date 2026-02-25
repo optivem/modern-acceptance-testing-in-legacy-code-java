@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api.given.steps;
+package com.optivem.eshop.systemtest.dsl.api.given.steps.base;
 
 import com.optivem.eshop.systemtest.dsl.api.given.Given;
 import com.optivem.eshop.systemtest.dsl.api.when.When;
@@ -8,4 +8,3 @@ public interface GivenStep {
 
     When when();
 }
-
