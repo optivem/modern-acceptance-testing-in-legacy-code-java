@@ -11,4 +11,3 @@ public interface ThenSuccess extends ThenStep<ThenSuccess> {
 
     ThenCoupon coupon(String couponCode);
 }
-
