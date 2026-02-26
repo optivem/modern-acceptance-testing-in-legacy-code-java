@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.core.tax.driver;
+package com.optivem.eshop.systemtest.driver.core.tax;
 
 import com.optivem.eshop.systemtest.driver.core.tax.client.TaxRealClient;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.ReturnsTaxRateRequest;

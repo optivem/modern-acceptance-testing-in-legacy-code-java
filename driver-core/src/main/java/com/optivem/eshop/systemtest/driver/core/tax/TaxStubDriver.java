@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.core.tax.driver;
+package com.optivem.eshop.systemtest.driver.core.tax;
 
 import com.optivem.eshop.systemtest.driver.core.tax.client.TaxStubClient;
 import com.optivem.eshop.systemtest.driver.core.tax.client.dtos.ExtCountryDetailsResponse;
