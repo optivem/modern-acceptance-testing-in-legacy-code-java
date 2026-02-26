@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.when.steps;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 
-import com.optivem.commons.util.Converter;
+import com.optivem.common.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;

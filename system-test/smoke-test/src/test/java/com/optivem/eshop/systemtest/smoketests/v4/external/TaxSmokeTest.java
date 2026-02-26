@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.smoketests.v4.external;
 import com.optivem.eshop.systemtest.base.v4.BaseChannelDriverTest;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static com.optivem.common.util.ResultAssert.assertThatResult;
 
 class TaxSmokeTest extends BaseChannelDriverTest {
     @Test

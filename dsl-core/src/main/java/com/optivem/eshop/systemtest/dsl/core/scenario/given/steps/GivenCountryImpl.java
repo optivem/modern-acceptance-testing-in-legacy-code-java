@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 
-import com.optivem.commons.util.Converter;
+import com.optivem.common.util.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
 import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenCountry;

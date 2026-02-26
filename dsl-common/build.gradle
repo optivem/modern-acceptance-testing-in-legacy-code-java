@@ -16,5 +16,5 @@ repositories {
 }
 
 dependencies {
-    api project(':commons')
+    api project(':common')
 }

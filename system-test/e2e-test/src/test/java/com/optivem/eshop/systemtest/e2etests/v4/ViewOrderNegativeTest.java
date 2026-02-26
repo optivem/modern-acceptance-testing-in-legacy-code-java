@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static com.optivem.common.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderNegativeTest extends BaseE2eTest {

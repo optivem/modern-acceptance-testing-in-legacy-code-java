@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.system.shop.commons;
 
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 
 public final class SystemResults {
     private SystemResults() {

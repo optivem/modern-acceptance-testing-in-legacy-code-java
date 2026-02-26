@@ -8,8 +8,8 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderReques
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
-import com.optivem.commons.util.Closer;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Closer;
+import com.optivem.common.util.Result;
 
 public class ShopApiDriver implements ShopDriver {
     private final ShopApiClient apiClient;

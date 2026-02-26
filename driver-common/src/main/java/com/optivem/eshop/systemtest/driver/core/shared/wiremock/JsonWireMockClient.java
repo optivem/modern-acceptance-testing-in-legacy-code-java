@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.driver.core.shared.wiremock;
 import com.github.tomakehurst.wiremock.client.MappingBuilder;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.matching.UrlPathPattern;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 import wiremock.com.fasterxml.jackson.databind.ObjectMapper;
 import wiremock.com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 

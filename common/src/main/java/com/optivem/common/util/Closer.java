@@ -1,4 +1,4 @@
-package com.optivem.commons.util;
+package com.optivem.common.util;
 
 public class Closer {
     private Closer() {

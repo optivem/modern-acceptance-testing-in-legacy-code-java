@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestTemplate;
 
 import java.math.BigDecimal;
 
-import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static com.optivem.common.util.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 

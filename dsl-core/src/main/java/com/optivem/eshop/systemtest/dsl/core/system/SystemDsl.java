@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.ShopDsl;
 import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.TaxDsl;
-import com.optivem.commons.util.Closer;
+import com.optivem.common.util.Closer;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 import java.io.Closeable;

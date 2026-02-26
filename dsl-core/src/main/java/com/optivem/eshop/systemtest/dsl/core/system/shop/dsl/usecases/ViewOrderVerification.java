@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderRespons
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
-import com.optivem.commons.util.Converter;
+import com.optivem.common.util.Converter;
 
 import java.math.BigDecimal;
 import java.time.Instant;

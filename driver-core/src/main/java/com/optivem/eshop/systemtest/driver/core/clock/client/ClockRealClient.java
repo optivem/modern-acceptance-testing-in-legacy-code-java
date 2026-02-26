@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.driver.core.clock.client;
 
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClockErrorResponse;
 

@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.e2etests.v2;
 import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.commons.util.ResultAssert.assertThatResult;
+import static com.optivem.common.util.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderNegativeApiTest extends BaseE2eTest {

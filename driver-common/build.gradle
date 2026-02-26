@@ -16,6 +16,6 @@ repositories {
 }
 
 dependencies {
-    api project(':commons')
+    api project(':common')
     implementation 'org.springframework:spring-web:6.1.5'
 }

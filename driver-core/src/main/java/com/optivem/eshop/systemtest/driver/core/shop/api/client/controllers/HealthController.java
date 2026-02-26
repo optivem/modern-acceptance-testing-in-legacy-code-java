@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.driver.core.shop.client.api.controllers;
 
 import com.optivem.eshop.systemtest.driver.core.shop.client.api.dtos.errors.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 
 public class HealthController {
     private static final String ENDPOINT = "/health";

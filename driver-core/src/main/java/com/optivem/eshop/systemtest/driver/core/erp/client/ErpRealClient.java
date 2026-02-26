@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.driver.core.erp.client;
 
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 
 public class ErpRealClient extends BaseErpClient {
     private static final String PRODUCTS_ENDPOINT = "/api/products";

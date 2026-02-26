@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.driver.api.tax;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Result;
 
 public interface TaxDriver extends AutoCloseable {
     Result<Void, TaxErrorResponse> goToTax();

@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.driver.core.erp.client.ErpStubClient;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
-import com.optivem.commons.util.Converter;
-import com.optivem.commons.util.Result;
+import com.optivem.common.util.Converter;
+import com.optivem.common.util.Result;
 
 /**
  * ErpStubDriver uses WireMock to stub ERP API responses.
