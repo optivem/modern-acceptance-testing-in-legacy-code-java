@@ -26,7 +26,7 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
     void setUp() {
         var configuration = loadConfiguration();
 
-        shopDriver = createShopDriver(configuration);
+        shopDriver = createChannelShopDriver(configuration);
         erpDriver = new ErpRealDriver(configuration.getErpBaseUrl());
         taxDriver = new TaxRealDriver(configuration.getTaxBaseUrl());
     }
@@ -38,7 +38,7 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
         Closer.close(taxDriver);
     }
 
-    private ShopDriver createShopDriver(SystemConfiguration configuration) {
+    private ShopDriver createChannelShopDriver(SystemConfiguration configuration) {
         var channel = ChannelContext.get();
 
         if(channel == null) {

@@ -91,28 +91,32 @@ public class SystemDsl implements Closeable {
     public ShopDsl shop() {
         return getOrCreate(shop, () -> {
             shopDriver = getOrCreate(shopDriver, shopDriverSupplier);
-            return shop = new ShopDsl(shopDriver, context);
+            shop = new ShopDsl(shopDriver, context);
+            return shop;
         });
     }
 
     public ErpDsl erp() {
         return getOrCreate(erp, () -> {
             erpDriver = getOrCreate(erpDriver, erpDriverSupplier);
-            return erp = new ErpDsl(erpDriver, context);
+            erp = new ErpDsl(erpDriver, context);
+            return erp;
         });
     }
 
     public TaxDsl tax() {
         return getOrCreate(tax, () -> {
             taxDriver = getOrCreate(taxDriver, taxDriverSupplier);
-            return tax = new TaxDsl(taxDriver, context);
+            tax = new TaxDsl(taxDriver, context);
+            return tax;
         });
     }
 
     public ClockDsl clock() {
         return getOrCreate(clock, () -> {
             clockDriver = getOrCreate(clockDriver, clockDriverSupplier);
-            return clock = new ClockDsl(clockDriver, context);
+            clock = new ClockDsl(clockDriver, context);
+            return clock;
         });
     }
 
