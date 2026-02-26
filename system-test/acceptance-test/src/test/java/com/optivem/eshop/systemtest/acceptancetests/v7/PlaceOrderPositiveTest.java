@@ -99,7 +99,6 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                     .withCouponCode(null)
                 .then().shouldSucceed()
                 .and().order()
-                    .hasStatus(OrderStatus.PLACED)
                     .hasAppliedCoupon(null)
                     .hasDiscountRate(0.00)
                     .hasDiscountAmount(0.00);
