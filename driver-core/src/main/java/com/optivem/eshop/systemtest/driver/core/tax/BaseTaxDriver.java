@@ -5,8 +5,8 @@ import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.core.tax.client.BaseTaxClient;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.error.TaxErrorResponse;
-import com.optivem.common.util.Closer;
-import com.optivem.common.util.Result;
+import com.optivem.common.Closer;
+import com.optivem.common.Result;
 
 public abstract class BaseTaxDriver<TClient extends BaseTaxClient> implements TaxDriver {
     protected final TClient client;

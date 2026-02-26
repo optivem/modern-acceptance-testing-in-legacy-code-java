@@ -7,9 +7,9 @@ import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResp
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.error.ClockErrorResponse;
-import com.optivem.common.util.Closer;
-import com.optivem.common.util.Converter;
-import com.optivem.common.util.Result;
+import com.optivem.common.Closer;
+import com.optivem.common.Converter;
+import com.optivem.common.Result;
 
 public class ClockStubDriver implements ClockDriver {
     private final ClockStubClient client;

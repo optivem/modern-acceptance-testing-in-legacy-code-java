@@ -1,4 +1,4 @@
-package com.optivem.common.util;
+package com.optivem.common;
 
 import java.math.BigDecimal;
 import java.time.Instant;

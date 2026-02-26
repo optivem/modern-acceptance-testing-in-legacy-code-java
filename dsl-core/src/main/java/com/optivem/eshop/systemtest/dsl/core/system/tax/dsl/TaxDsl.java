@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.GetTaxRate;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.GoToTax;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.ReturnsTaxRate;
-import com.optivem.common.util.Closer;
+import com.optivem.common.Closer;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 import java.io.Closeable;

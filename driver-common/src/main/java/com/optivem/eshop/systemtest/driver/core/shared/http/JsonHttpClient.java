@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.driver.core.shared.http;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.optivem.common.util.Closer;
-import com.optivem.common.util.Result;
+import com.optivem.common.Closer;
+import com.optivem.common.Result;
 import org.springframework.http.HttpStatus;
 
 import java.net.URI;

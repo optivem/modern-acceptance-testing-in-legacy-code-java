@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.ViewOrderResponse;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
 public interface ShopDriver extends AutoCloseable {
     Result<Void, SystemError> goToShop();
