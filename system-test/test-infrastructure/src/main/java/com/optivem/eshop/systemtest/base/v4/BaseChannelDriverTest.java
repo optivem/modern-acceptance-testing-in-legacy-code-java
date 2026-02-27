@@ -7,9 +7,9 @@ import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;
-import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxRealDriver;
+import com.optivem.eshop.systemtest.driver.core.tax.TaxRealDriver;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
-import com.optivem.common.util.Closer;
+import com.optivem.common.Closer;
 import com.optivem.testing.contexts.ChannelContext;
 import com.optivem.testing.extensions.ChannelExtension;
 import org.junit.jupiter.api.AfterEach;
@@ -26,7 +26,7 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
     void setUp() {
         var configuration = loadConfiguration();
 
-        shopDriver = createShopDriver(configuration);
+        shopDriver = createChannelShopDriver(configuration);
         erpDriver = new ErpRealDriver(configuration.getErpBaseUrl());
         taxDriver = new TaxRealDriver(configuration.getTaxBaseUrl());
     }
@@ -38,7 +38,7 @@ public class BaseChannelDriverTest extends BaseConfigurableTest {
         Closer.close(taxDriver);
     }
 
-    private ShopDriver createShopDriver(SystemConfiguration configuration) {
+    private ShopDriver createChannelShopDriver(SystemConfiguration configuration) {
         var channel = ChannelContext.get();
 
         if(channel == null) {

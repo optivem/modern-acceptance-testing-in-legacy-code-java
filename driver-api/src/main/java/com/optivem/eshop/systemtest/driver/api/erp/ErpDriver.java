@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductResponse;
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
 public interface ErpDriver extends AutoCloseable {
     Result<Void, ErpErrorResponse> goToErp();

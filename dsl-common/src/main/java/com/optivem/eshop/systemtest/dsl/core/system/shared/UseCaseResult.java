@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.dsl.core.system.shared;
 
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
 import java.util.function.BiFunction;
 
-import static com.optivem.common.util.ResultAssert.assertThatResult;
+import static com.optivem.common.ResultAssert.assertThatResult;
 
 public class UseCaseResult<TSuccessResponse, TFailureResponse, TSuccessVerification, TFailureVerification> {
     private final Result<TSuccessResponse, TFailureResponse> result;

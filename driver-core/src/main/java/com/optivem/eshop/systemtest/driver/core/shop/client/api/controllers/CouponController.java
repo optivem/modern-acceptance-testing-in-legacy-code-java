@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.core.shop.client.api.dtos.errors.Prob
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
 public class CouponController {
     private static final String ENDPOINT = "/api/coupons";

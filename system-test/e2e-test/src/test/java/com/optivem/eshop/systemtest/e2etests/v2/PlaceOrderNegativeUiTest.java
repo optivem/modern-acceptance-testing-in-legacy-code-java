@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
 import org.junit.jupiter.api.Test;
 
-import static com.optivem.common.util.ResultAssert.assertThatResult;
+import static com.optivem.common.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -4,7 +4,7 @@ package com.optivem.eshop.systemtest.driver.core.erp.client;
 import com.optivem.eshop.systemtest.driver.core.shared.http.HttpStatus;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClient;
 
 

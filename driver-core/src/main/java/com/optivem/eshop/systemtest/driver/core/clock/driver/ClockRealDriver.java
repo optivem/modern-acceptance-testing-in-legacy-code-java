@@ -2,25 +2,22 @@ package com.optivem.eshop.systemtest.driver.core.clock.driver;
 
 import com.optivem.eshop.systemtest.driver.api.clock.ClockDriver;
 
-import com.optivem.eshop.systemtest.driver.core.clock.client.ClockStubClient;
-import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
+import com.optivem.eshop.systemtest.driver.core.clock.client.ClockRealClient;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.driver.api.clock.dtos.error.ClockErrorResponse;
-import com.optivem.common.util.Closer;
-import com.optivem.common.util.Converter;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
-public class ClockStubDriver implements ClockDriver {
-    private final ClockStubClient client;
+public class ClockRealDriver implements ClockDriver {
+    private final ClockRealClient client;
 
-    public ClockStubDriver(String baseUrl) {
-        this.client = new ClockStubClient(baseUrl);
+    public ClockRealDriver() {
+        this.client = new ClockRealClient();
     }
 
     @Override
     public void close() {
-        Closer.close(client);
+        // No resources to close - ClockRealClient has no HTTP or other resources
     }
 
     @Override
@@ -38,14 +35,8 @@ public class ClockStubDriver implements ClockDriver {
 
     @Override
     public Result<Void, ClockErrorResponse> returnsTime(ReturnsTimeRequest request) {
-        var time = Converter.toInstant(request.getTime());
-
-        var extResponse = ExtGetTimeResponse.builder()
-                .time(time)
-                .build();
-
-        return client.configureGetTime(extResponse)
-                .mapError(ext -> ClockErrorResponse.builder().message(ext.getMessage()).build());
+        // No-op because real clock cannot be configured
+        return Result.success();
     }
 }
 

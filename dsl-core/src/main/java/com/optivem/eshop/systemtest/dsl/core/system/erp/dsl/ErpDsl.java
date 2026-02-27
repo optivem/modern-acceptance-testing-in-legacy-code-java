@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.GetProduct;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.GoToErp;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.ReturnsProduct;
-import com.optivem.common.util.Closer;
+import com.optivem.common.Closer;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 
 public class ErpDsl implements AutoCloseable {

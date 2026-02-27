@@ -6,9 +6,9 @@ import com.optivem.eshop.systemtest.driver.core.erp.driver.ErpRealDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.core.shop.driver.ui.ShopUiDriver;
-import com.optivem.eshop.systemtest.driver.core.tax.driver.TaxRealDriver;
+import com.optivem.eshop.systemtest.driver.core.tax.TaxRealDriver;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
-import com.optivem.common.util.Closer;
+import com.optivem.common.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 

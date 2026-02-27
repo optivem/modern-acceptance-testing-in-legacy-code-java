@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.api.tax.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.TaxUseCaseResult;
-import com.optivem.common.util.Converter;
+import com.optivem.common.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 

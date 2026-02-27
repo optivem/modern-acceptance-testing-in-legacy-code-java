@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.driver.core.tax.client;
 import com.optivem.eshop.systemtest.driver.core.tax.client.dtos.ExtCountryDetailsResponse;
 import com.optivem.eshop.systemtest.driver.core.tax.client.dtos.error.ExtTaxErrorResponse;
 import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
-import com.optivem.common.util.Closer;
-import com.optivem.common.util.Result;
+import com.optivem.common.Closer;
+import com.optivem.common.Result;
 
 public abstract class BaseTaxClient implements AutoCloseable {
     private static final String HEALTH_ENDPOINT = "/health";

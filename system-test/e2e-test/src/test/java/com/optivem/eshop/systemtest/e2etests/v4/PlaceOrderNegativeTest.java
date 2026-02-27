@@ -10,7 +10,7 @@ import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.optivem.common.util.ResultAssert.assertThatResult;
+import static com.optivem.common.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.e2etests.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 

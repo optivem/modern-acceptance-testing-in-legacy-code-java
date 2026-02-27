@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.common.util.Converter;
+import com.optivem.common.Converter;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPublishCoupon;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;

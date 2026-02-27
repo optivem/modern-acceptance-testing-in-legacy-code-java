@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderReques
 import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.core.shop.client.api.dtos.errors.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
-import com.optivem.common.util.Result;
+import com.optivem.common.Result;
 
 public class OrderController {
     private static final String ENDPOINT = "/api/orders";

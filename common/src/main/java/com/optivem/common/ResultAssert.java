@@ -1,4 +1,4 @@
-package com.optivem.common.util;
+package com.optivem.common;
 
 import org.assertj.core.api.AbstractAssert;
 
