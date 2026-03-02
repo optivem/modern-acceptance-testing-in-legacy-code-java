@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.core.erp.driver;
+package com.optivem.eshop.systemtest.driver.core.erp;
 
 import com.optivem.eshop.systemtest.driver.core.erp.client.ErpRealClient;
 import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
