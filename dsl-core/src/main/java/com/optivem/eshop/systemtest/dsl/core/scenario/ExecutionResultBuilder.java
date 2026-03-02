@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.base.ShopUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.usecases.base.ShopUseCaseResult;
 
 public class ExecutionResultBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final ShopUseCaseResult<TSuccessResponse, TSuccessVerification> result;

@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenCoupon;
-import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.usecases.BrowseCouponsVerification;
 
 public class ThenCouponImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenStep<TSuccessResponse, TSuccessVerification> implements ThenCoupon {
     private final BrowseCouponsVerification verification;

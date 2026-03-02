@@ -1,0 +1,13 @@
+package com.optivem.eshop.systemtest.dsl.core.system.tax.usecases.base;
+
+import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
+import com.optivem.eshop.systemtest.driver.port.tax.dtos.error.TaxErrorResponse;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.BaseUseCase;
+import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
+
+public abstract class BaseTaxCommand<TResponse, TVerification> extends BaseUseCase<TaxDriver, TResponse, TaxErrorResponse, TVerification, TaxErrorVerification> {
+    protected BaseTaxCommand(TaxDriver driver, UseCaseContext context) {
+        super(driver, context);
+    }
+}
+

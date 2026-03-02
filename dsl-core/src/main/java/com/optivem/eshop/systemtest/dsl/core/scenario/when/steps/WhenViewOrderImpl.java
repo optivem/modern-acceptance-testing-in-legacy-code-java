@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenViewOrder;
-import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrderVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.usecases.ViewOrderVerification;
 
 public class WhenViewOrderImpl extends BaseWhenStep<ViewOrderResponse, ViewOrderVerification> implements WhenViewOrder {
     private String orderNumber;

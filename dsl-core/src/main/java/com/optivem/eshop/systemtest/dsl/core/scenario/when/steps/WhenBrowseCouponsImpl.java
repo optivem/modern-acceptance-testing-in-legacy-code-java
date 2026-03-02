@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.base.WhenStep;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.BrowseCouponsVerification;
+import com.optivem.eshop.systemtest.dsl.core.system.shop.usecases.BrowseCouponsVerification;
 
 public class WhenBrowseCouponsImpl extends BaseWhenStep<BrowseCouponsResponse, BrowseCouponsVerification> implements WhenStep {
     public WhenBrowseCouponsImpl(SystemDsl app) {
