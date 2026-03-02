@@ -1,4 +1,4 @@
-rootProject.name = 'modern-acceptance-testing-in-legacy-code-java'
+rootProject.name = 'eshop-tests-java'
 
 include 'common'
 

@@ -1,6 +1,6 @@
 # Modern Acceptance Testing in Legacy Code (Java)
 
-[![acceptance-stage](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml/badge.svg)](https://github.com/optivem/modern-acceptance-testing-in-legacy-code-java/actions/workflows/acceptance-stage.yml)
+[![acceptance-stage](https://github.com/optivem/eshop-tests-java/actions/workflows/acceptance-stage.yml/badge.svg)](https://github.com/optivem/eshop-tests-java/actions/workflows/acceptance-stage.yml)
 
 ## Prerequisites
 
