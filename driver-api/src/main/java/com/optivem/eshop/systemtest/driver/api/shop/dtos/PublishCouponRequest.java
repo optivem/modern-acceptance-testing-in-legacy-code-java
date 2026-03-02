@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.api.shop.dtos.coupons;
+package com.optivem.eshop.systemtest.driver.api.shop.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,4 +16,3 @@ public class PublishCouponRequest {
     private String validTo;
     private String usageLimit;
 }
-

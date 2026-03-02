@@ -6,7 +6,7 @@ import com.optivem.common.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenPlaceOrder;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PlaceOrderVerification;
 

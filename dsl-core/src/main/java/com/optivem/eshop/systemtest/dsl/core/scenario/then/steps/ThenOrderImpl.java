@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenOrder;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.PlaceOrderVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases.ViewOrderVerification;
 

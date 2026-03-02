@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.api.shop.dtos.orders;
+package com.optivem.eshop.systemtest.driver.api.shop.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,5 +12,3 @@ import lombok.NoArgsConstructor;
 public class PlaceOrderResponse {
     private String orderNumber;
 }
-
-

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.api.then.steps;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.orders.OrderStatus;
+import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.dsl.api.then.steps.base.ThenStep;
 
 public interface ThenOrder extends ThenStep<ThenOrder> {
