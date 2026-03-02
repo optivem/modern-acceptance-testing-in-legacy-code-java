@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.given.steps;
 import com.optivem.common.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.GivenImpl;
-import com.optivem.eshop.systemtest.dsl.api.given.steps.GivenProduct;
+import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenProduct;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 

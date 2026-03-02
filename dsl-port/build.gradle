@@ -16,5 +16,5 @@ repositories {
 }
 
 dependencies {
-    api project(':driver-api')
+    api project(':driver-port')
 }

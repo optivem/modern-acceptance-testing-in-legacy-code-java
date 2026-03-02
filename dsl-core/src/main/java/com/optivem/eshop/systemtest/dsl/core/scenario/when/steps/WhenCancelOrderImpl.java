@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.dsl.core.system.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
-import com.optivem.eshop.systemtest.dsl.api.when.steps.WhenCancelOrder;
+import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenCancelOrder;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.DEFAULT_ORDER_NUMBER;
 

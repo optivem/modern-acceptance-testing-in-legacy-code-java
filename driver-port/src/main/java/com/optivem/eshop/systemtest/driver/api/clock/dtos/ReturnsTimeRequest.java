@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.api.clock.dtos;
+package com.optivem.eshop.systemtest.driver.port.clock.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

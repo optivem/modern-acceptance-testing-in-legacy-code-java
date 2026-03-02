@@ -1,11 +1,11 @@
-package com.optivem.eshop.systemtest.driver.api.shop;
+package com.optivem.eshop.systemtest.driver.port.shop;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PublishCouponRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.ViewOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.errors.SystemError;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.common.Result;
 
 public interface ShopDriver extends AutoCloseable {

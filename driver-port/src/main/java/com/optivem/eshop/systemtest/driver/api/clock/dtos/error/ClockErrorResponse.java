@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.api.clock.dtos.error;
+package com.optivem.eshop.systemtest.driver.port.clock.dtos.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.driver.core.clock.client;
+package com.optivem.eshop.systemtest.driver.adapter.clock.client;
 
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
-import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClockErrorResponse;
+import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.ExtGetTimeResponse;
+import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.error.ExtClockErrorResponse;
 
 import java.time.Instant;
 

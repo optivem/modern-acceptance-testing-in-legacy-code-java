@@ -1,7 +1,7 @@
-package com.optivem.eshop.systemtest.driver.core.erp.client;
+package com.optivem.eshop.systemtest.driver.adapter.erp.client;
 
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErrorResponse;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtCreateProductRequest;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.error.ExtErpErrorResponse;
 import com.optivem.common.Result;
 
 public class ErpRealClient extends BaseErpClient {

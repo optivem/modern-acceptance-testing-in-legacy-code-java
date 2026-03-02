@@ -1,9 +1,9 @@
-package com.optivem.eshop.systemtest.driver.core.shop.api.client.controllers;
+package com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers;
 
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PublishCouponRequest;
-import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Result;
 
 public class CouponController {

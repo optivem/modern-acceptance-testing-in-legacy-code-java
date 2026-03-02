@@ -1,13 +1,13 @@
-package com.optivem.eshop.systemtest.driver.core.shop.api;
+package com.optivem.eshop.systemtest.driver.adapter.shop.api;
 
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.ShopApiClient;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PublishCouponRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.ViewOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.ShopApiClient;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.errors.SystemError;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.common.Closer;
 import com.optivem.common.Result;
 

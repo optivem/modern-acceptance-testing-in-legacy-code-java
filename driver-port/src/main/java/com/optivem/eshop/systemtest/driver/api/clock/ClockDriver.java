@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.driver.api.clock;
+package com.optivem.eshop.systemtest.driver.port.clock;
 
-import com.optivem.eshop.systemtest.driver.api.clock.dtos.GetTimeResponse;
-import com.optivem.eshop.systemtest.driver.api.clock.dtos.ReturnsTimeRequest;
-import com.optivem.eshop.systemtest.driver.api.clock.dtos.error.ClockErrorResponse;
+import com.optivem.eshop.systemtest.driver.port.clock.dtos.GetTimeResponse;
+import com.optivem.eshop.systemtest.driver.port.clock.dtos.ReturnsTimeRequest;
+import com.optivem.eshop.systemtest.driver.port.clock.dtos.error.ClockErrorResponse;
 import com.optivem.common.Result;
 
 public interface ClockDriver extends AutoCloseable {

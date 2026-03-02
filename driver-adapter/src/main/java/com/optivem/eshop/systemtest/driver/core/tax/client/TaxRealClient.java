@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.core.tax.client;
+package com.optivem.eshop.systemtest.driver.adapter.tax.client;
 
 public class TaxRealClient extends BaseTaxClient {
     public TaxRealClient(String baseUrl) {

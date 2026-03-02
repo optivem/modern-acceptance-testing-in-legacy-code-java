@@ -1,7 +1,7 @@
-package com.optivem.eshop.systemtest.dsl.api.then.steps;
+package com.optivem.eshop.systemtest.dsl.port.then.steps;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.base.ThenStep;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.dsl.port.then.steps.base.ThenStep;
 
 public interface ThenOrder extends ThenStep<ThenOrder> {
     ThenOrder hasSku(String expectedSku);

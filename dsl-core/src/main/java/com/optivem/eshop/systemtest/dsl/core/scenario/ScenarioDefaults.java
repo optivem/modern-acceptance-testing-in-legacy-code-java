@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 
 /**
  * Default values for Gherkin test steps.

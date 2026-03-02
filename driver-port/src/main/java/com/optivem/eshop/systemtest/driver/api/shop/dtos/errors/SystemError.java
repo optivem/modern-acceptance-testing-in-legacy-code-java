@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.api.shop.dtos.errors;
+package com.optivem.eshop.systemtest.driver.port.shop.dtos.errors;
 
 import lombok.Builder;
 import lombok.Data;

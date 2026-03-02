@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.driver.core.erp.client;
+package com.optivem.eshop.systemtest.driver.adapter.erp.client;
 
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtProductDetailsResponse;
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtProductDetailsResponse;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.error.ExtErpErrorResponse;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 import com.optivem.common.Result;
 

@@ -1,12 +1,12 @@
-package com.optivem.eshop.systemtest.driver.core.clock.client;
+package com.optivem.eshop.systemtest.driver.adapter.clock.client;
 
-import com.optivem.eshop.systemtest.driver.core.shared.http.HttpStatus;
-import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.HttpStatus;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.core.shared.wiremock.JsonWireMockClient;
-import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.ExtGetTimeResponse;
-import com.optivem.eshop.systemtest.driver.core.clock.client.dtos.error.ExtClockErrorResponse;
+import com.optivem.eshop.systemtest.driver.adapter.shared.wiremock.JsonWireMockClient;
+import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.ExtGetTimeResponse;
+import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.error.ExtClockErrorResponse;
 
 public class ClockStubClient implements AutoCloseable {
     private static final String HEALTH_ENDPOINT = "/health";

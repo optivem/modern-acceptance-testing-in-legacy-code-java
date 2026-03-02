@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v6;
 
 import com.optivem.eshop.systemtest.dsl.core.system.shop.ChannelType;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.e2etests.v6.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;

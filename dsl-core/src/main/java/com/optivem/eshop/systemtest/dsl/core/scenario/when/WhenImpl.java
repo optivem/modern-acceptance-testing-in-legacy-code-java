@@ -7,7 +7,7 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenGoToShopImp
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenPlaceOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenPublishCouponImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenViewOrderImpl;
-import com.optivem.eshop.systemtest.dsl.api.when.When;
+import com.optivem.eshop.systemtest.dsl.port.when.When;
 
 import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 

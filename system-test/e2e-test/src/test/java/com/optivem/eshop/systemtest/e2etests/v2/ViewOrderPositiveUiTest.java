@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.e2etests.v2;
 
 import com.optivem.eshop.systemtest.e2etests.v2.base.BaseE2eTest;
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtCreateProductRequest;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.NewOrderPage;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtCreateProductRequest;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.NewOrderPage;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

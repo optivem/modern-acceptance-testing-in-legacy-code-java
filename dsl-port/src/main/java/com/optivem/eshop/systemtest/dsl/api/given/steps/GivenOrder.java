@@ -1,7 +1,7 @@
-package com.optivem.eshop.systemtest.dsl.api.given.steps;
+package com.optivem.eshop.systemtest.dsl.port.given.steps;
 
-import com.optivem.eshop.systemtest.dsl.api.given.steps.base.GivenStep;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.dsl.port.given.steps.base.GivenStep;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 
 public interface GivenOrder extends GivenStep {
     GivenOrder withOrderNumber(String orderNumber);

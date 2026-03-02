@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.system.erp.dsl;
 
-import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
+import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.GetProduct;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.GoToErp;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.ReturnsProduct;

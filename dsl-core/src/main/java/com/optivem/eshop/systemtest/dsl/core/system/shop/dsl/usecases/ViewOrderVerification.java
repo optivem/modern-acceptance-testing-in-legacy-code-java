@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.system.shop.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.ViewOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;
 import com.optivem.common.Converter;

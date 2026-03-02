@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
+import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.BaseTaxCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.base.TaxUseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;

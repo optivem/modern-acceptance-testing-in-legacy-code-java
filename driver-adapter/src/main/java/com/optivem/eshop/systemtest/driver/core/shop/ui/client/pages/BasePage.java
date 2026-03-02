@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages;
+package com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages;
 
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.errors.SystemError;
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.core.shared.playwright.PageClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.playwright.PageClient;
 
 import java.util.List;
 

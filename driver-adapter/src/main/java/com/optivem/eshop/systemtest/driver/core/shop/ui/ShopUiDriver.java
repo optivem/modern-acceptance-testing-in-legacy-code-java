@@ -1,20 +1,20 @@
-package com.optivem.eshop.systemtest.driver.core.shop.ui;
+package com.optivem.eshop.systemtest.driver.adapter.shop.ui;
 
 import com.microsoft.playwright.Browser;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.ShopUiClient;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.CouponManagementPage;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.HomePage;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.NewOrderPage;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.OrderDetailsPage;
-import com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages.OrderHistoryPage;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PublishCouponRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.OrderStatus;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderRequest;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.ViewOrderResponse;
-import com.optivem.eshop.systemtest.driver.api.shop.ShopDriver;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.errors.SystemError;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.ShopUiClient;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.CouponManagementPage;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.HomePage;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.NewOrderPage;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.OrderDetailsPage;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.OrderHistoryPage;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.errors.SystemError;
 import com.optivem.common.Result;
 
 import java.util.Objects;

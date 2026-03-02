@@ -17,8 +17,8 @@ repositories {
 
 dependencies {
     api project(':dsl-common')
-    api project(':dsl-api')
-    api project(':driver-api')
+    api project(':dsl-port')
+    api project(':driver-port')
     api project(':common')
 
     api 'org.slf4j:slf4j-api:2.0.9'

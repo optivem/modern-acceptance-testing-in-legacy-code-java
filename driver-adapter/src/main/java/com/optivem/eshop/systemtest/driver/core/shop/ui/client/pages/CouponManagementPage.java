@@ -1,8 +1,8 @@
-package com.optivem.eshop.systemtest.driver.core.shop.ui.client.pages;
+package com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages;
 
-import com.optivem.eshop.systemtest.driver.core.shared.playwright.PageClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.playwright.PageClient;
 import com.optivem.common.Converter;
-import com.optivem.eshop.systemtest.driver.api.shop.dtos.BrowseCouponsResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
 
 import java.time.Instant;
 import java.util.ArrayList;

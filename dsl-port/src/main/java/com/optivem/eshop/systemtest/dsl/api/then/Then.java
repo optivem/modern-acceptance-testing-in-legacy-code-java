@@ -1,7 +1,7 @@
-package com.optivem.eshop.systemtest.dsl.api.then;
+package com.optivem.eshop.systemtest.dsl.port.then;
 
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenFailure;
-import com.optivem.eshop.systemtest.dsl.api.then.steps.ThenSuccess;
+import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenFailure;
+import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenSuccess;
 
 public interface Then {
     ThenSuccess shouldSucceed();

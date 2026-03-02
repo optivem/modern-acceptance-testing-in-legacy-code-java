@@ -1,9 +1,9 @@
-package com.optivem.eshop.systemtest.driver.core.erp;
+package com.optivem.eshop.systemtest.driver.adapter.erp;
 
-import com.optivem.eshop.systemtest.driver.core.erp.client.ErpStubClient;
-import com.optivem.eshop.systemtest.driver.core.erp.client.dtos.ExtProductDetailsResponse;
-import com.optivem.eshop.systemtest.driver.api.erp.dtos.ReturnsProductRequest;
-import com.optivem.eshop.systemtest.driver.api.erp.dtos.error.ErpErrorResponse;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.ErpStubClient;
+import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtProductDetailsResponse;
+import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.driver.port.erp.dtos.error.ErpErrorResponse;
 import com.optivem.common.Converter;
 import com.optivem.common.Result;
 

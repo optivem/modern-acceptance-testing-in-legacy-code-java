@@ -1,6 +1,6 @@
-package com.optivem.eshop.systemtest.dsl.api.when.steps;
+package com.optivem.eshop.systemtest.dsl.port.when.steps;
 
-import com.optivem.eshop.systemtest.dsl.api.when.steps.base.WhenStep;
+import com.optivem.eshop.systemtest.dsl.port.when.steps.base.WhenStep;
 
 public interface WhenPlaceOrder extends WhenStep {
     WhenPlaceOrder withOrderNumber(String orderNumber);

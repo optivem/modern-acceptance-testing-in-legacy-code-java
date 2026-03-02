@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.erp.ErpDriver;
-import com.optivem.eshop.systemtest.driver.api.erp.dtos.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
+import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.base.BaseErpCommand;
 import com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases.base.ErpUseCaseResult;
 import com.optivem.common.Converter;

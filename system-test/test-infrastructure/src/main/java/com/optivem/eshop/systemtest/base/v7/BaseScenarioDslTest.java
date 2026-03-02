@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.base.v7;
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.dsl.core.system.SystemDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
-import com.optivem.eshop.systemtest.dsl.api.ScenarioDsl;
+import com.optivem.eshop.systemtest.dsl.port.ScenarioDsl;
 import com.optivem.common.Closer;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
 import com.optivem.testing.extensions.ChannelExtension;

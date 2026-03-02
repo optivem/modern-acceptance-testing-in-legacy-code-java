@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.system.tax.dsl;
 
-import com.optivem.eshop.systemtest.driver.api.tax.TaxDriver;
+import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.GetTaxRate;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.GoToTax;
 import com.optivem.eshop.systemtest.dsl.core.system.tax.dsl.usecases.ReturnsTaxRate;

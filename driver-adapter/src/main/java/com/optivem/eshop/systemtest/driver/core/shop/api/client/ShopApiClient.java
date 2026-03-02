@@ -1,10 +1,10 @@
-package com.optivem.eshop.systemtest.driver.core.shop.api.client;
+package com.optivem.eshop.systemtest.driver.adapter.shop.api.client;
 
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.controllers.CouponController;
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.controllers.HealthController;
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.controllers.OrderController;
-import com.optivem.eshop.systemtest.driver.core.shop.api.client.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.driver.core.shared.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.CouponController;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.HealthController;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.OrderController;
+import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 
 public class ShopApiClient implements AutoCloseable {

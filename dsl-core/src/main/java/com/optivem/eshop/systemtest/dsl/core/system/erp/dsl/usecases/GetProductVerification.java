@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.system.erp.dsl.usecases;
 
-import com.optivem.eshop.systemtest.driver.api.erp.dtos.GetProductResponse;
+import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductResponse;
 import com.optivem.common.Converter;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.system.shared.UseCaseContext;

@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.api.then.steps.base;
+package com.optivem.eshop.systemtest.dsl.port.then.steps.base;
 
 public interface ThenStep<T> {
     T and();
