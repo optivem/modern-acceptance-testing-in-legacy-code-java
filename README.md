@@ -1,4 +1,4 @@
-# Modern Acceptance Testing in Legacy Code (Java)
+# eShop Tests (Java)
 
 [![acceptance-stage](https://github.com/optivem/eshop-tests-java/actions/workflows/acceptance-stage.yml/badge.svg)](https://github.com/optivem/eshop-tests-java/actions/workflows/acceptance-stage.yml)
 
