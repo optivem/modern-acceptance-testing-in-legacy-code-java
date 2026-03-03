@@ -2,6 +2,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.shop.when;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.steps.WhenBrowseCouponsImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.steps.WhenGoToErpImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.steps.WhenCancelOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.steps.WhenGoToShopImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.steps.WhenPlaceOrderImpl;
@@ -71,6 +72,10 @@ public class WhenImpl implements When {
 
     public WhenBrowseCouponsImpl browseCoupons() {
         return new WhenBrowseCouponsImpl(app);
+    }
+
+    public WhenGoToErpImpl goToErp() {
+        return new WhenGoToErpImpl(app);
     }
 }
 
