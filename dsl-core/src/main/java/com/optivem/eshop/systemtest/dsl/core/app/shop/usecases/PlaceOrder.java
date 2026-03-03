@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
 
 public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVerification> {
@@ -48,7 +48,7 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
     }
 
     @Override
-    public AppUseCaseResult<PlaceOrderResponse, PlaceOrderVerification> execute() {
+    public UseCaseResult<PlaceOrderResponse, PlaceOrderVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
         var country = context.getParamValueOrLiteral(countryAlias);
         var couponCode = context.getParamValue(couponCodeAlias);
@@ -71,7 +71,7 @@ public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVe
             }
         }
 
-        return new AppUseCaseResult<>(result, context, PlaceOrderVerification::new);
+        return new UseCaseResult<>(result, context, PlaceOrderVerification::new);
     }
 }
 

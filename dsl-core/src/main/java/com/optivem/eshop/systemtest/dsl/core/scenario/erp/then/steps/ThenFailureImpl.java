@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.erp.then.steps;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.ErrorVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.scenario.erp.ExecutionResultContext;
@@ -14,7 +14,7 @@ public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends Resp
     private final ErrorVerification failureVerification;
 
     public ThenFailureImpl(AppDsl app, ExecutionResultContext executionResult,
-            AppUseCaseResult<TSuccessResponse, TSuccessVerification> result) {
+            UseCaseResult<TSuccessResponse, TSuccessVerification> result) {
         this.app = app;
         this.executionResult = executionResult;
         if (result == null) {

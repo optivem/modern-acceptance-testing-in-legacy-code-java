@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.dsl.core.app.tax.usecases;
 import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.port.tax.dtos.GetTaxResponse;
 import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.base.BaseTaxCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
 
 public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerification> {
@@ -19,12 +19,12 @@ public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerificatio
     }
 
     @Override
-    public AppUseCaseResult<GetTaxResponse, GetTaxVerification> execute() {
+    public UseCaseResult<GetTaxResponse, GetTaxVerification> execute() {
         var country = context.getParamValueOrLiteral(countryValueOrAlias);
 
         var result = driver.getTaxRate(country);
 
-        return new AppUseCaseResult<>(result, context, GetTaxVerification::new);
+        return new UseCaseResult<>(result, context, GetTaxVerification::new);
     }
 }
 

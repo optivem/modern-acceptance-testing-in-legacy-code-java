@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductResponse;
 import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
 
 public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVerification> {
@@ -20,7 +20,7 @@ public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVer
     }
 
     @Override
-    public AppUseCaseResult<GetProductResponse, GetProductVerification> execute() {
+    public UseCaseResult<GetProductResponse, GetProductVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
 
         var request = GetProductRequest.builder()
@@ -29,7 +29,7 @@ public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVer
 
         var result = driver.getProduct(request);
 
-        return new AppUseCaseResult<>(result, context, GetProductVerification::new);
+        return new UseCaseResult<>(result, context, GetProductVerification::new);
     }
 }
 

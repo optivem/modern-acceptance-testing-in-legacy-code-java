@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpCommand;
 import com.optivem.common.Converter;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.VoidVerification;
 
@@ -31,7 +31,7 @@ public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification> {
     }
 
     @Override
-    public AppUseCaseResult<Void, VoidVerification> execute() {
+    public UseCaseResult<Void, VoidVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
 
         var request = ReturnsProductRequest.builder()
@@ -41,7 +41,7 @@ public class ReturnsProduct extends BaseErpCommand<Void, VoidVerification> {
 
         var result = driver.returnsProduct(request);
 
-        return new AppUseCaseResult<>(result, context, VoidVerification::new);
+        return new UseCaseResult<>(result, context, VoidVerification::new);
     }
 }
 

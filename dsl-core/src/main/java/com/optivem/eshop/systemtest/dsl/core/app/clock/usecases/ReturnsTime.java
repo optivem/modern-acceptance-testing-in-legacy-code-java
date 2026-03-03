@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.dsl.core.app.clock.usecases;
 import com.optivem.eshop.systemtest.driver.port.clock.ClockDriver;
 import com.optivem.eshop.systemtest.driver.port.clock.dtos.ReturnsTimeRequest;
 import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.base.BaseClockCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.AppUseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.VoidVerification;
 
@@ -20,14 +20,14 @@ public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
     }
 
     @Override
-    public AppUseCaseResult<Void, VoidVerification> execute() {
+    public UseCaseResult<Void, VoidVerification> execute() {
         var request = ReturnsTimeRequest.builder()
                 .time(time)
                 .build();
 
         var result = driver.returnsTime(request);
 
-        return new AppUseCaseResult<>(result, context, VoidVerification::new);
+        return new UseCaseResult<>(result, context, VoidVerification::new);
     }
 }
 
