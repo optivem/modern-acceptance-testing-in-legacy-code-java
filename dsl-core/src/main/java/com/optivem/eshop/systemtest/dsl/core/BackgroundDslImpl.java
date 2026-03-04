@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.core.background;
+package com.optivem.eshop.systemtest.dsl.core;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.port.BackgroundDsl;

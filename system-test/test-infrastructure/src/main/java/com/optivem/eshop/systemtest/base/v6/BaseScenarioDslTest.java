@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.base.v6;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.ScenarioDslImpl;
 import com.optivem.common.Closer;
 import com.optivem.testing.extensions.ChannelExtension;
 import org.junit.jupiter.api.AfterEach;

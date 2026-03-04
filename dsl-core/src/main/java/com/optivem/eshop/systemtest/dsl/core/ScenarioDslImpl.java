@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.core.scenario;
+package com.optivem.eshop.systemtest.dsl.core;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.port.ScenarioDsl;
@@ -35,4 +35,3 @@ public class ScenarioDslImpl implements ScenarioDsl {
         }
     }
 }
-

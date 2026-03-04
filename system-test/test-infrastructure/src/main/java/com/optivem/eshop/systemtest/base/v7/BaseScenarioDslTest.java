@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.base.v7;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
-import com.optivem.eshop.systemtest.dsl.core.background.BackgroundDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.ScenarioDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.BackgroundDslImpl;
 import com.optivem.eshop.systemtest.dsl.port.ScenarioDsl;
 import com.optivem.eshop.systemtest.dsl.port.BackgroundDsl;
 import com.optivem.common.Closer;
