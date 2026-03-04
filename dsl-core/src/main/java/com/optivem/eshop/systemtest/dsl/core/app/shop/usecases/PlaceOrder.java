@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
-import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 
-public class PlaceOrder extends BaseShopCommand<PlaceOrderResponse, PlaceOrderVerification> {
+public class PlaceOrder extends BaseShopUseCase<PlaceOrderResponse, PlaceOrderVerification> {
     private String orderNumberResultAlias;
     private String skuParamAlias;
     private String quantity;

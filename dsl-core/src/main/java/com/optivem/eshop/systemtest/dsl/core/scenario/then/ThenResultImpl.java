@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenFailureImpl;

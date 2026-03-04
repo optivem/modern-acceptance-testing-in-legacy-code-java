@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.core.app.shared;
+package com.optivem.eshop.systemtest.dsl.core.app;
 
 public abstract class BaseUseCase<TDriver, TSuccessResponse, TSuccessVerification> implements UseCase<UseCaseResult<TSuccessResponse, TSuccessVerification>> {
     protected final TDriver driver;

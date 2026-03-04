@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ErrorVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.ErrorVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.port.scenario.then.steps.ThenFailure;

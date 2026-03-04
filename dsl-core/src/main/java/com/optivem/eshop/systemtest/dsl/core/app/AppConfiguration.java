@@ -1,6 +1,5 @@
 package com.optivem.eshop.systemtest.dsl.core.app;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ExternalSystemMode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.configuration;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppConfiguration;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
 import org.yaml.snakeyaml.Yaml;
 
 import java.util.Map;

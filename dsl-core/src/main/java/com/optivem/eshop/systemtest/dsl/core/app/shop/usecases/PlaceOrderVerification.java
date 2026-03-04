@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

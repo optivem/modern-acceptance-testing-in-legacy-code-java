@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
 import lombok.Getter;
 
 @Getter

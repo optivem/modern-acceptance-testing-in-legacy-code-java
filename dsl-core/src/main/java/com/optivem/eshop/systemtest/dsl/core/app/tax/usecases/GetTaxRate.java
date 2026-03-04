@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.dsl.core.app.tax.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.port.tax.dtos.GetTaxResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.base.BaseTaxCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.base.BaseTaxUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 
-public class GetTaxRate extends BaseTaxCommand<GetTaxResponse, GetTaxVerification> {
+public class GetTaxRate extends BaseTaxUseCase<GetTaxResponse, GetTaxVerification> {
     private String countryValueOrAlias;
 
     public GetTaxRate(TaxDriver driver, UseCaseContext context) {

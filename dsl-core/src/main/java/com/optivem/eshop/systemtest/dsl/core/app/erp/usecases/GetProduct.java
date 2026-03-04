@@ -3,11 +3,11 @@ package com.optivem.eshop.systemtest.dsl.core.app.erp.usecases;
 import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 
-public class GetProduct extends BaseErpCommand<GetProductResponse, GetProductVerification> {
+public class GetProduct extends BaseErpUseCase<GetProductResponse, GetProductVerification> {
     private String skuParamAlias;
 
     public GetProduct(ErpDriver driver, UseCaseContext context) {

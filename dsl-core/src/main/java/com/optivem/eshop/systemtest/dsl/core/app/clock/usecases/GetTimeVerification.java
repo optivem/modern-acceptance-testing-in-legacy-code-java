@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.app.clock.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.clock.dtos.GetTimeResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 import com.optivem.common.Converter;
 
 import java.time.Instant;

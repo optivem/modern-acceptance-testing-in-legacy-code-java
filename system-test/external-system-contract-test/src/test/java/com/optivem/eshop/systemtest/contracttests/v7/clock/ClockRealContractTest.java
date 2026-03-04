@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.v7.clock;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
 
 public class ClockRealContractTest extends BaseClockContractTest {
     @Override

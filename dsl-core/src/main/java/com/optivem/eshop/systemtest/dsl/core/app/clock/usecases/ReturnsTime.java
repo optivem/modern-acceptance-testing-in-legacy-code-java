@@ -2,12 +2,12 @@ package com.optivem.eshop.systemtest.dsl.core.app.clock.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.clock.ClockDriver;
 import com.optivem.eshop.systemtest.driver.port.clock.dtos.ReturnsTimeRequest;
-import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.base.BaseClockCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.base.BaseClockUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
 
-public class ReturnsTime extends BaseClockCommand<Void, VoidVerification> {
+public class ReturnsTime extends BaseClockUseCase<Void, VoidVerification> {
     private String time;
 
     public ReturnsTime(ClockDriver driver, UseCaseContext context) {

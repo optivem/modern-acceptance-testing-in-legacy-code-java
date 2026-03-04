@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
-import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
 
-public class ViewOrder extends BaseShopCommand<ViewOrderResponse, ViewOrderVerification> {
+public class ViewOrder extends BaseShopUseCase<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumberResultAlias;
 
     public ViewOrder(ShopDriver driver, UseCaseContext context) {

@@ -1,12 +1,12 @@
 package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
-import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopCommand;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.core.app.shared.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
 
-public class CancelOrder extends BaseShopCommand<Void, VoidVerification> {
+public class CancelOrder extends BaseShopUseCase<Void, VoidVerification> {
     private String orderNumberResultAlias;
 
     public CancelOrder(ShopDriver driver, UseCaseContext context) {
