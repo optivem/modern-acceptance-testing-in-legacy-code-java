@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class ViewOrder extends BaseShopUseCase<ViewOrderResponse, ViewOrderVerification> {
     private String orderNumberResultAlias;
@@ -27,4 +27,5 @@ public class ViewOrder extends BaseShopUseCase<ViewOrderResponse, ViewOrderVerif
         return new UseCaseResult<>(result, context, ViewOrderVerification::new);
     }
 }
+
 

@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.GetTime;
 import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.GoToClock;
 import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.ReturnsTime;
 import com.optivem.common.Closer;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class ClockDsl implements AutoCloseable {
     protected final ClockDriver driver;
@@ -33,4 +33,5 @@ public class ClockDsl implements AutoCloseable {
         return new GetTime(driver, context);
     }
 }
+
 

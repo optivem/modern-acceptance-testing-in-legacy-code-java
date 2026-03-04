@@ -2,9 +2,9 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
 
 public class CancelOrder extends BaseShopUseCase<Void, VoidVerification> {
     private String orderNumberResultAlias;
@@ -25,4 +25,5 @@ public class CancelOrder extends BaseShopUseCase<Void, VoidVerification> {
         return new UseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+
 

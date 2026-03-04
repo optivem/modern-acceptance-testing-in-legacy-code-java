@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.when.steps;
 
-import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
@@ -32,5 +32,6 @@ public class WhenCancelOrderImpl extends BaseWhenStep<Void, VoidVerification> im
                 .build();
     }
 }
+
 
 

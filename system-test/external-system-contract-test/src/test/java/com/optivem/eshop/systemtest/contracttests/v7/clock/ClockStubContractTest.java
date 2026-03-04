@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.v7.clock;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
 
@@ -17,4 +17,5 @@ class ClockStubContractTest extends BaseClockContractTest {
                 .then().clock().hasTime("2024-01-02T09:00:00Z");
     }
 }
+
 

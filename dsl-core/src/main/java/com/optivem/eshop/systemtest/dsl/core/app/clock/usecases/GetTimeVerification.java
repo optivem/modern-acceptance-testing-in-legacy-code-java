@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.app.clock.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.clock.dtos.GetTimeResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 import com.optivem.common.Converter;
 
 import java.time.Instant;
@@ -53,4 +53,5 @@ public class GetTimeVerification extends ResponseVerification<GetTimeResponse> {
         return this;
     }
 }
+
 

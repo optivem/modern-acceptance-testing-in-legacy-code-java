@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductRequest;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductResponse;
 import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class GetProduct extends BaseErpUseCase<GetProductResponse, GetProductVerification> {
     private String skuParamAlias;
@@ -32,4 +32,5 @@ public class GetProduct extends BaseErpUseCase<GetProductResponse, GetProductVer
         return new UseCaseResult<>(result, context, GetProductVerification::new);
     }
 }
+
 

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.when.steps;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.ThenResultImpl;
@@ -18,4 +18,5 @@ public abstract class BaseWhenStep<TSuccessResponse, TSuccessVerification extend
 
     protected abstract ExecutionResult<TSuccessResponse, TSuccessVerification> execute(AppDsl app);
 }
+
 

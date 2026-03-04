@@ -1,9 +1,9 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.ErrorVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.ErrorVerification;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenFailure;
@@ -37,5 +37,6 @@ public class ThenFailureImpl<TSuccessResponse, TSuccessVerification extends Resp
         return this;
     }
 }
+
 
 

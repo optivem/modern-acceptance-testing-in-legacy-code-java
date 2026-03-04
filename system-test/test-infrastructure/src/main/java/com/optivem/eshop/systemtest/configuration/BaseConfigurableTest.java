@@ -16,7 +16,7 @@ import com.optivem.eshop.systemtest.driver.adapter.shop.ui.ShopUiDriver;
 import com.optivem.eshop.systemtest.driver.adapter.tax.TaxRealDriver;
 import com.optivem.eshop.systemtest.driver.adapter.tax.TaxStubDriver;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 import com.optivem.testing.contexts.ChannelContext;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -81,4 +81,5 @@ public abstract class BaseConfigurableTest {
         };
     }
 }
+
 

@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class BrowseCoupons extends BaseShopUseCase<BrowseCouponsResponse, BrowseCouponsVerification> {
     public BrowseCoupons(ShopDriver driver, UseCaseContext context) {
@@ -17,4 +17,5 @@ public class BrowseCoupons extends BaseShopUseCase<BrowseCouponsResponse, Browse
         return new UseCaseResult<>(result, context, BrowseCouponsVerification::new);
     }
 }
+
 

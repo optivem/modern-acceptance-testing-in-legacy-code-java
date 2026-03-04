@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.v7.tax;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 import org.junit.jupiter.api.Test;
 
 class TaxStubContractTest extends BaseTaxContractTest {
@@ -16,3 +16,4 @@ class TaxStubContractTest extends BaseTaxContractTest {
                 .then().country("LALA").hasCountry("LALA").hasTaxRate(0.23);
     }
 }
+

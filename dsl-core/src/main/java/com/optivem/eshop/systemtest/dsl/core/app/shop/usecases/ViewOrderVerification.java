@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 import com.optivem.common.Converter;
 
 import java.math.BigDecimal;
@@ -285,4 +285,5 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return this;
     }
 }
+
 

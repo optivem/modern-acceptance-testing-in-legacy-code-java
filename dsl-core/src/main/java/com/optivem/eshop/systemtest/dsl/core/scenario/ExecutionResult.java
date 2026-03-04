@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
 import lombok.Getter;
 
 @Getter
@@ -17,4 +17,5 @@ public class ExecutionResult<TSuccessResponse, TSuccessVerification extends Resp
         this.context = new ExecutionResultContext(orderNumber, couponCode);
     }
 }
+
 

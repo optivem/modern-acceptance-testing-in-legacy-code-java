@@ -4,9 +4,9 @@ import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.base.BaseErpUseCase;
 import com.optivem.common.Converter;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.core.app.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
 
 public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
     private String skuParamAlias;
@@ -44,4 +44,5 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
         return new UseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+
 

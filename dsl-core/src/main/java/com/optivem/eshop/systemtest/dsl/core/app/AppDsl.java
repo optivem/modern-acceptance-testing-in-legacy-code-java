@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.app;
 
 import com.optivem.eshop.systemtest.driver.port.clock.ClockDriver;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 import com.optivem.eshop.systemtest.dsl.core.app.clock.ClockDsl;
 import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.erp.ErpDsl;

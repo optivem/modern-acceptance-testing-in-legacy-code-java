@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.GetTaxRate;
 import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.GoToTax;
 import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.ReturnsTaxRate;
 import com.optivem.common.Closer;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 import java.io.Closeable;
 
@@ -35,5 +35,6 @@ public class TaxDsl implements Closeable {
         return new GetTaxRate(driver, context);
     }
 }
+
 
 

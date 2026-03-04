@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.e2etests.v3.base;
 
 import com.optivem.eshop.systemtest.base.v3.BaseDriverTest;
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.UUID;
@@ -25,4 +25,5 @@ public abstract class BaseE2eTest extends BaseDriverTest {
         return baseSku + "-" + suffix;
     }
 }
+
 

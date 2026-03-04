@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.core.app;
+package com.optivem.eshop.systemtest.dsl.common;
 
 public class ResponseVerification<TResponse> {
     private final TResponse response;
@@ -17,4 +17,5 @@ public class ResponseVerification<TResponse> {
         return context;
     }
 }
+
 

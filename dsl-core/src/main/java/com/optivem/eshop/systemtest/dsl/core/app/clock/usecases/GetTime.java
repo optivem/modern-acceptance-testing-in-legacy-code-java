@@ -3,8 +3,8 @@ package com.optivem.eshop.systemtest.dsl.core.app.clock.usecases;
 import com.optivem.eshop.systemtest.driver.port.clock.ClockDriver;
 import com.optivem.eshop.systemtest.driver.port.clock.dtos.GetTimeResponse;
 import com.optivem.eshop.systemtest.dsl.core.app.clock.usecases.base.BaseClockUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class GetTime extends BaseClockUseCase<GetTimeResponse, GetTimeVerification> {
     public GetTime(ClockDriver driver, UseCaseContext context) {
@@ -17,4 +17,5 @@ public class GetTime extends BaseClockUseCase<GetTimeResponse, GetTimeVerificati
         return new UseCaseResult<>(result, context, GetTimeVerification::new);
     }
 }
+
 

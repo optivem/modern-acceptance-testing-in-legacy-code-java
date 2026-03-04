@@ -4,8 +4,8 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.base.BaseShopUseCase;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 
 public class PlaceOrder extends BaseShopUseCase<PlaceOrderResponse, PlaceOrderVerification> {
     private String orderNumberResultAlias;
@@ -74,4 +74,5 @@ public class PlaceOrder extends BaseShopUseCase<PlaceOrderResponse, PlaceOrderVe
         return new UseCaseResult<>(result, context, PlaceOrderVerification::new);
     }
 }
+
 

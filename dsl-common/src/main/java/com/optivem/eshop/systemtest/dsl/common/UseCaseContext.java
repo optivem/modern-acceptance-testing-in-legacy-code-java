@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.core.app;
+package com.optivem.eshop.systemtest.dsl.common;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -110,4 +110,5 @@ public class UseCaseContext {
         return alias == null || alias.isBlank();
     }
 }
+
 

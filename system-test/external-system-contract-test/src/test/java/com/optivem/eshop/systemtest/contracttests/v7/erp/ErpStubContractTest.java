@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.contracttests.v7.erp;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 
 public class ErpStubContractTest extends BaseErpContractTest {
     @Override
@@ -8,4 +8,5 @@ public class ErpStubContractTest extends BaseErpContractTest {
         return ExternalSystemMode.STUB;
     }
 }
+
 

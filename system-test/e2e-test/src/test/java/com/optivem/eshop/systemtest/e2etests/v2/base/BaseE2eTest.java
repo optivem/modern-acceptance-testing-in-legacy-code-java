@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.e2etests.v2.base;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ExternalSystemMode;
+import com.optivem.eshop.systemtest.dsl.common.ExternalSystemMode;
 import com.optivem.eshop.systemtest.base.v2.BaseClientTest;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -19,4 +19,5 @@ public abstract class BaseE2eTest extends BaseClientTest {
         return ExternalSystemMode.REAL;
     }
 }
+
 

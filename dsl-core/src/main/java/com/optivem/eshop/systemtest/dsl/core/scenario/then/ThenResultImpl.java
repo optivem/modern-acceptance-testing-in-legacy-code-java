@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then;
 
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenFailureImpl;
@@ -26,4 +26,5 @@ public class ThenResultImpl<TSuccessResponse, TSuccessVerification extends Respo
         return new ThenFailureImpl<>(app, executionResult.getContext(), executionResult.getResult());
     }
 }
+
 

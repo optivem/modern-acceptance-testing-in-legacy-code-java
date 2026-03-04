@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
-import com.optivem.eshop.systemtest.dsl.core.app.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.core.app.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
 import com.optivem.common.Converter;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -89,4 +89,5 @@ public class BrowseCouponsVerification extends ResponseVerification<BrowseCoupon
                                         .toList())));
     }
 }
+
 
