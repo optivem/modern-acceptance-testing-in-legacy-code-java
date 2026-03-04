@@ -30,7 +30,7 @@ public class ScenarioDslImpl implements ScenarioDsl {
     private void ensureNotExecuted() {
         if (executed) {
             throw new IllegalStateException("Scenario has already been executed. " +
-                    "Each test method should contain only ONE scenario execution (GivenImpl-WhenImpl-ThenImpl). " +
+                    "Each test method should contain only ONE scenario execution (Given-When-Then). " +
                     "Split multiple scenarios into separate test methods.");
         }
     }

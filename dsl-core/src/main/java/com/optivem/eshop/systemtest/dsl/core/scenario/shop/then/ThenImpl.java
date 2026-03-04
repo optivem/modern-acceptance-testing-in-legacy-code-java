@@ -1,27 +1,48 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.shop.then;
 
-import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.ExecutionResult;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenFailureImpl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenSuccessImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenClockImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenProductImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenCountryImpl;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.Then;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenClock;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenCountry;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenFailure;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenProduct;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenSuccess;
 
-public class ThenImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends BaseThenImpl {
-    private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
+public class ThenImpl implements Then {
+    protected final AppDsl app;
 
-    public ThenImpl(AppDsl app, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
-        super(app);
-        this.executionResult = executionResult;
+    public ThenImpl(AppDsl app) {
+        this.app = app;
     }
 
     @Override
-    public ThenSuccessImpl<TSuccessResponse, TSuccessVerification> shouldSucceed() {
-        var successVerification = executionResult.getResult().shouldSucceed();
-        return new ThenSuccessImpl<>(app, executionResult.getContext(), successVerification);
+    public ThenClock clock() {
+        var verification = app.clock().getTime().execute().shouldSucceed();
+        return new ThenClockImpl(verification);
     }
 
     @Override
-    public ThenFailureImpl<TSuccessResponse, TSuccessVerification> shouldFail() {
-        return new ThenFailureImpl<>(app, executionResult.getContext(), executionResult.getResult());
+    public ThenProduct product(String skuAlias) {
+        var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
+        return new ThenProductImpl(verification);
+    }
+
+    @Override
+    public ThenCountry country(String countryAlias) {
+        var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
+        return new ThenCountryImpl(verification);
+    }
+
+    @Override
+    public ThenSuccess shouldSucceed() {
+        throw new IllegalStateException("Cannot verify success: no operation was executed");
+    }
+
+    @Override
+    public ThenFailure shouldFail() {
+        throw new IllegalStateException("Cannot verify failure: no operation was executed");
     }
 }
