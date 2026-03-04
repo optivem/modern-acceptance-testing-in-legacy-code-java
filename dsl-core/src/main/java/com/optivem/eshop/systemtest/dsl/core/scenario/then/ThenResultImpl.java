@@ -5,9 +5,9 @@ import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenFailureImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenSuccessImpl;
-import com.optivem.eshop.systemtest.dsl.port.then.ThenResult;
+import com.optivem.eshop.systemtest.dsl.port.then.ThenResultStage;
 
-public class ThenResultImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends ThenImpl implements ThenResult {
+public class ThenResultImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> extends ThenImpl implements ThenResultStage {
     private final ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult;
 
     public ThenResultImpl(AppDsl app, ExecutionResult<TSuccessResponse, TSuccessVerification> executionResult) {
