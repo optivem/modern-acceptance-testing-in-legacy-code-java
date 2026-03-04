@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.shop.given;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.ThenImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.BaseThenImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenClockImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenCountryImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenCouponImpl;
@@ -68,7 +68,7 @@ public class GivenImpl implements Given {
 
     public Then then() {
         setup();
-        return new ThenImpl(app);
+        return new BaseThenImpl(app);
     }
 
     private void setup() {
