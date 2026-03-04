@@ -1,23 +1,23 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps;
 
 import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.GetProductVerification;
-import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenErp;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenProduct;
 
-public class ThenErpImpl implements ThenErp {
+public class ThenProductImpl implements ThenProduct {
     private final GetProductVerification verification;
 
-    public ThenErpImpl(GetProductVerification verification) {
+    public ThenProductImpl(GetProductVerification verification) {
         this.verification = verification;
     }
 
     @Override
-    public ThenErp hasSku(String sku) {
+    public ThenProduct hasSku(String sku) {
         verification.sku(sku);
         return this;
     }
 
     @Override
-    public ThenErp hasPrice(double price) {
+    public ThenProduct hasPrice(double price) {
         verification.price(price);
         return this;
     }

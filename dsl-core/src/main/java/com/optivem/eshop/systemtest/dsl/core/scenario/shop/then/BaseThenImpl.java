@@ -2,14 +2,14 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.shop.then;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenClockImpl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenErpImpl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenTaxImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenProductImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenCountryImpl;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.Then;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenClock;
-import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenErp;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenCountry;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenFailure;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenProduct;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenSuccess;
-import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenTax;
 
 public class BaseThenImpl implements Then {
     protected final AppDsl app;
@@ -25,15 +25,15 @@ public class BaseThenImpl implements Then {
     }
 
     @Override
-    public ThenErp product(String skuAlias) {
+    public ThenProduct product(String skuAlias) {
         var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
-        return new ThenErpImpl(verification);
+        return new ThenProductImpl(verification);
     }
 
     @Override
-    public ThenTax country(String countryAlias) {
+    public ThenCountry country(String countryAlias) {
         var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
-        return new ThenTaxImpl(verification);
+        return new ThenCountryImpl(verification);
     }
 
     @Override
