@@ -11,18 +11,8 @@ class TaxStubContractTest extends BaseTaxContractTest {
 
     @Test
     void shouldBeAbleToGetConfiguredTaxRate() {
-        app.tax().returnsTaxRate()
-                .country("LALA")
-                .taxRate(0.23)
-                .execute()
-                .shouldSucceed();
-
-        app.tax().getTaxRate()
-                .country("LALA")
-                .execute()
-                .shouldSucceed()
-                .country("LALA")
-                .taxRate(0.23);
+        scenario
+                .given().country().withCode("LALA").withTaxRate(0.23)
+                .then().country("LALA").hasCountry("LALA").hasTaxRate(0.23);
     }
 }
-

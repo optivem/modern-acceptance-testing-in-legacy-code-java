@@ -4,10 +4,14 @@ import com.optivem.eshop.systemtest.dsl.core.app.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenClockImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenErpImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenFailureImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenSuccessImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.steps.ThenTaxImpl;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.Then;
 import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenClock;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenErp;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.steps.ThenTax;
 
 public class ThenImpl<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> implements Then {
     private final AppDsl app;
@@ -18,9 +22,24 @@ public class ThenImpl<TSuccessResponse, TSuccessVerification extends ResponseVer
         this.executionResult = executionResult;
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    public static Then create(AppDsl app) {
+        return new ThenImpl(app, null);
+    }
+
     public ThenClock clock() {
         var verification = app.clock().getTime().execute().shouldSucceed();
         return new ThenClockImpl(verification);
+    }
+
+    public ThenErp product(String skuAlias) {
+        var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
+        return new ThenErpImpl(verification);
+    }
+
+    public ThenTax country(String countryAlias) {
+        var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
+        return new ThenTaxImpl(verification);
     }
 
     public ThenSuccessImpl<TSuccessResponse, TSuccessVerification> shouldSucceed() {
@@ -35,4 +54,3 @@ public class ThenImpl<TSuccessResponse, TSuccessVerification extends ResponseVer
         return new ThenFailureImpl<>(app, executionResult.getContext(), executionResult.getResult());
     }
 }
-

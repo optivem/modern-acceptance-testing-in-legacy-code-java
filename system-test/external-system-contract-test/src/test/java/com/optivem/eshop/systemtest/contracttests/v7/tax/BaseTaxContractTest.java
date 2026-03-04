@@ -6,18 +6,8 @@ import org.junit.jupiter.api.Test;
 public abstract class BaseTaxContractTest extends BaseExternalSystemContractTest {
     @Test
     void shouldBeAbleToGetTaxRate() {
-        app.tax().returnsTaxRate()
-                .country("US")
-                .taxRate(0.09)
-                .execute()
-                .shouldSucceed();
-
-        app.tax().getTaxRate()
-                .country("US")
-                .execute()
-                .shouldSucceed()
-                .country("US")
-                .taxRateIsPositive();
+        scenario
+                .given().country().withCode("US").withTaxRate(0.09)
+                .then().country("US").hasTaxRateIsPositive();
     }
 }
-

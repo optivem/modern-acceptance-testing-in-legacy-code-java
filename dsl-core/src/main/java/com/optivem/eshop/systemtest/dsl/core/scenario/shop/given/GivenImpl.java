@@ -61,17 +61,21 @@ public class GivenImpl implements Given {
     }
 
     public WhenImpl when() {
-        setupClock();
-        setupErp();
-        setupTax();
+        setup();
         setupShop();
 
         return new WhenImpl(app, !products.isEmpty(), !countries.isEmpty());
     }
 
     public Then then() {
+        setup();
+        return ThenImpl.create(app);
+    }
+
+    private void setup() {
         setupClock();
-        return new ThenImpl<>(app, null);
+        setupErp();
+        setupTax();
     }
 
     private void setupClock() {
