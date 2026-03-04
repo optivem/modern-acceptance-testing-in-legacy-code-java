@@ -12,15 +12,9 @@ class ClockStubContractTest extends BaseClockContractTest {
 
     @Test
     void shouldBeAbleToGetConfiguredTime() {
-        app.clock().returnsTime()
-                .time("2024-01-02T09:00:00Z")
-                .execute()
-                .shouldSucceed();
-
-        app.clock().getTime()
-                .execute()
-                .shouldSucceed()
-                .time("2024-01-02T09:00:00Z");
+        scenario
+                .given().clock().withTime("2024-01-02T09:00:00Z")
+                .then().clock().hasTime("2024-01-02T09:00:00Z");
     }
 }
 

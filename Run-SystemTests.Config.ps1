@@ -54,26 +54,26 @@ $Config = @{
         # External System Contract Tests
         @{  Id = "contract-stub";
             Name = "Contract Tests - Stubbed External Systems";
-            Command = "& .\gradlew.bat :system-test:external-system-contract-test:test -Denvironment=local -DexternalSystemMode=stub";
+            Command = "& .\gradlew.bat :system-test:external-system-contract-test:test -Denvironment=local -DexternalSystemMode=stub --tests `"*Stub*`"";
             Path = ".";
             TestReportPath = "system-test\external-system-contract-test\build\reports\tests\test\index.html"
             TestInstallCommands = $null; },
         @{  Id = "contract-real";
             Name = "Contract Tests - Real External Systems";
-            Command = "& .\gradlew.bat :system-test:external-system-contract-test:test -Denvironment=local -DexternalSystemMode=real";
+            Command = "& .\gradlew.bat :system-test:external-system-contract-test:test -Denvironment=local -DexternalSystemMode=real --tests `"*Real*`"";
             Path = ".";
             TestReportPath = "system-test\external-system-contract-test\build\reports\tests\test\index.html"
             TestInstallCommands = $null; },
 
         # E2E Tests
-        @{ 
+        @{
             Id = "e2e-no-channel";
             Name = "E2E Tests - No Channel (v1, v2, v3)";
             Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local --tests `"com.optivem.eshop.systemtest.e2etests.v1.*`" --tests `"com.optivem.eshop.systemtest.e2etests.v2.*`" --tests `"com.optivem.eshop.systemtest.e2etests.v3.*`"";
             Path = ".";
             TestReportPath = "system-test\e2e-test\build\reports\tests\test\index.html";
             TestInstallCommands = $null; },
-        @{ 
+        @{
             Id = "e2e-api";
             Name = "E2E Tests - Channel: API";
             Command = "& .\gradlew.bat :system-test:e2e-test:test -Denvironment=local -Dchannel=API";

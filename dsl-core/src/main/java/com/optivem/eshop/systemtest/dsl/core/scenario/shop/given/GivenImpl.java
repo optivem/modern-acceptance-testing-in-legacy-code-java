@@ -1,12 +1,14 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.shop.given;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.shop.then.ThenImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenClockImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenCountryImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenCouponImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.given.steps.GivenProductImpl;
 import com.optivem.eshop.systemtest.dsl.port.shop.given.Given;
+import com.optivem.eshop.systemtest.dsl.port.shop.then.Then;
 import com.optivem.eshop.systemtest.dsl.core.scenario.shop.when.WhenImpl;
 
 import java.util.ArrayList;
@@ -65,6 +67,11 @@ public class GivenImpl implements Given {
         setupShop();
 
         return new WhenImpl(app, !products.isEmpty(), !countries.isEmpty());
+    }
+
+    public Then then() {
+        setupClock();
+        return new ThenImpl<>(app, null);
     }
 
     private void setupClock() {
