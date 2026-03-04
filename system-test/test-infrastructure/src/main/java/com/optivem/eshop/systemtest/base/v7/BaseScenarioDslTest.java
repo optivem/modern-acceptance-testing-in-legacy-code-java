@@ -2,10 +2,10 @@ package com.optivem.eshop.systemtest.base.v7;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.feature.scenario.ScenarioDslImpl;
-import com.optivem.eshop.systemtest.dsl.core.feature.background.BackgroundDslImpl;
-import com.optivem.eshop.systemtest.dsl.port.shop.feature.scenario.ScenarioDsl;
-import com.optivem.eshop.systemtest.dsl.port.shop.feature.background.BackgroundDsl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.background.BackgroundDslImpl;
+import com.optivem.eshop.systemtest.dsl.port.scenario.ScenarioDsl;
+import com.optivem.eshop.systemtest.dsl.port.background.BackgroundDsl;
 import com.optivem.common.Closer;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
 import com.optivem.testing.extensions.ChannelExtension;

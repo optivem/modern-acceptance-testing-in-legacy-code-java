@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.contracttests.v7.base;
 
 import com.optivem.eshop.systemtest.base.v5.BaseAppDslTest;
 import com.optivem.eshop.systemtest.dsl.core.app.shared.ExternalSystemMode;
-import com.optivem.eshop.systemtest.dsl.core.feature.scenario.ScenarioDslImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDslImpl;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseExternalSystemContractTest extends BaseAppDslTest {
