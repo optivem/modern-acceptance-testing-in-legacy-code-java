@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 class ErpSmokeTest extends BaseScenarioDslTest {
     @Test
     void shouldBeAbleToGoToErp() {
-        scenario
-                .when().goToErp()
-                .then().shouldSucceed();
+        background.erpRunning();
     }
 }
 

@@ -1,14 +1,12 @@
 package com.optivem.eshop.systemtest.smoketests.v6.external;
 
-import com.optivem.eshop.systemtest.base.v5.BaseAppDslTest;
+import com.optivem.eshop.systemtest.base.v6.BaseScenarioDslTest;
 import org.junit.jupiter.api.Test;
 
-class TaxSmokeTest extends BaseAppDslTest {
+class TaxSmokeTest extends BaseScenarioDslTest {
     @Test
     void shouldBeAbleToGoToTax() {
-        app.tax().goToTax()
-                .execute()
-                .shouldSucceed();
+        background.taxRunning();
     }
 }
 
