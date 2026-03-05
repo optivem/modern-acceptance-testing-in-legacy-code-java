@@ -1,14 +1,14 @@
 package com.optivem.eshop.systemtest.v5.e2e;
 
 import com.optivem.eshop.systemtest.channel.ChannelType;
-import com.optivem.eshop.systemtest.commons.e2e.providers.EmptyArgumentsProvider;
+import com.optivem.eshop.systemtest.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.v5.e2e.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 
 class PlaceOrderNegativeTest extends BaseE2eTest {
     @TestTemplate

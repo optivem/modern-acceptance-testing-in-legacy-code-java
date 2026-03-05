@@ -7,7 +7,7 @@ import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;
 import org.junit.jupiter.api.TestTemplate;
 
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 
 class PlaceOrderPositiveTest extends BaseE2eTest {
     @TestTemplate

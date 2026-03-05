@@ -9,7 +9,7 @@ import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderPositiveApiTest extends BaseE2eTest {

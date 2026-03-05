@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.v7.acceptance;
 
-import com.optivem.eshop.systemtest.commons.acceptance.providers.EmptyArgumentsProvider;
+import com.optivem.eshop.systemtest.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.v7.acceptance.base.BaseAcceptanceTest;
 import com.optivem.eshop.systemtest.channel.ChannelType;
 import com.optivem.testing.Channel;

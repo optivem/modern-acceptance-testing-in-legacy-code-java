@@ -13,7 +13,7 @@ import org.junit.jupiter.api.TestTemplate;
 import java.math.BigDecimal;
 
 import static com.optivem.common.ResultAssert.assertThatResult;
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderPositiveTest extends BaseE2eTest {

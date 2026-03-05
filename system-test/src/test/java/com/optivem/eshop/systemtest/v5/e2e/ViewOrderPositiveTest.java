@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.v5.e2e.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 
 class ViewOrderPositiveTest extends BaseE2eTest {
     @TestTemplate

@@ -10,7 +10,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.regex.Pattern;
 
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderPositiveUiTest extends BaseE2eTest {

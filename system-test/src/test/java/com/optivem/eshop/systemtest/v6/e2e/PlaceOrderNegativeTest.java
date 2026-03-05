@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.v6.e2e;
 
 import com.optivem.eshop.systemtest.channel.ChannelType;
-import com.optivem.eshop.systemtest.commons.e2e.providers.EmptyArgumentsProvider;
+import com.optivem.eshop.systemtest.commons.providers.EmptyArgumentsProvider;
 import com.optivem.eshop.systemtest.v6.e2e.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;

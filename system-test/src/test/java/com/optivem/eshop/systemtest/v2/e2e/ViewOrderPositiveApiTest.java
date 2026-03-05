@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static com.optivem.common.ResultAssert.assertThatResult;
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.COUNTRY;
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.SKU;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.COUNTRY;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.SKU;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderPositiveApiTest extends BaseE2eTest {

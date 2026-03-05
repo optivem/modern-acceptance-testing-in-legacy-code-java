@@ -6,7 +6,7 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.common.ResultAssert.assertThatResult;
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderNegativeApiTest extends BaseE2eTest {

@@ -5,7 +5,7 @@ import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtCreateProd
 import org.junit.jupiter.api.Test;
 
 import static com.optivem.common.ResultAssert.assertThatResult;
-import static com.optivem.eshop.systemtest.commons.e2e.constants.Defaults.*;
+import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PlaceOrderNegativeUiTest extends BaseE2eTest {
