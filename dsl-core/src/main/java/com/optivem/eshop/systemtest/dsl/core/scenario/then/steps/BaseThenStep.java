@@ -40,6 +40,21 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         }
         return coupon(executionResult.getCouponCode());
     }
+
+    public ThenClockImpl clock() {
+        var verification = app.clock().getTime().execute().shouldSucceed();
+        return new ThenClockImpl(app, executionResult, verification);
+    }
+
+    public ThenProductImpl product(String skuAlias) {
+        var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
+        return new ThenProductImpl(verification);
+    }
+
+    public ThenCountryImpl country(String countryAlias) {
+        var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
+        return new ThenCountryImpl(verification);
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenClockImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenProductImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.then.steps.ThenCountryImpl;
@@ -19,7 +20,7 @@ public class ThenImpl implements ThenStage {
     @Override
     public ThenClock clock() {
         var verification = app.clock().getTime().execute().shouldSucceed();
-        return new ThenClockImpl(verification);
+        return new ThenClockImpl(app, ExecutionResultContext.empty(), verification);
     }
 
     @Override
