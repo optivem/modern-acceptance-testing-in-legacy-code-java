@@ -26,13 +26,13 @@ public class ThenImpl implements ThenStage {
     @Override
     public ThenProduct product(String skuAlias) {
         var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
-        return new ThenProductImpl(verification);
+        return new ThenProductImpl(app, ExecutionResultContext.empty(), verification);
     }
 
     @Override
     public ThenCountry country(String countryAlias) {
         var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
-        return new ThenCountryImpl(verification);
+        return new ThenCountryImpl(app, ExecutionResultContext.empty(), verification);
     }
 
 }

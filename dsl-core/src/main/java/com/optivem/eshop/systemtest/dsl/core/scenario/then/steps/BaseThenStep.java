@@ -48,12 +48,12 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
 
     public ThenProductImpl product(String skuAlias) {
         var verification = app.erp().getProduct().sku(skuAlias).execute().shouldSucceed();
-        return new ThenProductImpl(verification);
+        return new ThenProductImpl(app, executionResult, verification);
     }
 
     public ThenCountryImpl country(String countryAlias) {
         var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
-        return new ThenCountryImpl(verification);
+        return new ThenCountryImpl(app, executionResult, verification);
     }
 }
 

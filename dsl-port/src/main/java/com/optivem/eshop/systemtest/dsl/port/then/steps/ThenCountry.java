@@ -1,6 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.port.then.steps;
 
-public interface ThenCountry {
+import com.optivem.eshop.systemtest.dsl.port.then.steps.base.ThenStep;
+
+public interface ThenCountry extends ThenStep<ThenCountry> {
     ThenCountry hasCountry(String country);
 
     ThenCountry hasTaxRate(double taxRate);
