@@ -27,7 +27,15 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.38'
 }
 
+tasks.register('installPlaywright', JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.microsoft.playwright.CLI'
+    args = ['install']
+}
+
 tasks.named('test') {
+    dependsOn 'installPlaywright'
+
     useJUnitPlatform {
         // Support JUnit tag filtering
         if (System.getProperty('includeTags')) {
@@ -40,7 +48,7 @@ tasks.named('test') {
 
     // Force UTC timezone for consistent test behavior across environments
     jvmArgs '-Duser.timezone=UTC'
-    
+
     // Pass system properties from command line to test JVM
     systemProperty 'environment', System.getProperty('environment')
     systemProperty 'externalSystemMode', System.getProperty('externalSystemMode')
@@ -51,9 +59,11 @@ tasks.named('test') {
         systemProperty 'junit.jupiter.execution.parallel.enabled', 'false'
     }
 
-    // Run smoke tests sequentially to avoid Playwright browser-install lock contention
-    // (C:\Users\<user>\AppData\Local\ms-playwright\__dirlock)
-    maxParallelForks = 1
+    if (includeTags?.contains('isolated')) {
+        maxParallelForks = 1
+    } else {
+        maxParallelForks = Runtime.runtime.availableProcessors()
+    }
 
     testLogging {
         events "passed", "skipped", "failed"
