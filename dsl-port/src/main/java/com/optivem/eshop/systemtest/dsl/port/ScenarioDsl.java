@@ -11,5 +11,3 @@ public interface ScenarioDsl {
 
     WhenStage when();
 }
-
-

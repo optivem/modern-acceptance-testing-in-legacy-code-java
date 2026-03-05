@@ -1,15 +1,15 @@
 package com.optivem.eshop.systemtest.dsl.port.assume;
 
-import com.optivem.eshop.systemtest.dsl.port.assume.steps.Should;
+import com.optivem.eshop.systemtest.dsl.port.assume.steps.AssumeRunning;
 
 public interface AssumeStage {
-    Should shop();
+    AssumeRunning shop();
 
-    Should erp();
+    AssumeRunning erp();
 
-    Should tax();
+    AssumeRunning tax();
 
-    Should clock();
+    AssumeRunning clock();
 }
 
 

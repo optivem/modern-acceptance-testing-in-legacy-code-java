@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.dsl.core.scenario.assume;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.port.assume.AssumeStage;
-import com.optivem.eshop.systemtest.dsl.port.assume.steps.Should;
+import com.optivem.eshop.systemtest.dsl.port.assume.steps.AssumeRunning;
 
 public class AssumeImpl implements AssumeStage {
     private final AppDsl app;
@@ -12,7 +12,7 @@ public class AssumeImpl implements AssumeStage {
     }
 
     @Override
-    public Should shop() {
+    public AssumeRunning shop() {
         return () -> {
             app.shop().goToShop().execute().shouldSucceed();
             return this;
@@ -20,7 +20,7 @@ public class AssumeImpl implements AssumeStage {
     }
 
     @Override
-    public Should erp() {
+    public AssumeRunning erp() {
         return () -> {
             app.erp().goToErp().execute().shouldSucceed();
             return this;
@@ -28,7 +28,7 @@ public class AssumeImpl implements AssumeStage {
     }
 
     @Override
-    public Should tax() {
+    public AssumeRunning tax() {
         return () -> {
             app.tax().goToTax().execute().shouldSucceed();
             return this;
@@ -36,7 +36,7 @@ public class AssumeImpl implements AssumeStage {
     }
 
     @Override
-    public Should clock() {
+    public AssumeRunning clock() {
         return () -> {
             app.clock().goToClock().execute().shouldSucceed();
             return this;
