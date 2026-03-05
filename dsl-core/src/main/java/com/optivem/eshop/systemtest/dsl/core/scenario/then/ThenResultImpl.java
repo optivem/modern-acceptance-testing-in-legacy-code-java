@@ -27,4 +27,3 @@ public class ThenResultImpl<TSuccessResponse, TSuccessVerification extends Respo
     }
 }
 
-

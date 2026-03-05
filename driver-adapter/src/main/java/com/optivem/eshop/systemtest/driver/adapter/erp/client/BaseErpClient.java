@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.driver.adapter.erp.client;
 
 import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.error.ExtErpErrorResponse;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 import com.optivem.common.Result;
 
@@ -29,4 +29,5 @@ public abstract class BaseErpClient implements AutoCloseable {
         return httpClient.get(PRODUCTS_ENDPOINT + "/" + sku, ExtProductDetailsResponse.class);
     }
 }
+
 

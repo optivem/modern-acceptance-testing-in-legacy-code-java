@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages;
 
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.playwright.PageClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.playwright.PageClient;
 
 import java.util.regex.Pattern;
 
@@ -50,5 +50,6 @@ public class NewOrderPage extends BasePage {
         return matcher.group(ORDER_NUMBER_MATCHER_GROUP);
     }
 }
+
 
 

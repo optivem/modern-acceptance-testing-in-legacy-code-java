@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.adapter.shared.client.http;
+package com.optivem.eshop.systemtest.driver.adapter.shared.http;
 
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -251,4 +251,5 @@ public class JsonHttpClient<E> implements AutoCloseable {
         return Result.success(response);
     }
 }
+
 

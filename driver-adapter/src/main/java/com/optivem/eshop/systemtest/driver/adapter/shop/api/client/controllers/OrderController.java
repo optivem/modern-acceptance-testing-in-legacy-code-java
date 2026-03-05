@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Result;
 
 public class OrderController {
@@ -28,5 +28,6 @@ public class OrderController {
         return httpClient.post(ENDPOINT + "/" + orderNumber + "/cancel");
     }
 }
+
 
 

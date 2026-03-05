@@ -4,7 +4,7 @@ import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.C
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.HealthController;
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers.OrderController;
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 
 public class ShopApiClient implements AutoCloseable {
@@ -37,5 +37,6 @@ public class ShopApiClient implements AutoCloseable {
         Closer.close(httpClient);
     }
 }
+
 
 

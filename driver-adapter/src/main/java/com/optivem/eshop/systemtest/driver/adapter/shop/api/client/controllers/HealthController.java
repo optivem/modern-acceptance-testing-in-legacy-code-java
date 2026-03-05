@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers;
 
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Result;
 
 public class HealthController {
@@ -17,5 +17,6 @@ public class HealthController {
         return httpClient.get(ENDPOINT);
     }
 }
+
 
 

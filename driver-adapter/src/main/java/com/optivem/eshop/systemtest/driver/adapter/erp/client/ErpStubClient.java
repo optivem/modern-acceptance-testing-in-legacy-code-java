@@ -1,11 +1,11 @@
 package com.optivem.eshop.systemtest.driver.adapter.erp.client;
 
 
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.HttpStatus;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.HttpStatus;
 import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtProductDetailsResponse;
 import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.error.ExtErpErrorResponse;
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.wiremock.JsonWireMockClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.wiremock.JsonWireMockClient;
 
 
 public class ErpStubClient extends BaseErpClient {
@@ -24,5 +24,6 @@ public class ErpStubClient extends BaseErpClient {
                 .mapError(ExtErpErrorResponse::new);
     }
 }
+
 
 

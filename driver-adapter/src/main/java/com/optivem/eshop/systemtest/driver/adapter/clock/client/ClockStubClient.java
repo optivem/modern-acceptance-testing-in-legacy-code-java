@@ -1,10 +1,10 @@
 package com.optivem.eshop.systemtest.driver.adapter.clock.client;
 
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.HttpStatus;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.HttpStatus;
+import com.optivem.eshop.systemtest.driver.adapter.shared.http.JsonHttpClient;
 import com.optivem.common.Closer;
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.wiremock.JsonWireMockClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.wiremock.JsonWireMockClient;
 import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.ExtGetTimeResponse;
 import com.optivem.eshop.systemtest.driver.adapter.clock.client.dtos.error.ExtClockErrorResponse;
 
@@ -41,4 +41,5 @@ public class ClockStubClient implements AutoCloseable {
     }
 
 }
+
 

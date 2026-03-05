@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.driver.adapter.shared.client.http;
+package com.optivem.eshop.systemtest.driver.adapter.shared.http;
 
 public class HttpStatus {
     public static final int OK = 200;
@@ -18,4 +18,5 @@ public class HttpStatus {
         // Utility class - no instantiation
     }
 }
+
 

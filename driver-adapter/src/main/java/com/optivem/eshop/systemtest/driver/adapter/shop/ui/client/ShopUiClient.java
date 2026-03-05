@@ -3,7 +3,7 @@ package com.optivem.eshop.systemtest.driver.adapter.shop.ui.client;
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.HomePage;
 import com.optivem.common.Closer;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.playwright.PageClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.playwright.PageClient;
 import org.springframework.http.HttpStatus;
 
 
@@ -68,5 +68,6 @@ public class ShopUiClient implements AutoCloseable {
         // Don't close browser - it's shared and managed by test lifecycle infrastructure
     }
 }
+
 
 

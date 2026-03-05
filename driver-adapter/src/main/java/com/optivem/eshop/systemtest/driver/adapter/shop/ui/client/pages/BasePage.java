@@ -2,7 +2,7 @@ package com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages;
 
 import com.optivem.eshop.systemtest.driver.port.shared.error.ErrorResponse;
 import com.optivem.common.Result;
-import com.optivem.eshop.systemtest.driver.adapter.shared.client.playwright.PageClient;
+import com.optivem.eshop.systemtest.driver.adapter.shared.playwright.PageClient;
 
 import java.util.List;
 
@@ -131,4 +131,5 @@ public abstract class BasePage {
         return selector.replace(NOTIFICATION_SELECTOR, NOTIFICATION_SELECTOR + idAttribute);
     }
 }
+
 
