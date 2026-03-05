@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 
-import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.ResponseVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 
@@ -41,5 +41,6 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         return coupon(executionResult.getCouponCode());
     }
 }
+
 
 

@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.when.steps;
 
-import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResult;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultBuilder;
@@ -70,6 +70,7 @@ public class WhenPublishCouponImpl extends BaseWhenStep<Void, VoidVerification> 
                 .build();
     }
 }
+
 
 
 

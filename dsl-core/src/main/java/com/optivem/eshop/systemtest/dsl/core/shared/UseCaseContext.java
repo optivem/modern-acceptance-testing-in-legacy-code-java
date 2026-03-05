@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.common;
+package com.optivem.eshop.systemtest.dsl.core.shared;
 
 import com.optivem.eshop.systemtest.dsl.port.ExternalSystemMode;
 import java.util.HashMap;
@@ -111,6 +111,7 @@ public class UseCaseContext {
         return alias == null || alias.isBlank();
     }
 }
+
 
 
 

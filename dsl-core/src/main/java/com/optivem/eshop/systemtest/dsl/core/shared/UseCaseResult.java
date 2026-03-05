@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.common;
+package com.optivem.eshop.systemtest.dsl.core.shared;
 
 import com.optivem.eshop.systemtest.driver.port.shared.error.ErrorResponse;
 import com.optivem.common.Result;
@@ -31,6 +31,7 @@ public class UseCaseResult<TSuccessResponse, TSuccessVerification> {
         return new ErrorVerification(result.getError(), context);
     }
 }
+
 
 
 

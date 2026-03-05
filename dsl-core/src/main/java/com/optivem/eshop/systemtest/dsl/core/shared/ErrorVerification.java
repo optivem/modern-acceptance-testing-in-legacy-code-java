@@ -1,4 +1,4 @@
-package com.optivem.eshop.systemtest.dsl.common;
+package com.optivem.eshop.systemtest.dsl.core.shared;
 
 import com.optivem.eshop.systemtest.driver.port.shared.error.ErrorResponse;
 
@@ -47,4 +47,5 @@ public class ErrorVerification extends ResponseVerification<ErrorResponse> {
         return this;
     }
 }
+
 

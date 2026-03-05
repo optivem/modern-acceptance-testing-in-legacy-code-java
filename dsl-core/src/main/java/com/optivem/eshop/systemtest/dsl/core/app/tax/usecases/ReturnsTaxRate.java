@@ -4,9 +4,9 @@ import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
 import com.optivem.eshop.systemtest.driver.port.tax.dtos.ReturnsTaxRateRequest;
 import com.optivem.eshop.systemtest.dsl.core.app.tax.usecases.base.BaseTaxUseCase;
 import com.optivem.common.Converter;
-import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.common.VoidVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.shared.VoidVerification;
 
 public class ReturnsTaxRate extends BaseTaxUseCase<Void, VoidVerification> {
     private String countryAlias;
@@ -44,5 +44,6 @@ public class ReturnsTaxRate extends BaseTaxUseCase<Void, VoidVerification> {
         return new UseCaseResult<>(result, context, VoidVerification::new);
     }
 }
+
 
 

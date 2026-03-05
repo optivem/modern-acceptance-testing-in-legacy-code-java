@@ -1,8 +1,8 @@
 package com.optivem.eshop.systemtest.dsl.core.app.shop.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,5 +28,6 @@ public class PlaceOrderVerification extends ResponseVerification<PlaceOrderRespo
         return this;
     }
 }
+
 
 

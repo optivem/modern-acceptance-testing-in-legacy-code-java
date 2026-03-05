@@ -2,8 +2,8 @@ package com.optivem.eshop.systemtest.dsl.core.app.erp.usecases;
 
 import com.optivem.eshop.systemtest.driver.port.erp.dtos.GetProductResponse;
 import com.optivem.common.Converter;
-import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
-import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.shared.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseContext;
 
 import java.math.BigDecimal;
 
@@ -39,5 +39,6 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
         return price(Converter.toBigDecimal(expectedPrice));
     }
 }
+
 
 

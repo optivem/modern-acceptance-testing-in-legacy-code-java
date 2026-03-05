@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario;
 
-import com.optivem.eshop.systemtest.dsl.common.UseCaseResult;
-import com.optivem.eshop.systemtest.dsl.common.ResponseVerification;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseResult;
+import com.optivem.eshop.systemtest.dsl.core.shared.ResponseVerification;
 
 public class ExecutionResultBuilder<TSuccessResponse, TSuccessVerification extends ResponseVerification<TSuccessResponse>> {
     private final UseCaseResult<TSuccessResponse, TSuccessVerification> result;
@@ -26,5 +26,6 @@ public class ExecutionResultBuilder<TSuccessResponse, TSuccessVerification exten
         return new ExecutionResult<>(result, orderNumber, couponCode);
     }
 }
+
 
 

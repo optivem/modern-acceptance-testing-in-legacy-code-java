@@ -8,7 +8,7 @@ import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.PlaceOrder;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.PublishCoupon;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.usecases.ViewOrder;
 import com.optivem.common.Closer;
-import com.optivem.eshop.systemtest.dsl.common.UseCaseContext;
+import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseContext;
 
 import java.io.Closeable;
 
@@ -50,5 +50,6 @@ public class ShopDsl implements Closeable {
         return new BrowseCoupons(driver, context);
     }
 }
+
 
 
