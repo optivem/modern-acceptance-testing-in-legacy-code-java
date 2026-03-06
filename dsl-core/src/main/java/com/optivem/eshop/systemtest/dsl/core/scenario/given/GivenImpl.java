@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCountryIm
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCouponImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenProductImpl;
+import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenReviewImpl;
 import com.optivem.eshop.systemtest.dsl.port.given.GivenStage;
 import com.optivem.eshop.systemtest.dsl.port.then.ThenStage;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.WhenImpl;
@@ -58,6 +59,10 @@ public class GivenImpl implements GivenStage {
         var coupon = new GivenCouponImpl(this);
         coupons.add(coupon);
         return coupon;
+    }
+
+    public GivenReviewImpl review() {
+        return new GivenReviewImpl(this);
     }
 
     public WhenImpl when() {

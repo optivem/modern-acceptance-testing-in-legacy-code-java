@@ -55,6 +55,10 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         var verification = app.tax().getTaxRate().country(countryAlias).execute().shouldSucceed();
         return new ThenCountryImpl(app, executionResult, verification);
     }
+
+    public ThenReviewImpl review() {
+        return new ThenReviewImpl();
+    }
 }
 
 

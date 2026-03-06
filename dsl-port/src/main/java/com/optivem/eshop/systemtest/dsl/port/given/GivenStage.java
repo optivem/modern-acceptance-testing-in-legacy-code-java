@@ -5,6 +5,7 @@ import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenCountry;
 import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenCoupon;
 import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenOrder;
 import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenProduct;
+import com.optivem.eshop.systemtest.dsl.port.given.steps.GivenReview;
 import com.optivem.eshop.systemtest.dsl.port.then.ThenStage;
 import com.optivem.eshop.systemtest.dsl.port.when.WhenStage;
 
@@ -18,6 +19,8 @@ public interface GivenStage {
     GivenOrder order();
 
     GivenCoupon coupon();
+
+    GivenReview review();
 
     WhenStage when();
 

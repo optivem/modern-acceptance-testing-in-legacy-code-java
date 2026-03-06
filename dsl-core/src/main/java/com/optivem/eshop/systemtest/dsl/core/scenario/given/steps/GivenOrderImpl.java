@@ -79,6 +79,10 @@ public class GivenOrderImpl extends BaseGivenStep implements GivenOrder {
                     .execute()
                     .shouldSucceed();
         }
+
+        if(status == OrderStatus.DELIVERED) {
+            throw new UnsupportedOperationException("DSL not implemented yet");
+        }
     }
 }
 

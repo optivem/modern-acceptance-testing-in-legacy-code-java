@@ -6,20 +6,21 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 - Write acceptance tests only — do not implement anything.
 - Each Gherkin scenario maps directly to one test method — one-to-one, no interpretation needed.
-- Only specify the minimum data needed for each scenario — inputs directly relevant to what is being tested, and assertions directly relevant to the expected outcome. Do not add extra fields, extra assertions, or noise.
+- Only specify the minimum data needed for each scenario — inputs directly relevant to what is being tested, and assertions directly relevant to the expected outcome. Do not add extra fields, extra assertions, or noise. If a field is not relevant to the scenario being tested, omit it entirely and let the DSL use its default value.
 - If the DSL needs to be extended with new methods, call them directly in the test as if they exist — do not add them to the DSL interface yet. Compile errors are expected and intentional.
+- After writing each test, verify it matches the acceptance criteria exactly — Given maps to Given, When maps to When, Then maps to Then. Every precondition stated in the scenario must appear in the test. If anything is unclear, ask before proceeding.
 
 ## RED 1 - Test
 
 1. Write the acceptance tests.
 2. Run the tests and verify they fail.
-3. If there is a compile-time error (due to missing DSL interface methods):
-   a. STOP and ask for approval to review the tests.
-   b. After approval: extend the DSL interface with the new methods.
-   c. Implement the DSL by throwing `UnsupportedOperationException("DSL not implemented yet")` — do not implement drivers.
-   d. Run the tests and verify they fail due to `UnsupportedOperationException` (runtime, not compile-time).
-4. Mark the tests as `@Disabled` with comment "In Progress - Test".
-5. Commit the changes.
+3. STOP and ask for approval to review the tests.
+4. If there is a compile-time error (due to missing DSL interface methods):
+   a. Extend the DSL interface with the new methods.
+   b. Implement the DSL by throwing `UnsupportedOperationException("DSL not implemented yet")` — do not implement drivers.
+   c. Run the tests and verify they fail due to `UnsupportedOperationException` (runtime, not compile-time).
+5. Mark the tests as `@Disabled` with comment "In Progress - Test".
+6. Commit the changes.
 
 ## RED 2 - DSL
 
