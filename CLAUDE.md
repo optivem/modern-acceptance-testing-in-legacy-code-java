@@ -1,1 +1,1 @@
-@docs/prompts/acceptance-tests.md
+@docs/prompts/atdd.md
