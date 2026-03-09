@@ -18,10 +18,6 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
-        if (request.getReviewable() != null) {
-            throw new UnsupportedOperationException("Driver skeleton");
-        }
-
         var extProductDetailsResponse = ExtProductDetailsResponse.builder()
                 .id(request.getSku())
                 .title("")
@@ -29,6 +25,7 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
                 .price(Converter.toBigDecimal(request.getPrice()))
                 .category("")
                 .brand("")
+                .reviewable(request.getReviewable())
                 .build();
 
         return client.configureGetProduct(extProductDetailsResponse)

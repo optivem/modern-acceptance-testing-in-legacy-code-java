@@ -54,7 +54,6 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
                     .errorMessage("A review has already been submitted for this order");
     }
 
-    @Disabled("RED 4 - Driver Skeleton")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void cannotSubmitReviewWhenProductIsNotReviewable() {

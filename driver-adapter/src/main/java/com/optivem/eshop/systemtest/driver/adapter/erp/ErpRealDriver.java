@@ -18,10 +18,6 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
-        if (request.getReviewable() != null) {
-            throw new UnsupportedOperationException("Driver skeleton");
-        }
-
         var createProductRequest = ExtCreateProductRequest.builder()
                 .id(request.getSku())
                 .title(DEFAULT_TITLE)
@@ -29,6 +25,7 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
                 .category(DEFAULT_CATEGORY)
                 .brand(DEFAULT_BRAND)
                 .price(request.getPrice())
+                .reviewable(request.getReviewable())
                 .build();
 
         return client.createProduct(createProductRequest)

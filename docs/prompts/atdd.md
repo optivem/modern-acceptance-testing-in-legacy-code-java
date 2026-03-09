@@ -24,7 +24,7 @@ When the user provides acceptance criteria, translate each scenario directly int
 2. Run the tests and verify they fail (compile error is expected if new DSL methods are needed).
 3. STOP. Present the tests to the user and ask for approval. Do NOT continue.
 
-## RED 2 - DSL Skeleton
+## RED 2 - Tests - Commit
 
 _Only needed if there were compile-time errors in RED 1._
 
@@ -32,29 +32,33 @@ _Only needed if there were compile-time errors in RED 1._
 2. Implement the new methods by throwing `UnsupportedOperationException("DSL skeleton")` — do not implement drivers.
 3. Run the tests and verify they fail with `UnsupportedOperationException("DSL skeleton")` (runtime, not compile-time).
 4. Mark the tests as `@Disabled("RED 2 - DSL Skeleton")`.
-5. Commit the changes.
+5. COMMIT the changes.
 
-## RED 3 - DSL Implementation
+## RED 3 - DSL
 
 1. Enable the tests marked `@Disabled("RED 2 - DSL Skeleton")`.
 2. Implement the DSL for real — replace `UnsupportedOperationException("DSL skeleton")` with actual logic.
 3. Update the Driver interfaces as needed.
 4. STOP. Present the DSL implementation and Driver interface changes to the user and ask for approval. Do NOT continue.
 
-## RED 4 - Driver Skeleton
+## RED 4 - DSL - Commit
 
 1. Implement the Drivers by throwing `UnsupportedOperationException("Driver skeleton")`.
 2. Run the tests and verify they fail with `UnsupportedOperationException("Driver skeleton")`.
 3. Mark the tests as `@Disabled("RED 4 - Driver Skeleton")`.
 4. Ensure that there are no test files in the list of changed files.
-5. Commit the changes.
+5. COMMIT the changes.
 
-## RED 5 - Driver Implementation
+## RED 5 - Driver
 
 1. Enable the tests marked `@Disabled("RED 4 - Driver Skeleton")`.
 2. Implement the Drivers — replace `UnsupportedOperationException("Driver skeleton")` with actual logic.
 3. Run the tests and verify they fail in the `then` stage.
-4. STOP. Present the Driver implementation to the user and ask for approval. Do NOT continue.
+5. STOP. Present the Driver implementation to the user and ask for approval. Do NOT continue.
+
+## RED 6 - Driver - Commit
+
+1. COMMIT the changes.
 
 ## RED 6 - Contract Tests
 
