@@ -1,5 +1,21 @@
 # ATDD Rules
 
+## Commit Message Format
+
+Commit messages must follow this format: `<Phase>: <Short description of what changed>`
+
+Examples:
+- `RED 1 - Tests: Add Submit Review acceptance tests`
+- `RED 2 - Tests: Add DSL skeleton for Submit Review`
+- `RED 3 - DSL: Implement Submit Review DSL and driver interfaces`
+- `RED 4 - DSL: Add driver skeleton for Submit Review`
+- `RED 5 - Driver: Implement Submit Review API and UI drivers`
+- `GREEN 1 - Stubs: Implement Submit Review external system stubs`
+- `GREEN 2 - System: Implement Submit Review backend and frontend`
+- `GREEN 3 - Enable Tests: Enable Submit Review acceptance tests`
+
+---
+
 ## Phase Triggers
 
 Each ATDD phase is a separate, explicit step. **Never proceed to the next phase automatically.** Wait for the user to explicitly say `"proceed to RED 2"`, `"proceed to RED 3"`, etc. before starting the next phase.
