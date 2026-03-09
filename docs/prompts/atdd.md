@@ -33,9 +33,10 @@ If there were compilation errors in RED 1, then you'll need to implement the DSL
 3. As you're implementing the DSL, you will probably need to change the Driver interfaces.
 4. STOP and ask for approval to review the DSL implementation and Driver interfaces.
 5. Implement the Drivers by throwing `UnsupportedOperationException("Driver not implemented yet")`.
-6. Make the tests `@Disabled` again, with comment "In Progress - DSL".
-7. Ensure that there are no test files in the list of changed files.
-8. Commit the changes.
+6. Run the tests and verify they fail with `UnsupportedOperationException`.
+7. Make the tests `@Disabled` again, with comment "In Progress - DSL".
+8. Ensure that there are no test files in the list of changed files.
+9. Commit the changes.
 
 ## RED 3 - Driver
 
@@ -43,10 +44,11 @@ If there were compilation errors in RED 1, then you'll need to implement the Dri
 
 1. Enable the tests that were marked as `@Disabled` with comment "In Progress - DSL".
 2. Implement the Drivers.
-3. STOP and ask for approval to review the Drivers.
-6. Make the tests `@Disabled` again, with comment "In Progress - Implementation".
-7. Ensure that there are no test files in the list of changed files.
-8. Commit the changes.
+3. Run the tests and verify they fail in the `then` stage.
+4. STOP and ask for approval to review the Drivers.
+5. Make the tests `@Disabled` again, with comment "In Progress - Implementation".
+6. Ensure that there are no test files in the list of changed files.
+7. Commit the changes.
 
 ## GREEN - Backend
 
