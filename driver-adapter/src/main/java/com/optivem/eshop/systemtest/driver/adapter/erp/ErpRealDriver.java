@@ -18,6 +18,10 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
+        if (request.getReviewable() != null) {
+            throw new UnsupportedOperationException("Driver skeleton");
+        }
+
         var createProductRequest = ExtCreateProductRequest.builder()
                 .id(request.getSku())
                 .title(DEFAULT_TITLE)

@@ -10,6 +10,7 @@ import static com.optivem.eshop.systemtest.dsl.core.scenario.ScenarioDefaults.*;
 public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
     private String sku;
     private String unitPrice;
+    private Boolean reviewable;
 
     public GivenProductImpl(GivenImpl given) {
         super(given);
@@ -33,11 +34,13 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
     }
 
     public GivenProductImpl isReviewable() {
-        throw new UnsupportedOperationException("DSL skeleton");
+        this.reviewable = true;
+        return this;
     }
 
     public GivenProductImpl isNotReviewable() {
-        throw new UnsupportedOperationException("DSL skeleton");
+        this.reviewable = false;
+        return this;
     }
 
     @Override
@@ -45,6 +48,7 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
         app.erp().returnsProduct()
                 .sku(sku)
                 .unitPrice(unitPrice)
+                .reviewable(reviewable)
                 .execute()
                 .shouldSucceed();
     }

@@ -8,5 +8,6 @@ import lombok.Data;
 public class ReturnsProductRequest {
     private String sku;
     private String price;
+    private Boolean reviewable;
 }
 
