@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ValueSource;
 
-@Disabled("In Progress - Implementation")
 class SubmitReviewNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
@@ -53,5 +52,19 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
                 .when().submitReview()
                 .then().shouldFail()
                     .errorMessage("A review has already been submitted for this order");
+    }
+
+    @Disabled("RED 2 - DSL Skeleton")
+    @TestTemplate
+    @Channel({ChannelType.UI, ChannelType.API})
+    void cannotSubmitReviewWhenProductIsNotReviewable() {
+        scenario
+                .given().order()
+                    .withStatus(OrderStatus.DELIVERED)
+                .and().product()
+                    .isNotReviewable()
+                .when().submitReview()
+                .then().shouldFail()
+                    .errorMessage("This product is not eligible for reviews");
     }
 }

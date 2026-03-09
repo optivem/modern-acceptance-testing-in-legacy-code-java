@@ -32,6 +32,14 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
         return this;
     }
 
+    public GivenProductImpl isReviewable() {
+        throw new UnsupportedOperationException("DSL skeleton");
+    }
+
+    public GivenProductImpl isNotReviewable() {
+        throw new UnsupportedOperationException("DSL skeleton");
+    }
+
     @Override
     public void execute(AppDsl app) {
         app.erp().returnsProduct()

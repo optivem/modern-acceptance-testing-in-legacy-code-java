@@ -30,7 +30,7 @@ _Only needed if there were compile-time errors in RED 1._
 
 1. Extend the DSL interface with the new methods.
 2. Implement the new methods by throwing `UnsupportedOperationException("DSL skeleton")` — do not implement drivers.
-3. Run the tests and verify they fail with `UnsupportedOperationException` (runtime, not compile-time).
+3. Run the tests and verify they fail with `UnsupportedOperationException("DSL skeleton")` (runtime, not compile-time).
 4. Mark the tests as `@Disabled("RED 2 - DSL Skeleton")`.
 5. Commit the changes.
 
@@ -44,7 +44,7 @@ _Only needed if there were compile-time errors in RED 1._
 ## RED 4 - Driver Skeleton
 
 1. Implement the Drivers by throwing `UnsupportedOperationException("Driver skeleton")`.
-2. Run the tests and verify they fail with `UnsupportedOperationException`.
+2. Run the tests and verify they fail with `UnsupportedOperationException("Driver skeleton")`.
 3. Mark the tests as `@Disabled("RED 4 - Driver Skeleton")`.
 4. Ensure that there are no test files in the list of changed files.
 5. Commit the changes.

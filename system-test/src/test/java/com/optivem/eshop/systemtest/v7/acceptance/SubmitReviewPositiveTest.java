@@ -7,15 +7,17 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
-@Disabled("In Progress - Implementation")
 class SubmitReviewPositiveTest extends BaseAcceptanceTest {
 
+    @Disabled("RED 2 - DSL Skeleton")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void canSubmitReviewOnDeliveredOrder() {
         scenario
                 .given().order()
                     .withStatus(OrderStatus.DELIVERED)
+                .and().product()
+                    .isReviewable()
                 .when().submitReview()
                     .withRating("5")
                     .withComment("Quality product")
