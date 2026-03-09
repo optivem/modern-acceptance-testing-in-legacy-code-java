@@ -73,11 +73,24 @@ Uses pre-built Docker images from registry:
 Skip build/start phases and just run tests (assumes services are already running):
 
 ```powershell
-.\Run-SystemTests.ps1 -TestOnly
+.\Run-SystemTests.ps1 -SkipTests $false
 ```
 
-**Note:** The `-TestOnly` flag skips the build, stop, start, and wait phases. Use it when services are already running
-and you just want to re-run the tests quickly.
+### Run a Specific Suite
+
+Run only a specific test suite by ID:
+
+```powershell
+.\Run-SystemTests.ps1 -Suite v7-acceptance-api
+```
+
+### Run a Single Test
+
+Run only one test method within a suite:
+
+```powershell
+.\Run-SystemTests.ps1 -Suite v7-acceptance-api -Test canSubmitReviewOnDeliveredOrder
+```
 
 ### Individual Component Builds
 
