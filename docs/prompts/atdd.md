@@ -44,8 +44,8 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 1. If there were compile-time errors in RED 1:
    a. Extend the DSL interfaces with the new methods.
-   b. Implement the new methods by throwing `UnsupportedOperationException("RED - Tests")` — do not implement drivers.
-   c. Run the tests and verify they fail with `UnsupportedOperationException("RED - Tests")` (runtime, not compile-time).
+   b. Implement the new methods by throwing `UnsupportedOperationException("TODO: DSL")` — do not implement DSL.
+   c. Run the tests and verify they fail with `UnsupportedOperationException("TODO: DSL")` (runtime, not compile-time).
 2. Mark the tests as `@Disabled("RED - Tests")`.
 3. COMMIT the changes.
 4. If there were compile-time errors in RED 1, automatically proceed to RED 3. 
@@ -53,15 +53,15 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 ## RED 3 - DSL
 
-1. Enable the tests marked `@Disabled("RED - DSL")`.
-2. Implement the DSL for real — replace `UnsupportedOperationException("RED - DSL")` with actual logic.
+1. Enable the tests marked `@Disabled("RED - Tests")`.
+2. Implement the DSL for real — replace `UnsupportedOperationException("TODO: DSL")` with actual logic.
 3. Update the Driver interfaces as needed.
 4. STOP. Present the DSL implementation and Driver interface changes to the user and ask for approval. Do NOT continue.
 
 ## RED 4 - DSL (COMMIT)
 
-1. Implement the Drivers by throwing `UnsupportedOperationException("RED - DSL")`.
-2. Run the tests and verify they fail with `UnsupportedOperationException("RED - DSL")`.
+1. Implement the Drivers by throwing `UnsupportedOperationException("TODO: Driver")`.
+2. Run the tests and verify they fail with `UnsupportedOperationException("TODO: Driver")`.
 3. Mark the tests as `@Disabled("RED - DSL")`.
 4. Ensure that there are no test files in the list of changed files.
 5. COMMIT the changes.
@@ -69,8 +69,8 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 ## RED 5 - Driver
 
-1. Enable the tests marked `@Disabled("RED - Driver")`.
-2. Implement the Drivers — replace `UnsupportedOperationException("RED - Driver")` with actual logic.
+1. Enable the tests marked `@Disabled("RED - DSL")`.
+2. Implement the Drivers — replace `UnsupportedOperationException("TODO: Driver")` with actual logic.
 3. Run the tests and verify they fail in the `then` stage.
 5. STOP. Present the Driver implementation to the user and ask for approval. Do NOT continue.
 
