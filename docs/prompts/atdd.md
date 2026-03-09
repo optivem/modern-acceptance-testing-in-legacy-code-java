@@ -33,6 +33,7 @@ _Only needed if there were compile-time errors in RED 1._
 3. Run the tests and verify they fail with `UnsupportedOperationException("DSL skeleton")` (runtime, not compile-time).
 4. Mark the tests as `@Disabled("RED 2 - DSL Skeleton")`.
 5. COMMIT the changes.
+6. Automatically proceed to RED 3.
 
 ## RED 3 - DSL
 
@@ -48,6 +49,7 @@ _Only needed if there were compile-time errors in RED 1._
 3. Mark the tests as `@Disabled("RED 4 - Driver Skeleton")`.
 4. Ensure that there are no test files in the list of changed files.
 5. COMMIT the changes.
+6. Automatically proceed to RED 5.
 
 ## RED 5 - Driver
 
@@ -59,6 +61,15 @@ _Only needed if there were compile-time errors in RED 1._
 ## RED 6 - Driver (COMMIT)
 
 1. COMMIT the changes.
+
+
+
+
+
+
+
+
+
 
 ## RED 6 - Contract Tests
 
