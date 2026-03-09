@@ -1,22 +1,10 @@
 # ATDD Rules
 
-## Phase Triggers
+## Phase Progression
 
-Each ATDD phase is a separate, explicit step. **Never proceed to the next phase automatically.** Wait for the user to explicitly say `"proceed to RED 2"`, `"proceed to RED 3"`, etc. before starting the next phase.
-
-If the user says anything other than a phase trigger after a STOP, ask them clarifying questions — do not execute the next phase.
+Proceed to the next phase automatically **unless** the current phase ends with **STOP**. When a phase ends with STOP, wait for the user to explicitly approve before continuing. If the user says something other than approval after a STOP, ask clarifying questions — do not execute the next phase.
 
 ---
-
-When the user provides acceptance criteria, translate each scenario directly into an acceptance test.
-
-## Writing Acceptance Tests
-
-- Write acceptance tests only — do not implement anything.
-- Each Gherkin scenario maps directly to one test method — one-to-one, no interpretation needed.
-- Only specify the minimum data needed for each scenario — inputs directly relevant to what is being tested, and assertions directly relevant to the expected outcome. Do not add extra fields, extra assertions, or noise. If a field is not relevant to the scenario being tested, omit it entirely and let the DSL use its default value.
-- If the DSL needs to be extended with new methods, call them directly in the test as if they exist — do not add them to the DSL interface yet. Compile errors are expected and intentional.
-- After writing each test, verify it matches the acceptance criteria exactly — Given maps to Given, When maps to When, Then maps to Then. Every precondition stated in the scenario must appear in the test. If anything is unclear, ask before proceeding.
 
 ## Suite Selection
 
@@ -28,7 +16,12 @@ If a test covers both channels, run both suites.
 
 ## RED 1 - Acceptance Tests (DRAFT)
 
-1. Write the acceptance tests.
+1. Write the acceptance tests, following these rules:
+   - Write acceptance tests only — do not implement anything.
+   - Each Gherkin scenario maps directly to one test method — one-to-one, no interpretation needed.
+   - Only specify the minimum data needed — inputs directly relevant to what is being tested, and assertions directly relevant to the expected outcome. Do not add extra fields, extra assertions, or noise. If a field is not relevant to the scenario being tested, omit it entirely and let the DSL use its default value.
+   - If the DSL needs to be extended with new methods, call them directly in the test as if they exist — do not add them to the DSL interface yet. Compile errors are expected and intentional.
+   - After writing each test, verify it matches the acceptance criteria exactly — Given maps to Given, When maps to When, Then maps to Then. Every precondition stated in the scenario must appear in the test. If anything is unclear, ask before proceeding.
 2. Run the tests and verify they fail (compile error is expected if new DSL methods are needed):
    ```
    .\Run-SystemTests.ps1 -Suite <acceptance-api> -Test <TestMethodName>
