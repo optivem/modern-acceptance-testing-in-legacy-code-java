@@ -21,7 +21,10 @@ When the user provides acceptance criteria, translate each scenario directly int
 ## RED 1 - Acceptance Tests (DRAFT)
 
 1. Write the acceptance tests.
-2. Run the tests and verify they fail (compile error is expected if new DSL methods are needed).
+2. Run the tests and verify they fail (compile error is expected if new DSL methods are needed):
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite> -Test <TestMethodName>
+   ```
 3. STOP. Present the tests to the user and ask for approval. Do NOT continue.
 
 ## RED 1 - Acceptance Tests (COMMIT)
@@ -29,7 +32,10 @@ When the user provides acceptance criteria, translate each scenario directly int
 1. If there were compile-time errors in RED 1 (DRAFT):
    a. Extend the DSL interfaces with the new methods.
    b. Implement the new methods by throwing `UnsupportedOperationException("TODO: DSL")` — do not implement DSL.
-   c. Run the tests and verify they fail with a runtime error.
+   c. Run the tests and verify they fail with a runtime error:
+      ```
+      .\Run-SystemTests.ps1 -Suite <suite> -Test <TestMethodName>
+      ```
 2. Mark the tests as `@Disabled("RED 1 - Tests")`.
 3. COMMIT with message `<Scenario> | RED 1 - Tests`.
 4. If there were compile-time errors in RED 1 (DRAFT), automatically proceed to RED 2 (DRAFT).
@@ -45,7 +51,10 @@ When the user provides acceptance criteria, translate each scenario directly int
 ## RED 2 - DSL (COMMIT)
 
 1. Implement the Drivers by throwing `UnsupportedOperationException("TODO: Driver")`.
-2. Run the tests and verify they fail with a runtime error.
+2. Run the tests and verify they fail with a runtime error:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite> -Test <TestMethodName>
+   ```
 3. Mark the tests as `@Disabled("RED 2 - DSL")`.
 4. Ensure that there are no test files in the list of changed files.
 5. COMMIT with message `<Scenario> | RED 2 - DSL`.
@@ -57,7 +66,10 @@ When the user provides acceptance criteria, translate each scenario directly int
 2. Implement the Drivers — replace `UnsupportedOperationException("TODO: Driver")` with actual logic.
    - Only look at files in the `driver-adapter` and `driver-port` directories.
    - Do NOT read or search backend/frontend source code. Model the new method on existing driver methods in the same file.
-3. Run the tests and verify they fail with a runtime error.
+3. Run the tests and verify they fail with a runtime error:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite> -Test <TestMethodName>
+   ```
 4. STOP. Present the Driver implementation to the user and ask for approval. Do NOT continue.
 
 ## RED 3 - Driver (COMMIT)
@@ -74,9 +86,15 @@ _Only needed if there are runtime failures due to External System Stubs._
 _If the External System does not even exist yet, make Smoke Tests pass first._
 
 1. Write External System Contract Tests.
-2. Verify that they pass when executed against the Real External System. 
+2. Verify that they pass when executed against the Real External System:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite-contract-real> -Test <TestMethodName>
+   ```
    If they don't pass, then ask the user for support. STOP. Do NOT continue.
-3. Verify that they fail when executed against the Stub External System.
+3. Verify that they fail when executed against the Stub External System:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite-contract-stub> -Test <TestMethodName>
+   ```
 4. Mark the tests `@Disabled("RED 4 - Contract Tests")`.
 5. STOP. Present the contract tests to the user and ask for approval. Do NOT continue.
 
@@ -90,7 +108,10 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 1. Enable the tests marked `@Disabled("RED 4 - Contract Tests")`.
 2. Implement the External System Stubs.
 3. Execute `./Run-SystemTests.ps1 -Rebuild -SkipTests`.
-4. Verify that the External System Contract Tests pass. If they fail, fix and repeat.
+4. Verify that the External System Contract Tests pass. If they fail, fix and repeat:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite-contract-stub> -Test <TestMethodName>
+   ```
 5. STOP. Present the stub implementation to the user and ask for approval. Do NOT continue.
 
 ## GREEN 1 - External System Stubs (COMMIT)
@@ -102,13 +123,19 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 
 1. Implement the backend:
    a. Implement the backend changes.
-   b. Run acceptance tests for the API channel.
+   b. Run acceptance tests for the API channel:
+      ```
+      .\Run-SystemTests.ps1 -Suite <suite-api> -Test <TestMethodName>
+      ```
    c. If tests fail, fix the backend until the tests pass.
    d. If you have challenges making the tests pass, ask the user.
    e. Do NOT change the tests/dsl/drivers — change only the backend code.
 2. Implement the frontend:
    a. Implement the frontend changes.
-   b. Run acceptance tests for the UI channel.
+   b. Run acceptance tests for the UI channel:
+      ```
+      .\Run-SystemTests.ps1 -Suite <suite-ui> -Test <TestMethodName>
+      ```
    c. If tests fail, fix the frontend until the tests pass.
    d. If you have challenges making the tests pass, ask the user.
    e. Do NOT change the tests/dsl/drivers — change only the frontend code.
@@ -118,6 +145,10 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 ## GREEN 2 - System (COMMIT)
 
 1. Remove the `@Disabled` annotation from the tests.
-2. Run the tests and verify they all pass.
+2. Run the tests and verify they all pass:
+   ```
+   .\Run-SystemTests.ps1 -Suite <suite-api>
+   .\Run-SystemTests.ps1 -Suite <suite-ui>
+   ```
 3. Ensure that there are no non-test files in the list of changed files.
 4. COMMIT with message `<Scenario> | GREEN - System`.
