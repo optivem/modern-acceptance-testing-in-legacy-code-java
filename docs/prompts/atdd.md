@@ -62,8 +62,9 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 ## RED 3 - Driver (COMMIT)
 
-1. COMMIT with message `<Scenario> | RED 3 - Driver`.
-2. If the test failure was due to an External System Stub (i.e. the stub does not yet support the new operation), automatically proceed to RED 4 - Contract Tests (DRAFT).
+1. Mark the tests as `@Disabled("RED")`.
+2. COMMIT with message `<Scenario> | RED 3 - Driver`.
+3. If the test failure was due to an External System Stub (i.e. the stub does not yet support the new operation), automatically proceed to RED 4 - Contract Tests (DRAFT).
    Otherwise, automatically proceed to GREEN 2.
 
 ## RED 4 - Contract Tests (DRAFT)
