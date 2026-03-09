@@ -42,6 +42,7 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
         app.erp().returnsProduct()
                 .sku(sku)
                 .unitPrice(unitPrice)
+                .reviewable(reviewable)
                 .execute()
                 .shouldSucceed();
     }

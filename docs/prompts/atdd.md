@@ -45,7 +45,7 @@ When the user provides acceptance criteria, translate each scenario directly int
 ## RED 2 - DSL (COMMIT)
 
 1. Implement the Drivers by throwing `UnsupportedOperationException("TODO: Driver")`.
-2. Run the tests and verify they fail with `UnsupportedOperationException("TODO: Driver")`.
+2. Run the tests and verify they fail with `UnsupportedOperationException("TODO: Driver")`. If you receive another message, please alert the user.
 3. Mark the tests as `@Disabled("RED 2 - DSL")`.
 4. Ensure that there are no test files in the list of changed files.
 5. COMMIT with message `<Scenario> | RED 2 - DSL`.

@@ -7,9 +7,9 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
-@Disabled("RED 1 - Tests")
 class SubmitReviewPositiveTest extends BaseAcceptanceTest {
 
+    @Disabled("RED 2 - DSL")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void canSubmitReviewOnDeliveredOrder() {
