@@ -42,14 +42,14 @@ When the user provides acceptance criteria, translate each scenario directly int
 
 ## RED 2 - Tests (COMMIT)
 
-_Only needed if there were compile-time errors in RED 1._
-
-1. Extend the DSL interface with the new methods.
-2. Implement the new methods by throwing `UnsupportedOperationException("DSL skeleton")` — do not implement drivers.
-3. Run the tests and verify they fail with `UnsupportedOperationException("DSL skeleton")` (runtime, not compile-time).
-4. Mark the tests as `@Disabled("RED 2 - DSL Skeleton")`.
-5. COMMIT the changes.
-6. Automatically proceed to RED 3.
+1. If there were compile-time errors in RED 1:
+   a. Extend the DSL interfaces with the new methods.
+   b. Implement the new methods by throwing `UnsupportedOperationException("DSL skeleton")` — do not implement drivers.
+   c. Run the tests and verify they fail with `UnsupportedOperationException("DSL skeleton")` (runtime, not compile-time).
+2. Mark the tests as `@Disabled("RED 2 - DSL Skeleton")`.
+3. COMMIT the changes.
+4. If there were compile-time errors in RED 1, automatically proceed to RED 3. 
+   Otherwise, STOP and wait for the user to indicate what to do next.
 
 ## RED 3 - DSL
 
