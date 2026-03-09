@@ -6,7 +6,6 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.port.shared.dtos.ErrorResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.SubmitReviewRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.common.Closer;
@@ -59,10 +58,6 @@ public class ShopApiDriver implements ShopDriver {
         return apiClient.orders().deliverOrder(orderNumber).mapError(SystemErrorMapper::from);
     }
 
-    @Override
-    public Result<Void, ErrorResponse> submitReview(SubmitReviewRequest request) {
-        return apiClient.reviews().submitReview(request).mapError(SystemErrorMapper::from);
-    }
 }
 
 

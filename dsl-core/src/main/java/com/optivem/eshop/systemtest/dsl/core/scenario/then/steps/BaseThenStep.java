@@ -56,13 +56,6 @@ public abstract class BaseThenStep<TSuccessResponse, TSuccessVerification extend
         return new ThenCountryImpl(app, executionResult, verification);
     }
 
-    public ThenReviewImpl review() {
-        if (executionResult.getOrderNumber() == null) {
-            throw new IllegalStateException("Cannot verify review: no order number available from the executed operation");
-        }
-        var verification = app.shop().viewOrder().orderNumber(executionResult.getOrderNumber()).execute().shouldSucceed();
-        return new ThenReviewImpl(verification);
-    }
 }
 
 

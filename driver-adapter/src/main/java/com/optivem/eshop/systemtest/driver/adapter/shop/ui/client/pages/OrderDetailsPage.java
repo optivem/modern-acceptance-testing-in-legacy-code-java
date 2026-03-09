@@ -26,12 +26,6 @@ public class OrderDetailsPage extends BasePage {
     private static final String APPLIED_COUPON_OUTPUT_SELECTOR = "[aria-label='Display Applied Coupon']";
     private static final String CANCEL_ORDER_OUTPUT_SELECTOR = "[aria-label='Cancel Order']";
     private static final String DELIVER_ORDER_SELECTOR = "[aria-label='Deliver Order']";
-    private static final String RATING_INPUT_SELECTOR = "[aria-label='Input Rating']";
-    private static final String COMMENT_INPUT_SELECTOR = "[aria-label='Input Comment']";
-    private static final String SUBMIT_REVIEW_SELECTOR = "[aria-label='Submit Review']";
-    private static final String REVIEW_TIMESTAMP_OUTPUT_SELECTOR = "[aria-label='Display Review Timestamp']";
-    private static final String REVIEW_RATING_OUTPUT_SELECTOR = "[aria-label='Display Review Rating']";
-    private static final String REVIEW_COMMENT_OUTPUT_SELECTOR = "[aria-label='Display Review Comment']";
 
     // Display text constants
     private static final String TEXT_NONE = "None";
@@ -120,41 +114,6 @@ public class OrderDetailsPage extends BasePage {
 
     public void clickDeliverOrder() {
         pageClient.click(DELIVER_ORDER_SELECTOR);
-    }
-
-    public void inputRating(String rating) {
-        pageClient.fill(RATING_INPUT_SELECTOR, rating);
-    }
-
-    public void inputComment(String comment) {
-        pageClient.fill(COMMENT_INPUT_SELECTOR, comment);
-    }
-
-    public void clickSubmitReview() {
-        pageClient.click(SUBMIT_REVIEW_SELECTOR);
-    }
-
-    public Instant getReviewTimestamp() {
-        if (!pageClient.isVisible(REVIEW_TIMESTAMP_OUTPUT_SELECTOR)) {
-            return null;
-        }
-        var textContent = pageClient.readTextContent(REVIEW_TIMESTAMP_OUTPUT_SELECTOR);
-        return Converter.toInstant(textContent);
-    }
-
-    public Integer getReviewRating() {
-        if (!pageClient.isVisible(REVIEW_RATING_OUTPUT_SELECTOR)) {
-            return null;
-        }
-        var textContent = pageClient.readTextContent(REVIEW_RATING_OUTPUT_SELECTOR);
-        return Integer.parseInt(textContent);
-    }
-
-    public String getReviewComment() {
-        if (!pageClient.isVisible(REVIEW_COMMENT_OUTPUT_SELECTOR)) {
-            return null;
-        }
-        return pageClient.readTextContent(REVIEW_COMMENT_OUTPUT_SELECTOR);
     }
 
     private BigDecimal readTextMoney(String selector) {

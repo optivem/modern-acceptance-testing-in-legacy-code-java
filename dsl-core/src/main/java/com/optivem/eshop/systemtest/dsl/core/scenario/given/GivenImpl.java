@@ -7,7 +7,6 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCountryIm
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenCouponImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenProductImpl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.given.steps.GivenReviewImpl;
 import com.optivem.eshop.systemtest.dsl.port.given.GivenStage;
 import com.optivem.eshop.systemtest.dsl.port.then.ThenStage;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.WhenImpl;
@@ -22,7 +21,6 @@ public class GivenImpl implements GivenStage {
     private final List<GivenOrderImpl> orders;
     private final List<GivenCountryImpl> countries;
     private final List<GivenCouponImpl> coupons;
-    private final List<GivenReviewImpl> reviews;
 
     public GivenImpl(AppDsl app) {
         this.app = app;
@@ -31,7 +29,6 @@ public class GivenImpl implements GivenStage {
         this.orders = new ArrayList<>();
         this.countries = new ArrayList<>();
         this.coupons = new ArrayList<>();
-        this.reviews = new ArrayList<>();
     }
 
     public GivenProductImpl product() {
@@ -61,12 +58,6 @@ public class GivenImpl implements GivenStage {
         var coupon = new GivenCouponImpl(this);
         coupons.add(coupon);
         return coupon;
-    }
-
-    public GivenReviewImpl review() {
-        var review = new GivenReviewImpl(this);
-        reviews.add(review);
-        return review;
     }
 
     public WhenImpl when() {
@@ -117,7 +108,6 @@ public class GivenImpl implements GivenStage {
     private void setupShop() {
         setupCoupons();
         setupOrders();
-        setupReviews();
     }
 
     private void setupCoupons() {
@@ -134,12 +124,6 @@ public class GivenImpl implements GivenStage {
     private void setupOrders() {
         for (var order : orders) {
             order.execute(app);
-        }
-    }
-
-    private void setupReviews() {
-        for (var review : reviews) {
-            review.execute(app);
         }
     }
 }

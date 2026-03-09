@@ -285,29 +285,6 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return this;
     }
 
-    public ViewOrderVerification reviewRating(int expectedRating) {
-        var actualRating = getResponse().getReviewRating();
-        assertThat(actualRating)
-                .withFailMessage("Expected review rating to be %d, but was %s", expectedRating, actualRating)
-                .isEqualTo(expectedRating);
-        return this;
-    }
-
-    public ViewOrderVerification reviewComment(String expectedComment) {
-        var actualComment = getResponse().getReviewComment();
-        assertThat(actualComment)
-                .withFailMessage("Expected review comment to be '%s', but was '%s'", expectedComment, actualComment)
-                .isEqualTo(expectedComment);
-        return this;
-    }
-
-    public ViewOrderVerification reviewTimestampIsNotNull() {
-        var actualTimestamp = getResponse().getReviewTimestamp();
-        assertThat(actualTimestamp)
-                .withFailMessage("Expected review timestamp to be set, but was null")
-                .isNotNull();
-        return this;
-    }
 }
 
 

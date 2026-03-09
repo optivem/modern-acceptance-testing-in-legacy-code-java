@@ -12,7 +12,6 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.SubmitReviewRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.port.shared.dtos.ErrorResponse;
@@ -108,9 +107,6 @@ public class ShopUiDriver implements ShopDriver {
         var totalPrice = orderDetailsPage.getTotalPrice();
         var status = orderDetailsPage.getStatus();
         var appliedCoupon = orderDetailsPage.getAppliedCoupon();
-        var reviewTimestamp = orderDetailsPage.getReviewTimestamp();
-        var reviewRating = orderDetailsPage.getReviewRating();
-        var reviewComment = orderDetailsPage.getReviewComment();
 
         var response = ViewOrderResponse.builder()
                 .orderNumber(displayOrderNumber)
@@ -128,9 +124,6 @@ public class ShopUiDriver implements ShopDriver {
                 .country(country)
                 .status(status)
                 .appliedCouponCode(appliedCoupon)
-                .reviewTimestamp(reviewTimestamp)
-                .reviewRating(reviewRating)
-                .reviewComment(reviewComment)
                 .build();
 
         return success(response);
@@ -214,22 +207,6 @@ public class ShopUiDriver implements ShopDriver {
         }
 
         return success();
-    }
-
-    @Override
-    public Result<Void, ErrorResponse> submitReview(SubmitReviewRequest request) {
-        var orderNumber = request.getOrderNumber();
-        var viewResult = viewOrder(orderNumber);
-
-        if (viewResult.isFailure()) {
-            return viewResult.mapVoid();
-        }
-
-        orderDetailsPage.inputRating(request.getRating());
-        orderDetailsPage.inputComment(request.getComment());
-        orderDetailsPage.clickSubmitReview();
-
-        return orderDetailsPage.getResult().mapVoid();
     }
 
     // --- page navigation ---

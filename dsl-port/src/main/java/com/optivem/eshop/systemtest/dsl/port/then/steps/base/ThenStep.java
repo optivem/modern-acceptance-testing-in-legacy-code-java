@@ -5,8 +5,6 @@ import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenCountry;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenCoupon;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenOrder;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenProduct;
-import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenReview;
-
 public interface ThenStep<TThen> {
     TThen and();
 
@@ -23,7 +21,5 @@ public interface ThenStep<TThen> {
     ThenProduct product(String skuAlias);
 
     ThenCountry country(String countryAlias);
-
-    ThenReview review();
 }
 

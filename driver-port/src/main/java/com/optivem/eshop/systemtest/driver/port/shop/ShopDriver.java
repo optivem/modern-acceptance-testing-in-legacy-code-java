@@ -5,7 +5,6 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.SubmitReviewRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.common.Result;
 
@@ -23,6 +22,4 @@ public interface ShopDriver extends AutoCloseable {
     Result<Void, ErrorResponse> publishCoupon(PublishCouponRequest request);
 
     Result<BrowseCouponsResponse, ErrorResponse> browseCoupons();
-
-    Result<Void, ErrorResponse> submitReview(SubmitReviewRequest request);
 }

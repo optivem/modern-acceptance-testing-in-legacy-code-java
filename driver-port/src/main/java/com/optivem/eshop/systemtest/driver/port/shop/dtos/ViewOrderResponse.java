@@ -28,7 +28,4 @@ public class ViewOrderResponse {
     private OrderStatus status;
     private String country;
     private String appliedCouponCode;
-    private Instant reviewTimestamp;
-    private Integer reviewRating;
-    private String reviewComment;
 }
