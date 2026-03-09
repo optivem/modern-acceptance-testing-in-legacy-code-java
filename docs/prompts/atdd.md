@@ -86,7 +86,7 @@ If a test covers both channels, run both suites.
 
 ## RED 3 - Driver (COMMIT)
 
-1. Mark the tests as `@Disabled("RED")`.
+1. Mark the tests as `@Disabled("RED 3 - Driver")`.
 2. COMMIT with message `<Scenario> | RED 3 - Driver`.
 3. If the test failure was due to an External System Stub (i.e. the stub does not yet support the new operation), automatically proceed to RED 4 - Contract Tests (DRAFT).
    Otherwise, automatically proceed to GREEN 2.
@@ -156,7 +156,7 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 
 ## GREEN 2 - System (COMMIT)
 
-1. Remove the `@Disabled` annotation from the tests.
+1. Remove the `@Disabled("RED 3 - Driver")` annotation from the tests.
 2. Run the tests and verify they all pass:
    ```
    .\Run-SystemTests.ps1 -Suite <acceptance-api> -Test <TestMethodName>
