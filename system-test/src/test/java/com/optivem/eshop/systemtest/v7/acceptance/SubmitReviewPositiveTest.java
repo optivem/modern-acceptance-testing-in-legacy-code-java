@@ -7,7 +7,7 @@ import com.optivem.testing.Channel;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
-@Disabled("In Progress - Test")
+@Disabled("In Progress - Implementation")
 class SubmitReviewPositiveTest extends BaseAcceptanceTest {
 
     @TestTemplate
@@ -16,8 +16,6 @@ class SubmitReviewPositiveTest extends BaseAcceptanceTest {
         scenario
                 .given().order()
                     .withStatus(OrderStatus.DELIVERED)
-                .and().product()
-                    .isReviewable()
                 .when().submitReview()
                     .withRating("5")
                     .withComment("Quality product")

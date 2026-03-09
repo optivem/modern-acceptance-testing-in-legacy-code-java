@@ -32,14 +32,6 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
         return this;
     }
 
-    public GivenProductImpl isReviewable() {
-        throw new UnsupportedOperationException("DSL not implemented yet");
-    }
-
-    public GivenProductImpl isNotReviewable() {
-        throw new UnsupportedOperationException("DSL not implemented yet");
-    }
-
     @Override
     public void execute(AppDsl app) {
         app.erp().returnsProduct()

@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@Disabled("In Progress - Implementation")
 class SubmitReviewNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("In Progress - Implementation")
     void cannotSubmitReviewOnNonDeliveredOrder() {
         scenario
                 .given().order()
@@ -24,7 +24,6 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("In Progress - Implementation")
     @ValueSource(strings = {"0", "6"})
     void cannotSubmitReviewWithRatingOutsideRange(String rating) {
         scenario
@@ -36,7 +35,6 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("In Progress - Implementation")
     void cannotSubmitReviewWithCommentExceedingMaxLength() {
         scenario
                 .when().submitReview()
@@ -47,7 +45,6 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
 
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("In Progress - Implementation")
     void cannotSubmitDuplicateReview() {
         scenario
                 .given().order()
@@ -56,19 +53,5 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
                 .when().submitReview()
                 .then().shouldFail()
                     .errorMessage("A review has already been submitted for this order");
-    }
-
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("In Progress - Test")
-    void cannotSubmitReviewWhenProductIsNotReviewable() {
-        scenario
-                .given().order()
-                    .withStatus(OrderStatus.DELIVERED)
-                .and().product()
-                    .isNotReviewable()
-                .when().submitReview()
-                .then().shouldFail()
-                    .errorMessage("This product is not eligible for reviews");
     }
 }
