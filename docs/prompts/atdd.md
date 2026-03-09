@@ -50,7 +50,32 @@ If there were compilation errors in RED 1, then you'll need to implement the Dri
 6. Ensure that there are no test files in the list of changed files.
 7. Commit the changes.
 
-## GREEN - Backend
+## RED 4 - Stubs
+
+If there are runtime failures due to External System Stubs, then you'll need to write External System Contract Tests:
+
+1. Write External System Contract Tests.
+2. STOP and ask for approval to review the tests.
+3. Verify that they pass when executed against the Real External System.
+4. Verify that they fail when executed against the Stub External System.
+5. Mark the tests `@Disabled`, with comment "In Progress - Stubs".
+6. Commit the changes.
+
+Note: If the External System doesn't even exist yet, then, before doing the above, please make Smoke Tests pass first.
+
+## GREEN 1 - Stubs
+
+If there are disabled External System Tests, the you'll need to make them pass:
+
+1. Enable the tests that were marked as `@Disabled` with comment "In Progress - Stubs".
+2. Implement the External System Stubs.
+3. STOP and ask for approval to review the stub implementation.
+4. Execute `./Run-SystemTests.ps1 -Rebuild -SkipTests`
+3. Verify that the External System Contract Tests pass. If they fail, make fixes and then repeat the rebuild process and test re-execution process.
+3. Commit the changes.
+
+
+## GREEN 2 - System
 
 1. Implement the backend:
    a. Implement the backend changes.
