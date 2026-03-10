@@ -67,7 +67,6 @@ class SubmitReviewNegativeTest extends BaseAcceptanceTest {
                     .errorMessage("Product is not reviewable");
     }
 
-    @Disabled("RED 1 - Tests")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void cannotSubmitADuplicateReview() {
