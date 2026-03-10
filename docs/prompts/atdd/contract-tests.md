@@ -34,7 +34,8 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 1. Enable the tests marked `@Disabled("RED 1 - Contract Tests")`.
 2. Implement the DSL for real — replace `UnsupportedOperationException("TODO: DSL")` with actual logic.
 3. Update the Driver interfaces as needed.
-4. STOP. Present the DSL implementation and Driver interface changes to the user and ask for approval. Do NOT continue.
+4. **Do NOT check for external system interface changes** — this cycle is already the contract test sub-process; recursive triggering does not apply.
+5. STOP. Present the DSL implementation and Driver interface changes to the user and ask for approval. Do NOT continue.
 
 ## RED 2 - DSL (COMMIT)
 
