@@ -10,14 +10,14 @@ The input is either a GitHub issue number (e.g. `#42`) or free-text user story. 
 
 Steps 2–13 below form a **per-scenario loop**. Repeat them for each scenario until all are GREEN.
 
-2. Launch **test-agent (DRAFT)** with the approved Gherkin (or the remaining scenarios if looping). It will write the tests and report back without committing.
+2. Launch **test-agent (WRITE)** with the approved Gherkin (or the remaining scenarios if looping). It will write the tests and report back without committing.
    - If multiple scenarios remain and new DSL is needed, it will implement only the first and leave the rest as `// TODO:` comments. Note which scenarios remain for subsequent loops.
 
 3. STOP. Present the tests to the user and wait for approval. Do NOT continue until approved.
 
 4. Launch **test-agent (COMMIT)**. It will extend DSL interfaces with stubs, mark tests `@Disabled("RED 1 - Tests")`, and commit RED 1.
 
-5. Launch **dsl-agent (DRAFT)**. It will implement the DSL and report back without committing.
+5. Launch **dsl-agent (WRITE)**. It will implement the DSL and report back without committing.
 
 6. STOP. Present the DSL implementation and driver interface changes to the user and wait for approval. Do NOT continue until approved.
 

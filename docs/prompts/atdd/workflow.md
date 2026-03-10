@@ -8,8 +8,8 @@ specialized agents. Human input is required at five points.
 ## Human Touchpoints
 
 1. **Gherkin approval** — after the Story Agent produces Gherkin scenarios, the human reviews and approves them. This is the opportunity to correct business intent before implementation begins.
-2. **Test approval** — after the Test Agent writes the acceptance tests (RED 1 DRAFT), the human reviews the test code before it is committed. This catches translation errors from Gherkin to code before DSL, drivers, and backend are built on top.
-3. **DSL approval** — after the DSL Agent implements the DSL (RED 2 DRAFT), the human reviews the DSL design and driver interface signatures before they are committed. DSL method names and driver DTOs are the architectural contract — errors here cascade into all downstream agents.
+2. **Test approval** — after the Test Agent writes the acceptance tests (RED 1 WRITE), the human reviews the test code before it is committed. This catches translation errors from Gherkin to code before DSL, drivers, and backend are built on top.
+3. **DSL approval** — after the DSL Agent implements the DSL (RED 2 WRITE), the human reviews the DSL design and driver interface signatures before they are committed. DSL method names and driver DTOs are the architectural contract — errors here cascade into all downstream agents.
 4. **Driver approval** — after the Driver Agent completes RED 3, the human reviews the driver implementation before backend/frontend work begins. This validates the full test spec (tests + DSL + drivers) as a unit, preventing agents from chasing false failures caused by a wrong driver.
 5. **Outcome review** — after all agents complete, the human reviews the working feature.
 
@@ -25,14 +25,14 @@ User Story
     ┌─────────────────────────────────────────────────────────┐
     │  Per-scenario loop (repeats until all scenarios GREEN)  │
     │                                                         │
-    │  [Test Agent]    →  Acceptance tests   RED 1 DRAFT      │
+    │  [Test Agent]    →  Acceptance tests   RED 1 WRITE      │
     │      │                                                  │
     │      │                              ← HUMAN APPROVES TESTS
     │      │                                                  │
     │  [Test Agent]    →  Commit tests      RED 1 COMMIT      │
     │      │                                                  │
     │      ▼                                                  │
-    │  [DSL Agent]     →  DSL + interfaces   RED 2 DRAFT      │
+    │  [DSL Agent]     →  DSL + interfaces   RED 2 WRITE      │
     │      │                                                  │
     │      │                              ← HUMAN APPROVES DSL
     │      │                                                  │
@@ -75,14 +75,14 @@ The approach depends on whether new DSL is needed:
 
 ### Test Agent
 - **Input:** Approved Gherkin scenarios
-- **DRAFT output:** Written test code, presented to human for approval — not yet committed
+- **WRITE output:** Written test code, presented to human for approval — not yet committed
 - **COMMIT output:** Committed acceptance tests (`@Disabled("RED 1 - Tests")`)
-- **Governed by:** `acceptance-tests.md` — RED 1 (DRAFT) and RED 1 (COMMIT) phases
+- **Governed by:** `acceptance-tests.md` — RED 1 (WRITE) and RED 1 (COMMIT) phases
 - **Handoff:** Tests committed, test class name passed to DSL Agent
 
 ### DSL Agent
 - **Input:** Test class name and failing tests
-- **DRAFT output:** DSL implementation + driver interface signatures, presented to human for approval — not yet committed
+- **WRITE output:** DSL implementation + driver interface signatures, presented to human for approval — not yet committed
 - **COMMIT output:** Driver stubs added, tests committed (`@Disabled("RED 2 - DSL")`)
 - **Governed by:** `acceptance-tests.md` — RED 2 phases; `dsl-core.md` for coding rules
 - **Handoff:** Driver interface signatures passed to Driver Agent

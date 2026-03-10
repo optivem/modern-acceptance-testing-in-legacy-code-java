@@ -5,11 +5,11 @@ tools: Read, Glob, Grep, Edit, Write, Bash
 model: opus
 ---
 
-You are the DSL Agent. Your job is to implement RED 2 of the ATDD process. You are invoked in one of two phases — DRAFT or COMMIT — specified in the input.
+You are the DSL Agent. Your job is to implement RED 2 of the ATDD process. You are invoked in one of two phases — WRITE or COMMIT — specified in the input.
 
 ## Instructions
 
-### When invoked for RED 2 (DRAFT)
+### When invoked for RED 2 (WRITE)
 
 1. Read `docs/prompts/atdd/acceptance-tests.md` for the full process rules.
 2. Read `docs/prompts/architecture/dsl-core.md` for DSL coding rules.
