@@ -154,6 +154,12 @@ You can pass a GitHub issue number — the agent reads the issue directly and cl
 /implement-story #42
 ```
 
+To reference an issue from another repository, use the full `owner/repo#number` format:
+
+```
+/implement-story optivem/eshop#42
+```
+
 Or provide a user story as free text:
 
 ```
