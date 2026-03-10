@@ -7,6 +7,7 @@ import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.HomePage
 import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.NewOrderPage;
 import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.OrderDetailsPage;
 import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.OrderHistoryPage;
+import com.optivem.eshop.systemtest.driver.adapter.shop.ui.client.pages.ReviewPage;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.BrowseCouponsResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
@@ -213,7 +214,27 @@ public class ShopUiDriver implements ShopDriver {
 
     @Override
     public Result<SubmitReviewResponse, ErrorResponse> submitReview(SubmitReviewRequest request) {
-        throw new UnsupportedOperationException("TODO: Driver");
+        var viewResult = viewOrder(request.getOrderNumber());
+
+        if (viewResult.isFailure()) {
+            return failure(viewResult.getError());
+        }
+
+        var reviewPage = orderDetailsPage.clickSubmitReview();
+        reviewPage.inputRating(request.getRating());
+        reviewPage.inputComment(request.getComment());
+        reviewPage.clickSubmitReview();
+
+        var result = reviewPage.getResult();
+
+        if (result.isFailure()) {
+            return failure(result.getError());
+        }
+
+        var reviewId = ReviewPage.getReviewId(result.getValue());
+
+        var response = SubmitReviewResponse.builder().reviewId(reviewId).build();
+        return Result.success(response);
     }
 
     // --- page navigation ---
