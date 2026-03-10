@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.v2.e2e;
 
 import com.optivem.eshop.systemtest.v2.e2e.base.BaseE2eTest;
-import com.optivem.eshop.systemtest.driver.adapter.erp.client.dtos.ExtCreateProductRequest;
+import com.optivem.eshop.systemtest.driver.adapter.external.erp.client.dtos.ExtCreateProductRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import org.junit.jupiter.api.Test;

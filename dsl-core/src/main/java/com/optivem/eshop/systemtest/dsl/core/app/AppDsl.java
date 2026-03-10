@@ -1,14 +1,14 @@
 package com.optivem.eshop.systemtest.dsl.core.app;
 
-import com.optivem.eshop.systemtest.driver.port.clock.ClockDriver;
+import com.optivem.eshop.systemtest.driver.port.external.clock.ClockDriver;
 import com.optivem.eshop.systemtest.dsl.core.shared.UseCaseContext;
-import com.optivem.eshop.systemtest.dsl.core.app.clock.ClockDsl;
-import com.optivem.eshop.systemtest.driver.port.erp.ErpDriver;
-import com.optivem.eshop.systemtest.dsl.core.app.erp.ErpDsl;
+import com.optivem.eshop.systemtest.dsl.core.app.external.clock.ClockDsl;
+import com.optivem.eshop.systemtest.driver.port.external.erp.ErpDriver;
+import com.optivem.eshop.systemtest.dsl.core.app.external.erp.ErpDsl;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.dsl.core.app.shop.ShopDsl;
-import com.optivem.eshop.systemtest.driver.port.tax.TaxDriver;
-import com.optivem.eshop.systemtest.dsl.core.app.tax.TaxDsl;
+import com.optivem.eshop.systemtest.driver.port.external.tax.TaxDriver;
+import com.optivem.eshop.systemtest.dsl.core.app.external.tax.TaxDsl;
 import com.optivem.common.Closer;
 
 import java.io.Closeable;

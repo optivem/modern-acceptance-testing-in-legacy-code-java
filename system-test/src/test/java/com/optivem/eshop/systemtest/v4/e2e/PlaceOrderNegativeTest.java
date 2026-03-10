@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.v4.e2e;
 
-import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.driver.port.external.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.channel.ChannelType;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.commons.providers.EmptyArgumentsProvider;

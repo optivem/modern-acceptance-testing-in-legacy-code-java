@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.v3.e2e;
 
-import com.optivem.eshop.systemtest.driver.port.erp.dtos.ReturnsProductRequest;
+import com.optivem.eshop.systemtest.driver.port.external.erp.dtos.ReturnsProductRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.v3.e2e.base.BaseE2eTest;

@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.dsl.core.scenario.then.steps;
 
 import com.optivem.eshop.systemtest.dsl.core.app.AppDsl;
-import com.optivem.eshop.systemtest.dsl.core.app.erp.usecases.GetProductVerification;
+import com.optivem.eshop.systemtest.dsl.core.app.external.erp.usecases.GetProductVerification;
 import com.optivem.eshop.systemtest.dsl.core.scenario.ExecutionResultContext;
 import com.optivem.eshop.systemtest.dsl.core.shared.VoidVerification;
 import com.optivem.eshop.systemtest.dsl.port.then.steps.ThenProduct;

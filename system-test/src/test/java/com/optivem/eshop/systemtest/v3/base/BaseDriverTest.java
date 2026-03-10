@@ -2,11 +2,11 @@ package com.optivem.eshop.systemtest.v3.base;
 
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
 import com.optivem.eshop.systemtest.dsl.core.app.AppConfiguration;
-import com.optivem.eshop.systemtest.driver.adapter.erp.ErpRealDriver;
+import com.optivem.eshop.systemtest.driver.adapter.external.erp.ErpRealDriver;
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.ShopApiDriver;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.adapter.shop.ui.ShopUiDriver;
-import com.optivem.eshop.systemtest.driver.adapter.tax.TaxRealDriver;
+import com.optivem.eshop.systemtest.driver.adapter.external.tax.TaxRealDriver;
 import com.optivem.eshop.systemtest.infrastructure.playwright.BrowserLifecycleExtension;
 import com.optivem.common.Closer;
 import org.junit.jupiter.api.AfterEach;
