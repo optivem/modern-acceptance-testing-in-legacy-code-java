@@ -109,12 +109,13 @@ _See `contract-tests.md` for the RED 1 - Contract Tests and GREEN - External Sys
 
 ## GREEN 2 - System (COMMIT)
 
-1. Remove the `@Disabled("RED 3 - Driver")` annotation from the tests.
-2. Run the tests and verify they all pass:
+1. In the `eshop` repository: COMMIT all backend and frontend changes with message `<Scenario> | GREEN - System`.
+2. Remove the `@Disabled("RED 3 - Driver")` annotation from the tests.
+3. Run the tests and verify they all pass:
    ```
    .\Run-SystemTests.ps1 -Suite <acceptance-api> -Test <TestMethodName>
    .\Run-SystemTests.ps1 -Suite <acceptance-ui> -Test <TestMethodName>
    ```
-3. Ensure that there are no non-test files in the list of changed files.
-4. COMMIT with message `<Scenario> | GREEN - System`.
-5. If there are remaining `// TODO:` scenarios in the test file, return to RED 1 (WRITE + STOP) for the next scenario.
+4. Ensure that there are no non-test files in the list of changed files in the `eshop-tests` repository.
+5. COMMIT in the `eshop-tests` repository with message `<Scenario> | GREEN - System`.
+6. If there are remaining `// TODO:` scenarios in the test file, return to RED 1 (WRITE + STOP) for the next scenario.
