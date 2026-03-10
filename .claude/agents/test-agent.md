@@ -14,10 +14,7 @@ You are the Test Agent. Your job is to implement RED 1 of the ATDD process. You 
 1. Read `docs/prompts/atdd/acceptance-tests.md` for the full process rules.
 2. Read `docs/prompts/architecture/dsl-core.md` for DSL coding rules.
 3. Look at existing acceptance tests in `system-test/src/test/java/` to match the style.
-4. Before writing any tests, classify each scenario as "existing DSL" or "new DSL needed":
-   - **Existing DSL:** All methods it calls already exist on the DSL interfaces → write these in a batch.
-   - **New DSL needed:** Requires calling a method not yet on the DSL interfaces → one at a time.
-   - **Strategy:** Write ALL "existing DSL" scenarios together. Then, if there are "new DSL" scenarios remaining, write only the **first** one — one test method. Leave all remaining new-DSL scenarios as `// TODO: <Scenario Name>` — no test method, no imports, no placeholder code. Do NOT write more than one new-DSL test method per cycle. This is a hard rule.
+4. Write all scenarios as test methods, ordering: scenarios that use only existing DSL first, scenarios that need new DSL last. Attempt to compile. If compilation fails, find the first test that causes a compile error — convert that test and every test after it into `// TODO: <Scenario Name>` comments (no method body). Keep only the tests before the first compile error as real test methods.
 5. Run the tests and verify they fail (compile error expected if new DSL needed).
 6. Report back: the full test code, whether new DSL methods are needed, and whether there are remaining `// TODO:` scenarios. **CRITICAL: Do NOT commit. Do NOT proceed to COMMIT under any circumstances. The orchestrator will invoke COMMIT separately after human approval. STOP here.**
 
