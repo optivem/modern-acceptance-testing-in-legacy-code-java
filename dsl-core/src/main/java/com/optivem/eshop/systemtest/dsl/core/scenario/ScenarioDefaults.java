@@ -31,6 +31,11 @@ public final class ScenarioDefaults {
     public static final String DEFAULT_VALID_TO = "2024-12-31T23:59:59Z";
     public static final String DEFAULT_USAGE_LIMIT = "1000";
 
+    // Review defaults
+    public static final String DEFAULT_REVIEW_ID = "DEFAULT-REVIEW";
+    public static final String DEFAULT_RATING = "5";
+    public static final String DEFAULT_COMMENT = "Great product";
+
     public static final String EMPTY = "";
 
     private ScenarioDefaults() {

@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 class SubmitReviewPositiveTest extends BaseAcceptanceTest {
+    @Disabled("RED 1 - Tests")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
-    @Disabled("RED 1 - Tests")
     void canSubmitReviewOnDeliveredOrder() {
         scenario
                 .given().order()
