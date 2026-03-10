@@ -140,6 +140,46 @@ You can open these URLs in your browser:
 - **Tax API**: [http://localhost:9001/tax/health](http://localhost:9001/tax/health)
 - **PostgreSQL Database**: localhost:5401 (database: `eshop`, user: `eshop_user`, password: `eshop_password`)
 
+## Implementing User Stories with Claude Code
+
+This project uses a multi-agent ATDD workflow. To implement a user story end-to-end, run:
+
+```
+/implement-story <input>
+```
+
+You can pass a GitHub issue number — the agent reads the issue directly and closes it when done:
+
+```
+/implement-story #42
+```
+
+Or provide a user story as free text:
+
+```
+/implement-story As a customer, I want to submit a review on a delivered order
+```
+
+Or include acceptance criteria for more precision:
+
+```
+/implement-story As a customer, I want to submit a review on a delivered order
+
+Acceptance Criteria:
+- Given a delivered order and a reviewable product, when I submit a review with rating and comment, then it succeeds
+- Given a non-delivered order, when I submit a review, then it fails
+```
+
+**One-time setup** — authenticate the GitHub MCP server:
+
+```
+/mcp
+```
+
+The pipeline runs 7 specialized agents (Story → Test → DSL → Driver → Backend → Frontend → Release)
+and only requires human input at two points: approving the Gherkin scenarios and reviewing the
+final outcome. See [docs/prompts/atdd/workflow.md](docs/prompts/atdd/workflow.md) for details.
+
 ## Pre-commit Checks
 
 Before each commit, the following checks run automatically: **Spotless** (formatting), **SonarLint** (static analysis), and **compilation** (Java + tests).
