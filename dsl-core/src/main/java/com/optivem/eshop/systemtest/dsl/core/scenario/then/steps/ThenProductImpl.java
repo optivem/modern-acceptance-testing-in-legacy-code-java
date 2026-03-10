@@ -28,7 +28,8 @@ public class ThenProductImpl extends BaseThenStep<Void, VoidVerification> implem
 
     @Override
     public ThenProductImpl hasReviewable(boolean reviewable) {
-        throw new UnsupportedOperationException("TODO: DSL");
+        verification.reviewable(reviewable);
+        return this;
     }
 
     @Override
