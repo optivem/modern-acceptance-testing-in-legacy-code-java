@@ -8,7 +8,10 @@ The input is either a GitHub issue number (e.g. `#42`) or free-text user story. 
 
 1. Launch **story-agent** with the input. It will read the GitHub issue if given a number, or use the text directly. Present the Gherkin scenarios it produces and wait for human approval before continuing.
 
-2. Once approved, launch **test-agent** with the approved Gherkin. It will complete RED 1 autonomously.
+Steps 2–8 below form a **per-scenario loop**. Repeat them for each scenario until all are GREEN.
+
+2. Launch **test-agent** with the approved Gherkin (or the remaining scenarios if looping). It will complete RED 1 autonomously.
+   - If multiple scenarios remain and new DSL is needed, it will implement only the first and leave the rest as `// TODO:` comments. Note which scenarios remain for subsequent loops.
 
 3. Launch **dsl-agent**. It will complete RED 2 autonomously.
 
@@ -21,7 +24,7 @@ The input is either a GitHub issue number (e.g. `#42`) or free-text user story. 
 
 7. Launch **release-agent**. It will remove @Disabled and commit the final GREEN.
 
-8. Present the outcome to the user for review.
+8. If there are remaining `// TODO:` scenarios in the test file, loop back to step 2 for the next scenario. Otherwise, present the final outcome to the user for review.
 
 ## Escalation
 

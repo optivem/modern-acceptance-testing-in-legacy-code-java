@@ -20,26 +20,39 @@ User Story
 [Story Agent]      →  Gherkin scenarios           ← HUMAN APPROVES
     │
     ▼
-[Test Agent]       →  Acceptance tests             RED 1 (DRAFT + COMMIT)
-    │
-    ▼
-[DSL Agent]        →  DSL + driver interfaces      RED 2 (DRAFT + COMMIT)
-    │
-    ▼
-[Driver Agent]     →  Driver implementations       RED 3 (DRAFT + COMMIT)
-    │
-    ▼
-[Backend Agent]    →  Working backend              GREEN 2 (backend)
-    │
-    ▼
-[Frontend Agent]   →  Working frontend             GREEN 2 (frontend)
-    │
-    ▼
-[Release Agent]    →  Enabled tests, final commit  GREEN 2 (COMMIT)
+    ┌─────────────────────────────────────────────────────────┐
+    │  Per-scenario loop (repeats until all scenarios GREEN)  │
+    │                                                         │
+    │  [Test Agent]    →  Acceptance tests   RED 1            │
+    │      │                                                  │
+    │      ▼                                                  │
+    │  [DSL Agent]     →  DSL + interfaces   RED 2            │
+    │      │                                                  │
+    │      ▼                                                  │
+    │  [Driver Agent]  →  Drivers            RED 3            │
+    │      │                                                  │
+    │      ▼                                                  │
+    │  [Backend Agent] →  Working backend    GREEN 2          │
+    │      │                                                  │
+    │      ▼                                                  │
+    │  [Frontend Agent]→  Working frontend   GREEN 2          │
+    │      │                                                  │
+    │      ▼                                                  │
+    │  [Release Agent] →  Final commit       GREEN 2 (COMMIT) │
+    │      │                                                  │
+    │      └── remaining scenarios? ──► loop back             │
+    └─────────────────────────────────────────────────────────┘
     │
     ▼
                                                    ← HUMAN REVIEWS OUTCOME
 ```
+
+### When does the loop apply?
+
+If the story has multiple scenarios and new DSL methods are needed (compile errors in RED 1),
+the Test Agent implements only the **first scenario** and leaves the rest as `// TODO:` comments.
+Each subsequent loop picks up the next scenario. If all scenarios share existing DSL (no compile
+errors), they can all be implemented in a single pass.
 
 ## Agent Definitions
 
