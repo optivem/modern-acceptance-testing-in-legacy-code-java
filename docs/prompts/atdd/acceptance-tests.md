@@ -71,21 +71,19 @@ If a test covers both channels, run both suites.
 2. Implement the Drivers — replace `UnsupportedOperationException("TODO: Driver")` with actual logic.
    - Only look at files in the `driver-adapter` and `driver-port` directories.
    - Do NOT read or search backend/frontend source code. Model the new method on existing driver methods in the same file.
-3. Run the tests and verify they fail with a runtime error:
-   ```
-   .\Run-SystemTests.ps1 -Suite <acceptance-api> -Test <TestMethodName>
-   .\Run-SystemTests.ps1 -Suite <acceptance-ui> -Test <TestMethodName>
-   ```
-4. STOP. Present the Driver implementation to the user and ask for approval. Do NOT continue.
+3. Run the tests and note how they fail — specifically whether the failure is:
+   - An **external system stub error** (the stub does not support the operation), or
+   - An **application error** (the backend/frontend endpoint does not exist yet).
+4. STOP. Present the Driver implementation and the failure reason to the user and ask for approval. Do NOT continue.
 
 ## RED 3 - Driver (COMMIT)
 
 1. Mark the tests as `@Disabled("RED 3 - Driver")`.
-2. COMMIT with message `<Scenario> | RED 3 - Driver`.
-3. If the test failure was due to an External System Stub (i.e. the stub does not yet support the new operation), automatically proceed to RED 4 - Contract Tests (WRITE).
-   Otherwise, automatically proceed to GREEN 2.
+2. Ensure no test files are in the list of changed files.
+3. COMMIT with message `<Scenario> | RED 3 - Driver`.
+4. STOP. Do not proceed further. Phase progression is controlled by the orchestrator, not by this agent.
 
-_See `contract-tests.md` for the RED 4 and GREEN 1 phases._
+_See `contract-tests.md` for the RED 3.1 and RED 3.2 phases (triggered by the orchestrator when a stub failure is detected)._
 
 ## GREEN 2 - System (WRITE)
 

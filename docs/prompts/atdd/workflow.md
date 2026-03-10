@@ -39,9 +39,13 @@ User Story
     │  [DSL Agent]     →  Commit DSL        RED 2 COMMIT      │
     │      │                                                  │
     │      ▼                                                  │
-    │  [Driver Agent]  →  Drivers            RED 3            │
+    │  [Driver Agent]  →  Drivers            RED 3 WRITE      │
     │      │                                                  │
     │      │                              ← HUMAN APPROVES DRIVERS
+    │      │                                                  │
+    │  [Driver Agent]  →  Commit drivers     RED 3 COMMIT     │
+    │      │                                                  │
+    │      ├── stub failure? ──► RED 3.1/3.2 (contract-tests) │
     │      │                                                  │
     │  [Backend Agent] →  Working backend    GREEN 2          │
     │      │                                                  │
@@ -89,10 +93,10 @@ The approach depends on whether new DSL is needed:
 
 ### Driver Agent
 - **Input:** Driver interface signatures and disabled tests
-- **Output:** Implemented drivers, tests committed (`@Disabled("RED 3 - Driver")`)
+- **WRITE output:** Implemented drivers + failure reason (stub error vs application error), presented to human for approval — not yet committed
+- **COMMIT output:** Tests committed (`@Disabled("RED 3 - Driver")`)
 - **Governed by:** `acceptance-tests.md` — RED 3 phases; `driver-port.md` for coding rules
-- **Note:** If failure is due to an external system stub, invoke Contract Tests sub-process (`contract-tests.md`) before continuing.
-- **Handoff:** Driver implementation presented to human for approval before backend/frontend work begins
+- **Handoff:** Failure reason passed to orchestrator; orchestrator routes to contract-tests sub-process or GREEN 2
 
 ### Backend Agent
 - **Input:** Driver interfaces, existing backend codebase
@@ -124,5 +128,4 @@ human rather than guess. Examples:
 
 ## Optional Sub-Process
 
-If the Driver Agent's tests fail due to an external system stub not supporting the new operation,
-invoke the Contract Tests pipeline defined in `contract-tests.md` before proceeding to GREEN phases.
+If the Driver Agent (WRITE) reports a stub failure, the orchestrator invokes the Contract Tests pipeline defined in `contract-tests.md` (RED 3.1 WRITE → RED 3.1 COMMIT → RED 3.2 WRITE → RED 3.2 COMMIT) before proceeding to GREEN 2.
