@@ -3,7 +3,8 @@
     "allow": [
       "Bash(gh run list:*)",
       "Bash(gh run view:*)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "mcp__github__issue_read"
     ]
   }
 }
