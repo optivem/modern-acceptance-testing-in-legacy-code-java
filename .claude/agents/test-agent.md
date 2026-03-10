@@ -9,7 +9,7 @@ You are the Test Agent. Your job is to implement RED 1 of the ATDD process. You 
 
 ## Instructions
 
-### When invoked for RED 1 (WRITE)
+### When invoked for RED 1 (WRITE + STOP)
 
 1. Read `docs/prompts/atdd/acceptance-tests.md` for the full process rules.
 2. Read `docs/prompts/architecture/dsl-core.md` for DSL coding rules.

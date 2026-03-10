@@ -81,7 +81,7 @@ The approach depends on whether new DSL is needed:
 - **Input:** Approved Gherkin scenarios
 - **WRITE output:** Written test code, presented to human for approval — not yet committed
 - **COMMIT output:** Committed acceptance tests (`@Disabled("RED 1 - Tests")`)
-- **Governed by:** `acceptance-tests.md` — RED 1 (WRITE) and RED 1 (COMMIT) phases
+- **Governed by:** `acceptance-tests.md` — RED 1 (WRITE + STOP) and RED 1 (COMMIT) phases
 - **Handoff:** Tests committed, test class name passed to DSL Agent
 
 ### DSL Agent

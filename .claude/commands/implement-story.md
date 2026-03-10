@@ -10,20 +10,20 @@ The input is either a GitHub issue number (e.g. `#42`) or free-text user story. 
 
 Steps 2–14 below form a **per-scenario loop**. Repeat them for each scenario until all are GREEN.
 
-2. Launch **test-agent (WRITE)** with the approved Gherkin (or the remaining scenarios if looping). It will write the tests and report back without committing.
+2. Launch **test-agent (WRITE + STOP)** with the approved Gherkin (or the remaining scenarios if looping). It will write the tests and report back without committing.
    - If multiple scenarios remain and new DSL is needed, it will implement only the first and leave the rest as `// TODO:` comments. Note which scenarios remain for subsequent loops.
 
 3. STOP. Present the tests to the user and wait for approval. Do NOT continue until approved.
 
 4. Launch **test-agent (COMMIT)**. It will extend DSL interfaces with stubs, mark tests `@Disabled("RED 1 - Tests")`, and commit RED 1.
 
-5. Launch **dsl-agent (WRITE)**. It will implement the DSL and report back without committing.
+5. Launch **dsl-agent (WRITE + STOP)**. It will implement the DSL and report back without committing.
 
 6. STOP. Present the DSL implementation and driver interface changes to the user and wait for approval. Do NOT continue until approved.
 
 7. Launch **dsl-agent (COMMIT)**. It will add driver stubs, mark tests `@Disabled("RED 2 - DSL")`, and commit RED 2. Note whether it reports **external system interfaces changed = yes**.
 
-8. Launch **driver-agent (WRITE)**. It will implement the drivers and report back without committing.
+8. Launch **driver-agent (WRITE + STOP)**. It will implement the drivers and report back without committing.
 
 9. STOP. Present the driver implementation to the user and wait for approval. Do NOT continue until approved.
 
@@ -35,19 +35,19 @@ Steps 2–14 below form a **per-scenario loop**. Repeat them for each scenario u
 
 _Only executed when external system interfaces changed = yes._
 
-10a. Launch **test-agent (WRITE)** for contract tests. It will write the contract tests and report back without committing.
+10a. Launch **test-agent (WRITE + STOP)** for contract tests. It will write the contract tests and report back without committing.
 
 10b. STOP. Present the contract tests to the user and wait for approval. Do NOT continue until approved.
 
 10c. Launch **test-agent (COMMIT)** for contract tests. It will extend DSL interfaces with stubs, mark tests `@Disabled("RED 1 - Contract Tests")`, and commit.
 
-10d. Launch **dsl-agent (WRITE)** for contract DSL. It will implement the DSL and report back without committing.
+10d. Launch **dsl-agent (WRITE + STOP)** for contract DSL. It will implement the DSL and report back without committing.
 
 10e. STOP. Present the DSL implementation and driver interface changes to the user and wait for approval. Do NOT continue until approved.
 
 10f. Launch **dsl-agent (COMMIT)** for contract DSL. It will add driver stubs, mark tests `@Disabled("RED 2 - DSL")`, and commit.
 
-10g. Launch **driver-agent (WRITE)** for contract drivers. It will implement the drivers and report back without committing.
+10g. Launch **driver-agent (WRITE + STOP)** for contract drivers. It will implement the drivers and report back without committing.
 
 10h. STOP. Present the driver implementation to the user and wait for approval. Do NOT continue until approved.
 

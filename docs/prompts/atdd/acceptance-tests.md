@@ -14,7 +14,7 @@ Each acceptance test is annotated with a channel. Use the matching suite placeho
 
 If a test covers both channels, run both suites.
 
-## RED 1 - Acceptance Tests (WRITE)
+## RED 1 - Acceptance Tests (WRITE + STOP)
 
 1. Write the acceptance tests, following these rules:
    - Write acceptance tests only — do not implement anything.
@@ -33,7 +33,7 @@ If a test covers both channels, run both suites.
 
 ## RED 1 - Acceptance Tests (COMMIT)
 
-1. If there were compile-time errors in RED 1 (WRITE):
+1. If there were compile-time errors in RED 1 (WRITE + STOP):
    a. Extend the DSL interfaces with the new methods.
    b. Implement the new methods by throwing `UnsupportedOperationException("TODO: DSL")` — do not implement DSL.
    c. Run the tests and verify they fail with a runtime error:
@@ -45,7 +45,7 @@ If a test covers both channels, run both suites.
 3. COMMIT with message `<Scenario> | RED 1 - Tests`.
 4. STOP. Do not proceed further. Phase progression is controlled by the orchestrator, not by this agent.
 
-## RED 2 - DSL (WRITE)
+## RED 2 - DSL (WRITE + STOP)
 
 1. Enable the tests marked `@Disabled("RED 1 - Tests")`.
 2. Implement the DSL for real — replace `UnsupportedOperationException("TODO: DSL")` with actual logic.
@@ -64,9 +64,9 @@ If a test covers both channels, run both suites.
 3. Mark the tests as `@Disabled("RED 2 - DSL")`.
 4. Ensure that there are no test files in the list of changed files.
 5. COMMIT with message `<Scenario> | RED 2 - DSL`.
-6. Automatically proceed to RED 3 (WRITE).
+6. Automatically proceed to RED 3 (WRITE + STOP).
 
-## RED 3 - Driver (WRITE)
+## RED 3 - Driver (WRITE + STOP)
 
 1. Enable the tests marked `@Disabled("RED 2 - DSL")`.
 2. Implement the Drivers — replace `UnsupportedOperationException("TODO: Driver")` with actual logic.
@@ -84,7 +84,7 @@ If a test covers both channels, run both suites.
 
 _See `contract-tests.md` for the RED 1 - Contract Tests and GREEN - External System Stubs phases (triggered by the orchestrator when RED 2 reported external system interface changes)._
 
-## GREEN 2 - System (WRITE)
+## GREEN 2 - System (WRITE + STOP)
 
 1. Implement the backend:
    a. Implement the backend changes.
@@ -117,4 +117,4 @@ _See `contract-tests.md` for the RED 1 - Contract Tests and GREEN - External Sys
    ```
 3. Ensure that there are no non-test files in the list of changed files.
 4. COMMIT with message `<Scenario> | GREEN - System`.
-5. If there are remaining `// TODO:` scenarios in the test file, return to RED 1 (WRITE) for the next scenario.
+5. If there are remaining `// TODO:` scenarios in the test file, return to RED 1 (WRITE + STOP) for the next scenario.

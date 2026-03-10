@@ -4,7 +4,7 @@ _This process is only triggered when the DSL Agent (RED 2) reports **external sy
 
 _If the External System does not even exist yet, make Smoke Tests pass first._
 
-## RED 1 - Contract Tests (WRITE)
+## RED 1 - Contract Tests (WRITE + STOP)
 
 1. Write External System Contract Tests.
    - If new DSL methods are needed, call them directly as if they exist — compile errors are expected.
@@ -22,14 +22,14 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 
 ## RED 1 - Contract Tests (COMMIT)
 
-1. If there were compile-time errors in RED 1 (WRITE):
+1. If there were compile-time errors in RED 1 (WRITE + STOP):
    a. Extend the DSL interfaces with the new methods.
    b. Implement the new methods by throwing `UnsupportedOperationException("TODO: DSL")`.
    c. Run the tests and verify they fail with a runtime error.
 2. COMMIT with message `<Scenario> | RED 1 - Contract Tests`.
 3. STOP. Do not proceed further. Phase progression is controlled by the orchestrator, not by this agent.
 
-## RED 2 - DSL (WRITE)
+## RED 2 - DSL (WRITE + STOP)
 
 1. Enable the tests marked `@Disabled("RED 1 - Contract Tests")`.
 2. Implement the DSL for real — replace `UnsupportedOperationException("TODO: DSL")` with actual logic.
@@ -45,9 +45,9 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
    ```
 3. Mark the tests as `@Disabled("RED 2 - DSL")`.
 4. COMMIT with message `<Scenario> | RED 2 - DSL [Contract]`.
-5. Automatically proceed to RED 3 (WRITE).
+5. Automatically proceed to RED 3 (WRITE + STOP).
 
-## RED 3 - Driver (WRITE)
+## RED 3 - Driver (WRITE + STOP)
 
 1. Enable the tests marked `@Disabled("RED 2 - DSL")`.
 2. Implement the Drivers — replace `UnsupportedOperationException("TODO: Driver")` with actual logic.
@@ -60,7 +60,7 @@ _If the External System does not even exist yet, make Smoke Tests pass first._
 2. COMMIT with message `<Scenario> | RED 3 - Driver [Contract]`.
 3. STOP. Do not proceed further. Phase progression is controlled by the orchestrator, not by this agent.
 
-## GREEN - External System Stubs (WRITE)
+## GREEN - External System Stubs (WRITE + STOP)
 
 1. Enable the tests marked `@Disabled("RED 3 - Driver")`.
 2. Implement the External System Stubs.

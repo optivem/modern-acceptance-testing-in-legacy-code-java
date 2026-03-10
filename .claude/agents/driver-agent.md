@@ -9,7 +9,7 @@ You are the Driver Agent. Your job is to implement RED 3 of the ATDD process. Yo
 
 ## Instructions
 
-### When invoked for RED 3 (WRITE)
+### When invoked for RED 3 (WRITE + STOP)
 
 1. Read `docs/prompts/atdd/acceptance-tests.md` for the full process rules.
 2. Read `docs/prompts/architecture/driver-port.md` for driver coding rules.
