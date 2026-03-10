@@ -12,7 +12,7 @@ public abstract class BaseErpContractTest extends BaseExternalSystemContractTest
                 .then().product("SKU-123").hasSku("SKU-123").hasPrice(12.0);
     }
 
-    @Disabled("RED 2 - DSL")
+    @Disabled("RED 3 - Driver")
     @Test
     void shouldReturnReviewableField() {
         scenario
