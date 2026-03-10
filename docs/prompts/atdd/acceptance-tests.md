@@ -82,7 +82,7 @@ If a test covers both channels, run both suites.
 3. COMMIT with message `<Scenario> | RED 3 - Driver`.
 4. STOP. Do not proceed further. Phase progression is controlled by the orchestrator, not by this agent.
 
-_See `contract-tests.md` for the RED 3.1 and RED 3.2 phases (triggered by the orchestrator when RED 2 reported external system interface changes)._
+_See `contract-tests.md` for the RED 1 - Contract Tests and GREEN - External System Stubs phases (triggered by the orchestrator when RED 2 reported external system interface changes)._
 
 ## GREEN 2 - System (WRITE)
 

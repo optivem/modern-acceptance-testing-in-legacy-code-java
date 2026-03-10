@@ -45,7 +45,7 @@ User Story
     │      │                                                  │
     │  [Driver Agent]  →  Commit drivers     RED 3 COMMIT     │
     │      │                                                  │
-    │      ├── external/ changed? ► RED 3.1/3.2 (contract-tests)│
+    │      ├── external/ changed? ► RED 1/2 (contract-tests)    │
     │      │                                                  │
     │  [Backend Agent] →  Working backend    GREEN 2          │
     │      │                                                  │
@@ -128,4 +128,4 @@ human rather than guess. Examples:
 
 ## Optional Sub-Process
 
-If the DSL Agent reports **external system interfaces changed = yes** (i.e. any new methods were added to interfaces under `external/`), the orchestrator invokes the Contract Tests pipeline defined in `contract-tests.md` (RED 3.1 WRITE → RED 3.1 COMMIT → RED 3.2 WRITE → RED 3.2 COMMIT) before proceeding to GREEN 2.
+If the DSL Agent reports **external system interfaces changed = yes** (i.e. any new methods were added to interfaces under `external/`), the orchestrator invokes the Contract Tests pipeline defined in `contract-tests.md` (RED 1 WRITE → RED 1 COMMIT → GREEN WRITE → GREEN COMMIT) before proceeding to GREEN 2.

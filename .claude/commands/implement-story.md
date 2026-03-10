@@ -28,8 +28,38 @@ Steps 2–14 below form a **per-scenario loop**. Repeat them for each scenario u
 9. STOP. Present the driver implementation to the user and wait for approval. Do NOT continue until approved.
 
 10. Launch **driver-agent (COMMIT)**. It will mark tests `@Disabled("RED 3 - Driver")` and commit RED 3.
-    - If the dsl-agent reported **external system interfaces changed = yes**: follow the contract-tests sub-process in `docs/prompts/atdd/contract-tests.md` (RED 3.1 WRITE → RED 3.1 COMMIT → RED 3.2 WRITE → RED 3.2 COMMIT) before continuing to step 11.
+    - If the dsl-agent reported **external system interfaces changed = yes**: execute the **Contract Tests Sub-Process** below before continuing to step 11.
     - Otherwise: proceed directly to step 11.
+
+### Contract Tests Sub-Process
+
+_Only executed when external system interfaces changed = yes._
+
+10a. Launch **test-agent (WRITE)** for contract tests. It will write the contract tests and report back without committing.
+
+10b. STOP. Present the contract tests to the user and wait for approval. Do NOT continue until approved.
+
+10c. Launch **test-agent (COMMIT)** for contract tests. It will extend DSL interfaces with stubs, mark tests `@Disabled("RED 1 - Contract Tests")`, and commit.
+
+10d. Launch **dsl-agent (WRITE)** for contract DSL. It will implement the DSL and report back without committing.
+
+10e. STOP. Present the DSL implementation and driver interface changes to the user and wait for approval. Do NOT continue until approved.
+
+10f. Launch **dsl-agent (COMMIT)** for contract DSL. It will add driver stubs, mark tests `@Disabled("RED 2 - DSL")`, and commit.
+
+10g. Launch **driver-agent (WRITE)** for contract drivers. It will implement the drivers and report back without committing.
+
+10h. STOP. Present the driver implementation to the user and wait for approval. Do NOT continue until approved.
+
+10i. Launch **driver-agent (COMMIT)** for contract drivers. It will mark tests `@Disabled("RED 3 - Driver")` and commit.
+
+10j. Launch **backend-agent** for external system stubs. It will implement the stubs until contract tests pass, then report back without committing.
+
+10k. STOP. Present the stub implementation to the user and wait for approval. Do NOT continue until approved.
+
+10l. Launch **release-agent** for contract stubs. It will remove `@Disabled` and commit GREEN - External System Stubs.
+
+_Resume main process at step 11._
 
 11. Launch **backend-agent**. It will implement the backend until API tests pass.
 
