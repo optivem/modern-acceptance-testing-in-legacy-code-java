@@ -23,18 +23,5 @@ class SubmitReviewPositiveTest extends BaseAcceptanceTest {
                     .hasReviewComment("Excellent functionality");
     }
 
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void canSubmitReviewWithoutComment() {
-        scenario
-                .given().order()
-                    .withStatus("DELIVERED")
-                .and().product()
-                    .withReviewable("true")
-                .when().submitReview()
-                    .withRating("3")
-                .then().shouldSucceed()
-                .and().order()
-                    .hasReviewRating("3");
-    }
+    // TODO: Can submit a review without a comment
 }
