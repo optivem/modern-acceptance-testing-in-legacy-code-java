@@ -12,6 +12,7 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.PublishCouponRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
+import com.optivem.eshop.systemtest.driver.port.shop.dtos.SubmitReviewRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.ShopDriver;
 import com.optivem.eshop.systemtest.driver.port.shared.dtos.ErrorResponse;
@@ -207,6 +208,11 @@ public class ShopUiDriver implements ShopDriver {
         }
 
         return success();
+    }
+
+    @Override
+    public Result<Void, ErrorResponse> submitReview(SubmitReviewRequest request) {
+        throw new UnsupportedOperationException("TODO: Driver");
     }
 
     // --- page navigation ---

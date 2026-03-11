@@ -11,6 +11,7 @@ import com.optivem.eshop.systemtest.dsl.core.shared.VoidVerification;
 public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
     private String skuParamAlias;
     private String unitPrice;
+    private String reviewable;
 
     public ReturnsProduct(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
@@ -30,6 +31,11 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
         return unitPrice(Converter.fromDouble(unitPrice));
     }
 
+    public ReturnsProduct reviewable(String reviewable) {
+        this.reviewable = reviewable;
+        return this;
+    }
+
     @Override
     public UseCaseResult<Void, VoidVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
@@ -37,6 +43,7 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
         var request = ReturnsProductRequest.builder()
                 .sku(sku)
                 .price(unitPrice)
+                .reviewable(reviewable)
                 .build();
 
         var result = driver.returnsProduct(request);

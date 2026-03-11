@@ -24,6 +24,8 @@ public final class ScenarioDefaults {
     // Tax defaults
     public static final String DEFAULT_TAX_RATE = "0.07";
     
+    // Review defaults
+
     // Coupon defaults
     public static final String DEFAULT_COUPON_CODE = "DEFAULT-COUPON";
     public static final String DEFAULT_DISCOUNT_RATE = "0.10";

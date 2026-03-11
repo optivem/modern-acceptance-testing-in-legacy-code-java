@@ -285,6 +285,22 @@ public class ViewOrderVerification extends ResponseVerification<ViewOrderRespons
         return this;
     }
 
+    public ViewOrderVerification reviewRating(String expectedRating) {
+        var actualRating = getResponse().getReviewRating();
+        assertThat(actualRating)
+                .withFailMessage("Expected review rating to be '%s', but was '%s'", expectedRating, actualRating)
+                .isEqualTo(expectedRating);
+        return this;
+    }
+
+    public ViewOrderVerification reviewComment(String expectedComment) {
+        var actualComment = getResponse().getReviewComment();
+        assertThat(actualComment)
+                .withFailMessage("Expected review comment to be '%s', but was '%s'", expectedComment, actualComment)
+                .isEqualTo(expectedComment);
+        return this;
+    }
+
 }
 
 

@@ -152,11 +152,13 @@ public class ThenOrderImpl<TSuccessResponse, TSuccessVerification extends Respon
     }
 
     public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasReviewRating(String expectedRating) {
-        throw new UnsupportedOperationException("TODO: DSL");
+        orderVerification.reviewRating(expectedRating);
+        return this;
     }
 
     public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasReviewComment(String expectedComment) {
-        throw new UnsupportedOperationException("TODO: DSL");
+        orderVerification.reviewComment(expectedComment);
+        return this;
     }
 
     public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String expectedPrefix) {

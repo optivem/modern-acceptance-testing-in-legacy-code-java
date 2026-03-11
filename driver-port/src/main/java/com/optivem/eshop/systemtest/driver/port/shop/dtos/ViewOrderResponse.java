@@ -28,4 +28,6 @@ public class ViewOrderResponse {
     private OrderStatus status;
     private String country;
     private String appliedCouponCode;
+    private String reviewRating;
+    private String reviewComment;
 }
