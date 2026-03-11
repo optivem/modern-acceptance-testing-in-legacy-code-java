@@ -18,6 +18,10 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
+        if (request.getStockQuantity() != null) {
+            throw new UnsupportedOperationException("TODO: Driver");
+        }
+
         var createProductRequest = ExtCreateProductRequest.builder()
                 .id(request.getSku())
                 .title(DEFAULT_TITLE)

@@ -12,6 +12,7 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
     private String skuParamAlias;
     private String unitPrice;
     private String reviewable;
+    private String stockQuantity;
 
     public ReturnsProduct(ErpDriver driver, UseCaseContext context) {
         super(driver, context);
@@ -36,6 +37,11 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
         return this;
     }
 
+    public ReturnsProduct stockQuantity(String stockQuantity) {
+        this.stockQuantity = stockQuantity;
+        return this;
+    }
+
     @Override
     public UseCaseResult<Void, VoidVerification> execute() {
         var sku = context.getParamValue(skuParamAlias);
@@ -44,6 +50,7 @@ public class ReturnsProduct extends BaseErpUseCase<Void, VoidVerification> {
                 .sku(sku)
                 .price(unitPrice)
                 .reviewable(reviewable)
+                .stockQuantity(stockQuantity)
                 .build();
 
         var result = driver.returnsProduct(request);

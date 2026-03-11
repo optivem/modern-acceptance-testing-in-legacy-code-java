@@ -52,6 +52,7 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
                 .sku(sku)
                 .unitPrice(unitPrice)
                 .reviewable(reviewable)
+                .stockQuantity(stockQuantity)
                 .execute()
                 .shouldSucceed();
     }
