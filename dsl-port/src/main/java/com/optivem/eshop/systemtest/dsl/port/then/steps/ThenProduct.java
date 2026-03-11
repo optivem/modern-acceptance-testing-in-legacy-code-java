@@ -8,4 +8,6 @@ public interface ThenProduct extends ThenStep<ThenProduct> {
     ThenProduct hasPrice(double price);
 
     ThenProduct hasReviewable(String reviewable);
+
+    ThenProduct hasStockQuantity(String stockQuantity);
 }

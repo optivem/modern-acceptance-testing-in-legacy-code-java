@@ -39,6 +39,10 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
         return price(Converter.toBigDecimal(expectedPrice));
     }
 
+    public GetProductVerification stockQuantity(String expectedStockQuantity) {
+        throw new UnsupportedOperationException("TODO: DSL");
+    }
+
     public GetProductVerification reviewable(String expectedReviewable) {
         var actualReviewable = getResponse().getReviewable();
         assertThat(actualReviewable)
