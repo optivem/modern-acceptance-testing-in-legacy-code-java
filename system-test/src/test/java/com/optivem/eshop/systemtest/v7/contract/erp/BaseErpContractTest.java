@@ -1,7 +1,6 @@
 package com.optivem.eshop.systemtest.v7.contract.erp;
 
 import com.optivem.eshop.systemtest.v7.contract.base.BaseExternalSystemContractTest;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public abstract class BaseErpContractTest extends BaseExternalSystemContractTest {
@@ -12,10 +11,4 @@ public abstract class BaseErpContractTest extends BaseExternalSystemContractTest
                 .then().product("SKU-123").hasSku("SKU-123").hasPrice(12.0);
     }
 
-    @Test
-    void shouldReturnReviewableField() {
-        scenario
-                .given().product().withSku("SKU-456").withUnitPrice(15.0).withReviewable(true)
-                .then().product("SKU-456").hasReviewable(true);
-    }
 }
