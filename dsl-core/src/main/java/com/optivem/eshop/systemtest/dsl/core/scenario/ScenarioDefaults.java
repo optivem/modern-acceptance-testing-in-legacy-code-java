@@ -11,6 +11,7 @@ public final class ScenarioDefaults {
     // Product defaults
     public static final String DEFAULT_SKU = "DEFAULT-SKU";
     public static final String DEFAULT_UNIT_PRICE = "20.00";
+    public static final String DEFAULT_STOCK_QUANTITY = "100";
     
     // Order defaults
     public static final String DEFAULT_ORDER_NUMBER = "DEFAULT-ORDER";

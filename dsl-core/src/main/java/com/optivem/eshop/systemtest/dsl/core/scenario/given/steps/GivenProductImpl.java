@@ -11,12 +11,14 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
     private String sku;
     private String unitPrice;
     private String reviewable;
+    private String stockQuantity;
 
     public GivenProductImpl(GivenImpl given) {
         super(given);
         withSku(DEFAULT_SKU);
         withUnitPrice(DEFAULT_UNIT_PRICE);
         withReviewable("false");
+        withStockQuantity(DEFAULT_STOCK_QUANTITY);
     }
 
     public GivenProductImpl withSku(String sku) {
@@ -36,6 +38,11 @@ public class GivenProductImpl extends BaseGivenStep implements GivenProduct {
 
     public GivenProductImpl withReviewable(String reviewable) {
         this.reviewable = reviewable;
+        return this;
+    }
+
+    public GivenProductImpl withStockQuantity(String stockQuantity) {
+        this.stockQuantity = stockQuantity;
         return this;
     }
 
