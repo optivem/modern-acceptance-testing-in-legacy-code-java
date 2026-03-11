@@ -38,4 +38,12 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
     public GetProductVerification price(String expectedPrice) {
         return price(Converter.toBigDecimal(expectedPrice));
     }
+
+    public GetProductVerification reviewable(String expectedReviewable) {
+        var actualReviewable = getResponse().getReviewable();
+        assertThat(actualReviewable)
+                .withFailMessage("Expected reviewable to be '%s', but was '%s'", expectedReviewable, actualReviewable)
+                .isEqualTo(expectedReviewable);
+        return this;
+    }
 }
