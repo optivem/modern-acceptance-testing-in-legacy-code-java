@@ -191,7 +191,7 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                     .hasUsedCount(1);
     }
 
-    @Disabled("AT - RED - DSL")
+    @Disabled("AT - RED - DRIVER")
     @TestTemplate
     @Channel({ChannelType.UI, ChannelType.API})
     void shouldAcceptOrderWhenStockIsSufficient() {

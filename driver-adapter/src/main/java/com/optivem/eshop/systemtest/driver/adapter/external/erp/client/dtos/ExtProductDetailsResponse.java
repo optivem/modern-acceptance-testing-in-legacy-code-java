@@ -19,4 +19,5 @@ public class ExtProductDetailsResponse {
     private String category;
     private String brand;
     private String reviewable;
+    private String stockQuantity;
 }

@@ -18,10 +18,6 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
-        if (request.getStockQuantity() != null) {
-            throw new UnsupportedOperationException("TODO: Driver");
-        }
-
         var createProductRequest = ExtCreateProductRequest.builder()
                 .id(request.getSku())
                 .title(DEFAULT_TITLE)
@@ -30,6 +26,7 @@ public class ErpRealDriver extends BaseErpDriver<ErpRealClient> {
                 .brand(DEFAULT_BRAND)
                 .price(request.getPrice())
                 .reviewable(request.getReviewable())
+                .stockQuantity(request.getStockQuantity())
                 .build();
 
         return client.createProduct(createProductRequest)

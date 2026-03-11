@@ -18,10 +18,6 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
 
     @Override
     public Result<Void, ErrorResponse> returnsProduct(ReturnsProductRequest request) {
-        if (request.getStockQuantity() != null) {
-            throw new UnsupportedOperationException("TODO: Driver");
-        }
-
         var extProductDetailsResponse = ExtProductDetailsResponse.builder()
                 .id(request.getSku())
                 .title("")
@@ -30,6 +26,7 @@ public class ErpStubDriver extends BaseErpDriver<ErpStubClient> {
                 .category("")
                 .brand("")
                 .reviewable(request.getReviewable())
+                .stockQuantity(request.getStockQuantity())
                 .build();
 
         return client.configureGetProduct(extProductDetailsResponse)
