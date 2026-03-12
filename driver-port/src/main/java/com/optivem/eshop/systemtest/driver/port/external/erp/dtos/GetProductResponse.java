@@ -14,6 +14,4 @@ import java.math.BigDecimal;
 public class GetProductResponse {
     private String sku;
     private BigDecimal price;
-    private String reviewable;
-    private String stockQuantity;
 }

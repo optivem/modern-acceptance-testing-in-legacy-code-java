@@ -5,7 +5,6 @@ import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenBrowseCoupo
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenCancelOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenPlaceOrderImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenPublishCouponImpl;
-import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenSubmitReviewImpl;
 import com.optivem.eshop.systemtest.dsl.core.scenario.when.steps.WhenViewOrderImpl;
 import com.optivem.eshop.systemtest.dsl.port.when.WhenStage;
 
@@ -67,11 +66,6 @@ public class WhenImpl implements WhenStage {
 
     public WhenBrowseCouponsImpl browseCoupons() {
         return new WhenBrowseCouponsImpl(app);
-    }
-
-    public WhenSubmitReviewImpl submitReview() {
-        ensureDefaults();
-        return new WhenSubmitReviewImpl(app);
     }
 
 }

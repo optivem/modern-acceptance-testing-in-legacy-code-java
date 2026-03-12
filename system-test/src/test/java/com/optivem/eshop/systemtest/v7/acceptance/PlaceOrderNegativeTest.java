@@ -176,8 +176,6 @@ class PlaceOrderNegativeTest extends BaseAcceptanceTest {
                     .errorMessage("The request contains one or more validation errors")
                     .fieldErrorMessage("couponCode", "Coupon code LIMITED2024 has exceeded its usage limit");
     }
-
-    // TODO: Place order with insufficient stock
 }
 
 

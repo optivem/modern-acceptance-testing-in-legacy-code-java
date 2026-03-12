@@ -151,16 +151,6 @@ public class ThenOrderImpl<TSuccessResponse, TSuccessVerification extends Respon
         return this;
     }
 
-    public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasReviewRating(String expectedRating) {
-        orderVerification.reviewRating(expectedRating);
-        return this;
-    }
-
-    public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasReviewComment(String expectedComment) {
-        orderVerification.reviewComment(expectedComment);
-        return this;
-    }
-
     public ThenOrderImpl<TSuccessResponse, TSuccessVerification> hasOrderNumberPrefix(String expectedPrefix) {
         switch (successVerification) {
             case PlaceOrderVerification placeOrderVerification -> placeOrderVerification.orderNumberStartsWith(expectedPrefix);

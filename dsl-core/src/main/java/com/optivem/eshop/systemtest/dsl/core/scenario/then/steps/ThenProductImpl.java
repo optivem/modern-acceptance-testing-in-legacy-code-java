@@ -27,18 +27,6 @@ public class ThenProductImpl extends BaseThenStep<Void, VoidVerification> implem
     }
 
     @Override
-    public ThenProductImpl hasReviewable(String reviewable) {
-        verification.reviewable(reviewable);
-        return this;
-    }
-
-    @Override
-    public ThenProductImpl hasStockQuantity(String stockQuantity) {
-        verification.stockQuantity(stockQuantity);
-        return this;
-    }
-
-    @Override
     public ThenProductImpl and() {
         return this;
     }

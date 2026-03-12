@@ -8,8 +8,4 @@ public interface GivenProduct extends GivenStep {
     GivenProduct withUnitPrice(String unitPrice);
 
     GivenProduct withUnitPrice(double unitPrice);
-
-    GivenProduct withReviewable(String reviewable);
-
-    GivenProduct withStockQuantity(String stockQuantity);
 }

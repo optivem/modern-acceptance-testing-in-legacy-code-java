@@ -38,20 +38,4 @@ public class GetProductVerification extends ResponseVerification<GetProductRespo
     public GetProductVerification price(String expectedPrice) {
         return price(Converter.toBigDecimal(expectedPrice));
     }
-
-    public GetProductVerification stockQuantity(String expectedStockQuantity) {
-        var actualStockQuantity = getResponse().getStockQuantity();
-        assertThat(actualStockQuantity)
-                .withFailMessage("Expected stockQuantity to be '%s', but was '%s'", expectedStockQuantity, actualStockQuantity)
-                .isEqualTo(expectedStockQuantity);
-        return this;
-    }
-
-    public GetProductVerification reviewable(String expectedReviewable) {
-        var actualReviewable = getResponse().getReviewable();
-        assertThat(actualReviewable)
-                .withFailMessage("Expected reviewable to be '%s', but was '%s'", expectedReviewable, actualReviewable)
-                .isEqualTo(expectedReviewable);
-        return this;
-    }
 }

@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.driver.adapter.shop.api.client.controllers;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.ViewOrderResponse;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderResponse;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.SubmitReviewRequest;
 import com.optivem.eshop.systemtest.driver.adapter.shop.api.client.dtos.errors.ProblemDetailResponse;
 import com.optivem.eshop.systemtest.driver.adapter.shared.client.http.JsonHttpClient;
 import com.optivem.common.Result;
@@ -31,10 +30,6 @@ public class OrderController {
 
     public Result<Void, ProblemDetailResponse> deliverOrder(String orderNumber) {
         return httpClient.post(ENDPOINT + "/" + orderNumber + "/deliver");
-    }
-
-    public Result<Void, ProblemDetailResponse> submitReview(String orderNumber, SubmitReviewRequest request) {
-        return httpClient.post(ENDPOINT + "/" + orderNumber + "/review", request);
     }
 }
 

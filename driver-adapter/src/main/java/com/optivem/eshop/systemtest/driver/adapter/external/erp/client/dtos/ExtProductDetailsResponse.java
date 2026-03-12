@@ -18,6 +18,4 @@ public class ExtProductDetailsResponse {
     private BigDecimal price;
     private String category;
     private String brand;
-    private String reviewable;
-    private String stockQuantity;
 }

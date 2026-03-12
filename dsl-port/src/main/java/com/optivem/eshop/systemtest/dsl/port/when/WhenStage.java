@@ -3,7 +3,6 @@ package com.optivem.eshop.systemtest.dsl.port.when;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenCancelOrder;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenPlaceOrder;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenPublishCoupon;
-import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenSubmitReview;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.WhenViewOrder;
 import com.optivem.eshop.systemtest.dsl.port.when.steps.base.WhenStep;
 
@@ -17,8 +16,6 @@ public interface WhenStage {
     WhenPublishCoupon publishCoupon();
 
     WhenStep browseCoupons();
-
-    WhenSubmitReview submitReview();
 }
 
 

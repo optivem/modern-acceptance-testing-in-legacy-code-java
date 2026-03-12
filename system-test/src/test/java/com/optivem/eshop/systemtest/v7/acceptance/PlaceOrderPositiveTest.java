@@ -6,7 +6,6 @@ import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
 import com.optivem.testing.Channel;
 import com.optivem.testing.DataSource;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.TestTemplate;
 
 class PlaceOrderPositiveTest extends BaseAcceptanceTest {
@@ -189,18 +188,6 @@ class PlaceOrderPositiveTest extends BaseAcceptanceTest {
                 .then().shouldSucceed()
                 .and().coupon("SUMMER2025")
                     .hasUsedCount(1);
-    }
-
-    @Disabled("AT - RED - DRIVER")
-    @TestTemplate
-    @Channel({ChannelType.UI, ChannelType.API})
-    void shouldAcceptOrderWhenStockIsSufficient() {
-        scenario
-                .given().product()
-                    .withStockQuantity("10")
-                .when().placeOrder()
-                    .withQuantity("3")
-                .then().shouldSucceed();
     }
 
     // TODO: Place order for exact available quantity

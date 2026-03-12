@@ -26,12 +26,6 @@ public class OrderDetailsPage extends BasePage {
     private static final String APPLIED_COUPON_OUTPUT_SELECTOR = "[aria-label='Display Applied Coupon']";
     private static final String CANCEL_ORDER_OUTPUT_SELECTOR = "[aria-label='Cancel Order']";
     private static final String DELIVER_ORDER_SELECTOR = "[aria-label='Deliver Order']";
-    private static final String REVIEW_RATING_INPUT_SELECTOR = "[aria-label='Review Rating']";
-    private static final String REVIEW_COMMENT_INPUT_SELECTOR = "[aria-label='Review Comment']";
-    private static final String SUBMIT_REVIEW_SELECTOR = "[aria-label='Submit Review']";
-    private static final String REVIEW_RATING_OUTPUT_SELECTOR = "[aria-label='Display Review Rating']";
-    private static final String REVIEW_COMMENT_OUTPUT_SELECTOR = "[aria-label='Display Review Comment']";
-
     // Display text constants
     private static final String TEXT_NONE = "None";
     private static final String DOLLAR_SYMBOL = "$";
@@ -119,26 +113,6 @@ public class OrderDetailsPage extends BasePage {
 
     public void clickDeliverOrder() {
         pageClient.click(DELIVER_ORDER_SELECTOR);
-    }
-
-    public void inputReviewRating(String rating) {
-        pageClient.fill(REVIEW_RATING_INPUT_SELECTOR, rating);
-    }
-
-    public void inputReviewComment(String comment) {
-        pageClient.fill(REVIEW_COMMENT_INPUT_SELECTOR, comment);
-    }
-
-    public void clickSubmitReview() {
-        pageClient.click(SUBMIT_REVIEW_SELECTOR);
-    }
-
-    public String getReviewRating() {
-        return pageClient.readTextContent(REVIEW_RATING_OUTPUT_SELECTOR);
-    }
-
-    public String getReviewComment() {
-        return pageClient.readTextContent(REVIEW_COMMENT_OUTPUT_SELECTOR);
     }
 
     private BigDecimal readTextMoney(String selector) {
