@@ -1,7 +1,7 @@
 package com.optivem.eshop.systemtest.v7.acceptance;
 
 import com.optivem.eshop.systemtest.v7.acceptance.base.BaseAcceptanceTest;
-import com.optivem.eshop.systemtest.channel.ChannelType;
+import com.optivem.eshop.dsl.channel.ChannelType;
 import com.optivem.testing.Channel;
 import com.optivem.testing.Isolated;
 import com.optivem.testing.TimeDependent;

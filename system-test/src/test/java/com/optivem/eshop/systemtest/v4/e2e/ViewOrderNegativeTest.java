@@ -1,6 +1,6 @@
 package com.optivem.eshop.systemtest.v4.e2e;
 
-import com.optivem.eshop.systemtest.channel.ChannelType;
+import com.optivem.eshop.dsl.channel.ChannelType;
 import com.optivem.eshop.systemtest.v4.e2e.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-import static com.optivem.common.ResultAssert.assertThatResult;
+import static com.optivem.eshop.dsl.common.ResultAssert.assertThatResult;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ViewOrderNegativeTest extends BaseE2eTest {

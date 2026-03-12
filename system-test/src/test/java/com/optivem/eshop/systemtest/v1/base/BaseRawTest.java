@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.playwright.*;
 import com.optivem.eshop.systemtest.configuration.BaseConfigurableTest;
-import com.optivem.eshop.systemtest.dsl.core.app.AppConfiguration;
-import com.optivem.common.Closer;
+import com.optivem.eshop.dsl.core.app.AppConfiguration;
+import com.optivem.eshop.dsl.common.Closer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 

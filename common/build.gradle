@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group = 'com.optivem'
+group = 'com.optivem.eshop.dsl'
 version = '0.0.1-SNAPSHOT'
 
 java {

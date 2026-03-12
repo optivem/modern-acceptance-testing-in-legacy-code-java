@@ -1,16 +1,16 @@
 package com.optivem.eshop.systemtest.v4.e2e;
 
-import com.optivem.eshop.systemtest.driver.port.external.erp.dtos.ReturnsProductRequest;
-import com.optivem.eshop.systemtest.channel.ChannelType;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.OrderStatus;
-import com.optivem.eshop.systemtest.driver.port.shop.dtos.PlaceOrderRequest;
+import com.optivem.eshop.dsl.driver.port.external.erp.dtos.ReturnsProductRequest;
+import com.optivem.eshop.dsl.channel.ChannelType;
+import com.optivem.eshop.dsl.driver.port.shop.dtos.OrderStatus;
+import com.optivem.eshop.dsl.driver.port.shop.dtos.PlaceOrderRequest;
 import com.optivem.eshop.systemtest.v4.e2e.base.BaseE2eTest;
 import com.optivem.testing.Channel;
 import org.junit.jupiter.api.TestTemplate;
 
 import java.math.BigDecimal;
 
-import static com.optivem.common.ResultAssert.assertThatResult;
+import static com.optivem.eshop.dsl.common.ResultAssert.assertThatResult;
 import static com.optivem.eshop.systemtest.commons.constants.Defaults.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
